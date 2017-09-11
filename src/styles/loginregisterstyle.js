@@ -99,6 +99,22 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
 
+    //REGISTER CSS
+    containerRegister:{
+        flex: 1,
+        justifyContent : 'center',
+        alignItems : 'center',
+    },
+    registerTitle:{
+        color: '#FFFFFF',
+        fontSize: 25,
+        backgroundColor: 'transparent',
+        marginBottom: 10,
+    },
+    contentFormRegister:{
+        flex: 5,
+    },
+
 
 })
 export default styles;

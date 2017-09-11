@@ -6,7 +6,12 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider}from'react-redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
+
 import LoginContainer from './containers/LoginContainer';
+import RegisterContainer from './containers/RegisterContainer';
+import ForgotPasswordContainer from './containers/ForgotPasswordContainer';
+
+
 
 import {composeWithDevTools} from 'remote-redux-devtools';
 

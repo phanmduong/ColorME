@@ -1,21 +1,21 @@
 import React, {Component} from 'react';
 import {
-    View, Image, Text, TouchableOpacity, KeyboardAvoidingView
+    View, Image, Text, TouchableOpacity, KeyboardAvoidingView, StatusBar
 } from 'react-native';
 import styles from '../styles/loginregisterstyle';
 import {Madoka} from 'react-native-textinput-effects';
 
-let that
 export default class LoginComponent extends Component {
     constructor() {
         super();
-        background = require('../img/bg.png');
+        background = require('../img/bg2.png');
         that = this;
     }
 
     render() {
         return (
                 <Image source={background} style={styles.wrapperContainer}>
+                    <StatusBar barStyle="light-content"/>
                     <KeyboardAvoidingView behavior="position">
                         {/*LOGO*/}
                         <View style={styles.containerColorME}>
@@ -46,13 +46,15 @@ export default class LoginComponent extends Component {
                                     labelStyle={{color: 'rgba(239, 239, 239, 0.8)', fontWeight: '300'}}
                                     inputStyle={{color: '#FFFFFF', fontWeight: '500'}}
                                 />
-                                <Text style={styles.textForgotPassword}>Forgot your password?</Text>
+                                <Text style={styles.textForgotPassword}
+                                          onPress={() => this.props.navigation.navigate('ForgotPasswordComponent')}
+                                    >Forgot your password?</Text>
                                 <TouchableOpacity style={styles.buttonLogin}>
                                     <Text style={styles.textButtonLogin}>Login</Text>
                                 </TouchableOpacity>
                                 <Text style={styles.textRegister}>Don't have an account?
                                     <Text style={styles.textRegisterChild}
-                                          onPress={() => that.props.navigation.navigate('RegisterScreen')}
+                                          onPress={() => this.props.navigation.navigate('RegisterScreen')}
                                     > Register</Text>
                                 </Text>
 

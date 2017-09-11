@@ -7,7 +7,7 @@ import {Text} from 'react-native';
 import {bindActionCreators} from 'redux';
 import RegisterComponent from "../components/RegisterComponent";
 
-class RegisterComponent extends React.Component {
+class RegisterContainer extends React.Component {
     constructor(props, context) {
         super(props, context);
     }
@@ -27,4 +27,4 @@ function mapDispatchToProps(dispatch) {
     return {};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);
