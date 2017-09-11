@@ -5,6 +5,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Text} from 'react-native';
 import {bindActionCreators} from 'redux';
+import LoginComponent from '../components/LoginComponent';
 
 class LoginContainer extends React.Component {
     constructor(props, context) {
@@ -13,7 +14,7 @@ class LoginContainer extends React.Component {
 
     render() {
         return (
-            <Text>LoginContainer</Text>
+            <LoginComponent/>
         );
     }
 }
