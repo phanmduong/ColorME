@@ -74,7 +74,7 @@ export default class RegisterComponent extends Component {
                                 inputStyle={{color: '#FFFFFF', fontWeight: '500'}}
                             />
 
-                            {/*CONFIRM PASSWROD*/}
+                            {/*CONFIRM PASSWORD*/}
                             <Madoka
                                 label={'Confirm Password'}
                                 autoCapitalize="none"
@@ -89,7 +89,7 @@ export default class RegisterComponent extends Component {
                                 <Text style={styles.textButtonLogin}>JOIN</Text>
                             </TouchableOpacity>
 
-                            {/*BACKBUTTON*/}
+                            {/*BACK BUTTON*/}
                             <TouchableOpacity style={styles.backButton}
                                 onPress={() => this.props.navigation.navigate('LoginScreen')}>
                                 <Text style={styles.textButtonBack}>Back</Text>

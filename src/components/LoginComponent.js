@@ -73,7 +73,7 @@ export default class LoginComponent extends Component {
                                     Forgot your password?
                                 </Text>
 
-                                {/*LOGIN BUTTOM*/}
+                                {/*LOGIN BUTTON*/}
                                 <TouchableOpacity style={styles.buttonLogin}>
                                     <Text style={styles.textButtonLogin}>Login</Text>
                                 </TouchableOpacity>
@@ -83,7 +83,7 @@ export default class LoginComponent extends Component {
                                     <Text style={styles.textRegisterChild}
                                           onPress={() => this.props.navigation.navigate('RegisterScreen')}
                                     >
-                                        Register
+                                        &nbsp;&nbsp;Register
                                     </Text>
                                 </Text>
 
