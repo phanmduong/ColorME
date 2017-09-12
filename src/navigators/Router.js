@@ -1,17 +1,30 @@
-import React, {Component} from 'react-native';
-import {StackNavigator} from 'react-navigation';
-import LoginComponent from '../components/LoginComponent'
+import { StackNavigator } from 'react-navigation'
+// import LoginContainer from '../containers/LoginContainer';
+// import ForgotPasswordContainer from '../containers/ForgotPasswordContainer';
+// import RegisterContainer from '../containers/RegisterContainer';
 import RegisterComponent from '../components/RegisterComponent';
 import ForgotPasswordComponent from '../components/ForgotPasswordComponent';
+import LoginComponent from '../components/LoginComponent';
 
-export const HomeStack = StackNavigator({
-    LoginScreen:{
+
+
+export const Stack = StackNavigator({
+    LoginScreen: {
         screen: LoginComponent,
+        navigationOptions:{
+            header: null,
+        }
     },
-    RegisterScreen:{
+    RegisterScreen: {
         screen: RegisterComponent,
+        navigationOptions:{
+            header: null,
+        }
     },
-    ForgotPasswordComponent:{
+    ForgotPasswordScreen: {
         screen: ForgotPasswordComponent,
-    },
-})
+        navigationOptions: {
+            header: null,
+        }
+    }
+});

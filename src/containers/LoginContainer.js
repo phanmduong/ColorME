@@ -7,6 +7,7 @@ import {Text} from 'react-native';
 import {bindActionCreators} from 'redux';
 import LoginComponent from '../components/LoginComponent';
 
+
 class LoginContainer extends React.Component {
     constructor(props, context) {
         super(props, context);

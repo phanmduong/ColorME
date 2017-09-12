@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    View, Image, Text, TouchableOpacity, KeyboardAvoidingView, StatusBar
+    View, Image, Text, TouchableOpacity, KeyboardAvoidingView, StatusBar,
 } from 'react-native';
 import styles from '../styles/loginregisterstyle';
 import {Madoka} from 'react-native-textinput-effects';
@@ -16,14 +16,30 @@ export default class RegisterComponent extends Component {
             <Image source={background} style={styles.wrapperContainer}>
                 <StatusBar barStyle="light-content"/>
                 <KeyboardAvoidingView behavior="padding">
-                    {/*LOGO*/}
-                    <View style={styles.containerRegister}>
-                        <Text style={styles.registerTitle}>Welcome To ColorME</Text>
+                    <View style={styles.containerTopRegister}>
+
+                        {/*ROUTER*/}
+                        <View style={styles.contentRouterLeft}>
+                            <TouchableOpacity style={styles.buttonRouter}
+                               onPress={() => this.props.navigation.navigate('LoginScreen')}
+                            >
+                                <Text style={styles.textRouterLeft}>
+                                    Register
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        {/*LOGO*/}
+                        <View style={styles.containerRegister}>
+                            <Text style={styles.registerTitle}>Welcome To ColorME</Text>
+                        </View>
                     </View>
 
                     {/*FORM*/}
                     <View style={styles.contentFormRegister}>
                         <View style={styles.contentInput}>
+
+                            {/*EMAIL*/}
                             <Madoka
                                 label={'Email'}
                                 autoCapitalize="none"
@@ -34,6 +50,8 @@ export default class RegisterComponent extends Component {
                                 labelStyle={{color: 'rgba(239, 239, 239, 0.8)', fontWeight: '300'}}
                                 inputStyle={{color: '#FFFFFF', fontWeight: '500'}}
                             />
+
+                            {/*USERNAME*/}
                             <Madoka
                                 label={'Username'}
                                 autoCapitalize="none"
@@ -43,6 +61,8 @@ export default class RegisterComponent extends Component {
                                 labelStyle={{color: 'rgba(239, 239, 239, 0.8)', fontWeight: '300'}}
                                 inputStyle={{color: '#FFFFFF', fontWeight: '500'}}
                             />
+
+                            {/*PASSWORD*/}
                             <Madoka
                                 label={'Password'}
                                 autoCapitalize="none"
@@ -53,6 +73,8 @@ export default class RegisterComponent extends Component {
                                 labelStyle={{color: 'rgba(239, 239, 239, 0.8)', fontWeight: '300'}}
                                 inputStyle={{color: '#FFFFFF', fontWeight: '500'}}
                             />
+
+                            {/*CONFIRM PASSWROD*/}
                             <Madoka
                                 label={'Confirm Password'}
                                 autoCapitalize="none"
@@ -67,7 +89,11 @@ export default class RegisterComponent extends Component {
                                 <Text style={styles.textButtonLogin}>JOIN</Text>
                             </TouchableOpacity>
 
-
+                            {/*BACKBUTTON*/}
+                            <TouchableOpacity style={styles.backButton}
+                                onPress={() => this.props.navigation.navigate('LoginScreen')}>
+                                <Text style={styles.textButtonBack}>Back</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </KeyboardAvoidingView>
