@@ -15,7 +15,7 @@ export default class ForgotPasswordComponent extends Component {
 
     render() {
         return (
-            <View style={styles.background}>
+            <Image source={background} style={styles.wrapperContainer}>
                 <StatusBar barStyle="light-content"/>
                 <KeyboardAvoidingView behavior="padding">
                     <View style={styles.containerTopForgotPassword}>
@@ -67,7 +67,7 @@ export default class ForgotPasswordComponent extends Component {
                         </View>
                     </View>
                 </KeyboardAvoidingView>
-            </View>
+            </Image>
         );
     }
 }
