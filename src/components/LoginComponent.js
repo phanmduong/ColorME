@@ -16,8 +16,9 @@ export default class LoginComponent extends Component {
     render() {
 
         return (
-                <Image source={background} style={styles.wrapperContainer}>
-                    <StatusBar barStyle="light-content"/>
+            <View style={styles.background}>
+
+            <StatusBar barStyle="light-content"/>
                     <KeyboardAvoidingView behavior="position">
                         <View style={styles.containerTopLogin}>
 
@@ -91,7 +92,7 @@ export default class LoginComponent extends Component {
                             </View>
                         </View>
                     </KeyboardAvoidingView>
-                </Image>
+                </View>
         );
     }
 }

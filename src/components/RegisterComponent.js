@@ -13,8 +13,8 @@ export default class RegisterComponent extends Component {
 
     render() {
         return (
-            <Image source={background} style={styles.wrapperContainer}>
-                <StatusBar barStyle="light-content"/>
+            <View style={styles.background}>
+            <StatusBar barStyle="light-content"/>
                 <KeyboardAvoidingView behavior="padding">
                     <View style={styles.containerTopRegister}>
 
@@ -97,7 +97,7 @@ export default class RegisterComponent extends Component {
                         </View>
                     </View>
                 </KeyboardAvoidingView>
-            </Image>
+            </View>
         );
     }
 }

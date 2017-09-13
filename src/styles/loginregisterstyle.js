@@ -3,6 +3,9 @@ import {StyleSheet, Platform} from 'react-native';
 const styles = StyleSheet.create({
 
     // FOR ALL
+    background:{
+       backgroundColor: 'cb0000',
+    },
     wrapperContainer:{
         flex : 1,
         width : null,
