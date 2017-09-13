@@ -3,9 +3,10 @@
  */
 import React from 'react';
 import {connect} from 'react-redux';
-import {Text} from 'react-native';
+import {Text,View,TouchableOpacity} from 'react-native';
 import {bindActionCreators} from 'redux';
 import ForgotPasswordComponent from '../components/ForgotPasswordComponent';
+import styles from '../styles/loginregisterstyle'
 
 class ForgotPasswordContainer extends React.Component {
     constructor(props, context) {
@@ -14,7 +15,12 @@ class ForgotPasswordContainer extends React.Component {
 
     render() {
         return (
-            <ForgotPasswordComponent/>
+
+            <ForgotPasswordComponent
+            />
+
+
+
         );
     }
 }

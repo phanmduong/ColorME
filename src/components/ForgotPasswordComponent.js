@@ -5,17 +5,17 @@ import {
 import styles from '../styles/loginregisterstyle';
 import {Madoka} from 'react-native-textinput-effects';
 
-let that;
+
 export default class ForgotPasswordComponent extends Component {
     constructor() {
         super();
-        background = require('../img/bg2.png');
-        that = this;
+        this.background = require('../img/bg2.png');
+
     }
 
     render() {
         return (
-            <Image source={background} style={styles.wrapperContainer}>
+            <Image source={this.background} style={styles.wrapperContainer}>
                 <StatusBar barStyle="light-content"/>
                 <KeyboardAvoidingView behavior="padding">
                     <View style={styles.containerTopForgotPassword}>
@@ -60,10 +60,7 @@ export default class ForgotPasswordComponent extends Component {
                             </TouchableOpacity>
 
                             {/*BACK BUTTON*/}
-                            <TouchableOpacity style={styles.backButton}
-                                              onPress={() => this.props.navigation.navigate('LoginScreen')}>
-                                <Text style={styles.textButtonBack}>Back</Text>
-                            </TouchableOpacity>
+
                         </View>
                     </View>
                 </KeyboardAvoidingView>

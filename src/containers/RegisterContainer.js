@@ -3,9 +3,10 @@
  */
 import React from 'react';
 import {connect} from 'react-redux';
-import {Text} from 'react-native';
+import {Text,View,TouchableOpacity} from 'react-native';
 import {bindActionCreators} from 'redux';
 import RegisterComponent from "../components/RegisterComponent";
+import styles from '../styles/loginregisterstyle'
 
 class RegisterContainer extends React.Component {
     constructor(props, context) {
@@ -15,16 +16,8 @@ class RegisterContainer extends React.Component {
     render() {
         return (
             <RegisterComponent/>
+
         );
     }
 }
 
-function mapStateToProps(state) {
-    return {};
-}
-
-function mapDispatchToProps(dispatch) {
-    return {};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);

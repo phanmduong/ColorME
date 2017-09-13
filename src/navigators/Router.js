@@ -1,16 +1,18 @@
 import { StackNavigator } from 'react-navigation'
-// import LoginContainer from '../containers/LoginContainer';
-// import ForgotPasswordContainer from '../containers/ForgotPasswordContainer';
-// import RegisterContainer from '../containers/RegisterContainer';
-import RegisterComponent from '../components/RegisterComponent';
-import ForgotPasswordComponent from '../components/ForgotPasswordComponent';
+
+ import ForgotPasswordContainer from '../containers/ForgotPasswordContainer';
+ import RegisterContainer from '../containers/RegisterContainer';
+
 import LoginComponent from '../components/LoginComponent';
+import RegisterComponent from "../components/RegisterComponent";
+import ForgotPasswordComponent from "../components/ForgotPasswordComponent";
+
 
 
 
 export const Stack = StackNavigator({
     LoginScreen: {
-        screen: LoginComponent,
+        screen: LoginComponent ,
         navigationOptions:{
             header: null,
         }
