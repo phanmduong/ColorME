@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {Image, KeyboardAvoidingView, StatusBar, Text, TouchableOpacity, View} from 'react-native';
+import {Image, KeyboardAvoidingView, StatusBar, Text, TouchableOpacity, View,ActivityIndicator} from 'react-native';
 import styles from '../styles/loginregisterstyle';
 import {Madoka} from 'react-native-textinput-effects';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as loginAction from '../actions/loginAction'
-import Spinkit from 'react-native-spinkit'
+
 
 class LoginComponent extends Component {
     constructor() {
@@ -124,11 +124,15 @@ class LoginComponent extends Component {
                                         justifyContent: 'center',
                                         alignItems: 'center'
                                     }}>
-                                        <Spinkit
-                                            isVisible= {true}
-                                            color='white'
-                                            type='FadingCircle'
-                                            size={40}
+                                        <ActivityIndicator
+                                            animated= {true}
+                                            color ='white'
+                                            style = {{flex: 1,
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                height : 40,
+                                            }}
+                                            size= 'small'
                                         />
                                     </View>
                                 ) : (
