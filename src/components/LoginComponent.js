@@ -1,56 +1,90 @@
 import React, {Component} from 'react';
-import {Image, KeyboardAvoidingView, StatusBar, Text, TouchableOpacity, View,ActivityIndicator} from 'react-native';
+import {
+    Image, KeyboardAvoidingView, StatusBar, Text, TouchableOpacity, View, ActivityIndicator, Animated, Easing
+} from 'react-native';
 import styles from '../styles/loginregisterstyle';
 import {Madoka} from 'react-native-textinput-effects';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as loginAction from '../actions/loginAction'
 
-
 class LoginComponent extends Component {
     constructor() {
         super();
         this.background = require('../img/bg2.png');
-        this.login = this.login.bind(this);
-        this.updateData = this.updateData.bind(this);
-        this.saveData = this.saveData.bind(this);
-    }
-
-    componentWillMount() {
-        this.props.loginAction.getDataLogin(this.props.login)
-    }
-
-    saveData() {
-        this.props.loginAction.setDataLogin(this.props.login)
-    }
-
-    login() {
-
-        if (this.props.login.email && this.props.login.password) {
-            this.props.loginAction.loginUser(this.props.login);
-            this.saveData();
-        } else {
-            alert('Mời bạn kiểm tra lại thông tin tài khoản');
+        this.state = {
+            fadeForm: new Animated.Value(0),
+            marginLogo : new Animated.Value(250),
         }
+        //     this.login = this.login.bind(this);
+        //     this.updateData = this.updateData.bind(this);
+        //     this.saveData = this.saveData.bind(this);
     }
 
-    updateData(name, value) {
-        let login = this.props.login;
-        login[name] = value;
-        this.props.loginAction.updateDataLogin(login);
+    //
+    // componentWillMount() {
+    //     this.props.loginAction.getDataLogin(this.props.login)
+    // }
+    //
+    // saveData() {
+    //     this.props.loginAction.setDataLogin(this.props.login)
+    // }
+    //
+    // login() {
+    //
+    //     if (this.props.login.email && this.props.login.password) {
+    //         this.props.loginAction.loginUser(this.props.login);
+    //         this.saveData();
+    //     } else {
+    //         alert('Mời bạn kiểm tra lại thông tin tài khoản');
+    //     }
+    // }
+    //
+    // updateData(name, value) {
+    //     let login = this.props.login;
+    //     login[name] = value;
+    //     this.props.loginAction.updateDataLogin(login);
+    // }
+    componentWillMount() {
+        const opacity = Animated.timing(
+            this.state.fadeForm,{
+                toValue: 1,
+                duration: 1000,
+                delay: 2500
+             }
+        );
+        const marginTop = Animated.timing(
+            this.state.marginLogo,{
+                toValue: 0,
+                duration: 1500,
+                delay: 2000,
+                easing: Easing.bounce
+            }
+        );
+        Animated.parallel([opacity, marginTop]).start();
     }
-
 
     render() {
+        const opacity = this.state.fadeForm;
+        const marginTop = this.state.marginLogo;
 
         return (
             <Image source={this.background} style={styles.wrapperContainer}>
                 <StatusBar barStyle="light-content"/>
                 <KeyboardAvoidingView behavior="position">
-                    <View style={styles.containerTopLogin}>
+                    <View style={styles.containerTopLogin }>
 
                         {/*ROUTER*/}
-                        <View style={styles.contentRouterRight}>
+                        <Animated.View style={{
+                            opacity,
+                            marginTop: 30,
+                            flex: 1,
+                            justifyContent : 'center',
+                            borderRightWidth: 1,
+                            alignItems: 'flex-end',
+                            borderColor: 'rgb(239, 239, 239)',
+                            width: 300,
+                        }}>
                             <TouchableOpacity style={styles.buttonRouter}
                                               onPress={() => this.props.navigation.navigate('RegisterScreen')}>
                                 <Text style={styles.textRouterRight}>
@@ -58,20 +92,26 @@ class LoginComponent extends Component {
                                 </Text>
                             </TouchableOpacity>
 
-                        </View>
+                        </Animated.View>
 
 
                         {/*LOGO*/}
                         <View style={styles.containerColorME}>
-                            <View style={styles.contentColorME}>
+                            <Animated.View style={{
+                                marginTop,
+                                alignItems: 'flex-end',
+                            }}>
                                 <Text style={styles.textColor}>color</Text>
                                 <Text style={styles.textME}>ME</Text>
-                            </View>
+                            </Animated.View>
                         </View>
                     </View>
 
                     {/*FORM*/}
-                    <View style={styles.contentForm}>
+                    <Animated.View style={{
+                        opacity,
+                        flex: 1,
+                    }}>
                         <View style={styles.contentInput}>
 
                             {/*USERNAME*/}
@@ -116,44 +156,42 @@ class LoginComponent extends Component {
                                 block
                                 rounded
                                 style={styles.buttonLogin}
-                                onPress={() => this.login()}
+                                // onPress={() => this.login()}
                             >
-                                {(this.props.isLoading) ? (
+                                {/*{(this.props.isLoading) ? (
                                     <View style={{
                                         flex: 1,
                                         justifyContent: 'center',
                                         alignItems: 'center'
                                     }}>
                                         <ActivityIndicator
-                                            animated= {true}
-                                            color ='white'
-                                            style = {{flex: 1,
+                                            animated={true}
+                                            color='white'
+                                            style={{
+                                                flex: 1,
                                                 justifyContent: 'center',
                                                 alignItems: 'center',
-                                                height : 40,
+                                                height: 40,
                                             }}
-                                            size= 'small'
+                                            size='small'
                                         />
                                     </View>
                                 ) : (
-                                    alert('Mời bạn kiểm tra lại thông tin tài khoản'),
-                                        <Text style={styles.textButtonLogin}>Login</Text>
-                                )
-                                }
+                                    alert('Mời bạn kiểm tra lại thông tin tài khoản'),*/}
+                                    <Text style={styles.textButtonLogin}>Login</Text>
+                                {/*)
+                                }*/}
                             </TouchableOpacity>
 
                             {/*REGISTER*/}
                             <Text style={styles.textRegister}>Don't have an account?
                                 <Text style={styles.textRegisterChild}
-                                      onPress={() => this.props.navigation.navigate('RegisterScreen')}
-                                >
+                                      onPress={() => this.props.navigation.navigate('RegisterScreen')}>
                                     &nbsp;&nbsp;Register
                                 </Text>
                             </Text>
-
-
                         </View>
-                    </View>
+                    </Animated.View>
                 </KeyboardAvoidingView>
             </Image>
         );
