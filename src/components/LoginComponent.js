@@ -12,46 +12,24 @@ class LoginComponent extends Component {
     constructor() {
         super();
         this.background = require('../img/bg2.png');
+        this.login = this.login.bind(this);
+        this.updateData = this.updateData.bind(this);
+        this.saveData = this.saveData.bind(this);
         this.state = {
             fadeForm: new Animated.Value(0),
             marginLogo : new Animated.Value(250),
         }
-        //     this.login = this.login.bind(this);
-        //     this.updateData = this.updateData.bind(this);
-        //     this.saveData = this.saveData.bind(this);
     }
 
-    //
-    // componentWillMount() {
-    //     this.props.loginAction.getDataLogin(this.props.login)
-    // }
-    //
-    // saveData() {
-    //     this.props.loginAction.setDataLogin(this.props.login)
-    // }
-    //
-    // login() {
-    //
-    //     if (this.props.login.email && this.props.login.password) {
-    //         this.props.loginAction.loginUser(this.props.login);
-    //         this.saveData();
-    //     } else {
-    //         alert('Mời bạn kiểm tra lại thông tin tài khoản');
-    //     }
-    // }
-    //
-    // updateData(name, value) {
-    //     let login = this.props.login;
-    //     login[name] = value;
-    //     this.props.loginAction.updateDataLogin(login);
-    // }
+
     componentWillMount() {
+        this.props.loginAction.getDataLogin(this.props.login);
         const opacity = Animated.timing(
             this.state.fadeForm,{
                 toValue: 1,
                 duration: 1000,
                 delay: 2500
-             }
+            }
         );
         const marginTop = Animated.timing(
             this.state.marginLogo,{
@@ -62,6 +40,26 @@ class LoginComponent extends Component {
             }
         );
         Animated.parallel([opacity, marginTop]).start();
+    }
+
+    saveData() {
+        this.props.loginAction.setDataLogin(this.props.login)
+    }
+
+    login() {
+
+        if (this.props.login.email && this.props.login.password) {
+            this.props.loginAction.loginUser(this.props.login);
+            this.saveData();
+        } else {
+            alert('Mời bạn kiểm tra lại thông tin tài khoản');
+        }
+    }
+
+    updateData(name, value) {
+        let login = this.props.login;
+        login[name] = value;
+        this.props.loginAction.updateDataLogin(login);
     }
 
     render() {
@@ -156,9 +154,9 @@ class LoginComponent extends Component {
                                 block
                                 rounded
                                 style={styles.buttonLogin}
-                                // onPress={() => this.login()}
+                                onPress={() => this.login()}
                             >
-                                {/*{(this.props.isLoading) ? (
+                                {(this.props.isLoading) ? (
                                     <View style={{
                                         flex: 1,
                                         justifyContent: 'center',
@@ -177,10 +175,10 @@ class LoginComponent extends Component {
                                         />
                                     </View>
                                 ) : (
-                                    alert('Mời bạn kiểm tra lại thông tin tài khoản'),*/}
+                                    alert('Mời bạn kiểm tra lại thông tin tài khoản'),
                                     <Text style={styles.textButtonLogin}>Login</Text>
-                                {/*)
-                                }*/}
+                                )
+                                }
                             </TouchableOpacity>
 
                             {/*REGISTER*/}
