@@ -16,4 +16,4 @@ export default class root extends Component {
     }
 }
 
-AppRegistry.registerComponent('StoreKP', () => root);
+AppRegistry.registerComponent('colorME', () => root);
