@@ -7,6 +7,7 @@ import {Madoka} from 'react-native-textinput-effects';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as loginAction from '../actions/loginAction'
+import _ from 'lodash';
 
 class LoginComponent extends Component {
     constructor() {
@@ -51,9 +52,26 @@ class LoginComponent extends Component {
         if (this.props.login.email && this.props.login.password) {
             this.props.loginAction.loginUser(this.props.login);
             this.saveData();
-        } else {
-            alert('Mời bạn kiểm tra lại thông tin tài khoản');
         }
+        else {
+            alert ('Mời bạn kiểm tra lại thông tin tài khoản')
+        }
+
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!_.isUndefined(nextProps.token) && nextProps.token.trim().length > 0) { // để kiểm tra trên serve}
+            if (!nextProps.isLoading && !nextProps.error) {
+                if (nextProps.user.role <= 0) {
+                    alert('Mời bạn kiểm tra lại thông tin tài khoản')
+                }
+            }
+        }
+
+        if (nextProps.error) {
+            alert('Mời bạn kiểm tra lại thông tin tài khoản')
+        }
+
     }
 
     updateData(name, value) {
@@ -175,7 +193,7 @@ class LoginComponent extends Component {
                                         />
                                     </View>
                                 ) : (
-                                    alert('Mời bạn kiểm tra lại thông tin tài khoản'),
+                                    
                                     <Text style={styles.textButtonLogin}>Login</Text>
                                 )
                                 }
