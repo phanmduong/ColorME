@@ -1,6 +1,6 @@
 import React from 'react';
 import {TabBarIOS} from 'react-native'
-import {TabNavigator} from 'react-navigation';
+import {TabNavigator,StackNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as color from '../constants/color';
 
@@ -11,6 +11,8 @@ import messageComponent from '../components/messageComponent';
 import notificationComponent from '../components/notificationComponent';
 import userComponent from '../components/userComponent';
 import addFriendComponent from '../components/addFriendComponent';
+import LoginComponent from "../components/loginComponent";
+import RegisterComponent from "../components/registerComponent";
 
 export const Home = TabNavigator(
     {
@@ -62,3 +64,20 @@ export const Home = TabNavigator(
         }
     }
 );
+export const Main = StackNavigator({
+    LoginScreen : {
+        screen : LoginComponent,
+        navigationOptions : {
+            header : null
+        }
+    },
+    RegisterScreen: {
+        screen : RegisterComponent,
+        navigationOptions : {
+            header : null
+        }
+    },
+    HomeScreen : {
+        screen : Home
+    }
+})
