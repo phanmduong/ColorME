@@ -1,83 +1,112 @@
 import React from 'react';
-import {TabBarIOS} from 'react-native'
-import {TabNavigator,StackNavigator} from 'react-navigation';
+import {TabNavigator, StackNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import * as color from '../constants/color';
+import * as color from '../styles/color';
+import * as size from '../styles/size';
 
 // MAIN SCREEN
 import newFeedComponent from '../components/newFeedComponent';
 import searchComponent from '../components/searchComponent';
 import messageComponent from '../components/messageComponent';
 import notificationComponent from '../components/notificationComponent';
+import setupComponent from '../components/setupComponent';
+
+import getFullInfoAboutOnePostComponent from '../components/getFullInfoAboutOnePostComponent';
 import userComponent from '../components/userComponent';
 import addFriendComponent from '../components/addFriendComponent';
-import LoginComponent from "../components/loginComponent";
-import RegisterComponent from "../components/registerComponent";
+
+
+import loginComponent from '../components/loginComponent';
+
+export const NewFeed = StackNavigator(
+    {
+        NewFeed: {
+            screen: newFeedComponent,
+            navigationOptions: {
+                header: null,
+            },
+        },
+        User:{
+            screen: userComponent,
+            navigationOptions: {
+                header: null,
+                tabBarVisible: false,
+            },
+        },
+        Post:{
+            screen: getFullInfoAboutOnePostComponent,
+            navigationOptions: {
+                header: null,
+                tabBarVisible: false,
+            },
+        }
+
+    }
+);
 
 export const Home = TabNavigator(
     {
         NewFeed: {
-            screen: newFeedComponent,
+            screen: NewFeed,
             navigationOptions:{
                 tabBarIcon:
-                    <Icon name="home" size={18} color={color.gray} />
+                    <Icon name="home" size={size.icon} color={color.gray} />
             }
         },
         Search: {
             screen: searchComponent,
             navigationOptions:{
                 tabBarIcon:
-                    <Icon name="search" size={18} color={color.gray} />
+                    <Icon name="search" size={size.icon} color={color.gray} />
             }
         },
         Message: {
             screen: messageComponent,
             navigationOptions:{
                 tabBarIcon:
-                    <Icon name="comments" size={18} color={color.gray} />
+                    <Icon name="comments" size={size.icon} color={color.gray} />
             }
         },
         Notification: {
             screen: notificationComponent,
             navigationOptions:{
                 tabBarIcon:
-                    <Icon name="bell" size={18} color={color.gray} />
+                    <Icon name="bell" size={size.icon} color={color.gray} />
             }
         },
-        User: {
-            screen: userComponent,
+        Setup: {
+            screen: setupComponent,
             navigationOptions:{
                 tabBarIcon:
-                    <Icon name="user" size={18} color={color.gray}/>
+                    <Icon name="user" size={size.icon} color={color.gray}/>
             }
         },
     },
     {
-
     tabBarPosition: 'bottom',
     tabBarOptions: {
         style:{
-          height: 40,
+            height: 40,
         },
         showLabel: false,
-        activeBackgroundColor: color.mainColor,
+        activeBackgroundColor: color.main,
         }
     }
 );
-export const Main = StackNavigator({
-    LoginScreen : {
-        screen : LoginComponent,
-        navigationOptions : {
-            header : null
+
+export const Main = StackNavigator(
+    {
+        Login: {
+            screen: loginComponent,
+            navigationOptions: {
+                header: null,
+            },
+        },
+        Home:{
+            screen: Home,
+            navigationOptions: {
+                header: null,
+            },
         }
-    },
-    RegisterScreen: {
-        screen : RegisterComponent,
-        navigationOptions : {
-            header : null
-        }
-    },
-    HomeScreen : {
-        screen : Home
-    }
+
 })

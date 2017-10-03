@@ -53,7 +53,6 @@ class Chat extends Component {
         this.state = {
             active: false
         }
-
     }
     render() {
         return (

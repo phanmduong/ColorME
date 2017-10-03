@@ -1,12 +1,29 @@
 export default {
+    login:{
+        login: {},
+        token:"",
+        isLoading: false,
+        error: false,
+        result: false,
+        isGetLocalData: false,
+        status: 0,
+        userID:'',
+    },
     getNewFeed : {
-        products:[],
+        products: [],
         isLoading: false,
         error : false,
         result : false,
     },
 
+    getFullInfoAboutOnePost: {
+        post:{},
+        isLoading: false,
+        error: false,
+        result: false,
+    },
+
     getUserProfile : {
-        profile:{},
-    }
+        user:{},
+    },
 }

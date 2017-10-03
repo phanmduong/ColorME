@@ -4,37 +4,36 @@ import * as API from '../apis/getUserProfileApi';
 export function beginGetUserProfile() {
     return{
         type: types.BEGIN_GET_USER_PROFILE,
-        profile: null,
+        user: {},
     }
 }
 
 export function getUserProfileSuccess(response) {
     return{
-        types: types.GET_USER_PROFILE_SUCCESS,
-        profile: response.data.user,
+        type: types.GET_USER_PROFILE_SUCCESS,
+        user: response.data.user,
     }
 }
 
 export function getUserProfileError() {
     return{
-        types: types.GET_USER_PROFILE_ERROR,
-        profile: null,
+        type: types.GET_USER_PROFILE_ERROR,
+        user: {},
     }
 }
 
-export function getUserProfile() {
+export function getUserProfile(userName) {
     return(dispatch) => {
         dispatch(beginGetUserProfile());
-        API.getUserProfileApi()
+        API.getUserProfileApi(userName)
             .then(function (response) {
                 dispatch(getUserProfileSuccess(response));
-                console("SUCCESS");
-                console(response);
+                console.log("GET_USER_PROFILE_SUCCESS");
             })
             .catch(function (error) {
                 dispatch(getUserProfileError(error));
-                console("ERROR");
-                console(error);
+                console.log("GET_USER_PROFILE_ERROR");
+                console.log(error);
             })
     }
 }

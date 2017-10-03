@@ -1,70 +1,86 @@
-import React, {Component} from 'react'
-import {KeyboardAvoidingView, Text, TouchableOpacity, View,StatusBar,Image} from 'react-native';
-import styles from '../styles/styles'
-import {Sae} from 'react-native-textinput-effects'
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
+import React, {Component} from 'react';
+import {
+    TouchableOpacity, Button
+} from 'react-native';
+import { Container, Header, Content, Form, Item, Input, Text } from 'native-base';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as loginAction from '../actions/loginAction';
 
-export default class LoginComponent extends Component{
+class loginComponent extends Component{
     constructor(){
-        super()
-        this.state = {
-            email : '',
-            password : ''
-        }
-        this.background = require ('../../assert/dem.jpg')
+        super();
+        // this.saveData = this.saveData.bind(this);
+        this.login = this.login.bind(this);
+        this.updateFormData = this.updateFormData.bind(this);
     }
-    render(){
+
+    // componentWillMount(){
+    //     this.props.loginAction.getDataLogin(this.props.login);
+    // }
+
+    // saveData(){
+    //     this.props.loginAction.setDataLogin(this.props.login);
+    // }
+
+    login(){
+        this.props.loginAction.loginUser(this.props.login);
+        // this.saveData();
+        this.props.navigation.navigate('Home');
+    }
+
+    updateFormData(name, value){
+        let login = this.props.login;
+        login[name] = value;
+        this.props.loginAction.updateDataLogin(login);
+    }
+
+
+    render() {
         return (
+            <Container>
+                <Header />
+                <Content>
+                    <Form>
+                        <Item>
+                            <Input placeholder="Email"
+                                   value={'congaconchaynonton@gmail.com'}
+                                   onChangeText={(data) => this.updateFormData('email', data)}
 
-            <Image source = {this.background} style={styles.wrapperContainer}>
-            <KeyboardAvoidingView behavior="padding" >
-                <StatusBar hidden ={false} barStyle="light-content" />
+                            />
+                        </Item>
+                        <Item last>
+                            <Input placeholder="Password"
+                                   value={'123qweasdzxc'}
+                                   onChangeText={(data) => this.updateFormData('password', data)}
 
-                <View style={styles.topContainerLogin}>
-                    <Text style={styles.textRegister}>ColorME</Text>
-                </View>
-                {/* LoginForm*/}
-                <View style={styles.midContainer}>
-                    <View style={styles.textInputGroup}>
-                        <Sae
-                            style={styles.textInput}
-                            label={'email'}
-                            iconClass={FontAwesomeIcon}
-                            iconName={'envelope-o'}
-                            iconColor={'#f95a25'}
-                            iconSize={20}
-                            onChangeText={(email) => {
-                                this.setState({email})
-                            }}
-                        />
-                        <Sae
-                            style={styles.textInput}
-                            label={'password'}
-                            iconClass={FontAwesomeIcon}
-                            iconName={'unlock'}
-                            iconColor={'#f95a25'}
-                            secureTextEntry = {true}
-                            iconSize={20}
-                            onChangeText={(password) => {
-                                this.setState({password})
-                            }}
-                        />
-                        <TouchableOpacity style={styles.buttonRegister}>
-                            <Text>Login</Text>
-                        </TouchableOpacity>
-
-                    </View>
-                </View>
-                <View style={styles.bottomContent}>
-                    <Text style={styles.textSignUp}>Don't have an account?&nbsp;
-                        <Text style={styles.textSignUpTitle}
-                              onPress={() => this.props.navigation.navigate('RegisterScreen')}
-                        >Sign in.</Text>
-                    </Text>
-                </View>
-            </KeyboardAvoidingView>
-            </Image>
-        )
+                            />
+                        </Item>
+                        <Button title={"Login"} onPress={() => this.login()} />
+                        <Button title={"Go Main"} onPress={() => this.props.navigation.navigate('Home')}/>
+                    </Form>
+                </Content>
+            </Container>
+        );
     }
 }
 
+function mapStateToProps(state) {
+    return{
+        login: state.login.login,
+        error: state.login.error,
+        isLoading: state.login.isLoading,
+        token: state.login.token,
+        isGetDataLocal: state.login.isGetDataLocal,
+        status: state.login.status,
+        user: state.login.user,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return{
+        loginAction: bindActionCreators(loginAction, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(loginComponent);

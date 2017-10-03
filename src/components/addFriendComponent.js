@@ -1,21 +1,36 @@
 import React, {Component} from 'react';
 import {
-    View, Text
+    Image
 } from 'react-native';
+import {
+    Title,Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right
+} from 'native-base';
+import part from '../styles/partStyle';
+import * as color from '../styles/color';
 
-export default class addFriendComponent extends Component{
+export default class newFeedComponent extends Component{
     constructor(){
         super();
-        this.state = {
-            text: '',
-        }
+
     }
 
     render(){
         return(
-            <View>
-                <Text>addFriendComponent</Text>
-            </View>
+            <Container style={part.wrapperContainer}>
+                <Header
+                    style={part.navTop}
+                    iosBarStyle={'light-content'}
+                    backgroundColor={color.main}>
+                    <Left/>
+                    <Body>
+                        <Title style={part.navTitle}>Friend</Title>
+                    </Body>
+                    <Right/>
+                </Header>
+                <Content>
+
+                </Content>
+            </Container>
         );
     }
 }

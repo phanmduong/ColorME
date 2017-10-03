@@ -1,6 +1,5 @@
 import * as types from '../constants/actionTypes';
 import * as API from '../apis/getNewFeedApi';
-import axios from 'axios'
 export function beginGetNewFeed() {
     return {
         type: types.BEGIN_GET_NEW_FEED,
@@ -29,20 +28,18 @@ export function getNewFeedError() {
     }
 }
 
-export function getNewFeed() {
+export function getNewFeed(filter, user_id) {
     return (dispatch) => {
         dispatch(beginGetNewFeed());
-        console.log("BEGIN GET NEW FEED");
-        API.getNewFeedApi()
+        API.getNewFeedApi(filter, user_id)
             .then(function (response) {
                 dispatch(getNewFeedSuccess(response));
-                console.log("SUCCESS");
-                console.log(response);
+                console.log("GET_NEW_FEED_SUCCESS");
+                console.log(response.data.products);
             })
             .catch(function(error) {
                 dispatch(getNewFeedError(error));
-                console.log("ERROR");
-                console.log(error);
+                console.log("GET_NEW_FEED_ERROR");
             })
 
     }

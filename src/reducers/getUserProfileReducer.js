@@ -12,7 +12,7 @@ export default function getUserProfileReducer(state = initialState.getUserProfil
             return{
                 ...state,
                 ...{
-                    profile: state.profile,
+                    user: action.user,
                 }
             }
 

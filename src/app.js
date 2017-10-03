@@ -1,15 +1,17 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
+import {compose, applyMiddleware, createStore} from 'redux';
+import rootReducer from './reducers/index';
 import {Main} from './navigators/appRouter';
-import RegisterComponent from './components/registerComponent'
 
+const store = createStore(rootReducer, applyMiddleware(compose(thunk)));
 class App extends React.Component {
     render() {
         return (
-        	<Main/>
+            <Provider store={store}>
+                <Main/>
+            </Provider>
         );
     }
 }

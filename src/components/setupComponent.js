@@ -14,33 +14,17 @@ import * as getUserProfileAction from '../actions/getUserProfileAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-class userComponent extends Component {
-    constructor(){
-        super();
-        that = this;
-    }
-    componentWillMount(){
-        this.props.getUserProfileAction.getUserProfile(this.props.navigation.state.params.username);
-        console.log (this.props.user);
-
-
-
-    }
-
+class setupComponent extends Component {
     render() {
         return (
-            <Container style={part.wrapperContainer}>
+            <Container>
                 <Header
                     style={part.navTop}
                     iosBarStyle={'light-content'}
                     backgroundColor={color.main}>
-                    <Left>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="arrow-left" size={size.icon} color={color.navTitle}/>
-                        </Button>
-                    </Left>
+                    <Left/>
                     <Body>
-                        <Title style={part.navTitle}>{this.props.navigation.state.params.username} </Title>
+                    <Title style={part.navTitle}>User</Title>
                     </Body>
                     <Right/>
                 </Header>
@@ -60,47 +44,44 @@ class userComponent extends Component {
     }
 }
 class Information extends Component {
-    constructor() {
-        super();
-
-    }
     render() {
         return (
-            <Container style={part.wrapperContainer}>
+            <Container>
+                {/*{this.props.user.map((arr) => {*/}
+                {/*return (*/}
+                    <Content style={part.padding}>
+                    <Body>
+                    <Thumbnail style={part.avatarUserBig}
+                    source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/5c/31/b8/5c31b8bfabdce76124e9ad9e699a6067--naruto-uzumaki.jpg'}}/>
+                    <Text style={part.titleBigDark}></Text>
+                    <Text style={part.describeDark}>Vô học</Text>
+                    </Body>
 
-                        <Content style={part.padding}>
-                            <Body>
-                                <Thumbnail style={part.avatarUserBig}
-                                           source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/5c/31/b8/5c31b8bfabdce76124e9ad9e699a6067--naruto-uzumaki.jpg'}}/>
-                                <Text style={part.titleBigDark}></Text>
-                                <Text style={part.describeDark}>Vô học</Text>
-                            </Body>
-
-                            <List>
-                                <ListItem itemDivider>
-                                    <Text style={part.titleSmallDarkBold}>Thông tin chi tiết</Text>
-                                </ListItem>
-                                <ListItem>
-                                    <Text style={part.describeDark}>Họ tên:</Text>
-                                </ListItem>
-                                <ListItem>
-                                    <Text style={part.describeDark}>asdasda</Text>
-                                </ListItem>
-                                <ListItem>
-                                    <Text style={part.describeDark}>Giới tính: Nam</Text>
-                                </ListItem>
-                                <ListItem>
-                                    <Text style={part.describeDark}>Mô tả: Full-Stack Mobile Developer</Text>
-                                </ListItem>
-                                <ListItem>
-                                    <Text style={part.describeDark}>Nơi làm việc: KEETOOL</Text>
-                                </ListItem>
-                                <ListItem>
-                                    <Text style={part.describeDark}>Trường học: Vô học</Text>
-                                </ListItem>
-                            </List>
-                        </Content>
-
+                    <List>
+                    <ListItem itemDivider>
+                    <Text style={part.titleSmallDarkBold}>Thông tin chi tiết</Text>
+                    </ListItem>
+                    <ListItem>
+                    <Text style={part.describeDark}>Họ tên: </Text>
+                    </ListItem>
+                    <ListItem>
+                    <Text style={part.describeDark}>Email: chaonhoiso@gmail.com</Text>
+                    </ListItem>
+                    <ListItem>
+                    <Text style={part.describeDark}>Giới tính: Nam</Text>
+                    </ListItem>
+                    <ListItem>
+                    <Text style={part.describeDark}>Mô tả: Full-Stack Mobile Developer</Text>
+                    </ListItem>
+                    <ListItem>
+                    <Text style={part.describeDark}>Nơi làm việc: KEETOOL</Text>
+                    </ListItem>
+                    <ListItem>
+                    <Text style={part.describeDark}>Trường học: Vô học</Text>
+                    </ListItem>
+                    </List>
+                    </Content>
+                {/*) })}*/}
             </Container>
         )
     }
@@ -109,7 +90,7 @@ class Information extends Component {
 class Project extends Component {
     render() {
         return (
-            <Content style={part.wrapperContainer}>
+            <Content>
                 <Card style={{flex: 0}}>
                     <CardItem cardBody>
                         <Body>
@@ -124,7 +105,7 @@ class Project extends Component {
                             <Thumbnail style={part.avatarUserSmall}
                                        source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/5c/31/b8/5c31b8bfabdce76124e9ad9e699a6067--naruto-uzumaki.jpg'}}/>
                             <Body>
-                                <Text style={part.titleSmallDarkBold}>Coz</Text>
+                            <Text style={part.titleSmallDarkBold}>Coz</Text>
                             </Body>
                         </Left>
                         <Right>
@@ -165,7 +146,7 @@ class Project extends Component {
 class Process extends Component {
     render() {
         return (
-            <Content style={part.wrapperContainer}>
+            <Content>
                 <Card style={{flex: 0}}>
                     <CardItem>
                         <Left>
@@ -199,7 +180,7 @@ class Process extends Component {
 
 function mapStateToProps(state) {
     return{
-        user: state.getUserProfile.user,
+        user: state.login.user,
     }
 }
 
@@ -209,4 +190,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(userComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(setupComponent);
