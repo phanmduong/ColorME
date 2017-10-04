@@ -23,7 +23,7 @@ import searchComponent from '../components/searchComponent/searchComponent';
 import searchUser from '../components/searchComponent/searchUser';
 import searchProduct from '../components/searchComponent/searchProduct';
 
-import loginComponent from '../components/loginComponent';
+import tabLoginAndRegister from '../components/login+register/tabLoginAndRegister';
 
 
 export const Search = TabNavigator(
@@ -174,7 +174,7 @@ export const Home = TabNavigator(
 export const Main = StackNavigator(
     {
         Login: {
-            screen: loginComponent,
+            screen: tabLoginAndRegister,
             navigationOptions: {
                 header: null,
             },

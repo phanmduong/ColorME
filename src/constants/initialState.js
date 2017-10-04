@@ -1,13 +1,19 @@
 export default {
     login:{
         login: {},
-        token:"",
+        token: undefined,
         isLoading: false,
         error: false,
         result: false,
         isGetLocalData: false,
         status: 0,
         userID:'',
+    },
+    register: {
+        register: {},
+        isLoading: false,
+        error: false,
+        status : 0,
     },
     getNewFeed : {
         products: [],
