@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    Image, Dimensions
+    Image, Dimensions, FlatList
 } from 'react-native';
 import {
     Title, Container, Header, Content, Card, CardItem, Thumbnail, Text, CheckBox,
@@ -49,12 +49,11 @@ class getFullInfoAboutOnePostComponent extends Component{
                     </Right>
                 </Header>
                 <Content style={part.padding}>
-
                     <Body>
                         <Thumbnail style={part.avatarUserBig}
                                    source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/5c/31/b8/5c31b8bfabdce76124e9ad9e699a6067--naruto-uzumaki.jpg'}}/>
                         <Text style={part.titleBigDark}>{this.props.post.id}</Text>
-                        <Text style={part.describeDark}>Vô học</Text>
+                        <Text style={part.describeDark}>{this.props.post.colors}</Text>
                     </Body>
                 </Content>
 

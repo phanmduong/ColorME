@@ -1,37 +1,52 @@
 import {StyleSheet,Dimensions,Platform} from 'react-native';
-let wid = Dimensions.get('window').width
+import * as size from './size';
+import * as color from './color';
+let wid = Dimensions.get('window').width;
 
  const styles = StyleSheet.create({
     wrapperContainer: {
         flex : 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor : 'rgb(145, 10, 23)',
+        backgroundColor : 'rgb(17, 25, 33)',
     },
      topContainerLogin : {
-         backgroundColor : 'rgb(145, 10, 23)',
+         backgroundColor : color.none,
          marginTop : 50,
      },
 
-     midContainer:{
-         flex : 1,
-         alignItems: 'center',
-     },
      midContainerLogin : {
          flex : 1,
          alignItems: 'center',
-         padding : 100,
+         justifyContent: 'center',
      },
-         textInputGroup:{
-             width: wid - wid * 0.2,
-         },
+     textInputGroup:{
+         width: wid - wid * 0.2,
+     },
      textInput: {
          height: 54,
          margin: 5,
          fontSize: 11,
          padding: 10,
      },
+     inputGroup:{
+         borderColor : color.none,
+         marginTop: 10,
+         paddingLeft: 10,
+         paddingRight: 10,
+         backgroundColor:'rgba(158, 158, 158, 0.15)'
+     },
 
+     buttonRegister: {
+         marginLeft: 2,
+         marginRight: 0,
+         alignItems: 'center',
+         justifyContent: 'center',
+         padding: 15,
+         marginTop: 10,
+         backgroundColor : 'rgba(197, 0, 0, 1)',
+
+     },
      textSignUp:{
          fontSize: 11,
          margin: 5,
@@ -40,16 +55,7 @@ let wid = Dimensions.get('window').width
      textSignUpTitle:{
          fontWeight: 'bold'
      },
-     buttonRegister: {
-         alignItems: 'center',
-         borderWidth: 0.5,
-         justifyContent: 'center',
-         padding: 10,
-         margin: 30,
-         borderRadius :15,
-         backgroundColor : '#dd2f43',
 
-     },
      textME: {
          backgroundColor: 'transparent',
          color: '#FFFFFF',
@@ -60,10 +66,14 @@ let wid = Dimensions.get('window').width
      textColor: {
          backgroundColor: 'transparent',
          color: '#FFFFFF',
-         fontSize: 35,
+         fontSize: 30,
          fontWeight: (Platform.OS === 'ios') ? '700' : 'normal',
-         marginLeft : 50
+         marginLeft : 0
 
+     },
+     wrapperColorME:{
+        justifyContent:'center',
+         alignItems:'flex-end',
      },
      textRegisterChild:{
          marginRight: 10,
@@ -71,7 +81,7 @@ let wid = Dimensions.get('window').width
 
      },
      icon : {
-        color : 'rgb(242,242,242)'
+        color : color.navTitle,
      }
 })
 export default styles

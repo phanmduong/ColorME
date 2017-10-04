@@ -41,15 +41,22 @@ const part = StyleSheet.create({
         height: 30,
         color: color.navTitle,
         padding: 5,
-        fontSize: 16,
+        fontSize: size.title,
     },
     inputTheme01:{
-        fontSize: 14,
+        fontSize: size.describe,
         height: 30,
     },
+    inputTheme02:{
+        color: color.navTitle,
+        fontSize: size.title,
+    },
 
-
-
+    // FORM
+    formLoginRegister:{
+        margin: 20,
+        borderColor: color.none,
+    },
     //IMAGE
     avatarUserBig:{
         width: 100,

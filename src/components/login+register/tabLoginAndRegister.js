@@ -1,7 +1,11 @@
-import {Container, Form, Item, Tab, Tabs,Header} from 'native-base';
 import React, {Component} from 'react'
-import {KeyboardAvoidingView, Text,View} from 'react-native';
-import styles from '../../styles/styles'
+import {
+    Title,Container, Header, Content, Card, CardItem,
+    Thumbnail, Text, Button, Left, Body, Right
+} from 'native-base';
+import {KeyboardAvoidingView, View, StatusBar} from 'react-native';
+import styles from '../../styles/loginRegisterStyle'
+import part from '../../styles/partStyle';
 import LoginComponent from '../login+register/loginComponent'
 import RegisterComponent from '../login+register/registerComponent'
 import * as loginAction from '../../actions/loginActions';
@@ -9,6 +13,9 @@ import * as registerAction from '../../actions/registerAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
+import * as color from '../../styles/color';
+
+
 
 export class TabLoginAndRegister extends Component {
     constructor() {
@@ -45,31 +52,45 @@ export class TabLoginAndRegister extends Component {
 
     render() {
         return (
-            <KeyboardAvoidingView style={styles.wrapperContainer}>
-                <View style={styles.topContainerLogin}>
-                    <Text style={styles.textColor}>Color</Text>
-                    <Text style={styles.textME}>ME</Text>
-                </View>
-                <ScrollableTabView>
-                    <LoginComponent
-                        tabLabel="Sign In"
-                        signIn={this.signIn}
-                        updateData={this.updateData}
-                        isLoading={this.props.isLoadingLogin}
-                        status={this.props.statusLogin}
-                        login={this.props.login}
-                        error={this.props.errorLogin}
-                        getData={this.getData}
-                        navigation={this.props.navigation}
-                    />
-                    <RegisterComponent
-                        tabLabel="Sign Up"
-                        {...this.props}
-                        register={this.register}
-                    />
+            <Container style={styles.wrapperContainer}>
+                <StatusBar
+                    backgroundColor="blue"
+                    barStyle="light-content"
+                />
+                <Container>
+                    <Body style={styles.topContainerLogin}>
+                        <View style={styles.wrapperColorME}>
+                            <Text style={styles.textColor}>Color</Text>
+                            <Text style={styles.textME}>ME</Text>
+                        </View>
 
-                </ScrollableTabView>
-            </KeyboardAvoidingView>
+                    <ScrollableTabView
+                        tabBarInactiveTextColor={color.navTitle}
+                        tabBarUnderlineStyle={{backgroundColor: color.main}}
+                        style={part.formLoginRegister}
+                        tabBarActiveTextColor={color.main}
+                    >
+                        <LoginComponent
+                            tabLabel="Đăng nhập"
+                            signIn={this.signIn}
+                            updateData={this.updateData}
+                            isLoading={this.props.isLoadingLogin}
+                            status={this.props.statusLogin}
+                            login={this.props.login}
+                            error={this.props.errorLogin}
+                            getData={this.getData}
+                            navigation={this.props.navigation}
+                        />
+                        <Content tabLabel="Đăng ký">
+                            <RegisterComponent
+                                {...this.props}
+                                register={this.register}
+                            />
+                        </Content>
+                    </ScrollableTabView>
+                    </Body>
+                </Container>
+            </Container>
 
 
         );
