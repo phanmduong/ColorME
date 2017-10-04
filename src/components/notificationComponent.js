@@ -25,13 +25,13 @@ export default class newFeedComponent extends Component{
                     backgroundColor={color.main}>
                     <Left/>
                     <Body>
-                    <Title style={part.navTitle}>Notification</Title>
+                    <Title style={part.navTitle}>Thông báo</Title>
                     </Body>
                     <Right />
                 </Header>
                 <Content>
                     <List>
-                        <ListItem>
+                        <ListItem style={part.listItem}>
                             <Thumbnail square size={80} source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwfMzZWidbLDPeiep0Gtn2B1pi_1GGtgBQrKcxpJSnuCDSQ3KidQ' }} />
                             <Body>
                                 <Text style={part.titleSmallDarkBold}>Coz &nbsp;

@@ -3,61 +3,59 @@ import {
     FlatList, TouchableOpacity, Image, Dimensions
 } from 'react-native';
 import {
-    Title,Container, Header, Content, Card, CardItem,
+    Title, Container, Header, Content, Card, CardItem,
     Thumbnail, Text, Button, Left, Body, Right
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import * as API from '../constants/env';
 import part from '../styles/partStyle';
 import * as color from '../styles/color';
 import * as size from '../styles/size';
 import * as getNewFeedAction from '../actions/getNewFeedAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-class newFeedComponent extends Component{
-    constructor(){
+
+class newFeedComponent extends Component {
+    constructor() {
         super();
         this.state = {
-            page_id:1,
+            page_id: 1,
         }
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.props.getNewFeedAction.getNewFeed(5, this.state.page_id);
 
 
-
     }
-    getMoreNewFeed(){
+
+    getMoreNewFeed() {
         let page_id = this.state.page_id;
         page_id += 1;
         this.setState({page: page_id});
-        this.props.getNewFeedAction.getNewFeed(5 , this.state.page_id);
+        this.props.getNewFeedAction.getNewFeed(5, this.state.page_id);
     }
 
 
-
-    render(){
-        return(
+    render() {
+        return (
             <Container style={part.wrapperContainer}>
                 <Header style={part.navTop}
                         iosBarStyle={'light-content'}
                         backgroundColor={color.main}>
                     <Left>
-                        <Button transparent >
+                        <Button transparent>
                             <Icon name="calendar" size={size.icon} color={color.navTitle}/>
                         </Button>
                     </Left>
                     <Body>
-                        <Title style={part.navTitle}>ColorME</Title>
+                    <Title style={part.navTitle}>ColorME</Title>
                     </Body>
                     <Right>
-                        <Button transparent >
+                        <Button transparent>
                             <Icon name="user-plus" size={size.icon} color={color.navTitle}/>
                         </Button>
                     </Right>
                 </Header>
-
 
 
                 <Content>
@@ -69,12 +67,13 @@ class newFeedComponent extends Component{
                             <Card style={{flex: 0}}>
                                 <CardItem header>
                                     <Left>
-                                        <TouchableOpacity onPress={() => this.props.navigation.navigate('User', {username: item.author.username})}>
+                                        <TouchableOpacity
+                                            onPress={() => this.props.navigation.navigate('User', {username: item.author.username})}>
                                             <Thumbnail style={part.avatarUserSmall}
-                                                       source={{uri : item.author.avatar_url}} />
+                                                       source={{uri: item.author.avatar_url}}/>
                                         </TouchableOpacity>
                                         <Body>
-                                            <Text style={part.titleSmallDarkBold}>{item.author.name}</Text>
+                                        <Text style={part.titleSmallDarkBold}>{item.author.name}</Text>
                                         </Body>
                                         <Right>
                                             <Button transparent>
@@ -84,9 +83,9 @@ class newFeedComponent extends Component{
                                     </Left>
                                 </CardItem>
                                 <CardItem cardBody>
-                                    <Body >
+                                    <Body>
                                     <Image resizeMode="stretch" source={{uri: item.thumb_url}}
-                                           style={{height: 250, width: Dimensions.get('window').width - 4, flex: 1}}
+                                           style={{height: 300, width: Dimensions.get('window').width - 4, flex: 1}}
                                     />
                                     <Text
                                         onPress={() => this.props.navigation.navigate('Post', {product_id: item.id})}
@@ -100,7 +99,7 @@ class newFeedComponent extends Component{
                                             <Text style={part.describeDark}>{item.likes_count}</Text>
                                         </Button>
                                         <Button transparent style={part.paddingRight}>
-                                            <Icon name="comment-o" size={size.icon} />
+                                            <Icon name="comment-o" size={size.icon}/>
                                             <Text style={part.describeDark}>{item.comments_count}</Text>
                                         </Button>
                                         <Button transparent style={part.paddingRight}>
@@ -116,9 +115,9 @@ class newFeedComponent extends Component{
                                     <Left>
                                         {
                                             item.colors.map((color, i) => {
-                                                return(
+                                                return (
                                                     <Button transparent key={i} style={part.paddingRight}>
-                                                        <Icon name="circle" size={size.icon} color={'#'+color} />
+                                                        <Icon name="circle" size={size.icon} color={'#' + color}/>
                                                     </Button>
 
                                                 );
@@ -138,7 +137,7 @@ class newFeedComponent extends Component{
 }
 
 function mapStateToProps(state) {
-    return{
+    return {
         products: state.getNewFeed.products,
         user: state.login.user,
         userID: state.login.userID
@@ -146,7 +145,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return{
+    return {
         getNewFeedAction: bindActionCreators(getNewFeedAction, dispatch)
     }
 }

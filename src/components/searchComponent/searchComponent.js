@@ -45,12 +45,12 @@ class searchComponent extends Component{
                     backgroundColor={color.main}>
                     <Left/>
                     <Body>
-                        <Title style={part.navTitle}>Search</Title>
+                        <Title style={part.navTitle}>Tìm kiếm</Title>
                     </Body>
                     <Right/>
                 </Header>
                 <Item>
-                    <Input placeholder="Search"
+                    <Input placeholder="Nhập tên người dùng, bài đăng ..."
                            style={part.inputTheme01}
                            onChangeText={(text) => this.setState({txtSearch: text})}
                     />

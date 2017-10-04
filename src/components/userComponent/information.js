@@ -28,21 +28,21 @@ class Information extends Component {
                         <ListItem itemDivider>
                             <Text style={part.titleSmallDarkBold}>Thông tin chi tiết</Text>
                         </ListItem>
-                        <ListItem>
+                        <ListItem style={part.listItem}>
                             <Text style={part.describeDark}>Họ tên: {this.props.user.name}</Text>
                         </ListItem>
-                        <ListItem>
+                        <ListItem style={part.listItem}>
                             {(this.props.user.gender == 1) ?
                             (<Text style={part.describeDark}>Giới tính: Nam</Text>) :
                             (<Text style={part.describeDark}>Giới tính: Nữ</Text>)}
                         </ListItem>
-                        <ListItem>
+                        <ListItem style={part.listItem}>
                             <Text style={part.describeDark}>Mô tả: {this.props.user.description}</Text>
                         </ListItem>
-                        <ListItem>
+                        <ListItem style={part.listItem}>
                             <Text style={part.describeDark}>Nơi làm việc: {this.props.user.work}</Text>
                         </ListItem>
-                        <ListItem>
+                        <ListItem style={part.listItem}>
                             <Text style={part.describeDark}>Trường học: {this.props.user.university}</Text>
                         </ListItem>
                     </List>

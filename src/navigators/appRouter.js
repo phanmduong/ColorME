@@ -4,11 +4,13 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import * as color from '../styles/color';
 import * as size from '../styles/size';
 
+// LOGIN
+import tabLoginAndRegister from '../components/loginRegisterComponent/tabLoginAndRegister';
+
 // MAIN SCREEN
 import newFeedComponent from '../components/newFeedComponent';
 import messageComponent from '../components/messageComponent';
 import notificationComponent from '../components/notificationComponent';
-import setupComponent from '../components/setupComponent';
 
 import getFullInfoAboutOnePostComponent from '../components/getFullInfoAboutOnePostComponent';
 
@@ -23,8 +25,11 @@ import searchComponent from '../components/searchComponent/searchComponent';
 import searchUser from '../components/searchComponent/searchUser';
 import searchProduct from '../components/searchComponent/searchProduct';
 
-import tabLoginAndRegister from '../components/login+register/tabLoginAndRegister';
-
+// MY ACCOUNT
+import myAccountComponent from '../components/myAccountComponent/myAccountComponent';
+//SETTING
+import setting from '../components/myAccountComponent/setting';
+import aboutUs from '../components/myAccountComponent/aboutUs';
 
 export const Search = TabNavigator(
     {
@@ -54,6 +59,41 @@ export const Search = TabNavigator(
             },
 
         }
+    }
+);
+export const Setting = StackNavigator(
+    {
+        Setting:{
+            screen: setting,
+            navigationOptions: {
+                header: null,
+            },
+        },
+        AboutUs:{
+            screen: aboutUs,
+            navigationOptions: {
+                header: null,
+                tabBarVisible: false,
+            },
+        },
+
+    }
+);
+export const MyAccount = StackNavigator(
+    {
+        MyAccount: {
+            screen: myAccountComponent,
+            navigationOptions: {
+                header: null,
+            },
+        },
+
+        Setting:{
+            screen: Setting,
+            navigationOptions: {
+                header: null,
+            },
+        },
     }
 );
 
@@ -151,8 +191,8 @@ export const Home = TabNavigator(
                     <Icon name="bell" size={size.icon} color={color.gray} />
             }
         },
-        Setup: {
-            screen: setupComponent,
+        MyAccount: {
+            screen: MyAccount,
             navigationOptions:{
                 tabBarIcon:
                     <Icon name="user" size={size.icon} color={color.gray}/>

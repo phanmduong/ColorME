@@ -8,7 +8,11 @@ let wid = Dimensions.get('window').width;
 const part = StyleSheet.create({
     // NAV BAR
     navTop:{
+        borderBottomWidth: 0,
+        shadowColor: 'transparent',
         backgroundColor: color.main,
+        alignItems: 'center',
+
     },
 
     //WRAPPER
@@ -90,6 +94,11 @@ const part = StyleSheet.create({
         color: color.text,
         fontWeight: '800',
     },
+    titleBigLightThin:{
+        fontSize : 25,
+        color: color.navTitle,
+        fontWeight: '300',
+    },
     titleSmallDarkBold:{
         fontSize : size.titleSmall,
         color: color.text,
@@ -105,10 +114,19 @@ const part = StyleSheet.create({
         color: color.text,
         fontWeight: '400',
     },
-
+    describeLight:{
+        fontSize : size.describe,
+        color: color.navTitle,
+        fontWeight: '600',
+    },
     describeGray:{
         fontSize : size.describe,
         color: color.gray,
+        fontWeight: '400',
+    },
+    describeLightGray:{
+        fontSize : size.describe,
+        color: color.lightGray,
         fontWeight: '400',
     },
     describeItalicDark:{
@@ -117,7 +135,6 @@ const part = StyleSheet.create({
         color: color.gray,
         fontWeight: '400',
     },
-
     // PADDING
     padding:{
         padding: 10,
@@ -125,7 +142,20 @@ const part = StyleSheet.create({
     paddingRight:{
         paddingRight: 5,
     },
+    paddingLeft:{
+        paddingLeft: 5,
+    },
+    paddingBottom:{
+        paddingBottom: 5,
+    },
+    paddingTop:{
+        paddingTop: 5,
+    },
 
+    // LIST ITEM
+    listItem:{
+        backgroundColor: color.backGround
+    }
 
 });
 

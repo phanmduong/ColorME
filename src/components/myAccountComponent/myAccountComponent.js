@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import {
     Title, Container, Header, Content, Card, CardItem, Thumbnail, Text, CheckBox,
-    Button, Left, Body, Right, TabHeading, List, ListItem,
+    Button, Left, Body, Right, Tabs, Tab, TabHeading, List, ListItem,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import part from '../../styles/partStyle';
@@ -14,18 +14,11 @@ import * as getUserProfileAction from '../../actions/getUserProfileAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {User} from '../../navigators/appRouter';
-class userComponent extends Component {
-    constructor(){
-        super();
-    }
-    componentWillMount(){
-        this.props.getUserProfileAction.getUserProfile(this.props.navigation.state.params.username);
-        this.props.getUserProfileAction.getProductsOfUser(this.props.navigation.state.params.username, 1, this.props.token);
-    }
 
+class myAccountComponent extends Component {
     render() {
         return (
-            <Container style={part.wrapperContainer}>
+            <Container>
                 <Header
                     style={part.navTop}
                     iosBarStyle={'light-content'}
@@ -35,24 +28,23 @@ class userComponent extends Component {
                             <Icon name="arrow-left" size={size.icon} color={color.navTitle}/>
                         </Button>
                     </Left>
-                        <Title style={part.navTitle}>{this.props.navigation.state.params.username} </Title>
+                        <Title style={part.navTitle}>Tài khoản của tôi</Title>
                     <Right>
-                        <Button transparent>
-                            <Icon name="user-plus" size={size.icon} color={color.navTitle}/>
+                        <Button transparent onPress={() => this.props.navigation.navigate('Setting')}>
+                            <Icon name="cog" size={size.icon} color={color.navTitle}/>
                         </Button>
                     </Right>
                 </Header>
-                <User/>
+                <Content>
+                    <User/>
+                </Content>
             </Container>
         );
     }
 }
-
 function mapStateToProps(state) {
     return{
-        user: state.getUserProfile.user,
-        productsUser: state.getUserProfile.productsUser,
-        token: state.login.token,
+        user: state.login.user,
     }
 }
 
@@ -62,4 +54,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(userComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(myAccountComponent);
