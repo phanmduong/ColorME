@@ -1,0 +1,47 @@
+import * as types from '../constants/actionTypes';
+import * as API from '../apis/getFullInfoAboutOnePostApi';
+export function beginGetFullInfoAboutOnePost() {
+    return {
+        type: types.BEGIN_GET_FULL_INFO_ABOUT_ONE_POST,
+        isLoading: true,
+        error: false,
+        result: false,
+    }
+}
+
+export function getFullInfoAboutOnePostSuccess(response) {
+    return {
+        type: types.GET_FULL_INFO_ABOUT_ONE_POST_SUCCESS,
+        isLoading: false,
+        error: false,
+        result: true,
+        post: response.data,
+    }
+}
+
+export function getFullInfoAboutOnePostError() {
+    return {
+        type: types.GET_FULL_INFO_ABOUT_ONE_POST_ERROR,
+        isLoading: false,
+        error: true,
+        result: false,
+    }
+}
+
+export function getFullInfoAboutOnePostOfUser(product_id, user_id) {
+    return (dispatch) => {
+        dispatch(beginGetFullInfoAboutOnePost());
+        API.getFullInfoAboutOnePost(product_id, user_id)
+            .then(function (response) {
+                dispatch(getFullInfoAboutOnePostSuccess(response));
+                console.log("GET_FULL_INFO_ABOUT_ONE_POST_SUCCESS");
+                console.log(response.data);
+            })
+            .catch(function(error) {
+                dispatch(getFullInfoAboutOnePostError(error));
+                console.log("GET_FULL_INFO_ABOUT_ONE_POST_ERROR");
+            })
+
+    }
+}
+
