@@ -28,18 +28,15 @@ export function getFullInfoAboutOnePostError() {
     }
 }
 
-export function getFullInfoAboutOnePostOfUser(product_id, user_id) {
+export function getFullInfoAboutOnePostOfUser(product_id) {
     return (dispatch) => {
         dispatch(beginGetFullInfoAboutOnePost());
-        API.getFullInfoAboutOnePost(product_id, user_id)
+        API.getFullInfoAboutOnePostApi(product_id)
             .then(function (response) {
                 dispatch(getFullInfoAboutOnePostSuccess(response));
-                console.log("GET_FULL_INFO_ABOUT_ONE_POST_SUCCESS");
-                console.log(response.data);
             })
             .catch(function(error) {
                 dispatch(getFullInfoAboutOnePostError(error));
-                console.log("GET_FULL_INFO_ABOUT_ONE_POST_ERROR");
             })
 
     }

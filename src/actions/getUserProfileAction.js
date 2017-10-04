@@ -12,7 +12,7 @@ export function getUserProfileSuccess(response) {
     return{
         type: types.GET_USER_PROFILE_SUCCESS,
         user: response.data.user,
-        products: response.data.products,
+        productsUser: response.data.products,
     }
 }
 
@@ -39,7 +39,7 @@ export function getUserProfile(userName) {
 export function getProductsOfUser(username, page_id, token) {
     return(dispatch) => {
         dispatch(beginGetUserProfile());
-        API.getProductsOfUser(username, page_id, token)
+        API.getProductsOfUserApi(username, page_id, token)
             .then(function (response) {
                 dispatch(getUserProfileSuccess(response));
             })

@@ -5,7 +5,7 @@ import { Container, Content, Form, Item, Input,  } from 'native-base';
 import Icon  from 'react-native-vector-icons/FontAwesome'
 export default class LoginComponent extends Component{
     constructor(){
-        super()
+        super();
         this.state = {
             email : '',
             password : ''

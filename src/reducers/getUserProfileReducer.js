@@ -13,6 +13,7 @@ export default function getUserProfileReducer(state = initialState.getUserProfil
                 ...state,
                 ...{
                     user: action.user,
+                    productsUser: action.productsUser,
                 }
             }
 

@@ -89,7 +89,7 @@ class newFeedComponent extends Component{
                                            style={{height: 250, width: Dimensions.get('window').width - 4, flex: 1}}
                                     />
                                     <Text
-                                        onPress={() => this.props.navigation.navigate('Post', {product_id: item.id, user_id: item.author.id})}
+                                        onPress={() => this.props.navigation.navigate('Post', {product_id: item.id})}
                                         style={[part.padding, part.describeDark]}>{item.title}</Text>
                                     </Body>
                                 </CardItem>

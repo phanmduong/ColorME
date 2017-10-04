@@ -24,9 +24,7 @@ class getFullInfoAboutOnePostComponent extends Component{
     }
 
     componentWillMount(){
-        this.props.getFullInfoAboutOnePostAction.getFullInfoAboutOnePostOfUser(this.props.navigation.state.params.product_id, this.props.navigation.state.params.user_id)
-        console.log("DATA POST");
-        console.log(this.props.post);
+        this.props.getFullInfoAboutOnePostAction.getFullInfoAboutOnePostOfUser(this.props.navigation.state.params.product_id)
     }
 
     render(){
@@ -55,33 +53,9 @@ class getFullInfoAboutOnePostComponent extends Component{
                     <Body>
                         <Thumbnail style={part.avatarUserBig}
                                    source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/5c/31/b8/5c31b8bfabdce76124e9ad9e699a6067--naruto-uzumaki.jpg'}}/>
-                        <Text style={part.titleBigDark}></Text>
+                        <Text style={part.titleBigDark}>{this.props.post.id}</Text>
                         <Text style={part.describeDark}>Vô học</Text>
                     </Body>
-
-                    <List>
-                        <ListItem itemDivider>
-                            <Text style={part.titleSmallDarkBold}>Thông tin chi tiết</Text>
-                        </ListItem>
-                        <ListItem>
-                            <Text style={part.describeDark}>Họ tên:</Text>
-                        </ListItem>
-                        <ListItem>
-                            <Text style={part.describeDark}>asdasda</Text>
-                        </ListItem>
-                        <ListItem>
-                            <Text style={part.describeDark}>Giới tính: Nam</Text>
-                        </ListItem>
-                        <ListItem>
-                            <Text style={part.describeDark}>Mô tả: Full-Stack Mobile Developer</Text>
-                        </ListItem>
-                        <ListItem>
-                            <Text style={part.describeDark}>Nơi làm việc: KEETOOL</Text>
-                        </ListItem>
-                        <ListItem>
-                            <Text style={part.describeDark}>Trường học: Vô học</Text>
-                        </ListItem>
-                    </List>
                 </Content>
 
             </Container>

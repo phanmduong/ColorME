@@ -17,11 +17,10 @@ import {User} from '../../navigators/appRouter';
 class userComponent extends Component {
     constructor(){
         super();
-        that = this;
     }
     componentWillMount(){
         this.props.getUserProfileAction.getUserProfile(this.props.navigation.state.params.username);
-        console.log (this.props.user);
+        this.props.getUserProfileAction.getProductsOfUser(this.props.navigation.state.params.username, 1, this.props.token);
     }
 
     render() {
@@ -50,6 +49,8 @@ class userComponent extends Component {
 function mapStateToProps(state) {
     return{
         user: state.getUserProfile.user,
+        productsUser: state.getUserProfile.productsUser,
+        token: state.login.token,
     }
 }
 

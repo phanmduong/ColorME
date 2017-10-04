@@ -20,7 +20,7 @@ export default function getFullInfoAboutOnePostReducer(state = initialState.getF
                 ...{
                     isLoading: action.isLoading,
                     error: action.error,
-                    post: state.post,
+                    post: action.post,
                     result: action.result,
                 }
             }

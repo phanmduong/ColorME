@@ -7,8 +7,8 @@ export function getUserProfileApi(userName) {
 
 }
 
-export function getProductsOfUser(username, page_id, token) {
-    let url = env.API_COLORME + "/products/" + username + "?page=" + page_id + "&" + token;
+export function getProductsOfUserApi(username, page_id, token) {
+    let url = env.API_COLORME + "/products/" + username + "?page=" + page_id + "&token=" + token;
     return axios.get(url);
 }
 

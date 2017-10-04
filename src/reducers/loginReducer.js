@@ -19,7 +19,7 @@ export default function loginReducer(state = initialState.login, action) {
                     isLoading: action.isLoading,
                     error : action.error,
                     token : action.token,
-                   status : action.status,
+                    status : action.status,
                     userID : action.userid,
                     user : action.user
                 }
