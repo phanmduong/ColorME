@@ -28,10 +28,10 @@ export function getNewFeedError() {
     }
 }
 
-export function getNewFeed(filter, user_id) {
+export function getNewFeed(filter, page_id) {
     return (dispatch) => {
         dispatch(beginGetNewFeed());
-        API.getNewFeedApi(filter, user_id)
+        API.getNewFeedApi(filter, page_id)
             .then(function (response) {
                 dispatch(getNewFeedSuccess(response));
             })
@@ -41,3 +41,4 @@ export function getNewFeed(filter, user_id) {
 
     }
 }
+

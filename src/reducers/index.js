@@ -1,9 +1,16 @@
-import registerReducers from '../reducers/registerReducers';
-import loginReducers from '../reducers/loginReducer';
+import getNewFeedReducer from './getNewFeedReducer';
+import getUserProfileReducer from './getUserProfileReducer';
+import loginReducer from './loginReducer';
+import getFullInfoAboutOnePostReducer from './getFullInfoAboutOnePostReducer';
+import searchReducer from './searchReducer';
 import {combineReducers} from 'redux';
-const rootReducer = combineReducers({
-    register : registerReducers,
-    login : loginReducers,
 
-})
-export default rootReducer
+const rootReducer = combineReducers({
+    getNewFeed : getNewFeedReducer,
+    getUserProfile : getUserProfileReducer,
+    getFullInfoAboutOnePost : getFullInfoAboutOnePostReducer,
+    login : loginReducer,
+    search: searchReducer,
+});
+
+export default rootReducer;

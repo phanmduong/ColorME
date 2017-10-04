@@ -25,6 +25,7 @@ export default {
 
     getUserProfile : {
         user:{},
+        products: [],
     },
 
     search:{

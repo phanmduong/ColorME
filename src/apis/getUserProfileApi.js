@@ -6,3 +6,10 @@ export function getUserProfileApi(userName) {
     return axios.get(url);
 
 }
+
+export function getProductsOfUser(username, page_id, token) {
+    let url = env.API_COLORME + "/products/" + username + "?page=" + page_id + "&" + token;
+    return axios.get(url);
+}
+
+

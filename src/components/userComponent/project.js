@@ -14,7 +14,7 @@ import * as getUserProfileAction from '../../actions/getUserProfileAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-export default class Project extends Component {
+class Project extends Component {
     render() {
         return (
             <Content style={part.wrapperContainer}>
@@ -69,3 +69,17 @@ export default class Project extends Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return{
+        user: state.getUserProfile.user,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return{
+        getUserProfileAction: bindActionCreators(getUserProfileAction, dispatch),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Project);

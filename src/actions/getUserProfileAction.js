@@ -12,6 +12,7 @@ export function getUserProfileSuccess(response) {
     return{
         type: types.GET_USER_PROFILE_SUCCESS,
         user: response.data.user,
+        products: response.data.products,
     }
 }
 
@@ -28,12 +29,22 @@ export function getUserProfile(userName) {
         API.getUserProfileApi(userName)
             .then(function (response) {
                 dispatch(getUserProfileSuccess(response));
-                console.log("GET_USER_PROFILE_SUCCESS");
             })
             .catch(function (error) {
                 dispatch(getUserProfileError(error));
-                console.log("GET_USER_PROFILE_ERROR");
-                console.log(error);
+            })
+    }
+}
+
+export function getProductsOfUser(username, page_id, token) {
+    return(dispatch) => {
+        dispatch(beginGetUserProfile());
+        API.getProductsOfUser(username, page_id, token)
+            .then(function (response) {
+                dispatch(getUserProfileSuccess(response));
+            })
+            .catch(function (error) {
+                dispatch(getUserProfileError(error));
             })
     }
 }
