@@ -24,14 +24,11 @@ class newFeedComponent extends Component{
 
     componentWillMount(){
         this.props.getNewFeedAction.getNewFeed(5, this.state.page_id);
-
-
-
     }
     getMoreNewFeed(){
         let page_id = this.state.page_id;
         page_id += 1;
-        this.setState({page: page_id});
+        this.setState({page_id: page_id});
         this.props.getNewFeedAction.getNewFeed(5 , this.state.page_id);
     }
 

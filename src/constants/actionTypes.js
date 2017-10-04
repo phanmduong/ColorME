@@ -9,6 +9,7 @@ export const GET_USER_PROFILE_SUCCESS               = 'GET_USER_PROFILE_SUCCESS'
 export const GET_USER_PROFILE_ERROR                 = 'GET_USER_PROFILE_ERROR';
 
 // LOGIN
+export const INITIAL_LOGIN                          = 'INITIAL_LOGIN'
 export const BEGIN_LOGIN                            = 'BEGIN_LOGIN';
 export const LOGIN_SUCCESS                          = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR                            = 'LOGIN_ERROR';

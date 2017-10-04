@@ -49,7 +49,6 @@ export class TabLoginAndRegister extends Component {
         login[name] = value;
         this.props.loginAction.updateDataLogin(login);
     }
-
     render() {
         return (
             <Container style={styles.wrapperContainer}>
@@ -80,6 +79,9 @@ export class TabLoginAndRegister extends Component {
                             error={this.props.errorLogin}
                             getData={this.getData}
                             navigation={this.props.navigation}
+                            email={this.props.login.email}
+                            password={this.props.login.password}
+                            initialLogin = {this.initialLogin}
                         />
                         <Content tabLabel="Đăng ký">
                             <RegisterComponent

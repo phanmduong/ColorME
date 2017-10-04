@@ -9,7 +9,6 @@ export function beginLogin() {
         token : undefined,
     }
 }
-
 export function loginUser(login) {
     return function (dispatch) {
         dispatch(beginLogin());
@@ -29,6 +28,7 @@ export function updateDataLogin(login) { // ham nay de update vao bo nho cac gia
     return {
         type: types.UPDATE_DATA_LOGIN,
         login: {...login},
+        error: false,
     }
 }
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {ActivityIndicator, Alert, TouchableOpacity, View,KeyboardAvoidingView} from 'react-native';
+import {ActivityIndicator, Alert, TouchableOpacity, View,KeyboardAvoidingView,Text} from 'react-native';
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Form, Input, Item,} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -42,6 +42,11 @@ export default class RegisterComponent extends Component {
                                    }}
                             />
                         </Item>
+                        {(this.state.email == '') ? (
+                            <Text style={{color : 'red'}}>* Bạn cần nhập email </Text>
+                        ):(
+                            <Text/>
+                        )}
                         <Item style={styles.inputGroup}>
                             <Icon name='user' size={size.icon} style={styles.icon}/>
                             <Input placeholder='Name'
@@ -51,9 +56,13 @@ export default class RegisterComponent extends Component {
                                    onChangeText={(name) => {
                                        this.setState({name})
                                    }}
-
                             />
                         </Item>
+                        {(this.state.name == '') ? (
+                            <Text style={{color : 'red'}}>* Bạn cần nhập tên của bạn</Text>
+                        ):(
+                            <Text/>
+                        )}
                         <Item style={styles.inputGroup}>
                             <Icon name='address-book' size={size.icon} style={styles.icon}/>
                             <Input placeholder='Username'
@@ -65,6 +74,7 @@ export default class RegisterComponent extends Component {
                                    }}
                             />
                         </Item>
+                        <Text/>
                         <Item style={styles.inputGroup}>
                             <Icon name='unlock' size={size.icon} style={styles.icon}/>
                             <Input placeholder='Password'
@@ -77,6 +87,11 @@ export default class RegisterComponent extends Component {
                                    }}
                             />
                         </Item>
+                        {(this.state.password == '') ? (
+                            <Text style={{color : 'red'}}>* Bạn cần nhập password </Text>
+                        ):(
+                            <Text/>
+                        )}
                         <TouchableOpacity
                             style={styles.buttonRegister}
                             onPress={() => this.props.register(this.state)}

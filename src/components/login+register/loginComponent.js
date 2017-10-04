@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {KeyboardAvoidingView, TouchableOpacity, ActivityIndicator, Alert} from 'react-native';
+import {KeyboardAvoidingView, TouchableOpacity, ActivityIndicator, Alert,Text} from 'react-native';
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Item, Input,} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -21,11 +21,11 @@ export default class LoginComponent extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.status == 200) {
-            this.props.navigation.navigate('Home');
-        }
-        if (nextProps.error == true) {
-            Alert.alert('Mời bạn kiểm tra thông tin tài khoản')
+         if (nextProps.status == 200) {
+             this.props.navigation.navigate('Home');
+         }
+        if(nextProps.error){
+            Alert.alert('Mời bạn kiểm tra lại thông tin tài khoản ')
         }
     }
 
@@ -42,11 +42,16 @@ export default class LoginComponent extends Component {
                                    color={color.navTitle}
                                    onChangeText={(email) => {
                                        this.props.updateData('email', email)
+                                       this.setState({email})
                                    }}
-                                   value={this.props.login.email}
+                                   value={this.props.email}
                             />
-
                         </Item>
+                        {(this.props.email == '') ? (
+                            <Text style={{color : 'red'}}>* Bạn cần nhập email </Text>
+                        ):(
+                            <Text/>
+                        )}
                         <Item style={styles.inputGroup}>
                             <Icon name='key' size={size.icon} style={styles.icon}/>
                             <Input style={part.inputTheme02}
@@ -56,10 +61,15 @@ export default class LoginComponent extends Component {
                                    secureTextEntry={true}
                                    onChangeText={(password) => {
                                        this.props.updateData('password', password)
-                                   }} value={this.props.login.password}
+                                   }}
+                                   value = {this.props.password}
                             />
                         </Item>
-
+                        {(this.props.password == '') ? (
+                            <Text style={{color : 'red'}}>* Bạn cần nhập password </Text>
+                        ):(
+                            <Text/>
+                        )}
                         <TouchableOpacity
                             disabled={this.props.isLoading}
                             block

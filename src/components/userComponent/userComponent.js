@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 import {
-    Image, Dimensions
-} from 'react-native';
-import {
     Title, Container, Header, Content, Card, CardItem, Thumbnail, Text, CheckBox,
     Button, Left, Body, Right, TabHeading, List, ListItem,
 } from 'native-base';
