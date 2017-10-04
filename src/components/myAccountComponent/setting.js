@@ -41,7 +41,8 @@ export default class setting extends Component {
                         <ListItem itemDivider>
                             <Text style={part.titleSmallDarkBold}>Cài đặt tài khoản</Text>
                         </ListItem>
-                        <ListItem style={part.listItem}>
+                        <ListItem style={part.listItem}
+                                  onPress={() => this.props.navigation.navigate('UpdateInformation')}>
                             <Left>
                                 <Text style={part.describeDark}>Cập nhập thông tin</Text>
                             </Left>
@@ -49,7 +50,8 @@ export default class setting extends Component {
                                 <Icon name="user" color={color.gray} size={size.icon}/>
                             </Right>
                         </ListItem>
-                        <ListItem style={part.listItem}>
+                        <ListItem style={part.listItem}
+                                  onPress={() => this.props.navigation.navigate('ChangePassword')}>
                             <Left>
                                 <Text style={part.describeDark}>Đổi mật khẩu</Text>
                             </Left>
@@ -57,7 +59,9 @@ export default class setting extends Component {
                                 <Icon name="key" color={color.gray} size={size.icon}/>
                             </Right>
                         </ListItem>
-                        <ListItem style={part.listItem}>
+                        <ListItem style={part.listItem}
+                                  // onPress={() => this.props.navigation.navigate('ChangePassword')}
+                        >
                             <Left>
                                 <Text style={part.describeDark}>Lớp đang học</Text>
                             </Left>
@@ -65,7 +69,9 @@ export default class setting extends Component {
                                 <Icon name="pencil" color={color.gray} size={size.icon}/>
                             </Right>
                         </ListItem>
-                        <ListItem style={part.listItem}>
+                        <ListItem style={part.listItem}
+                            // onPress={() => this.props.navigation.navigate('ChangePassword')}
+                        >
                             <Left>
                                 <Text style={part.describeDark}>Đăng xuất</Text>
                             </Left>
@@ -86,7 +92,9 @@ export default class setting extends Component {
                                 <Switch value={true} onTintColor={color.main}/>
                             </Right>
                         </ListItem>
-                        <ListItem style={part.listItem} onPress={() => this.props.navigation.navigate('AboutUs')}>
+                        <ListItem style={part.listItem}
+                                  onPress={() => this.props.navigation.navigate('AboutUs')}
+                        >
                             <Left>
                                 <Text style={part.describeDark}>Thông tin</Text>
                             </Left>
@@ -99,7 +107,9 @@ export default class setting extends Component {
                         <ListItem itemDivider>
                             <Text style={part.titleSmallDarkBold}>Hỗ trợ</Text>
                         </ListItem>
-                        <ListItem style={part.listItem}>
+                        <ListItem style={part.listItem}
+                            // onPress={() => this.props.navigation.navigate('ChangePassword')}
+                        >
                             <Left>
                                 <Text style={part.describeDark}>Liên hệ với chúng tôi</Text>
                             </Left>
@@ -107,7 +117,9 @@ export default class setting extends Component {
                                 <Icon name="phone" color={color.gray} size={size.icon}/>
                             </Right>
                         </ListItem>
-                        <ListItem style={part.listItem}>
+                        <ListItem style={part.listItem}
+                            // onPress={() => this.props.navigation.navigate('ChangePassword')}
+                        >
                             <Left>
                                 <Text style={part.describeDark}>Feedback</Text>
                             </Left>

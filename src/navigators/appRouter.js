@@ -27,9 +27,12 @@ import searchProduct from '../components/searchComponent/searchProduct';
 
 // MY ACCOUNT
 import myAccountComponent from '../components/myAccountComponent/myAccountComponent';
+
 //SETTING
 import setting from '../components/myAccountComponent/setting';
 import aboutUs from '../components/myAccountComponent/aboutUs';
+import changePassword from '../components/myAccountComponent/changePassword';
+import updateInformation from '../components/myAccountComponent/updateInformation';
 
 export const Search = TabNavigator(
     {
@@ -76,6 +79,20 @@ export const Setting = StackNavigator(
                 tabBarVisible: false,
             },
         },
+        ChangePassword:{
+            screen: changePassword,
+            navigationOptions: {
+                header: null,
+                tabBarVisible: false,
+            },
+        },
+        UpdateInformation:{
+            screen: updateInformation,
+            navigationOptions: {
+                header: null,
+                tabBarVisible: false,
+            },
+        }
 
     }
 );

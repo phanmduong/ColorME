@@ -50,7 +50,7 @@ class searchComponent extends Component{
                     <Right/>
                 </Header>
                 <Item>
-                    <Input placeholder="Nhập tên người dùng, bài đăng ..."
+                    <Input placeholder="Nhập tên người dùng, bài đăng..."
                            style={part.inputTheme01}
                            onChangeText={(text) => this.setState({txtSearch: text})}
                     />

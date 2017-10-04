@@ -55,6 +55,11 @@ const part = StyleSheet.create({
         color: color.navTitle,
         fontSize: size.title,
     },
+    inputTheme03:{
+        fontSize: size.describe,
+        height: 40,
+
+    },
 
     // FORM
     formLoginRegister:{
@@ -114,6 +119,11 @@ const part = StyleSheet.create({
         color: color.text,
         fontWeight: '400',
     },
+    describeDarkGray:{
+        fontSize : size.describe,
+        color: 'rgb(89, 89, 89)',
+        fontWeight: '400',
+    },
     describeLight:{
         fontSize : size.describe,
         color: color.navTitle,
@@ -135,6 +145,15 @@ const part = StyleSheet.create({
         color: color.gray,
         fontWeight: '400',
     },
+
+    //BUTTON
+    buttonTheme01:{
+        backgroundColor: color.main,
+        justifyContent:'center',
+        width: wid - wid*0.1,
+        margin: 15,
+        borderRadius: 0,
+    },
     // PADDING
     padding:{
         padding: 10,
@@ -149,6 +168,11 @@ const part = StyleSheet.create({
         paddingBottom: 5,
     },
     paddingTop:{
+        paddingTop: 5,
+    },
+    paddingTRB:{
+        paddingRight: 5,
+        paddingBottom: 5,
         paddingTop: 5,
     },
 
