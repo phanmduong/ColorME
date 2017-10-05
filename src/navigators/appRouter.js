@@ -39,7 +39,7 @@ import changePassword from '../components/myAccountComponent/changePassword';
 import updateInformation from '../components/myAccountComponent/updateInformation';
 import feedback from '../components/myAccountComponent/feedback';
 import contactUs from '../components/myAccountComponent/contactUs';
-
+import courseComponent from '../components/courseComponent';
 
 export const TabNavigatorStyle = {
     tabBarPosition: 'top',
@@ -229,7 +229,15 @@ export const NewFeed = StackNavigator(
                 header: null,
                 tabBarVisible: false,
             },
-        }
+        },
+        Course:{
+            screen: courseComponent,
+            navigationOptions: {
+                header: null,
+                tabBarVisible: false,
+            },
+        },
+
 
     }
 );

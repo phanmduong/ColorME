@@ -22,6 +22,7 @@ class userComponent extends Component {
     componentWillMount(){
         this.props.getUserProfileAction.getUserProfile(this.props.navigation.state.params.username);
     }
+
     render() {
         return (
             <Container style={part.wrapperContainer}>

@@ -23,7 +23,7 @@ class searchProduct extends Component{
                         <ListItem avatar style={part.padding}>
                             <Left/>
                             <Body>
-                                <Text style={part.titleSmallDark}>{item.id}</Text>
+                                <Text style={part.titleSmallDark}>{item.author.name}</Text>
                                 <Text style={part.describeGray} note>{item.title}</Text>
                             </Body>
                             <Right/>

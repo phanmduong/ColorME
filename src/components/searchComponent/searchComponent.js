@@ -25,6 +25,7 @@ class searchComponent extends Component{
     search(){
         this.props.searchAction.searchUsers(this.state.txtSearch, 10, 1);
         this.props.searchAction.searchProducts(this.state.txtSearch, 10, 1);
+
     }
 
     // getMoreUser(){

@@ -42,5 +42,8 @@ export default {
         isLoading: false,
         error: false,
         result: false,
+    },
+    getCourse:{
+        course:[],
     }
 }

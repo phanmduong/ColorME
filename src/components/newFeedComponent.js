@@ -40,7 +40,7 @@ class newFeedComponent extends Component {
                         iosBarStyle={'light-content'}
                         backgroundColor={color.main}>
                     <Left>
-                        <Button transparent>
+                        <Button transparent onPress={() => this.props.navigation.navigate('Course')}>
                             <Icon name="calendar" size={size.icon} color={color.navTitle}/>
                         </Button>
                     </Left>
@@ -125,7 +125,6 @@ class newFeedComponent extends Component {
                                         }
                                     </Left>
                                     <Right>
-
                                     </Right>
                                 </CardItem>
                             </Card>
