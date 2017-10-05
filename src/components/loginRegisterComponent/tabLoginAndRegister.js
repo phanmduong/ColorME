@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import {
-    Title,Container, Header, Content, Card, CardItem,
+    Title, Container, Header, Content, Card, CardItem,
     Thumbnail, Text, Button, Left, Body, Right
 } from 'native-base';
-import {KeyboardAvoidingView, View, StatusBar} from 'react-native';
+import {View, StatusBar} from 'react-native';
 import styles from '../../styles/loginRegisterStyle'
 import part from '../../styles/partStyle';
-import LoginComponent from '../login+register/loginComponent'
-import RegisterComponent from '../login+register/registerComponent'
+import LoginComponent from './loginComponent'
+import RegisterComponent from './registerComponent'
 import * as loginAction from '../../actions/loginActions';
 import * as registerAction from '../../actions/registerAction';
 import {bindActionCreators} from 'redux';
@@ -16,10 +16,9 @@ import ScrollableTabView from 'react-native-scrollable-tab-view'
 import * as color from '../../styles/color';
 
 
-
 export class TabLoginAndRegister extends Component {
     constructor() {
-        super()
+        super();
         this.register = this.register.bind(this);
         this.signIn = this.signIn.bind(this);
         this.updateData = this.updateData.bind(this);
@@ -49,6 +48,7 @@ export class TabLoginAndRegister extends Component {
         login[name] = value;
         this.props.loginAction.updateDataLogin(login);
     }
+
     render() {
         return (
             <Container style={styles.wrapperContainer}>
@@ -58,38 +58,40 @@ export class TabLoginAndRegister extends Component {
                 />
                 <Container>
                     <Body style={styles.topContainerLogin}>
-                        <View style={styles.wrapperColorME}>
-                            <Text style={styles.textColor}>Color</Text>
-                            <Text style={styles.textME}>ME</Text>
-                        </View>
-
-                    <ScrollableTabView
-                        tabBarInactiveTextColor={color.navTitle}
-                        tabBarUnderlineStyle={{backgroundColor: color.main}}
-                        style={part.formLoginRegister}
-                        tabBarActiveTextColor={color.main}
-                    >
-                        <LoginComponent
-                            tabLabel="Đăng nhập"
-                            signIn={this.signIn}
-                            updateData={this.updateData}
-                            isLoading={this.props.isLoadingLogin}
-                            status={this.props.statusLogin}
-                            login={this.props.login}
-                            error={this.props.errorLogin}
-                            getData={this.getData}
-                            navigation={this.props.navigation}
-                            email={this.props.login.email}
-                            password={this.props.login.password}
-                            initialLogin = {this.initialLogin}
-                        />
-                        <Content tabLabel="Đăng ký">
-                            <RegisterComponent
-                                {...this.props}
-                                register={this.register}
+                    <View style={styles.wrapperColorME}>
+                        <Text style={styles.textColor}>Color</Text>
+                        <Text style={styles.textME}>ME</Text>
+                    </View>
+                    <View/>
+                    <View style={styles.wrapperForm}>
+                        <ScrollableTabView
+                            tabBarInactiveTextColor={color.gray}
+                            tabBarUnderlineStyle={{backgroundColor: color.main}}
+                            style={part.formLoginRegister}
+                            tabBarActiveTextColor={color.main}
+                        >
+                            <LoginComponent
+                                tabLabel="Đăng nhập"
+                                signIn={this.signIn}
+                                updateData={this.updateData}
+                                isLoading={this.props.isLoadingLogin}
+                                status={this.props.statusLogin}
+                                login={this.props.login}
+                                error={this.props.errorLogin}
+                                getData={this.getData}
+                                navigation={this.props.navigation}
+                                email={this.props.login.email}
+                                password={this.props.login.password}
+                                initialLogin={this.initialLogin}
                             />
-                        </Content>
-                    </ScrollableTabView>
+                            <Content tabLabel="Đăng ký">
+                                <RegisterComponent
+                                    {...this.props}
+                                    register={this.register}
+                                />
+                            </Content>
+                        </ScrollableTabView>
+                    </View>
                     </Body>
                 </Container>
             </Container>

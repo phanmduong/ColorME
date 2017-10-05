@@ -7,47 +7,12 @@ import {
     Text, Button, Left, Body, Right, List, ListItem, Item, Input, TabHeading
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import part from '../styles/partStyle';
-import * as color from '../styles/color';
-import * as size from '../styles/size';
-
-import InputSearchCommon from '../commons/InputSearchCommon';
+import part from '../../styles/partStyle';
+import * as color from '../../styles/color';
+import InputSearchCommon from '../../commons/InputSearchCommon';
 
 
-export default class newFeedComponent extends Component {
-    constructor() {
-        super();
-    }
-
-    render() {
-        return (
-            <Container>
-                <Header
-                    style={part.navTop}
-                    iosBarStyle={'light-content'}
-                    backgroundColor={color.main}>
-                    <Left/>
-                    <Body>
-                        <Title style={part.navTitle}>Message</Title>
-                    </Body>
-                    <Right>
-
-                    </Right>
-                </Header>
-                <Tabs tabBarUnderlineStyle={{backgroundColor:color.main}}>
-                    <Tab heading={<TabHeading><Text style={part.titleSmallDarkBold}>Tin nhắn</Text></TabHeading>}>
-                        <Chat/>
-                    </Tab>
-                    <Tab heading={<TabHeading><Text style={part.titleSmallDarkBold}>Đang hoạt động</Text></TabHeading>}>
-                        <Online/>
-                    </Tab>
-                </Tabs>
-            </Container>
-        );
-    }
-}
-
-class Chat extends Component {
+export default class Chat extends Component {
     constructor() {
         super();
         this.state = {
@@ -56,11 +21,11 @@ class Chat extends Component {
     }
     render() {
         return (
-            <Container>
+            <Container style={part.wrapperContainer}>
                 <InputSearchCommon/>
                 <Content>
                     <List>
-                        <ListItem avatar style={part.padding}>
+                        <ListItem avatar style={[part.padding, part.listItem]}>
                             <Left>
                                 <Thumbnail
                                     source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/5c/31/b8/5c31b8bfabdce76124e9ad9e699a6067--naruto-uzumaki.jpg'}}/>
@@ -100,28 +65,6 @@ class Chat extends Component {
 
             </Container>
 
-        )
-    }
-}
-
-class Online extends Component {
-    render() {
-        return (
-            <Content>
-                <InputSearchCommon/>
-                <List>
-                    <ListItem avatar style={part.padding}>
-                        <Left>
-                            <Thumbnail
-                                source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/5c/31/b8/5c31b8bfabdce76124e9ad9e699a6067--naruto-uzumaki.jpg'}}/>
-                        </Left>
-                        <Body>
-                        <Text style={part.titleSmallDark}>Coz</Text>
-                        <Text style={part.describeGray} note>Vô học</Text>
-                        </Body>
-                    </ListItem>
-                </List>
-            </Content>
         )
     }
 }

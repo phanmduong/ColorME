@@ -4,11 +4,13 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import * as color from '../styles/color';
 import * as size from '../styles/size';
 
+// LOGIN
+import tabLoginAndRegister from '../components/loginRegisterComponent/tabLoginAndRegister';
+
 // MAIN SCREEN
 import newFeedComponent from '../components/newFeedComponent';
-import messageComponent from '../components/messageComponent';
+import messageComponent from '../components/messageComponent/messageComponent';
 import notificationComponent from '../components/notificationComponent';
-import setupComponent from '../components/setupComponent';
 
 import getFullInfoAboutOnePostComponent from '../components/getFullInfoAboutOnePostComponent';
 
@@ -23,9 +25,52 @@ import searchComponent from '../components/searchComponent/searchComponent';
 import searchUser from '../components/searchComponent/searchUser';
 import searchProduct from '../components/searchComponent/searchProduct';
 
-import tabLoginAndRegister from '../components/login+register/tabLoginAndRegister';
+// MESSAGE
+import Chat from '../components/messageComponent/chat';
+import OnlineFriend from '../components/messageComponent/onlineFriend';
 
+// MY ACCOUNT
+import myAccountComponent from '../components/myAccountComponent/myAccountComponent';
 
+//SETTING
+import setting from '../components/myAccountComponent/setting';
+import aboutUs from '../components/myAccountComponent/aboutUs';
+import changePassword from '../components/myAccountComponent/changePassword';
+import updateInformation from '../components/myAccountComponent/updateInformation';
+
+export const TabNavigatorStyle = {
+    tabBarPosition: 'top',
+    tabBarOptions: {
+        activeTintColor: color.main,
+        style:{
+            height: 40,
+            borderTopWidth: 0,
+        },
+        labelStyle:{
+            fontSize: size.describe,
+            padding: 8,
+        },
+
+    }
+};
+
+export const Message = TabNavigator (
+    {
+        Chat:{
+            screen: Chat,
+            navigationOptions:{
+                tabBarLabel: 'Tin nhắn',
+            }
+        },
+        OnlineFriend: {
+            screen: OnlineFriend,
+            navigationOptions:{
+                tabBarLabel: 'Đang hoạt động',
+            }
+        },
+    },
+    TabNavigatorStyle
+);
 export const Search = TabNavigator(
     {
         SearchUser: {
@@ -41,19 +86,55 @@ export const Search = TabNavigator(
             }
         },
     },
+    TabNavigatorStyle
+);
+export const Setting = StackNavigator(
     {
-        tabBarPosition: 'top',
-        tabBarOptions: {
-            activeTintColor: color.main,
-            style:{
-                height: 40,
+        Setting:{
+            screen: setting,
+            navigationOptions: {
+                header: null,
             },
-            labelStyle:{
-                fontSize: size.describe,
-                padding: 7,
+        },
+        AboutUs:{
+            screen: aboutUs,
+            navigationOptions: {
+                header: null,
+                tabBarVisible: false,
             },
-
+        },
+        ChangePassword:{
+            screen: changePassword,
+            navigationOptions: {
+                header: null,
+                tabBarVisible: false,
+            },
+        },
+        UpdateInformation:{
+            screen: updateInformation,
+            navigationOptions: {
+                header: null,
+                tabBarVisible: false,
+            },
         }
+
+    }
+);
+export const MyAccount = StackNavigator(
+    {
+        MyAccount: {
+            screen: myAccountComponent,
+            navigationOptions: {
+                header: null,
+            },
+        },
+
+        Setting:{
+            screen: Setting,
+            navigationOptions: {
+                header: null,
+            },
+        },
     }
 );
 
@@ -79,20 +160,7 @@ export const User = TabNavigator(
         },
 
     },
-    {
-        tabBarPosition: 'top',
-        tabBarOptions: {
-            activeTintColor: color.main,
-            style:{
-                height: 40,
-            },
-            labelStyle:{
-                fontSize: size.describe,
-                padding: 7,
-            },
-
-        }
-    }
+    TabNavigatorStyle
 );
 
 export const NewFeed = StackNavigator(
@@ -120,53 +188,75 @@ export const NewFeed = StackNavigator(
 
     }
 );
-
+// tabBarIcon:
+//     <Icon name="home" size={size.icon} color={color.gray} />
 export const Home = TabNavigator(
     {
         NewFeed: {
             screen: NewFeed,
             navigationOptions:{
-                tabBarIcon:
-                    <Icon name="home" size={size.icon} color={color.gray} />
+                tabBarIcon: ({ tintColor }) => (
+                    <Icon
+                        name="home" size={size.icon}
+                        color={tintColor}
+                    />
+                ),
             }
         },
         Search: {
             screen: searchComponent,
             navigationOptions:{
-                tabBarIcon:
-                    <Icon name="search" size={size.icon} color={color.gray} />
+                tabBarIcon: ({ tintColor }) => (
+                    <Icon
+                        name="search" size={size.icon}
+                        color={tintColor}
+                    />
+                ),
             }
         },
         Message: {
             screen: messageComponent,
             navigationOptions:{
-                tabBarIcon:
-                    <Icon name="comments" size={size.icon} color={color.gray} />
+                tabBarIcon: ({ tintColor }) => (
+                    <Icon
+                        name="comments" size={size.icon}
+                        color={tintColor}
+                    />
+                ),
             }
         },
         Notification: {
             screen: notificationComponent,
             navigationOptions:{
-                tabBarIcon:
-                    <Icon name="bell" size={size.icon} color={color.gray} />
+                tabBarIcon: ({ tintColor }) => (
+                    <Icon
+                        name="bell" size={size.icon}
+                        color={tintColor}
+                    />
+                ),
             }
         },
-        Setup: {
-            screen: setupComponent,
+        MyAccount: {
+            screen: MyAccount,
             navigationOptions:{
-                tabBarIcon:
-                    <Icon name="user" size={size.icon} color={color.gray}/>
+                tabBarIcon: ({ tintColor }) => (
+                    <Icon
+                        name="user" size={size.icon}
+                        color={tintColor}
+                    />
+                ),
             }
         },
     },
     {
     tabBarPosition: 'bottom',
     tabBarOptions: {
+        activeTintColor: color.main,
         style:{
             height: 40,
         },
         showLabel: false,
-        activeBackgroundColor: color.main,
+        // activeBackgroundColor: color.main,
         }
     }
 );

@@ -15,7 +15,7 @@ export function loginUser(login) {
         loginApi.login(login)
             .then(function (response) {
                 dispatch(loginSuccess(response));
-               console.log(response.status)
+                console.log(response.status)
             })
             .catch(error => {
                 dispatch(loginError(error));
@@ -90,4 +90,3 @@ export function setDataLogin(login) { // save data
         ;
     }
 }
-

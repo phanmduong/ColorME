@@ -45,12 +45,12 @@ class searchComponent extends Component{
                     backgroundColor={color.main}>
                     <Left/>
                     <Body>
-                        <Title style={part.navTitle}>Search</Title>
+                        <Title style={part.navTitle}>Tìm kiếm</Title>
                     </Body>
                     <Right/>
                 </Header>
-                <Item>
-                    <Input placeholder="Search"
+                <Item style={part.borderNone}>
+                    <Input placeholder="Nhập tên người dùng, bài đăng..."
                            style={part.inputTheme01}
                            onChangeText={(text) => this.setState({txtSearch: text})}
                     />
@@ -58,7 +58,7 @@ class searchComponent extends Component{
                         <Icon name="search" style={part.padding} size={size.icon} color={color.gray}/>
                     </TouchableOpacity>
                 </Item>
-                <Search/>
+                <Search />
             </Container>
         );
     }

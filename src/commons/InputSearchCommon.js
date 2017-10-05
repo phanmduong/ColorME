@@ -13,7 +13,7 @@ import * as size from '../styles/size';
 export default class InputSearchCommon extends Component{
     render(){
         return(
-            <Item>
+            <Item style={part.borderNone}>
                 <Input placeholder="Search"
                        style={part.inputTheme01}
                 />

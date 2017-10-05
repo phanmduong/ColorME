@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import {KeyboardAvoidingView, TouchableOpacity, ActivityIndicator, Alert,Text} from 'react-native';
+import {View} from 'react-native'
+import {KeyboardAvoidingView, TouchableOpacity, ActivityIndicator, Alert, Text} from 'react-native';
 import styles from '../../styles/loginRegisterStyle'
-import {Container, Content, Form, Item, Input,} from 'native-base';
+import {Container, Content, Form, Item, Input} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
@@ -21,10 +22,10 @@ export default class LoginComponent extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-         if (nextProps.status == 200) {
-             this.props.navigation.navigate('Home');
-         }
-        if(nextProps.error){
+        if (nextProps.status === 200) {
+            this.props.navigation.navigate('Home');
+        }
+        if (nextProps.error) {
             Alert.alert('Mời bạn kiểm tra lại thông tin tài khoản ')
         }
     }
@@ -35,29 +36,29 @@ export default class LoginComponent extends Component {
                 <Container style={styles.midContainerLogin}>
                     <Container style={styles.textInputGroup}>
                         <Item style={styles.inputGroup}>
-                            <Icon name='envelope-o' size={size.icon} style={styles.icon}/>
+                            <View style={styles.wrapperIcon}>
+                                <Icon name='envelope-o' size={size.icon} color={color.gray}/>
+                            </View>
                             <Input style={part.inputTheme02}
                                    placeholder="Email"
                                    placeholderTextColor={color.gray}
-                                   color={color.navTitle}
+                                   color={color.text}
+                                   autoCorrect={false}
                                    onChangeText={(email) => {
-                                       this.props.updateData('email', email)
-                                       this.setState({email})
+                                       this.props.updateData('email', email);
+                                       this.setState({email});
                                    }}
                                    value={this.props.email}
                             />
                         </Item>
-                        {(this.props.email == '') ? (
-                            <Text style={{color : 'red'}}>* Bạn cần nhập email </Text>
-                        ):(
-                            <Text/>
-                        )}
                         <Item style={styles.inputGroup}>
-                            <Icon name='key' size={size.icon} style={styles.icon}/>
+                            <View style={styles.wrapperIcon}>
+                                <Icon name='key' size={size.icon} color={color.gray}/>
+                            </View>
                             <Input style={part.inputTheme02}
                                    placeholder='Password'
                                    placeholderTextColor={color.gray}
-                                   color={color.navTitle}
+                                   color={color.text}
                                    secureTextEntry={true}
                                    onChangeText={(password) => {
                                        this.props.updateData('password', password)
@@ -65,11 +66,7 @@ export default class LoginComponent extends Component {
                                    value = {this.props.password}
                             />
                         </Item>
-                        {(this.props.password == '') ? (
-                            <Text style={{color : 'red'}}>* Bạn cần nhập password </Text>
-                        ):(
-                            <Text/>
-                        )}
+
                         <TouchableOpacity
                             disabled={this.props.isLoading}
                             block

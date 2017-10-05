@@ -8,7 +8,11 @@ let wid = Dimensions.get('window').width;
 const part = StyleSheet.create({
     // NAV BAR
     navTop:{
+        borderBottomWidth: 0,
+        shadowColor: 'transparent',
         backgroundColor: color.main,
+        alignItems: 'center',
+
     },
 
     //WRAPPER
@@ -51,12 +55,25 @@ const part = StyleSheet.create({
         color: color.navTitle,
         fontSize: size.title,
     },
+    inputTheme03:{
+        fontSize: size.describe,
+        height: 40,
+
+    },
+
+    //BORDER = NONE
+    borderNone:{
+        borderBottomWidth:0,
+        borderTopWidth: 0,
+    },
 
     // FORM
     formLoginRegister:{
         margin: 20,
         borderColor: color.none,
     },
+
+
     //IMAGE
     avatarUserBig:{
         width: 100,
@@ -90,6 +107,11 @@ const part = StyleSheet.create({
         color: color.text,
         fontWeight: '800',
     },
+    titleBigLightThin:{
+        fontSize : 25,
+        color: color.navTitle,
+        fontWeight: '300',
+    },
     titleSmallDarkBold:{
         fontSize : size.titleSmall,
         color: color.text,
@@ -105,10 +127,24 @@ const part = StyleSheet.create({
         color: color.text,
         fontWeight: '400',
     },
-
+    describeDarkGray:{
+        fontSize : size.describe,
+        color: 'rgb(89, 89, 89)',
+        fontWeight: '400',
+    },
+    describeLight:{
+        fontSize : size.describe,
+        color: color.navTitle,
+        fontWeight: '600',
+    },
     describeGray:{
         fontSize : size.describe,
         color: color.gray,
+        fontWeight: '400',
+    },
+    describeLightGray:{
+        fontSize : size.describe,
+        color: color.lightGray,
         fontWeight: '400',
     },
     describeItalicDark:{
@@ -118,6 +154,16 @@ const part = StyleSheet.create({
         fontWeight: '400',
     },
 
+    //BUTTON
+    buttonTheme01:{
+        backgroundColor: color.main,
+        justifyContent:'center',
+        width: wid - wid*0.1,
+        margin: 15,
+        borderRadius: 0,
+    },
+
+
     // PADDING
     padding:{
         padding: 10,
@@ -125,7 +171,25 @@ const part = StyleSheet.create({
     paddingRight:{
         paddingRight: 5,
     },
+    paddingLeft:{
+        paddingLeft: 5,
+    },
+    paddingBottom:{
+        paddingBottom: 5,
+    },
+    paddingTop:{
+        paddingTop: 5,
+    },
+    paddingTRB:{
+        paddingRight: 5,
+        paddingBottom: 5,
+        paddingTop: 5,
+    },
 
+    // LIST ITEM
+    listItem:{
+        backgroundColor: color.backGround
+    }
 
 });
 
