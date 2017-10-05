@@ -58,6 +58,7 @@ const part = StyleSheet.create({
     inputTheme03:{
         fontSize: size.describe,
         height: 40,
+        marginLeft: 5,
 
     },
 

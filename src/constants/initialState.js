@@ -1,6 +1,7 @@
 export default {
     login:{
         login: {},
+        user:{},
         token: undefined,
         isLoading: false,
         error: false,
@@ -32,6 +33,7 @@ export default {
     getUserProfile : {
         user:{},
         productsUser: [],
+        progress: [],
     },
 
     search:{

@@ -1,6 +1,6 @@
 import * as types from '../constants/actionTypes';
 import {AsyncStorage} from 'react-native'
-import * as loginApi from '../apis/loginApi'
+import * as API from '../apis/loginApi'
 export function beginLogin() {
     return {
         type: types.BEGIN_LOGIN,
@@ -12,7 +12,7 @@ export function beginLogin() {
 export function loginUser(login) {
     return function (dispatch) {
         dispatch(beginLogin());
-        loginApi.login(login)
+        API.loginApi(login)
             .then(function (response) {
                 dispatch(loginSuccess(response));
                 console.log(response.status)
@@ -24,7 +24,7 @@ export function loginUser(login) {
     }
 }
 
-export function updateDataLogin(login) { // ham nay de update vao bo nho cac gia tri nhap vao de login
+export function updateDataLogin(login) {
     return {
         type: types.UPDATE_DATA_LOGIN,
         login: {...login},

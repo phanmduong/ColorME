@@ -16,6 +16,11 @@ import {connect} from 'react-redux';
 import {User} from '../../navigators/appRouter';
 
 class myAccountComponent extends Component {
+    componentWillMount() {
+        this.props.getUserProfileAction.getUserProfile(this.props.user.username);
+
+    }
+
     render() {
         return (
             <Container>
@@ -28,28 +33,29 @@ class myAccountComponent extends Component {
                             <Icon name="arrow-left" size={size.icon} color={color.navTitle}/>
                         </Button>
                     </Left>
-                        <Title style={part.navTitle}>Tài khoản của tôi</Title>
+                    <Title style={part.navTitle}>{this.props.user.username}</Title>
                     <Right>
                         <Button transparent onPress={() => this.props.navigation.navigate('Setting')}>
                             <Icon name="cog" size={size.icon} color={color.navTitle}/>
                         </Button>
                     </Right>
                 </Header>
-                <Content>
-                    <User/>
-                </Content>
+                <User/>
             </Container>
         );
     }
 }
+
 function mapStateToProps(state) {
-    return{
+    return {
         user: state.login.user,
+        productsUser: state.getUserProfile.productsUser,
+
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return{
+    return {
         getUserProfileAction: bindActionCreators(getUserProfileAction, dispatch),
     }
 }

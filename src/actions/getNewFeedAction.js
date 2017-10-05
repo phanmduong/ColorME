@@ -34,9 +34,13 @@ export function getNewFeed(filter, page_id) {
         API.getNewFeedApi(filter, page_id)
             .then(function (response) {
                 dispatch(getNewFeedSuccess(response));
+                console.log("Get new feed");
+                console.log(response)
             })
             .catch(function(error) {
                 dispatch(getNewFeedError(error));
+                console.log("Get error");
+
             })
 
     }

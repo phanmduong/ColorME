@@ -37,6 +37,9 @@ import setting from '../components/myAccountComponent/setting';
 import aboutUs from '../components/myAccountComponent/aboutUs';
 import changePassword from '../components/myAccountComponent/changePassword';
 import updateInformation from '../components/myAccountComponent/updateInformation';
+import feedback from '../components/myAccountComponent/feedback';
+import contactUs from '../components/myAccountComponent/contactUs';
+
 
 export const TabNavigatorStyle = {
     tabBarPosition: 'top',
@@ -53,6 +56,7 @@ export const TabNavigatorStyle = {
 
     }
 };
+
 
 export const Message = TabNavigator (
     {
@@ -86,7 +90,21 @@ export const Search = TabNavigator(
             }
         },
     },
-    TabNavigatorStyle
+    {
+        tabBarPosition: 'top',
+        tabBarOptions: {
+            activeTintColor: color.main,
+            style:{
+                height: 40,
+                borderTopWidth: 0,
+            },
+            labelStyle:{
+                fontSize: size.describe,
+                padding: 8,
+            },
+
+        }
+    }
 );
 export const Setting = StackNavigator(
     {
@@ -116,7 +134,21 @@ export const Setting = StackNavigator(
                 header: null,
                 tabBarVisible: false,
             },
-        }
+        },
+        ContactUs:{
+            screen: contactUs,
+            navigationOptions: {
+                header: null,
+                tabBarVisible: false,
+            },
+        },
+        Feedback:{
+            screen: feedback,
+            navigationOptions: {
+                header: null,
+                tabBarVisible: false,
+            },
+        },
 
     }
 );
@@ -160,7 +192,20 @@ export const User = TabNavigator(
         },
 
     },
-    TabNavigatorStyle
+    {
+        tabBarPosition: 'top',
+        tabBarOptions: {
+            activeTintColor: color.main,
+            style:{
+                height: 40,
+            },
+            labelStyle:{
+                fontSize: size.describe,
+                padding: 7,
+            },
+
+        }
+    }
 );
 
 export const NewFeed = StackNavigator(
@@ -188,8 +233,7 @@ export const NewFeed = StackNavigator(
 
     }
 );
-// tabBarIcon:
-//     <Icon name="home" size={size.icon} color={color.gray} />
+
 export const Home = TabNavigator(
     {
         NewFeed: {
@@ -197,7 +241,7 @@ export const Home = TabNavigator(
             navigationOptions:{
                 tabBarIcon: ({ tintColor }) => (
                     <Icon
-                        name="home" size={size.icon}
+                        name="home" size={20}
                         color={tintColor}
                     />
                 ),
@@ -256,7 +300,6 @@ export const Home = TabNavigator(
             height: 40,
         },
         showLabel: false,
-        // activeBackgroundColor: color.main,
         }
     }
 );

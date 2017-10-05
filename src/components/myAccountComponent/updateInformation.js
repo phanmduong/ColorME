@@ -7,13 +7,16 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
 import part from '../../styles/partStyle';
+import * as loginActions from '../../actions/loginActions';
+import * as getUserProfileAction from '../../actions/getUserProfileAction';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
-
-export default class updateInformation extends Component {
+class updateInformation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            gender: "key1"
+            gender: "key" + this.props.user.gender
         };
     }
     onValueChange(value: string) {
@@ -43,12 +46,14 @@ export default class updateInformation extends Component {
                             <Input placeholder={"Họ và tên"}
                                    style={part.inputTheme03}
                                    autoCorrect={false}
+                                   value={this.props.user.name}
                             />
                         </Item>
                         <Item>
                             <Input placeholder="Email"
                                    style={part.inputTheme03}
                                    autoCorrect={false}
+                                   value={this.props.user.email}
 
                             />
                         </Item>
@@ -56,6 +61,8 @@ export default class updateInformation extends Component {
                             <Input placeholder="Username"
                                    style={part.inputTheme03}
                                    autoCorrect={false}
+                                   value={this.props.user.username}
+
                             />
                         </Item>
                         <Item>
@@ -85,33 +92,39 @@ export default class updateInformation extends Component {
                             </Picker>
                         </Item>
                         <Item>
-                            <Input placeholder="Ngày sinh: YYYY/MM/DD"
+                            <Input placeholder="Ngày sinh: YYYY-MM-DD"
                                    style={part.inputTheme03}
                                    autoCorrect={false}
+                                   value={this.props.user.dob}
                             />
                         </Item>
                         <Item>
                             <Input placeholder="Mô tả"
                                    style={part.inputTheme03}
                                    autoCorrect={false}
+                                   value={this.props.user.description}
                             />
                         </Item>
                         <Item>
                             <Input placeholder="Trường học"
                                    style={part.inputTheme03}
                                    autoCorrect={false}
+                                   value={this.props.user.university}
                             />
                         </Item>
                         <Item>
                             <Input placeholder="Nơi làm việc"
                                    style={part.inputTheme03}
                                    autoCorrect={false}
+                                   value={this.props.user.work}
+
                             />
                         </Item>
                         <Item>
                             <Input placeholder="Địa chỉ"
                                    style={part.inputTheme03}
                                    autoCorrect={false}
+                                   value={this.props.user.address}
                             />
                         </Item>
                     </Form>
@@ -127,3 +140,17 @@ export default class updateInformation extends Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    return{
+        user: state.login.user,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return{
+        loginActions: bindActionCreators(loginActions, dispatch),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(updateInformation);

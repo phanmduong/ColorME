@@ -108,7 +108,7 @@ export default class setting extends Component {
                             <Text style={part.titleSmallDarkBold}>Hỗ trợ</Text>
                         </ListItem>
                         <ListItem style={part.listItem}
-                            // onPress={() => this.props.navigation.navigate('ChangePassword')}
+                            onPress={() => this.props.navigation.navigate('ContactUs')}
                         >
                             <Left>
                                 <Text style={part.describeDark}>Liên hệ với chúng tôi</Text>
@@ -118,7 +118,7 @@ export default class setting extends Component {
                             </Right>
                         </ListItem>
                         <ListItem style={part.listItem}
-                            // onPress={() => this.props.navigation.navigate('ChangePassword')}
+                            onPress={() => this.props.navigation.navigate('Feedback')}
                         >
                             <Left>
                                 <Text style={part.describeDark}>Feedback</Text>

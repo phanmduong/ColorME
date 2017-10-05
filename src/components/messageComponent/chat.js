@@ -32,8 +32,9 @@ export default class Chat extends Component {
                             </Left>
                             <Body>
                             <Text style={part.titleSmallDark}>Coz</Text>
-                            <Text style={part.describeGray} note>Doing what you like will.
-                                .</Text>
+                            <Text style={part.describeGray} note>
+                                Tao đang wiayteyy
+                            </Text>
                             </Body>
                             <Right>
                                 <Text note>3:43 pm</Text>
