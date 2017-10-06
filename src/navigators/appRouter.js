@@ -12,7 +12,7 @@ import newFeedComponent from '../components/newFeedComponent';
 import messageComponent from '../components/messageComponent/messageComponent';
 import notificationComponent from '../components/notificationComponent';
 
-import getFullInfoAboutOnePostComponent from '../components/getFullInfoAboutOnePostComponent';
+import getFullInfoAboutOnePostComponent from '../components/getFullInfoAboutOnePost';
 
 // USER SCREEN
 import userComponent from '../components/userComponent/userComponent';

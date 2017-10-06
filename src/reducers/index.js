@@ -4,9 +4,9 @@ import loginReducer from './loginReducer';
 import getFullInfoAboutOnePostReducer from './getFullInfoAboutOnePostReducer';
 import searchReducer from './searchReducer';
 import getCourseReducer from './getCourseReducer';
+import updateProfileReducer from'./updateProfileReducer'
 import {combineReducers} from 'redux';
 import registerReducer from "./registerReducers";
-
 const rootReducer = combineReducers({
     getNewFeed : getNewFeedReducer,
     getUserProfile : getUserProfileReducer,
@@ -15,6 +15,7 @@ const rootReducer = combineReducers({
     register : registerReducer,
     search: searchReducer,
     getCourse: getCourseReducer,
+    updateProfile : updateProfileReducer
 });
 
 export default rootReducer;

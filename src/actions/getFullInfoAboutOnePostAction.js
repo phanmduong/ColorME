@@ -34,6 +34,7 @@ export function getFullInfoAboutOnePostOfUser(product_id) {
         API.getFullInfoAboutOnePostApi(product_id)
             .then(function (response) {
                 dispatch(getFullInfoAboutOnePostSuccess(response));
+                console.log(response.data.author)
             })
             .catch(function(error) {
                 dispatch(getFullInfoAboutOnePostError(error));

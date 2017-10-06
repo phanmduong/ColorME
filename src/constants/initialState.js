@@ -1,7 +1,6 @@
 export default {
     login:{
         login: {},
-        user:{},
         token: undefined,
         isLoading: false,
         error: false,
@@ -29,11 +28,9 @@ export default {
         error: false,
         result: false,
     },
-
     getUserProfile : {
         user:{},
         productsUser: [],
-        progress: [],
     },
 
     search:{
@@ -42,6 +39,11 @@ export default {
         isLoading: false,
         error: false,
         result: false,
+    },
+    updateProfile : {
+        isLoading : false,
+        error : false,
+        status : 0,
     },
     getCourse:{
         course:[],

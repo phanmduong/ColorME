@@ -4,9 +4,15 @@ import {
     Button, Left, Body, Right, Tabs, Tab, TabHeading, List, ListItem,
 } from 'native-base';
 import part from '../../styles/partStyle';
+import * as getUserProfileAction from '../../actions/getUserProfileAction';
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 class Information extends Component {
+    constructor() {
+        super();
+    }
+
     render() {
         return (
             <Container style={part.wrapperContainer}>
@@ -26,7 +32,7 @@ class Information extends Component {
                             <Text style={part.describeDark}>Họ tên: {this.props.user.name}</Text>
                         </ListItem>
                         <ListItem style={part.listItem}>
-                            {(this.props.user.gender === 1) ?
+                            {(this.props.user.gender == 1) ?
                             (<Text style={part.describeDark}>Giới tính: Nam</Text>) :
                             (<Text style={part.describeDark}>Giới tính: Nữ</Text>)}
                         </ListItem>
@@ -55,6 +61,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return{
+        getUserProfileAction: bindActionCreators(getUserProfileAction, dispatch),
     }
 }
 

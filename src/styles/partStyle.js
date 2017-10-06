@@ -52,13 +52,11 @@ const part = StyleSheet.create({
         height: 30,
     },
     inputTheme02:{
-        color: color.navTitle,
         fontSize: size.title,
     },
     inputTheme03:{
         fontSize: size.describe,
         height: 40,
-        marginLeft: 5,
 
     },
 

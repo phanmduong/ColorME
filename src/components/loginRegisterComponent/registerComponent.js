@@ -37,6 +37,7 @@ export default class RegisterComponent extends Component {
                                 <Icon name='envelope-o' size={size.icon} color={color.gray}/>
                             </View>
                             <Input placeholder='Email'
+                                   color = {color.text}
                                    style={part.inputTheme02}
                                    placeholderTextColor={color.gray}
                                    onChangeText={(email) => {
@@ -55,6 +56,7 @@ export default class RegisterComponent extends Component {
                                 <Icon name='user-o' size={size.icon} color={color.gray}/>
                             </View>
                             <Input placeholder='Name'
+                                   color = {color.text}
                                    style={part.inputTheme02}
                                    placeholderTextColor={color.gray}
                                    onChangeText={(name) => {
@@ -74,6 +76,7 @@ export default class RegisterComponent extends Component {
                             </View>
                             <Input placeholder='Username'
                                    style={part.inputTheme02}
+                                   color = {color.text}
                                    placeholderTextColor={color.gray}
                                    onChangeText={(userName) => {
                                        this.setState({userName})
@@ -86,6 +89,7 @@ export default class RegisterComponent extends Component {
                             </View>
                             <Input placeholder='Password'
                                    style={part.inputTheme02}
+                                   color = {color.text}
                                    secureTextEntry={true}
                                    placeholderTextColor={color.gray}
                                    onChangeText={(password) => {

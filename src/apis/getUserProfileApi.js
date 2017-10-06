@@ -13,7 +13,3 @@ export function getProductsOfUserApi(username, page_id, token) {
 }
 
 
-export function getProgressApi(userName) {
-    let url = env.API_COLORME + "/user/" + userName + "/progress";
-    return axios.get(url);
-}

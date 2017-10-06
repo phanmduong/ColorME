@@ -1,6 +1,6 @@
 import * as types from '../constants/actionTypes';
 import {AsyncStorage} from 'react-native'
-import * as API from '../apis/loginApi'
+import * as loginApi from '../apis/loginApi'
 export function beginLogin() {
     return {
         type: types.BEGIN_LOGIN,
@@ -12,7 +12,7 @@ export function beginLogin() {
 export function loginUser(login) {
     return function (dispatch) {
         dispatch(beginLogin());
-        API.loginApi(login)
+        loginApi.login(login)
             .then(function (response) {
                 dispatch(loginSuccess(response));
                 console.log(response.status)
@@ -24,7 +24,7 @@ export function loginUser(login) {
     }
 }
 
-export function updateDataLogin(login) {
+export function updateDataLogin(login) { // ham nay de update vao bo nho cac gia tri nhap vao de login
     return {
         type: types.UPDATE_DATA_LOGIN,
         login: {...login},
@@ -57,8 +57,8 @@ export function loginError(response) {
 export function getDataLogin() {
     return async function (dispatch) {
         try {
-            const email = await AsyncStorage.getItem('@Project:email'); // lấy data đang tồn
-            const password = await AsyncStorage.getItem('@Project:password');
+            const email = await AsyncStorage.getItem('@ColorMe:email'); // lấy data đang tồn
+            const password = await AsyncStorage.getItem('@ColorMe:password');
             dispatch(gotDataLogin(email, password));
         }
         catch (error) {
@@ -82,8 +82,8 @@ export function gotDataLogin(email, password) { // dữ liệu từ local thành
 export function setDataLogin(login) { // save data
     return async function () {
         try {
-            await AsyncStorage.setItem('@Project:email', login.email);
-            await AsyncStorage.setItem('@Project:password', login.password);
+            await AsyncStorage.setItem('@ColorMe:email', login.email);
+            await AsyncStorage.setItem('@ColorMe:password', login.password);
         }
         catch (error) {
         }

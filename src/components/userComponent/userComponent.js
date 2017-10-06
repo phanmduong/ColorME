@@ -18,9 +18,9 @@ class userComponent extends Component {
     constructor(){
         super();
     }
-
     componentWillMount(){
         this.props.getUserProfileAction.getUserProfile(this.props.navigation.state.params.username);
+        this.props.getUserProfileAction.getProductsOfUser(this.props.navigation.state.params.username, 1, this.props.token);
     }
 
     render() {
@@ -52,7 +52,6 @@ function mapStateToProps(state) {
     return{
         user: state.getUserProfile.user,
         productsUser: state.getUserProfile.productsUser,
-        progress: state.getUserProfile.progress,
         token: state.login.token,
     }
 }

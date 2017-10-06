@@ -3,28 +3,50 @@ import {
     Title, Container, Header, Content, Card, CardItem, Thumbnail, Tabs, Tab, Fab, Footer,
     Text, Button, Left, Body, Right, List, ListItem, Item, Input, TabHeading, Form,Picker
 } from 'native-base';
+import{Alert, ActivityIndicator} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
 import part from '../../styles/partStyle';
-import * as loginActions from '../../actions/loginActions';
-import * as getUserProfileAction from '../../actions/getUserProfileAction';
+import * as updateProfileAction from '../../actions/updateProfileAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-class updateInformation extends Component {
+ class updateInformation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            gender: "key" + this.props.user.gender
+            name : '',
+            phone : '',
+            email : '',
+            university : '',
+            work : '',
+            address : '',
+            how_know : '',
+            username : '',
+            description : '',
+            facebook : '',
+            gender: "key1",
+            dob : '',
         };
+        this.updateProfile = this.updateProfile.bind(this)
     }
     onValueChange(value: string) {
         this.setState({
             gender: value
         });
     }
-
+    updateProfile(info, token){
+        this.props.updateProfileAction.updateProfile(info, token)
+    }
+    componentWillReceiveProps(nextProps){
+        if(nextProps.status == 200){
+            Alert.alert('Cập nhật thông tin thành công ')
+        }
+        if(nextProps.error == true){
+            Alert.alert('Cập nhật thất bại check again please')
+        }
+    }
     render() {
         return (
             <Container style={part.wrapperContainer}>
@@ -46,23 +68,21 @@ class updateInformation extends Component {
                             <Input placeholder={"Họ và tên"}
                                    style={part.inputTheme03}
                                    autoCorrect={false}
-                                   value={this.props.user.name}
+                                   onChangeText = {(name) => {this.setState({name})}}
                             />
                         </Item>
                         <Item>
                             <Input placeholder="Email"
                                    style={part.inputTheme03}
                                    autoCorrect={false}
-                                   value={this.props.user.email}
-
+                                   onChangeText = {(email) => {this.setState({email})}}
                             />
                         </Item>
                         <Item>
                             <Input placeholder="Username"
                                    style={part.inputTheme03}
                                    autoCorrect={false}
-                                   value={this.props.user.username}
-
+                                   onChangeText = {(username) => {this.setState({username})}}
                             />
                         </Item>
                         <Item>
@@ -92,45 +112,80 @@ class updateInformation extends Component {
                             </Picker>
                         </Item>
                         <Item>
-                            <Input placeholder="Ngày sinh: YYYY-MM-DD"
+                            <Input placeholder="Ngày sinh: YYYY/MM/DD"
                                    style={part.inputTheme03}
                                    autoCorrect={false}
-                                   value={this.props.user.dob}
+                                   onChangeText = {(dob) => {this.setState({dob})}}
                             />
                         </Item>
                         <Item>
                             <Input placeholder="Mô tả"
                                    style={part.inputTheme03}
                                    autoCorrect={false}
-                                   value={this.props.user.description}
+                                   onChangeText = {(description) => {this.setState({description})}}
                             />
                         </Item>
                         <Item>
                             <Input placeholder="Trường học"
                                    style={part.inputTheme03}
                                    autoCorrect={false}
-                                   value={this.props.user.university}
+                                   onChangeText = {(university) => {this.setState({university})}}
                             />
                         </Item>
                         <Item>
                             <Input placeholder="Nơi làm việc"
                                    style={part.inputTheme03}
                                    autoCorrect={false}
-                                   value={this.props.user.work}
-
+                                   onChangeText = {(work) => {this.setState({work})}}
                             />
                         </Item>
                         <Item>
                             <Input placeholder="Địa chỉ"
                                    style={part.inputTheme03}
                                    autoCorrect={false}
-                                   value={this.props.user.address}
+                                   onChangeText = {(address) => {this.setState({address})}}
+                            />
+                        </Item>
+                        <Item>
+                            <Input placeholder="Link facebook"
+                                   style={part.inputTheme03}
+                                   autoCorrect={false}
+                                   onChangeText = {(facebook) => {this.setState({facebook})}}
+                            />
+                        </Item>
+                        <Item>
+                            <Input placeholder="Vì  bạn biết đến ColorMe "
+                                   style={part.inputTheme03}
+                                   autoCorrect={false}
+                                   onChangeText = {(how_know) => {this.setState({how_know})}}
                             />
                         </Item>
                     </Form>
                     <Body>
-                    <Button style={part.buttonTheme01}>
-                        <Text style={part.describeLight}>Lưu thông tin cập nhập</Text>
+                    <Button style={part.buttonTheme01} onPress = {() => this.updateProfile(this.state, this.props.token)}>
+                        {(this.props.isLoading) ? (
+                            <Container style={{
+                                padding: 10,
+                                flex: 1,
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            }}>
+                                <ActivityIndicator
+                                    animated={true}
+                                    color={color.navTitle}
+                                    style={{
+                                        flex: 1,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        height: 40,
+                                    }}
+                                    size='small'
+                                />
+                            </Container>
+                        ) : (
+                            <Text style={part.describeLight}>Lưu thông tin cập nhập</Text>
+                        )
+                        }
                     </Button>
                     </Body>
 
@@ -140,17 +195,17 @@ class updateInformation extends Component {
         );
     }
 }
-
 function mapStateToProps(state) {
-    return{
-        user: state.login.user,
+    return {
+        isLoading : state.updateProfile.isLoading,
+        status : state.updateProfile.status,
+        error : state.updateProfile.error,
+        token : state.login.token
     }
 }
-
 function mapDispatchToProps(dispatch) {
-    return{
-        loginActions: bindActionCreators(loginActions, dispatch),
+    return {
+        updateProfileAction : bindActionCreators(updateProfileAction, dispatch)
     }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(updateInformation);
+export default connect(mapStateToProps,mapDispatchToProps)(updateInformation)

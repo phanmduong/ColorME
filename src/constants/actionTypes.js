@@ -25,13 +25,14 @@ export const GET_FULL_INFO_ABOUT_ONE_POST_ERROR     = 'GET_FULL_INFO_ABOUT_ONE_P
 export const BEGIN_SEARCH                           = 'BEGIN_SEARCH';
 export const SEARCH_SUCCESS                         = 'SEARCH_SUCCESS';
 export const SEARCH_ERROR                           = 'SEARCH_ERROR';
-
 // REGISTER
-export const BEGIN_REGISTER                         = "BEGIN_REGISTER";
-export const REGISTER_SUCCESS                       = 'REGISTER_SUCCESS';
-export const REGISTER_ERROR                         = 'REGISTER_ERROR' ;
-export const REGISTER_UPDATE                        = "REGISTER_UPDATE";
-
+export const BEGIN_REGISTER = "BEGIN_REGISTER";
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_ERROR = 'REGISTER_ERROR' ;
+//UPDATE PROFILE
+export const BEGIN_UPDATE_PROFILE = "BEGIN_UPDATE_PROFILE";
+export const UPDATE_PROFILE_SUCCESS = "UPDATE_PROFILE_SUCCESS";
+export const UPDATE_PROFILE_ERROR = "UPDATE_PROFILE_ERROR";
 // COURSE
 export const BEGIN_GET_COURSE                       = "BEGIN_GET_COURSE";
 export const GET_COURSE_SUCCESS                     = "BEGIN_GET_COURSE";
