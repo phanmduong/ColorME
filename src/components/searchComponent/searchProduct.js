@@ -20,11 +20,17 @@ class searchProduct extends Component{
                     onEndReached={() => {}}
                     data={this.props.products}
                     renderItem={({item}) =>
-                        <ListItem avatar style={part.padding}>
-                            <Left/>
+                        <ListItem avatar style={part.padding}
+                        >
+                            <Left>
+                                <Thumbnail
+                                    source={{uri: item.avatar_url}}/>
+                            </Left>
                             <Body>
                                 <Text style={part.titleSmallDark}>{item.author.name}</Text>
-                                <Text style={part.describeGray} note>{item.title}</Text>
+                                <Text style={part.describeGray} note
+                                      onPress={() => this.props.navigation.navigate('Post', {product_id: item.id})}
+                                >{item.title}</Text>
                             </Body>
                             <Right/>
                         </ListItem>

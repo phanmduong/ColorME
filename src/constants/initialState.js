@@ -24,6 +24,7 @@ export default {
 
     getFullInfoAboutOnePost: {
         post:{},
+        comments:[],
         isLoading: false,
         error: false,
         result: false,

@@ -6,3 +6,7 @@ export function getFullInfoAboutOnePostApi(product_id) {
     return axios.get(url);
 }
 
+export function getCommentOnePost(product_id) {
+    let url = env.API_DATA + "/products/" + product_id + "/comments";
+    return axios.get(url);
+}

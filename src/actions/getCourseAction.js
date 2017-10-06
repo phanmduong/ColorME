@@ -31,7 +31,6 @@ export function getCourse(token) {
             })
             .catch(function (error) {
                 dispatch(getCourseError(error));
-
             });
     }
 }

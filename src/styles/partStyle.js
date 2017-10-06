@@ -92,6 +92,12 @@ const part = StyleSheet.create({
         borderRadius: 50,
         borderColor: color.main
     },
+    image:{
+        height: 400,
+        width: wid - 4,
+        flex: 1,
+        resizeMode: 'cover',
+    },
 
     //CONTENT
     contentMid:{

@@ -19,6 +19,17 @@ export function getFullInfoAboutOnePostSuccess(response) {
     }
 }
 
+
+export function getCommentOnePostSuccess(response) {
+    return {
+        type: types.GET_COMMENTS_POST_SUCCESS,
+        isLoading: false,
+        error: false,
+        result: true,
+        comments : response.data.comments,
+    }
+}
+
 export function getFullInfoAboutOnePostError() {
     return {
         type: types.GET_FULL_INFO_ABOUT_ONE_POST_ERROR,
@@ -34,7 +45,7 @@ export function getFullInfoAboutOnePostOfUser(product_id) {
         API.getFullInfoAboutOnePostApi(product_id)
             .then(function (response) {
                 dispatch(getFullInfoAboutOnePostSuccess(response));
-                console.log(response.data.author)
+                console.log(response);
             })
             .catch(function(error) {
                 dispatch(getFullInfoAboutOnePostError(error));
@@ -43,3 +54,16 @@ export function getFullInfoAboutOnePostOfUser(product_id) {
     }
 }
 
+export function getCommentOnePost(product_id) {
+    return (dispatch) => {
+        dispatch(beginGetFullInfoAboutOnePost());
+        API.getCommentOnePost(product_id)
+            .then(function (response) {
+                dispatch(getCommentOnePostSuccess(response));
+            })
+            .catch(function(error) {
+                dispatch(getFullInfoAboutOnePostError(error));
+            })
+
+    }
+}

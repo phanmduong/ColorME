@@ -43,8 +43,8 @@ class newFeedComponent extends Component {
                         iosBarStyle={'light-content'}
                         backgroundColor={color.main}>
                     <Left>
-                        <Button transparent>
-                            <Icon name="calendar" size={size.icon} color={color.navTitle}/>
+                        <Button transparent onPress={() => this.props.navigation.navigate('Course', {token: this.props.token})}>
+                            <Icon name="graduation-cap" size={size.icon} color={color.navTitle}/>
                         </Button>
                     </Left>
                     <Body>
@@ -56,7 +56,6 @@ class newFeedComponent extends Component {
                         </Button>
                     </Right>
                 </Header>
-
 
                 <Content>
                     <FlatList
@@ -73,7 +72,7 @@ class newFeedComponent extends Component {
                                                        source={{uri: item.author.avatar_url}}/>
                                         </TouchableOpacity>
                                         <Body>
-                                        <Text style={part.titleSmallDarkBold}>{item.author.name}</Text>
+                                            <Text style={part.titleSmallDarkBold}>{item.author.name}</Text>
                                         </Body>
                                         <Right>
                                             <Button transparent>
@@ -84,27 +83,30 @@ class newFeedComponent extends Component {
                                 </CardItem>
                                 <CardItem cardBody>
                                     <Body>
-                                    <Image resizeMode="stretch" source={{uri: item.thumb_url}}
-                                           style={{height: 300, width: Dimensions.get('window').width - 4, flex: 1}}
+                                    <Image source={{uri: item.thumb_url}}
+                                           style={part.image}
                                     />
                                     <Text
                                         onPress={() => this.props.navigation.navigate('Post', {product_id: item.id})}
-                                        style={[part.padding, part.describeDark]}>{item.title}</Text>
+                                        style={[part.padding, {paddingLeft: 15}, part.describeDark]}>
+                                        <Text style={part.titleSmallDarkBold}>{item.author.name}</Text>
+                                        &nbsp;{item.title}
+                                    </Text>
                                     </Body>
                                 </CardItem>
                                 <CardItem style={{height: 20}}>
                                     <Left>
                                         <Button transparent style={part.paddingRight}>
                                             <Icon name="heart-o" size={size.icon}/>
-                                            <Text style={part.describeDark}>{item.likes_count}</Text>
+                                            <Text style={[part.describeDark, part.paddingLeft]}>{item.likes_count}</Text>
                                         </Button>
                                         <Button transparent style={part.paddingRight}>
                                             <Icon name="comment-o" size={size.icon}/>
-                                            <Text style={part.describeDark}>{item.comments_count}</Text>
+                                            <Text style={[part.describeDark, part.paddingLeft]}>{item.comments_count}</Text>
                                         </Button>
                                         <Button transparent style={part.paddingRight}>
                                             <Icon name="eye" size={size.icon}/>
-                                            <Text style={part.describeDark}>{item.views_count}</Text>
+                                            <Text style={[part.describeDark, part.paddingLeft]}>{item.views_count}</Text>
                                         </Button>
                                     </Left>
                                     <Right>
@@ -140,7 +142,8 @@ function mapStateToProps(state) {
     return {
         products: state.getNewFeed.products,
         user: state.login.user,
-        userID: state.login.userID
+        userID: state.login.userID,
+        token: state.login.token,
     }
 }
 

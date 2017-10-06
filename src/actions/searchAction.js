@@ -36,13 +36,9 @@ export function searchUsers(term, limit, page) {
         API.searchUserApi(term, limit, page)
             .then(function (response) {
                 dispatch(searchSuccess(response));
-                console.log("SEARCH_USERS SUCCESS");
-                console.log(response.data.users)
             })
             .catch(function (error) {
                 dispatch(searchError(error));
-                console.log("SEARCH_USER_PROFILE_ERROR");
-                console.log(error);
             })
     }
 }
@@ -52,13 +48,9 @@ export function searchProducts(term, limit, page) {
         API.searchProducts(term, limit, page)
             .then(function (response) {
                 dispatch(searchSuccess(response));
-                console.log("SEARCH_PRODUCTS SUCCESS");
-                console.log(response.data.products)
             })
             .catch(function (error) {
                 dispatch(searchError(error));
-                console.log("SEARCH_USER_PROFILE_ERROR");
-                console.log(error);
             })
     }
 }

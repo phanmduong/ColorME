@@ -1,23 +1,8 @@
 import React, {Component} from 'react';
 import {
-    Body,
-    Button,
-    Card,
-    CardItem,
-    CheckBox,
-    Container,
-    Content,
-    Header,
-    Left,
-    List,
-    ListItem,
-    Right,
-    Tab,
-    TabHeading,
-    Tabs,
-    Text,
-    Thumbnail,
-    Title,
+    Body, Button, Card, CardItem, CheckBox, Container, Content,
+    Header, Left, List, ListItem, Right, Tab, TabHeading, Tabs, Text,
+    Thumbnail, Title,
 } from 'native-base';
 import {Dimensions, Image} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -35,6 +20,7 @@ class getFullInfoAboutOnePostComponent extends Component {
             author: {},
             more_products: [],
             colors: [],
+            comments :[],
         }
     }
 
@@ -43,9 +29,10 @@ class getFullInfoAboutOnePostComponent extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({author: nextProps.post.author})
-        this.setState({more_products: nextProps.post.more_products})
-        this.setState({colors: nextProps.post.colors})
+        this.setState({author: nextProps.post.author});
+        this.setState({more_products: nextProps.post.more_products});
+        this.setState({colors: nextProps.post.colors});
+        this.setState({comments: nextProps.comments.comments});
     }
 
     render() {
@@ -61,7 +48,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                         </Button>
                     </Left>
                     <Body>
-                    <Title style={part.navTitle}></Title>
+                        <Title style={part.navTitle}></Title>
                     </Body>
                     <Right>
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
@@ -69,14 +56,16 @@ class getFullInfoAboutOnePostComponent extends Component {
                         </Button>
                     </Right>
                 </Header>
-                <Content style={part.padding}>
+                <Content>
+                    <Card style={{flex: 0}}>
                     <Body>
-                    <Thumbnail style={part.avatarUserBig}
+                    <Thumbnail style={[part.avatarUserBig, {marginTop: 20,}]}
                                source={{uri: this.state.author.avatar_url}}/>
-                    <Text style={part.titleSmallDarkBold}>{this.state.author.name}</Text>
-                    <Text style={part.titleBigDark}>{this.props.post.title}</Text>
+                    <Text style={[part.padding,part.titleBigDark]}>{this.state.author.name}</Text>
+                    <Text style={part.titleSmallDarkBold}>{this.props.post.title}</Text>
+                    <Text style={part.describeDark}>{this.props.post.description}</Text>
 
-                    <CardItem style={{height: 20, marginTop: 20}}>
+                    <CardItem style={{height: 20,marginTop: 20}}>
                         <Left>
                             <Button transparent style={part.paddingRight}>
                                 <Icon name="heart-o" size={size.icon}/>
@@ -95,7 +84,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                             <Text style={part.describeItalicDark}>{this.props.post.created_at}</Text>
                         </Right>
                     </CardItem>
-                    <CardItem style={{padding: 0}}>
+                    <CardItem style={{padding: 0}} >
                         <Left>
                             {
                                 this.state.colors.map((color, i) => {
@@ -113,17 +102,17 @@ class getFullInfoAboutOnePostComponent extends Component {
                     <CardItem cardBody>
                         <Body>
                         <Image resizeMode="stretch" source={{uri: this.props.post.thumb_url}}
-                               style={{height: 300, width: Dimensions.get('window').width - 4, flex: 1}}
+                               style={part.image}
                         />
                         </Body>
                     </CardItem>
-                    {(this.state.more_products.length != 0)?(
-                        this.state.more_products.map((product) => {
+                    {(this.state.more_products.length !== 0) ? (
+                        this.state.more_products.map((product, i) => {
                             return (
-                                <CardItem cardBody style = {{marginTop: 15}}>
+                                <CardItem key={i} cardBody style={{marginTop: 15}}>
                                     <Body>
                                     <Image resizeMode="stretch" source={{uri: product.thumb_url}}
-                                           style={{height: 300, width: Dimensions.get('window').width - 4, flex: 1}}
+                                           style={part.image}
                                     />
                                     </Body>
                                 </CardItem>
@@ -132,7 +121,9 @@ class getFullInfoAboutOnePostComponent extends Component {
                     ) : (
                         <Text/>
                     )}
+
                     </Body>
+                    </Card>
                 </Content>
 
             </Container>

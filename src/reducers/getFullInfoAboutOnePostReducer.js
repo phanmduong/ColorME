@@ -24,6 +24,16 @@ export default function getFullInfoAboutOnePostReducer(state = initialState.getF
                     result: action.result,
                 }
             }
+        case types.GET_COMMENTS_POST_SUCCESS:
+            return{
+                ...state,
+                ...{
+                    isLoading: action.isLoading,
+                    error: action.error,
+                    comments: action.comments,
+                    result: action.result,
+                }
+            }
 
         case types.GET_FULL_INFO_ABOUT_ONE_POST_ERROR:{
             return{
