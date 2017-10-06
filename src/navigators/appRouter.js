@@ -8,7 +8,7 @@ import * as size from '../styles/size';
 import tabLoginAndRegister from '../components/loginRegisterComponent/tabLoginAndRegister';
 
 // MAIN SCREEN
-import newFeedComponent from '../components/newFeedComponent';
+import newFeedComponent from '../components/newfeedComponent/newFeedComponent';
 import messageComponent from '../components/messageComponent/messageComponent';
 import notificationComponent from '../components/notificationComponent';
 
@@ -18,7 +18,7 @@ import getFullInfoAboutOnePostComponent from '../components/getFullInfoAboutOneP
 import userComponent from '../components/userComponent/userComponent';
 import information from '../components/userComponent/information';
 import project from '../components/userComponent/project';
-import process from '../components/userComponent/process';
+import process from '../components/userComponent/progress';
 
 // SEARCH SCREEN
 import searchComponent from '../components/searchComponent/searchComponent';

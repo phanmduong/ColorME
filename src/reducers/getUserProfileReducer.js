@@ -13,10 +13,22 @@ export default function getUserProfileReducer(state = initialState.getUserProfil
                 ...state,
                 ...{
                     user: action.user,
-                    productsUser: action.productsUser,
                 }
             }
-
+        case types.GET_USER_PROGRESS_SUCCESS:
+            return{
+                ...state,
+                ...{
+                    progress: action.progress
+                }
+            }
+        case types.GET_USER_PRODUCTS_SUCCESS:
+            return{
+                ...state,
+                ...{
+                    products: action.products
+                }
+            }
         case types.GET_USER_PROFILE_ERROR:
             return{
                 ...state

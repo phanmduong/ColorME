@@ -14,32 +14,29 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 class Project extends Component {
-    componentWillMount(){
-        console.log(this.props.products);
-    }
     render() {
         return (
             <Content style={part.wrapperContainer}>
                 <FlatList
                     onEndReachedThreshold={5}
                     onEndReached={() => {}}
-                    data={this.props.productsUser}
+                    data={this.props.products}
                     renderItem={({item}) =>
                         <Card style={{flex: 0}}>
                             <CardItem cardBody>
                                 <Body>
-                                <Image resizeMode="stretch"
-                                       source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwfMzZWidbLDPeiep0Gtn2B1pi_1GGtgBQrKcxpJSnuCDSQ3KidQ'}}
-                                       style={{height: 200, width: Dimensions.get('window').width - 4, flex: 1}}
+                                <Image
+                                       source={{uri: item.thumb_url}}
+                                       style={part.image}
                                 />
                                 </Body>
                             </CardItem>
                             <CardItem>
                                 <Left>
                                     <Thumbnail style={part.avatarUserSmall}
-                                               source={{uri: ''}}/>
+                                               source={{uri: item.author.avatar_url}}/>
                                     <Body>
-                                    <Text style={part.titleSmallDarkBold}>{item.id}</Text>
+                                        <Text style={part.titleSmallDarkBold}>{item.author.name}</Text>
                                     </Body>
                                 </Left>
                                 <Right>
@@ -50,22 +47,43 @@ class Project extends Component {
                             </CardItem>
                             <CardItem>
                                 <Body>
-                                <Text style={part.titleSmallDarkBold}>6 likes</Text>
-                                <Text style={part.describeDark}>Hôm nay là chủ nhật ...</Text>
+                                    <Text style={part.describeDark}>{item.title}</Text>
                                 </Body>
                             </CardItem>
 
-                            <CardItem>
+                            <CardItem style={{height: 20}}>
                                 <Left>
-                                    <Button transparent>
-                                        <Icon name="thumbs-o-up" size={size.icon}/>
+                                    <Button transparent style={part.paddingRight}>
+                                        <Icon name="heart-o" size={size.icon}/>
+                                        <Text style={[part.describeDark, part.paddingLeft]}>{item.likes_count}</Text>
                                     </Button>
-                                    <Button transparent>
+                                    <Button transparent style={part.paddingRight}>
                                         <Icon name="comment-o" size={size.icon}/>
+                                        <Text style={[part.describeDark, part.paddingLeft]}>{item.comments_count}</Text>
+                                    </Button>
+                                    <Button transparent style={part.paddingRight}>
+                                        <Icon name="eye" size={size.icon}/>
+                                        <Text style={[part.describeDark, part.paddingLeft]}>{item.views_count}</Text>
                                     </Button>
                                 </Left>
                                 <Right>
-                                    <Text style={part.describeItalicDark}>11h ago</Text>
+                                    <Text style={part.describeItalicDark}>{item.created_at}</Text>
+                                </Right>
+                            </CardItem>
+                            <CardItem style={{padding: 0}}>
+                                <Left>
+                                    {
+                                        item.colors.map((color, i) => {
+                                            return (
+                                                <Button transparent key={i} style={part.paddingRight}>
+                                                    <Icon name="circle" size={size.icon} color={'#' + color}/>
+                                                </Button>
+
+                                            );
+                                        })
+                                    }
+                                </Left>
+                                <Right>
                                 </Right>
                             </CardItem>
                         </Card>
@@ -78,7 +96,7 @@ class Project extends Component {
 
 function mapStateToProps(state) {
     return{
-        productsUser: state.getUserProfile.productsUser,
+        products: state.getUserProfile.products,
     }
 }
 

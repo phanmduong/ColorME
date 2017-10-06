@@ -31,7 +31,8 @@ export default {
     },
     getUserProfile : {
         user:{},
-        productsUser: [],
+        products: [],
+        progress: [],
     },
 
     search:{

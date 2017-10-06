@@ -6,6 +6,8 @@ export const GET_NEW_FEED_ERROR                     = 'GET_NEW_FEED_ERROR';
 // USER PROFILE
 export const BEGIN_GET_USER_PROFILE                 = 'BEGIN_GET_USER_PROFILE';
 export const GET_USER_PROFILE_SUCCESS               = 'GET_USER_PROFILE_SUCCESS';
+export const GET_USER_PROGRESS_SUCCESS              = 'GET_USER_PROGRESS_SUCCESS';
+export const GET_USER_PRODUCTS_SUCCESS              = 'GET_USER_PRODUCTS_SUCCESS';
 export const GET_USER_PROFILE_ERROR                 = 'GET_USER_PROFILE_ERROR';
 // LOGIN
 export const INITIAL_LOGIN                          = 'INITIAL_LOGIN';
@@ -24,13 +26,13 @@ export const BEGIN_SEARCH                           = 'BEGIN_SEARCH';
 export const SEARCH_SUCCESS                         = 'SEARCH_SUCCESS';
 export const SEARCH_ERROR                           = 'SEARCH_ERROR';
 // REGISTER
-export const BEGIN_REGISTER = "BEGIN_REGISTER";
-export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-export const REGISTER_ERROR = 'REGISTER_ERROR' ;
+export const BEGIN_REGISTER                         = "BEGIN_REGISTER";
+export const REGISTER_SUCCESS                       = 'REGISTER_SUCCESS';
+export const REGISTER_ERROR                         = 'REGISTER_ERROR' ;
 //UPDATE PROFILE
-export const BEGIN_UPDATE_PROFILE = "BEGIN_UPDATE_PROFILE";
-export const UPDATE_PROFILE_SUCCESS = "UPDATE_PROFILE_SUCCESS";
-export const UPDATE_PROFILE_ERROR = "UPDATE_PROFILE_ERROR";
+export const BEGIN_UPDATE_PROFILE                   = "BEGIN_UPDATE_PROFILE";
+export const UPDATE_PROFILE_SUCCESS                 = "UPDATE_PROFILE_SUCCESS";
+export const UPDATE_PROFILE_ERROR                   = "UPDATE_PROFILE_ERROR";
 // COURSE
 export const BEGIN_GET_COURSE                       = "BEGIN_GET_COURSE";
 export const GET_COURSE_SUCCESS                     = "BEGIN_GET_COURSE";

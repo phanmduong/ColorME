@@ -7,10 +7,10 @@ import {
     Thumbnail, Text, Button, Left, Body, Right
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import part from '../styles/partStyle';
-import * as color from '../styles/color';
-import * as size from '../styles/size';
-import * as getNewFeedAction from '../actions/getNewFeedAction';
+import part from '../../styles/partStyle';
+import * as color from '../../styles/color';
+import * as size from '../../styles/size';
+import * as getNewFeedAction from '../../actions/getNewFeedAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
