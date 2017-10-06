@@ -40,7 +40,7 @@ import updateInformation from '../components/myAccountComponent/updateInformatio
 import feedback from '../components/myAccountComponent/feedback';
 import contactUs from '../components/myAccountComponent/contactUs';
 import courseComponent from '../components/courseComponent';
-
+import commentComponent  from '../components/CommentComponent'
 export const TabNavigatorStyle = {
     tabBarPosition: 'top',
     tabBarOptions: {
@@ -237,7 +237,13 @@ export const NewFeed = StackNavigator(
                 tabBarVisible: false,
             },
         },
-
+        Comment : {
+            screen : commentComponent,
+            navigationOptions : {
+                header : null,
+                tabBarVisible : false,
+            }
+        }
 
     }
 );
