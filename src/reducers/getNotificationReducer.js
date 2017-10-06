@@ -1,26 +1,24 @@
 import * as types from '../constants/actionTypes';
 import initialState from '../constants/initialState';
 
-export default function getUserProfileReducer(state = initialState.getCourse, action) {
+export default function getNotificationReducer(state = initialState.getNotification, action) {
     switch (action.type){
-        case types.BEGIN_GET_COURSE:
+        case types.BEGIN_GET_NOTIFICATION:
             return{
                 ...state
             }
 
-        case types.GET_COURSE_SUCCESS:
+        case types.GET_NOTIFICATION_SUCCESS:
             return{
                 ...state,
                 ...{
-                    courses: action.courses,
+                    notification: action.notification,
                 }
             }
-
-        case types.GET_COURSE_ERROR:
+        case types.GET_NOTIFICATION_ERROR:
             return{
-                ...state
+                ...state,
             }
-
         default:
             return state
     }

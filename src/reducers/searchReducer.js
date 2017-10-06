@@ -13,16 +13,24 @@ export default function searchReducer(state = initialState.search, action) {
                 }
             }
 
-        case types.SEARCH_SUCCESS:
+        case types.SEARCH_USER_SUCCESS:
             return{
                 ...state,
                 ...{
                     isLoading: action.isLoading,
                     error: action.error,
                     users: action.users,
-                    products: action.products,
                 }
             }
+        case types.SEARCH_PRODUCT_SUCCESS:
+        return{
+            ...state,
+            ...{
+                isLoading: action.isLoading,
+                error: action.error,
+                products: action.products,
+            }
+        }
 
         case types.SEARCH_ERROR:
             return{
@@ -33,7 +41,6 @@ export default function searchReducer(state = initialState.search, action) {
                     result: action.result,
                 }
             }
-
         default:
             return state;
     }

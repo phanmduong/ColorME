@@ -3,34 +3,41 @@ import {
     TouchableOpacity, FlatList
 } from 'react-native';
 import {
-    Title,Container, Header, Content, Card, CardItem, Thumbnail, Form, Label,
-    Text, Button, Icon, Left, Body, Right, List, ListItem, Item, Input, Spinner
+    Title, Content, Thumbnail,
+    Text, Button, Icon, Left, Body, Right, List, ListItem, Item,
 } from 'native-base';
 import part from '../../styles/partStyle';
 import * as searchAction from '../../actions/searchAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-class searchProduct extends Component{
-    render(){
-        return(
+class searchProduct extends Component {
+    constructor(){
+        super();
+
+    }
+
+    render() {
+        return (
             <Content>
                 <FlatList
                     onEndReachedThreshold={5}
-                    onEndReached={() => {}}
+                    onEndReached={() => {
+
+                    }}
                     data={this.props.products}
                     renderItem={({item}) =>
                         <ListItem avatar style={part.padding}
                         >
                             <Left>
                                 <Thumbnail
-                                    source={{uri: item.avatar_url}}/>
+                                    source={{uri: item.author.avatar_url}}/>
                             </Left>
                             <Body>
-                                <Text style={part.titleSmallDark}>{item.author.name}</Text>
-                                <Text style={part.describeGray} note
-                                      onPress={() => this.props.navigation.navigate('Post', {product_id: item.id})}
-                                >{item.title}</Text>
+                            <Text style={part.titleSmallDark}>{item.author.name}</Text>
+                            <Text style={part.describeGray} note
+                                  onPress={() => this.props.navigation.navigate('Post', {product_id: item.id})}
+                            >{item.title}</Text>
                             </Body>
                             <Right/>
                         </ListItem>
@@ -42,13 +49,13 @@ class searchProduct extends Component{
 }
 
 function mapStateToProps(state) {
-    return{
+    return {
         products: state.search.products,
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return{
+    return {
         searchAction: bindActionCreators(searchAction, dispatch)
     }
 }

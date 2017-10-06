@@ -1,23 +1,29 @@
 import React, {Component} from 'react';
 import {
-    Image
+    FlatList
 } from 'react-native';
 import {
     Title, Container, Header, Content, Card, CardItem, Thumbnail,
     Text, Button, Icon, Left, Body, Right, ListItem, List
 } from 'native-base';
-
+import * as getNotificationAction from '../actions/getNotificationAction';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import part from '../styles/partStyle';
 import * as color from '../styles/color';
 
-export default class newFeedComponent extends Component{
-    constructor(){
+class notificationComponent extends Component {
+    constructor() {
         super();
 
     }
 
-    render(){
-        return(
+    componentWillMount() {
+        this.props.getNotificationAction.getNotification(1, this.props.token);
+    }
+
+    render() {
+        return (
             <Container style={part.wrapperContainer}>
                 <Header
                     style={part.navTop}
@@ -27,24 +33,61 @@ export default class newFeedComponent extends Component{
                     <Body>
                     <Title style={part.navTitle}>Thông báo</Title>
                     </Body>
-                    <Right />
+                    <Right/>
                 </Header>
                 <Content>
-                    <List>
-                        <ListItem style={part.listItem}>
-                            <Thumbnail square size={80} source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwfMzZWidbLDPeiep0Gtn2B1pi_1GGtgBQrKcxpJSnuCDSQ3KidQ' }} />
-                            <Body>
-                                <Text style={part.titleSmallDarkBold}>Coz &nbsp;
-                                    <Text style={part.describeDark}>Its time to build a difference . .</Text>
-                                </Text>
 
-                            <Text note>3:43 pm</Text>
+                    {
+                        (this.props.notification.length === 0)
+                            ?
+                            (
+                                <Body>
+                                <Text style={[part.padding, part.describeDark]}>{} chưa có dự án nào.</Text>
+                                </Body>
+                            )
+                            :
+                            (
+                                < FlatList
+                                    onEndReachedThreshold={5}
+                                    onEndReached={() => {
+                                    }}
+                                    data={this.props.notification}
+                                    renderItem={({item}) =>
+                                        <List>
+                                            <ListItem style={part.listItem}>
+                                                <Thumbnail square size={80}
+                                                           source={{uri: item.actor.avatar_url}}/>
+                                                <Body>
+                                                <Text style={part.titleSmallDarkBold}>{item.actor.name} &nbsp;
+                                                    <Text style={part.describeDark}>{item.type}</Text>
+                                                </Text>
 
-                            </Body>
-                        </ListItem>
-                    </List>
+                                                <Text note>{item.created_at}</Text>
+
+                                                </Body>
+                                            </ListItem>
+                                        </List>
+
+                                    }/>
+                            )
+                    }
                 </Content>
             </Container>
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        token: state.login.token,
+        notification: state.getNotification.notification
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        getNotificationAction: bindActionCreators(getNotificationAction, dispatch),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(notificationComponent);

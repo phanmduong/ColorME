@@ -10,7 +10,7 @@ export function beginGetCourse() {
 export function getCourseSuccess(response) {
     return {
         type: types.GET_COURSE_SUCCESS,
-        course: response.data,
+        courses: response.data,
 
     }
 }

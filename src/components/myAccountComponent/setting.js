@@ -26,11 +26,11 @@ export default class setting extends Component {
                     backgroundColor={color.main}>
                     <Left>
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="arrow-left" size={size.icon} color={color.navTitle}/>
+                            < Icon name="arrow-left" size={size.icon} color={color.navTitle}/>
                         </Button>
                     </Left>
                     <Body>
-                        <Title style={part.navTitle}>Cài đặt</Title>
+                    <Title style={part.navTitle}>Cài đặt</Title>
                     </Body>
                     <Right>
 
@@ -60,7 +60,7 @@ export default class setting extends Component {
                             </Right>
                         </ListItem>
                         <ListItem style={part.listItem}
-                                  // onPress={() => this.props.navigation.navigate('ChangePassword')}
+                            // onPress={() => this.props.navigation.navigate('ChangePassword')}
                         >
                             <Left>
                                 <Text style={part.describeDark}>Lớp đang học</Text>
@@ -108,7 +108,7 @@ export default class setting extends Component {
                             <Text style={part.titleSmallDarkBold}>Hỗ trợ</Text>
                         </ListItem>
                         <ListItem style={part.listItem}
-                            onPress={() => this.props.navigation.navigate('ContactUs')}
+                                  onPress={() => this.props.navigation.navigate('ContactUs')}
                         >
                             <Left>
                                 <Text style={part.describeDark}>Liên hệ với chúng tôi</Text>
@@ -118,7 +118,7 @@ export default class setting extends Component {
                             </Right>
                         </ListItem>
                         <ListItem style={part.listItem}
-                            onPress={() => this.props.navigation.navigate('Feedback')}
+                                  onPress={() => this.props.navigation.navigate('Feedback')}
                         >
                             <Left>
                                 <Text style={part.describeDark}>Feedback</Text>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {
-    Title,Container, Header, Content, Card, CardItem, Thumbnail, Form, Label,
+    Title, Container, Header, Content, Card, CardItem, Thumbnail, Form, Label,
     Text, Button, Icon, Left, Body, Right, List, ListItem, Item, Input, Spinner
 } from 'native-base';
 import part from '../../styles/partStyle';
@@ -12,33 +12,38 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Search} from '../../navigators/appRouter';
 
-class searchComponent extends Component{
-    constructor(){
+class searchComponent extends Component {
+    constructor() {
         super();
         this.state = {
             txtSearch: '',
-            page: 1,
+            page_user: 1,
+            page_product: 1,
         }
 
     }
 
-    search(){
-        this.props.searchAction.searchUsers(this.state.txtSearch, 10, 1);
-        this.props.searchAction.searchProducts(this.state.txtSearch, 10, 1);
+    search() {
+        this.props.searchAction.searchUsers(this.state.txtSearch, 30, 1);
+        this.props.searchAction.searchProducts(this.state.txtSearch, 30, 1);
+
+    }
+    getMoreUser() {
+        let page_user = this.state.page_user;
+        page_user += 1;
+        this.setState({page_user: page_user});
+        this.props.searchAction.searchUsers(this.state.txtSearch, 10, this.state.page_user);
+    }
+    getMoreProduct() {
+        let page_product = this.state.page_product;
+        page_product += 1;
+        this.setState({page_product: page_product});
+        this.props.searchAction.searchProducts(this.state.txtSearch, 10, this.state.page_product);
 
     }
 
-    // getMoreUser(){
-    //     let page = this.state.page;
-    //     page += 1;
-    //     this.setState({page: page});
-    //     this.props.searchAction.searchUsers(this.state.txtSearch, 30 , this.state.page);
-    //
-    // }
-
-
-    render(){
-        return(
+    render() {
+        return (
             <Container style={part.wrapperContainer}>
                 <Header
                     style={part.navTop}
@@ -46,7 +51,7 @@ class searchComponent extends Component{
                     backgroundColor={color.main}>
                     <Left/>
                     <Body>
-                        <Title style={part.navTitle}>Tìm kiếm</Title>
+                    <Title style={part.navTitle}>Tìm kiếm</Title>
                     </Body>
                     <Right/>
                 </Header>
@@ -59,7 +64,7 @@ class searchComponent extends Component{
                         <Icon name="search" style={part.padding} size={size.icon} color={color.gray}/>
                     </TouchableOpacity>
                 </Item>
-                <Search />
+                <Search/>
             </Container>
         );
     }
@@ -67,14 +72,14 @@ class searchComponent extends Component{
 
 
 function mapStateToProps(state) {
-    return{
+    return {
         users: state.search.users,
         products: state.search.products,
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return{
+    return {
         searchAction: bindActionCreators(searchAction, dispatch)
     }
 }

@@ -20,7 +20,6 @@ class getFullInfoAboutOnePostComponent extends Component {
             author: {},
             more_products: [],
             colors: [],
-            comments :[],
         }
     }
 
@@ -32,7 +31,6 @@ class getFullInfoAboutOnePostComponent extends Component {
         this.setState({author: nextProps.post.author});
         this.setState({more_products: nextProps.post.more_products});
         this.setState({colors: nextProps.post.colors});
-        this.setState({comments: nextProps.comments.comments});
     }
 
     render() {

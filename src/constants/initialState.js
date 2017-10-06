@@ -48,6 +48,9 @@ export default {
         status : 0,
     },
     getCourse:{
-        course:[],
+        courses:[],
+    },
+    getNotification:{
+        notification:[],
     }
 }

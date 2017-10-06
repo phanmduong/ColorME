@@ -43,7 +43,8 @@ class newFeedComponent extends Component {
                         iosBarStyle={'light-content'}
                         backgroundColor={color.main}>
                     <Left>
-                        <Button transparent onPress={() => this.props.navigation.navigate('Course', {token: this.props.token})}>
+                        <Button transparent
+                                onPress={() => this.props.navigation.navigate('Course', {token: this.props.token})}>
                             <Icon name="graduation-cap" size={size.icon} color={color.navTitle}/>
                         </Button>
                     </Left>
@@ -65,14 +66,18 @@ class newFeedComponent extends Component {
                         renderItem={({item}) =>
                             <Card style={{flex: 0}}>
                                 <CardItem header>
-                                    <Left>
-                                        <TouchableOpacity
-                                            onPress={() => this.props.navigation.navigate('User', {username: item.author.username})}>
+                                    <Left
+                                        onPress={() => this.props.navigation.navigate('User', {username: item.author.username})}>
+                                        <TouchableOpacity>
                                             <Image style={part.avatarUserSmall}
-                                                       source={{uri: item.author.avatar_url}}/>
+                                                   source={{uri: item.author.avatar_url}}/>
                                         </TouchableOpacity>
                                         <Body>
-                                            <Text style={part.titleSmallDarkBold}>{item.author.name}</Text>
+                                        <Text
+                                            onPress={() => this.props.navigation.navigate('User', {username: item.author.username})}
+                                            style={part.titleSmallDarkBold}>
+                                            {item.author.name}
+                                        </Text>
                                         </Body>
                                         <Right>
                                             <Button transparent>
@@ -98,15 +103,18 @@ class newFeedComponent extends Component {
                                     <Left>
                                         <Button transparent style={part.paddingRight}>
                                             <Icon name="heart-o" size={size.icon}/>
-                                            <Text style={[part.describeDark, part.paddingLeft]}>{item.likes_count}</Text>
+                                            <Text
+                                                style={[part.describeDark, part.paddingLeft]}>{item.likes_count}</Text>
                                         </Button>
                                         <Button transparent style={part.paddingRight}>
                                             <Icon name="comment-o" size={size.icon}/>
-                                            <Text style={[part.describeDark, part.paddingLeft]}>{item.comments_count}</Text>
+                                            <Text
+                                                style={[part.describeDark, part.paddingLeft]}>{item.comments_count}</Text>
                                         </Button>
                                         <Button transparent style={part.paddingRight}>
                                             <Icon name="eye" size={size.icon}/>
-                                            <Text style={[part.describeDark, part.paddingLeft]}>{item.views_count}</Text>
+                                            <Text
+                                                style={[part.describeDark, part.paddingLeft]}>{item.views_count}</Text>
                                         </Button>
                                     </Left>
                                     <Right>

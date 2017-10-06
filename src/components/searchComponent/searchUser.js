@@ -3,7 +3,7 @@ import {
     TouchableOpacity, FlatList
 } from 'react-native';
 import {
-    Title,Container, Header, Content, Card, CardItem, Thumbnail, Form, Label,
+    Title, Container, Header, Content, Card, CardItem, Thumbnail, Form, Label,
     Text, Button, Icon, Left, Body, Right, List, ListItem, Item, Input, Spinner
 } from 'native-base';
 import part from '../../styles/partStyle';
@@ -11,13 +11,15 @@ import * as searchAction from '../../actions/searchAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-class searchUser extends Component{
-    render(){
-        return(
+class searchUser extends Component {
+    render() {
+        return (
             <Content>
                 <FlatList
                     onEndReachedThreshold={5}
-                    onEndReached={() => {}}
+                    onEndReached={() => {
+
+                    }}
                     data={this.props.users}
                     renderItem={({item}) =>
                         <ListItem avatar style={part.padding}>
@@ -26,8 +28,8 @@ class searchUser extends Component{
                                     source={{uri: item.avatar_url}}/>
                             </Left>
                             <Body>
-                                <Text style={part.titleSmallDark}>{item.name}</Text>
-                                <Text style={part.describeGray} note>{item.university}</Text>
+                            <Text style={part.titleSmallDark}>{item.name}</Text>
+                            <Text style={part.describeGray} note>{item.university}</Text>
                             </Body>
                         </ListItem>
                     }
@@ -38,13 +40,13 @@ class searchUser extends Component{
 }
 
 function mapStateToProps(state) {
-    return{
+    return {
         users: state.search.users,
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return{
+    return {
         searchAction: bindActionCreators(searchAction, dispatch)
     }
 }

@@ -15,25 +15,37 @@ class Progress extends Component {
     render() {
         return (
             <Content style={part.wrapperContainer}>
-                <FlatList
-                    onEndReachedThreshold={5}
-                    data={this.props.progress}
-                    renderItem={({item}) =>
-                        <Card style={{flex: 0}}>
-                            <CardItem>
-                                <Left>
-                                    <Thumbnail
-                                        source={{uri: item.icon_url}}/>
-                                    <Body>
-                                        <Text style={part.titleSmallDarkBold}>{item.name}</Text>
-                                        <Text style={part.describeDark}>Học lần thứ: {item.time}</Text>
-                                        <Text style={part.describeDark}>{item.description}</Text>
-                                        <Text style={part.describeDark}>Lịch học {item.study_time}</Text>
-                                    </Body>
-                                </Left>
-                            </CardItem>
-                        </Card>
-                    }/>
+                {
+                    (this.props.progress.length === 0)
+                        ?
+                        (
+                            <Body>
+                                <Text style={[part.padding, part.describeDark]}>{this.props.user.name} chưa tham gia khóa học nào.</Text>
+                            </Body>
+                        )
+                        :
+                        (
+                            <FlatList
+                            onEndReachedThreshold={5}
+                            data={this.props.progress}
+                            renderItem={({item}) =>
+                                <Card style={{flex: 0}}>
+                                    <CardItem>
+                                        <Left>
+                                            <Thumbnail
+                                                source={{uri: item.icon_url}}/>
+                                            <Body>
+                                            <Text style={part.titleSmallDarkBold}>{item.name}</Text>
+                                            <Text style={part.describeDark}>Học lần thứ: {item.time}</Text>
+                                            <Text style={part.describeDark}>{item.description}</Text>
+                                            <Text style={part.describeDark}>Lịch học {item.study_time}</Text>
+                                            </Body>
+                                        </Left>
+                                    </CardItem>
+                                </Card>
+                            }/>
+                        )
+                }
             </Content>
         )
     }
@@ -42,6 +54,7 @@ class Progress extends Component {
 function mapStateToProps(state) {
     return{
         progress: state.getUserProfile.progress,
+        user: state.getUserProfile.user,
     }
 }
 

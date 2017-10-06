@@ -18,8 +18,7 @@ class courseComponent extends Component{
         super();
     }
     componentWillMount() {
-        this.props.getCourseAction.getCourse(this.props.navigation.state.params.token);
-        console.log(this.props.course.length);
+        this.props.getCourseAction.getCourse(this.props.token);
     }
     render(){
         return(
@@ -34,16 +33,16 @@ class courseComponent extends Component{
                         </Button>
                     </Left>
                     <Body>
-                        <Title style={part.navTitle}>{this.props.token}</Title>
+                        <Title style={part.navTitle}>{this.props.courses}</Title>
                     </Body>
                     <Right />
                 </Header>
                 <Content>
                     <FlatList
                         onEndReachedThreshold={5}
-                        data={this.props.course}
+                        data={this.props.courses}
                         renderItem={({item}) =>
-                            <Text>{item.name}</Text>
+                            <Text>{item.id}</Text>
                         }/>
                 </Content>
             </Container>
@@ -53,7 +52,7 @@ class courseComponent extends Component{
 
 function mapStateToProps(state) {
     return{
-        course: state.getCourse.course,
+        courses: state.getCourse.courses,
         token: state.login.token
     }
 }

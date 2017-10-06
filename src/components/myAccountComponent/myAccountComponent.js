@@ -28,11 +28,7 @@ class myAccountComponent extends Component {
                     style={part.navTop}
                     iosBarStyle={'light-content'}
                     backgroundColor={color.main}>
-                    <Left>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="arrow-left" size={size.icon} color={color.navTitle}/>
-                        </Button>
-                    </Left>
+                    <Left/>
                     <Title style={part.navTitle}>{this.props.user.username}</Title>
                     <Right>
                         <Button transparent onPress={() => this.props.navigation.navigate('Setting')}>
