@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    TouchableOpacity, FlatList
+    TouchableOpacity, FlatList, View
 } from 'react-native';
 import {
     Title, Container, Header, Content, Card, CardItem, Thumbnail, Form, Label,
@@ -8,6 +8,7 @@ import {
 } from 'native-base';
 import part from '../../styles/partStyle';
 import * as searchAction from '../../actions/searchAction';
+import * as color from '../../styles/color';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
@@ -15,25 +16,46 @@ class searchUser extends Component {
     render() {
         return (
             <Content>
-                <FlatList
-                    onEndReachedThreshold={5}
-                    onEndReached={() => {
+                {
+                    (this.props.isLoading)
+                        ?
+                        (
+                            <View
+                                style={{
+                                    flex: 1,
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Spinner
+                                    size
+                                    color={color.gray}/>
+                            </View>
+                        )
+                        :
+                        (
+                            <FlatList
+                                onEndReachedThreshold={5}
+                                onEndReached={() => {
 
-                    }}
-                    data={this.props.users}
-                    renderItem={({item}) =>
-                        <ListItem avatar style={part.padding}>
-                            <Left>
-                                <Thumbnail
-                                    source={{uri: item.avatar_url}}/>
-                            </Left>
-                            <Body>
-                            <Text style={part.titleSmallDark}>{item.name}</Text>
-                            <Text style={part.describeGray} note>{item.university}</Text>
-                            </Body>
-                        </ListItem>
-                    }
-                />
+                                }}
+                                data={this.props.users}
+                                renderItem={({item}) =>
+                                    <ListItem avatar style={part.padding}>
+                                        <Left>
+                                            <Thumbnail
+                                                source={{uri: item.avatar_url}}/>
+                                        </Left>
+                                        <Body>
+                                        <Text style={part.titleSmallDark}>{item.name}</Text>
+                                        <Text style={part.describeGray} note>{item.university}</Text>
+                                        </Body>
+                                    </ListItem>
+                                }
+                            />
+                        )
+                }
+
             </Content>
         );
     }
@@ -42,6 +64,7 @@ class searchUser extends Component {
 function mapStateToProps(state) {
     return {
         users: state.search.users,
+        isLoading: state.search.isLoading
     }
 }
 

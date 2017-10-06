@@ -20,6 +20,8 @@ class searchComponent extends Component {
             page_user: 1,
             page_product: 1,
         }
+        this.getMoreProduct = this.getMoreProduct.bind(this)
+        this.getMoreUser = this.getMoreUser.bind(this)
 
     }
 
@@ -64,7 +66,10 @@ class searchComponent extends Component {
                         <Icon name="search" style={part.padding} size={size.icon} color={color.gray}/>
                     </TouchableOpacity>
                 </Item>
-                <Search/>
+                <Search
+                    getMoreUser={this.getMoreUser}
+                    getMoreProduct={this.getMoreProduct}
+                />
             </Container>
         );
     }

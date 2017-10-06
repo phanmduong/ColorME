@@ -2,9 +2,9 @@ import * as types from '../constants/actionTypes';
 import initialState from '../constants/initialState';
 
 export default function searchReducer(state = initialState.search, action) {
-    switch (action.type){
+    switch (action.type) {
         case types.BEGIN_SEARCH:
-            return{
+            return {
                 ...state,
                 ...{
                     isLoading: action.isLoading,
@@ -14,7 +14,7 @@ export default function searchReducer(state = initialState.search, action) {
             }
 
         case types.SEARCH_USER_SUCCESS:
-            return{
+            return {
                 ...state,
                 ...{
                     isLoading: action.isLoading,
@@ -23,17 +23,17 @@ export default function searchReducer(state = initialState.search, action) {
                 }
             }
         case types.SEARCH_PRODUCT_SUCCESS:
-        return{
-            ...state,
-            ...{
-                isLoading: action.isLoading,
-                error: action.error,
-                products: action.products,
+            return {
+                ...state,
+                ...{
+                    isLoading: action.isLoading,
+                    error: action.error,
+                    products: action.products,
+                }
             }
-        }
 
         case types.SEARCH_ERROR:
-            return{
+            return {
                 ...state,
                 ...{
                     isLoading: action.isLoading,
