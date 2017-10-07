@@ -27,7 +27,7 @@ export default class LoginComponent extends Component {
             this.props.navigation.navigate('Home');
         }
         if (nextProps.error) {
-            Alert.alert('Mời bạn kiểm tra lại thông tin tài khoản ')
+            Alert.alert('Mời bạn kiểm tra lại thông tin tài khoản')
         }
     }
 
