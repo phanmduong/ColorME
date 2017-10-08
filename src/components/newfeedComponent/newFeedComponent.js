@@ -7,7 +7,7 @@ import {
     Thumbnail, Text, Button, Left, Body, Right, ListItem
 } from 'native-base';
 import {SearchTab} from '../../navigators/appRouter';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
@@ -26,14 +26,14 @@ class newFeedComponent extends Component {
     }
 
     componentWillMount() {
-        this.props.getNewFeedAction.getNewFeed(7, this.state.page_id);
+        this.props.getNewFeedAction.getNewFeed(1, this.state.page_id);
     }
 
     getMoreNewFeed() {
         let page_id = this.state.page_id;
         page_id++;
         this.setState({page_id: page_id});
-        this.props.getNewFeedAction.getNewFeed(7, this.state.page_id);
+        this.props.getNewFeedAction.getNewFeed(1, this.state.page_id);
     }
 
 
@@ -55,13 +55,13 @@ class newFeedComponent extends Component {
                                     ?
                                     (
                                         <Right style={part.rightTab}>
-                                            <Icon name="th-list"
+                                            <Icon name="fontawesome|th-list"
                                                   color={color.icon}
                                                   size={size.icon}
                                                   style={part.paddingIcon}
                                                   onPress={() => this.setState({grid: false})}
                                             />
-                                            <Icon name="th-large"
+                                            <Icon name="fontawesome|th-large"
                                                   color={color.darkGray}
                                                   size={size.icon}
                                                   style={part.paddingIcon}
@@ -72,13 +72,13 @@ class newFeedComponent extends Component {
                                     :
                                     (
                                         <Right style={part.rightTab}>
-                                            <Icon name="th-list"
+                                            <Icon name="fontawesome|th-list"
                                                   color={color.darkGray}
                                                   size={size.icon}
                                                   style={part.paddingIcon}
                                                   onPress={() => this.setState({grid: false})}
                                             />
-                                            <Icon name="th-large"
+                                            <Icon name="fontawesome|th-large"
                                                   color={color.icon}
                                                   size={size.icon}
                                                   style={part.paddingIcon}
@@ -98,6 +98,12 @@ class newFeedComponent extends Component {
                             ?
                             (
                                 <View style={[part.wrapperGrid, part.shadow]}>
+                                    <View style={[part.featureWrapper]}>
+                                        <Image
+                                            style={[part.imageInFeature]}
+                                            source={{uri: ''}}
+                                        />
+                                    </View>
                                     {
                                         this.props.products.map((item, i) => {
                                             return (
@@ -138,7 +144,8 @@ class newFeedComponent extends Component {
                                                             </Body>
                                                             <Right>
                                                                 <Button transparent>
-                                                                    <Icon name="ellipsis-v" size={size.icon}/>
+                                                                    <Icon name="fontawesome|ellipsis-v"
+                                                                          size={size.icon}/>
                                                                 </Button>
                                                             </Right>
                                                         </Left>
@@ -159,7 +166,7 @@ class newFeedComponent extends Component {
                                                             </Text>
                                                         </View>
                                                         <View style={part.iconLikeInImage}>
-                                                            <Icon name="heart-o" style={{zIndex: 100}}
+                                                            <Icon name="fontawesome|heart-o" style={{zIndex: 100}}
                                                                   size={size.iconBig}
                                                                   color={color.navTitle}/>
                                                         </View>
@@ -169,7 +176,7 @@ class newFeedComponent extends Component {
                                                         <Left>
                                                             <Button
                                                                 transparent style={part.paddingRight}>
-                                                                <Icon name="heart" size={size.iconBig}
+                                                                <Icon name="fontawesome|heart" size={size.iconBig}
                                                                       color={color.main}/>
                                                                 <Text
                                                                     style={[part.describeGray, part.paddingLeft]}>{item.likes_count}</Text>
@@ -178,13 +185,13 @@ class newFeedComponent extends Component {
                                                             <Button transparent style={part.paddingRight}
                                                                     onPress={() => this.props.navigation.navigate('Comment', {product_id: item.id})}
                                                             >
-                                                                <Icon name="comments-o" size={size.iconBig}
+                                                                <Icon name="fontawesome|comments-o" size={size.iconBig}
                                                                       color={color.icon}/>
                                                                 <Text
                                                                     style={[part.describeGray, part.paddingLeft]}>{item.comments_count}</Text>
                                                             </Button>
                                                             <Button transparent style={part.paddingRight}>
-                                                                <Icon name="eye" size={size.iconBig}
+                                                                <Icon name="fontawesome|eye" size={size.iconBig}
                                                                       color={color.icon}/>
                                                                 <Text
                                                                     style={[part.describeGray, part.paddingLeft]}>{item.views_count}</Text>

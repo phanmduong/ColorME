@@ -1,6 +1,7 @@
 import {StyleSheet, Dimensions} from 'react-native';
 import * as color from './color';
 import * as size from './size';
+import {wid} from "./size";
 
 const part = StyleSheet.create({
     // NAV BAR
@@ -42,6 +43,13 @@ const part = StyleSheet.create({
         height: 220,
         justifyContent: 'center',
         backgroundColor: 'black'
+    },
+    featureWrapper:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: wid - 20,
+        height: 200,
+        backgroundColor: 'red',
     },
 
 
@@ -142,6 +150,10 @@ const part = StyleSheet.create({
         height: size.wid/ 3 - 15,
         borderRadius: 5,
         resizeMode: 'cover'
+    },
+    imageInFeature:{
+        width: wid - 30,
+        height: 200,
     },
 
     //CONTENT
