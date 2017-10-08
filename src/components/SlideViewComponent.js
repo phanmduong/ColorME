@@ -42,10 +42,11 @@ export default class SlideViewComponent extends Component {
                                 <Thumbnail circle large
                                            source={{uri: 'http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk='}}/>
 
+
                             </Left>
-                            <Body style={{alignItems: 'flex-start'}}>
-                                <Text style={part.navTitle}>User</Text>
-                                <Text style={part.navTitle}>Đăng xuất</Text>
+                            <Body style={{alignItems: 'flex-start', marginLeft: -60}}>
+                                <Text style={part.titleNormalLight}>User</Text>
+                                <Text style={part.describeGray}>Đăng xuất</Text>
                             </Body>
                         </Item>
                     </View>
