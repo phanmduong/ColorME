@@ -12,7 +12,8 @@ const part = StyleSheet.create({
 
     },
     itemTab: {
-        height: 40,
+        padding: 10,
+        height: 60,
         backgroundColor: color.backGround,
         borderBottomWidth: 0,
     },
@@ -34,6 +35,7 @@ const part = StyleSheet.create({
 
     //WRAPPER
     wrapperContainer: {
+        backgroundColor: color.backGround,
     },
     wrapperImageInDrawer:{
         width: size.wid * 3/4,
@@ -136,9 +138,9 @@ const part = StyleSheet.create({
         resizeMode: 'cover',
     },
     imageInGrid: {
-        width: size.wid/ 3 - 10,
-        height: size.wid/ 3 - 10,
-        borderRadius: 10,
+        width: size.wid/3 - 15,
+        height: size.wid/ 3 - 15,
+        borderRadius: 5,
         resizeMode: 'cover'
     },
 
@@ -251,6 +253,9 @@ const part = StyleSheet.create({
     padding: {
         padding: 10,
     },
+    paddingIcon: {
+        paddingLeft: 10
+    },
     paddingRight: {
         paddingRight: 5,
     },
@@ -291,11 +296,20 @@ const part = StyleSheet.create({
         flex: 1,
     },
     wrapperGridImage: {
-        width: size.wid/ 3,
-        height: size.wid/ 3,
+        width: (size.wid - 20) / 3,
+        height: (size.wid - 20) / 3,
         justifyContent: 'center',
         alignItems: 'center',
     },
+
+
+
+    // SHADOW
+    shadow:{
+        shadowColor: 'black',
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.2,
+    }
 
 });
 

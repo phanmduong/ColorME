@@ -87,7 +87,7 @@ export const StackNavigatorStyle = {
 export const HomeStackStyle = {
     navigationOptions: ({navigation}) => ({
         headerStyle: {
-            backgroundColor: color.navTitle,
+            backgroundColor: color.navTabBar,
             borderBottomWidth: 0,
             height: 60,
         },
@@ -219,7 +219,7 @@ export const NewFeedStackNavigator = StackNavigator(
             screen: newFeedComponent,
             navigationOptions:{
                 title: 'colorME',
-                headerTintColor: color.main,
+                headerTintColor: color.navTitle,
             },
         },
         UserStack: {
@@ -326,7 +326,7 @@ export const Home = TabNavigator(
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
                     <Icon
-                        name="home" size={20}
+                        name="home" size={25}
                         color={tintColor}
                     />
                 ),

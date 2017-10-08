@@ -20,7 +20,7 @@ class newFeedComponent extends Component {
     constructor() {
         super();
         this.state = {
-            grid: false,
+            grid: true,
             page_id: 1,
         }
     }
@@ -41,12 +41,11 @@ class newFeedComponent extends Component {
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
-                    backgroundColor="blue"
-                    barStyle="dark-content"
+                    barStyle="light-content"
                 />
 
                 <View>
-                    <Item style={part.itemTab}>
+                    <Item style={[part.itemTab, part.shadow]}>
                         <Left>
 
                         </Left>
@@ -59,13 +58,13 @@ class newFeedComponent extends Component {
                                             <Icon name="th-list"
                                                   color={color.icon}
                                                   size={size.icon}
-                                                  style={part.padding}
+                                                  style={part.paddingIcon}
                                                   onPress={() => this.setState({grid: false})}
                                             />
                                             <Icon name="th-large"
                                                   color={color.darkGray}
                                                   size={size.icon}
-                                                  style={part.padding}
+                                                  style={part.paddingIcon}
                                                   onPress={() => this.setState({grid: true})}
                                             />
                                         </Right>
@@ -76,13 +75,13 @@ class newFeedComponent extends Component {
                                             <Icon name="th-list"
                                                   color={color.darkGray}
                                                   size={size.icon}
-                                                  style={part.padding}
+                                                  style={part.paddingIcon}
                                                   onPress={() => this.setState({grid: false})}
                                             />
                                             <Icon name="th-large"
                                                   color={color.icon}
                                                   size={size.icon}
-                                                  style={part.padding}
+                                                  style={part.paddingIcon}
                                                   onPress={() => this.setState({grid: true})}
                                             />
                                         </Right>
@@ -93,18 +92,18 @@ class newFeedComponent extends Component {
                 </View>
 
 
-                <Content onMomentumScrollEnd={() => this.getMoreNewFeed()}>
+                <Content onMomentumScrollEnd={() => this.getMoreNewFeed()} style={part.padding}>
                     {
                         (this.state.grid)
                             ?
                             (
-                                <View style={part.wrapperGrid}>
+                                <View style={[part.wrapperGrid, part.shadow]}>
                                     {
                                         this.props.products.map((item, i) => {
                                             return (
                                                 <View key={i} style={part.wrapperGridImage}>
                                                     <Image
-                                                        style={part.imageInGrid}
+                                                        style={[part.imageInGrid]}
                                                         source={{uri: item.thumb_url}}
                                                     />
                                                 </View>
@@ -119,7 +118,7 @@ class newFeedComponent extends Component {
                                     {
                                         this.props.products.map((item, i) => {
                                             return (
-                                                <Card style={part.card}>
+                                                <Card key={i} style={part.card}>
                                                     <CardItem header style={part.card}>
                                                         <Left
                                                             onPress={() => this.props.navigation.navigate('UserStack', {username: item.author.username})}>
