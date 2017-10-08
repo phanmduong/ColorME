@@ -131,6 +131,41 @@
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
 		};
+		17BA53721F89C6400075DF65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11FC04B9CE9A44F3B942B9AE /* BVLinearGradient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = BVLinearGradient;
+		};
+		17BA53741F89C6400075DF65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11FC04B9CE9A44F3B942B9AE /* BVLinearGradient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 64AA15081EF7F30100718508;
+			remoteInfo = "BVLinearGradient-tvOS";
+		};
+		17BA53781F89C6400075DF65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45BC91DB86B1403BA58A7EE5 /* RNSpinkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D42CB3511B2538DE00FD0AE2;
+			remoteInfo = RNSpinkit;
+		};
+		17BA537A1F89C6400075DF65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45BC91DB86B1403BA58A7EE5 /* RNSpinkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 641194871EC9FD4A00D4FC03;
+			remoteInfo = "RNSpinkit-tvOS";
+		};
+		17BA537D1F89C6400075DF65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAE70A4BAD4D46BD8C7FFEDC /* SplashScreen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D7682761D8E76B80014119E;
+			remoteInfo = SplashScreen;
+		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
@@ -544,6 +579,44 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		17BA53481F89C63C0075DF65 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				9609FD73344C45A6BDC41F17 /* libRNVectorIcons.a */,
+				68FE57DC451F44ECB93F8832 /* libRNSpinkit.a */,
+				D94707AE4C8A449D85FFCACF /* libBVLinearGradient.a */,
+				4A75EB6967624797A5184BD0 /* libReactNativeNavigation.a */,
+				B5D4620E6E244EDCB89404B0 /* libSplashScreen.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		17BA536A1F89C63F0075DF65 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17BA53791F89C6400075DF65 /* libRNSpinkit.a */,
+				17BA537B1F89C6400075DF65 /* libRNSpinkit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		17BA536C1F89C6400075DF65 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17BA53731F89C6400075DF65 /* libBVLinearGradient.a */,
+				17BA53751F89C6400075DF65 /* libBVLinearGradient.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		17BA536E1F89C6400075DF65 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17BA537E1F89C6400075DF65 /* libSplashScreen.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -603,6 +676,7 @@
 				00E356EF1AD99517003FC87E /* colorMETests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				ED91FCFA6B2F40F5B40D41C6 /* Resources */,
+				17BA53481F89C63C0075DF65 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -788,6 +862,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 17BA536C1F89C6400075DF65 /* Products */;
+					ProjectRef = 11FC04B9CE9A44F3B942B9AE /* BVLinearGradient.xcodeproj */;
+				},
+				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
 				},
@@ -840,8 +918,16 @@
 					ProjectRef = 044617BA2D7B416793B00BB2 /* ReactNativeNavigation.xcodeproj */;
 				},
 				{
+					ProductGroup = 17BA536A1F89C63F0075DF65 /* Products */;
+					ProjectRef = 45BC91DB86B1403BA58A7EE5 /* RNSpinkit.xcodeproj */;
+				},
+				{
 					ProductGroup = A7374CB01F66A976007D7BC3 /* Products */;
 					ProjectRef = 8EE6D5EBA4284067BCDBD8C5 /* RNVectorIcons.xcodeproj */;
+				},
+				{
+					ProductGroup = 17BA536E1F89C6400075DF65 /* Products */;
+					ProjectRef = EAE70A4BAD4D46BD8C7FFEDC /* SplashScreen.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -909,6 +995,41 @@
 			fileType = archive.ar;
 			path = libReact.a;
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17BA53731F89C6400075DF65 /* libBVLinearGradient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBVLinearGradient.a;
+			remoteRef = 17BA53721F89C6400075DF65 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17BA53751F89C6400075DF65 /* libBVLinearGradient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBVLinearGradient.a;
+			remoteRef = 17BA53741F89C6400075DF65 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17BA53791F89C6400075DF65 /* libRNSpinkit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSpinkit.a;
+			remoteRef = 17BA53781F89C6400075DF65 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17BA537B1F89C6400075DF65 /* libRNSpinkit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSpinkit.a;
+			remoteRef = 17BA537A1F89C6400075DF65 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17BA537E1F89C6400075DF65 /* libSplashScreen.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSplashScreen.a;
+			remoteRef = 17BA537D1F89C6400075DF65 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */ = {
