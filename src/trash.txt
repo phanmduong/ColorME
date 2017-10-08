@@ -1,0 +1,122 @@
+<FlatList
+        onEndReachedThreshold={5}
+        // onEndReached={this.getMoreNewFeed.bind(this)}
+        data={this.props.products}
+        renderItem={({item}) =>
+            <Card style={part.card}>
+                <CardItem header  style={part.card}>
+                    <Left
+                        onPress={() => this.props.navigation.navigate('UserStack', {username: item.author.username})}>
+                        <TouchableOpacity>
+                            <Image style={part.avatarUserSmall}
+                                   source={{uri: item.author.avatar_url}}/>
+                        </TouchableOpacity>
+                        <Body>
+                        <Text
+                            onPress={() => this.props.navigation.navigate('User', {username: item.author.username})}
+                            style={part.titleSmallDarkBold}>
+                            {item.author.name}
+                        </Text>
+                        </Body>
+                        <Right>
+                            <Button transparent>
+                                <Icon name="ellipsis-v" size={size.icon}/>
+                            </Button>
+                        </Right>
+                    </Left>
+                </CardItem>
+                <CardItem cardBody style={part.card}>
+                    <Body>
+                    <Image source={{uri: item.thumb_url}}
+                           style={part.image}
+                    />
+                    <Text
+                        onPress={() => this.props.navigation.navigate('Post', {product_id: item.id})}
+                        style={[part.padding, {paddingLeft: 15}, part.describeDark]}>
+                        <Text style={part.titleSmallDarkBold}>{item.author.name}</Text>
+                        &nbsp;{item.title}
+                    </Text>
+                    </Body>
+                </CardItem>
+                <CardItem style={{height: 20}}>
+                    <Left>
+                        <Button transparent style={part.paddingRight}>
+                            <Icon name="heart-o" size={size.icon}/>
+                            <Text
+                                style={[part.describeDark, part.paddingLeft]}>{item.likes_count}</Text>
+                        </Button>
+                        <Button transparent style={part.paddingRight}
+                            onPress={() => this.props.navigation.navigate('Comment', {product_id: item.id})}
+                        >
+                            <Icon name="comment-o" size={size.icon}/>
+                            <Text
+                                style={[part.describeDark, part.paddingLeft]}>{item.comments_count}</Text>
+                        </Button>
+                        <Button transparent style={part.paddingRight}>
+                            <Icon name="eye" size={size.icon}/>
+                            <Text
+                                style={[part.describeDark, part.paddingLeft]}>{item.views_count}</Text>
+                        </Button>
+                    </Left>
+                    <Right>
+                        <Text style={part.describeItalicDark}>{item.created_at}</Text>
+                    </Right>
+                </CardItem>
+                <CardItem style={{padding: 0}}>
+                    <Left>
+                        {
+                            item.colors.map((color, i) => {
+                                return (
+                                    <Button transparent key={i} style={part.paddingRight}>
+                                        <Icon name="circle" size={size.icon} color={'#' + color}/>
+                                    </Button>
+
+                                );
+                            })
+                        }
+                    </Left>
+                    <Right>
+                    </Right>
+                </CardItem>
+            </Card>
+        }
+    />
+
+
+
+
+
+
+
+
+
+
+
+
+<View style={part.wrapperGrid}>
+                        <FlatList
+                            onEndReachedThreshold={5}
+                            // onEndReached={this.getMoreNewFeed.bind(this)}
+                            data={this.props.products}
+                            renderItem={({item}) => (
+                                <View style={part.wrapperGridImage}>
+                                    <Image
+                                        style={part.imageInGrid}
+                                        source={{uri: item.thumb_url}}
+
+                                    />
+                                </View>
+                            )}/>
+
+                        <View style={part.wrapperGridImage}>
+
+                        </View>
+                        <View style={part.wrapperGridImage}>
+
+                        </View>
+                        <View style={part.wrapperGridImage}>
+
+                        </View>
+                        <View style={part.wrapperGridImage}>
+                        </View>
+                    </View>

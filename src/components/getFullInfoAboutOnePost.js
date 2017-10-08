@@ -36,24 +36,6 @@ class getFullInfoAboutOnePostComponent extends Component {
     render() {
         return (
             <Container style={part.wrapperContainer}>
-                <Header
-                    style={[part.navTop, {borderColor: color.none}]}
-                    iosBarStyle={'dark-content'}
-                    backgroundColor={color.none}>
-                    <Left>
-                        <Button transparent>
-                            <Icon name="ellipsis-v" size={size.icon}/>
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title style={part.navTitle}></Title>
-                    </Body>
-                    <Right>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="times" size={size.icon}/>
-                        </Button>
-                    </Right>
-                </Header>
                 <Content>
                     <Card style={{flex: 0}}>
                     <Body>

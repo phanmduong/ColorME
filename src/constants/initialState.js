@@ -24,6 +24,7 @@ export default {
 
     getFullInfoAboutOnePost: {
         post:{},
+        comments:[],
         isLoading: false,
         error: false,
         result: false,
@@ -47,9 +48,12 @@ export default {
         status : 0,
     },
     getCourse:{
-        course:[],
+        courses:[],
     },
-    getComment : {
+    getNotification:{
+        notification:[],
+    },
+    getComment:{
         isLoading : false,
         comments : []
     }

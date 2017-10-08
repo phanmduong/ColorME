@@ -95,8 +95,6 @@ export class TabLoginAndRegister extends Component {
                     </Body>
                 </Container>
             </Container>
-
-
         );
     }
 }

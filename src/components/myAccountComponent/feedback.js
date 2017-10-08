@@ -18,18 +18,6 @@ export default class feedback extends Component {
     render() {
         return (
             <Container style={part.wrapperContainer}>
-                <Header
-                    style={part.navTop}
-                    iosBarStyle={'light-content'}
-                    backgroundColor={color.main}>
-                    <Left>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="arrow-left" size={size.icon} color={color.navTitle}/>
-                        </Button>
-                    </Left>
-                    <Title style={part.navTitle}>Phản hồi</Title>
-                    <Right/>
-                </Header>
                 <Container style={part.paddingTRB}>
                     <Form>
                         <Item>

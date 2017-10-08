@@ -10,7 +10,7 @@ import * as size from '../../styles/size';
 import * as searchAction from '../../actions/searchAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Search} from '../../navigators/appRouter';
+import {SearchTab} from '../../navigators/appRouter';
 
 class searchComponent extends Component {
     constructor() {
@@ -47,16 +47,6 @@ class searchComponent extends Component {
     render() {
         return (
             <Container style={part.wrapperContainer}>
-                <Header
-                    style={part.navTop}
-                    iosBarStyle={'light-content'}
-                    backgroundColor={color.main}>
-                    <Left/>
-                    <Body>
-                    <Title style={part.navTitle}>Tìm kiếm</Title>
-                    </Body>
-                    <Right/>
-                </Header>
                 <Item style={part.borderNone}>
                     <Input placeholder="Nhập tên người dùng, bài đăng..."
                            style={part.inputTheme01}
@@ -66,7 +56,7 @@ class searchComponent extends Component {
                         <Icon name="search" style={part.padding} size={size.icon} color={color.gray}/>
                     </TouchableOpacity>
                 </Item>
-                <Search
+                <SearchTab
                     getMoreUser={this.getMoreUser}
                     getMoreProduct={this.getMoreProduct}
                 />

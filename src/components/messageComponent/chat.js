@@ -40,9 +40,7 @@ export default class Chat extends Component {
                             </Right>
                         </ListItem>
                     </List>
-
                 </Content>
-
                 {/*FAB*/}
                 <Fab
                     active={this.state.active}

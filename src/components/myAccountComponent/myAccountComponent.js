@@ -16,26 +16,14 @@ import {connect} from 'react-redux';
 import {User} from '../../navigators/appRouter';
 
 class myAccountComponent extends Component {
-    componentWillMount() {
-        this.props.getUserProfileAction.getUserProfile(this.props.user.username);
-
-    }
+    // componentWillMount() {
+    //     this.props.getUserProfileAction.getUserProfile(this.props.user.username);
+    //
+    // }
 
     render() {
         return (
             <Container>
-                <Header
-                    style={part.navTop}
-                    iosBarStyle={'light-content'}
-                    backgroundColor={color.main}>
-                    <Left/>
-                    <Title style={part.navTitle}>{this.props.user.username}</Title>
-                    <Right>
-                        <Button transparent onPress={() => this.props.navigation.navigate('Setting')}>
-                            <Icon name="cog" size={size.icon} color={color.navTitle}/>
-                        </Button>
-                    </Right>
-                </Header>
                 <User/>
             </Container>
         );
