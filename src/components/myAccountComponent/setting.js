@@ -20,22 +20,6 @@ export default class setting extends Component {
     render() {
         return (
             <Container style={part.wrapperContainer}>
-                <Header
-                    style={part.navTop}
-                    iosBarStyle={'light-content'}
-                    backgroundColor={color.main}>
-                    <Left>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            < Icon name="arrow-left" size={size.icon} color={color.navTitle}/>
-                        </Button>
-                    </Left>
-                    <Body>
-                    <Title style={part.navTitle}>Cài đặt</Title>
-                    </Body>
-                    <Right>
-
-                    </Right>
-                </Header>
                 <Content style={part.padding}>
                     <List style={part.paddingBottom}>
                         <ListItem itemDivider>

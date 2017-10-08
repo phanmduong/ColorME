@@ -23,20 +23,6 @@ class courseComponent extends Component{
     render(){
         return(
             <Container style={part.wrapperContainer}>
-                <Header
-                    style={part.navTop}
-                    iosBarStyle={'light-content'}
-                    backgroundColor={color.main}>
-                    <Left>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="arrow-left" size={size.icon} color={color.navTitle}/>
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title style={part.navTitle}>{this.props.courses}</Title>
-                    </Body>
-                    <Right />
-                </Header>
                 <Content>
                     <FlatList
                         onEndReachedThreshold={5}

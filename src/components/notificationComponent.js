@@ -25,18 +25,7 @@ class notificationComponent extends Component {
     render() {
         return (
             <Container style={part.wrapperContainer}>
-                <Header
-                    style={part.navTop}
-                    iosBarStyle={'light-content'}
-                    backgroundColor={color.main}>
-                    <Left/>
-                    <Body>
-                    <Title style={part.navTitle}>Thông báo</Title>
-                    </Body>
-                    <Right/>
-                </Header>
                 <Content>
-
                     {
                         (this.props.notification.length === 0)
                             ?

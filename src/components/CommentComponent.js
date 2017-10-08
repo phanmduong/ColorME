@@ -42,29 +42,23 @@ class commentComponent extends Component{
                         onEndReached={() => {}}
                         data={this.props.comments}
                         renderItem={({item}) =>
-                            <ListItem avatar style={part.padding}>
+                            <ListItem avatar style={[part.listItem]}>
                                 <Left>
-                                    <Thumbnail
+                                    <Thumbnail circle small
                                         source={{uri: item.commenter.avatar_url}}/>
                                 </Left>
-                                <Body>
-                                <Text style={part.titleSmallDark}>{item.commenter.name}</Text>
-                                <Text style={part.describeGray} note>{item.content}</Text>
+                                <Body  style={part.borderNone}>
+                                    <Text style={part.titleSmallDarkBold}>{item.commenter.name}<Text style={part.describeDark}>&nbsp;{item.content}</Text></Text>
+                                    <Button transparent style={part.paddingRight}>
+                                        <Icon name="heart-o" size={size.icon}/>
+                                        <Text
+                                            style={[part.describeDark, part.paddingLeft]}>{item.likes}</Text>
+                                    </Button>
+                                    <Text style={part.describeGray} note>{item.created_at}</Text>
                                 </Body>
                             </ListItem>
                         }
                     />
-                    <Item style = {{marginBottom: 5}}>
-                        <View>
-                            <Icon name='address-book' size={size.icon} color={color.gray}/>
-                        </View>
-                        <Input placeholder=''
-                               style={part.inputTheme03}
-                               onChangeText={(userName) => {
-                                   this.setState({userName})
-                               }}
-                        />
-                    </Item>
                 </Content>
             </Container>
 

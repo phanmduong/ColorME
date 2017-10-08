@@ -27,22 +27,6 @@ class userComponent extends Component {
     render() {
         return (
             <Container style={part.wrapperContainer}>
-                <Header
-                    style={part.navTop}
-                    iosBarStyle={'light-content'}
-                    backgroundColor={color.main}>
-                    <Left>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="arrow-left" size={size.icon} color={color.navTitle}/>
-                        </Button>
-                    </Left>
-                        <Title style={part.navTitle}>{this.props.navigation.state.params.username} </Title>
-                    <Right>
-                        <Button transparent>
-                            <Icon name="user-plus" size={size.icon} color={color.navTitle}/>
-                        </Button>
-                    </Right>
-                </Header>
                 <User/>
             </Container>
         );

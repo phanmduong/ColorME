@@ -24,10 +24,10 @@ export default class LoginComponent extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.status === 200) {
-            this.props.navigation.navigate('Home');
+            this.props.navigation.navigate('Main');
         }
         if (nextProps.error) {
-            Alert.alert('Mời bạn kiểm tra lại thông tin tài khoản.')
+            Alert.alert('Mời bạn kiểm tra lại thông tin tài khoản ')
         }
     }
 
@@ -96,7 +96,7 @@ export default class LoginComponent extends Component {
                                     />
                                 </Container>
                             ) : (
-                                <Icon name="sign-in" color={color.navTitle} size={size.icon}/>
+                                <Icon name="sign-in" color={color.navTitle}  size={size.icon}/>
                             )
                             }
                         </TouchableOpacity>
