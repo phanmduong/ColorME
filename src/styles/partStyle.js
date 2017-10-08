@@ -170,6 +170,11 @@ const part = StyleSheet.create({
         color: color.titleBlue,
         fontWeight: '700',
     },
+    titleNormalLight: {
+        fontSize: size.title,
+        color: color.navTitle,
+        fontWeight: '700',
+    },
     titleSmallDark: {
         fontSize: size.titleSmall,
         color: color.text,
