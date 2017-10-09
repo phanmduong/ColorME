@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import {
-    View, Text, TouchableOpacity, StatusBar, WebView
+    View, Text, TouchableOpacity, StatusBar, Image
 } from 'react-native';
 
 import {
-    Body, Button, Card, CardItem, CheckBox, Container, Content, Item,
-    Header, Left, List, ListItem, Right, Tab, TabHeading, Tabs, Spinner,
-    Thumbnail, Title,
+    Body, Button, Card, CardItem, Container, Content, Left, Right, Spinner,
+    Thumbnail, Item
 } from 'native-base';
-import {Dimensions, Image} from 'react-native'
 import Icon from '../commons/Icon';
+import Video from 'react-native-video';
 import part from '../styles/partStyle';
 import * as color from '../styles/color';
 import * as size from '../styles/size';
@@ -17,6 +16,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux';
 import * as getFullInfoAboutOnePostAction from '../actions/getFullInfoAboutOnePostAction'
 
+let video;
 class getFullInfoAboutOnePostComponent extends Component {
     constructor() {
         super();
@@ -29,6 +29,7 @@ class getFullInfoAboutOnePostComponent extends Component {
 
     componentWillMount() {
         this.props.getFullInfoAboutOnePostAction.getFullInfoAboutOnePostOfUser(this.props.navigation.state.params.product_id)
+        video = this.props.post.url.indexOf('.mp4');
     }
 
     componentWillReceiveProps(nextProps) {
@@ -43,7 +44,6 @@ class getFullInfoAboutOnePostComponent extends Component {
                 <StatusBar
                     hidden={true}
                 />
-
                 <Content>
                     {
                         (!this.props.post.isLoading)
@@ -54,20 +54,39 @@ class getFullInfoAboutOnePostComponent extends Component {
 
                                         {/*PHOTO*/}
                                         <CardItem cardBody>
-                                            <Body>
-                                            <Image source={{uri: this.props.post.image_url}}
-                                                   style={[part.imageInGetFull, part.shadow]}
-                                            />
+                                            {
+                                                (1)
+                                                    ?
+                                                    (
+                                                        <View style={part.shadow}>
+                                                            <Image source={{uri: this.props.post.image_url}}
+                                                                   style={[part.imageInGetFull]}
+                                                            />
 
-                                            </Body>
+                                                        </View>
+                                                    )
+                                                    :
+                                                    (
+                                                        <View style={part.shadow}>
+                                                            <Video source={{uri: this.props.post.image_url}}
+                                                                   style={[part.imageInGetFull]}
+                                                            />
+
+                                                        </View>
+                                                    )
+                                            }
+
                                             <View style={part.iconInDrawer}>
                                                 <Left>
                                                     <TouchableOpacity
                                                         onPress={() => this.props.navigation.goBack()}
                                                     >
-                                                        <Icon name="entypo|chevron-thin-left" style={{zIndex: 100}}
+                                                        <Icon name="entypo|chevron-thin-left"
+                                                              style={part.shadow}
                                                               size={size.iconBig}
-                                                              color={color.navTitle}/>
+                                                              color={color.navTitle}
+
+                                                        />
                                                     </TouchableOpacity>
 
                                                 </Left>

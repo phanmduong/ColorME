@@ -35,8 +35,9 @@ class searchUser extends Component {
                         (
                             <FlatList
                                 onEndReachedThreshold={5}
-                                onEndReached={() => {
-                                }}
+                                onEndReached={() =>
+                                    this.props.getMoreUser()
+                                }
                                 data={this.props.users}
                                 renderItem={({item}) =>
                                     <ListItem avatar style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>

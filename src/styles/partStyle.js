@@ -98,7 +98,7 @@ const part = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: color.none,
         position: 'absolute',
-        top: 15,
+        top: 20,
         left: 10,
     },
     iconLikeInImage:{
@@ -204,6 +204,14 @@ const part = StyleSheet.create({
         position: 'relative',
         resizeMode: 'cover',
     },
+    video: {
+        margin: 3,
+        height: 400,
+        width: size.wid- 30,
+        flex: 1,
+        borderRadius: 5,
+        position: 'relative',
+    },
     imageInGetFull: {
         opacity: 1,
         height: 240,
@@ -230,6 +238,12 @@ const part = StyleSheet.create({
         height: size.wid/ 3 - 15,
         borderRadius: 5,
         resizeMode: 'cover'
+    },
+    videoInGrid: {
+        backgroundColor: color.icon,
+        width: size.wid*2/3 - 22,
+        height: size.wid*2/ 3 - 22,
+        borderRadius: 5,
     },
     imageInFeature:{
         position: 'relative',
@@ -432,7 +446,6 @@ const part = StyleSheet.create({
         shadowOffset: {width: 0, height: 0},
     },
     cardHeader:{
-        width: wid,
         margin: 0,
 
     },
@@ -454,6 +467,12 @@ const part = StyleSheet.create({
     wrapperGridImage: {
         width: (size.wid - 20) / 3,
         height: (size.wid - 20) / 3,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    wrapperGridVideo: {
+        width: (size.wid - 20) * 2 / 3,
+        height: (size.wid - 20) * 2/ 3,
         justifyContent: 'center',
         alignItems: 'center',
     },

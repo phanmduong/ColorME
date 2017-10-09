@@ -61,11 +61,8 @@ class searchProduct extends Component {
                                     </ListItem>
                                 }
                             />
-
-
                         )
                 }
-
             </Content>
         );
     }

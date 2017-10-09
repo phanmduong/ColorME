@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {
-    FlatList, TouchableOpacity, Image, StatusBar, View, Picker,
+    FlatList, TouchableOpacity, Image, StatusBar, View,
 } from 'react-native';
 import {
-    Title, Container, Header, Content, Card, CardItem, Item,
+    Container, Header, Content, Card, CardItem, Item, Picker,
     Thumbnail, Text, Button, Left, Body, Right, ListItem, Spinner
 } from 'native-base';
+import Video from 'react-native-video';
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
@@ -19,9 +20,15 @@ class newFeedComponent extends Component {
     constructor() {
         super();
         this.state = {
-            grid: false,
+            grid: true,
             page_id: 1,
+            typeView: "",
         }
+    }
+
+    onValueChange(value: string) {
+        this.setState({typeView: value});
+        this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
     }
 
     viewList() {
@@ -38,14 +45,14 @@ class newFeedComponent extends Component {
 
 
     componentWillMount() {
-        this.props.getNewFeedAction.getNewFeed(7, this.state.page_id);
+        this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
     }
 
     getMoreNewFeed() {
         let page_id = this.state.page_id;
         page_id++;
         this.setState({page_id: page_id});
-        this.props.getNewFeedAction.getNewFeed(7, this.state.page_id);
+        this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
     }
 
 
@@ -58,8 +65,19 @@ class newFeedComponent extends Component {
 
                 <View>
                     <Item style={[part.itemTab, part.shadow]}>
-                        <Left>
-
+                        <Left style={{flexDirection: 'row'}}>
+                            <Picker
+                                iosHeader="Select one"
+                                mode="dropdown"
+                                textStyle={part.describeDarkGray}
+                                selectedValue={this.state.typeView}
+                                onValueChange={this.onValueChange.bind(this)}
+                            >
+                                <Item label="Mới nhất" value=""/>
+                                <Item label="Hôm nay" value="1"/>
+                                <Item label="7 ngày qua" value="7"/>
+                                <Item label="30 ngày qua" value="30"/>
+                            </Picker>
                         </Left>
                         <Right style={part.rightTab}>
                             {
@@ -112,64 +130,66 @@ class newFeedComponent extends Component {
                 </View>
 
 
-                <Content onMomentumScrollEnd={() => this.getMoreNewFeed()} style={[part.padding, part.marginTop]}>
+                <Content onMomentumScrollEnd={() => this.getMoreNewFeed} style={[part.padding, part.marginTop]}>
                     {
                         (this.state.grid)
                             ?
                             (
                                 <View style={[part.wrapperGrid, part.shadow]}>
-                                    {
-                                        (this.props.isLoading)
-                                            ?
-                                            (
-                                                <View
-                                                    style={{
-                                                        flex: 1,
-                                                        justifyContent: 'center',
-                                                        alignItems: 'center',
-                                                    }}
-                                                >
-                                                    <Spinner
-                                                        size={30}
-                                                        color={color.gray}/>
-                                                </View>
-                                            )
-                                            :
-                                            (
-                                                <View style={part.featureWrapper}>
-                                                    <Image
-                                                        style={[part.imageInFeature, part.shadow]}
-                                                        source={{uri: 'https://www.w3schools.com/css/trolltunga.jpg'}}
-                                                    />
-                                                    <View style={part.textInImage}>
-                                                        <Text
-                                                            numberOfLines={2}
-                                                            style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
-                                                        >
-                                                            Top of the day
-                                                        </Text>
-                                                    </View>
-                                                </View>
-                                            )
-
-                                    }
+                                    <View style={part.featureWrapper}>
+                                        <Image
+                                            style={[part.imageInFeature, part.shadow]}
+                                            source={{uri: 'https://www.w3schools.com/css/trolltunga.jpg'}}
+                                        />
+                                        <View style={part.textInImage}>
+                                            <Text
+                                                numberOfLines={2}
+                                                style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
+                                            >
+                                                Top of the day
+                                            </Text>
+                                        </View>
+                                    </View>
                                     {
                                         this.props.products.map((item, i) => {
-                                            if (i > 0) {
-                                                return (
-                                                    <View key={i} style={part.wrapperGridImage}>
-                                                        <TouchableOpacity
-                                                            onPress={() => this.props.navigation.navigate('PostStack', {product_id: item.id})}
-                                                        >
-                                                            <Image
-                                                                style={[part.imageInGrid]}
-                                                                source={{uri: item.thumb_url}}
-                                                            />
-                                                        </TouchableOpacity>
+                                            return (
+                                                (item.url.indexOf('.mp4') === -1)
+                                                    ?
+                                                    (
+                                                        <View key={i} style={part.wrapperGridImage}>
+                                                            <TouchableOpacity
+                                                                onPress={() => this.props.navigation.navigate('PostStack', {product_id: item.id})}
+                                                            >
+                                                                <Image
+                                                                    style={[part.imageInGrid]}
+                                                                    source={{uri: item.thumb_url}}
+                                                                />
+                                                            </TouchableOpacity>
+                                                        </View>
+                                                    )
+                                                    :
+                                                    (
 
-                                                    </View>
-                                                )
-                                            }
+                                                        <View key={i} style={part.wrapperGridVideo}>
+                                                            <TouchableOpacity
+                                                                onPress={() => this.props.navigation.navigate('PostStack', {product_id: item.id})}
+                                                            >
+                                                                <Video
+                                                                    repeat
+                                                                    rate={1.0}                   // 0 is paused, 1 is normal.
+                                                                    volume={1.0}                 // 0 is muted, 1 is normal.
+                                                                    muted={true}                // Mutes the audio entirely.
+                                                                    paused={false}
+                                                                    resizeMode={'cover'}
+                                                                    style={[part.videoInGrid]}
+                                                                    source={{uri: item.url}}
+                                                                />
+                                                            </TouchableOpacity>
+                                                        </View>
+                                                    )
+                                            )
+
+
                                         })
                                     }
                                 </View>
@@ -182,8 +202,7 @@ class newFeedComponent extends Component {
                                             return (
                                                 <Card key={i} style={part.card}>
                                                     <CardItem header style={part.cardHeader}>
-                                                        <Left
-                                                        >
+                                                        <Left>
                                                             <TouchableOpacity
                                                                 onPress={() => this.props.navigation.navigate('UserStack', {username: item.author.username})}>
                                                                 <Thumbnail circle small
@@ -199,13 +218,13 @@ class newFeedComponent extends Component {
                                                                 style={part.describeItalicDark}>{item.created_at}</Text>
                                                             </Body>
                                                             <Right>
-                                                                <Button transparent>
+                                                                <TouchableOpacity transparent>
                                                                     <Icon name="materialCommunity|dots-horizontal"
                                                                           color={color.icon}
                                                                           size={size.icon}
                                                                           style={part.paddingRight}
                                                                     />
-                                                                </Button>
+                                                                </TouchableOpacity>
                                                             </Right>
                                                         </Left>
                                                     </CardItem>
@@ -216,17 +235,39 @@ class newFeedComponent extends Component {
                                                         <TouchableOpacity
                                                             onPress={() => this.props.navigation.navigate('PostStack', {product_id: item.id})}>
                                                             <Body>
-                                                                <Image source={{uri: item.image_url}}
-                                                                       style={[part.image, part.shadow]}
-                                                                />
-                                                                <View style={part.textInImage}>
-                                                                    <Text
-                                                                        numberOfLines={2}
-                                                                        style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
-                                                                    >
-                                                                        {item.title}
-                                                                    </Text>
-                                                                </View>
+                                                            {
+                                                                (item.url.indexOf('.mp4') === -1)
+                                                                    ?
+                                                                    (
+                                                                        <Image
+                                                                            resizeMode={'cover'}
+                                                                            source={{uri: item.image_url}}
+                                                                            style={[part.image, part.shadow]}
+                                                                        />
+                                                                    )
+                                                                    :
+                                                                    (
+                                                                        <Video
+                                                                            repeat
+                                                                            rate={1.0}                   // 0 is paused, 1 is normal.
+                                                                            volume={1.0}                 // 0 is muted, 1 is normal.
+                                                                            muted={true}                // Mutes the audio entirely.
+                                                                            paused={false}
+                                                                            resizeMode={'cover'}
+                                                                            source={{uri: item.url}}
+                                                                            style={[part.video, part.shadow]}
+                                                                        />
+                                                                    )
+                                                            }
+
+                                                            <View style={part.textInImage}>
+                                                                <Text
+                                                                    numberOfLines={2}
+                                                                    style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
+                                                                >
+                                                                    {item.title}
+                                                                </Text>
+                                                            </View>
                                                             </Body>
                                                         </TouchableOpacity>
                                                     </CardItem>
@@ -282,7 +323,7 @@ function mapStateToProps(state) {
         user: state.login.user,
         userID: state.login.userID,
         token: state.login.token,
-        isLoading: state.getNewFeed.products.isLoading,
+        isLoading: state.getNewFeed.isLoading,
     }
 }
 

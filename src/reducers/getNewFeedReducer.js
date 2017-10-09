@@ -30,7 +30,6 @@ export default function getNewFeedReducer(state = initialState.getNewFeed, actio
                 ...{
                     isLoading: action.isLoading,
                     error: action.error,
-                    result : action.result
                 }
             }
         }

@@ -28,8 +28,8 @@ class searchComponent extends Component {
 
 
     search() {
-        this.props.searchAction.searchUsers(this.state.txtSearch, 30, 1);
-        this.props.searchAction.searchProducts(this.state.txtSearch, 30, 1);
+        this.props.searchAction.searchUsers(this.state.txtSearch, 5, 1);
+        this.props.searchAction.searchProducts(this.state.txtSearch, 5, 1);
 
     }
     getMoreUser() {
