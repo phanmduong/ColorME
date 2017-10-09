@@ -3,13 +3,13 @@ import {
     Image, Dimensions, FlatList, TouchableOpacity, View
 } from 'react-native';
 import {
-    Title, Container, Header, Content, Card, CardItem, Thumbnail, Text, CheckBox,
-    Button, Left, Body, Right, TabHeading, List, ListItem,
+    Content, Spinner
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import part from '../../styles/partStyle';
 import * as size from '../../styles/size';
-import * as getUserProfileAction from '../../actions/getUserProfileAction';
+import * as color from '../../styles/color';
+import * as userInformationAction from '../../actions/userInformationAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
@@ -18,16 +18,23 @@ class Project extends Component {
         return (
             <Content style={[part.wrapperContainer, part.padding]}>
                 {
-                    (this.props.products.length === 0)
+                    (this.props.isLoadingUserProducts)
                         ?
                         (
-                            <Body>
-                                <Text style={[part.padding, part.describeDark]}>{this.props.user.name} chưa có dự án nào.</Text>
-                            </Body>
+                            <View
+                                style={{
+                                    flex: 1,
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Spinner
+                                    color={color.gray}/>
+                            </View>
                         )
                         :
                         (
-                            <View style={part.wrapperGrid}>
+                            <View style={[part.wrapperGrid]}>
                                 {
                                     this.props.products.map((item, i) => {
                                             return (
@@ -47,7 +54,6 @@ class Project extends Component {
                                     )
                                 }
                             </View>
-
                         )
                 }
             </Content>
@@ -58,14 +64,15 @@ class Project extends Component {
 
 function mapStateToProps(state) {
     return {
-        products: state.getUserProfile.products,
-        user: state.getUserProfile.user,
+        products: state.userInformation.products,
+        user: state.userInformation.user,
+        isLoadingUserProducts: state.userInformation.isLoadingUserProducts,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getUserProfileAction: bindActionCreators(getUserProfileAction, dispatch),
+        userInformationAction: bindActionCreators(userInformationAction, dispatch),
     }
 }
 

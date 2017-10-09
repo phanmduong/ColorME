@@ -251,6 +251,11 @@ const part = StyleSheet.create({
         color: color.text,
         fontWeight: '800',
     },
+    titleLargeDarkBold:{
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: color.text,
+    },
     titleLargeGrayDark:{
         fontSize: 25,
         color: color.darkGray,
@@ -399,7 +404,9 @@ const part = StyleSheet.create({
     marginStatusBar: {
         marginTop: 20,
     },
-
+    noMarginLeft:{
+        marginLeft: 0,
+    },
     // LIST ITEM
     listItem: {
         backgroundColor: color.backGround,
@@ -463,8 +470,14 @@ const part = StyleSheet.create({
         shadowColor: 'black',
         shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.2,
-    }
+    },
 
+
+    //
+    haveBorderBottom:{
+        borderBottomWidth: 0.5,
+        borderColor: color.icon,
+    },
 });
 
 

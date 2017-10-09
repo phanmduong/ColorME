@@ -67,7 +67,7 @@ class newFeedComponent extends Component {
                                     ?
                                     (
                                         <Right style={part.rightTab}>
-                                            <TouchableOpacity>
+                                            <TouchableOpacity style={{backgroundColor: 'transparent'}}>
                                                 <Icon name="material|view-list"
                                                       color={color.icon}
                                                       size={size.icon}
@@ -75,7 +75,7 @@ class newFeedComponent extends Component {
                                                       onPress={() => this.viewList()}
                                                 />
                                             </TouchableOpacity>
-                                            <TouchableOpacity>
+                                            <TouchableOpacity style={{backgroundColor: 'transparent'}}>
                                                 <Icon name="material|view-module"
                                                       color={color.darkGray}
                                                       size={size.icon}
@@ -83,14 +83,12 @@ class newFeedComponent extends Component {
                                                       onPress={() => this.viewGrid()}
                                                 />
                                             </TouchableOpacity>
-
-
                                         </Right>
                                     )
                                     :
                                     (
                                         <Right style={part.rightTab}>
-                                            <TouchableOpacity>
+                                            <TouchableOpacity style={{backgroundColor: 'transparent'}}>
                                                 <Icon name="material|view-list"
                                                       color={color.darkGray}
                                                       size={size.icon}
@@ -98,7 +96,7 @@ class newFeedComponent extends Component {
                                                       onPress={() => this.setState({grid: false})}
                                                 />
                                             </TouchableOpacity>
-                                            <TouchableOpacity>
+                                            <TouchableOpacity style={{backgroundColor: 'transparent'}}>
                                                 <Icon name="material|view-module"
                                                       color={color.icon}
                                                       size={size.icon}
@@ -106,7 +104,6 @@ class newFeedComponent extends Component {
                                                       onPress={() => this.setState({grid: true})}
                                                 />
                                             </TouchableOpacity>
-
                                         </Right>
                                     )
                             }

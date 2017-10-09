@@ -6,11 +6,7 @@ import {
     Title, Container, Header, Content, Card, CardItem, Thumbnail, Text, CheckBox,
     Button, Left, Body, Right, Tabs, Tab, TabHeading, List, ListItem,
 } from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import part from '../../styles/partStyle';
-import * as color from '../../styles/color';
-import * as size from '../../styles/size';
-import * as getUserProfileAction from '../../actions/getUserProfileAction';
+import * as userInformationAction from '../../actions/userInformationAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {User} from '../../navigators/appRouter';
@@ -33,14 +29,14 @@ class myAccountComponent extends Component {
 function mapStateToProps(state) {
     return {
         user: state.login.user,
-        productsUser: state.getUserProfile.productsUser,
+        productsUser: state.userInformation.productsUser,
 
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getUserProfileAction: bindActionCreators(getUserProfileAction, dispatch),
+        userInformationAction: bindActionCreators(userInformationAction, dispatch),
     }
 }
 

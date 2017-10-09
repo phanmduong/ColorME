@@ -1,47 +1,66 @@
 import React, {Component} from 'react';
 import {
-    FlatList, Image
+    FlatList, Image, View
 } from 'react-native';
 import {
-    Title, Container, Header, Content, Card, CardItem, Thumbnail, Text, CheckBox,
-    Button, Left, Body, Right, Tabs, Tab, TabHeading, List, ListItem,
+    Content, Card, CardItem, Text,
+    Left, Body, Right, List, ListItem, Spinner
 } from 'native-base';
 import part from '../../styles/partStyle';
-import * as getUserProfileAction from '../../actions/getUserProfileAction';
+import * as userInformationAction from '../../actions/userInformationAction';
+import * as color from '../../styles/color';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 class Progress extends Component {
     render() {
         return (
-            <Content style={part.wrapperContainer}>
+            <Content style={[part.wrapperContainer, part.padding]}>
                 {
-                    (this.props.progress.length === 0)
+
+                    (this.props.isLoadingUserProgress)
                         ?
-                        (
-                            <Body>
-                                <Text style={[part.padding, part.describeDark]}>{this.props.user.name} chưa tham gia khóa học nào.</Text>
-                            </Body>
-                        )
+                        (<View
+                            style={{
+                                flex: 1,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Spinner
+                                color={color.gray}/>
+                        </View>)
                         :
                         (
-                            <FlatList
-                            onEndReachedThreshold={5}
-                            data={this.props.progress}
-                            renderItem={({item}) =>
-                                <Card style={[part.noBorder]}>
-                                    <CardItem style={[part.noBorder, part.cardProgress]}>
-                                        <Left>
-                                            <Image style={part.avatarUserNormal}
-                                                source={{uri: item.icon_url}}/>
-                                            <Body>
-                                            <Text style={part.titleSmallDarkGrayBold}>{item.name}</Text>
-                                            <Text style={part.titleSmallDarkGrayBold}>{item.study_time}</Text>
-                                            </Body>
-                                        </Left>
-                                    </CardItem>
-                                </Card>
-                            }/>
+                            (this.props.progress.length === 0)
+                                ?
+                                (
+                                    <Body>
+                                    <Text style={[part.padding, part.describeDark]}>{this.props.user.name} chưa tham gia
+                                        khóa học nào.</Text>
+                                    </Body>
+                                )
+                                :
+                                (
+                                    <FlatList
+                                        onEndReachedThreshold={5}
+                                        data={this.props.progress}
+                                        renderItem={({item}) =>
+                                            <Card style={[part.noBorder]}>
+                                                <CardItem style={[part.noBorder, part.cardProgress]}>
+                                                    <Left>
+                                                        <Image style={part.avatarUserNormal}
+                                                               source={{uri: item.icon_url}}/>
+                                                        <Body>
+                                                        <Text style={part.titleSmallDarkGrayBold}>{item.name}</Text>
+                                                        <Text
+                                                            style={part.titleSmallDarkGrayBold}>{item.study_time}</Text>
+                                                        </Body>
+                                                    </Left>
+                                                </CardItem>
+                                            </Card>
+                                        }/>
+                                )
                         )
                 }
             </Content>
@@ -50,15 +69,16 @@ class Progress extends Component {
 }
 
 function mapStateToProps(state) {
-    return{
-        progress: state.getUserProfile.progress,
-        user: state.getUserProfile.user,
+    return {
+        progress: state.userInformation.progress,
+        user: state.userInformation.user,
+        isLoadingUserProgress: state.userInformation.isLoadingUserProgress,
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return{
-        getUserProfileAction: bindActionCreators(getUserProfileAction, dispatch),
+    return {
+        userInformationAction: bindActionCreators(userInformationAction, dispatch),
     }
 }
 

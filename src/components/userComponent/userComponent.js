@@ -10,7 +10,7 @@ import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
-import * as getUserProfileAction from '../../actions/getUserProfileAction';
+import * as userInformationAction from '../../actions/userInformationAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {User} from '../../navigators/appRouter';
@@ -21,9 +21,9 @@ class userComponent extends Component {
     }
 
     componentWillMount() {
-        this.props.getUserProfileAction.getUserProfile(this.props.navigation.state.params.username);
-        this.props.getUserProfileAction.getProgress(this.props.navigation.state.params.username);
-        this.props.getUserProfileAction.getProductsOfUser(this.props.navigation.state.params.username, 1, this.props.token);
+        this.props.userInformationAction.getUserProfile(this.props.navigation.state.params.username);
+        this.props.userInformationAction.getUserProgress(this.props.navigation.state.params.username);
+        this.props.userInformationAction.getUserProducts(this.props.navigation.state.params.username, 1, this.props.token);
     }
 
     render() {
@@ -84,14 +84,14 @@ class userComponent extends Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.getUserProfile.user,
+        user: state.userInformation.user,
         token: state.login.token,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getUserProfileAction: bindActionCreators(getUserProfileAction, dispatch),
+        userInformationAction: bindActionCreators(userInformationAction, dispatch),
     }
 }
 

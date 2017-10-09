@@ -13,7 +13,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 class searchProduct extends Component {
-    constructor(){
+    constructor() {
         super();
 
     }
@@ -33,7 +33,6 @@ class searchProduct extends Component {
                                 }}
                             >
                                 <Spinner
-                                    size
                                     color={color.gray}/>
                             </View>
                         )
@@ -46,22 +45,20 @@ class searchProduct extends Component {
                                 }}
                                 data={this.props.products}
                                 renderItem={({item}) =>
-                                    <ListItem avatar style={part.padding}
-                                    >
+                                    <ListItem avatar style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
                                         <Left>
                                             <Thumbnail
                                                 source={{uri: item.author.avatar_url}}/>
                                         </Left>
-                                        <Body>
-                                        <Text style={part.titleSmallDark}>{item.author.name}</Text>
-                                        <Text style={part.describeGray} note
-                                              onPress={() => this.props.navigation.navigate('Post', {product_id: item.id})}
-                                        >{item.title}</Text>
+                                        <Body style={part.noBorder}>
+                                        <Text style={part.titleSmallBlue}>{item.author.name}</Text>
+                                        <Text style={part.describeGray} note>{item.title}</Text>
                                         </Body>
-                                        <Right/>
                                     </ListItem>
                                 }
                             />
+
+
                         )
                 }
 

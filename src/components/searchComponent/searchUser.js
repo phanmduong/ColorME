@@ -28,7 +28,6 @@ class searchUser extends Component {
                                 }}
                             >
                                 <Spinner
-                                    size
                                     color={color.gray}/>
                             </View>
                         )
@@ -41,14 +40,14 @@ class searchUser extends Component {
                                 }}
                                 data={this.props.users}
                                 renderItem={({item}) =>
-                                    <ListItem avatar style={part.padding}>
+                                    <ListItem avatar style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
                                         <Left>
                                             <Thumbnail
                                                 source={{uri: item.avatar_url}}/>
                                         </Left>
-                                        <Body>
-                                        <Text style={part.titleSmallDark}>{item.name}</Text>
-                                        <Text style={part.describeGray} note>{item.university}</Text>
+                                        <Body style={part.noBorder}>
+                                            <Text style={part.titleSmallBlue}>{item.name}</Text>
+                                            <Text style={part.describeGray} note>{item.university}</Text>
                                         </Body>
                                     </ListItem>
                                 }

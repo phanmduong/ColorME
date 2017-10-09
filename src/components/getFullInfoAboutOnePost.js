@@ -133,8 +133,6 @@ class getFullInfoAboutOnePostComponent extends Component {
                                             </Item>
                                         </CardItem>
                                     </View>
-
-
                                 </View>
 
                             )

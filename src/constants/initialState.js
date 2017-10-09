@@ -29,7 +29,13 @@ export default {
         error: false,
         result: false,
     },
-    getUserProfile : {
+    userInformation : {
+        isLoadingUserProfile: false,
+        isLoadingUserProducts: false,
+        isLoadingUserProgress: false,
+        errorUserProfile: false,
+        errorUserProducts: false,
+        errorUserProgress: false,
         user:{},
         products: [],
         progress: [],

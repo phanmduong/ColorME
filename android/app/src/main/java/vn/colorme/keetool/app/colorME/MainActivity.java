@@ -1,4 +1,4 @@
-package com.colorme;
+package vn.colorme.keetool.app.colorME;
 
 import com.facebook.react.ReactActivity;
 

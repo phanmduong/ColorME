@@ -1,9 +1,12 @@
-    import React, {Component} from 'react';
-import {TouchableOpacity} from 'react-native';
+import React, {Component} from 'react';
+import {
+    TouchableOpacity, View
+} from 'react-native';
 import {
     Title, Container, Header, Content, Card, CardItem, Thumbnail, Form, Label,
-    Text, Button, Icon, Left, Body, Right, List, ListItem, Item, Input, Spinner
+    Text, Button,Left, Body, Right, List, ListItem, Item, Input, Spinner
 } from 'native-base';
+import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
@@ -20,15 +23,18 @@ class searchComponent extends Component {
             page_user: 1,
             page_product: 1,
         }
-        this.getMoreProduct = this.getMoreProduct.bind(this)
-        this.getMoreUser = this.getMoreUser.bind(this)
+        this.getMoreProduct = this.getMoreProduct.bind(this);
+        this.getMoreUser = this.getMoreUser.bind(this);
 
     }
 
     search() {
         this.props.searchAction.searchUsers(this.state.txtSearch, 30, 1);
         this.props.searchAction.searchProducts(this.state.txtSearch, 30, 1);
-
+    }
+    search() {
+        this.props.searchAction.searchUsers(this.state.txtSearch, 30, 1);
+        this.props.searchAction.searchProducts(this.state.txtSearch, 30, 1);
     }
     getMoreUser() {
         let page_user = this.state.page_user;
@@ -46,16 +52,54 @@ class searchComponent extends Component {
 
     render() {
         return (
-            <Container style={part.wrapperContainer}>
-                <Item style={part.borderNone}>
-                    <Input placeholder="Nhập tên người dùng, bài đăng..."
-                           style={part.inputTheme01}
-                           onChangeText={(text) => this.setState({txtSearch: text})}
-                    />
+            <Container style={[part.wrapperContainer, part.padding]}>
+                <Item style={[part.noBorder, part.marginStatusBar]}>
+                    <Left>
+                        <TouchableOpacity
+                            style={{marginLeft: -5}}
+                            onPress={() => this.props.navigation.goBack()}
+                        >
+                            <Icon name="entypo|chevron-thin-left"
+                                  size={30}
+                                  color={color.darkGray}/>
+                        </TouchableOpacity>
+                    </Left>
+                </Item>
+                <Item style={part.noBorder}>
                     <TouchableOpacity onPress={() => this.search()}>
-                        <Icon name="search" style={part.padding} size={size.icon} color={color.gray}/>
+                        <Text style={[part.titleLargeDarkBold, part.paddingLine]}>
+                            Tìm kiếm
+                        </Text>
                     </TouchableOpacity>
                 </Item>
+
+                <Item regular style={part.margin}>
+                    <Input
+                        placeholder="Nhập từ khóa"
+                        placeholderTextColor={color.gray}
+                        style={part.inputTheme02}
+                        onChangeText={(txtSearch) => this.setState({txtSearch: txtSearch})}
+                    />
+                </Item>
+                <View style={{height: 30}}>
+                    {
+                        (this.state.txtSearch !== '')
+                            ?
+                            (
+                                <Text  numberOfLines={1}
+                                       style={[part.describeGray, {paddingLeft: 2, paddingTop: 5}]}
+                                >
+                                    Kết quả tìm kiếm cho từ khóa &nbsp;
+                                    <Text style={part.titleSmallDarkGrayBold}>
+                                        "{this.state.txtSearch}"
+                                    </Text>
+                                </Text>
+                            )
+                            :
+                            (<Text/>)
+                    }
+                </View>
+
                 <SearchTab
                     getMoreUser={this.getMoreUser}
                     getMoreProduct={this.getMoreProduct}
@@ -70,6 +114,7 @@ function mapStateToProps(state) {
     return {
         users: state.search.users,
         products: state.search.products,
+        isLoading: state.search.isLoading,
     }
 }
 

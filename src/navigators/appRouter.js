@@ -23,7 +23,7 @@ import getFullInfoAboutOnePostComponent from '../components/getFullInfoAboutOneP
 
 // USER SCREEN
 import userComponent from '../components/userComponent/userComponent';
-import information from '../components/userComponent/information';
+import information from '../components/userComponent/profile';
 import project from '../components/userComponent/project';
 import process from '../components/userComponent/progress';
 
@@ -135,11 +135,32 @@ export const SearchTab = TabNavigator(
         SearchProduct: {
             screen: searchProduct,
             navigationOptions: {
-                tabBarLabel: 'Bài đăng',
+                tabBarLabel: 'Dự án',
             }
         },
+
     },
-    TabNavigatorTopStyle
+    {
+        initialRouteName: 'SearchUser',
+        tabBarPosition: 'top',
+        tabBarOptions: {
+            activeTintColor: color.darkGray,
+            inactiveTintColor: color.icon,
+            style: {
+                height: 40,
+                borderTopWidth: 0,
+                borderBottomWidth: 0.5,
+                borderColor: color.icon,
+                paddingBottom: 20,
+                backgroundColor: color.navTitle
+            },
+            labelStyle: {
+                fontWeight: '700',
+                fontSize: size.describe,
+            },
+
+        }
+    }
 );
 
 export const Setting = StackNavigator(
@@ -153,35 +174,30 @@ export const Setting = StackNavigator(
         AboutUs: {
             screen: aboutUs,
             navigationOptions: {
-
                 tabBarVisible: false,
             },
         },
         ChangePassword: {
             screen: changePassword,
             navigationOptions: {
-
                 tabBarVisible: false,
             },
         },
         UpdateInformation: {
             screen: updateInformation,
             navigationOptions: {
-
                 tabBarVisible: false,
             },
         },
         ContactUs: {
             screen: contactUs,
             navigationOptions: {
-
                 tabBarVisible: false,
             },
         },
         Feedback: {
             screen: feedback,
             navigationOptions: {
-
                 tabBarVisible: false,
             },
         },
@@ -289,9 +305,6 @@ export const SearchStackNavigator = StackNavigator(
     {
         SearchStack: {
             screen: searchComponent,
-            navigationOptions:{
-                title: 'Thông báo',
-            }
         }
     },StackNavigatorStyle
 );

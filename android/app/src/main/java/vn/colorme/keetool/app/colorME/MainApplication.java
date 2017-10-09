@@ -1,4 +1,4 @@
-package com.colorme;
+package vn.colorme.keetool.app.colorME;
 
 import android.app.Application;
 
