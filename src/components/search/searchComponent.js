@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
 import {
-    TouchableOpacity, View
+    TouchableOpacity, View, StatusBar
 } from 'react-native';
 import {
-    Title, Container, Header, Content, Card, CardItem, Thumbnail, Form, Label,
-    Text, Button,Left, Body, Right, List, ListItem, Item, Input, Spinner
+    Container, Text, Left, List, ListItem, Item, Input, Spinner
 } from 'native-base';
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
-import * as size from '../../styles/size';
 import * as searchAction from '../../actions/searchAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -25,16 +23,14 @@ class searchComponent extends Component {
         }
         this.getMoreProduct = this.getMoreProduct.bind(this);
         this.getMoreUser = this.getMoreUser.bind(this);
-
     }
+
+
 
     search() {
         this.props.searchAction.searchUsers(this.state.txtSearch, 30, 1);
         this.props.searchAction.searchProducts(this.state.txtSearch, 30, 1);
-    }
-    search() {
-        this.props.searchAction.searchUsers(this.state.txtSearch, 30, 1);
-        this.props.searchAction.searchProducts(this.state.txtSearch, 30, 1);
+
     }
     getMoreUser() {
         let page_user = this.state.page_user;
@@ -53,6 +49,10 @@ class searchComponent extends Component {
     render() {
         return (
             <Container style={[part.wrapperContainer, part.padding]}>
+                <StatusBar
+                    barStyle="dark-content"
+                />
+
                 <Item style={[part.noBorder, part.marginStatusBar]}>
                     <Left>
                         <TouchableOpacity
@@ -78,7 +78,11 @@ class searchComponent extends Component {
                         placeholder="Nhập từ khóa"
                         placeholderTextColor={color.gray}
                         style={part.inputTheme02}
-                        onChangeText={(txtSearch) => this.setState({txtSearch: txtSearch})}
+                        onChangeText={(txtSearch) => {
+                            this.setState({txtSearch: txtSearch});
+                                this.search();
+                        }}
+
                     />
                 </Item>
                 <View style={{height: 30}}>

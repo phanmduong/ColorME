@@ -51,9 +51,13 @@ class searchProduct extends Component {
                                                 source={{uri: item.author.avatar_url}}/>
                                         </Left>
                                         <Body style={part.noBorder}>
-                                        <Text style={part.titleSmallBlue}>{item.author.name}</Text>
-                                        <Text style={part.describeGray} note>{item.title}</Text>
+                                            <Text style={part.titleSmallBlue}>{item.author.name}</Text>
+                                            <Text style={part.describeGray} note>{item.title}</Text>
                                         </Body>
+                                        <Right style={part.noBorder}>
+                                            <Thumbnail
+                                                source={{uri: item.thumb_url}}/>
+                                        </Right>
                                     </ListItem>
                                 }
                             />
