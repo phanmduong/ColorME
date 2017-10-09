@@ -9,3 +9,4 @@ export const icon               = 'rgb(214, 214, 214)';
 export const darkGray           = 'rgb(109, 109, 109)';
 export const titleBlue          = 'rgb(0, 128, 214)';
 export const navTabBar          = '#313131';
+export const green              = 'rgb(1, 175, 30)';

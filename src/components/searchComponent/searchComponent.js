@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+    import React, {Component} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {
     Title, Container, Header, Content, Card, CardItem, Thumbnail, Form, Label,

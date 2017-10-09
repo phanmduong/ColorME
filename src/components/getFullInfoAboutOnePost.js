@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import {
-    Body, Button, Card, CardItem, CheckBox, Container, Content,
-    Header, Left, List, ListItem, Right, Tab, TabHeading, Tabs, Text,
+    View, Text, TouchableOpacity, StatusBar, WebView
+} from 'react-native';
+
+import {
+    Body, Button, Card, CardItem, CheckBox, Container, Content, Item,
+    Header, Left, List, ListItem, Right, Tab, TabHeading, Tabs, Spinner,
     Thumbnail, Title,
 } from 'native-base';
 import {Dimensions, Image} from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from '../commons/Icon';
 import part from '../styles/partStyle';
 import * as color from '../styles/color';
 import * as size from '../styles/size';
@@ -36,74 +40,120 @@ class getFullInfoAboutOnePostComponent extends Component {
     render() {
         return (
             <Container style={part.wrapperContainer}>
+                <StatusBar
+                    hidden={true}
+                />
+
                 <Content>
-                    <Card style={{flex: 0}}>
-                    <Body>
-                    <Thumbnail style={[part.avatarUserBig, {marginTop: 20,}]}
-                               source={{uri: this.state.author.avatar_url}}/>
-                    <Text style={[part.padding,part.titleBigDark]}>{this.state.author.name}</Text>
-                    <Text style={part.titleSmallDarkBold}>{this.props.post.title}</Text>
-                    <Text style={part.describeDark}>{this.props.post.description}</Text>
+                    {
+                        (!this.props.post.isLoading)
+                            ?
+                            (
+                                <View>
+                                    <View style={part.cardGetFull}>
 
-                    <CardItem style={{height: 20,marginTop: 20}}>
-                        <Left>
-                            <Button transparent style={part.paddingRight}>
-                                <Icon name="heart-o" size={size.icon}/>
-                                <Text style={part.describeDark}>{this.props.post.likes_count}</Text>
-                            </Button>
-                            <Button transparent style={part.paddingRight}>
-                                <Icon name="comment-o" size={size.icon}/>
-                                <Text style={part.describeDark}>{this.props.post.comments_count}</Text>
-                            </Button>
-                            <Button transparent style={part.paddingRight}>
-                                <Icon name="eye" size={size.icon}/>
-                                <Text style={part.describeDark}>{this.props.post.views_count}</Text>
-                            </Button>
-                        </Left>
-                        <Right>
-                            <Text style={part.describeItalicDark}>{this.props.post.created_at}</Text>
-                        </Right>
-                    </CardItem>
-                    <CardItem style={{padding: 0}} >
-                        <Left>
-                            {
-                                this.state.colors.map((color, i) => {
-                                    return (
-                                        <Button transparent key={i} style={part.paddingRight}>
-                                            <Icon name="circle" size={size.icon} color={'#' + color}/>
-                                        </Button>
-                                    );
-                                })
-                            }
-                        </Left>
-                        <Right>
-                        </Right>
-                    </CardItem>
-                    <CardItem cardBody>
-                        <Body>
-                        <Image resizeMode="stretch" source={{uri: this.props.post.thumb_url}}
-                               style={part.image}
-                        />
-                        </Body>
-                    </CardItem>
-                    {(this.state.more_products.length !== 0) ? (
-                        this.state.more_products.map((product, i) => {
-                            return (
-                                <CardItem key={i} cardBody style={{marginTop: 15}}>
-                                    <Body>
-                                    <Image resizeMode="stretch" source={{uri: product.thumb_url}}
-                                           style={part.image}
-                                    />
-                                    </Body>
-                                </CardItem>
+                                        {/*PHOTO*/}
+                                        <CardItem cardBody>
+                                            <Body>
+                                            <Image source={{uri: this.props.post.image_url}}
+                                                   style={[part.imageInGetFull, part.shadow]}
+                                            />
+
+                                            </Body>
+                                            <View style={part.iconInDrawer}>
+                                                <Left>
+                                                    <TouchableOpacity
+                                                        onPress={() => this.props.navigation.goBack()}
+                                                    >
+                                                        <Icon name="entypo|chevron-thin-left" style={{zIndex: 100}}
+                                                              size={size.iconBig}
+                                                              color={color.navTitle}/>
+                                                    </TouchableOpacity>
+
+                                                </Left>
+                                                <Right style={{right: 10}}>
+                                                </Right>
+                                            </View>
+                                        </CardItem>
+
+
+                                        <CardItem style={part.cardHeader}>
+                                            <Left>
+                                                <TouchableOpacity>
+                                                    <Thumbnail circle
+                                                               source={{uri: this.state.author.avatar_url}}/>
+                                                </TouchableOpacity>
+                                                <Body>
+                                                <Text
+                                                    style={[part.describeDarkGray, part.paddingLine]}>
+                                                    Đăng bởi &nbsp;
+                                                    <Text
+                                                        style={part.titleSmallBlue}>
+                                                        {this.state.author.name}
+                                                    </Text>
+                                                </Text>
+                                                <Text
+                                                    style={[part.describeItalicDark, part.paddingLine]}>
+                                                    {this.props.post.created_at}
+                                                </Text>
+                                                <View style={[{flexDirection: 'row'}, part.paddingLine]}>
+                                                    {
+                                                        this.state.colors.map((color, i) => {
+                                                            return (
+                                                                <Icon key={i} name="fontawesome|circle"
+                                                                      style={part.paddingRight} size={12}
+                                                                      color={'#' + color}/>
+                                                            );
+                                                        })
+                                                    }
+                                                </View>
+                                                </Body>
+                                            </Left>
+                                        </CardItem>
+                                        <TouchableOpacity style={[part.iconLikeInImageFullAbout, part.shadow]}>
+                                            <Icon name="evil|heart"
+                                                  size={30}
+                                                  color={color.navTitle}/>
+                                        </TouchableOpacity>
+                                    </View>
+
+                                    <View style={part.wrapperContainer}>
+                                        <CardItem style={part.cardHeader}>
+                                            <Item style={part.noBorder}>
+                                                <Text style={part.titleLargeGrayDark}>
+                                                    {this.props.post.title}
+                                                </Text>
+                                            </Item>
+                                        </CardItem>
+                                        <CardItem style={part.cardHeader}>
+                                            <Item style={part.noBorder}>
+                                                <Text style={part.describeDarkGray}>
+                                                    {this.props.post.description}
+                                                </Text>
+                                            </Item>
+                                        </CardItem>
+                                    </View>
+
+
+                                </View>
+
                             )
-                        })
-                    ) : (
-                        <Text/>
-                    )}
+                            :
+                            (
+                                <View
+                                    style={{
+                                        flex: 1,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    <Spinner
+                                        size={30}
+                                        color={color.gray}/>
+                                </View>
+                            )
+                    }
 
-                    </Body>
-                    </Card>
                 </Content>
 
             </Container>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    FlatList
+    FlatList, Image
 } from 'react-native';
 import {
     Title, Container, Header, Content, Card, CardItem, Thumbnail, Text, CheckBox,
@@ -29,16 +29,14 @@ class Progress extends Component {
                             onEndReachedThreshold={5}
                             data={this.props.progress}
                             renderItem={({item}) =>
-                                <Card style={{flex: 0}}>
-                                    <CardItem>
+                                <Card style={[part.noBorder]}>
+                                    <CardItem style={[part.noBorder, part.cardProgress]}>
                                         <Left>
-                                            <Thumbnail
+                                            <Image style={part.avatarUserNormal}
                                                 source={{uri: item.icon_url}}/>
                                             <Body>
-                                            <Text style={part.titleSmallDarkBold}>{item.name}</Text>
-                                            <Text style={part.describeDark}>Học lần thứ: {item.time}</Text>
-                                            <Text style={part.describeDark}>{item.description}</Text>
-                                            <Text style={part.describeDark}>Lịch học {item.study_time}</Text>
+                                            <Text style={part.titleSmallDarkGrayBold}>{item.name}</Text>
+                                            <Text style={part.titleSmallDarkGrayBold}>{item.study_time}</Text>
                                             </Body>
                                         </Left>
                                     </CardItem>

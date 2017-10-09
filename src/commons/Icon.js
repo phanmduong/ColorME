@@ -8,6 +8,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Zocial from 'react-native-vector-icons/Zocial';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 const ICON_SET_MAP = {
     fontawesome: FontAwesome,
@@ -18,6 +19,7 @@ const ICON_SET_MAP = {
     simpleline: SimpleLineIcons,
     materialCommunity: MaterialCommunityIcons,
     entypo: Entypo,
+    evil: EvilIcons,
 };
 
 // This is a composition is a drop in replacement for users migrating from the

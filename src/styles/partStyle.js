@@ -13,8 +13,9 @@ const part = StyleSheet.create({
 
     },
     itemTab: {
+        marginLeft: 0,
         padding: 10,
-        height: 60,
+        height: 40,
         backgroundColor: color.backGround,
         borderBottomWidth: 0,
     },
@@ -24,6 +25,14 @@ const part = StyleSheet.create({
         position: 'absolute',
         height: 200,
         width: size.wid * 3/4,
+        backgroundColor: color.none,
+        borderBottomWidth: 0,
+
+    },
+    tabInGetFull: {
+        justifyContent: 'center',
+        position: 'absolute',
+        width: size.wid,
         backgroundColor: color.none,
         borderBottomWidth: 0,
 
@@ -38,9 +47,15 @@ const part = StyleSheet.create({
     wrapperContainer: {
         backgroundColor: color.backGround,
     },
+    wrapperImageInGetFull:{
+        width: size.wid,
+        height: 200,
+        justifyContent: 'center',
+        backgroundColor: 'black'
+    },
     wrapperImageInDrawer:{
         width: size.wid * 3/4,
-        height: 220,
+        height: 180,
         justifyContent: 'center',
         backgroundColor: 'black'
     },
@@ -48,10 +63,14 @@ const part = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: wid - 20,
-        height: 200,
-        backgroundColor: 'red',
+        height: 220,
     },
-
+    wrapperIcon:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 25,
+        width: 25,
+    },
 
     //TITLE
     navTitle: {
@@ -75,9 +94,47 @@ const part = StyleSheet.create({
         margin: 5,
     },
     iconInDrawer:{
+        width: wid - wid/10,
+        flexDirection: 'row',
+        backgroundColor: color.none,
         position: 'absolute',
-        top: 30,
+        top: 15,
         left: 10,
+    },
+    iconLikeInImage:{
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: color.main,
+        bottom: 48,
+        marginBottom: 0,
+        right: 40,
+    },
+    iconAddFriendInProfile:{
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: color.green,
+        marginBottom: 0,
+        right: 20,
+        top: 178,
+    },
+    iconLikeInImageFullAbout:{
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: color.main,
+        right: 20,
+        bottom: 60,
     },
 
     // TEXT INPUT
@@ -121,6 +178,12 @@ const part = StyleSheet.create({
         borderRadius: 50,
         margin: 5,
     },
+    avatarUserNormal: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        margin: 5,
+    },
     avatarUserSmall: {
         width: 40,
         height: 40,
@@ -133,14 +196,31 @@ const part = StyleSheet.create({
         borderColor: color.main
     },
     image: {
+        margin: 3,
         height: 400,
-        width: size.wid+ 2,
+        width: size.wid- 30,
+        flex: 1,
+        borderRadius: 5,
+        position: 'relative',
+        resizeMode: 'cover',
+    },
+    imageInGetFull: {
+        opacity: 1,
+        height: 240,
+        width: size.wid,
+        flex: 1,
+        position: 'relative',
+        resizeMode: 'cover',
+    },
+    imageInUserProfile: {
+        opacity: 0.2,
+        width: size.wid,
         flex: 1,
         position: 'relative',
         resizeMode: 'cover',
     },
     imageInDrawer:{
-        opacity: 0.5,
+        opacity: 0.3,
         flex: 1,
         position: 'relative',
         resizeMode: 'cover',
@@ -152,8 +232,10 @@ const part = StyleSheet.create({
         resizeMode: 'cover'
     },
     imageInFeature:{
-        width: wid - 30,
-        height: 200,
+        position: 'relative',
+        width: wid - 28,
+        height: 210,
+        borderRadius: 5,
     },
 
     //CONTENT
@@ -169,6 +251,11 @@ const part = StyleSheet.create({
         color: color.text,
         fontWeight: '800',
     },
+    titleLargeGrayDark:{
+        fontSize: 25,
+        color: color.darkGray,
+        fontWeight: '600',
+    },
     titleBigLightThin: {
         fontSize: 25,
         color: color.navTitle,
@@ -177,6 +264,11 @@ const part = StyleSheet.create({
     titleSmallDarkBold: {
         fontSize: size.titleSmall,
         color: color.text,
+        fontWeight: '700',
+    },
+    titleSmallDarkGrayBold: {
+        fontSize: size.titleSmall,
+        color: color.darkGray,
         fontWeight: '700',
     },
     titleSmallBlue: {
@@ -202,7 +294,7 @@ const part = StyleSheet.create({
     describeDarkGray: {
         fontSize: size.describe,
         color: 'rgb(89, 89, 89)',
-        fontWeight: '400',
+        fontWeight: '700',
     },
     describeLight: {
         fontSize: size.describe,
@@ -212,7 +304,7 @@ const part = StyleSheet.create({
     describeGray: {
         fontSize: size.describe,
         color: color.gray,
-        fontWeight: '400',
+        fontWeight: '600',
     },
     describeLightGray: {
         fontSize: size.describe,
@@ -226,21 +318,10 @@ const part = StyleSheet.create({
         fontWeight: '400',
     },
     textInImage:{
+        width: wid - 40,
         position: 'absolute',
         backgroundColor: color.none,
         bottom: 20,
-    },
-    iconLikeInImage:{
-        width: 50,
-        height: 50,
-        borderRadius: 25,
-        position: 'absolute',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: color.main,
-        bottom: -25,
-        marginBottom: 0,
-        right: 20,
     },
     titleInImage:{
         color: color.navTitle,
@@ -280,10 +361,43 @@ const part = StyleSheet.create({
     paddingTop: {
         paddingTop: 5,
     },
+    paddingLine:{
+        paddingTop: 3,
+        paddingBottom: 3,
+    },
     paddingTRB: {
         paddingRight: 5,
         paddingBottom: 5,
         paddingTop: 5,
+    },
+
+
+
+    margin: {
+        margin: 10,
+    },
+    margincon: {
+        paddingLeft: 10
+    },
+    marginRight: {
+        marginRight: 5,
+    },
+    marginLeft: {
+        marginLeft: 5,
+    },
+    marginBottom: {
+        marginBottom: 5,
+    },
+    marginTop: {
+        marginTop: 5,
+    },
+    marginTRB: {
+        marginRight: 5,
+        marginBottom: 5,
+        marginTop: 5,
+    },
+    marginStatusBar: {
+        marginTop: 20,
     },
 
     // LIST ITEM
@@ -295,14 +409,37 @@ const part = StyleSheet.create({
 
     //Card
     card: {
-        width: size.wid,
-        marginLeft: -1,
-        borderWidth: 0,
+        position: 'relative',
+        width: size.wid - 10,
+        borderBottomWidth: 0,
         borderColor: color.none,
+        shadowColor: color.none,
+        shadowOffset: {width: 0, height: 0},
+    },
+    cardGetFull: {
+        position: 'relative',
+        width: size.wid - 10,
+        borderBottomWidth: 0,
+        borderColor: color.none,
+        shadowColor: color.none,
+        shadowOffset: {width: 0, height: 0},
+    },
+    cardHeader:{
+        width: wid,
+        margin: 0,
+
+    },
+    cardFooter:{
+        borderBottomWidth: 0.5,
+        borderColor: color.icon,
+    },
+    cardProgress:{
+        margin: 5,
     },
 
     //GRID IMAGE
     wrapperGrid: {
+        width: wid,
         flexDirection: 'row',
         flexWrap: 'wrap',
         flex: 1,
@@ -314,7 +451,12 @@ const part = StyleSheet.create({
         alignItems: 'center',
     },
 
-
+    noBorder:{
+        borderBottomWidth: 0,
+        borderTopWidth: 0,
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
+    },
 
     // SHADOW
     shadow:{

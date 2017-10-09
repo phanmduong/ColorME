@@ -6,15 +6,13 @@ import {
     Title, Container, Header, Content, Card, CardItem, Item,
     Thumbnail, Button, Left, Body, Right, ListItem
 } from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from '../commons/Icon';
 import part from '../styles/partStyle';
-import * as color from '../styles/color';
 import * as size from '../styles/size';
-import {bindActionCreators} from 'redux';
+import * as color from '../styles/color';
 import {connect} from 'react-redux';
 
-
-export default class SlideViewComponent extends Component {
+class SlideViewComponent extends Component {
     constructor() {
         super();
         this.state = {
@@ -28,30 +26,106 @@ export default class SlideViewComponent extends Component {
                 <View style={part.wrapperImageInDrawer}>
                     <Image
                         style={part.imageInDrawer}
-                        source={{uri: 'http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk='}}/>
+                        source={{uri: this.props.user.avatar_url}}/>
                     <View style={part.iconInDrawer}>
-                        <TouchableOpacity onPress={this.props.navigation.navigate('DrawerClose')}>
-                            <Icon name="angle-left" size={size.iconBig}
-                                  color={color.navTitle} style={{backgroundColor: color.none}}
-                            />
-                        </TouchableOpacity>
                     </View>
                     <View style={part.tabInDrawer}>
                         <Item style={{borderBottomWidth: 0,}}>
                             <Left>
                                 <Thumbnail circle large
-                                           source={{uri: 'http://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk='}}/>
+                                           source={{uri: this.props.user.avatar_url}}/>
 
 
                             </Left>
                             <Body style={{alignItems: 'flex-start', marginLeft: -60}}>
-                                <Text style={part.titleNormalLight}>User</Text>
-                                <Text style={part.describeGray}>Đăng xuất</Text>
+                                <Text style={part.titleNormalLight}>{this.props.user.name}</Text>
+                                <View style={{flexDirection: 'row'}}>
+                                    <Text style={part.describeGray}>Đăng xuất&nbsp;</Text>
+                                    <Icon name="entypo|arrow-with-circle-right"
+                                          size={18}
+                                          color={color.gray}/>
+                                </View>
+
                             </Body>
                         </Item>
+
                     </View>
                 </View>
+                <Item style={[part.itemTab, {marginTop: 20}]}>
+                    <Left>
+                        <Text style={part.describeDarkGray}>Cài đặt</Text>
+                    </Left>
+                    <Right>
+                        <TouchableOpacity style={part.wrapperIcon}>
+                            <Icon name="ion|ios-settings"
+                                  size={size.iconNormal}
+                                  color={color.darkGray}/>
+                        </TouchableOpacity>
+                    </Right>
+                </Item>
+                <Item style={[part.itemTab]}>
+                    <Left>
+                        <Text style={part.describeDarkGray}>Đăng ký học</Text>
+                    </Left>
+                    <Right>
+                        <TouchableOpacity style={part.wrapperIcon}>
+                            <Icon name="fontawesome|graduation-cap"
+                                  size={size.iconNormal}
+                                  color={color.darkGray}/>
+                        </TouchableOpacity>
+                    </Right>
+                </Item>
+                <Item style={[part.itemTab]}>
+                    <Left>
+                        <Text style={part.describeDarkGray}>Đổi buổi học</Text>
+                    </Left>
+                    <Right>
+                        <TouchableOpacity style={part.wrapperIcon}>
+                            <Icon name="materialCommunity|arrow-expand"
+                                  size={size.iconNormal}
+                                  color={color.darkGray}/>
+                        </TouchableOpacity>
+                    </Right>
+                </Item>
+                <Item style={[part.itemTab]}>
+                    <Left>
+                        <Text style={part.describeDarkGray}>Lịch học</Text>
+                    </Left>
+                    <Right>
+                        <TouchableOpacity style={part.wrapperIcon}>
+                            <Icon name="fontawesome|calendar"
+                                  size={size.iconNormal}
+                                  color={color.darkGray}/>
+                        </TouchableOpacity>
+                    </Right>
+                </Item>
+                <Item style={[part.itemTab]}>
+                    <Left>
+                        <Text style={part.describeDarkGray}>Thành tích</Text>
+                    </Left>
+                    <Right>
+                        <TouchableOpacity style={part.wrapperIcon}>
+                            <Icon name="materialCommunity|star-circle"
+                                  size={size.iconNormal}
+                                  color={color.darkGray}/>
+                        </TouchableOpacity>
+                    </Right>
+                </Item>
             </Container>
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        user: state.login.user,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SlideViewComponent);

@@ -3,7 +3,7 @@ import {
     DrawerItems
 } from 'react-native';
 import {TabNavigator, StackNavigator, DrawerNavigator} from 'react-navigation';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from '../commons/Icon';
 import * as color from '../styles/color';
 import * as size from '../styles/size';
 
@@ -14,6 +14,7 @@ import tabLoginAndRegister from '../components/loginRegisterComponent/tabLoginAn
 import newFeedComponent from '../components/newfeedComponent/newFeedComponent';
 import messageComponent from '../components/messageComponent/messageComponent';
 import notificationComponent from '../components/notificationComponent';
+import AchievementsComponent from '../components/AchievementsComponent';
 
 import commentComponent from '../components/CommentComponent'
 import SlideViewComponent from '../components/SlideViewComponent'
@@ -91,13 +92,13 @@ export const HomeStackStyle = {
             borderBottomWidth: 0,
             height: 60,
         },
-        headerLeft: (<Icon name="bars"
+        headerLeft: (<Icon name="materialCommunity|menu"
                            color={color.icon}
                            size={size.icon}
                            style={{paddingLeft: 10}}
                            onPress={()=> navigation.navigate('DrawerOpen')}
         />),
-        headerRight: (<Icon name="comments"
+        headerRight: (<Icon name="ion|ios-chatbubbles"
                            color={color.icon}
                            size={size.icon}
                            style={{paddingRight: 10}}
@@ -190,10 +191,10 @@ export const Setting = StackNavigator(
 
 export const User = TabNavigator(
     {
-        Information: {
-            screen: information,
+        Process: {
+            screen: process,
             navigationOptions: {
-                tabBarLabel: 'Thông tin',
+                tabBarLabel: 'Tiến độ',
             }
         },
         Project: {
@@ -202,15 +203,33 @@ export const User = TabNavigator(
                 tabBarLabel: 'Dự án',
             }
         },
-        Process: {
-            screen: process,
+        Information: {
+            screen: information,
             navigationOptions: {
-                tabBarLabel: 'Tiến độ',
+                tabBarLabel: 'Thông tin',
             }
         },
 
     },
-    TabNavigatorTopStyle
+    {
+        initialRouteName: 'Project',
+        tabBarPosition: 'top',
+        tabBarOptions: {
+            activeTintColor: color.darkGray,
+            inactiveTintColor: color.icon,
+            style: {
+                height: 70,
+                borderTopWidth: 0,
+                paddingBottom: 20,
+                backgroundColor: color.navTitle
+            },
+            labelStyle: {
+                fontWeight: '700',
+                fontSize: size.describe,
+            },
+
+        }
+    }
 );
 
 export const NewFeedStackNavigator = StackNavigator(
@@ -225,24 +244,28 @@ export const NewFeedStackNavigator = StackNavigator(
         UserStack: {
             screen: userComponent,
             navigationOptions: {
+                header: null,
                 tabBarVisible: false,
             },
         },
         PostStack: {
             screen: getFullInfoAboutOnePostComponent,
             navigationOptions: {
+                header: null,
                 tabBarVisible: false,
             },
         },
         CourseStack: {
             screen: courseComponent,
             navigationOptions: {
+                header: null,
                 tabBarVisible: false,
             },
         },
         CommentStack: {
             screen: commentComponent,
             navigationOptions: {
+                header: null,
                 tabBarVisible: false,
             }
         }
@@ -303,19 +326,19 @@ export const Home = TabNavigator(
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
                     <Icon
-                        name="bell" size={size.icon}
+                        name="materialCommunity|bell" size={size.icon}
                         color={tintColor}
                     />
                 ),
             }
         },
 
-        Search: {
-            screen: SearchStackNavigator,
+        Achievement: {
+            screen: AchievementsComponent,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
                     <Icon
-                        name="search" size={size.icon}
+                        name="materialCommunity|seal" size={size.icon}
                         color={tintColor}
                     />
                 ),
@@ -326,30 +349,29 @@ export const Home = TabNavigator(
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
                     <Icon
-                        name="home" size={25}
+                        name="ion|ios-home" size={25}
                         color={tintColor}
                     />
                 ),
             }
         },
-        Message: {
-            screen: MessageStackNavigator,
+        Search: {
+            screen: SearchStackNavigator,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
                     <Icon
-                        name="comments" size={size.icon}
+                        name="ion|ios-search" size={size.icon}
                         color={tintColor}
                     />
                 ),
             }
         },
-
         MyAccount: {
             screen: MyAccountStackNavigator,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
                     <Icon
-                        name="user" size={size.icon}
+                        name="fontawesome|user-circle" size={size.icon}
                         color={tintColor}
                     />
                 ),

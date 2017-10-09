@@ -16,7 +16,7 @@ export default class LoginComponent extends Component {
             password: ''
         }
     }
-
+    //
     componentWillMount() {
         this.props.getData();
         setTimeout(() => this.props.signIn(), 500)

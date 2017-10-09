@@ -25,42 +25,42 @@ class notificationComponent extends Component {
     render() {
         return (
             <Container style={part.wrapperContainer}>
-                <Content>
-                    {
-                        (this.props.notification.length === 0)
-                            ?
-                            (
-                                <Body>
-                                <Text style={[part.padding, part.describeDark]}>{} chưa có dự án nào.</Text>
-                                </Body>
-                            )
-                            :
-                            (
-                                < FlatList
-                                    onEndReachedThreshold={5}
-                                    onEndReached={() => {
-                                    }}
-                                    data={this.props.notification}
-                                    renderItem={({item}) =>
-                                        <List>
-                                            <ListItem style={part.listItem}>
-                                                <Thumbnail square size={80}
-                                                           source={{uri: item.actor.avatar_url}}/>
-                                                <Body>
-                                                <Text style={part.titleSmallDarkBold}>{item.actor.name} &nbsp;
-                                                    <Text style={part.describeDark}>{item.type}</Text>
-                                                </Text>
+                {/*<Content>*/}
+                    {/*{*/}
+                        {/*(this.props.notification.length === 0)*/}
+                            {/*?*/}
+                            {/*(*/}
+                                {/*<Body>*/}
+                                    {/*<Text style={[part.padding, part.describeDark]}>{} chưa có thông báo nào.</Text>*/}
+                                {/*</Body>*/}
+                            {/*)*/}
+                            {/*:*/}
+                            {/*(*/}
+                                {/*< FlatList*/}
+                                    {/*onEndReachedThreshold={5}*/}
+                                    {/*onEndReached={() => {*/}
+                                    {/*}}*/}
+                                    {/*data={this.props.notification}*/}
+                                    {/*renderItem={({item}) =>*/}
+                                        {/*<List>*/}
+                                            {/*<ListItem style={part.listItem}>*/}
+                                                {/*<Thumbnail square size={80}*/}
+                                                           {/*source={{uri: item.actor.avatar_url}}/>*/}
+                                                {/*<Body>*/}
+                                                {/*<Text style={part.titleSmallDarkBold}>{item.actor.name} &nbsp;*/}
+                                                    {/*<Text style={part.describeDark}>{item.type}</Text>*/}
+                                                {/*</Text>*/}
 
-                                                <Text note>{item.created_at}</Text>
+                                                {/*<Text note>{item.created_at}</Text>*/}
 
-                                                </Body>
-                                            </ListItem>
-                                        </List>
+                                                {/*</Body>*/}
+                                            {/*</ListItem>*/}
+                                        {/*</List>*/}
 
-                                    }/>
-                            )
-                    }
-                </Content>
+                                    {/*}/>*/}
+                            {/*)*/}
+                    {/*}*/}
+                {/*</Content>*/}
             </Container>
         );
     }
@@ -69,7 +69,6 @@ class notificationComponent extends Component {
 function mapStateToProps(state) {
     return {
         token: state.login.token,
-        notification: state.getNotification.notification
     }
 }
 
