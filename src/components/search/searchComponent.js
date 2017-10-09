@@ -50,7 +50,7 @@ class searchComponent extends Component {
         return (
             <Container style={[part.wrapperContainer, part.padding]}>
                 <StatusBar
-                    barStyle="dark-content"
+                    barStyle="light-content"
                 />
 
                 <Item style={[part.noBorder, part.marginStatusBar]}>

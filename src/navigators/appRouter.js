@@ -8,45 +8,45 @@ import * as color from '../styles/color';
 import * as size from '../styles/size';
 
 // LOGIN
-import tabLoginAndRegister from '../components/loginRegisterComponent/tabLoginAndRegister';
+import tabLoginAndRegister from '../components/loginRegister/tabLoginAndRegister';
 
 // MAIN SCREEN
-import newFeedComponent from '../components/newfeedComponent/newFeedComponent';
-import messageComponent from '../components/messageComponent/messageComponent';
-import notificationComponent from '../components/notificationComponent';
+import newFeedComponent from '../components/newfeed/newFeedComponent';
+import messageComponent from '../components/message/messageComponent';
+import notificationComponent from '../components/NotificationComponent';
 import AchievementsComponent from '../components/AchievementsComponent';
 
 import commentComponent from '../components/CommentComponent'
 import SlideViewComponent from '../components/SlideViewComponent'
 
-import getFullInfoAboutOnePostComponent from '../components/getFullInfoAboutOnePost';
+import getFullInfoAboutOnePostComponent from '../components/GetFullInfoAboutOnePost';
 
 // USER SCREEN
-import userComponent from '../components/userComponent/userComponent';
-import information from '../components/userComponent/profile';
-import project from '../components/userComponent/project';
-import process from '../components/userComponent/progress';
+import userComponent from '../components/user/userComponent';
+import information from '../components/user/profile';
+import project from '../components/user/project';
+import process from '../components/user/progress';
 
 // SEARCH SCREEN
-import searchComponent from '../components/searchComponent/searchComponent';
-import searchUser from '../components/searchComponent/searchUser';
-import searchProduct from '../components/searchComponent/searchProduct';
+import searchComponent from '../components/search/searchComponent';
+import searchUser from '../components/search/searchUser';
+import searchProduct from '../components/search/searchProduct';
 
 // MESSAGE
-import Chat from '../components/messageComponent/chat';
-import OnlineFriend from '../components/messageComponent/onlineFriend';
+import Chat from '../components/message/chat';
+import OnlineFriend from '../components/message/onlineFriend';
 
 // MY ACCOUNT
-import myAccountComponent from '../components/myAccountComponent/myAccountComponent';
+import myAccountComponent from '../components/myAccount/myAccountComponent';
 
 //SETTING
-import setting from '../components/myAccountComponent/setting';
-import aboutUs from '../components/myAccountComponent/aboutUs';
-import changePassword from '../components/myAccountComponent/changePassword';
-import updateInformation from '../components/myAccountComponent/updateInformation';
-import feedback from '../components/myAccountComponent/feedback';
-import contactUs from '../components/myAccountComponent/contactUs';
-import courseComponent from '../components/courseComponent';
+import setting from '../components/myAccount/setting';
+import aboutUs from '../components/myAccount/aboutUs';
+import changePassword from '../components/myAccount/changePassword';
+import updateInformation from '../components/myAccount/updateInformation';
+import feedback from '../components/myAccount/feedback';
+import contactUs from '../components/myAccount/contactUs';
+import courseComponent from '../components/CourseComponent';
 
 export const TabNavigatorTopStyle = {
     tabBarPosition: 'top',

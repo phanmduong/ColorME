@@ -55,12 +55,17 @@ export default {
     },
     getCourse:{
         courses:[],
+        isLoading : false,
+        error : false,
     },
     getNotification:{
         notification:[],
+        isLoading : false,
+        error : false,
     },
     getComment:{
         isLoading : false,
+        error : false,
         comments : []
     }
 }
