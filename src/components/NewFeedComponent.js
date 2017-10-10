@@ -1,10 +1,21 @@
 import React, {Component} from 'react';
+import {Image, StatusBar, TouchableOpacity, View,} from 'react-native';
 import {
-    FlatList, TouchableOpacity, Image, StatusBar, View,
-} from 'react-native';
-import {
-    Container, Header, Content, Card, CardItem, Item, Picker,
-    Thumbnail, Text, Button, Left, Body, Right, ListItem, Spinner
+    Body,
+    Button,
+    Card,
+    CardItem,
+    Container,
+    Content,
+    Header,
+    Item,
+    Left,
+    ListItem,
+    Picker,
+    Right,
+    Spinner,
+    Text,
+    Thumbnail
 } from 'native-base';
 import Video from 'react-native-video';
 import Icon from '../commons/Icon';
@@ -14,7 +25,7 @@ import * as size from '../styles/size';
 import * as getNewFeedAction from '../actions/getNewFeedAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-
+import * as likePostAction from '../actions/likePostAction'
 
 class newFeedComponent extends Component {
     constructor() {
@@ -23,14 +34,15 @@ class newFeedComponent extends Component {
             grid: true,
             page_id: 1,
             typeView: "",
-            listPost: [],
+            arrayLike: [],
+            likeCount: [],
+            listPost: []
         }
     }
 
     onValueChange(value: string) {
         this.setState({typeView: value});
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
-
     }
 
     viewList() {
@@ -45,16 +57,63 @@ class newFeedComponent extends Component {
         this.setState({grid: grid});
     }
 
-    componentDidMount(){
-        this.props.getNewFeedAction.getNewFeed(30, this.state.page_id);
-        this.setState({listPost: this.props.products});
+    // setup
+    componentWillReceiveProps(nextProps) {
+        let post = nextProps.products;
+        let arr = this.state.arrayLike;
+        let count = this.state.likeCount;
+        for (var i = 0; i < post.length; i++) {
+             let likers = post[i].likers.filter((liker) =>{
+                return liker.name == nextProps.user.name
+            });
+            if( likers.length == 0){
+                arr[i] = false;
+            }else{
+                arr[i] = true;
+            }
+            count[i] = post[i].likes_count;
+        }
+        this.setState({likeCount: count})
+        this.setState({arrayLike: arr})
+        console.log(this.state.arrayLike)
     }
 
+    // Function
     getMoreNewFeed() {
         let page_id = this.state.page_id + 1;
         this.setState({page_id: page_id});
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
     }
+
+    likePost(product_id, token, index) {
+        let arrayLike = this.state.arrayLike;
+        let likeCount = this.state.likeCount;
+        if (arrayLike[index] == false) {
+            this.props.likePostAction.likePost(product_id, token);
+            likeCount[index]++;
+            arrayLike[index] = !arrayLike[index]
+        }
+        this.setState({arrayLike: arrayLike});
+        this.setState({likeCount: likeCount});
+    }
+
+    unlikePost(product_id, token, index) {
+        let arrayLike = this.state.arrayLike;
+        let likeCount = this.state.likeCount;
+        if (arrayLike[index] == true) {
+            this.props.likePostAction.unlikePost(product_id, token);
+            likeCount[index]--;
+            arrayLike[index] = !arrayLike[index]
+        }
+        this.setState({arrayLike: arrayLike});
+        this.setState({likeCount: likeCount});
+    }
+
+    componentDidMount() {
+        this.props.getNewFeedAction.getNewFeed(30, this.state.page_id);
+        this.setState({listPost: this.props.products});
+    }
+
     render() {
         return (
             <Container style={part.wrapperContainer}>
@@ -154,6 +213,7 @@ class newFeedComponent extends Component {
                                     </View>
                                     {
                                         this.props.products.map((item, i) => {
+
                                             return (
                                                 (item.url.indexOf('.mp4') === -1)
                                                     ?
@@ -201,6 +261,9 @@ class newFeedComponent extends Component {
                                 <Content>
                                     {
                                         this.props.products.map((item, i) => {
+                                            let {arrayLike} = this.state;
+                                            let {likeCount} = this.state;
+                                            let colorIcon = arrayLike[i] ? "red" : "#d7dde5";
                                             return (
                                                 <Card key={i} style={part.card}>
                                                     <CardItem header style={part.cardHeader}>
@@ -219,13 +282,13 @@ class newFeedComponent extends Component {
                                                             <Text
                                                                 style={part.describeItalicDark}>{item.created_at}</Text>
                                                             </Body>
-                                                                <TouchableOpacity transparent>
-                                                                    <Icon name="materialCommunity|dots-horizontal"
-                                                                          color={color.icon}
-                                                                          size={size.icon}
-                                                                          style={part.paddingRight}
-                                                                    />
-                                                                </TouchableOpacity>
+                                                            <TouchableOpacity transparent>
+                                                                <Icon name="materialCommunity|dots-horizontal"
+                                                                      color={color.icon}
+                                                                      size={size.icon}
+                                                                      style={part.paddingRight}
+                                                                />
+                                                            </TouchableOpacity>
                                                         </Left>
                                                     </CardItem>
 
@@ -275,13 +338,28 @@ class newFeedComponent extends Component {
                                                     {/*LIKE COMMENT VIEWS*/}
                                                     <CardItem footer style={part.cardFooter}>
                                                         <Left>
-                                                            <Button
-                                                                transparent style={part.paddingRight}>
-                                                                <Icon name="fontawesome|heart" size={size.iconBig}
-                                                                      color={color.main}/>
-                                                                <Text
-                                                                    style={[part.describeGray, part.paddingLeft]}>{item.likes_count}</Text>
-                                                            </Button>
+                                                            {(arrayLike[i]) ? (
+                                                                <Button
+                                                                    transparent style={part.paddingRight}
+                                                                    onPress={() => this.unlikePost(item.id, this.props.token, i)}
+                                                                >
+                                                                    <Icon name="fontawesome|heart" size={size.iconBig}
+                                                                          color={colorIcon}/>
+                                                                    <Text
+                                                                        style={[part.describeGray, part.paddingLeft]}>{likeCount[i]}</Text>
+                                                                </Button>
+                                                            ) : (
+                                                                <Button
+                                                                    transparent style={part.paddingRight}
+                                                                    onPress={() => this.likePost(item.id, this.props.token, i)}
+                                                                >
+                                                                    <Icon name="fontawesome|heart" size={size.iconBig}
+                                                                          color={colorIcon}/>
+                                                                    <Text
+                                                                        style={[part.describeGray, part.paddingLeft]}>{likeCount[i]}</Text>
+                                                                </Button>
+                                                            )}
+
 
                                                             <Button transparent style={part.paddingRight}
                                                                     onPress={() => this.props.navigation.navigate('PostStack', {product_id: item.id})}
@@ -332,7 +410,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        getNewFeedAction: bindActionCreators(getNewFeedAction, dispatch)
+        getNewFeedAction: bindActionCreators(getNewFeedAction, dispatch),
+        likePostAction: bindActionCreators(likePostAction, dispatch)
     }
 }
 
