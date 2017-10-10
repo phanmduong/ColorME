@@ -260,7 +260,9 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                         :
                                                         (
                                                             <View style={part.cardRepCmt}>
-                                                                <TouchableOpacity style={part.paddingTRB}>
+                                                                <TouchableOpacity style={part.paddingTRB}
+                                                                    onPress={()=>this.props.navigation.navigate('UserStack')}
+                                                                >
                                                                     <Image
                                                                         style={part.avatarUserNormal}
                                                                         source={{uri: item.commenter.avatar_url}}/>
@@ -317,6 +319,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                             (
                                 <View
                                     style={{
+                                        margin: 50,
                                         flex: 1,
                                         justifyContent: 'center',
                                         alignItems: 'center',

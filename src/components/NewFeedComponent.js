@@ -21,13 +21,15 @@ class newFeedComponent extends Component {
         super();
         this.state = {
             grid: true,
-            page_id: 1,
+            page_id: 2,
             typeView: "",
             listPost: [],
+            data:[],
         }
     }
 
     onValueChange(value: string) {
+        this.setState({page_id: 1});
         this.setState({typeView: value});
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
 
@@ -46,12 +48,13 @@ class newFeedComponent extends Component {
     }
 
     componentDidMount(){
-        this.props.getNewFeedAction.getNewFeed(30, this.state.page_id);
+        this
+        this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
         this.setState({listPost: this.props.products});
     }
 
     getMoreNewFeed() {
-        let page_id = this.state.page_id + 1;
+        let page_id = this.state.page_id + 1 ;
         this.setState({page_id: page_id});
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
     }
@@ -66,7 +69,20 @@ class newFeedComponent extends Component {
                     <Item style={[part.itemTab, part.shadow]}>
                         <Left style={{flexDirection: 'row'}}>
                             <Picker
-                                iosHeader="Select one"
+                                renderHeader={backAction =>
+                                    <Header
+                                        iosBarStyle='light-content'
+                                        style={{ backgroundColor: color.navTabBar }}>
+                                        <Left>
+                                            <Button transparent onPress={backAction}>
+                                                <Icon name="entypo|chevron-thin-left" color={color.navTitle} size={size.iconBig} />
+                                            </Button>
+                                        </Left>
+                                        <Body style={{ flex: 3 }}>
+                                            <Text style={part.navTitle}>Chọn kiểu xem</Text>
+                                        </Body>
+                                        <Right />
+                                    </Header>}
                                 mode="dropdown"
                                 textStyle={part.describeDarkGray}
                                 selectedValue={this.state.typeView}

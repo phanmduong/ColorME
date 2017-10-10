@@ -16,7 +16,7 @@ import messageComponent from '../components/message/messageComponent';
 import notificationComponent from '../components/NotificationComponent';
 import AchievementsComponent from '../components/AchievementsComponent';
 import SlideViewComponent from '../components/SlideViewComponent'
-import getFullInfoAboutOnePostComponent from '../components/GetFullInfoAboutOnePost';
+import getFullInfoAboutOnePostComponent from '../components/GetFullInfoAboutOnePostComponent';
 
 // USER SCREEN
 import userComponent from '../components/user/userComponent';

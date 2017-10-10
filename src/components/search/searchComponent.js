@@ -18,8 +18,8 @@ class searchComponent extends Component {
         super();
         this.state = {
             txtSearch: '',
-            page_user: 1,
-            page_product: 1,
+            page_user: 2,
+            page_product: 2,
         }
         this.getMoreProduct = this.getMoreProduct.bind(this);
         this.getMoreUser = this.getMoreUser.bind(this);
@@ -28,8 +28,8 @@ class searchComponent extends Component {
 
 
     search() {
-        this.props.searchAction.searchUsers(this.state.txtSearch, 5, 1);
-        this.props.searchAction.searchProducts(this.state.txtSearch, 5, 1);
+        this.props.searchAction.searchUsers(this.state.txtSearch, 10, 1);
+        this.props.searchAction.searchProducts(this.state.txtSearch, 10, 1);
 
     }
     getMoreUser() {
@@ -105,6 +105,8 @@ class searchComponent extends Component {
                 </View>
 
                 <SearchTab
+                    getMoreUser={this.getMoreUser}
+                    getMoreProduct={this.getMoreProduct}
                 />
             </Container>
         );
