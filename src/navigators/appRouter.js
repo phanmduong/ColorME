@@ -95,7 +95,7 @@ export const HomeStackStyle = {
                            style={{paddingLeft: 10}}
                            onPress={()=> navigation.navigate('DrawerOpen')}
         />),
-        headerRight: (<Icon name="ion|ios-chatbubbles"
+        headerRight: (<Icon name="materialCommunity|comment-multiple-outline"
                            color={color.icon}
                            size={size.icon}
                            style={{paddingRight: 10}}
