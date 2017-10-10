@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {
-    View, Text, TouchableOpacity, StatusBar, Image, WebView
+    View, Text, TouchableOpacity, StatusBar, Image, WebView, KeyboardAvoidingView
 } from 'react-native';
 
 import {
     Body, Button, Card, CardItem, Container, Content, Left, Right, Spinner,
-    Thumbnail, Item
+    Thumbnail, Item, Input
 } from 'native-base';
 import Icon from '../commons/Icon';
 import Video from 'react-native-video';
@@ -95,7 +95,6 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                 </Right>
                                             </View>
                                         </CardItem>
-
 
 
                                         <CardItem style={part.cardHeader}>
@@ -213,10 +212,11 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                         (
                                                             <View style={part.cardCmt}>
                                                                 <TouchableOpacity style={part.paddingTRB}>
-                                                                    <Thumbnail circle
-                                                                               source={{uri: item.commenter.avatar_url}}/>
+                                                                    <Image
+                                                                        style={part.avatarUserNormal}
+                                                                        source={{uri: item.commenter.avatar_url}}/>
                                                                 </TouchableOpacity>
-                                                                <Body >
+                                                                <Body>
                                                                 <Text
                                                                     style={[part.titleSmallBlue, part.paddingTLB]}
                                                                 >
@@ -229,7 +229,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                                 >
                                                                     {item.content}
                                                                 </Text>
-                                                                <View style={{flexDirection:'row'}}>
+                                                                <View style={{flexDirection: 'row'}}>
                                                                     <Text
                                                                         style={[part.describeLightGray, part.paddingTLB]}
                                                                     >
@@ -242,7 +242,8 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                                     </Text>
                                                                 </View>
 
-                                                                <View style={[{flexDirection: 'row'}, part.paddingLine]}>
+                                                                <View
+                                                                    style={[{flexDirection: 'row'}, part.paddingLine]}>
 
                                                                 </View>
                                                                 </Body>
@@ -259,11 +260,14 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                         :
                                                         (
                                                             <View style={part.cardRepCmt}>
-                                                                <TouchableOpacity style={part.paddingTRB}>
-                                                                    <Thumbnail circle
-                                                                               source={{uri: item.commenter.avatar_url}}/>
+                                                                <TouchableOpacity style={part.paddingTRB}
+                                                                    onPress={()=>this.props.navigation.navigate('UserStack')}
+                                                                >
+                                                                    <Image
+                                                                        style={part.avatarUserNormal}
+                                                                        source={{uri: item.commenter.avatar_url}}/>
                                                                 </TouchableOpacity>
-                                                                <Body >
+                                                                <Body>
                                                                 <Text
                                                                     style={[part.titleSmallBlue, part.paddingTLB]}
                                                                 >
@@ -276,7 +280,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                                 >
                                                                     {item.content}
                                                                 </Text>
-                                                                <View style={{flexDirection:'row'}}>
+                                                                <View style={{flexDirection: 'row'}}>
                                                                     <Text
                                                                         style={[part.describeLightGray, part.paddingTLB]}
                                                                     >
@@ -289,7 +293,8 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                                     </Text>
                                                                 </View>
 
-                                                                <View style={[{flexDirection: 'row'}, part.paddingLine]}>
+                                                                <View
+                                                                    style={[{flexDirection: 'row'}, part.paddingLine]}>
 
                                                                 </View>
                                                                 </Body>
@@ -309,12 +314,12 @@ class getFullInfoAboutOnePostComponent extends Component {
                                     }
 
                                 </View>
-
                             )
                             :
                             (
                                 <View
                                     style={{
+                                        margin: 50,
                                         flex: 1,
                                         justifyContent: 'center',
                                         alignItems: 'center',
@@ -327,6 +332,41 @@ class getFullInfoAboutOnePostComponent extends Component {
                     }
 
                 </Content>
+                <KeyboardAvoidingView behavior={'position'}>
+                    <CardItem style={part.cardBottom}>
+                        <Left>
+                            <Image
+                                style={part.avatarUserNormal}
+                                source={{uri: this.props.user.avatar_url}}/>
+                            <Body>
+                            <Item rounded>
+                                <Input
+                                    placeholder='Viết bình luận'
+                                    autoCorrect={false}
+                                    placeholderTextColor={color.icon}
+                                    style={part.inputTheme01}
+                                />
+                                <TouchableOpacity>
+                                    <Icon active name='fontawesome|camera-retro'
+                                          size={size.iconNormal}
+                                          color={color.icon}
+                                          style={{paddingRight: 15}}
+                                    />
+                                </TouchableOpacity>
+
+                            </Item>
+
+                            </Body>
+                            <TouchableOpacity>
+                                <Icon active name='fontawesome|comment-o'
+                                      size={size.iconBig}
+                                      color={color.icon}
+                                      style={[part.paddingTLB, {paddingLeft: 10}]}
+                                />
+                            </TouchableOpacity>
+                        </Left>
+                    </CardItem>
+                </KeyboardAvoidingView>
 
             </Container>
         );
@@ -335,6 +375,7 @@ class getFullInfoAboutOnePostComponent extends Component {
 
 function mapStateToProps(state) {
     return {
+        user: state.login.user,
         post: state.getFullInfoAboutOnePost.post,
         comments: state.getFullInfoAboutOnePost.comments,
         isLoading: state.getFullInfoAboutOnePost.isLoading,

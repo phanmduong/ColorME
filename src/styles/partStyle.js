@@ -179,10 +179,9 @@ const part = StyleSheet.create({
         margin: 5,
     },
     avatarUserNormal: {
-        width: 60,
-        height: 60,
-        borderRadius: 30,
-        margin: 5,
+        width: 50,
+        height: 50,
+        borderRadius: 25,
     },
     avatarUserSmall: {
         width: 40,
@@ -469,6 +468,13 @@ const part = StyleSheet.create({
         flexDirection: 'row',
         flex: 1,
         marginLeft: 60,
+    },
+    cardBottom:{
+        width: size.wid,
+        flexDirection: 'row',
+        height: 70,
+        backgroundColor: color.backGround,
+        bottom: 0,
     },
 
 

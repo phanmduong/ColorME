@@ -41,11 +41,21 @@ class searchProduct extends Component {
                             <FlatList
                                 onEndReachedThreshold={5}
                                 onEndReached={() => {
-
                                 }}
                                 data={this.props.products}
                                 renderItem={({item}) =>
-                                    w
+                                    <CardItem avatar style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
+                                        <Left>
+                                            <Thumbnail
+                                                source={{uri: item.author.avatar_url}}/>
+                                            <Body style={part.noBorder}>
+                                            <Text style={part.titleSmallBlue}>{item.author.name}</Text>
+                                            <Text style={part.describeGray} note>{item.title}</Text>
+                                            </Body>
+                                            <Thumbnail
+                                                source={{uri: item.thumb_url}}/>
+                                        </Left>
+                                    </CardItem>
                                 }
                             />
                         )

@@ -16,7 +16,7 @@ import messageComponent from '../components/message/messageComponent';
 import notificationComponent from '../components/NotificationComponent';
 import AchievementsComponent from '../components/AchievementsComponent';
 import SlideViewComponent from '../components/SlideViewComponent'
-import getFullInfoAboutOnePostComponent from '../components/GetFullInfoAboutOnePost';
+import getFullInfoAboutOnePostComponent from '../components/GetFullInfoAboutOnePostComponent';
 
 // USER SCREEN
 import userComponent from '../components/user/userComponent';
@@ -95,7 +95,7 @@ export const HomeStackStyle = {
                            style={{paddingLeft: 10}}
                            onPress={()=> navigation.navigate('DrawerOpen')}
         />),
-        headerRight: (<Icon name="ion|ios-chatbubbles"
+        headerRight: (<Icon name="materialCommunity|comment-multiple-outline"
                            color={color.icon}
                            size={size.icon}
                            style={{paddingRight: 10}}
