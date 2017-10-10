@@ -3,7 +3,7 @@ import {
     TouchableOpacity, FlatList, View
 } from 'react-native';
 import {
-    Title, Content, Thumbnail, Spinner, Container,
+    Title, Content, Thumbnail, Spinner, Container, CardItem,
     Text, Button, Icon, Left, Body, Right, List, ListItem, Item,
 } from 'native-base';
 import part from '../../styles/partStyle';
@@ -45,20 +45,7 @@ class searchProduct extends Component {
                                 }}
                                 data={this.props.products}
                                 renderItem={({item}) =>
-                                    <ListItem avatar style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
-                                        <Left>
-                                            <Thumbnail
-                                                source={{uri: item.author.avatar_url}}/>
-                                        </Left>
-                                        <Body style={part.noBorder}>
-                                            <Text style={part.titleSmallBlue}>{item.author.name}</Text>
-                                            <Text style={part.describeGray} note>{item.title}</Text>
-                                        </Body>
-                                        <Right style={part.noBorder}>
-                                            <Thumbnail
-                                                source={{uri: item.thumb_url}}/>
-                                        </Right>
-                                    </ListItem>
+                                    w
                                 }
                             />
                         )

@@ -105,8 +105,6 @@ class searchComponent extends Component {
                 </View>
 
                 <SearchTab
-                    getMoreUser={this.getMoreUser}
-                    getMoreProduct={this.getMoreProduct}
                 />
             </Container>
         );

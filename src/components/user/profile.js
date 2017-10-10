@@ -19,7 +19,7 @@ class Information extends Component {
 
     render() {
         return (
-            <Content style={[part.wrapperContainer, part.padding]}>
+            <Container style={[part.wrapperContainer, part.padding]}>
                 {
                     (this.props.isLoadingUserProfile)
                         ?
@@ -37,14 +37,7 @@ class Information extends Component {
                         )
                         :
                         (
-                            <Content style={[part.wrapperContainer]}>
-                                <Body>
-                                <Thumbnail style={part.avatarUserBig}
-                                           source={{uri: this.props.user.avatar_url}}/>
-                                <Text style={part.titleBigDark}>{this.props.user.name}</Text>
-                                <Text style={[part.describeDark, part.padding]}>{this.props.user.university}</Text>
-                                </Body>
-
+                            <Container style={[part.wrapperContainer]}>
                                 <List>
                                     <ListItem itemDivider>
                                         <Text style={part.titleSmallDarkBold}>Thông tin chi tiết</Text>
@@ -67,10 +60,10 @@ class Information extends Component {
                                         <Text style={part.describeDark}>Trường học: {this.props.user.university}</Text>
                                     </ListItem>
                                 </List>
-                            </Content>
+                            </Container>
                         )
                 }
-            </Content>
+            </Container>
         )
     }
 }

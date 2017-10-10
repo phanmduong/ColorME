@@ -20,7 +20,7 @@ class userComponent extends Component {
         super();
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.userInformationAction.getUserProfile(this.props.navigation.state.params.username);
         this.props.userInformationAction.getUserProgress(this.props.navigation.state.params.username);
         this.props.userInformationAction.getUserProducts(this.props.navigation.state.params.username, 1, this.props.token);
@@ -29,9 +29,6 @@ class userComponent extends Component {
     render() {
         return (
             <Container style={part.wrapperContainer}>
-                <StatusBar
-                    hidden={true}
-                />
                 <View style={[part.wrapperImageInGetFull, part.shadow]}>
                     <Image
                         style={part.imageInUserProfile}
@@ -40,7 +37,7 @@ class userComponent extends Component {
                     <View style={part.tabInGetFull}>
                         <Item style={{borderBottomWidth: 0,}}>
                             <Body>
-                            <Thumbnail style={part.paddingLine}
+                            <Thumbnail style={part.marginBottom}
                                        circle large
                                        source={{uri: this.props.user.avatar_url}}/>
                             <Text style={[part.titleNormalLight, part.paddingLine]}>{this.props.user.name}</Text>
@@ -70,8 +67,7 @@ class userComponent extends Component {
                         </Right>
                     </View>
                 </View>
-
-                    <User/>
+                <User/>
                 <TouchableOpacity style={[part.iconAddFriendInProfile, part.shadow]}>
                         <Icon name="ion|ios-person-add"
                               size={30}

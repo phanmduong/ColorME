@@ -7,11 +7,11 @@ import {
     Thumbnail, Text, Button, Left, Body, Right, ListItem, Spinner
 } from 'native-base';
 import Video from 'react-native-video';
-import Icon from '../../commons/Icon';
-import part from '../../styles/partStyle';
-import * as color from '../../styles/color';
-import * as size from '../../styles/size';
-import * as getNewFeedAction from '../../actions/getNewFeedAction';
+import Icon from '../commons/Icon';
+import part from '../styles/partStyle';
+import * as color from '../styles/color';
+import * as size from '../styles/size';
+import * as getNewFeedAction from '../actions/getNewFeedAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
@@ -23,12 +23,14 @@ class newFeedComponent extends Component {
             grid: true,
             page_id: 1,
             typeView: "",
+            listPost: [],
         }
     }
 
     onValueChange(value: string) {
         this.setState({typeView: value});
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
+
     }
 
     viewList() {
@@ -43,19 +45,16 @@ class newFeedComponent extends Component {
         this.setState({grid: grid});
     }
 
-
-    componentWillMount() {
-        this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
+    componentDidMount(){
+        this.props.getNewFeedAction.getNewFeed(30, this.state.page_id);
+        this.setState({listPost: this.props.products});
     }
 
     getMoreNewFeed() {
-        let page_id = this.state.page_id;
-        page_id++;
+        let page_id = this.state.page_id + 1;
         this.setState({page_id: page_id});
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
     }
-
-
     render() {
         return (
             <Container style={part.wrapperContainer}>
@@ -102,6 +101,7 @@ class newFeedComponent extends Component {
                                                 />
                                             </TouchableOpacity>
                                         </Right>
+
                                     )
                                     :
                                     (
@@ -130,7 +130,9 @@ class newFeedComponent extends Component {
                 </View>
 
 
-                <Content onMomentumScrollEnd={() => this.getMoreNewFeed} style={[part.padding, part.marginTop]}>
+                <Content
+                    onMomentumScrollEnd={() => this.getMoreNewFeed()} style={[part.padding, part.marginTop]}>
+
                     {
                         (this.state.grid)
                             ?
@@ -217,7 +219,6 @@ class newFeedComponent extends Component {
                                                             <Text
                                                                 style={part.describeItalicDark}>{item.created_at}</Text>
                                                             </Body>
-                                                            <Right>
                                                                 <TouchableOpacity transparent>
                                                                     <Icon name="materialCommunity|dots-horizontal"
                                                                           color={color.icon}
@@ -225,7 +226,6 @@ class newFeedComponent extends Component {
                                                                           style={part.paddingRight}
                                                                     />
                                                                 </TouchableOpacity>
-                                                            </Right>
                                                         </Left>
                                                     </CardItem>
 
@@ -271,6 +271,8 @@ class newFeedComponent extends Component {
                                                             </Body>
                                                         </TouchableOpacity>
                                                     </CardItem>
+
+                                                    {/*LIKE COMMENT VIEWS*/}
                                                     <CardItem footer style={part.cardFooter}>
                                                         <Left>
                                                             <Button
@@ -282,7 +284,8 @@ class newFeedComponent extends Component {
                                                             </Button>
 
                                                             <Button transparent style={part.paddingRight}
-                                                                    onPress={() => this.props.navigation.navigate('Comment', {product_id: item.id})}
+                                                                    onPress={() => this.props.navigation.navigate('PostStack', {product_id: item.id})}
+
                                                             >
                                                                 <Icon name="fontawesome|comments-o" size={size.iconBig}
                                                                       color={color.icon}/>

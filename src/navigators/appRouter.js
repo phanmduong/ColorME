@@ -11,14 +11,11 @@ import * as size from '../styles/size';
 import tabLoginAndRegister from '../components/loginRegister/tabLoginAndRegister';
 
 // MAIN SCREEN
-import newFeedComponent from '../components/newfeed/newFeedComponent';
+import newFeedComponent from '../components/NewFeedComponent';
 import messageComponent from '../components/message/messageComponent';
 import notificationComponent from '../components/NotificationComponent';
 import AchievementsComponent from '../components/AchievementsComponent';
-
-import commentComponent from '../components/CommentComponent'
 import SlideViewComponent from '../components/SlideViewComponent'
-
 import getFullInfoAboutOnePostComponent from '../components/GetFullInfoAboutOnePost';
 
 // USER SCREEN
@@ -261,7 +258,6 @@ export const NewFeedStackNavigator = StackNavigator(
             screen: userComponent,
             navigationOptions: {
                 header: null,
-                tabBarVisible: false,
             },
         },
         PostStack: {
@@ -278,14 +274,6 @@ export const NewFeedStackNavigator = StackNavigator(
                 tabBarVisible: false,
             },
         },
-        CommentStack: {
-            screen: commentComponent,
-            navigationOptions: {
-                header: null,
-                tabBarVisible: false,
-            }
-        }
-
     }, HomeStackStyle
 );
 

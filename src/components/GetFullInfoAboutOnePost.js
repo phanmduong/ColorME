@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    View, Text, TouchableOpacity, StatusBar, Image
+    View, Text, TouchableOpacity, StatusBar, Image, WebView
 } from 'react-native';
 
 import {
@@ -16,7 +16,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux';
 import * as getFullInfoAboutOnePostAction from '../actions/getFullInfoAboutOnePostAction'
 
-let video;
+
 class getFullInfoAboutOnePostComponent extends Component {
     constructor() {
         super();
@@ -24,12 +24,14 @@ class getFullInfoAboutOnePostComponent extends Component {
             author: {},
             more_products: [],
             colors: [],
+            Height: 100,
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.getFullInfoAboutOnePostAction.getFullInfoAboutOnePostOfUser(this.props.navigation.state.params.product_id)
-        video = this.props.post.url.indexOf('.mp4');
+        this.props.getFullInfoAboutOnePostAction.getCommentOnePost(this.props.navigation.state.params.product_id)
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -44,9 +46,9 @@ class getFullInfoAboutOnePostComponent extends Component {
                 <StatusBar
                     hidden={true}
                 />
-                <Content>
+                <Content scrollsToTop={false}>
                     {
-                        (!this.props.post.isLoading)
+                        (!this.props.isLoading)
                             ?
                             (
                                 <View>
@@ -88,12 +90,12 @@ class getFullInfoAboutOnePostComponent extends Component {
 
                                                         />
                                                     </TouchableOpacity>
-
                                                 </Left>
                                                 <Right style={{right: 10}}>
                                                 </Right>
                                             </View>
                                         </CardItem>
+
 
 
                                         <CardItem style={part.cardHeader}>
@@ -152,6 +154,160 @@ class getFullInfoAboutOnePostComponent extends Component {
                                             </Item>
                                         </CardItem>
                                     </View>
+
+                                    <WebView
+                                        automaticallyAdjustContentInsets={true}
+                                        scrollEnabled={false}
+                                        source={{
+                                            html: `<div style="width: 100%">
+                                                        ${this.props.post.content}
+                                                   </div>
+                                                   <Style>img{width: 100%};p{font-size: 16px}</Style>
+                                                   `
+                                        }}
+                                        style={{height: this.state.Height}}
+                                    />
+                                    <CardItem footer>
+                                        <Left>
+                                            <Button
+                                                transparent style={part.padding}>
+                                                {
+
+                                                }
+                                                <Icon name="fontawesome|heart-o" size={size.iconBig}
+                                                      color={color.icon}/>
+                                                <Text
+                                                    style={[part.describeGray, part.paddingLeft]}>{this.props.post.likes_count}</Text>
+                                            </Button>
+
+                                            <Button transparent style={part.paddingRight}
+                                            >
+                                                <Icon name="fontawesome|comments-o" size={size.iconBig}
+                                                      color={color.icon}/>
+                                                <Text
+                                                    style={[part.describeGray, part.paddingLeft]}>{this.props.comments.length}</Text>
+                                            </Button>
+                                            <Button transparent style={part.paddingRight}>
+                                                <Icon name="fontawesome|eye" size={size.iconBig}
+                                                      color={color.icon}/>
+                                                <Text
+                                                    style={[part.describeGray, part.paddingLeft]}>{this.props.post.views_count}</Text>
+                                            </Button>
+                                        </Left>
+                                        <Right>
+                                            <TouchableOpacity transparent>
+                                                <Icon name="materialCommunity|dots-horizontal"
+                                                      color={color.icon}
+                                                      size={size.icon}
+                                                      style={part.paddingRight}
+                                                />
+                                            </TouchableOpacity>
+                                        </Right>
+                                    </CardItem>
+                                    {
+                                        this.props.comments.map((item, i) =>
+                                            <CardItem style={part.cardHeader}>
+                                                {
+                                                    (item.parent_id === 0)
+                                                        ?
+                                                        (
+                                                            <View style={part.cardCmt}>
+                                                                <TouchableOpacity style={part.paddingTRB}>
+                                                                    <Thumbnail circle
+                                                                               source={{uri: item.commenter.avatar_url}}/>
+                                                                </TouchableOpacity>
+                                                                <Body >
+                                                                <Text
+                                                                    style={[part.titleSmallBlue, part.paddingTLB]}
+                                                                >
+                                                                    {item.commenter.name}
+                                                                </Text>
+
+
+                                                                <Text
+                                                                    style={[part.describeGray, part.paddingTLB]}
+                                                                >
+                                                                    {item.content}
+                                                                </Text>
+                                                                <View style={{flexDirection:'row'}}>
+                                                                    <Text
+                                                                        style={[part.describeLightGray, part.paddingTLB]}
+                                                                    >
+                                                                        {item.created_at}
+                                                                    </Text>
+                                                                    <Text
+                                                                        style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                                    >
+                                                                        Trả lời
+                                                                    </Text>
+                                                                </View>
+
+                                                                <View style={[{flexDirection: 'row'}, part.paddingLine]}>
+
+                                                                </View>
+                                                                </Body>
+                                                                <TouchableOpacity transparent>
+                                                                    <Icon name="fontawesome|heart-o"
+                                                                          color={color.icon}
+                                                                          size={size.icon}
+                                                                          style={part.paddingRight}
+                                                                    />
+                                                                </TouchableOpacity>
+                                                            </View>
+
+                                                        )
+                                                        :
+                                                        (
+                                                            <View style={part.cardRepCmt}>
+                                                                <TouchableOpacity style={part.paddingTRB}>
+                                                                    <Thumbnail circle
+                                                                               source={{uri: item.commenter.avatar_url}}/>
+                                                                </TouchableOpacity>
+                                                                <Body >
+                                                                <Text
+                                                                    style={[part.titleSmallBlue, part.paddingTLB]}
+                                                                >
+                                                                    {item.commenter.name}
+                                                                </Text>
+
+
+                                                                <Text
+                                                                    style={[part.describeGray, part.paddingTLB]}
+                                                                >
+                                                                    {item.content}
+                                                                </Text>
+                                                                <View style={{flexDirection:'row'}}>
+                                                                    <Text
+                                                                        style={[part.describeLightGray, part.paddingTLB]}
+                                                                    >
+                                                                        {item.created_at}
+                                                                    </Text>
+                                                                    <Text
+                                                                        style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                                    >
+                                                                        Trả lời
+                                                                    </Text>
+                                                                </View>
+
+                                                                <View style={[{flexDirection: 'row'}, part.paddingLine]}>
+
+                                                                </View>
+                                                                </Body>
+                                                                <TouchableOpacity transparent>
+                                                                    <Icon name="fontawesome|heart-o"
+                                                                          color={color.icon}
+                                                                          size={size.icon}
+                                                                          style={part.paddingRight}
+                                                                    />
+                                                                </TouchableOpacity>
+                                                            </View>
+
+                                                        )
+                                                }
+                                            </CardItem>
+                                        )
+                                    }
+
                                 </View>
 
                             )
@@ -165,7 +321,6 @@ class getFullInfoAboutOnePostComponent extends Component {
                                     }}
                                 >
                                     <Spinner
-                                        size={30}
                                         color={color.gray}/>
                                 </View>
                             )
@@ -181,12 +336,15 @@ class getFullInfoAboutOnePostComponent extends Component {
 function mapStateToProps(state) {
     return {
         post: state.getFullInfoAboutOnePost.post,
+        comments: state.getFullInfoAboutOnePost.comments,
+        isLoading: state.getFullInfoAboutOnePost.isLoading,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getFullInfoAboutOnePostAction: bindActionCreators(getFullInfoAboutOnePostAction, dispatch)
+        getFullInfoAboutOnePostAction: bindActionCreators(getFullInfoAboutOnePostAction, dispatch),
+
     }
 }
 

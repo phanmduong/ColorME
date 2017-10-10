@@ -389,14 +389,19 @@ const part = StyleSheet.create({
         paddingBottom: 5,
         paddingTop: 5,
     },
+    paddingTLB:{
+        paddingLeft: 5,
+        paddingBottom: 5,
+        paddingTop: 5,
+    },
 
 
 
     margin: {
         margin: 10,
     },
-    margincon: {
-        paddingLeft: 10
+    marginLeftFar: {
+        paddingLeft: 20
     },
     marginRight: {
         marginRight: 5,
@@ -447,7 +452,7 @@ const part = StyleSheet.create({
     },
     cardHeader:{
         margin: 0,
-
+        backgroundColor: color.none,
     },
     cardFooter:{
         borderBottomWidth: 0.5,
@@ -456,6 +461,16 @@ const part = StyleSheet.create({
     cardProgress:{
         margin: 5,
     },
+    cardCmt:{
+        flexDirection: 'row',
+        flex: 1,
+    },
+    cardRepCmt:{
+        flexDirection: 'row',
+        flex: 1,
+        marginLeft: 60,
+    },
+
 
     //GRID IMAGE
     wrapperGrid: {
