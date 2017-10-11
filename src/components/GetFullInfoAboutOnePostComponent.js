@@ -1,11 +1,19 @@
 import React, {Component} from 'react';
-import {
-    View, Text, TouchableOpacity, StatusBar, Image, WebView, KeyboardAvoidingView
-} from 'react-native';
+import {Image, KeyboardAvoidingView, StatusBar, Text, TouchableOpacity, View, WebView} from 'react-native';
 
 import {
-    Body, Button, Card, CardItem, Container, Content, Left, Right, Spinner,
-    Thumbnail, Item, Input
+    Body,
+    Button,
+    Card,
+    CardItem,
+    Container,
+    Content,
+    Input,
+    Item,
+    Left,
+    Right,
+    Spinner,
+    Thumbnail
 } from 'native-base';
 import Icon from '../commons/Icon';
 import Video from 'react-native-video';
@@ -15,7 +23,7 @@ import * as size from '../styles/size';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux';
 import * as getFullInfoAboutOnePostAction from '../actions/getFullInfoAboutOnePostAction'
-
+import * as likePostAction from '../actions/likePostAction'
 
 class getFullInfoAboutOnePostComponent extends Component {
     constructor() {
@@ -25,28 +33,67 @@ class getFullInfoAboutOnePostComponent extends Component {
             more_products: [],
             colors: [],
             Height: 100,
+            likeCount: 0,
+            liked: false
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.props.getFullInfoAboutOnePostAction.getFullInfoAboutOnePostOfUser(this.props.navigation.state.params.product_id)
         this.props.getFullInfoAboutOnePostAction.getCommentOnePost(this.props.navigation.state.params.product_id)
-
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({author: nextProps.post.author});
         this.setState({more_products: nextProps.post.more_products});
         this.setState({colors: nextProps.post.colors});
+        this.setState({likeCount: nextProps.post.likes_count});
+        // let liked = this.state.liked;
+         // let likers = post.likers.filter((liker) => {
+         //     return liker.name == nextProps.user.name
+         // });
+         //if (likers.length == 0) {
+         //    liked = false;
+         // } else {
+         //    liked = true;
+        // }
+        // this.setState({liked: liked})
+    }
+
+    likePost(product_id, token) {
+        let liked = this.state.liked;
+        let likeCount = this.state.likeCount;
+        if (liked == false) {
+            this.props.likePostAction.likePost(product_id, token);
+            likeCount++;
+            liked = !liked;
+        }
+        this.setState({likeCount: likeCount});
+        this.setState({liked: liked});
+    }
+
+    unlikePost(product_id, token) {
+        let liked = this.state.liked;
+        let likeCount = this.state.likeCount;
+        if (liked == true) {
+            this.props.likePostAction.unlikePost(product_id, token);
+            likeCount--;
+            liked = !liked;
+        }
+        this.setState({likeCount: likeCount});
+        this.setState({liked: liked});
     }
 
     render() {
+        let {liked, likeCount} = this.state;
+        let colorIcon = liked ? "red" : "#d7dde5";
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
                     hidden={true}
                 />
                 <Content scrollsToTop={false}>
+
                     {
                         (!this.props.isLoading)
                             ?
@@ -76,6 +123,20 @@ class getFullInfoAboutOnePostComponent extends Component {
 
                                                         </View>
                                                     )
+                                            }
+                                            {
+                                                (this.state.more_products.length!=0) ? (
+                                                    this.state.more_products.map((img) => {
+                                                        return (
+                                                            <View style={part.shadow}>
+                                                                <Image source={{uri: this.props.post.image_url}}
+                                                                       style={[part.imageInGetFull]}
+                                                                />
+
+                                                            </View>
+                                                        )
+                                                    })
+                                                ) : (<Text/>)
                                             }
 
                                             <View style={part.iconInDrawer}>
@@ -154,7 +215,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                         </CardItem>
                                     </View>
 
-                                    <WebView
+                                    <WebView  // show content
                                         automaticallyAdjustContentInsets={true}
                                         scrollEnabled={false}
                                         source={{
@@ -168,17 +229,27 @@ class getFullInfoAboutOnePostComponent extends Component {
                                     />
                                     <CardItem footer>
                                         <Left>
-                                            <Button
-                                                transparent style={part.padding}>
-                                                {
-
-                                                }
-                                                <Icon name="fontawesome|heart-o" size={size.iconBig}
-                                                      color={color.icon}/>
-                                                <Text
-                                                    style={[part.describeGray, part.paddingLeft]}>{this.props.post.likes_count}</Text>
-                                            </Button>
-
+                                            {(liked) ? (
+                                                <Button
+                                                    transparent style={part.padding}
+                                                    onPress={() => this.likePost(this.props.navigation.state.params.product_id, this.props.token)}
+                                                >
+                                                    <Icon name="fontawesome|heart-o" size={size.iconBig}
+                                                          color={colorIcon}/>
+                                                    <Text
+                                                        style={[part.describeGray, part.paddingLeft]}>{likeCount}</Text>
+                                                </Button>
+                                            ) : (
+                                                <Button
+                                                    transparent style={part.padding}
+                                                    onPress={() => this.unlikePost(this.props.navigation.state.params.product_id, this.props.token)}
+                                                >
+                                                    <Icon name="fontawesome|heart-o" size={size.iconBig}
+                                                          color={colorIcon}/>
+                                                    <Text
+                                                        style={[part.describeGray, part.paddingLeft]}>{this.props.post.likes_count}</Text>
+                                                </Button>
+                                            )}
                                             <Button transparent style={part.paddingRight}
                                             >
                                                 <Icon name="fontawesome|comments-o" size={size.iconBig}
@@ -261,7 +332,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                         (
                                                             <View style={part.cardRepCmt}>
                                                                 <TouchableOpacity style={part.paddingTRB}
-                                                                    onPress={()=>this.props.navigation.navigate('UserStack')}
+                                                                                  onPress={() => this.props.navigation.navigate('UserStack')}
                                                                 >
                                                                     <Image
                                                                         style={part.avatarUserNormal}
@@ -385,7 +456,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         getFullInfoAboutOnePostAction: bindActionCreators(getFullInfoAboutOnePostAction, dispatch),
-
+        likePostAction: bindActionCreators(likePostAction, dispatch)
     }
 }
 
