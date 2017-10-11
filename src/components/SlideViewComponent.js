@@ -11,7 +11,8 @@ import part from '../styles/partStyle';
 import * as size from '../styles/size';
 import * as color from '../styles/color';
 import {connect} from 'react-redux';
-
+import {bindActionCreators} from 'redux'
+import * as logoutAction from '../actions/logoutAction'
 class SlideViewComponent extends Component {
     constructor() {
         super();
@@ -19,7 +20,10 @@ class SlideViewComponent extends Component {
             text: '',
         }
     }
-
+logout(){
+        this.props.logoutAction.logout();
+        this.props.navigation.navigate('Login');
+}
     render() {
         return (
             <Container style={part.wrapperContainer}>
@@ -43,7 +47,9 @@ class SlideViewComponent extends Component {
                                     <Text style={part.describeGray}>Đăng xuất&nbsp;</Text>
                                     <Icon name="entypo|arrow-with-circle-right"
                                           size={18}
-                                          color={color.gray}/>
+                                          color={color.gray}
+                                          onPress = {() => this.logout()}
+                                          />
                                 </View>
 
                             </Body>
@@ -124,7 +130,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-
+    logoutAction : bindActionCreators(logoutAction,dispatch)
     }
 }
 

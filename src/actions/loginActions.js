@@ -15,7 +15,7 @@ export function loginUser(login) {
         loginApi.login(login)
             .then(function (response) {
                 dispatch(loginSuccess(response));
-                console.log(response.status)
+                console.log(response)
             })
             .catch(error => {
                 dispatch(loginError(error));
