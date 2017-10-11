@@ -32,9 +32,13 @@ class getFullInfoAboutOnePostComponent extends Component {
             author: {},
             more_products: [],
             colors: [],
+<<<<<<< HEAD
             Height: 100,
             likeCount: 0,
             liked: false
+=======
+            Height: 500,
+>>>>>>> a61acf95d2dde341c7ab064db53d4fc2ff49dd95
         }
     }
 
@@ -95,8 +99,22 @@ class getFullInfoAboutOnePostComponent extends Component {
                 <Content scrollsToTop={false}>
 
                     {
-                        (!this.props.isLoading)
+                        (this.props.isLoading)
                             ?
+                            (
+                                <View
+                                    style={{
+                                        margin: 50,
+                                        flex: 1,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    <Spinner
+                                        color={color.gray}/>
+                                </View>
+                            )
+                            :
                             (
                                 <View>
                                     <View style={part.cardGetFull}>
@@ -151,9 +169,27 @@ class getFullInfoAboutOnePostComponent extends Component {
 
                                                         />
                                                     </TouchableOpacity>
+                                                    <Right style={{right: 0}}>
+                                                        {
+                                                            (this.props.navigation.state.params.group_name)
+                                                                ?
+                                                                (
+                                                                    <TouchableOpacity style={part.buttonGroup}
+                                                                                      onPress={() => this.props.navigation.navigate('GroupStack')}
+                                                                    >
+                                                                        <Text
+                                                                            style={part.titleGroup}>{this.props.navigation.state.params.group_name}</Text>
+                                                                    </TouchableOpacity>
+                                                                )
+                                                                :
+                                                                (
+                                                                    <Text/>
+                                                                )
+                                                        }
+
+                                                    </Right>
                                                 </Left>
-                                                <Right style={{right: 10}}>
-                                                </Right>
+
                                             </View>
                                         </CardItem>
 
@@ -214,19 +250,36 @@ class getFullInfoAboutOnePostComponent extends Component {
                                             </Item>
                                         </CardItem>
                                     </View>
+<<<<<<< HEAD
 
                                     <WebView  // show content
                                         automaticallyAdjustContentInsets={true}
                                         scrollEnabled={false}
                                         source={{
                                             html: `<div style="width: 100%">
+=======
+                                    {
+                                        (this.props.post.content !== null)
+                                            ?
+                                            (
+                                                <WebView
+                                                    automaticallyAdjustContentInsets={true}
+                                                    scrollEnabled={false}
+                                                    source={{
+                                                        html: `<div style="width: 100%">
+>>>>>>> a61acf95d2dde341c7ab064db53d4fc2ff49dd95
                                                         ${this.props.post.content}
                                                    </div>
-                                                   <Style>img{width: 100%};p{font-size: 16px}</Style>
+                                                   <Style>img{width: 100%}</Style>
                                                    `
-                                        }}
-                                        style={{height: this.state.Height}}
-                                    />
+                                                    }}
+                                                    style={{height: this.state.Height}}
+                                                />
+                                            )
+                                            :
+                                            (<View/>)
+                                    }
+
                                     <CardItem footer>
                                         <Left>
                                             {(liked) ? (
@@ -296,7 +349,7 @@ class getFullInfoAboutOnePostComponent extends Component {
 
 
                                                                 <Text
-                                                                    style={[part.describeGray, part.paddingTLB]}
+                                                                    style={[part.describeDarkGray, part.paddingTLB]}
                                                                 >
                                                                     {item.content}
                                                                 </Text>
@@ -347,7 +400,7 @@ class getFullInfoAboutOnePostComponent extends Component {
 
 
                                                                 <Text
-                                                                    style={[part.describeGray, part.paddingTLB]}
+                                                                    style={[part.describeDarkGray, part.paddingTLB]}
                                                                 >
                                                                     {item.content}
                                                                 </Text>
@@ -377,7 +430,6 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                                     />
                                                                 </TouchableOpacity>
                                                             </View>
-
                                                         )
                                                 }
                                             </CardItem>
@@ -386,20 +438,7 @@ class getFullInfoAboutOnePostComponent extends Component {
 
                                 </View>
                             )
-                            :
-                            (
-                                <View
-                                    style={{
-                                        margin: 50,
-                                        flex: 1,
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                    }}
-                                >
-                                    <Spinner
-                                        color={color.gray}/>
-                                </View>
-                            )
+
                     }
 
                 </Content>

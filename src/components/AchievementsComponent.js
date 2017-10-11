@@ -14,7 +14,7 @@ export default class AchievementsComponent extends Component{
     render(){
         return(
             <WebView
-                source={{uri: 'https://github.com/facebook/react-native'}}
+                source={{uri: 'http://colorme.vn/'}}
                 style={{marginTop: 20}}
             />
         );

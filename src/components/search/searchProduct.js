@@ -46,14 +46,23 @@ class searchProduct extends Component {
                                 renderItem={({item}) =>
                                     <CardItem avatar style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
                                         <Left>
-                                            <Thumbnail
-                                                source={{uri: item.author.avatar_url}}/>
+                                            <TouchableOpacity>
+                                                <Thumbnail
+                                                    source={{uri: item.author.avatar_url}}/>
+                                            </TouchableOpacity>
                                             <Body style={part.noBorder}>
-                                            <Text style={part.titleSmallBlue}>{item.author.name}</Text>
-                                            <Text style={part.describeGray} note>{item.title}</Text>
+                                            <TouchableOpacity>
+                                                <Text style={part.titleSmallBlue}>{item.author.name}</Text>
+                                            </TouchableOpacity>
+                                            <TouchableOpacity>
+                                                <Text style={part.describeGray} note>{item.title}</Text>
+                                            </TouchableOpacity>
                                             </Body>
-                                            <Thumbnail
-                                                source={{uri: item.thumb_url}}/>
+                                            <TouchableOpacity>
+                                                <Thumbnail
+                                                    source={{uri: item.thumb_url}}/>
+                                            </TouchableOpacity>
+
                                         </Left>
                                     </CardItem>
                                 }

@@ -136,6 +136,14 @@ const part = StyleSheet.create({
         right: 20,
         bottom: 60,
     },
+    iconFollow:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        backgroundColor: color.gray,
+    },
 
     // TEXT INPUT
     inputSearch: {
@@ -312,8 +320,8 @@ const part = StyleSheet.create({
     },
     describeDarkGray: {
         fontSize: size.describe,
-        color: 'rgb(89, 89, 89)',
-        fontWeight: '700',
+        color: 'rgb(100, 100, 100)',
+        fontWeight: '500',
     },
     describeLight: {
         fontSize: size.describe,
@@ -350,6 +358,14 @@ const part = StyleSheet.create({
         textShadowRadius: 10,
         textShadowOffset:{width: 2, height: 2},
     },
+    titleGroup:{
+        color: color.navTitle,
+        padding: 3,
+        paddingLeft: 7,
+        paddingRight: 7,
+        fontWeight: '600',
+        fontSize: 12,
+    },
 
     //BUTTON
     buttonTheme01: {
@@ -359,7 +375,10 @@ const part = StyleSheet.create({
         margin: 15,
         borderRadius: 0,
     },
-
+    buttonGroup:{
+        backgroundColor: 'rgba(20, 20, 20, 0.7)',
+        borderRadius: 5,
+    },
 
     // PADDING
     padding: {

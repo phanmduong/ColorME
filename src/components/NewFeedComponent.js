@@ -1,21 +1,10 @@
 import React, {Component} from 'react';
-import {Image, StatusBar, TouchableOpacity, View,} from 'react-native';
 import {
-    Body,
-    Button,
-    Card,
-    CardItem,
-    Container,
-    Content,
-    Header,
-    Item,
-    Left,
-    ListItem,
-    Picker,
-    Right,
-    Spinner,
-    Text,
-    Thumbnail
+    FlatList, TouchableOpacity, Image, StatusBar, View,
+} from 'react-native';
+import {
+    Container, Header, Content, Card, CardItem, Item, Picker,
+    Thumbnail, Text, Button, Left, Body, Right, ListItem, Spinner, Badge
 } from 'native-base';
 import Video from 'react-native-video';
 import Icon from '../commons/Icon';
@@ -38,7 +27,6 @@ class newFeedComponent extends Component {
             likeCount: [],
             listPost: [],
             data:[],
-
         }
     }
 
@@ -59,8 +47,6 @@ class newFeedComponent extends Component {
         grid = true;
         this.setState({grid: grid});
     }
-
-
     // setup
     componentWillReceiveProps(nextProps) {
         let post = nextProps.products;
@@ -89,7 +75,7 @@ class newFeedComponent extends Component {
 
     // Function
     getMoreNewFeed() {
-        let page_id = this.state.page_id + 1 ;
+        let page_id = this.state.page_id + 1;
         this.setState({page_id: page_id});
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
     }
@@ -128,19 +114,22 @@ class newFeedComponent extends Component {
                     <Item style={[part.itemTab, part.shadow]}>
                         <Left style={{flexDirection: 'row'}}>
                             <Picker
+                                itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
+                                itemTextStyle={part.describeDarkGray}
                                 renderHeader={backAction =>
                                     <Header
                                         iosBarStyle='light-content'
-                                        style={{ backgroundColor: color.navTabBar }}>
+                                        style={{backgroundColor: color.navTabBar}}>
                                         <Left>
                                             <Button transparent onPress={backAction}>
-                                                <Icon name="entypo|chevron-thin-left" color={color.navTitle} size={size.iconBig} />
+                                                <Icon name="entypo|chevron-thin-left" color={color.navTitle}
+                                                      size={size.iconBig}/>
                                             </Button>
                                         </Left>
-                                        <Body style={{ flex: 3 }}>
-                                            <Text style={part.navTitle}>Chọn kiểu xem</Text>
+                                        <Body style={{flex: 3}}>
+                                        <Text style={part.titleNormalLight}>Chọn kiểu xem</Text>
                                         </Body>
-                                        <Right />
+                                        <Right/>
                                     </Header>}
                                 mode="dropdown"
                                 textStyle={part.describeDarkGray}
@@ -235,14 +224,38 @@ class newFeedComponent extends Component {
                                                     ?
                                                     (
                                                         <View key={i} style={part.wrapperGridImage}>
-                                                            <TouchableOpacity
-                                                                onPress={() => this.props.navigation.navigate('PostStack', {product_id: item.id})}
-                                                            >
-                                                                <Image
-                                                                    style={[part.imageInGrid]}
-                                                                    source={{uri: item.thumb_url}}
-                                                                />
-                                                            </TouchableOpacity>
+                                                            {
+                                                                (item.group)
+                                                                    ?
+                                                                    (
+                                                                        <TouchableOpacity
+                                                                            onPress={() =>
+                                                                                this.props.navigation.navigate('ThePostInNewFeed', {
+                                                                                    product_id: item.id,
+                                                                                    group_name: item.group.name
+                                                                                })}
+                                                                        >
+                                                                            <Image
+                                                                                style={[part.imageInGrid]}
+                                                                                source={{uri: item.thumb_url}}
+                                                                            />
+                                                                        </TouchableOpacity>
+                                                                    )
+                                                                    :
+                                                                    (
+                                                                        <TouchableOpacity
+                                                                            onPress={() =>
+                                                                                this.props.navigation.navigate('ThePostInNewFeed', {
+                                                                                    product_id: item.id,
+                                                                                })}
+                                                                        >
+                                                                            <Image
+                                                                                style={[part.imageInGrid]}
+                                                                                source={{uri: item.thumb_url}}
+                                                                            />
+                                                                        </TouchableOpacity>
+                                                                    )
+                                                            }
                                                         </View>
                                                     )
                                                     :
@@ -250,7 +263,11 @@ class newFeedComponent extends Component {
 
                                                         <View key={i} style={part.wrapperGridVideo}>
                                                             <TouchableOpacity
-                                                                onPress={() => this.props.navigation.navigate('PostStack', {product_id: item.id})}
+                                                                onPress={() =>
+                                                                    this.props.navigation.navigate('ThePostInNewFeed', {
+                                                                        product_id: item.id,
+                                                                        group_name: item.group.name
+                                                                    })}
                                                             >
                                                                 <Video
                                                                     repeat
@@ -285,13 +302,13 @@ class newFeedComponent extends Component {
                                                     <CardItem header style={part.cardHeader}>
                                                         <Left>
                                                             <TouchableOpacity
-                                                                onPress={() => this.props.navigation.navigate('UserStack', {username: item.author.username})}>
+                                                                onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.author.username})}>
                                                                 <Thumbnail circle small
                                                                            source={{uri: item.author.avatar_url}}/>
                                                             </TouchableOpacity>
                                                             <Body>
                                                             <Text
-                                                                onPress={() => this.props.navigation.navigate('UserStack', {username: item.author.username})}
+                                                                onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.author.username})}
                                                                 style={part.titleSmallBlue}>
                                                                 {item.author.name}
                                                             </Text>
@@ -312,7 +329,12 @@ class newFeedComponent extends Component {
                                                     {/*PHOTO*/}
                                                     <CardItem cardBody style={part.card}>
                                                         <TouchableOpacity
-                                                            onPress={() => this.props.navigation.navigate('PostStack', {product_id: item.id})}>
+                                                            onPress={() =>
+                                                                this.props.navigation.navigate('ThePostInNewFeed', {
+                                                                    product_id: item.id,
+                                                                    group_name: item.group.name
+                                                                })}
+                                                        >
                                                             <Body>
                                                             {
                                                                 (item.url.indexOf('.mp4') === -1)
@@ -378,8 +400,11 @@ class newFeedComponent extends Component {
 
 
                                                             <Button transparent style={part.paddingRight}
-                                                                    onPress={() => this.props.navigation.navigate('PostStack', {product_id: item.id})}
-
+                                                                    onPress={() =>
+                                                                        this.props.navigation.navigate('ThePostInNewFeed', {
+                                                                            product_id: item.id,
+                                                                            group_name: item.group.name
+                                                                        })}
                                                             >
                                                                 <Icon name="fontawesome|comments-o" size={size.iconBig}
                                                                       color={color.icon}/>

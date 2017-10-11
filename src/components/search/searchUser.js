@@ -4,9 +4,10 @@ import {
 } from 'react-native';
 import {
     Title, Container, Header, Content, Card, CardItem, Thumbnail, Form, Label,
-    Text, Button, Icon, Left, Body, Right, List, ListItem, Item, Input, Spinner
+    Text, Button, Left, Body, Right, List, ListItem, Item, Input, Spinner
 } from 'native-base';
 import part from '../../styles/partStyle';
+import Icon from '../../commons/Icon';
 import * as searchAction from '../../actions/searchAction';
 import * as color from '../../styles/color';
 import {bindActionCreators} from 'redux';
@@ -35,20 +36,33 @@ class searchUser extends Component {
                         (
                             <FlatList
                                 onEndReachedThreshold={5}
-                                onEndReached={() =>
-                                {}}
+                                onEndReached={() => {
+                                }}
                                 data={this.props.users}
                                 renderItem={({item}) =>
-                                    <ListItem avatar style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
+                                    <CardItem avatar style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
                                         <Left>
-                                            <Thumbnail
-                                                source={{uri: item.avatar_url}}/>
-                                        </Left>
-                                        <Body style={part.noBorder}>
-                                            <Text style={part.titleSmallBlue}>{item.name}</Text>
+                                            <TouchableOpacity
+                                                onPress={() => this.props.navigation.navigate('UserStack', {username: item.username})}
+                                            >
+                                                <Thumbnail
+                                                    source={{uri: item.avatar_url}}/>
+                                            </TouchableOpacity>
+
+                                            <Body style={part.noBorder}>
+                                            <TouchableOpacity>
+                                                <Text style={part.titleSmallBlue}>{item.name}</Text>
+                                            </TouchableOpacity>
                                             <Text style={part.describeGray} note>{item.university}</Text>
-                                        </Body>
-                                    </ListItem>
+                                            </Body>
+                                            <TouchableOpacity style={part.iconFollow}>
+                                                <Icon name="ion|ios-person-add"
+                                                      size={30}
+                                                      color={color.navTitle}/>
+                                            </TouchableOpacity>
+                                        </Left>
+
+                                    </CardItem>
                                 }
                             />
                         )

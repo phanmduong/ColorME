@@ -1,5 +1,5 @@
 import * as types from '../constants/actionTypes';
-import * as API from '../apis/getCourseApi';
+import * as API from '../apis/courseApi';
 
 export function beginGetCourse() {
     return {
