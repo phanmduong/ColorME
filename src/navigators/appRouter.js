@@ -36,14 +36,15 @@ import OnlineFriend from '../components/message/onlineFriend';
 // MY ACCOUNT
 import myAccountComponent from '../components/myAccount/myAccountComponent';
 
-//SETTING
-import setting from '../components/myAccount/setting';
-import aboutUs from '../components/myAccount/aboutUs';
-import changePassword from '../components/myAccount/changePassword';
-import updateInformation from '../components/myAccount/updateInformation';
-import feedback from '../components/myAccount/feedback';
-import contactUs from '../components/myAccount/contactUs';
-import courseComponent from '../components/CourseComponent';
+//GROUP
+import groupComponent from '../components/group/groupComponent';
+import theme from '../components/group/theme';
+import groupProject from '../components/group/groupProject';
+import members from '../components/group/members';
+
+
+
+
 
 export const TabNavigatorTopStyle = {
     tabBarPosition: 'top',
@@ -160,47 +161,6 @@ export const SearchTab = TabNavigator(
     }
 );
 
-export const Setting = StackNavigator(
-    {
-        Setting: {
-            screen: setting,
-            navigationOptions: {
-
-            },
-        },
-        AboutUs: {
-            screen: aboutUs,
-            navigationOptions: {
-                tabBarVisible: false,
-            },
-        },
-        ChangePassword: {
-            screen: changePassword,
-            navigationOptions: {
-                tabBarVisible: false,
-            },
-        },
-        UpdateInformation: {
-            screen: updateInformation,
-            navigationOptions: {
-                tabBarVisible: false,
-            },
-        },
-        ContactUs: {
-            screen: contactUs,
-            navigationOptions: {
-                tabBarVisible: false,
-            },
-        },
-        Feedback: {
-            screen: feedback,
-            navigationOptions: {
-                tabBarVisible: false,
-            },
-        },
-
-    }
-);
 
 export const User = TabNavigator(
     {
@@ -245,6 +205,65 @@ export const User = TabNavigator(
     }
 );
 
+export const Group = TabNavigator(
+    {
+        Theme: {
+            screen: theme,
+            navigationOptions: {
+                tabBarLabel: 'Chủ đề',
+            }
+        },
+        GroupProject: {
+            screen: groupProject,
+            navigationOptions: {
+                tabBarLabel: 'Dự án',
+            }
+        },
+        Members: {
+            screen: members,
+            navigationOptions: {
+                tabBarLabel: 'Thành viên',
+            }
+        },
+
+    },
+    {
+        initialRouteName: 'Theme',
+        tabBarPosition: 'top',
+        tabBarOptions: {
+            activeTintColor: color.darkGray,
+            inactiveTintColor: color.icon,
+            style: {
+                height: 70,
+                borderTopWidth: 0,
+                paddingBottom: 20,
+                backgroundColor: color.navTitle
+            },
+            labelStyle: {
+                fontWeight: '700',
+                fontSize: size.describe,
+            },
+
+        }
+    }
+);
+export const ThePostInNewFeed = StackNavigator(
+    {
+        PostStack: {
+            screen: getFullInfoAboutOnePostComponent,
+            navigationOptions: {
+                header: null,
+                tabBarVisible: false,
+            },
+        },
+        GroupStack:{
+            screen: groupComponent,
+            navigationOptions: {
+                header: null,
+            },
+        },
+    },StackNavigatorStyle
+);
 export const NewFeedStackNavigator = StackNavigator(
     {
         NewFeedStack: {
@@ -254,21 +273,14 @@ export const NewFeedStackNavigator = StackNavigator(
                 headerTintColor: color.navTitle,
             },
         },
-        UserStack: {
+        UserInNewFeed: {
             screen: userComponent,
             navigationOptions: {
                 header: null,
             },
         },
-        PostStack: {
-            screen: getFullInfoAboutOnePostComponent,
-            navigationOptions: {
-                header: null,
-                tabBarVisible: false,
-            },
-        },
-        CourseStack: {
-            screen: courseComponent,
+        ThePostInNewFeed: {
+            screen: ThePostInNewFeed,
             navigationOptions: {
                 header: null,
                 tabBarVisible: false,
