@@ -8,8 +8,11 @@ import * as color from '../styles/color';
 import * as size from '../styles/size';
 
 // LOGIN
-import tabLoginAndRegister from '../components/loginRegister/tabLoginAndRegister';
-
+import LoginComponent from '../components/loginRegister/loginComponent';
+import EmailIdentityComponent from '../components/loginRegister/EmailIdentityComponent'
+import ResetPasswordComponent from '../components/loginRegister/ResetPasswordComponent'
+import RegisterComponent from '../components/loginRegister/registerComponent'
+import CodeIdentityComponent from '../components/loginRegister/CodeIdentityComponent'
 // MAIN SCREEN
 import newFeedComponent from '../components/NewFeedComponent';
 import messageComponent from '../components/message/messageComponent';
@@ -415,11 +418,43 @@ export const Main = StackNavigator(
         headerMode: 'none'
     }
 );
+export const Login = StackNavigator({
+    LoginComponent : {
+        screen : LoginComponent,
+        navigationOptions : {
+            header : null
+        }
+    },
+    RegisterComponent : {
+        screen : RegisterComponent,
+        navigationOptions : {
+            header : null
+        }
+    },
+    ResetPasswordComponent : {
+        screen : ResetPasswordComponent,
+        navigationOptions : {
+            header :null,
+        }
+    },
+    EmailIdentityComponent : {
+        screen : EmailIdentityComponent,
+        navigationOptions : {
+            header : null,
+        }
+    },
+    CodeIdentityComponent : {
+        screen: CodeIdentityComponent,
+        navigationOptions: {
+            header: null,
+        }
+    }
+})
 
 export const Start = StackNavigator(
     {
         Login: {
-            screen: tabLoginAndRegister,
+            screen: Login,
             navigationOptions: {
                 header: null,
             },

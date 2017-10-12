@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {
-    Image, TouchableOpacity, View, StatusBar
+    Image, TouchableOpacity, View
 } from 'react-native';
 import {
     Title, Container, Header, Content, Card, CardItem, Thumbnail, Text, CheckBox,
-    Button, Left, Body, Right, TabHeading, List, ListItem, Item
+    Button, Left, Body, Right, TabHeading, List, ListItem, Item, Spinner
 } from 'native-base';
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
@@ -49,16 +49,16 @@ class groupComponent extends Component {
                             <View style={[part.wrapperImageInGetFull, part.shadow]}>
                                 <Image
                                     style={part.imageInUserProfile}
-                                    source={{uri: ''}}/>
+                                    source={{uri: this.props.groupInformation.avatar_url}}/>
 
                                 <View style={part.tabInGetFull}>
                                     <Item style={{borderBottomWidth: 0,}}>
                                         <Body>
                                         <Thumbnail style={part.marginBottom}
                                                    circle large
-                                                   source={{uri: ''}}/>
+                                                   source={{uri: this.props.groupInformation.avatar_url}}/>
                                         <Text style={[part.titleNormalLight, part.paddingLine]}>
-                                            {this.props.groupName}
+                                            {this.props.groupInformation.name}
                                         </Text>
                                         {
                                             (this.props.members)
@@ -118,7 +118,7 @@ class groupComponent extends Component {
 function mapStateToProps(state) {
     return {
         members: state.group.members,
-        groupName: state.group.groupName,
+        groupInformation: state.group.groupInformation,
         token: state.login.token,
         isLoadingGroupProducts: state.group.isLoadingGroupProducts,
 

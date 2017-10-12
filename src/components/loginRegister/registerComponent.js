@@ -1,140 +1,140 @@
 import React, {Component} from 'react'
-import {ActivityIndicator, Alert, TouchableOpacity, View, KeyboardAvoidingView, Text} from 'react-native';
+import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, TouchableOpacity, View} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
-import {Container, Form, Input, Item,} from 'native-base';
+import {Container, Content, Form, Input, Item} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome'
-import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
+import part from '../../styles/partStyle';
 import * as size from '../../styles/size';
+import * as registerAction from '../../actions/registerAction';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux'
 
-export default class RegisterComponent extends Component {
+class RegisterComponent extends Component {
     constructor() {
-        super()
+        super();
         this.state = {
-            name: '',
-            userName: '',
-            email: '',
-            password: '',
+            email :'',
+            name : '',
+            username : '',
+            password : ''
         }
     }
 
+    //
+    register(value) {
+        this.props.registerAction.registerUser(value)
+    }
     componentWillReceiveProps(nextProps) {
-        if (nextProps.status == 200) {
-            Alert.alert('Register Success');
+        if (nextProps.status === 200) {
+            this.props.navigation.navigate('LoginComponent');
         }
-        if (nextProps.error == true) {
-            Alert.alert('Đăng kí thất bại ')
+        if (nextProps.error) {
+            Alert.alert('Mời bạn kiểm tra lại thông tin tài khoản ')
         }
     }
 
     render() {
         return (
-            <KeyboardAvoidingView behavior="padding" style={styles.wrapperContainer}>
+            <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
+                <View style={styles.wrapperColorME}>
+                    <Text style={styles.textColor}>Color</Text>
+                    <Text style={styles.textME}>ME</Text>
+                </View>
                 <Container style={styles.midContainerLogin}>
-                    <Container style={styles.textInputGroup}>
-                        <Item style={styles.inputGroup}>
-                            <View style={styles.wrapperIcon}>
-                                <Icon name='envelope-o' size={size.icon} color={color.gray}/>
-                            </View>
-                            <Input placeholder='Email'
-                                   color = {color.text}
-                                   style={part.inputTheme02}
-                                   placeholderTextColor={color.gray}
+                    <Container style={styles.contentFormRegister}>
+                        <Text style={styles.textTitleInput}>EMAIL</Text>
+                        <Item>
+                            <Input style={part.inputTheme02}
+                                   color={color.gray}
+                                   autoCorrect={false}
                                    onChangeText={(email) => {
-                                       this.setState({email})
+                                       this.setState({ email});
                                    }}
                             />
-
                         </Item>
-                        {/*{(this.state.email == '') ? (*/}
-                        {/*<Text style={{color: 'red'}}>* Bạn cần nhập email </Text>*/}
-                        {/*) : (*/}
-                        {/*<Text/>*/}
-                        {/*)}*/}
-                        <Item style={styles.inputGroup}>
-                            <View style={styles.wrapperIcon}>
-                                <Icon name='user-o' size={size.icon} color={color.gray}/>
-                            </View>
-                            <Input placeholder='Name'
-                                   color = {color.text}
-                                   style={part.inputTheme02}
-                                   placeholderTextColor={color.gray}
+                        <Text style={styles.textTitleInput}>NAME</Text>
+                        <Item>
+                            <Input style={part.inputTheme02}
+                                   color={color.gray}
                                    onChangeText={(name) => {
                                        this.setState({name})
                                    }}
-
                             />
                         </Item>
-                        {/*{(this.state.name == '') ? (*/}
-                        {/*<Text style={{color: 'red'}}>* Bạn cần nhập tên của bạn</Text>*/}
-                        {/*) : (*/}
-                        {/*<Text/>*/}
-                        {/*)}*/}
-                        <Item style={styles.inputGroup}>
-                            <View style={styles.wrapperIcon}>
-                                <Icon name='address-book' size={size.icon} color={color.gray}/>
-                            </View>
-                            <Input placeholder='Username'
-                                   style={part.inputTheme02}
-                                   color = {color.text}
-                                   placeholderTextColor={color.gray}
-                                   onChangeText={(userName) => {
-                                       this.setState({userName})
+                        <Text style={styles.textTitleInput}>USERNAME</Text>
+                        <Item>
+                            <Input style={part.inputTheme02}
+                                   color={color.gray}
+                                   onChangeText={(username) => {
+                                       this.setState({username})
                                    }}
                             />
                         </Item>
-                        <Item style={styles.inputGroup}>
-                            <View style={styles.wrapperIcon}>
-                                <Icon name='unlock' size={size.icon} color={color.gray}/>
-                            </View>
-                            <Input placeholder='Password'
-                                   style={part.inputTheme02}
-                                   color = {color.text}
+                        <Text style={styles.textTitleInput}>PASSWORD</Text>
+                        <Item>
+                            <Input style={part.inputTheme02}
+                                   color={color.gray}
                                    secureTextEntry={true}
-                                   placeholderTextColor={color.gray}
                                    onChangeText={(password) => {
                                        this.setState({password})
                                    }}
                             />
                         </Item>
-                        {/*{(this.state.password == '') ? (*/}
-                            {/*<Text style={{color: 'red'}}>* Bạn cần nhập password </Text>*/}
-                        {/*) : (*/}
-                            {/*<Text/>*/}
-                        {/*)}*/}
-                        <TouchableOpacity
-                            style={styles.buttonRegister}
-                            onPress={() => this.props.register(this.state)}
-                        >
-                            {(this.props.isLoading) ? (
-                                <View style={{
-                                    padding: 10,
-                                    flex: 1,
-                                    justifyContent: 'center',
-                                    alignItems: 'center'
-                                }}>
-                                    <ActivityIndicator
-                                        animated={true}
-                                        color={color.navTitle}
-                                        style={{
-                                            flex: 1,
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            height: 40,
-                                        }}
-                                        size='small'
-                                    />
-                                </View>
-                            ) : (
-                                <Icon name="user-plus" color={color.navTitle} size={size.icon}/>
-                            )
-                            }
-                        </TouchableOpacity>
+                        <Item style={{marginLeft: 37,}}>
+                            <TouchableOpacity
+                                disabled={this.props.isLoading}
+                                block
+                                rounded
+                                style={styles.buttonRegister}
+                                onPress={() => this.register(this.state)}
+
+                            >
+                                {(this.props.isLoading) ? (
+                                    <Container style={{
+                                        padding: 10,
+                                        flex: 1,
+                                        justifyContent: 'center',
+                                        alignItems: 'center'
+                                    }}>
+                                        <ActivityIndicator
+                                            animated={true}
+                                            color={color.navTitle}
+                                            style={{
+                                                flex: 1,
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                height: 40,
+                                            }}
+                                            size='small'
+                                        />
+                                    </Container>
+                                ) : (
+                                    <Icon name="user-plus" color={color.navTitle} size={size.icon}/>
+                                )
+                                }
+                            </TouchableOpacity>
+                        </Item>
                     </Container>
                 </Container>
             </KeyboardAvoidingView>
 
-
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        isLoading: state.register.isLoading,
+        status: state.register.status,
+        error: state.register.error,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        registerAction: bindActionCreators(registerAction, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterComponent)

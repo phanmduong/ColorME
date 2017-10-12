@@ -17,89 +17,109 @@ class topics extends Component {
     render() {
 
         return (
-            <Content
-                showsVerticalScrollIndicator={false}
-                style={[part.wrapperContainer, part.padding]}>
-                {
-                    this.props.topics.map((item, i) => {
-                        let deadlineTime = moment(item.deadline_raw, "YYYY-MM-DD h:mm:ss").fromNow();
-                        // size.wid-30
-                        let widthDeadlineProgress = 200 ;
-                        return (
-                            <Card key={i} style={part.card}>
-                                <CardItem header style={part.cardHeader}>
-                                    <Left>
-                                        <TouchableOpacity
-                                        >
-                                            <Thumbnail circle small
-                                                       source={{uri: item.creator.avatar_url}}/>
-                                        </TouchableOpacity>
-                                        <Body>
-                                        <Text
-                                            style={part.titleSmallBlue}>
-                                            {item.creator.name}
-                                        </Text>
-                                        <Text
-                                            style={part.describeItalicDark}>{item.created_at}</Text>
-                                        </Body>
-                                        <TouchableOpacity transparent>
-                                            <Icon name="materialCommunity|dots-horizontal"
-                                                  color={color.icon}
-                                                  size={size.icon}
-                                                  style={part.paddingRight}
-                                            />
-                                        </TouchableOpacity>
-                                    </Left>
-                                </CardItem>
-                                <CardItem cardBody style={part.card}>
-                                    <TouchableOpacity
-                                        onPress={() =>
-                                            this.props.navigation.navigate('ThePostInNewFeed', {
-                                                product_id: item.id,
-                                                group_name: item.group.name,
-                                                group_link: item.group.link,
-                                            })}
-                                    >
-                                        <Body>
-                                        <Image
-                                            resizeMode={'cover'}
-                                            source={{uri: item.avatar_url}}
-                                            style={[part.image, part.shadow]}
-                                        />
-                                        <View style={part.textInImage}>
-                                            <Text
-                                                numberOfLines={2}
-                                                style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
+            (this.props.isLoadingGroupTopics)
+                ?
+                (
+                    <View
+                        style={{
+                            flex: 1,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Spinner
+                            color={color.gray}/>
+                    </View>
+                )
+                :
+                (
+                    <Content
+                        showsVerticalScrollIndicator={false}
+                        style={[part.wrapperContainer, part.padding]}>
+                        {
+                            this.props.topics.map((item, i) => {
+                                let created = item.created_time;
+                                let deadline = item.deadline_raw;
+                                let timeLimit  = moment.duration(moment(deadline).diff(moment(created))).asHours();
+                                let now = moment().format('YYYY-MM-DD HH:mm:ss');
+                                let timeRemaining = moment.duration(moment(deadline).diff(moment(now))).asHours();
+                                let widthDeadlineProgress = 0;
+                                if(timeRemaining > 0){
+                                    widthDeadlineProgress = ((size.wid - 30) * (timeLimit - timeRemaining ))/ timeLimit ;
+                                } else {
+                                    widthDeadlineProgress = size.wid - 30;
+                                }
+                                return (
+                                    <Card key={i} style={part.card}>
+                                        <CardItem header style={part.cardHeader}>
+                                            <Left>
+                                                <TouchableOpacity
+                                                >
+                                                    <Thumbnail circle small
+                                                               source={{uri: item.creator.avatar_url}}/>
+                                                </TouchableOpacity>
+                                                <Body>
+                                                <Text
+                                                    style={part.titleSmallBlue}>
+                                                    {item.creator.name}
+                                                </Text>
+                                                <Text
+                                                    style={part.describeItalicDark}>{item.created_at}</Text>
+                                                </Body>
+                                                <TouchableOpacity transparent>
+                                                    <Icon name="materialCommunity|dots-horizontal"
+                                                          color={color.icon}
+                                                          size={size.icon}
+                                                          style={part.paddingRight}
+                                                    />
+                                                </TouchableOpacity>
+                                            </Left>
+                                        </CardItem>
+                                        <CardItem cardBody style={part.card}>
+                                            <TouchableOpacity
                                             >
-                                                {item.title}
-                                            </Text>
-                                        </View>
-                                        </Body>
-                                    </TouchableOpacity>
-                                </CardItem>
+                                                <Body>
+                                                <Image
+                                                    resizeMode={'cover'}
+                                                    source={{uri: item.avatar_url}}
+                                                    style={[part.image, part.shadow]}
+                                                />
+                                                <View style={part.textInImage}>
+                                                    <Text
+                                                        numberOfLines={2}
+                                                        style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
+                                                    >
+                                                        {item.title}
+                                                    </Text>
+                                                </View>
+                                                </Body>
+                                            </TouchableOpacity>
+                                        </CardItem>
 
-                                <CardItem  style={[{height: 20}, part.noPadding]}>
-                                    <View style={part.wrapperDeadline}>
-                                        <View style={[part.deadlineProgress, {width: widthDeadlineProgress}]}>
+                                        <CardItem style={[{height: 20}, part.noPadding]}>
+                                            <View style={part.wrapperDeadline}>
+                                                <View style={[part.deadlineProgress, {width: widthDeadlineProgress}]}>
 
-                                        </View>
-                                    </View>
-                                </CardItem>
-                                <CardItem footer style={part.cardFooter}>
-                                    <Left>
-                                        <Right>
-                                            <Text style={[part.describeGray, {right: 0}]}>
-                                                {item.deadline} - {item.submitted_members} / {item.total_members} đã nộp
-                                            </Text>
-                                        </Right>
-                                    </Left>
-                                </CardItem>
-                            </Card>
-                        )
-                    })
-                }
+                                                </View>
+                                            </View>
+                                        </CardItem>
+                                        <CardItem footer style={part.cardFooter}>
+                                            <Left>
+                                                <Right>
+                                                    <Text style={[part.describeGray, {right: 0}]}>
+                                                        {item.deadline} - {item.submitted_members}/{item.total_members} đã nộp
+                                                    </Text>
+                                                </Right>
+                                            </Left>
 
-            </Content>
+                                        </CardItem>
+                                    </Card>
+                                )
+                            })
+                        }
+                    </Content>
+                )
+
         )
     }
 }

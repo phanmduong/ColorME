@@ -75,7 +75,7 @@ export default {
         errorGroupTopics: false,
         errorGroupProducts: false,
         errorGroupMembers: false,
-        groupName:'',
+        groupInformation:'',
         topics:[],
         products:[],
         members:[],

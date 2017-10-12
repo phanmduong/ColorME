@@ -3,31 +3,38 @@ import * as size from './size';
 import * as color from './color';
 
 let wid = Dimensions.get('window').width;
-
+let hei = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     wrapperContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: color.backGround,
+        position: 'relative'
     },
     topContainerLogin: {
         backgroundColor: color.main,
     },
 
     midContainerLogin: {
-        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        flex : 1,
+        marginBottom: 100
     },
     textInputGroup: {
         width: wid - wid * 0.2,
     },
     textInput: {
-        height: 54,
         margin: 5,
         fontSize: 11,
         padding: 10,
+    },
+    textTitleInput : {
+        color: 'rgb(197,0,0)',
+        fontWeight: (Platform.OS === 'ios') ? '900' : 'normal',
+        marginTop : 2,
+        marginLeft: 10
     },
     inputGroup: {
         borderColor: color.none,
@@ -36,16 +43,75 @@ const styles = StyleSheet.create({
         paddingRight: 10,
         backgroundColor: 'rgba(158, 158, 158, 0.15)'
     },
-
+    contentForm: {
+        backgroundColor: '#fff',
+        flex: 1,
+        height : hei /2 -50 ,
+        width : wid - wid* 0.2,
+        borderRadius: 15,
+        elevation: 10,
+        shadowColor: '#666666',
+        shadowOffset: {
+            width: 0,
+            height: 3
+        },
+        shadowRadius: 10,
+        shadowOpacity: 0.4,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        position: 'absolute',
+    },
+    contentFormRegister : {
+        backgroundColor: '#fff',
+        flex: 1,
+        height : hei/2  ,
+        width : wid - wid* 0.2,
+        borderRadius: 15,
+        elevation: 10,
+        shadowColor: '#666666',
+        shadowOffset: {
+            width: 0,
+            height: 3
+        },
+        shadowRadius: 10,
+        shadowOpacity: 0.4,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        position: 'absolute',
+    },
+    textAccept: {
+        color: '#797979',
+        fontWeight: 'bold',
+        marginLeft : 70,
+        marginTop : 10
+    },
+    textBottom : {
+        color: '#797979',
+        fontWeight: 'bold',
+        marginLeft : wid/3 - 15,
+        marginBottom: 50,
+    },
+    text:{
+       justifyContent : 'center',
+       alignItems : 'center',
+        margin : 10,
+        color: '#797979',
+    },
+    textButton : {
+        justifyContent : 'center',
+        alignItems : 'center',
+        color : 'white',
+        fontSize : 15,
+    },
     buttonRegister: {
-        marginLeft: 2,
-        marginRight: 0,
+        width : wid - wid*0.4,
+        height : 40,
         alignItems: 'center',
         justifyContent: 'center',
         padding: 15,
-        marginTop: 10,
+        marginTop: 15,
+        borderRadius : 20,
         backgroundColor: 'rgba(197, 0, 0, 1)',
-
     },
     textSignUp: {
         fontSize: 11,
@@ -68,14 +134,15 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 30,
         fontWeight: (Platform.OS === 'ios') ? '700' : 'normal',
-        marginLeft: 0
+        marginLeft: 70
 
     },
     wrapperColorME: {
         flex: 2,
+        width : wid,
         backgroundColor: color.main,
         justifyContent: 'center',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     wrapperForm:{
         flex: 3,
