@@ -37,7 +37,9 @@ class Information extends Component {
                         )
                         :
                         (
-                            <Container style={[part.wrapperContainer]}>
+                            <Container
+                                showsVerticalScrollIndicator={false}
+                                style={[part.wrapperContainer]}>
                                 <List>
                                     <ListItem itemDivider>
                                         <Text style={part.titleSmallDarkBold}>Thông tin chi tiết</Text>

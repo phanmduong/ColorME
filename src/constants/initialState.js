@@ -67,5 +67,18 @@ export default {
         isLoading : false,
         error : false,
         comments : []
+    },
+    group:{
+        isLoadingGroupTopics: false,
+        isLoadingGroupProducts: false,
+        isLoadingGroupMembers: false,
+        errorGroupTopics: false,
+        errorGroupProducts: false,
+        errorGroupMembers: false,
+        groupName:'',
+        topics:[],
+        products:[],
+        members:[],
+
     }
 }

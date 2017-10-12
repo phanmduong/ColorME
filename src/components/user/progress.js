@@ -15,7 +15,9 @@ import {connect} from 'react-redux';
 class Progress extends Component {
     render() {
         return (
-            <Content style={[part.wrapperContainer, part.padding]}>
+            <Content
+                showsVerticalScrollIndicator={false}
+                style={[part.wrapperContainer, part.padding]}>
                 {
 
                     (this.props.isLoadingUserProgress)

@@ -108,6 +108,8 @@ class newFeedComponent extends Component {
                     barStyle="light-content"
                 />
 
+
+                {/*VIEW TYPE*/}
                 <View>
                     <Item style={[part.itemTab, part.shadow]}>
                         <Left style={{flexDirection: 'row'}}>
@@ -193,8 +195,8 @@ class newFeedComponent extends Component {
 
 
                 <Content
+                    showsVerticalScrollIndicator={false}
                     onMomentumScrollEnd={() => this.getMoreNewFeed()} style={[part.padding, part.marginTop]}>
-
                     {
                         (this.state.grid)
                             ?
@@ -230,7 +232,8 @@ class newFeedComponent extends Component {
                                                                             onPress={() =>
                                                                                 this.props.navigation.navigate('ThePostInNewFeed', {
                                                                                     product_id: item.id,
-                                                                                    group_name: item.group.name
+                                                                                    group_name: item.group.name,
+                                                                                    group_link: item.group.link,
                                                                                 })}
                                                                         >
                                                                             <Image
@@ -264,7 +267,8 @@ class newFeedComponent extends Component {
                                                                 onPress={() =>
                                                                     this.props.navigation.navigate('ThePostInNewFeed', {
                                                                         product_id: item.id,
-                                                                        group_name: item.group.name
+                                                                        group_name: item.group.name,
+                                                                        group_link: item.group.link,
                                                                     })}
                                                             >
                                                                 <Video
@@ -330,7 +334,8 @@ class newFeedComponent extends Component {
                                                             onPress={() =>
                                                                 this.props.navigation.navigate('ThePostInNewFeed', {
                                                                     product_id: item.id,
-                                                                    group_name: item.group.name
+                                                                    group_name: item.group.name,
+                                                                    group_link: item.group.link,
                                                                 })}
                                                         >
                                                             <Body>
@@ -350,7 +355,7 @@ class newFeedComponent extends Component {
                                                                             repeat
                                                                             rate={1.0}                   // 0 is paused, 1 is normal.
                                                                             volume={1.0}                 // 0 is muted, 1 is normal.
-                                                                            muted={true}                // Mutes the audio entirely.
+                                                                            muted={true}                 // Mutes the audio entirely.
                                                                             paused={false}
                                                                             resizeMode={'cover'}
                                                                             source={{uri: item.url}}
@@ -370,6 +375,7 @@ class newFeedComponent extends Component {
                                                             </Body>
                                                         </TouchableOpacity>
                                                     </CardItem>
+
 
                                                     {/*LIKE COMMENT VIEWS*/}
                                                     <CardItem footer style={part.cardFooter}>
@@ -401,7 +407,8 @@ class newFeedComponent extends Component {
                                                                     onPress={() =>
                                                                         this.props.navigation.navigate('ThePostInNewFeed', {
                                                                             product_id: item.id,
-                                                                            group_name: item.group.name
+                                                                            group_name: item.group.name,
+                                                                            group_link: item.group.link,
                                                                         })}
                                                             >
                                                                 <Icon name="fontawesome|comments-o" size={size.iconBig}

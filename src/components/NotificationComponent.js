@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+    import React, {Component} from 'react';
 import {
     FlatList
 } from 'react-native';
@@ -10,7 +10,6 @@ import * as getNotificationAction from '../actions/getNotificationAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import part from '../styles/partStyle';
-import * as color from '../styles/color';
 
 class notificationComponent extends Component {
     constructor() {

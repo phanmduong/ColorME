@@ -94,14 +94,13 @@ class getFullInfoAboutOnePostComponent extends Component {
 
                                             <View style={part.iconInDrawer}>
                                                 <Left>
-                                                    <TouchableOpacity
-                                                        onPress={() => this.props.navigation.goBack()}
+                                                    <TouchableOpacity style={part.padding}
+                                                                      onPress={() => this.props.navigation.goBack()}
                                                     >
                                                         <Icon name="entypo|chevron-thin-left"
-                                                              style={part.shadow}
                                                               size={size.iconBig}
                                                               color={color.navTitle}
-
+                                                              style={part.shadow}
                                                         />
                                                     </TouchableOpacity>
                                                     <Right style={{right: 0}}>
@@ -110,7 +109,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                                 ?
                                                                 (
                                                                     <TouchableOpacity style={part.buttonGroup}
-                                                                                      onPress={() => this.props.navigation.navigate('GroupStack')}
+                                                                                      onPress={() => this.props.navigation.navigate('GroupStack', {group_link: this.props.navigation.state.params.group_link})}
                                                                     >
                                                                         <Text
                                                                             style={part.titleGroup}>{this.props.navigation.state.params.group_name}</Text>
@@ -354,9 +353,7 @@ class getFullInfoAboutOnePostComponent extends Component {
 
                                 </View>
                             )
-
                     }
-
                 </Content>
                 <KeyboardAvoidingView behavior={'position'}>
                     <CardItem style={part.cardBottom}>

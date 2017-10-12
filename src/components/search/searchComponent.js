@@ -28,21 +28,21 @@ class searchComponent extends Component {
 
 
     search() {
-        this.props.searchAction.searchUsers(this.state.txtSearch, 10, 1);
-        this.props.searchAction.searchProducts(this.state.txtSearch, 10, 1);
+        this.props.searchAction.searchUsers(this.state.txtSearch, 30, 1);
+        this.props.searchAction.searchProducts(this.state.txtSearch, 30, 1);
 
     }
     getMoreUser() {
         let page_user = this.state.page_user;
         page_user += 1;
         this.setState({page_user: page_user});
-        this.props.searchAction.searchUsers(this.state.txtSearch, 10, this.state.page_user);
+        this.props.searchAction.searchUsers(this.state.txtSearch, 30, this.state.page_user);
     }
     getMoreProduct() {
         let page_product = this.state.page_product;
         page_product += 1;
         this.setState({page_product: page_product});
-        this.props.searchAction.searchProducts(this.state.txtSearch, 10, this.state.page_product);
+        this.props.searchAction.searchProducts(this.state.txtSearch, 30, this.state.page_product);
 
     }
 
@@ -53,18 +53,18 @@ class searchComponent extends Component {
                     barStyle="light-content"
                 />
 
-                <Item style={[part.noBorder, part.marginStatusBar]}>
-                    <Left>
-                        <TouchableOpacity
-                            style={{marginLeft: -5}}
-                            onPress={() => this.props.navigation.goBack()}
-                        >
-                            <Icon name="entypo|chevron-thin-left"
-                                  size={30}
-                                  color={color.darkGray}/>
-                        </TouchableOpacity>
-                    </Left>
-                </Item>
+                {/*<Item style={[part.noBorder, part.marginStatusBar]}>*/}
+                    {/*<Left>*/}
+                        {/*<TouchableOpacity*/}
+                            {/*style={{marginLeft: -5}}*/}
+                            {/*onPress={() => this.props.navigation.goBack()}*/}
+                        {/*>*/}
+                            {/*<Icon name="entypo|chevron-thin-left"*/}
+                                  {/*size={30}*/}
+                                  {/*color={color.darkGray}/>*/}
+                        {/*</TouchableOpacity>*/}
+                    {/*</Left>*/}
+                {/*</Item>*/}
                 <Item style={part.noBorder}>
                     <TouchableOpacity onPress={() => this.search()}>
                         <Text style={[part.titleLargeDarkBold, part.paddingLine]}>
