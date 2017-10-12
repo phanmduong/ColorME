@@ -54,6 +54,8 @@ class topics extends Component {
                                         <CardItem header style={part.cardHeader}>
                                             <Left>
                                                 <TouchableOpacity
+                                                    onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.creator.username})}
+
                                                 >
                                                     <Thumbnail circle small
                                                                source={{uri: item.creator.avatar_url}}/>
@@ -77,6 +79,7 @@ class topics extends Component {
                                         </CardItem>
                                         <CardItem cardBody style={part.card}>
                                             <TouchableOpacity
+
                                             >
                                                 <Body>
                                                 <Image

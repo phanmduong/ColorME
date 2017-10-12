@@ -137,20 +137,6 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                         </View>
                                                     )
                                             }
-                                            {/*{*/}
-                                            {/*(this.state.more_products.length!=0) ? (*/}
-                                            {/*this.state.more_products.map((img) => {*/}
-                                            {/*return (*/}
-                                            {/*<View style={part.shadow}>*/}
-                                            {/*<Image source={{uri: this.props.post.image_url}}*/}
-                                            {/*style={[part.imageInGetFull]}*/}
-                                            {/*/>*/}
-
-                                            {/*</View>*/}
-                                            {/*)*/}
-                                            {/*})*/}
-                                            {/*) : (<Text/>)*/}
-                                            {/*}*/}
 
                                             <View style={part.iconInDrawer}>
                                                 <Left>
@@ -195,19 +181,27 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                     (
                                                         <Left>
 
-                                                            <TouchableOpacity>
+                                                            <TouchableOpacity
+                                                                onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: this.props.post.author.username})}
+                                                            >
                                                                 <Thumbnail circle
                                                                            source={{uri: this.props.post.author.avatar_url}}/>
                                                             </TouchableOpacity>
                                                             <Body>
-                                                            <Text
-                                                                style={[part.describeDarkGray, part.paddingLine]}>
-                                                                Đăng bởi &nbsp;
+                                                            <TouchableOpacity
+                                                                onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: this.props.post.author.username})}
+                                                            >
                                                                 <Text
-                                                                    style={part.titleSmallBlue}>
-                                                                    {this.props.post.author.name}
+                                                                    style={[part.describeDarkGray, part.paddingLine]}>
+                                                                    Đăng bởi &nbsp;
+
+                                                                    <Text
+                                                                        style={part.titleSmallBlue}>
+                                                                        {this.props.post.author.name}
+                                                                    </Text>
                                                                 </Text>
-                                                            </Text>
+                                                            </TouchableOpacity>
+
                                                             <Text
                                                                 style={[part.describeItalicDark, part.paddingLine]}>
                                                                 {this.props.post.created_at}
@@ -217,7 +211,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                                     (this.props.colors)
                                                                         ?
                                                                         (
-                                                                            this.state.colors.map((color, i) => {
+                                                                            this.props.post.colors.map((color, i) => {
                                                                                 return (
                                                                                     <Icon key={i}
                                                                                           name="fontawesome|circle"
@@ -394,8 +388,6 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                                 >
                                                                     {item.commenter.name}
                                                                 </Text>
-
-
                                                                 <Text
                                                                     style={[part.describeDarkGray, part.paddingTLB]}
                                                                 >
@@ -478,6 +470,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                                     />
                                                                 </TouchableOpacity>
                                                             </View>
+
                                                         )
                                                 }
                                             </CardItem>
@@ -488,6 +481,9 @@ class getFullInfoAboutOnePostComponent extends Component {
                             )
                     }
                 </Content>
+
+
+                {/*INPUT COMMENT*/}
                 <KeyboardAvoidingView behavior={'position'}>
                     <CardItem style={part.cardBottom}>
                         <Left>

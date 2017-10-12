@@ -49,16 +49,16 @@ class groupComponent extends Component {
                             <View style={[part.wrapperImageInGetFull, part.shadow]}>
                                 <Image
                                     style={part.imageInUserProfile}
-                                    source={{uri: this.props.groupInformation.avatar_url}}/>
+                                    source={{uri: this.props.groupAvatar}}/>
 
                                 <View style={part.tabInGetFull}>
                                     <Item style={{borderBottomWidth: 0,}}>
                                         <Body>
                                         <Thumbnail style={part.marginBottom}
                                                    circle large
-                                                   source={{uri: this.props.groupInformation.avatar_url}}/>
+                                                   source={{uri: this.props.groupAvatar}}/>
                                         <Text style={[part.titleNormalLight, part.paddingLine]}>
-                                            {this.props.groupInformation.name}
+                                            {this.props.groupName}
                                         </Text>
                                         {
                                             (this.props.members)
@@ -118,7 +118,8 @@ class groupComponent extends Component {
 function mapStateToProps(state) {
     return {
         members: state.group.members,
-        groupInformation: state.group.groupInformation,
+        groupName: state.group.groupName,
+        groupAvatar: state.group.groupAvatar,
         token: state.login.token,
         isLoadingGroupProducts: state.group.isLoadingGroupProducts,
 

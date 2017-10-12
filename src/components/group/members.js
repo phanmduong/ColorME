@@ -56,7 +56,9 @@ class members extends Component {
                                             <TouchableOpacity>
                                                 <Text style={part.titleSmallBlue}>{item.name}</Text>
                                             </TouchableOpacity>
-                                            <Text style={part.describeGray} note>University</Text>
+                                            <Text style={part.describeGray} note>
+                                                {item.university}
+                                            </Text>
                                             </Body>
                                             <TouchableOpacity style={part.iconFollow}>
                                                 <Icon name="ion|ios-person-add"

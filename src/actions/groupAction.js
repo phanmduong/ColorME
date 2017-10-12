@@ -36,7 +36,8 @@ export function getGroupProductsSuccess(response) {
     return{
         type: types.GET_GROUP_PRODUCTS_SUCCESS,
         products: response.data.group.products,
-        groupInformation: response.data.group,
+        groupName: response.data.group.name,
+        groupAvatar: response.data.group.avatar_url,
         isLoadingGroupProducts: false,
         errorGroupProducts: false,
 

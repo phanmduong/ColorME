@@ -146,7 +146,7 @@ const part = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: color.main,
         right: 20,
-        bottom: 60,
+        bottom: 55,
     },
     iconFollow:{
         justifyContent: 'center',

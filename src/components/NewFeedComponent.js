@@ -22,11 +22,11 @@ class newFeedComponent extends Component {
         this.state = {
             grid: true,
             page_id: 2,
-            typeView: "",
+            typeView: '',
             arrayLike: [],
             likeCount: [],
             listPost: [],
-            data:[],
+            data: [],
         }
     }
 
@@ -47,6 +47,7 @@ class newFeedComponent extends Component {
         grid = true;
         this.setState({grid: grid});
     }
+
     // setup
     componentWillReceiveProps(nextProps) {
         let post = nextProps.products;
@@ -68,7 +69,8 @@ class newFeedComponent extends Component {
         this.setState({likeCount: count})
         this.setState({arrayLike: arr})
     }
-    componentDidMount(){
+
+    componentDidMount() {
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
         this.setState({listPost: this.props.products});
     }
@@ -103,6 +105,7 @@ class newFeedComponent extends Component {
         this.setState({arrayLike: arrayLike});
         this.setState({likeCount: likeCount});
     }
+
     render() {
         return (
             <Container style={part.wrapperContainer}>
@@ -295,12 +298,13 @@ class newFeedComponent extends Component {
                             )
                             :
                             (
+
                                 <Content>
                                     {
                                         this.props.products.map((item, i) => {
                                             let {arrayLike} = this.state;
                                             let {likeCount} = this.state;
-                                            let colorIcon = arrayLike[i] ? "red" : "#d7dde5";
+                                            let colorIcon = arrayLike[i] ? color.main : "#d7dde5";
                                             return (
                                                 <Card key={i} style={part.card}>
                                                     <CardItem header style={part.cardHeader}>
@@ -427,7 +431,6 @@ class newFeedComponent extends Component {
                                                                     </TouchableOpacity>
                                                                 )
                                                         }
-
                                                     </CardItem>
 
 
@@ -490,6 +493,7 @@ class newFeedComponent extends Component {
                                         })
                                     }
                                 </Content>
+
                             )
                     }
                 </Content>

@@ -42,7 +42,8 @@ export default function groupReducer(state = initialState.group, action) {
                 ...state,
                 ...{
                     products: action.products,
-                    groupInformation: action.groupInformation,
+                    groupName: action.groupName,
+                    groupAvatar: action.groupAvatar,
                     isLoadingGroupProducts: action.isLoadingUserProgress,
                     errorGroupProducts: action.errorUserProgress,
                 }

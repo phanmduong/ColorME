@@ -28,7 +28,6 @@ class groupProject extends Component {
                                             return (
                                                 <View key={i} style={part.wrapperGridImage}>
                                                     <TouchableOpacity
-                                                        onPress={() => this.props.navigation.navigate('PostStack', {product_id: item.id})}
                                                     >
                                                         <Image
                                                             style={[part.imageInGrid, part.shadow]}
