@@ -62,9 +62,7 @@ class newFeedComponent extends Component {
                 arr[i] = true;
             }
             count[i] = post[i].likes_count;
-            console.log(likers)
         }
-        console.log(arr)
         this.setState({likeCount: count})
         this.setState({arrayLike: arr})
     }

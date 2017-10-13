@@ -67,5 +67,8 @@ export default {
         isLoading : false,
         error : false,
         comments : []
+    },
+    changeAvatar : {
+        isLoading : false,
     }
 }

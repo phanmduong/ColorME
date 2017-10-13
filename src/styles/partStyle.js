@@ -527,7 +527,7 @@ const part = StyleSheet.create({
 
     // SHADOW
     shadow:{
-        shadowColor: 'black',
+        shadowColor: 'white',
         shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.2,
     },

@@ -20,10 +20,10 @@ import Video from 'react-native-video';
 import part from '../styles/partStyle';
 import * as color from '../styles/color';
 import * as size from '../styles/size';
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux'
+import * as likePostAction from '../actions/likePostAction';
 import * as getFullInfoAboutOnePostAction from '../actions/getFullInfoAboutOnePostAction'
-import * as likePostAction from '../actions/likePostAction'
 
 class getFullInfoAboutOnePostComponent extends Component {
     constructor() {
@@ -32,36 +32,38 @@ class getFullInfoAboutOnePostComponent extends Component {
             author: {},
             more_products: [],
             colors: [],
-<<<<<<< HEAD
             Height: 100,
             likeCount: 0,
-            liked: false
-=======
+            liked: false,
             Height: 500,
->>>>>>> a61acf95d2dde341c7ab064db53d4fc2ff49dd95
+
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.getFullInfoAboutOnePostAction.getFullInfoAboutOnePostOfUser(this.props.navigation.state.params.product_id)
         this.props.getFullInfoAboutOnePostAction.getCommentOnePost(this.props.navigation.state.params.product_id)
     }
 
     componentWillReceiveProps(nextProps) {
+        // let liked = false;
+        // let likers = [];
+        // console.log(nextProps.post);
+        // if(nextProps.post != null) {
+        //      likers = nextProps.post.likers.filter((liker) => {
+        //         return liker.name == this.props.user.name
+        //     })
+        //     if (likers.length == 0) {
+        //         liked = false;
+        //     } else {
+        //         liked = true;
+        //     }
+        // }
+        // this.setState({liked: liked});
         this.setState({author: nextProps.post.author});
         this.setState({more_products: nextProps.post.more_products});
         this.setState({colors: nextProps.post.colors});
         this.setState({likeCount: nextProps.post.likes_count});
-        // let liked = this.state.liked;
-         // let likers = post.likers.filter((liker) => {
-         //     return liker.name == nextProps.user.name
-         // });
-         //if (likers.length == 0) {
-         //    liked = false;
-         // } else {
-         //    liked = true;
-        // }
-        // this.setState({liked: liked})
     }
 
     likePost(product_id, token) {
@@ -143,7 +145,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                     )
                                             }
                                             {
-                                                (this.state.more_products.length!=0) ? (
+                                                (this.state.more_products.length != 0) ? (
                                                     this.state.more_products.map((img) => {
                                                         return (
                                                             <View style={part.shadow}>
@@ -250,14 +252,6 @@ class getFullInfoAboutOnePostComponent extends Component {
                                             </Item>
                                         </CardItem>
                                     </View>
-<<<<<<< HEAD
-
-                                    <WebView  // show content
-                                        automaticallyAdjustContentInsets={true}
-                                        scrollEnabled={false}
-                                        source={{
-                                            html: `<div style="width: 100%">
-=======
                                     {
                                         (this.props.post.content !== null)
                                             ?
@@ -267,11 +261,10 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                     scrollEnabled={false}
                                                     source={{
                                                         html: `<div style="width: 100%">
->>>>>>> a61acf95d2dde341c7ab064db53d4fc2ff49dd95
-                                                        ${this.props.post.content}
-                                                   </div>
-                                                   <Style>img{width: 100%}</Style>
-                                                   `
+                                            ${this.props.post.content}
+                                            </div>
+                                            <Style>img{width: 100%}</Style>
+                                            `
                                                     }}
                                                     style={{height: this.state.Height}}
                                                 />

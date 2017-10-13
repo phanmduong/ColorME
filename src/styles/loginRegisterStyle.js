@@ -96,12 +96,15 @@ const styles = StyleSheet.create({
        alignItems : 'center',
         margin : 10,
         color: '#797979',
+        fontFamily : 'Verdana',
+        fontSize : size.describeSmall,
     },
     textButton : {
         justifyContent : 'center',
         alignItems : 'center',
         color : 'white',
-        fontSize : 15,
+        fontSize : 13,
+        fontFamily: 'Verdana-Bold'
     },
     buttonRegister: {
         width : wid - wid*0.4,

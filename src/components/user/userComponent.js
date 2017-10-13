@@ -1,10 +1,23 @@
 import React, {Component} from 'react';
+import {Image, TouchableOpacity, View} from 'react-native';
 import {
-    Image, TouchableOpacity, View, StatusBar
-} from 'react-native';
-import {
-    Title, Container, Header, Content, Card, CardItem, Thumbnail, Text, CheckBox,
-    Button, Left, Body, Right, TabHeading, List, ListItem, Item
+    Body,
+    Button,
+    Card,
+    CardItem,
+    CheckBox,
+    Container,
+    Content,
+    Header,
+    Item,
+    Left,
+    List,
+    ListItem,
+    Right,
+    TabHeading,
+    Text,
+    Thumbnail,
+    Title
 } from 'native-base';
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
@@ -14,10 +27,26 @@ import * as userInformationAction from '../../actions/userInformationAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {User} from '../../navigators/appRouter';
+import ImagePicker from 'react-native-image-picker';
+import * as changeAvatarAction from '../../actions/changeAvatarAction'
+
+let options = {
+    title: 'Thay đổi ',
+    customButtons: [
+        {name: 'fb', title: 'Chọn ảnh từ facebook'},
+    ],
+    storageOptions: {
+        skipBackup: true,
+        path: 'images'
+    }
+}
 
 class userComponent extends Component {
     constructor() {
         super();
+        this.state = {
+            fileImage: null
+        }
     }
 
     componentDidMount() {
@@ -26,22 +55,49 @@ class userComponent extends Component {
         this.props.userInformationAction.getUserProducts(this.props.navigation.state.params.username, 1, this.props.token);
     }
 
+    show() {
+        ImagePicker.showImagePicker(options, (response) => {
+            console.log('Response = ', response);
+
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            }
+            else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            }
+            else if (response.customButton) {
+                console.log('User tapped custom button: ', response.customButton);
+            }
+            else {
+                let source = response;
+                this.setState({
+                    fileImage: source
+                });
+
+            }
+        });
+    }
+
+    changeAvatar(value, token) {
+        this.props.changeAvatarAction.changeAvatar(value, token)
+    }
+
     render() {
         return (
             <Container style={part.wrapperContainer}>
                 <View style={[part.wrapperImageInGetFull, part.shadow]}>
-                    <Image
-                        style={part.imageInUserProfile}
-                        source={{uri: this.props.user.avatar_url}}/>
-
                     <View style={part.tabInGetFull}>
                         <Item style={{borderBottomWidth: 0,}}>
                             <Body>
                             <Thumbnail style={part.marginBottom}
                                        circle large
-                                       source={{uri: this.props.user.avatar_url}}/>
-                            <Text style={[part.titleNormalLight, part.paddingLine]}>{this.props.user.name}</Text>
-                            <Text style={[part.describeGray, part.paddingLine]}>{this.props.user.university}</Text>
+                                       source={{uri: this.props.user.avatar_url}}
+                                       onPress={() => this.changeAvatar(this.state, this.props.token)}
+                            >
+                            </Thumbnail>
+                            <Text style={[part.titleNormalLight, part.paddingLine]} onPress={() => this.show()}>{this.props.user.name}
+                                  </Text>
+                            <Text style={[part.describeGray, part.paddingLine]}> {this.props.user.university} </Text>
                             </Body>
                         </Item>
                     </View>
@@ -69,9 +125,9 @@ class userComponent extends Component {
                 </View>
                 <User/>
                 <TouchableOpacity style={[part.iconAddFriendInProfile, part.shadow]}>
-                        <Icon name="ion|ios-person-add"
-                              size={30}
-                              color={color.navTitle}/>
+                    <Icon name="ion|ios-person-add"
+                          size={30}
+                          color={color.navTitle}/>
                 </TouchableOpacity>
             </Container>
         );
@@ -82,12 +138,14 @@ function mapStateToProps(state) {
     return {
         user: state.userInformation.user,
         token: state.login.token,
+        isLoading: state.changeAvatar.isLoading
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         userInformationAction: bindActionCreators(userInformationAction, dispatch),
+        changeAvatarAction: bindActionCreators(changeAvatarAction, dispatch)
     }
 }
 
