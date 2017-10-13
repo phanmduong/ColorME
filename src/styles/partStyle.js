@@ -71,7 +71,19 @@ const part = StyleSheet.create({
         height: 25,
         width: 25,
     },
+    wrapperDeadline:{
+        marginLeft: 3,
+        width: size.wid - 30,
+        height: 10,
+        borderRadius: 5,
+        backgroundColor: color.lightGray,
 
+    },
+    deadlineProgress:{
+        height: 10,
+        borderRadius: 5,
+        backgroundColor: 'rgb(41, 173, 5)',
+    },
     //TITLE
     navTitle: {
         color: color.navTitle,
@@ -134,7 +146,7 @@ const part = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: color.main,
         right: 20,
-        bottom: 60,
+        bottom: 55,
     },
     iconFollow:{
         justifyContent: 'center',
@@ -413,6 +425,10 @@ const part = StyleSheet.create({
         paddingBottom: 5,
         paddingTop: 5,
     },
+    noPadding:{
+        paddingLeft: 0,
+        paddingRight: 0,
+    },
 
 
 
@@ -524,6 +540,7 @@ const part = StyleSheet.create({
         borderLeftWidth: 0,
         borderRightWidth: 0,
     },
+
 
     // SHADOW
     shadow:{

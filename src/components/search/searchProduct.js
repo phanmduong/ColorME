@@ -20,7 +20,9 @@ class searchProduct extends Component {
 
     render() {
         return (
-            <Content>
+            <Content
+                showsVerticalScrollIndicator={false}
+            >
                 {
                     (this.props.isLoading)
                         ?
@@ -41,6 +43,7 @@ class searchProduct extends Component {
                             <FlatList
                                 onEndReachedThreshold={5}
                                 onEndReached={() => {
+                                    this.props.getMoreProduct
                                 }}
                                 data={this.props.products}
                                 renderItem={({item}) =>

@@ -7,8 +7,10 @@ import getCourseReducer from './getCourseReducer';
 import updateProfileReducer from './updateProfileReducer'
 import registerReducer from "./registerReducers";
 import getNotificationReducer from "./getNotificationReducer";
+
 import changeAvatarReducer from './changeAvatarReducer'
 
+import groupReducer from "./groupReducer";
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
@@ -21,7 +23,9 @@ const rootReducer = combineReducers({
     getCourse                   : getCourseReducer,
     updateProfile               : updateProfileReducer,
     getNotification             : getNotificationReducer,
-    changeAvatar                : changeAvatarReducer
+
+    changeAvatar                : changeAvatarReducer,
+    group                       : groupReducer,
 
 });
 export default rootReducer;

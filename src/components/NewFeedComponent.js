@@ -22,11 +22,11 @@ class newFeedComponent extends Component {
         this.state = {
             grid: true,
             page_id: 2,
-            typeView: "",
+            typeView: '',
             arrayLike: [],
             likeCount: [],
             listPost: [],
-            data:[],
+            data: [],
         }
     }
 
@@ -47,6 +47,7 @@ class newFeedComponent extends Component {
         grid = true;
         this.setState({grid: grid});
     }
+
     // setup
     componentWillReceiveProps(nextProps) {
         let post = nextProps.products;
@@ -66,7 +67,8 @@ class newFeedComponent extends Component {
         this.setState({likeCount: count})
         this.setState({arrayLike: arr})
     }
-    componentDidMount(){
+
+    componentDidMount() {
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
         this.setState({listPost: this.props.products});
     }
@@ -101,6 +103,7 @@ class newFeedComponent extends Component {
         this.setState({arrayLike: arrayLike});
         this.setState({likeCount: likeCount});
     }
+
     render() {
         return (
             <Container style={part.wrapperContainer}>
@@ -108,6 +111,8 @@ class newFeedComponent extends Component {
                     barStyle="light-content"
                 />
 
+
+                {/*VIEW TYPE*/}
                 <View>
                     <Item style={[part.itemTab, part.shadow]}>
                         <Left style={{flexDirection: 'row'}}>
@@ -193,8 +198,8 @@ class newFeedComponent extends Component {
 
 
                 <Content
+                    showsVerticalScrollIndicator={false}
                     onMomentumScrollEnd={() => this.getMoreNewFeed()} style={[part.padding, part.marginTop]}>
-
                     {
                         (this.state.grid)
                             ?
@@ -230,7 +235,8 @@ class newFeedComponent extends Component {
                                                                             onPress={() =>
                                                                                 this.props.navigation.navigate('ThePostInNewFeed', {
                                                                                     product_id: item.id,
-                                                                                    group_name: item.group.name
+                                                                                    group_name: item.group.name,
+                                                                                    group_link: item.group.link,
                                                                                 })}
                                                                         >
                                                                             <Image
@@ -264,7 +270,8 @@ class newFeedComponent extends Component {
                                                                 onPress={() =>
                                                                     this.props.navigation.navigate('ThePostInNewFeed', {
                                                                         product_id: item.id,
-                                                                        group_name: item.group.name
+                                                                        group_name: item.group.name,
+                                                                        group_link: item.group.link,
                                                                     })}
                                                             >
                                                                 <Video
@@ -289,12 +296,13 @@ class newFeedComponent extends Component {
                             )
                             :
                             (
+
                                 <Content>
                                     {
                                         this.props.products.map((item, i) => {
                                             let {arrayLike} = this.state;
                                             let {likeCount} = this.state;
-                                            let colorIcon = arrayLike[i] ? "red" : "#d7dde5";
+                                            let colorIcon = arrayLike[i] ? color.main : "#d7dde5";
                                             return (
                                                 <Card key={i} style={part.card}>
                                                     <CardItem header style={part.cardHeader}>
@@ -326,50 +334,103 @@ class newFeedComponent extends Component {
 
                                                     {/*PHOTO*/}
                                                     <CardItem cardBody style={part.card}>
-                                                        <TouchableOpacity
-                                                            onPress={() =>
-                                                                this.props.navigation.navigate('ThePostInNewFeed', {
-                                                                    product_id: item.id,
-                                                                    group_name: item.group.name
-                                                                })}
-                                                        >
-                                                            <Body>
-                                                            {
-                                                                (item.url.indexOf('.mp4') === -1)
-                                                                    ?
-                                                                    (
-                                                                        <Image
-                                                                            resizeMode={'cover'}
-                                                                            source={{uri: item.image_url}}
-                                                                            style={[part.image, part.shadow]}
-                                                                        />
-                                                                    )
-                                                                    :
-                                                                    (
-                                                                        <Video
-                                                                            repeat
-                                                                            rate={1.0}                   // 0 is paused, 1 is normal.
-                                                                            volume={1.0}                 // 0 is muted, 1 is normal.
-                                                                            muted={true}                // Mutes the audio entirely.
-                                                                            paused={false}
-                                                                            resizeMode={'cover'}
-                                                                            source={{uri: item.url}}
-                                                                            style={[part.video, part.shadow]}
-                                                                        />
-                                                                    )
-                                                            }
+                                                        {
+                                                            (item.group)
+                                                                ?
+                                                                (
+                                                                    <TouchableOpacity
+                                                                        onPress={() =>
+                                                                            this.props.navigation.navigate('ThePostInNewFeed', {
+                                                                                product_id: item.id,
+                                                                                group_name: item.group.name,
+                                                                                group_link: item.group.link,
+                                                                            })}
+                                                                    >
+                                                                        <Body>
+                                                                        {
+                                                                            (item.url.indexOf('.mp4') === -1)
+                                                                                ?
+                                                                                (
+                                                                                    <Image
+                                                                                        resizeMode={'cover'}
+                                                                                        source={{uri: item.image_url}}
+                                                                                        style={[part.image, part.shadow]}
+                                                                                    />
+                                                                                )
+                                                                                :
+                                                                                (
+                                                                                    <Video
+                                                                                        repeat
+                                                                                        rate={1.0}                   // 0 is paused, 1 is normal.
+                                                                                        volume={1.0}                 // 0 is muted, 1 is normal.
+                                                                                        muted={true}                 // Mutes the audio entirely.
+                                                                                        paused={false}
+                                                                                        resizeMode={'cover'}
+                                                                                        source={{uri: item.url}}
+                                                                                        style={[part.video, part.shadow]}
+                                                                                    />
+                                                                                )
+                                                                        }
 
-                                                            <View style={part.textInImage}>
-                                                                <Text
-                                                                    numberOfLines={2}
-                                                                    style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
-                                                                >
-                                                                    {item.title}
-                                                                </Text>
-                                                            </View>
-                                                            </Body>
-                                                        </TouchableOpacity>
+                                                                        <View style={part.textInImage}>
+                                                                            <Text
+                                                                                numberOfLines={2}
+                                                                                style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
+                                                                            >
+                                                                                {item.title}
+                                                                            </Text>
+                                                                        </View>
+                                                                        </Body>
+                                                                    </TouchableOpacity>
+                                                                )
+                                                                :
+                                                                (
+                                                                    <TouchableOpacity
+                                                                        onPress={() =>
+                                                                            this.props.navigation.navigate('ThePostInNewFeed', {
+                                                                                product_id: item.id,
+                                                                            })}
+                                                                    >
+                                                                        <Body>
+                                                                        {
+                                                                            (item.url.indexOf('.mp4') === -1)
+                                                                                ?
+                                                                                (
+                                                                                    <Image
+                                                                                        resizeMode={'cover'}
+                                                                                        source={{uri: item.image_url}}
+                                                                                        style={[part.image, part.shadow]}
+                                                                                    />
+                                                                                )
+                                                                                :
+                                                                                (
+                                                                                    <Video
+                                                                                        repeat
+                                                                                        rate={1.0}                   // 0 is paused, 1 is normal.
+                                                                                        volume={1.0}                 // 0 is muted, 1 is normal.
+                                                                                        muted={true}                 // Mutes the audio entirely.
+                                                                                        paused={false}
+                                                                                        resizeMode={'cover'}
+                                                                                        source={{uri: item.url}}
+                                                                                        style={[part.video, part.shadow]}
+                                                                                    />
+                                                                                )
+                                                                        }
+
+                                                                        <View style={part.textInImage}>
+                                                                            <Text
+                                                                                numberOfLines={2}
+                                                                                style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
+                                                                            >
+                                                                                {item.title}
+                                                                            </Text>
+                                                                        </View>
+                                                                        </Body>
+                                                                    </TouchableOpacity>
+                                                                )
+                                                        }
                                                     </CardItem>
+
 
                                                     {/*LIKE COMMENT VIEWS*/}
                                                     <CardItem footer style={part.cardFooter}>
@@ -401,7 +462,8 @@ class newFeedComponent extends Component {
                                                                     onPress={() =>
                                                                         this.props.navigation.navigate('ThePostInNewFeed', {
                                                                             product_id: item.id,
-                                                                            group_name: item.group.name
+                                                                            group_name: item.group.name,
+                                                                            group_link: item.group.link,
                                                                         })}
                                                             >
                                                                 <Icon name="fontawesome|comments-o" size={size.iconBig}
@@ -429,6 +491,7 @@ class newFeedComponent extends Component {
                                         })
                                     }
                                 </Content>
+
                             )
                     }
                 </Content>

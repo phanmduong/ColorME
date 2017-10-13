@@ -68,7 +68,21 @@ export default {
         error : false,
         comments : []
     },
+
     changeAvatar : {
-        isLoading : false,
+        isLoading: false,
+    },
+    group:{
+        isLoadingGroupTopics: false,
+        isLoadingGroupProducts: false,
+        isLoadingGroupMembers: false,
+        errorGroupTopics: false,
+        errorGroupProducts: false,
+        errorGroupMembers: false,
+        groupName: '',
+        groupAvatar: '',
+        topics:[],
+        products:[],
+        members:[],
     }
 }

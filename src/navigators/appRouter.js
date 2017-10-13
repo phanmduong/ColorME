@@ -41,7 +41,7 @@ import myAccountComponent from '../components/myAccount/myAccountComponent';
 
 //GROUP
 import groupComponent from '../components/group/groupComponent';
-import theme from '../components/group/theme';
+import topics from '../components/group/topics';
 import groupProject from '../components/group/groupProject';
 import members from '../components/group/members';
 
@@ -210,8 +210,8 @@ export const User = TabNavigator(
 
 export const Group = TabNavigator(
     {
-        Theme: {
-            screen: theme,
+        Topics: {
+            screen: topics,
             navigationOptions: {
                 tabBarLabel: 'Chủ đề',
             }
@@ -231,7 +231,7 @@ export const Group = TabNavigator(
 
     },
     {
-        initialRouteName: 'Theme',
+        initialRouteName: 'GroupProject',
         tabBarPosition: 'top',
         tabBarOptions: {
             activeTintColor: color.darkGray,
@@ -252,7 +252,7 @@ export const Group = TabNavigator(
 );
 export const ThePostInNewFeed = StackNavigator(
     {
-        PostStack: {
+        ThePostInNewFeed: {
             screen: getFullInfoAboutOnePostComponent,
             navigationOptions: {
                 header: null,

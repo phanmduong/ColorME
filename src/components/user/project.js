@@ -16,7 +16,9 @@ import {connect} from 'react-redux';
 class Project extends Component {
     render() {
         return (
-            <Content style={[part.wrapperContainer, part.padding]}>
+            <Content
+                showsVerticalScrollIndicator={false}
+                style={[part.wrapperContainer, part.padding]}>
                 {
                     (this.props.isLoadingUserProducts)
                         ?
@@ -65,7 +67,6 @@ class Project extends Component {
 function mapStateToProps(state) {
     return {
         products: state.userInformation.products,
-        user: state.userInformation.user,
         isLoadingUserProducts: state.userInformation.isLoadingUserProducts,
     }
 }

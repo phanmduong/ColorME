@@ -14,11 +14,10 @@ class LoginComponent extends Component {
     constructor() {
         super();
     }
-
-    //
     componentWillMount() {
         this.props.loginAction.getDataLogin(this.props.login);
-    }
+
+}
 
     saveData() {
         this.props.loginAction.setDataLogin(this.props.login)

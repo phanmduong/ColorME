@@ -16,7 +16,9 @@ import {connect} from 'react-redux';
 class searchUser extends Component {
     render() {
         return (
-            <Content>
+            <Content
+                showsVerticalScrollIndicator={false}
+            >
                 {
                     (this.props.isLoading)
                         ?
