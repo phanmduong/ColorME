@@ -24,6 +24,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux';
 import * as getFullInfoAboutOnePostAction from '../actions/getFullInfoAboutOnePostAction'
 import * as likePostAction from '../actions/likePostAction'
+import FastImage from 'react-native-fast-image'
 
 class getFullInfoAboutOnePostComponent extends Component {
     constructor() {
@@ -121,7 +122,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                     ?
                                                     (
                                                         <View style={part.shadow}>
-                                                            <Image source={{uri: this.props.post.image_url}}
+                                                            <FastImage source={{uri: this.props.post.image_url}}
                                                                    style={[part.imageInGetFull]}
                                                             />
 

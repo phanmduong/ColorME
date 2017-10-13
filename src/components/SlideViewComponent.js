@@ -13,6 +13,8 @@ import * as color from '../styles/color';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 import * as logoutAction from '../actions/logoutAction'
+import FastImage from 'react-native-fast-image'
+
 class SlideViewComponent extends Component {
     constructor() {
         super();
@@ -28,7 +30,7 @@ logout(){
         return (
             <Container style={part.wrapperContainer}>
                 <View style={part.wrapperImageInDrawer}>
-                    <Image
+                    <FastImage
                         style={part.imageInDrawer}
                         source={{uri: this.props.user.avatar_url}}/>
                     <View style={part.iconInDrawer}>

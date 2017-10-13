@@ -12,6 +12,7 @@ import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
 import {connect} from 'react-redux';
+import FastImage from 'react-native-fast-image'
 
 class topics extends Component {
     render() {
@@ -77,12 +78,14 @@ class topics extends Component {
                                                 </TouchableOpacity>
                                             </Left>
                                         </CardItem>
+
+                                        {/*PHOTO*/}
                                         <CardItem cardBody style={part.card}>
                                             <TouchableOpacity
 
                                             >
                                                 <Body>
-                                                <Image
+                                                <FastImage
                                                     resizeMode={'cover'}
                                                     source={{uri: item.avatar_url}}
                                                     style={[part.image, part.shadow]}
@@ -99,6 +102,8 @@ class topics extends Component {
                                             </TouchableOpacity>
                                         </CardItem>
 
+
+                                        {/*DEADLINE*/}
                                         <CardItem style={[{height: 20}, part.noPadding]}>
                                             <View style={part.wrapperDeadline}>
                                                 <View style={[part.deadlineProgress, {width: widthDeadlineProgress}]}>

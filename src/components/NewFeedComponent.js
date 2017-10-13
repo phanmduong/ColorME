@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    FlatList, TouchableOpacity, Image, StatusBar, View,
+    FlatList, TouchableOpacity, Image, StatusBar, View, TouchableHighlight
 } from 'react-native';
 import {
     Container, Header, Content, Card, CardItem, Item, Picker,
@@ -15,6 +15,7 @@ import * as getNewFeedAction from '../actions/getNewFeedAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as likePostAction from '../actions/likePostAction'
+import FastImage from 'react-native-fast-image'
 
 class newFeedComponent extends Component {
     constructor() {
@@ -241,7 +242,7 @@ class newFeedComponent extends Component {
                                                                                     group_link: item.group.link,
                                                                                 })}
                                                                         >
-                                                                            <Image
+                                                                            <FastImage
                                                                                 style={[part.imageInGrid]}
                                                                                 source={{uri: item.thumb_url}}
                                                                             />
@@ -255,7 +256,7 @@ class newFeedComponent extends Component {
                                                                                     product_id: item.id,
                                                                                 })}
                                                                         >
-                                                                            <Image
+                                                                            <FastImage
                                                                                 style={[part.imageInGrid]}
                                                                                 source={{uri: item.thumb_url}}
                                                                             />
@@ -304,7 +305,7 @@ class newFeedComponent extends Component {
                                         this.props.products.map((item, i) => {
                                             let {arrayLike} = this.state;
                                             let {likeCount} = this.state;
-                                            let colorIcon = arrayLike[i] ? color.main : "#d7dde5";
+                                            let colorIcon = arrayLike[i] ? color.main : color.icon;
                                             return (
                                                 <Card key={i} style={part.card}>
                                                     <CardItem header style={part.cardHeader}>
@@ -353,9 +354,12 @@ class newFeedComponent extends Component {
                                                                             (item.url.indexOf('.mp4') === -1)
                                                                                 ?
                                                                                 (
-                                                                                    <Image
+                                                                                    <FastImage
                                                                                         resizeMode={'cover'}
-                                                                                        source={{uri: item.image_url}}
+                                                                                        source={{
+                                                                                            uri: item.image_url,
+                                                                                            headers:{ Authorization: 'Đang tải..' },
+                                                                                        }}
                                                                                         style={[part.image, part.shadow]}
                                                                                     />
                                                                                 )
@@ -398,9 +402,13 @@ class newFeedComponent extends Component {
                                                                             (item.url.indexOf('.mp4') === -1)
                                                                                 ?
                                                                                 (
-                                                                                    <Image
+                                                                                    <FastImage
                                                                                         resizeMode={'cover'}
-                                                                                        source={{uri: item.image_url}}
+                                                                                        source={{
+                                                                                            uri: item.image_url,
+                                                                                            headers:{ Authorization: 'Đang tải..' },
+
+                                                                                        }}
                                                                                         style={[part.image, part.shadow]}
                                                                                     />
                                                                                 )
