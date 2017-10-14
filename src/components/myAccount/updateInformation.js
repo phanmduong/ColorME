@@ -10,24 +10,36 @@ import * as size from '../../styles/size';
 import part from '../../styles/partStyle';
 import * as updateProfileAction from '../../actions/updateProfileAction';
 import {bindActionCreators} from 'redux';
+import ImagePicker from 'react-native-image-picker';
+import * as changeAvatarAction from '../../actions/changeAvatarAction'
 import {connect} from 'react-redux';
-
+let options = {
+    title: 'Thay đổi ',
+    customButtons: [
+        {name: 'fb', title: 'Chọn ảnh từ facebook'},
+    ],
+    storageOptions: {
+        skipBackup: true,
+        path: 'images'
+    }
+}
  class updateInformation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name : '',
-            phone : '',
-            email : '',
-            university : '',
-            work : '',
-            address : '',
-            how_know : '',
-            username : '',
-            description : '',
-            facebook : '',
-            gender: "key1",
-            dob : '',
+            name : this.props.user.name,
+            phone : this.props.user.phone,
+            email : this.props.user.email,
+            university : this.props.user.university,
+            work : this.props.user.work,
+            address : this.props.user.address,
+            how_know : this.props.user.how_know,
+            username : this.props.user.username,
+            description : this.props.user.description,
+            facebook : this.props.user.facebook,
+            gender: this.props.user.gender,
+            dob : this.props.user.dob,
+            fileImage : null,
         };
         this.updateProfile = this.updateProfile.bind(this)
     }
@@ -38,7 +50,31 @@ import {connect} from 'react-redux';
     }
     updateProfile(info, token){
         this.props.updateProfileAction.updateProfile(info, token)
+        this.props.changeAvatarAction.changeAvatar(info, token)
     }
+
+     show() {
+         ImagePicker.showImagePicker(options, (response) => {
+             console.log('Response = ', response);
+
+             if (response.didCancel) {
+                 console.log('User cancelled image picker');
+             }
+             else if (response.error) {
+                 console.log('ImagePicker Error: ', response.error);
+             }
+             else if (response.customButton) {
+                 console.log('User tapped custom button: ', response.customButton);
+             }
+             else {
+                 let source = response;
+                 this.setState({
+                     fileImage: source
+                 });
+
+             }
+         });
+     }
     componentWillReceiveProps(nextProps){
         if(nextProps.status == 200){
             Alert.alert('Cập nhật thông tin thành công ')
@@ -64,6 +100,14 @@ import {connect} from 'react-redux';
                 </Header>
                 <Content style={part.paddingTRB}>
                     <Form>
+                        <Body>
+                        <Thumbnail style={part.marginBottom}
+                                   circle large
+                                   source={{uri: this.props.user.avatar_url}}
+                                   onPress={() => this.show()}
+                        >
+                        </Thumbnail>
+                        </Body>
                         <Item>
                             <Input placeholder={"Họ và tên"}
                                    style={part.inputTheme03}
@@ -195,17 +239,20 @@ import {connect} from 'react-redux';
         );
     }
 }
+
 function mapStateToProps(state) {
     return {
         isLoading : state.updateProfile.isLoading,
         status : state.updateProfile.status,
         error : state.updateProfile.error,
-        token : state.login.token
+        token : state.login.token,
+        user : state.login.user
     }
 }
 function mapDispatchToProps(dispatch) {
     return {
-        updateProfileAction : bindActionCreators(updateProfileAction, dispatch)
+        updateProfileAction : bindActionCreators(updateProfileAction, dispatch),
+        changeAvatarAction : bindActionCreators(changeAvatarAction, dispatch)
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(updateInformation)

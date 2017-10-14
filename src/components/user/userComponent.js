@@ -27,26 +27,9 @@ import * as userInformationAction from '../../actions/userInformationAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {User} from '../../navigators/appRouter';
-import ImagePicker from 'react-native-image-picker';
-import * as changeAvatarAction from '../../actions/changeAvatarAction'
-
-let options = {
-    title: 'Thay đổi ',
-    customButtons: [
-        {name: 'fb', title: 'Chọn ảnh từ facebook'},
-    ],
-    storageOptions: {
-        skipBackup: true,
-        path: 'images'
-    }
-}
-
 class userComponent extends Component {
     constructor() {
         super();
-        this.state = {
-            fileImage: null
-        }
     }
 
     componentDidMount() {
@@ -54,34 +37,6 @@ class userComponent extends Component {
         this.props.userInformationAction.getUserProgress(this.props.navigation.state.params.username);
         this.props.userInformationAction.getUserProducts(this.props.navigation.state.params.username, 1, this.props.token);
     }
-
-    show() {
-        ImagePicker.showImagePicker(options, (response) => {
-            console.log('Response = ', response);
-
-            if (response.didCancel) {
-                console.log('User cancelled image picker');
-            }
-            else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
-            }
-            else if (response.customButton) {
-                console.log('User tapped custom button: ', response.customButton);
-            }
-            else {
-                let source = response;
-                this.setState({
-                    fileImage: source
-                });
-
-            }
-        });
-    }
-
-    changeAvatar(value, token) {
-        this.props.changeAvatarAction.changeAvatar(value, token)
-    }
-
     render() {
         return (
             <Container style={part.wrapperContainer}>
@@ -92,10 +47,9 @@ class userComponent extends Component {
                             <Thumbnail style={part.marginBottom}
                                        circle large
                                        source={{uri: this.props.user.avatar_url}}
-                                       onPress={() => this.changeAvatar(this.state, this.props.token)}
                             >
                             </Thumbnail>
-                            <Text style={[part.titleNormalLight, part.paddingLine]} onPress={() => this.show()}>{this.props.user.name}
+                            <Text style={[part.titleNormalLight, part.paddingLine]}>{this.props.user.name}
                                   </Text>
                             <Text style={[part.describeGray, part.paddingLine]}> {this.props.user.university} </Text>
                             </Body>
@@ -145,7 +99,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         userInformationAction: bindActionCreators(userInformationAction, dispatch),
-        changeAvatarAction: bindActionCreators(changeAvatarAction, dispatch)
     }
 }
 

@@ -7,8 +7,11 @@ export default {
         result: false,
         isGetLocalData: false,
         status: 0,
-        userID:'',
+        user : {},
+        isAuthentication : false,
     },
+
+
     register: {
         register: {},
         isLoading: false,

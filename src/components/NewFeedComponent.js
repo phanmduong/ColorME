@@ -504,7 +504,6 @@ function mapStateToProps(state) {
     return {
         products: state.getNewFeed.products,
         user: state.login.user,
-        userID: state.login.userID,
         token: state.login.token,
         isLoading: state.getNewFeed.isLoading,
     }

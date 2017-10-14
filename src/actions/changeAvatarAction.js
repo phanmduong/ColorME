@@ -7,12 +7,12 @@ export function beginChangeAvatar(){
         isLoading : true,
     }
 }
-export function changeAvatar(value, token){
+export function changeAvatar(info, token){
     return (dispatch) =>{
         dispatch(beginChangeAvatar())
         let photo = {
-            uri: value.fileImage.uri,
-            type: value.fileImage.type,
+            uri: info.fileImage.uri,
+            type: info.fileImage.type,
             name: 'avatar',
         };
         let formData = new FormData();
@@ -21,11 +21,10 @@ export function changeAvatar(value, token){
         xhr.open('POST', API.changeAvatarApi(token));
         xhr.setRequestHeader("Content-Type", 'image/jpeg/png/jpg');
         xhr.send(formData)
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                Alert.alert('UpLoad Done')
-                //this.responseXML
-            }
+        // xhr.onreadystatechange = function() {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         Alert.alert('UpLoad Done')
+        //         this.responseXML
+            // }
         };
     }
-}

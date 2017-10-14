@@ -34,34 +34,30 @@ class getFullInfoAboutOnePostComponent extends Component {
             colors: [],
             Height: 100,
             likeCount: 0,
-
             liked: false,
             Height: 500,
-            liked: false
 
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.props.getFullInfoAboutOnePostAction.getFullInfoAboutOnePostOfUser(this.props.navigation.state.params.product_id)
         this.props.getFullInfoAboutOnePostAction.getCommentOnePost(this.props.navigation.state.params.product_id)
     }
-
     componentWillReceiveProps(nextProps) {
-        // let liked = false;
-        // let likers = [];
-        // console.log(nextProps.post);
-        // if(nextProps.post != null) {
-        //      likers = nextProps.post.likers.filter((liker) => {
-        //         return liker.name == this.props.user.name
-        //     })
-        //     if (likers.length == 0) {
-        //         liked = false;
-        //     } else {
-        //         liked = true;
-        //     }
-        // }
-        // this.setState({liked: liked});
+        // let liked = this.state.liked;
+        let post = nextProps.post;
+        console.log(post)
+        let likers = post.likers.filter((liker) => {
+            return liker.name == nextProps.user.name
+        })
+        if(likers.length == 0){
+            liked = false;
+        }
+        else{
+            liked = true;
+        }
+        this.setState({liked : liked})
         this.setState({author: nextProps.post.author});
         this.setState({more_products: nextProps.post.more_products});
         this.setState({colors: nextProps.post.colors});
@@ -353,7 +349,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                             {(liked) ? (
                                                 <Button
                                                     transparent style={part.padding}
-                                                    onPress={() => this.likePost(this.props.navigation.state.params.product_id, this.props.token)}
+                                                    onPress={() => this.unlikePost(this.props.navigation.state.params.product_id, this.props.token)}
                                                 >
                                                     <Icon name="fontawesome|heart-o" size={size.iconBig}
                                                           color={colorIcon}/>
@@ -363,12 +359,12 @@ class getFullInfoAboutOnePostComponent extends Component {
                                             ) : (
                                                 <Button
                                                     transparent style={part.padding}
-                                                    onPress={() => this.unlikePost(this.props.navigation.state.params.product_id, this.props.token)}
+                                                    onPress={() => this.likePost(this.props.navigation.state.params.product_id, this.props.token)}
                                                 >
                                                     <Icon name="fontawesome|heart-o" size={size.iconBig}
                                                           color={colorIcon}/>
                                                     <Text
-                                                        style={[part.describeGray, part.paddingLeft]}>{this.props.post.likes_count}</Text>
+                                                        style={[part.describeGray, part.paddingLeft]}>{likeCount}</Text>
                                                 </Button>
                                             )}
                                             <Button transparent style={part.paddingRight}

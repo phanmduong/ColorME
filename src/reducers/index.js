@@ -23,7 +23,6 @@ const rootReducer = combineReducers({
     getCourse                   : getCourseReducer,
     updateProfile               : updateProfileReducer,
     getNotification             : getNotificationReducer,
-
     changeAvatar                : changeAvatarReducer,
     group                       : groupReducer,
 
