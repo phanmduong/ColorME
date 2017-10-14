@@ -45,25 +45,30 @@ class getFullInfoAboutOnePostComponent extends Component {
         this.props.getFullInfoAboutOnePostAction.getFullInfoAboutOnePostOfUser(this.props.navigation.state.params.product_id)
         this.props.getFullInfoAboutOnePostAction.getCommentOnePost(this.props.navigation.state.params.product_id)
     }
-    componentWillReceiveProps(nextProps) {
-        // let liked = this.state.liked;
-        let post = nextProps.post;
-        console.log(post)
-        let likers = post.likers.filter((liker) => {
-            return liker.name == nextProps.user.name
-        })
-        if(likers.length == 0){
-            liked = false;
-        }
-        else{
-            liked = true;
-        }
-        this.setState({liked : liked})
-        this.setState({author: nextProps.post.author});
-        this.setState({more_products: nextProps.post.more_products});
-        this.setState({colors: nextProps.post.colors});
-        this.setState({likeCount: nextProps.post.likes_count});
 
+    componentWillReceiveProps(nextProps) {
+         let liked = this.state.liked;
+        if(nextProps.post != this.props.post) {
+            let post = nextProps.post;
+            console.log(post)
+            let likers = post.likers.filter((liker) => {
+                return liker.username == nextProps.user.username
+            })
+            if ( likers && likers.length == 0) {
+                liked = false;
+            }
+            else {
+                liked = true;
+            }
+        }
+
+        this.setState({
+            liked: liked,
+            author: nextProps.post.author,
+            more_products: nextProps.post.more_products,
+            colors: nextProps.post.colors,
+            likeCount: nextProps.post.likes_count
+        })
     }
 
     likePost(product_id, token) {
@@ -74,8 +79,7 @@ class getFullInfoAboutOnePostComponent extends Component {
             likeCount++;
             liked = !liked;
         }
-        this.setState({likeCount: likeCount});
-        this.setState({liked: liked});
+        this.setState({likeCount: likeCount,liked : liked});
     }
 
     unlikePost(product_id, token) {
@@ -86,8 +90,7 @@ class getFullInfoAboutOnePostComponent extends Component {
             likeCount--;
             liked = !liked;
         }
-        this.setState({likeCount: likeCount});
-        this.setState({liked: liked});
+        this.setState({likeCount: likeCount, liked : liked});
     }
 
     render() {
@@ -128,7 +131,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                     (
                                                         <View style={part.shadow}>
                                                             <FastImage source={{uri: this.props.post.image_url}}
-                                                                   style={[part.imageInGetFull]}
+                                                                       style={[part.imageInGetFull]}
                                                             />
 
                                                         </View>

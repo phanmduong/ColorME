@@ -50,6 +50,7 @@ class searchUser extends Component {
                                                           onPress={() => this.props.navigation.navigate('ThePostInNewFeed')}
                                         >
                                             <Left>
+
                                                 <Thumbnail
                                                     source={{uri: item.avatar_url}}/>
 
