@@ -19,7 +19,16 @@ class groupProject extends Component {
                     (this.props.isLoadingGroupProducts)
                         ?
                         (
-                            <View/>
+                            <View
+                                style={{
+                                    flex: 1,
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Spinner
+                                    color={color.gray}/>
+                            </View>
                         )
                         :
                         (

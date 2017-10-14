@@ -170,12 +170,11 @@ class getFullInfoAboutOnePostComponent extends Component {
 
                                                     </Right>
                                                 </Left>
-
                                             </View>
                                         </CardItem>
 
 
-                                        <CardItem style={part.cardHeader}>
+                                        <CardItem style={[part.cardHeader, {marginTop: 10}]}>
                                             {
                                                 (this.props.post.author)
                                                     ?
@@ -276,8 +275,6 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                         </Left>
                                                     )
                                             }
-
-
                                         </CardItem>
                                         <TouchableOpacity style={[part.iconLikeInImageFullAbout, part.shadow]}>
                                             <Icon name="evil|heart"
@@ -285,7 +282,6 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                   color={color.navTitle}/>
                                         </TouchableOpacity>
                                     </View>
-
                                     <View style={part.wrapperContainer}>
                                         <CardItem style={part.cardHeader}>
                                             <Item style={part.noBorder}>

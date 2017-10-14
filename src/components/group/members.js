@@ -12,10 +12,6 @@ import * as color from '../../styles/color';
 import {connect} from 'react-redux';
 
 class members extends Component {
-    constructor() {
-        super();
-    }
-
     render() {
         return (
             <Container style={[part.wrapperContainer, part.padding]}>

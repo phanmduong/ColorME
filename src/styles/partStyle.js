@@ -146,7 +146,7 @@ const part = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: color.main,
         right: 20,
-        bottom: 55,
+        bottom: 65,
     },
     iconFollow:{
         justifyContent: 'center',
@@ -355,6 +355,14 @@ const part = StyleSheet.create({
         fontSize: size.describeSmall,
         color: color.gray,
         fontWeight: '400',
+    },
+    describeInImage:{
+        fontSize: size.describe,
+        color: color.navTitle,
+        fontWeight: '600',
+        textShadowColor: color.text,
+        textShadowRadius: 4,
+        textShadowOffset:{width: 1, height: 1},
     },
     textInImage:{
         width: wid - 40,

@@ -291,8 +291,6 @@ class newFeedComponent extends Component {
                                                         </View>
                                                     )
                                             )
-
-
                                         })
                                     }
                                 </View>
@@ -384,6 +382,12 @@ class newFeedComponent extends Component {
                                                                                 style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
                                                                             >
                                                                                 {item.title}
+                                                                            </Text>
+                                                                            <Text
+                                                                                numberOfLines={2}
+                                                                                style={[{paddingLeft: 15}, part.describeInImage]}
+                                                                            >
+                                                                                {item.description}
                                                                             </Text>
                                                                         </View>
                                                                         </Body>
