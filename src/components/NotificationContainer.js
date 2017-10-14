@@ -6,7 +6,7 @@ import {
     Title, Container, Header, Content, Card, CardItem, Thumbnail,
     Text, Button, Icon, Left, Body, Right, ListItem, List
 } from 'native-base';
-import * as getNotificationAction from '../actions/getNotificationAction';
+import * as getNotificationAction from '../actions/notificationAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import part from '../styles/partStyle';

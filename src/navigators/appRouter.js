@@ -8,18 +8,18 @@ import * as color from '../styles/color';
 import * as size from '../styles/size';
 
 // LOGIN
-import LoginComponent from '../components/loginRegister/loginComponent';
-import EmailIdentityComponent from '../components/loginRegister/EmailIdentityComponent'
-import ResetPasswordComponent from '../components/loginRegister/ResetPasswordComponent'
-import RegisterComponent from '../components/loginRegister/registerComponent'
-import CodeIdentityComponent from '../components/loginRegister/CodeIdentityComponent'
+import LoginComponent from '../components/loginRegister/LoginContainer';
+import EmailIdentityComponent from '../components/loginRegister/EmailIdentityContainer'
+import ResetPasswordComponent from '../components/loginRegister/ResetPasswordContainer'
+import RegisterComponent from '../components/loginRegister/RegisterContainer'
+import CodeIdentityComponent from '../components/loginRegister/CodeIdentityContainer'
 // MAIN SCREEN
-import newFeedComponent from '../components/NewFeedComponent';
-import messageComponent from '../components/message/messageComponent';
-import notificationComponent from '../components/NotificationComponent';
-import AchievementsComponent from '../components/AchievementsComponent';
-import SlideViewComponent from '../components/SlideViewComponent'
-import getFullInfoAboutOnePostComponent from '../components/GetFullInfoAboutOnePostComponent';
+import newFeedComponent from '../components/NewFeedContainer';
+import messageComponent from '../components/message/MessageContainer';
+import notificationComponent from '../components/NotificationContainer';
+import AchievementsComponent from '../components/AchievementsContainer';
+import SlideViewComponent from '../components/SlideViewContainer'
+import getFullInfoAboutOnePostComponent from '../components/InfoAboutPostContainer';
 
 // USER SCREEN
 import userComponent from '../components/user/userComponent';
@@ -28,22 +28,22 @@ import project from '../components/user/project';
 import process from '../components/user/progress';
 
 // SEARCH SCREEN
-import searchComponent from '../components/search/searchComponent';
-import searchUser from '../components/search/searchUser';
-import searchProduct from '../components/search/searchProduct';
+import searchComponent from '../components/search/SearchContainer';
+import searchUser from '../components/search/SearchUser';
+import searchProduct from '../components/search/SearchProduct';
 
 // MESSAGE
-import Chat from '../components/message/chat';
-import OnlineFriend from '../components/message/onlineFriend';
+import Chat from '../components/message/Chat';
+import OnlineFriend from '../components/message/OnlineFriend';
 
 // MY ACCOUNT
 import myAccountComponent from '../components/myAccount/myAccountComponent';
 
 //GROUP
-import groupComponent from '../components/group/groupComponent';
-import topics from '../components/group/topics';
-import groupProject from '../components/group/groupProject';
-import members from '../components/group/members';
+import groupComponent from '../components/group/GroupContainer';
+import topics from '../components/group/Topics';
+import groupProject from '../components/group/GroupProject';
+import members from '../components/group/Members';
 
 
 
@@ -267,6 +267,19 @@ export const ThePostInNewFeed = StackNavigator(
         },
     },StackNavigatorStyle
 );
+
+export const UserInNewFeed = StackNavigator(
+    {
+
+        UserInNewFeed: {
+            screen: userComponent,
+            navigationOptions: {
+                header: null,
+            }
+        },
+    }, HomeStackStyle
+);
+
 export const NewFeedStackNavigator = StackNavigator(
     {
         NewFeedStack: {
@@ -277,7 +290,7 @@ export const NewFeedStackNavigator = StackNavigator(
             },
         },
         UserInNewFeed: {
-            screen: userComponent,
+            screen: UserInNewFeed,
             navigationOptions: {
                 header: null,
             },

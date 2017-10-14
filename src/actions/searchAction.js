@@ -1,5 +1,5 @@
 import * as types from '../constants/actionTypes';
-import * as API from '../apis/searchApi';
+import * as searchApi from '../apis/searchApi';
 
 export function beginSearch() {
     return{
@@ -40,7 +40,7 @@ export function searchError() {
 export function searchUsers(term, limit, page) {
     return(dispatch) => {
         dispatch(beginSearch());
-        API.searchUserApi(term, limit, page)
+        searchApi.searchUserApi(term, limit, page)
             .then(function (response) {
                 dispatch(searchUserSuccess(response));
             })
@@ -52,7 +52,7 @@ export function searchUsers(term, limit, page) {
 export function searchProducts(term, limit, page) {
     return(dispatch) => {
         dispatch(beginSearch());
-        API.searchProducts(term, limit, page)
+        searchApi.searchProducts(term, limit, page)
             .then(function (response) {
                 dispatch(searchProductSuccess(response));
             })

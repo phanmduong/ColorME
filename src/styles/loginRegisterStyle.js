@@ -31,10 +31,9 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     textTitleInput : {
-        color: 'rgb(197,0,0)',
+        padding: 20,
+        color: color.main,
         fontWeight: (Platform.OS === 'ios') ? '900' : 'normal',
-        marginTop : 2,
-        marginLeft: 10
     },
     inputGroup: {
         borderColor: color.none,

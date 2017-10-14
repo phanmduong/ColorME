@@ -54,14 +54,15 @@ class searchProduct extends Component {
                                                     source={{uri: item.author.avatar_url}}/>
                                             </TouchableOpacity>
                                             <Body style={part.noBorder}>
-                                            <TouchableOpacity>
-                                                <Text style={part.titleSmallBlue}>{item.author.name}</Text>
-                                            </TouchableOpacity>
-                                            <TouchableOpacity>
-                                                <Text style={part.describeGray} note>{item.title}</Text>
-                                            </TouchableOpacity>
+                                            <Text style={part.titleSmallBlue}>{item.author.name}</Text>
+                                            <Text style={part.describeGray} note>{item.title}</Text>
                                             </Body>
-                                            <TouchableOpacity>
+                                            <TouchableOpacity
+                                                onPress={() =>
+                                                    this.props.navigation.navigate('ThePostInNewFeed', {
+                                                        product_id: item.id,
+                                                    })}
+                                            >
                                                 <Thumbnail
                                                     source={{uri: item.thumb_url}}/>
                                             </TouchableOpacity>

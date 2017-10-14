@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {View} from 'react-native'
-import {KeyboardAvoidingView, TouchableOpacity, ActivityIndicator, Alert, Text} from 'react-native';
+import {KeyboardAvoidingView, TouchableOpacity, StatusBar,ActivityIndicator, Alert, Text} from 'react-native';
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Item, Input} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -18,6 +18,9 @@ import * as size from '../../styles/size';
     render() {
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
+                <StatusBar
+                    barStyle="light-content"
+                />
                 <View style={styles.wrapperColorME}>
                     <Text style={styles.textColor}>Color</Text>
                     <Text style={styles.textME}>ME</Text>

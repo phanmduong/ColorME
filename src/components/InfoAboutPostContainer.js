@@ -22,7 +22,7 @@ import * as color from '../styles/color';
 import * as size from '../styles/size';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux';
-import * as getFullInfoAboutOnePostAction from '../actions/getFullInfoAboutOnePostAction'
+import * as getFullInfoAboutOnePostAction from '../actions/inforAboutPostAction'
 import * as likePostAction from '../actions/likePostAction'
 import FastImage from 'react-native-fast-image'
 
@@ -33,7 +33,6 @@ class getFullInfoAboutOnePostComponent extends Component {
             author: {},
             more_products: [],
             colors: [],
-            Height: 100,
             likeCount: 0,
             liked: false
         }
@@ -55,8 +54,8 @@ class getFullInfoAboutOnePostComponent extends Component {
         // });
         //if (likers.length == 0) {
         //    liked = false;
-        // } else {
-        //    liked = true;
+        //    liked = true;        // } else {
+
         // }
         // this.setState({liked: liked})
     }
@@ -298,26 +297,24 @@ class getFullInfoAboutOnePostComponent extends Component {
                                             </Item>
                                         </CardItem>
                                     </View>
-                                    {
-                                        (this.props.post.content !== null)
-                                            ?
-                                            (
-                                                <WebView
-                                                    automaticallyAdjustContentInsets={true}
-                                                    scrollEnabled={false}
-                                                    source={{
-                                                        html: `<div style="width: 100%">
+                                    <View style={{flex: 1}}>
+                                        <WebView
+                                            automaticallyAdjustContentInsets={true}
+                                            scrollEnabled={false}
+                                            source={{
+                                                html: `<div style="width: 100%">
                                                         ${this.props.post.content}
                                                    </div>
                                                    <Style>img{width: 100%}</Style>
                                                    `
-                                                    }}
-                                                    style={{height: this.state.Height}}
-                                                />
-                                            )
-                                            :
-                                            (<View/>)
-                                    }
+                                            }}
+                                            style={{marginTop: 20}}
+                                        />
+
+                                    </View>
+
+
+
 
                                     <CardItem footer>
                                         <Left>

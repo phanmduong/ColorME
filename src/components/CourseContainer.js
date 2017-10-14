@@ -7,7 +7,7 @@ import {
     Text, Button, Left, Body, Right, ListItem, List
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import * as getCourseAction from '../actions/getCourseAction';
+import * as getCourseAction from '../actions/courseAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import part from '../styles/partStyle';

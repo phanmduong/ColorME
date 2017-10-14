@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
-import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, TouchableOpacity, View} from 'react-native'
+import {ActivityIndicator, Alert, KeyboardAvoidingView,
+    Text, TouchableOpacity, View, StatusBar
+} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -46,13 +48,16 @@ class LoginComponent extends Component {
     render() {
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
+                <StatusBar
+                    barStyle="light-content"
+                />
                 <View style={styles.wrapperColorME}>
                     <Text style={styles.textColor}>Color</Text>
                     <Text style={styles.textME}>ME</Text>
                 </View>
                 <Container style={styles.midContainerLogin}>
                     <Container style={styles.contentForm}>
-                        <Text style={styles.textTitleInput}>EMAIL</Text>
+                        <Text style={[styles.textTitleInput, part.paddingTLB]}>EMAIL</Text>
                         <Item>
                             <Input style={part.inputTheme02}
                                    color={color.gray}
@@ -63,7 +68,7 @@ class LoginComponent extends Component {
                                    value={this.props.login.email}
                             />
                         </Item>
-                        <Text style={styles.textTitleInput}>PASSWORD</Text>
+                        <Text style={[styles.textTitleInput,part.paddingTLB]}>PASSWORD</Text>
                         <Item>
                             <Input style={part.inputTheme02}
                                    color={color.gray}

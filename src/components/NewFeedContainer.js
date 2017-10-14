@@ -11,7 +11,7 @@ import Icon from '../commons/Icon';
 import part from '../styles/partStyle';
 import * as color from '../styles/color';
 import * as size from '../styles/size';
-import * as getNewFeedAction from '../actions/getNewFeedAction';
+import * as getNewFeedAction from '../actions/newFeedAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as likePostAction from '../actions/likePostAction'
@@ -34,6 +34,7 @@ class newFeedComponent extends Component {
     onValueChange(value: string) {
         this.setState({page_id: 1});
         this.setState({typeView: value});
+        this.props.products = [];
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
     }
 
@@ -71,9 +72,8 @@ class newFeedComponent extends Component {
         this.setState({arrayLike: arr})
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
-        this.setState({listPost: this.props.products});
     }
 
     // Function

@@ -1,12 +1,12 @@
-import getNewFeedReducer from './getNewFeedReducer';
+import getNewFeedReducer from './newFeedReducer';
 import userInformationReducer from './userInformationReducer';
 import loginReducer from './loginReducer';
-import getFullInfoAboutOnePostReducer from './getFullInfoAboutOnePostReducer';
+import getFullInfoAboutOnePostReducer from './InfoAboutPostReducer';
 import searchReducer from './searchReducer';
-import getCourseReducer from './getCourseReducer';
+import getCourseReducer from './courseReducer';
 import updateProfileReducer from './updateProfileReducer'
 import registerReducer from "./registerReducers";
-import getNotificationReducer from "./getNotificationReducer";
+import getNotificationReducer from "./notificationReducer";
 import groupReducer from "./groupReducer";
 import {combineReducers} from 'redux';
 

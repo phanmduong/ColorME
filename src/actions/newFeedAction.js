@@ -1,5 +1,5 @@
 import * as types from '../constants/actionTypes';
-import * as API from '../apis/getNewFeedApi';
+import * as newFeedApi from '../apis/newFeedApi';
 export function beginGetNewFeed() {
     return {
         type: types.BEGIN_GET_NEW_FEED,
@@ -31,7 +31,7 @@ export function getNewFeedError() {
 export function getNewFeed(filter, page_id) {
     return (dispatch) => {
         dispatch(beginGetNewFeed());
-        API.getNewFeedApi(filter, page_id)
+        newFeedApi.getNewFeedApi(filter, page_id)
             .then(function (response) {
                 dispatch(getNewFeedSuccess(response));
             })

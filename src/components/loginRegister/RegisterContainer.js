@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, TouchableOpacity, View} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
-import {Container, Content, Form, Input, Item} from 'native-base';
+import {Container, Content, Form, Input, Item, StatusBar} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
@@ -37,6 +37,9 @@ class RegisterComponent extends Component {
     render() {
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
+                <StatusBar
+                    barStyle="light-content"
+                />
                 <View style={styles.wrapperColorME}>
                     <Text style={styles.textColor}>Color</Text>
                     <Text style={styles.textME}>ME</Text>

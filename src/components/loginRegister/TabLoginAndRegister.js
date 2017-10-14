@@ -6,8 +6,8 @@ import {
 import {View, StatusBar} from 'react-native';
 import styles from '../../styles/loginRegisterStyle'
 import part from '../../styles/partStyle';
-import LoginComponent from './loginComponent'
-import RegisterComponent from './registerComponent'
+import LoginComponent from './LoginContainer'
+import RegisterComponent from './RegisterContainer'
 import * as loginAction from '../../actions/loginActions';
 import * as registerAction from '../../actions/registerAction';
 import {bindActionCreators} from 'redux';
@@ -53,7 +53,6 @@ export class TabLoginAndRegister extends Component {
         return (
             <Container style={styles.wrapperContainer}>
                 <StatusBar
-                    backgroundColor="blue"
                     barStyle="light-content"
                 />
                 <Container>

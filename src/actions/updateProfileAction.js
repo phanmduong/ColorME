@@ -1,5 +1,5 @@
 import * as types from '../constants/actionTypes';
-import * as API from '../apis/updateProfileApi';
+import * as updateProfileApi from '../apis/updateProfileApi';
 
 export function beginUpdateProfile(){
    return {
@@ -26,7 +26,7 @@ export function updateProfileError(){
 export function updateProfile(info, token){
     return (dispatch) =>{
         dispatch(beginUpdateProfile())
-        API.updateProfile(info, token)
+        updateProfileApi.updateProfile(info, token)
             .then(function(response){
                 dispatch(updateProfileSuccess(response))
             })

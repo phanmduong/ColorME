@@ -1,5 +1,5 @@
 import * as types from '../constants/actionTypes';
-import * as API from '../apis/getFullInfoAboutOnePostApi';
+import * as inforAboutPostApi from '../apis/InfoAboutPostApi';
 export function beginGetFullInfoAboutOnePost() {
     return {
         type: types.BEGIN_GET_FULL_INFO_ABOUT_ONE_POST,
@@ -42,7 +42,7 @@ export function getFullInfoAboutOnePostError() {
 export function getFullInfoAboutOnePostOfUser(product_id) {
     return (dispatch) => {
         dispatch(beginGetFullInfoAboutOnePost());
-        API.getFullInfoAboutOnePostApi(product_id)
+        inforAboutPostApi.getFullInfoAboutOnePostApi(product_id)
             .then(function (response) {
                 dispatch(getFullInfoAboutOnePostSuccess(response));
                 console.log(response);
@@ -57,7 +57,7 @@ export function getFullInfoAboutOnePostOfUser(product_id) {
 export function getCommentOnePost(product_id) {
     return (dispatch) => {
         dispatch(beginGetFullInfoAboutOnePost());
-        API.getCommentOnePost(product_id)
+        inforAboutPostApi.getCommentOnePost(product_id)
             .then(function (response) {
                 dispatch(getCommentOnePostSuccess(response));
             })

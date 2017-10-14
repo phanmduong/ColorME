@@ -42,27 +42,29 @@ class searchUser extends Component {
                                 }}
                                 data={this.props.users}
                                 renderItem={({item}) =>
-                                    <CardItem avatar style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
-                                        <Left>
-                                            <TouchableOpacity
-                                                onPress={() => this.props.navigation.navigate('UserStack', {username: item.username})}
-                                            >
+                                    <CardItem
+                                        avatar
+                                        style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}
+                                    >
+                                        <TouchableOpacity style={{flex: 1}}
+                                                          onPress={() => this.props.navigation.navigate('ThePostInNewFeed')}
+                                        >
+                                            <Left>
                                                 <Thumbnail
                                                     source={{uri: item.avatar_url}}/>
-                                            </TouchableOpacity>
 
-                                            <Body style={part.noBorder}>
-                                            <TouchableOpacity>
+                                                <Body style={part.noBorder}>
                                                 <Text style={part.titleSmallBlue}>{item.name}</Text>
-                                            </TouchableOpacity>
-                                            <Text style={part.describeGray} note>{item.university}</Text>
-                                            </Body>
-                                            <TouchableOpacity style={part.iconFollow}>
-                                                <Icon name="ion|ios-person-add"
-                                                      size={30}
-                                                      color={color.navTitle}/>
-                                            </TouchableOpacity>
-                                        </Left>
+                                                <Text style={part.describeGray} note>{item.university}</Text>
+                                                </Body>
+                                                <TouchableOpacity style={part.iconFollow}>
+                                                    <Icon name="ion|ios-person-add"
+                                                          size={30}
+                                                          color={color.navTitle}/>
+                                                </TouchableOpacity>
+                                            </Left>
+                                        </TouchableOpacity>
+
 
                                     </CardItem>
                                 }

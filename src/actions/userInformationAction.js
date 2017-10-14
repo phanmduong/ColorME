@@ -1,5 +1,5 @@
 import * as types from '../constants/actionTypes';
-import * as userInformationAPI from '../apis/userInformationApi';
+import * as userInformationApi from '../apis/userInformationApi';
 
 export function beginGetUserProfile() {
     return{
@@ -78,7 +78,7 @@ export function getUserProductsError() {
 export function getUserProfile(userName) {
     return(dispatch) => {
         dispatch(beginGetUserProfile());
-        userInformationAPI.getUserProfileApi(userName)
+        userInformationApi.getUserProfileApi(userName)
             .then(function (response) {
                 dispatch(getUserProfileSuccess(response));
             })
@@ -91,7 +91,7 @@ export function getUserProfile(userName) {
 export function getUserProgress(username) {
     return(dispatch) => {
         dispatch(beginGetUserProgress());
-        userInformationAPI.getUserProgressApi(username)
+        userInformationApi.getUserProgressApi(username)
             .then(function (response) {
                 dispatch(getUserProgressSuccess(response));
             })
@@ -104,7 +104,7 @@ export function getUserProgress(username) {
 export function getUserProducts(username, page_id, token) {
     return(dispatch) => {
         dispatch(beginGetUserProducts());
-        userInformationAPI.getUserProductsApi(username, page_id, token)
+        userInformationApi.getUserProductsApi(username, page_id, token)
             .then(function (response) {
                 dispatch(getUserProductsSuccess(response));
             })

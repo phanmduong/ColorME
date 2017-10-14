@@ -1,5 +1,5 @@
 import * as types from '../constants/actionTypes';
-import * as API from '../apis/courseApi';
+import * as courseApi from '../apis/courseApi';
 
 export function beginGetCourse() {
     return {
@@ -24,7 +24,7 @@ export function getCourseError() {
 export function getCourse(token) {
     return (dispatch) => {
         dispatch(beginGetCourse());
-        API.getCourseApi(token)
+        courseApi.getCourseApi(token)
             .then(function (response) {
                 dispatch(getCourseSuccess(response));
                 console.log(response)
