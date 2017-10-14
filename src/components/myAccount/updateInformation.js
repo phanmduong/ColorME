@@ -76,12 +76,12 @@ let options = {
          });
      }
     componentWillReceiveProps(nextProps){
-        if(nextProps.status == 200){
-            Alert.alert('Cập nhật thông tin thành công ')
-        }
-        if(nextProps.error == true){
-            Alert.alert('Cập nhật thất bại check again please')
-        }
+        // if(nextProps.status == 200){
+        //     Alert.alert('Cập nhật thông tin thành công ')
+        // }
+        // if(nextProps.error == true){
+        //     Alert.alert('Cập nhật thất bại check again please')
+        // }
     }
     render() {
         return (

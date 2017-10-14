@@ -26,12 +26,12 @@ class RegisterComponent extends Component {
         this.props.registerAction.registerUser(value)
     }
     componentWillReceiveProps(nextProps) {
-        if (nextProps.status === 200) {
-            this.props.navigation.navigate('LoginComponent');
-        }
-        if (nextProps.error) {
-            Alert.alert('Mời bạn kiểm tra lại thông tin tài khoản ')
-        }
+        // if (nextProps.status === 200) {
+        //     this.props.navigation.navigate('LoginComponent');
+        // }
+        // if (nextProps.error) {
+        //     Alert.alert('Mời bạn kiểm tra lại thông tin tài khoản ')
+        // }
     }
 
     render() {

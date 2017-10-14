@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {ActivityIndicator, Alert, KeyboardAvoidingView,
+import {
+    ActivityIndicator, Alert, KeyboardAvoidingView,
     Text, TouchableOpacity, View, StatusBar
 } from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
@@ -13,13 +14,18 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 
 class LoginComponent extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.state = {
+            check: true
+        }
+
     }
+
     componentWillMount() {
         this.props.loginAction.getDataLogin(this.props.login);
 
-}
+    }
 
     saveData() {
         this.props.loginAction.setDataLogin(this.props.login)
@@ -37,12 +43,13 @@ class LoginComponent extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.status === 200) {
+        if (nextProps.status === 200 && this.state.check) {
             this.props.navigation.navigate('Main');
+            this.setState({check: false});
         }
-        if (nextProps.error) {
-            Alert.alert('Mời bạn kiểm tra lại thông tin tài khoản ')
-        }
+        // if (nextProps.error) {
+        //     Alert.alert('Mời bạn kiểm tra lại thông tin tài khoản ')
+        // }
     }
 
     render() {
@@ -68,7 +75,7 @@ class LoginComponent extends Component {
                                    value={this.props.login.email}
                             />
                         </Item>
-                        <Text style={[styles.textTitleInput,part.paddingTLB]}>PASSWORD</Text>
+                        <Text style={[styles.textTitleInput, part.paddingTLB]}>PASSWORD</Text>
                         <Item>
                             <Input style={part.inputTheme02}
                                    color={color.gray}
@@ -118,7 +125,8 @@ class LoginComponent extends Component {
                             KHOẢN </Text>
                     </Container>
                 </Container>
-                <Text style={styles.textBottom} onPress={() => this.props.navigation.navigate('EmailIdentityComponent')}>QUÊN
+                <Text style={styles.textBottom}
+                      onPress={() => this.props.navigation.navigate('EmailIdentityComponent')}>QUÊN
                     MẬT KHẨU ?</Text>
             </KeyboardAvoidingView>
 

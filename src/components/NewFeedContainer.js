@@ -28,6 +28,7 @@ class newFeedComponent extends Component {
             likeCount: [],
             listPost: [],
             data: [],
+            check: 0
         }
     }
 
@@ -52,7 +53,7 @@ class newFeedComponent extends Component {
 
     // setup
     componentWillReceiveProps(nextProps) {
-        if (nextProps.isLoading != this.props.isLoading && this.props.isLoading == true) {
+        if (nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading) {
             let arr = this.state.arrayLike;
             let count = this.state.likeCount;
             let post = nextProps.products;
@@ -60,9 +61,9 @@ class newFeedComponent extends Component {
             let item = false;
             for (var i = this.props.products.length; i < post.length; i++) {
                 let likers = post[i].likers.filter((liker) => {
-                    return liker.username == nextProps.user.username
+                    return liker.username === nextProps.user.username
                 });
-                if (likers.length == 0) {
+                if (likers.length === 0) {
                     item = false;
                 } else {
                     item = true;
@@ -73,7 +74,6 @@ class newFeedComponent extends Component {
             this.setState({likeCount: count, arrayLike: arr})
         }
     }
-
 
 
     componentDidMount() {
@@ -112,6 +112,7 @@ class newFeedComponent extends Component {
     }
 
     render() {
+        console.log('render');
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
@@ -153,52 +154,24 @@ class newFeedComponent extends Component {
                             </Picker>
                         </Left>
                         <Right style={part.rightTab}>
-                            {
-                                (this.state.grid)
-                                    ?
-                                    (
-                                        <Right style={part.rightTab}>
-                                            <TouchableOpacity style={{backgroundColor: 'transparent'}}>
-                                                <Icon name="material|view-list"
-                                                      color={color.icon}
-                                                      size={size.icon}
-                                                      style={part.paddingIcon}
-                                                      onPress={() => this.viewList()}
-                                                />
-                                            </TouchableOpacity>
-                                            <TouchableOpacity style={{backgroundColor: 'transparent'}}>
-                                                <Icon name="material|view-module"
-                                                      color={color.darkGray}
-                                                      size={size.icon}
-                                                      style={part.paddingIcon}
-                                                      onPress={() => this.viewGrid()}
-                                                />
-                                            </TouchableOpacity>
-                                        </Right>
-
-                                    )
-                                    :
-                                    (
-                                        <Right style={part.rightTab}>
-                                            <TouchableOpacity style={{backgroundColor: 'transparent'}}>
-                                                <Icon name="material|view-list"
-                                                      color={color.darkGray}
-                                                      size={size.icon}
-                                                      style={part.paddingIcon}
-                                                      onPress={() => this.setState({grid: false})}
-                                                />
-                                            </TouchableOpacity>
-                                            <TouchableOpacity style={{backgroundColor: 'transparent'}}>
-                                                <Icon name="material|view-module"
-                                                      color={color.icon}
-                                                      size={size.icon}
-                                                      style={part.paddingIcon}
-                                                      onPress={() => this.setState({grid: true})}
-                                                />
-                                            </TouchableOpacity>
-                                        </Right>
-                                    )
-                            }
+                            <Right style={part.rightTab}>
+                                <TouchableOpacity style={{backgroundColor: 'transparent'}}>
+                                    <Icon name="material|view-list"
+                                          color={this.state.grid ? color.icon : color.darkGray}
+                                          size={size.icon}
+                                          style={part.paddingIcon}
+                                          onPress={() => this.viewList()}
+                                    />
+                                </TouchableOpacity>
+                                <TouchableOpacity style={{backgroundColor: 'transparent'}}>
+                                    <Icon name="material|view-module"
+                                          color={this.state.grid ? color.darkGray : color.icon}
+                                          size={size.icon}
+                                          style={part.paddingIcon}
+                                          onPress={() => this.viewGrid()}
+                                    />
+                                </TouchableOpacity>
+                            </Right>
                         </Right>
                     </Item>
                 </View>
@@ -360,7 +333,7 @@ class newFeedComponent extends Component {
                                                                                         resizeMode={'cover'}
                                                                                         source={{
                                                                                             uri: item.image_url,
-                                                                                            headers:{ Authorization: 'Đang tải..' },
+                                                                                            headers: {Authorization: 'Đang tải..'},
                                                                                         }}
                                                                                         style={[part.image, part.shadow]}
                                                                                     />
@@ -414,7 +387,7 @@ class newFeedComponent extends Component {
                                                                                         resizeMode={'cover'}
                                                                                         source={{
                                                                                             uri: item.image_url,
-                                                                                            headers:{ Authorization: 'Đang tải..' },
+                                                                                            headers: {Authorization: 'Đang tải..'},
 
                                                                                         }}
                                                                                         style={[part.image, part.shadow]}
@@ -522,6 +495,7 @@ function mapStateToProps(state) {
     return {
         products: state.getNewFeed.products,
         user: state.login.user,
+        userID: state.login.userID,
         token: state.login.token,
         isLoading: state.getNewFeed.isLoading,
     }

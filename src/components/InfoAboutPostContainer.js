@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, KeyboardAvoidingView, StatusBar, Text, TouchableOpacity, View, WebView} from 'react-native';
+import {Image, KeyboardAvoidingView, StatusBar, Text, TouchableOpacity, View} from 'react-native';
 
 import {
     Body,
@@ -24,8 +24,8 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux';
 import * as getFullInfoAboutOnePostAction from '../actions/inforAboutPostAction'
 import * as likePostAction from '../actions/likePostAction'
-import FastImage from 'react-native-fast-image'
-
+import FastImage from 'react-native-fast-image';
+import WebViewAutoHeight from '../commons/WebViewAutoHeight';
 
 class getFullInfoAboutOnePostComponent extends Component {
     constructor() {
@@ -47,14 +47,14 @@ class getFullInfoAboutOnePostComponent extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-         let liked = this.state.liked;
-        if(nextProps.post != this.props.post) {
+        let liked = this.state.liked;
+        if (nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading) {
             let post = nextProps.post;
             console.log(post)
             let likers = post.likers.filter((liker) => {
                 return liker.username == nextProps.user.username
             })
-            if ( likers && likers.length == 0) {
+            if (likers && likers.length == 0) {
                 liked = false;
             }
             else {
@@ -79,7 +79,7 @@ class getFullInfoAboutOnePostComponent extends Component {
             likeCount++;
             liked = !liked;
         }
-        this.setState({likeCount: likeCount,liked : liked});
+        this.setState({likeCount: likeCount, liked: liked});
     }
 
     unlikePost(product_id, token) {
@@ -90,7 +90,7 @@ class getFullInfoAboutOnePostComponent extends Component {
             likeCount--;
             liked = !liked;
         }
-        this.setState({likeCount: likeCount, liked : liked});
+        this.setState({likeCount: likeCount, liked: liked});
     }
 
     render() {
@@ -319,6 +319,8 @@ class getFullInfoAboutOnePostComponent extends Component {
                                             </Item>
                                         </CardItem>
                                     </View>
+
+                                    <WebViewAutoHeight source={this.props.post.content ? this.props.post.content : ''}/>
 
                                     <CardItem footer>
                                         <Left>

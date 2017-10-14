@@ -19,7 +19,7 @@ export default function getNewFeedReducer(state = initialState.getNewFeed, actio
                 ...{
                     isLoading: action.isLoading,
                     error: action.error,
-                    products: state.products.concat(action.products),
+                    products: [...state.products, ...action.products],
                     result: action.result,
                 }
             }
