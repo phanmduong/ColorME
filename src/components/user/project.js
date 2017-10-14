@@ -12,6 +12,7 @@ import * as color from '../../styles/color';
 import * as userInformationAction from '../../actions/userInformationAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import FastImage from 'react-native-fast-image'
 
 class Project extends Component {
     render() {
@@ -44,7 +45,7 @@ class Project extends Component {
                                                     <TouchableOpacity
                                                         onPress={() => this.props.navigation.navigate('PostStack', {product_id: item.id})}
                                                     >
-                                                        <Image
+                                                        <FastImage
                                                             style={[part.imageInGrid, part.shadow]}
                                                             source={{uri: item.thumb_url}}
                                                         />

@@ -22,8 +22,11 @@ import * as color from '../styles/color';
 import * as size from '../styles/size';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
-import * as likePostAction from '../actions/likePostAction';
 import * as getFullInfoAboutOnePostAction from '../actions/getFullInfoAboutOnePostAction'
+
+import * as likePostAction from '../actions/likePostAction'
+import FastImage from 'react-native-fast-image'
+
 
 class getFullInfoAboutOnePostComponent extends Component {
     constructor() {
@@ -125,7 +128,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                     ?
                                                     (
                                                         <View style={part.shadow}>
-                                                            <Image source={{uri: this.props.post.image_url}}
+                                                            <FastImage source={{uri: this.props.post.image_url}}
                                                                    style={[part.imageInGetFull]}
                                                             />
 
@@ -186,12 +189,11 @@ class getFullInfoAboutOnePostComponent extends Component {
 
                                                     </Right>
                                                 </Left>
-
                                             </View>
                                         </CardItem>
 
 
-                                        <CardItem style={part.cardHeader}>
+                                        <CardItem style={[part.cardHeader, {marginTop: 10}]}>
                                             {
                                                 (this.props.post.author)
                                                     ?
@@ -292,8 +294,6 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                         </Left>
                                                     )
                                             }
-
-
                                         </CardItem>
                                         <TouchableOpacity style={[part.iconLikeInImageFullAbout, part.shadow]}>
                                             <Icon name="evil|heart"
@@ -301,7 +301,6 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                   color={color.navTitle}/>
                                         </TouchableOpacity>
                                     </View>
-
                                     <View style={part.wrapperContainer}>
                                         <CardItem style={part.cardHeader}>
                                             <Item style={part.noBorder}>

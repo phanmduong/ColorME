@@ -7,6 +7,7 @@ import {
 } from 'native-base';
 import part from '../../styles/partStyle';
 import {connect} from 'react-redux';
+import FastImage from 'react-native-fast-image'
 
 class groupProject extends Component {
     render() {
@@ -18,7 +19,16 @@ class groupProject extends Component {
                     (this.props.isLoadingGroupProducts)
                         ?
                         (
-                            <View/>
+                            <View
+                                style={{
+                                    flex: 1,
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Spinner
+                                    color={color.gray}/>
+                            </View>
                         )
                         :
                         (
@@ -29,7 +39,7 @@ class groupProject extends Component {
                                                 <View key={i} style={part.wrapperGridImage}>
                                                     <TouchableOpacity
                                                     >
-                                                        <Image
+                                                        <FastImage
                                                             style={[part.imageInGrid, part.shadow]}
                                                             source={{uri: item.thumb_url}}
                                                         />
