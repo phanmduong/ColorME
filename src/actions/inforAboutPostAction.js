@@ -45,7 +45,6 @@ export function getFullInfoAboutOnePostOfUser(product_id) {
         inforAboutPostApi.getFullInfoAboutOnePostApi(product_id)
             .then(function (response) {
                 dispatch(getFullInfoAboutOnePostSuccess(response));
-                console.log(response);
             })
             .catch(function(error) {
                 dispatch(getFullInfoAboutOnePostError(error));

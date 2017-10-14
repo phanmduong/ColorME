@@ -1,6 +1,7 @@
 import * as types from '../constants/actionTypes';
 import {AsyncStorage} from 'react-native'
-import * as loginApi from '../apis/loginApi'
+import * as loginApi from '../apis/loginApi';
+import axios from 'axios';
 export function beginLogin() {
     return {
         type: types.BEGIN_LOGIN,
@@ -15,7 +16,10 @@ export function loginUser(login) {
         loginApi.login(login)
             .then(function (response) {
                 dispatch(loginSuccess(response));
-                console.log(response)
+                const token = response.data.token;
+                AsyncStorage.setItem('@ColorMe:token', token)
+                setAuthorizationToken(token);
+                // dispatch(setCurrentUser(jwt.decode(token)))
             })
             .catch(error => {
                 dispatch(loginError(error));
@@ -40,8 +44,8 @@ export function loginSuccess(response) {
         isLoading: false,
         error: false,
         token : token,
-        user : response.data.user,
-        status :response.status
+        status :response.status,
+        user : response.data.user
     }
 }
 
@@ -90,3 +94,18 @@ export function setDataLogin(login) { // save data
         ;
     }
 }
+
+export function setAuthorizationToken(token){
+    if(token){
+        axios.defaults.headers.common['auth'] = `Bearer ${token}`;
+    }else{
+        delete axios.defaults.headers.common['auth']
+    }
+}
+
+ // export function setCurrentUser (user) {
+ //    return {
+ //        type : types.SET_CURRENT_USER,
+ //        user : user,
+ //    }
+// }

@@ -1,6 +1,5 @@
 import * as types from '../constants/actionTypes';
 import initialState from '../constants/initialState';
-
 export default function loginReducer(state = initialState.login, action) {
     switch (action.type) {
         case types.BEGIN_LOGIN :
@@ -20,7 +19,6 @@ export default function loginReducer(state = initialState.login, action) {
                     error : action.error,
                     token : action.token,
                     status : action.status,
-                    userID : action.userid,
                     user : action.user
                 }
             }
@@ -50,6 +48,23 @@ export default function loginReducer(state = initialState.login, action) {
                     error : action.error
                 }
             }
+        case types.LOGOUT : {
+            return {
+                ...state,
+                ...{
+                    status : action.status
+                }
+            }
+        }
+        // case types.SET_CURRENT_USER :{
+        //     return {
+        //         ...state,
+        //         ...{
+        //             isAuthentication: !isEmpty(action.user),
+        //             user : action.user
+        //         }
+        //     }
+        // }
         default:
             return state;
     }

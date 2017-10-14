@@ -7,8 +7,11 @@ export default {
         result: false,
         isGetLocalData: false,
         status: 0,
-        userID:'',
+        user : {},
+        isAuthentication : false,
     },
+
+
     register: {
         register: {},
         isLoading: false,
@@ -68,6 +71,10 @@ export default {
         error : false,
         comments : []
     },
+
+    changeAvatar : {
+        isLoading: false,
+    },
     group:{
         isLoadingGroupTopics: false,
         isLoadingGroupProducts: false,
@@ -80,6 +87,5 @@ export default {
         topics:[],
         products:[],
         members:[],
-
     }
 }

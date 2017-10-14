@@ -65,9 +65,7 @@ class newFeedComponent extends Component {
                 arr[i] = true;
             }
             count[i] = post[i].likes_count;
-            console.log(likers)
         }
-        console.log(arr)
         this.setState({likeCount: count})
         this.setState({arrayLike: arr})
     }
@@ -518,7 +516,6 @@ function mapStateToProps(state) {
     return {
         products: state.getNewFeed.products,
         user: state.login.user,
-        userID: state.login.userID,
         token: state.login.token,
         isLoading: state.getNewFeed.isLoading,
     }

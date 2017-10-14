@@ -26,6 +26,7 @@ import * as getFullInfoAboutOnePostAction from '../actions/inforAboutPostAction'
 import * as likePostAction from '../actions/likePostAction'
 import FastImage from 'react-native-fast-image'
 
+
 class getFullInfoAboutOnePostComponent extends Component {
     constructor() {
         super();
@@ -34,7 +35,9 @@ class getFullInfoAboutOnePostComponent extends Component {
             more_products: [],
             colors: [],
             likeCount: 0,
-            liked: false
+            liked: false,
+            Height: 500,
+
         }
     }
 
@@ -42,22 +45,25 @@ class getFullInfoAboutOnePostComponent extends Component {
         this.props.getFullInfoAboutOnePostAction.getFullInfoAboutOnePostOfUser(this.props.navigation.state.params.product_id)
         this.props.getFullInfoAboutOnePostAction.getCommentOnePost(this.props.navigation.state.params.product_id)
     }
-
     componentWillReceiveProps(nextProps) {
+        // let liked = this.state.liked;
+        let post = nextProps.post;
+        console.log(post)
+        let likers = post.likers.filter((liker) => {
+            return liker.name == nextProps.user.name
+        })
+        if(likers.length == 0){
+            liked = false;
+        }
+        else{
+            liked = true;
+        }
+        this.setState({liked : liked})
         this.setState({author: nextProps.post.author});
         this.setState({more_products: nextProps.post.more_products});
         this.setState({colors: nextProps.post.colors});
         this.setState({likeCount: nextProps.post.likes_count});
-        // let liked = this.state.liked;
-        // let likers = post.likers.filter((liker) => {
-        //     return liker.name == nextProps.user.name
-        // });
-        //if (likers.length == 0) {
-        //    liked = false;
-        //    liked = true;        // } else {
 
-        // }
-        // this.setState({liked: liked})
     }
 
     likePost(product_id, token) {
@@ -137,7 +143,20 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                         </View>
                                                     )
                                             }
+                                            {
+                                                (this.state.more_products.length != 0) ? (
+                                                    this.state.more_products.map((img) => {
+                                                        return (
+                                                            <View style={part.shadow}>
+                                                                <Image source={{uri: this.props.post.image_url}}
+                                                                       style={[part.imageInGetFull]}
+                                                                />
 
+                                                            </View>
+                                                        )
+                                                    })
+                                                ) : (<Text/>)
+                                            }
                                             <View style={part.iconInDrawer}>
                                                 <Left>
                                                     <TouchableOpacity style={part.padding}
@@ -297,31 +316,13 @@ class getFullInfoAboutOnePostComponent extends Component {
                                             </Item>
                                         </CardItem>
                                     </View>
-                                    <View style={{flex: 1}}>
-                                        <WebView
-                                            automaticallyAdjustContentInsets={true}
-                                            scrollEnabled={false}
-                                            source={{
-                                                html: `<div style="width: 100%">
-                                                        ${this.props.post.content}
-                                                   </div>
-                                                   <Style>img{width: 100%}</Style>
-                                                   `
-                                            }}
-                                            style={{marginTop: 20}}
-                                        />
-
-                                    </View>
-
-
-
 
                                     <CardItem footer>
                                         <Left>
                                             {(liked) ? (
                                                 <Button
                                                     transparent style={part.padding}
-                                                    onPress={() => this.likePost(this.props.navigation.state.params.product_id, this.props.token)}
+                                                    onPress={() => this.unlikePost(this.props.navigation.state.params.product_id, this.props.token)}
                                                 >
                                                     <Icon name="fontawesome|heart-o" size={size.iconBig}
                                                           color={colorIcon}/>
@@ -331,12 +332,12 @@ class getFullInfoAboutOnePostComponent extends Component {
                                             ) : (
                                                 <Button
                                                     transparent style={part.padding}
-                                                    onPress={() => this.unlikePost(this.props.navigation.state.params.product_id, this.props.token)}
+                                                    onPress={() => this.likePost(this.props.navigation.state.params.product_id, this.props.token)}
                                                 >
                                                     <Icon name="fontawesome|heart-o" size={size.iconBig}
                                                           color={colorIcon}/>
                                                     <Text
-                                                        style={[part.describeGray, part.paddingLeft]}>{this.props.post.likes_count}</Text>
+                                                        style={[part.describeGray, part.paddingLeft]}>{likeCount}</Text>
                                                 </Button>
                                             )}
                                             <Button transparent style={part.paddingRight}
