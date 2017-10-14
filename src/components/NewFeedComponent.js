@@ -51,23 +51,28 @@ class newFeedComponent extends Component {
 
     // setup
     componentWillReceiveProps(nextProps) {
-        let post = nextProps.products;
-        let arr = this.state.arrayLike;
-        let count = this.state.likeCount;
-        for (var i = 0; i < post.length; i++) {
-            let likers = post[i].likers.filter((liker) => {
-                return liker.name == nextProps.user.name
-            });
-            if (likers.length == 0) {
-                arr[i] = false;
-            } else {
-                arr[i] = true;
+        if (nextProps.isLoading != this.props.isLoading && this.props.isLoading == true) {
+            let arr = this.state.arrayLike;
+            let count = this.state.likeCount;
+            let post = nextProps.products;
+            console.log(post);
+            let item = false;
+            for (var i = this.props.products.length; i < post.length; i++) {
+                let likers = post[i].likers.filter((liker) => {
+                    return liker.username == nextProps.user.username
+                });
+                if (likers.length == 0) {
+                    item = false;
+                } else {
+                    item = true;
+                }
+                count.push(post[i].likes_count);
+                arr.push(item);
             }
-            count[i] = post[i].likes_count;
+            this.setState({likeCount: count, arrayLike: arr})
         }
-        this.setState({likeCount: count})
-        this.setState({arrayLike: arr})
     }
+
 
     componentDidMount() {
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
