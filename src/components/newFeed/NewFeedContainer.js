@@ -7,14 +7,14 @@ import {
     Thumbnail, Text, Button, Left, Body, Right, ListItem, Spinner, Badge
 } from 'native-base';
 import Video from 'react-native-video';
-import Icon from '../commons/Icon';
-import part from '../styles/partStyle';
-import * as color from '../styles/color';
-import * as size from '../styles/size';
-import * as getNewFeedAction from '../actions/newFeedAction';
+import Icon from '../../commons/Icon';
+import part from '../../styles/partStyle';
+import * as color from '../../styles/color';
+import * as size from '../../styles/size';
+import * as getNewFeedAction from '../../actions/newFeedAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as likePostAction from '../actions/likePostAction'
+import * as likePostAction from '../../actions/likePostAction'
 import FastImage from 'react-native-fast-image'
 
 class newFeedComponent extends Component {
@@ -28,6 +28,7 @@ class newFeedComponent extends Component {
             likeCount: [],
             listPost: [],
             data: [],
+
             check: 0,
             refreshing: false,
         }
@@ -57,7 +58,7 @@ class newFeedComponent extends Component {
 
     // setup
     componentWillReceiveProps(nextProps) {
-        if (nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading) {
+        if (nextProps.isLoading != this.props.isLoading && this.props.isLoading == true) {
             let arr = this.state.arrayLike;
             let count = this.state.likeCount;
             let post = nextProps.products;
@@ -65,9 +66,9 @@ class newFeedComponent extends Component {
             let item = false;
             for (var i = this.props.products.length; i < post.length; i++) {
                 let likers = post[i].likers.filter((liker) => {
-                    return liker.username === nextProps.user.username
+                    return liker.username == nextProps.user.username
                 });
-                if (likers.length === 0) {
+                if (likers.length == 0) {
                     item = false;
                 } else {
                     item = true;
@@ -116,14 +117,11 @@ class newFeedComponent extends Component {
     }
 
     render() {
-        console.log('render');
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
                     barStyle="light-content"
                 />
-
-
                 {/*VIEW TYPE*/}
                 <View>
                     <Item style={[part.itemTab, part.shadow]}>
@@ -158,24 +156,22 @@ class newFeedComponent extends Component {
                             </Picker>
                         </Left>
                         <Right style={part.rightTab}>
-                            <Right style={part.rightTab}>
-                                <TouchableOpacity style={{backgroundColor: 'transparent'}}>
-                                    <Icon name="material|view-list"
-                                          color={this.state.grid ? color.icon : color.darkGray}
-                                          size={size.icon}
-                                          style={part.paddingIcon}
-                                          onPress={() => this.viewList()}
-                                    />
-                                </TouchableOpacity>
-                                <TouchableOpacity style={{backgroundColor: 'transparent'}}>
-                                    <Icon name="material|view-module"
-                                          color={this.state.grid ? color.darkGray : color.icon}
-                                          size={size.icon}
-                                          style={part.paddingIcon}
-                                          onPress={() => this.viewGrid()}
-                                    />
-                                </TouchableOpacity>
-                            </Right>
+                            <TouchableOpacity style={{backgroundColor: 'transparent'}}>
+                                <Icon name="material|view-list"
+                                      color={this.state.grid ? color.icon : color.darkGray}
+                                      size={size.icon}
+                                      style={part.paddingIcon}
+                                      onPress={() => this.viewList()}
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{backgroundColor: 'transparent'}}>
+                                <Icon name="material|view-module"
+                                      color={this.state.grid ? color.darkGray : color.icon}
+                                      size={size.icon}
+                                      style={part.paddingIcon}
+                                      onPress={() => this.viewGrid()}
+                                />
+                            </TouchableOpacity>
                         </Right>
                     </Item>
                 </View>
@@ -216,72 +212,46 @@ class newFeedComponent extends Component {
                                     </View>
                                     {
                                         this.props.products.map((item, i) => {
-
                                             return (
-                                                (item.url.indexOf('.mp4') === -1)
-                                                    ?
-                                                    (
-                                                        <View key={i} style={part.wrapperGridImage}>
-                                                            {
-                                                                (item.group)
+                                                <View key={i}
+                                                      style={(item.url.indexOf('.mp4') === -1 ) ? part.wrapperGridImage : part.wrapperGridVideo}>
+                                                    <TouchableOpacity
+                                                        onPress={() =>
+                                                            this.props.navigation.navigate('ThePostInNewFeed',
+                                                                item.group
                                                                     ?
-                                                                    (
-                                                                        <TouchableOpacity
-                                                                            onPress={() =>
-                                                                                this.props.navigation.navigate('ThePostInNewFeed', {
-                                                                                    product_id: item.id,
-                                                                                    group_name: item.group.name,
-                                                                                    group_link: item.group.link,
-                                                                                })}
-                                                                        >
-                                                                            <FastImage
-                                                                                style={[part.imageInGrid]}
-                                                                                source={{uri: item.thumb_url}}
-                                                                            />
-                                                                        </TouchableOpacity>
-                                                                    )
-                                                                    :
-                                                                    (
-                                                                        <TouchableOpacity
-                                                                            onPress={() =>
-                                                                                this.props.navigation.navigate('ThePostInNewFeed', {
-                                                                                    product_id: item.id,
-                                                                                })}
-                                                                        >
-                                                                            <FastImage
-                                                                                style={[part.imageInGrid]}
-                                                                                source={{uri: item.thumb_url}}
-                                                                            />
-                                                                        </TouchableOpacity>
-                                                                    )
-                                                            }
-                                                        </View>
-                                                    )
-                                                    :
-                                                    (
-
-                                                        <View key={i} style={part.wrapperGridVideo}>
-                                                            <TouchableOpacity
-                                                                onPress={() =>
-                                                                    this.props.navigation.navigate('ThePostInNewFeed', {
+                                                                    {
                                                                         product_id: item.id,
                                                                         group_name: item.group.name,
                                                                         group_link: item.group.link,
-                                                                    })}
-                                                            >
+                                                                    }
+                                                                    :
+                                                                    {
+                                                                        product_id: item.id,
+                                                                    }
+                                                            )}
+                                                    >
+                                                        {
+                                                            (item.url.indexOf('.mp4') === -1 ) ?
+                                                                <FastImage
+                                                                    style={[part.imageInGrid]}
+                                                                    source={{uri: item.thumb_url}}
+                                                                />
+                                                                :
                                                                 <Video
                                                                     repeat
-                                                                    rate={1.0}                   // 0 is paused, 1 is normal.
-                                                                    volume={1.0}                 // 0 is muted, 1 is normal.
-                                                                    muted={true}                // Mutes the audio entirely.
+                                                                    rate={1.0}    // 0 is paused, 1 is normal.
+                                                                    volume={1.0}  // 0 is muted, 1 is normal.
+                                                                    muted={true}  // Mutes the audio entirely.
                                                                     paused={false}
                                                                     resizeMode={'cover'}
                                                                     style={[part.videoInGrid]}
                                                                     source={{uri: item.url}}
                                                                 />
-                                                            </TouchableOpacity>
-                                                        </View>
-                                                    )
+                                                        }
+                                                    </TouchableOpacity>
+                                                </View>
+
                                             )
                                         })
                                     }
@@ -291,8 +261,12 @@ class newFeedComponent extends Component {
                             (
 
                                 <Content>
-                                    {
-                                        this.props.products.map((item, i) => {
+                                    <FlatList
+                                        onEndReachedThreshold={5}
+                                        onEndReached={() => {
+                                        }}
+                                        data={this.props.products}
+                                        renderItem={({item, a, i}) => {
                                             let {arrayLike} = this.state;
                                             let {likeCount} = this.state;
                                             let colorIcon = arrayLike[i] ? color.main : color.icon;
@@ -494,8 +468,8 @@ class newFeedComponent extends Component {
                                                     </TouchableOpacity>
                                                 </Card>
                                             )
-                                        })
-                                    }
+                                        }}
+                                    />
                                 </Content>
 
                             )
@@ -510,7 +484,6 @@ function mapStateToProps(state) {
     return {
         products: state.getNewFeed.products,
         user: state.login.user,
-        userID: state.login.userID,
         token: state.login.token,
         isLoading: state.getNewFeed.isLoading,
     }

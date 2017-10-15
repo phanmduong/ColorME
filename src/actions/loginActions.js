@@ -21,7 +21,7 @@ export function loginUser(login) {
             })
             .catch(error => {
                 dispatch(loginError(error));
-                throw (error);
+                Alert.alert('Mời bạn kiểm tra lại tài khoản hoặc kết nối mạng')
             })
     }
 }

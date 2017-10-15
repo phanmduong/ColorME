@@ -14,7 +14,7 @@ import ResetPasswordComponent from '../components/loginRegister/ResetPasswordCon
 import RegisterComponent from '../components/loginRegister/RegisterContainer'
 import CodeIdentityComponent from '../components/loginRegister/CodeIdentityContainer'
 // MAIN SCREEN
-import newFeedComponent from '../components/NewFeedContainer';
+import newFeedComponent from '../components/newFeed/NewFeedContainer';
 import messageComponent from '../components/message/MessageContainer';
 import notificationComponent from '../components/NotificationContainer';
 import AchievementsComponent from '../components/AchievementsContainer';

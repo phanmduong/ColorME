@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, TouchableOpacity, View} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, StatusBar, Left} from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from '../../commons/Icon';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
 import * as size from '../../styles/size';
@@ -62,7 +62,7 @@ import {connect} from 'react-redux'
                         <Text style={styles.textTitleInput}>EMAIL</Text>
                         <Item>
                             <Input style={part.inputTheme02}
-                                   color={color.gray}
+                                   color={color.darkGray}
                                    autoCorrect={false}
                                    onChangeText={(email) => {
                                        this.setState({ email});
@@ -72,7 +72,7 @@ import {connect} from 'react-redux'
                         <Text style={styles.textTitleInput}>NAME</Text>
                         <Item>
                             <Input style={part.inputTheme02}
-                                   color={color.gray}
+                                   color={color.darkGray}
                                    onChangeText={(name) => {
                                        this.setState({name})
                                    }}
@@ -81,7 +81,7 @@ import {connect} from 'react-redux'
                         <Text style={styles.textTitleInput}>USERNAME</Text>
                         <Item>
                             <Input style={part.inputTheme02}
-                                   color={color.gray}
+                                   color={color.darkGray}
                                    onChangeText={(username) => {
                                        this.setState({username})
                                    }}
@@ -90,7 +90,7 @@ import {connect} from 'react-redux'
                         <Text style={styles.textTitleInput}>PASSWORD</Text>
                         <Item>
                             <Input style={part.inputTheme02}
-                                   color={color.gray}
+                                   color={color.darkGray}
                                    secureTextEntry={true}
                                    onChangeText={(password) => {
                                        this.setState({password})
