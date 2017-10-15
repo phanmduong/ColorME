@@ -43,21 +43,21 @@ class searchComponent extends Component {
         this.props.searchAction.searchProducts(this.state.txtSearch, 30, this.state.page_product);
     }
 
-    // searchHaveTimeout(value){
-    //     this.setState({
-    //        page_user: 1,
-    //        page_product: 1,
-    //        txtSearch: value,
-    //     });
-    //
-    //     if ( this.timeOut !== null){
-    //         clearTimeout(this.timeOut);
-    //     }
-    //
-    //     this.timeOut = setTimeout(function () {
-    //         this.props.searchAction.searchUsers(this.state.txtSearch, 30, 1);
-    //     }, 500)
-    // }
+    searchHaveTimeout(value){
+        this.setState({
+           page_user: 1,
+           page_product: 1,
+           txtSearch: value,
+        });
+
+        if ( this.timeOut !== null){
+            clearTimeout(this.timeOut);
+        }
+
+        this.timeOut = setTimeout(function () {
+            this.search();
+        }.bind(this), 500)
+    }
 
     render() {
         return (
@@ -81,8 +81,7 @@ class searchComponent extends Component {
                         placeholderTextColor={color.gray}
                         style={part.inputTheme02}
                         onChangeText={(txtSearch) => {
-                            this.setState({txtSearch: txtSearch});
-                            this.search();
+                            this.searchHaveTimeout(txtSearch);
                         }}
 
                     />

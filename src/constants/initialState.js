@@ -9,6 +9,8 @@ export default {
         status: 0,
         user : {},
         isAuthentication : false,
+        isAutoLogin : true,
+        save : false,
     },
 
 

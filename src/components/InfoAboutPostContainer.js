@@ -64,9 +64,6 @@ class getFullInfoAboutOnePostComponent extends Component {
 
         this.setState({
             liked: liked,
-            author: nextProps.post.author,
-            more_products: nextProps.post.more_products,
-            colors: nextProps.post.colors,
             likeCount: nextProps.post.likes_count
         })
     }
@@ -147,8 +144,8 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                     )
                                             }
                                             {
-                                                (this.state.more_products.length != 0) ? (
-                                                    this.state.more_products.map((img) => {
+                                                (this.props.post.more_products) ? (
+                                                        this.props.post.more_products.map((img) => {
                                                         return (
                                                             <View style={part.shadow}>
                                                                 <Image source={{uri: this.props.post.image_url}}
@@ -158,7 +155,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                             </View>
                                                         )
                                                     })
-                                                ) : (<Text/>)
+                                            ) : (<Text/>)
                                             }
                                             <View style={part.iconInDrawer}>
                                                 <Left>

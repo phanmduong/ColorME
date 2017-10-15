@@ -4,6 +4,7 @@ import * as color from './color';
 
 let wid = Dimensions.get('window').width;
 let hei = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
     wrapperContainer: {
         flex: 1,
@@ -19,8 +20,16 @@ const styles = StyleSheet.create({
     midContainerLogin: {
         alignItems: 'center',
         justifyContent: 'center',
-        flex : 1,
+        flex: 1,
         marginBottom: 100
+    },
+    itemButtonLogin: {
+        borderBottomWidth: 0,
+    },
+    itemInput: {
+        width: wid - wid * 0.3,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     textInputGroup: {
         width: wid - wid * 0.2,
@@ -30,8 +39,10 @@ const styles = StyleSheet.create({
         fontSize: 11,
         padding: 10,
     },
-    textTitleInput : {
-        padding: 20,
+    textTitleInput: {
+        backgroundColor: color.none,
+        paddingLeft: 25,
+        marginTop: 25,
         color: color.main,
         fontWeight: (Platform.OS === 'ios') ? '900' : 'normal',
     },
@@ -40,79 +51,78 @@ const styles = StyleSheet.create({
         marginTop: 10,
         paddingLeft: 10,
         paddingRight: 10,
-        backgroundColor: 'rgba(158, 158, 158, 0.15)'
+        backgroundColor: color.navTitle
     },
     contentForm: {
-        backgroundColor: '#fff',
+        backgroundColor: color.navTitle,
         flex: 1,
-        height : hei /2 -50 ,
-        width : wid - wid* 0.2,
+        height: hei / 2 - 30,
+        width: wid - wid * 0.2,
         borderRadius: 15,
         elevation: 10,
-        shadowColor: '#666666',
+        shadowColor: color.gray,
         shadowOffset: {
             width: 0,
-            height: 3
+            height: 2
         },
         shadowRadius: 10,
         shadowOpacity: 0.4,
         justifyContent: 'center',
         alignItems: 'flex-start',
         position: 'absolute',
+        marginLeft: wid * 0.2,
     },
-    contentFormRegister : {
+    contentFormRegister: {
         backgroundColor: '#fff',
         flex: 1,
-        height : hei/2  ,
-        width : wid - wid* 0.2,
+        height: hei / 2,
+        width: wid - wid * 0.2,
         borderRadius: 15,
         elevation: 10,
-        shadowColor: '#666666',
+        shadowColor: color.gray,
         shadowOffset: {
             width: 0,
             height: 3
         },
         shadowRadius: 10,
         shadowOpacity: 0.4,
+        marginLeft: wid * 0.2,
         justifyContent: 'center',
         alignItems: 'flex-start',
         position: 'absolute',
     },
     textAccept: {
-        color: '#797979',
+        color: color.gray,
         fontWeight: 'bold',
-        marginLeft : 70,
-        marginTop : 10
     },
-    textBottom : {
+    textBottom: {
+        color: color.darkGray,
+        fontWeight: '600',
+    },
+    text: {
+        backgroundColor: color.none,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
         color: '#797979',
-        fontWeight: 'bold',
-        marginLeft : wid/3 - 15,
-        marginBottom: 50,
+        fontFamily: 'Verdana',
+        fontSize: size.describeSmall,
     },
-    text:{
-       justifyContent : 'center',
-       alignItems : 'center',
-        margin : 10,
-        color: '#797979',
-        fontFamily : 'Verdana',
-        fontSize : size.describeSmall,
-    },
-    textButton : {
-        justifyContent : 'center',
-        alignItems : 'center',
-        color : 'white',
-        fontSize : 13,
+    textButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: 'white',
+        fontSize: 13,
         fontFamily: 'Verdana-Bold'
     },
     buttonRegister: {
-        width : wid - wid*0.4,
-        height : 40,
+        width: wid - wid * 0.4,
+        height: 40,
         alignItems: 'center',
         justifyContent: 'center',
         padding: 15,
         marginTop: 15,
-        borderRadius : 20,
+        borderRadius: 20,
         backgroundColor: 'rgba(197, 0, 0, 1)',
     },
     textSignUp: {
@@ -141,16 +151,27 @@ const styles = StyleSheet.create({
     },
     wrapperColorME: {
         flex: 2,
-        width : wid,
+        width: wid,
         backgroundColor: color.main,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    wrapperForm:{
+    wrapperForm: {
         flex: 3,
         backgroundColor: color.backGround,
         justifyContent: 'center',
         alignItems: 'flex-end',
+    },
+    wrapperRegister: {
+        flex: 1,
+        width: wid - wid * 0.2,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    wrapperForgot: {
+        bottom: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 
     textRegisterChild: {
@@ -158,7 +179,7 @@ const styles = StyleSheet.create({
         color: 'rgba(256, 256 , 256 , 1)',
 
     },
-    wrapperIcon:{
+    wrapperIcon: {
         width: 35,
     },
     icon: {

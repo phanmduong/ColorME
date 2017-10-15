@@ -176,7 +176,7 @@ const part = StyleSheet.create({
     },
     inputTheme02: {
         fontSize: size.title,
-        fontWeight : 'bold'
+        fontWeight : '600',
     },
     inputTheme03: {
         fontSize: size.describe,

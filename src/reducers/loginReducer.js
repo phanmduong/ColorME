@@ -52,19 +52,10 @@ export default function loginReducer(state = initialState.login, action) {
             return {
                 ...state,
                 ...{
-                    status : action.status
+                    status : action.status,
                 }
             }
         }
-        // case types.SET_CURRENT_USER :{
-        //     return {
-        //         ...state,
-        //         ...{
-        //             isAuthentication: !isEmpty(action.user),
-        //             user : action.user
-        //         }
-        //     }
-        // }
         default:
             return state;
     }

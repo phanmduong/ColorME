@@ -173,7 +173,8 @@ class newFeedComponent extends Component {
 
                 <Content
                     showsVerticalScrollIndicator={false}
-                    onMomentumScrollEnd={() => this.getMoreNewFeed()} style={[part.padding, part.marginTop]}>
+                    onMomentumScrollEnd={() => this.getMoreNewFeed()}
+                    style={[part.padding, part.marginTop]}>
                     {
                         (this.state.grid)
                             ?
@@ -195,7 +196,6 @@ class newFeedComponent extends Component {
                                     </View>
                                     {
                                         this.props.products.map((item, i) => {
-
                                             return (
                                                 <View key={i}
                                                       style={(item.url.indexOf('.mp4') === -1 ) ? part.wrapperGridImage : part.wrapperGridVideo}>
@@ -233,7 +233,6 @@ class newFeedComponent extends Component {
                                                                     source={{uri: item.url}}
                                                                 />
                                                         }
-
                                                     </TouchableOpacity>
                                                 </View>
 

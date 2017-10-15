@@ -14,6 +14,11 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 class searchUser extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {}
+    }
+
     render() {
         return (
             <Content
@@ -36,7 +41,7 @@ class searchUser extends Component {
                         )
                         :
                         (
-                            this.props.users
+                            this.props.user !== []
                                 ?
                                 <FlatList
                                     onEndReachedThreshold={5}
@@ -47,16 +52,13 @@ class searchUser extends Component {
                                     renderItem={({item}) =>
                                         <CardItem
                                             avatar
-                                            style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}
-                                        >
-                                            <TouchableOpacity style={{flex: 1}}
-                                                              onPress={() => this.props.navigation.navigate('ThePostInNewFeed')}
-                                            >
+                                            style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
+                                            <TouchableOpacity
+                                                style={{flex: 1}}
+                                                onPress={() => this.props.navigation.navigate('ThePostInNewFeed')}>
                                                 <Left>
-
                                                     <Thumbnail
                                                         source={{uri: item.avatar_url}}/>
-
                                                     <Body style={part.noBorder}>
                                                     <Text style={part.titleSmallBlue}>{item.name}</Text>
                                                     <Text style={part.describeGray} note>{item.university}</Text>
@@ -68,8 +70,6 @@ class searchUser extends Component {
                                                     </TouchableOpacity>
                                                 </Left>
                                             </TouchableOpacity>
-
-
                                         </CardItem>
                                     }
                                 />
