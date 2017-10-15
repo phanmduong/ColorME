@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {KeyboardAvoidingView, Text, TouchableOpacity, StatusBarView} from 'react-native'
+import {KeyboardAvoidingView, Text, TouchableOpacity, StatusBar,View} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item} from 'native-base';
 import * as color from '../../styles/color';
@@ -18,6 +18,7 @@ export default class EmailIdentityComponent extends Component {
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
                 <StatusBar
                     barStyle="light-content"
+                    backgroundColor="rgb(247, 248, 249)"
                 />
                 <View style={styles.wrapperColorME}>
                     <Text style={styles.textColor}>Color</Text>
@@ -28,7 +29,7 @@ export default class EmailIdentityComponent extends Component {
                         <Text style = {styles.text} >Vui lòng nhập lại mà bạn đã đăng kí với ColorMe. Chúng tôi gửi mã xác nhận email của
                             bạn</Text>
                         <Text style={styles.textTitleInput}>EMAIL</Text>
-                        <Item>
+                        <Item style = {styles.itemInput}>
                             <Input style={part.inputTheme02}
                                    color={color.gray}
                                    autoCorrect={false}
@@ -37,7 +38,7 @@ export default class EmailIdentityComponent extends Component {
                                    }}
                             />
                         </Item>
-                        <Item style={{marginLeft: 37}}>
+                        <Item style={styles.itemButtonLogin}>
                             <TouchableOpacity
                                 block
                                 rounded

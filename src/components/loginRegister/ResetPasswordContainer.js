@@ -28,7 +28,7 @@ import * as size from '../../styles/size';
                 <Container style={styles.midContainerLogin}>
                     <Container style={styles.contentForm}>
                         <Text style={styles.textTitleInput}>PASSWORD MỚI</Text>
-                        <Item>
+                        <Item style = {styles.itemInput}>
                             <Input style={part.inputTheme02}
                                    color={color.gray}
                                    secureTextEntry={true}
@@ -38,7 +38,7 @@ import * as size from '../../styles/size';
                             />
                         </Item>
                         <Text style={styles.textTitleInput}>NHẬP LẠI PASSWORD</Text>
-                        <Item>
+                        <Item style = {styles.itemInput}>
                             <Input style={part.inputTheme02}
                                    color={color.gray}
                                    secureTextEntry={true}

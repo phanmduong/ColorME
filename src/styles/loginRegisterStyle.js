@@ -22,6 +22,16 @@ const styles = StyleSheet.create({
         flex : 1,
         marginBottom: 100
     },
+    itemButtonLogin : {
+        borderBottomWidth: 0,
+        marginLeft: Dimensions.get('window').width / 10
+    },
+    itemInput : {
+        width : wid * 0.69,
+        marginLeft : 20,
+        justifyContent : 'center',
+        alignItems : 'center'
+    },
     textInputGroup: {
         width: wid - wid * 0.2,
     },
@@ -31,7 +41,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     textTitleInput : {
-        padding: 20,
+        paddingLeft: 20,
         color: color.main,
         fontWeight: (Platform.OS === 'ios') ? '900' : 'normal',
     },
@@ -59,6 +69,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-start',
         position: 'absolute',
+        marginLeft : wid * 0.2,
     },
     contentFormRegister : {
         backgroundColor: '#fff',
@@ -74,6 +85,7 @@ const styles = StyleSheet.create({
         },
         shadowRadius: 10,
         shadowOpacity: 0.4,
+        marginLeft : wid * 0.2,
         justifyContent: 'center',
         alignItems: 'flex-start',
         position: 'absolute',
@@ -81,19 +93,19 @@ const styles = StyleSheet.create({
     textAccept: {
         color: '#797979',
         fontWeight: 'bold',
-        marginLeft : 70,
+        marginLeft : wid/4.8,
         marginTop : 10
     },
     textBottom : {
         color: '#797979',
         fontWeight: 'bold',
-        marginLeft : wid/3 - 15,
-        marginBottom: 50,
+        marginLeft : wid/3,
+        marginBottom: wid/6,
     },
     text:{
        justifyContent : 'center',
        alignItems : 'center',
-        margin : 10,
+        padding : 20,
         color: '#797979',
         fontFamily : 'Verdana',
         fontSize : size.describeSmall,

@@ -28,7 +28,7 @@ export default class CodeIdentityComponent extends Component {
                         <Text style = {styles.text} >Vui lòng nhập mã xác nhận bạn đã nhận được từ email. Chúng tôi sẽ cho phép bạn thiết lập lại mật khẩu
                             </Text>
                         <Text style={styles.textTitleInput}>MÃ XÁC NHẬN </Text>
-                        <Item>
+                        <Item style = {styles.itemInput}>
                             <Input style={part.inputTheme02}
                                    color={color.gray}
                                    autoCorrect={false}
@@ -37,7 +37,7 @@ export default class CodeIdentityComponent extends Component {
                                    }}
                             />
                         </Item>
-                        <Item style={{marginLeft: 37}}>
+                        <Item style={styles.itemButtonLogin}>
                             <TouchableOpacity
                                 disabled={this.props.isLoading}
                                 block

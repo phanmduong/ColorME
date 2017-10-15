@@ -1,5 +1,5 @@
 import * as types from '../constants/actionTypes';
-import {AsyncStorage} from 'react-native'
+import {AsyncStorage, Alert} from 'react-native'
 import * as loginApi from '../apis/loginApi';
 import axios from 'axios';
 export function beginLogin() {
@@ -17,9 +17,7 @@ export function loginUser(login) {
             .then(function (response) {
                 dispatch(loginSuccess(response));
                 const token = response.data.token;
-                AsyncStorage.setItem('@ColorMe:token', token)
                 setAuthorizationToken(token);
-                // dispatch(setCurrentUser(jwt.decode(token)))
             })
             .catch(error => {
                 dispatch(loginError(error));
@@ -79,15 +77,15 @@ export function gotDataLogin(email, password) { // dữ liệu từ local thành
             password: password,
         },
         isGetLocalData: true,
-
     }
 }
 
 export function setDataLogin(login) { // save data
-    return async function () {
+    return async function(){
         try {
             await AsyncStorage.setItem('@ColorMe:email', login.email);
             await AsyncStorage.setItem('@ColorMe:password', login.password);
+            await AsyncStorage.setItem('@ColorMe:save', 'true')
         }
         catch (error) {
         }
@@ -102,10 +100,3 @@ export function setAuthorizationToken(token){
         delete axios.defaults.headers.common['auth']
     }
 }
-
- // export function setCurrentUser (user) {
- //    return {
- //        type : types.SET_CURRENT_USER,
- //        user : user,
- //    }
-// }

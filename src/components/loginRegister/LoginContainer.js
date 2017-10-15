@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
 import {
-    ActivityIndicator, Alert, KeyboardAvoidingView,
-    Text, TouchableOpacity, View, StatusBar
+    ActivityIndicator, AsyncStorage, KeyboardAvoidingView,
+    Text, TouchableOpacity, View, StatusBar, Dimensions,Alert
 } from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item} from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome'
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
 import * as size from '../../styles/size';
@@ -24,7 +23,7 @@ class LoginComponent extends Component {
 
     componentWillMount() {
         this.props.loginAction.getDataLogin(this.props.login);
-
+        this.autoLogin();
     }
 
     saveData() {
@@ -47,10 +46,17 @@ class LoginComponent extends Component {
             this.props.navigation.navigate('Main');
             this.setState({check: false});
         }
-        // if (nextProps.error) {
-        //     Alert.alert('Mời bạn kiểm tra lại thông tin tài khoản ')
-        // }
     }
+        async autoLogin () {
+        const value = await AsyncStorage.getItem('@ColorMe:save');
+
+            if(this.props.login.email && this.props.login.password && value == true){
+               this.props.loginAction.loginUser(this.props.login)
+
+        }
+
+    }
+
 
     render() {
         return (
@@ -64,8 +70,8 @@ class LoginComponent extends Component {
                 </View>
                 <Container style={styles.midContainerLogin}>
                     <Container style={styles.contentForm}>
-                        <Text style={[styles.textTitleInput, part.paddingTLB]}>EMAIL</Text>
-                        <Item>
+                        <Text style={[styles.textTitleInput]}>EMAIL</Text>
+                        <Item style = {styles.itemInput}>
                             <Input style={part.inputTheme02}
                                    color={color.gray}
                                    autoCorrect={false}
@@ -75,8 +81,8 @@ class LoginComponent extends Component {
                                    value={this.props.login.email}
                             />
                         </Item>
-                        <Text style={[styles.textTitleInput, part.paddingTLB]}>PASSWORD</Text>
-                        <Item>
+                        <Text style={[styles.textTitleInput]}>PASSWORD</Text>
+                        <Item style={styles.itemInput}>
                             <Input style={part.inputTheme02}
                                    color={color.gray}
                                    secureTextEntry={true}
@@ -86,7 +92,7 @@ class LoginComponent extends Component {
                                    value={this.props.login.password}
                             />
                         </Item>
-                        <Item style={{marginLeft: 37}}>
+                        <Item style={styles.itemButtonLogin}>
                             <TouchableOpacity
                                 disabled={this.props.isLoading}
                                 block
@@ -115,7 +121,7 @@ class LoginComponent extends Component {
                                         />
                                     </Container>
                                 ) : (
-                                    <Icon name="sign-in" color={color.navTitle} size={size.icon}/>
+                                    <Text style= {styles.textButton}>Đăng nhập </Text>
                                 )
                                 }
                             </TouchableOpacity>
@@ -140,6 +146,9 @@ function mapStateToProps(state) {
         isLoading: state.login.isLoading,
         status: state.login.status,
         error: state.login.error,
+        isGetLocalData : state.login.isGetLocalData,
+        isAutoLogin : state.login.isAutoLogin,
+        save : state.login.save
     }
 }
 

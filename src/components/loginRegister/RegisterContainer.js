@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, TouchableOpacity, View} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
-import {Container, Content, Form, Input, Item, StatusBar} from 'native-base';
+import {Container, Content, Form, Input, Item, StatusBar, Left} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
@@ -10,7 +10,7 @@ import * as registerAction from '../../actions/registerAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 
-class RegisterComponent extends Component {
+ class RegisterComponent extends Component {
     constructor() {
         super();
         this.state = {
@@ -40,6 +40,19 @@ class RegisterComponent extends Component {
                 <StatusBar
                     barStyle="light-content"
                 />
+                <View style={part.iconInDrawer}>
+                    <Left>
+                        <TouchableOpacity style={part.padding}
+                                          onPress={() => this.props.navigation.goBack()}
+                        >
+                            <Icon name="entypo|chevron-thin-left"
+                                  size={size.iconBig}
+                                  color={color.navTitle}
+                                  style={part.shadow}
+                            />
+                        </TouchableOpacity>
+                    </Left>
+                </View>
                 <View style={styles.wrapperColorME}>
                     <Text style={styles.textColor}>Color</Text>
                     <Text style={styles.textME}>ME</Text>
@@ -139,5 +152,4 @@ function mapDispatchToProps(dispatch) {
         registerAction: bindActionCreators(registerAction, dispatch)
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterComponent)
