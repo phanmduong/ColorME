@@ -85,7 +85,7 @@ export function setDataLogin(login) { // save data
         try {
             await AsyncStorage.setItem('@ColorMe:email', login.email);
             await AsyncStorage.setItem('@ColorMe:password', login.password);
-            await AsyncStorage.setItem('@ColorMe:save', 'true')
+            await AsyncStorage.setItem('@ColorMe:save', '1')
         }
         catch (error) {
         }

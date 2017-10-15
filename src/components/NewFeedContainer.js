@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    FlatList, TouchableOpacity, Image, StatusBar, View, TouchableHighlight
+    FlatList, TouchableOpacity, Image, StatusBar, View, RefreshControl
 } from 'react-native';
 import {
     Container, Header, Content, Card, CardItem, Item, Picker,
@@ -28,7 +28,8 @@ class newFeedComponent extends Component {
             likeCount: [],
             listPost: [],
             data: [],
-            check: 0
+            check: 0,
+            refreshing: false,
         }
     }
 
@@ -37,6 +38,9 @@ class newFeedComponent extends Component {
         this.setState({typeView: value});
         this.props.products = [];
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
+    }
+    pullRefresh(){
+        this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1)
     }
 
     viewList() {
@@ -84,7 +88,7 @@ class newFeedComponent extends Component {
     getMoreNewFeed() {
         let page_id = this.state.page_id + 1;
         this.setState({page_id: page_id});
-        this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
+        this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id)
     }
 
     likePost(product_id, token, index) {
@@ -179,7 +183,18 @@ class newFeedComponent extends Component {
 
                 <Content
                     showsVerticalScrollIndicator={false}
-                    onMomentumScrollEnd={() => this.getMoreNewFeed()} style={[part.padding, part.marginTop]}>
+                    onMomentumScrollEnd={() => this.getMoreNewFeed()} style={[part.padding, part.marginTop]}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing = {this.props.isLoading}
+                        onRefresh={() => {
+                            this.pullRefresh()
+                        }}
+                        tintColor={color.gray}
+                        />
+
+                    }
+                    >
                     {
                         (this.state.grid)
                             ?

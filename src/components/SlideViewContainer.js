@@ -24,7 +24,6 @@ class SlideViewComponent extends Component {
     }
 logout(){
         this.props.logoutAction.logoutSuccess()
-        this.props.logoutAction.logout()
         this.props.navigation.navigate('Login');
 }
     render() {

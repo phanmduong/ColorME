@@ -23,7 +23,6 @@ class LoginComponent extends Component {
 
     componentWillMount() {
         this.props.loginAction.getDataLogin(this.props.login);
-        this.autoLogin();
     }
 
     saveData() {
@@ -46,16 +45,16 @@ class LoginComponent extends Component {
             this.props.navigation.navigate('Main');
             this.setState({check: false});
         }
+        if(nextProps.error){
+            Alert.alert('Mời bạn kiểm tra lại tài khoản')
     }
-        async autoLogin () {
-        const value = await AsyncStorage.getItem('@ColorMe:save');
-
-            if(this.props.login.email && this.props.login.password && value == true){
-               this.props.loginAction.loginUser(this.props.login)
+        if(nextProps.login.password && nextProps.login.email && nextProps.status == 0){
+            nextProps.loginAction.loginUser(nextProps.login)
+        }
 
         }
 
-    }
+
 
 
     render() {
