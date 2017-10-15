@@ -25,13 +25,11 @@ class searchComponent extends Component {
         this.getMoreUser = this.getMoreUser.bind(this);
     }
 
-
-
     search() {
         this.props.searchAction.searchUsers(this.state.txtSearch, 30, 1);
         this.props.searchAction.searchProducts(this.state.txtSearch, 30, 1);
-
     }
+
     getMoreUser() {
         let page_user = this.state.page_user;
         page_user += 1;
@@ -43,8 +41,23 @@ class searchComponent extends Component {
         page_product += 1;
         this.setState({page_product: page_product});
         this.props.searchAction.searchProducts(this.state.txtSearch, 30, this.state.page_product);
-
     }
+
+    // searchHaveTimeout(value){
+    //     this.setState({
+    //        page_user: 1,
+    //        page_product: 1,
+    //        txtSearch: value,
+    //     });
+    //
+    //     if ( this.timeOut !== null){
+    //         clearTimeout(this.timeOut);
+    //     }
+    //
+    //     this.timeOut = setTimeout(function () {
+    //         this.props.searchAction.searchUsers(this.state.txtSearch, 30, 1);
+    //     }, 500)
+    // }
 
     render() {
         return (
@@ -53,21 +66,10 @@ class searchComponent extends Component {
                     barStyle="light-content"
                 />
 
-                {/*<Item style={[part.noBorder, part.marginStatusBar]}>*/}
-                    {/*<Left>*/}
-                        {/*<TouchableOpacity*/}
-                            {/*style={{marginLeft: -5}}*/}
-                            {/*onPress={() => this.props.navigation.goBack()}*/}
-                        {/*>*/}
-                            {/*<Icon name="entypo|chevron-thin-left"*/}
-                                  {/*size={30}*/}
-                                  {/*color={color.darkGray}/>*/}
-                        {/*</TouchableOpacity>*/}
-                    {/*</Left>*/}
-                {/*</Item>*/}
+
                 <Item style={part.noBorder}>
                     <TouchableOpacity onPress={() => this.search()}>
-                        <Text style={[part.titleLargeDarkBold, part.paddingLine]}>
+                        <Text style={[part.titleLargeDarkBold, part.paddingLineFar]}>
                             Tìm kiếm
                         </Text>
                     </TouchableOpacity>
@@ -80,7 +82,7 @@ class searchComponent extends Component {
                         style={part.inputTheme02}
                         onChangeText={(txtSearch) => {
                             this.setState({txtSearch: txtSearch});
-                                this.search();
+                            this.search();
                         }}
 
                     />

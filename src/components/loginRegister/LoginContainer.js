@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {
     ActivityIndicator, Alert, KeyboardAvoidingView,
-    Text, TouchableOpacity, View, StatusBar
+    Text, TouchableOpacity, View, StatusBar,AsyncStorage
 } from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item} from 'native-base';
@@ -50,6 +50,7 @@ class LoginComponent extends Component {
         // if (nextProps.error) {
         //     Alert.alert('Mời bạn kiểm tra lại thông tin tài khoản ')
         // }
+
     }
 
     render() {

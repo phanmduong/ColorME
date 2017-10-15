@@ -40,37 +40,44 @@ class searchProduct extends Component {
                         )
                         :
                         (
-                            <FlatList
-                                onEndReachedThreshold={5}
-                                onEndReached={() => {
-                                    this.props.getMoreProduct
-                                }}
-                                data={this.props.products}
-                                renderItem={({item}) =>
-                                    <CardItem avatar style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
-                                        <Left>
-                                            <TouchableOpacity>
-                                                <Thumbnail
-                                                    source={{uri: item.author.avatar_url}}/>
-                                            </TouchableOpacity>
-                                            <Body style={part.noBorder}>
-                                            <Text style={part.titleSmallBlue}>{item.author.name}</Text>
-                                            <Text style={part.describeGray} note>{item.title}</Text>
-                                            </Body>
-                                            <TouchableOpacity
-                                                onPress={() =>
-                                                    this.props.navigation.navigate('ThePostInNewFeed', {
-                                                        product_id: item.id,
-                                                    })}
-                                            >
-                                                <Thumbnail
-                                                    source={{uri: item.thumb_url}}/>
-                                            </TouchableOpacity>
+                            this.props.products
+                                ?
+                                <FlatList
+                                    onEndReachedThreshold={5}
+                                    onEndReached={() => {
+                                        this.props.getMoreProduct
+                                    }}
+                                    data={this.props.products}
+                                    renderItem={({item}) =>
+                                        <CardItem avatar
+                                                  style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
+                                            <Left>
+                                                <TouchableOpacity>
+                                                    <Thumbnail
+                                                        source={{uri: item.author.avatar_url}}/>
+                                                </TouchableOpacity>
+                                                <Body style={part.noBorder}>
+                                                <Text style={part.titleSmallBlue}>{item.author.name}</Text>
+                                                <Text style={part.describeGray} note>{item.title}</Text>
+                                                </Body>
+                                                <TouchableOpacity
+                                                    onPress={() =>
+                                                        this.props.navigation.navigate('ThePostInNewFeed', {
+                                                            product_id: item.id,
+                                                        })}
+                                                >
+                                                    <Thumbnail
+                                                        source={{uri: item.thumb_url}}/>
+                                                </TouchableOpacity>
 
-                                        </Left>
-                                    </CardItem>
-                                }
-                            />
+                                            </Left>
+                                        </CardItem>
+                                    }
+                                />
+                                :
+                                <View style={part.wrapperNotResult}>
+                                    <Text style={part.describeDarkGray}>Không có kết quả phù hợp</Text>
+                                </View>
                         )
                 }
             </Content>

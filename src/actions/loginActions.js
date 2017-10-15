@@ -17,7 +17,6 @@ export function loginUser(login) {
             .then(function (response) {
                 dispatch(loginSuccess(response));
                 const token = response.data.token;
-                AsyncStorage.setItem('@ColorMe:token', token)
                 setAuthorizationToken(token);
                 // dispatch(setCurrentUser(jwt.decode(token)))
             })

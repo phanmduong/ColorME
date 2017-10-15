@@ -36,40 +36,47 @@ class searchUser extends Component {
                         )
                         :
                         (
-                            <FlatList
-                                onEndReachedThreshold={5}
-                                onEndReached={() => {
-                                }}
-                                data={this.props.users}
-                                renderItem={({item}) =>
-                                    <CardItem
-                                        avatar
-                                        style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}
-                                    >
-                                        <TouchableOpacity style={{flex: 1}}
-                                                          onPress={() => this.props.navigation.navigate('ThePostInNewFeed')}
+                            this.props.users
+                                ?
+                                <FlatList
+                                    onEndReachedThreshold={5}
+                                    onEndReached={() => {
+                                        this.props.getMoreUser
+                                    }}
+                                    data={this.props.users}
+                                    renderItem={({item}) =>
+                                        <CardItem
+                                            avatar
+                                            style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}
                                         >
-                                            <Left>
+                                            <TouchableOpacity style={{flex: 1}}
+                                                              onPress={() => this.props.navigation.navigate('ThePostInNewFeed')}
+                                            >
+                                                <Left>
 
-                                                <Thumbnail
-                                                    source={{uri: item.avatar_url}}/>
+                                                    <Thumbnail
+                                                        source={{uri: item.avatar_url}}/>
 
-                                                <Body style={part.noBorder}>
-                                                <Text style={part.titleSmallBlue}>{item.name}</Text>
-                                                <Text style={part.describeGray} note>{item.university}</Text>
-                                                </Body>
-                                                <TouchableOpacity style={part.iconFollow}>
-                                                    <Icon name="ion|ios-person-add"
-                                                          size={30}
-                                                          color={color.navTitle}/>
-                                                </TouchableOpacity>
-                                            </Left>
-                                        </TouchableOpacity>
+                                                    <Body style={part.noBorder}>
+                                                    <Text style={part.titleSmallBlue}>{item.name}</Text>
+                                                    <Text style={part.describeGray} note>{item.university}</Text>
+                                                    </Body>
+                                                    <TouchableOpacity style={part.iconFollow}>
+                                                        <Icon name="ion|ios-person-add"
+                                                              size={30}
+                                                              color={color.navTitle}/>
+                                                    </TouchableOpacity>
+                                                </Left>
+                                            </TouchableOpacity>
 
 
-                                    </CardItem>
-                                }
-                            />
+                                        </CardItem>
+                                    }
+                                />
+                                :
+                                <View style={part.wrapperNotResult}>
+                                    <Text style={part.describeDarkGray}>Không có kết quả phù hợp</Text>
+                                </View>
                         )
                 }
 

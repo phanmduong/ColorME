@@ -77,7 +77,12 @@ const part = StyleSheet.create({
         height: 10,
         borderRadius: 5,
         backgroundColor: color.lightGray,
-
+    },
+    wrapperNotResult:{
+        padding: 20,
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     deadlineProgress:{
         height: 10,
@@ -423,6 +428,10 @@ const part = StyleSheet.create({
         paddingTop: 3,
         paddingBottom: 3,
     },
+    paddingLineFar:{
+        paddingTop: 20,
+        paddingBottom: 20,
+    },
     paddingTRB: {
         paddingRight: 5,
         paddingBottom: 5,
@@ -541,23 +550,18 @@ const part = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-
     noBorder:{
         borderBottomWidth: 0,
         borderTopWidth: 0,
         borderLeftWidth: 0,
         borderRightWidth: 0,
     },
-
-
     // SHADOW
     shadow:{
-        shadowColor: 'white',
+        shadowColor: 'black',
         shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.2,
     },
-
-
     //
     haveBorderBottom:{
         borderBottomWidth: 0.5,
