@@ -4,7 +4,8 @@ import {
     Text, TouchableOpacity, View, StatusBar, Dimensions, Alert
 } from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
-import {Container, Content, Form, Input, Item} from 'native-base';
+import Icon from '../../commons/Icon';
+import {Container, Content, Form, Input, Item, Left} from 'native-base';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
 import * as size from '../../styles/size';
@@ -76,7 +77,7 @@ class LoginComponent extends Component {
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
-                                       color={color.gray}
+                                       color={color.darkGray}
                                        autoCorrect={false}
                                        onChangeText={(email) => {
                                            this.updateData('email', email);

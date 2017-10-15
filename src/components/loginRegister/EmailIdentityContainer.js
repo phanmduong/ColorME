@@ -63,6 +63,35 @@ export default class EmailIdentityComponent extends Component {
                     </Container>
                 </Container>
                 <Text style={styles.textBottom}/>
+
+                <View style={part.iconInDrawer}>
+                    <Left>
+                        <TouchableOpacity style={part.padding}
+                                          onPress={() => this.props.navigation.goBack()}
+                        >
+                            <Icon name="entypo|chevron-thin-left"
+                                  size={size.iconBig}
+                                  color={color.navTitle}
+                                  style={part.shadow}
+                            />
+                        </TouchableOpacity>
+
+                    </Left>
+                </View>
+                <View style={part.iconInDrawer}>
+                    <Left>
+                        <TouchableOpacity style={part.padding}
+                                          onPress={() => this.props.navigation.goBack()}
+                        >
+                            <Icon name="entypo|chevron-thin-left"
+                                  size={size.iconBig}
+                                  color={color.navTitle}
+                                  style={part.shadow}
+                            />
+                        </TouchableOpacity>
+
+                    </Left>
+                </View>
             </KeyboardAvoidingView>
 
         )

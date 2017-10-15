@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import {KeyboardAvoidingView, Text, TouchableOpacity, StatusBar, View} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
-import {Container, Content, Form, Input, Item} from 'native-base';
+import {Container, Content, Form, Input, Item, Left} from 'native-base';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
+import Icon from '../../commons/Icon';
+import * as size from '../../styles/size';
 
 export default class CodeIdentityComponent extends Component {
     constructor() {
@@ -62,6 +64,21 @@ export default class CodeIdentityComponent extends Component {
                     </Container>
                 </Container>
                 <Text style={styles.textBottom}/>
+                <View style={part.iconInDrawer}>
+                    <Left>
+                        <TouchableOpacity style={part.padding}
+                                          onPress={() => this.props.navigation.goBack()}
+                        >
+                            <Icon name="entypo|chevron-thin-left"
+                                  size={size.iconBig}
+                                  color={color.navTitle}
+                                  style={part.shadow}
+                            />
+                        </TouchableOpacity>
+
+                    </Left>
+                </View>
+
             </KeyboardAvoidingView>
 
         )

@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import {View} from 'react-native'
 import {KeyboardAvoidingView, TouchableOpacity, StatusBar, ActivityIndicator, Alert, Text} from 'react-native';
 import styles from '../../styles/loginRegisterStyle'
-import {Container, Content, Form, Item, Input, Header, Button} from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import {Container, Content, Form, Item, Input, Header, Button, Left} from 'native-base';
+import Icon from '../../commons/Icon';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
 import * as size from '../../styles/size';
@@ -74,6 +74,20 @@ export default class ResetPasswordComponent extends Component {
                     </Container>
                 </Container>
                 <Text style={styles.textBottom}/>
+                <View style={part.iconInDrawer}>
+                    <Left>
+                        <TouchableOpacity style={part.padding}
+                                          onPress={() => this.props.navigation.goBack()}
+                        >
+                            <Icon name="entypo|chevron-thin-left"
+                                  size={size.iconBig}
+                                  color={color.navTitle}
+                                  style={part.shadow}
+                            />
+                        </TouchableOpacity>
+
+                    </Left>
+                </View>
             </KeyboardAvoidingView>
         )
     }

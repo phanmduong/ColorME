@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, TouchableOpacity, View} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, StatusBar, Left} from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from '../../commons/Icon';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
 import * as size from '../../styles/size';
