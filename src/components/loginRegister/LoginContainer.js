@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {
-    ActivityIndicator, AsyncStorage, KeyboardAvoidingView,
-    Text, TouchableOpacity, View, StatusBar, Dimensions, Alert
+    ActivityIndicator, KeyboardAvoidingView,
+    Text, TouchableOpacity, View, StatusBar,AsyncStorage
 } from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import Icon from '../../commons/Icon';
@@ -19,7 +19,7 @@ class LoginComponent extends Component {
     }
 
     componentWillMount() {
-        this.props.loginAction.getDataLogin(this.props.login);
+        this.props.loginAction.getDataLogin(this.props.login)
     }
 
     saveData() {
@@ -41,10 +41,13 @@ class LoginComponent extends Component {
         if (nextProps.status === 200) {
             this.props.navigation.navigate('Main');
         }
-        if (nextProps.login.password && nextProps.login.email && nextProps.status == 0) {
-            nextProps.loginAction.loginUser(nextProps.login)
+        AsyncStorage.getItem('@ColorMe:save').then(async function(){
+            let value = await AsyncStorage.getItem('@ColorMe:save')
+            if(nextProps.login && nextProps.status == 0 && value){
+                nextProps.loginAction.loginUser(nextProps.login)
+            }
+        })
         }
-    }
     render() {
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>

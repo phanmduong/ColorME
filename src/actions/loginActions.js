@@ -16,17 +16,15 @@ export function loginUser(login) {
         loginApi.login(login)
             .then(function (response) {
                 dispatch(loginSuccess(response));
-                const token = response.data.token;
-                setAuthorizationToken(token);
             })
             .catch(error => {
                 dispatch(loginError(error));
-                Alert.alert('Mời bạn kiểm tra lại tài khoản hoặc kết nối mạng')
+                Alert.alert('Mời bạn kiểm tra lại thông tin tài khoản và kết nối mạng')
             })
     }
 }
 
-export function updateDataLogin(login) { // ham nay de update vao bo nho cac gia tri nhap vao de login
+export function updateDataLogin(login) { // ham na update vao bo nho cac gia tri nhap vao de login
     return {
         type: types.UPDATE_DATA_LOGIN,
         login: {...login},
@@ -85,7 +83,7 @@ export function setDataLogin(login) { // save data
         try {
             await AsyncStorage.setItem('@ColorMe:email', login.email);
             await AsyncStorage.setItem('@ColorMe:password', login.password);
-            await AsyncStorage.setItem('@ColorMe:save', '1')
+            await AsyncStorage.setItem('@ColorMe:save', login.email)
         }
         catch (error) {
         }
@@ -93,10 +91,3 @@ export function setDataLogin(login) { // save data
     }
 }
 
-export function setAuthorizationToken(token){
-    if(token){
-        axios.defaults.headers.common['auth'] = `Bearer ${token}`;
-    }else{
-        delete axios.defaults.headers.common['auth']
-    }
-}

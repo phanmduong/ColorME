@@ -180,17 +180,14 @@ class newFeedComponent extends Component {
                 <Content
                     showsVerticalScrollIndicator={false}
                     onMomentumScrollEnd={() => this.getMoreNewFeed()} style={[part.padding, part.marginTop]}
-                    refreshControl={
-                        <RefreshControl
-                            refreshing = {this.props.isLoading}
-                        onRefresh={() => {
-                            this.pullRefresh()
-                        }}
-                        tintColor={color.gray}
-                        />
-
-                    }
-                    >
+                    // refreshControl={
+                    //     <RefreshControl
+                    //         refreshing = {this.props.isLoading}
+                    //     onRefresh={() => {
+                    //         this.pullRefresh()
+                    //     }}
+                    //     tintColor={color.gray}
+                        >
                     {
                         (this.state.grid)
                             ?
