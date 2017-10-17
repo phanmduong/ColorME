@@ -1,18 +1,17 @@
 import React, {Component} from 'react';
 import {
-    Image, Dimensions, FlatList, TouchableOpacity, View
+    TouchableOpacity, View
 } from 'react-native';
 import {
     Content, Spinner
 } from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import part from '../../styles/partStyle';
-import * as size from '../../styles/size';
 import * as color from '../../styles/color';
 import * as userInformationAction from '../../actions/userInformationAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import FastImage from 'react-native-fast-image'
+import {NavigationActions} from 'react-navigation'
 
 class Project extends Component {
     render() {
@@ -41,9 +40,14 @@ class Project extends Component {
                                 {
                                     this.props.products.map((item, i) => {
                                             return (
-                                                <View key={i} style={part.wrapperGridImage}>
+                                                <View key={i} style={[part.wrapperGridImage, part.shadow]}>
                                                     <TouchableOpacity
-                                                        onPress={() => this.props.navigation.navigate('PostStack', {product_id: item.id})}
+                                                        onPress={() => this.props.navigation.navigate(
+                                                            'ThePostInNewFeed',
+                                                            {
+                                                                product_id: item.id
+                                                            },
+                                                        )}
                                                     >
                                                         <FastImage
                                                             style={[part.imageInGrid, part.shadow]}

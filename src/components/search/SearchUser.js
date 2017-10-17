@@ -12,6 +12,7 @@ import * as searchAction from '../../actions/searchAction';
 import * as color from '../../styles/color';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {NavigationActions} from 'react-navigation'
 
 class searchUser extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class searchUser extends Component {
     }
 
     render() {
+        const {navigate} = this.props.navigation;
         return (
             <Content
                 showsVerticalScrollIndicator={false}
@@ -41,7 +43,7 @@ class searchUser extends Component {
                         )
                         :
                         (
-                            this.props.user !== []
+                            !this.props.user
                                 ?
                                 <FlatList
                                     onEndReachedThreshold={5}
@@ -55,7 +57,17 @@ class searchUser extends Component {
                                             style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
                                             <TouchableOpacity
                                                 style={{flex: 1}}
-                                                onPress={() => this.props.navigation.navigate('ThePostInNewFeed')}>
+                                                onPress={() => {
+                                                    this.props.navigation.dispatch({
+                                                        type: 'Navigation/NAVIGATE',
+                                                        routeName: 'Group',
+                                                        action: {
+                                                            type: 'Navigation/NAVIGATE',
+                                                            routeName: 'Group',
+                                                        }
+                                                    })
+                                                }
+                                                }>
                                                 <Left>
                                                     <Thumbnail
                                                         source={{uri: item.avatar_url}}/>
@@ -64,9 +76,10 @@ class searchUser extends Component {
                                                     <Text style={part.describeGray} note>{item.university}</Text>
                                                     </Body>
                                                     <TouchableOpacity style={part.iconFollow}>
-                                                        <Icon name="ion|ios-person-add"
-                                                              size={30}
-                                                              color={color.navTitle}/>
+                                                        <Icon
+                                                            name="ion|ios-person-add"
+                                                            size={30}
+                                                            color={color.navTitle}/>
                                                     </TouchableOpacity>
                                                 </Left>
                                             </TouchableOpacity>
@@ -75,7 +88,7 @@ class searchUser extends Component {
                                 />
                                 :
                                 <View style={part.wrapperNotResult}>
-                                    <Text style={part.describeDarkGray}>Không có kết quả phù hợp</Text>
+                                    <Text style={part.describeDarkGray}>Không có kết quả phù hợp.</Text>
                                 </View>
                         )
                 }

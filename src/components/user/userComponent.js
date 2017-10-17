@@ -38,6 +38,7 @@ class userComponent extends Component {
         this.props.userInformationAction.getUserProducts(this.props.navigation.state.params.username, 1, this.props.token);
     }
     render() {
+        const {goBack} = this.props.navigation;
         return (
             <Container style={part.wrapperContainer}>
                 <View style={[part.wrapperImageInGetFull, part.shadow]}>
@@ -58,7 +59,7 @@ class userComponent extends Component {
                     <View style={part.iconInDrawer}>
                         <Left>
                             <TouchableOpacity style={part.padding}
-                                              onPress={() => this.props.navigation.goBack()}
+                                              onPress={() => goBack(null)}
                             >
                                 <Icon name="entypo|chevron-thin-left"
                                       size={size.iconBig}

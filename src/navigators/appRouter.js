@@ -305,6 +305,7 @@ export const NewFeedStackNavigator = StackNavigator(
     }, HomeStackStyle
 );
 
+
 export const NotificationStackNavigator = StackNavigator(
     {
         NotificationStack: {

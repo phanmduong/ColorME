@@ -1,7 +1,7 @@
 import {StyleSheet, Dimensions} from 'react-native';
 import * as color from './color';
 import * as size from './size';
-import {wid} from "./size";
+import {wid, hei} from "./size";
 
 const part = StyleSheet.create({
     // NAV BAR
@@ -83,6 +83,15 @@ const part = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    wrapperIntro:{
+        width: wid,
+        height: hei,
+        zIndex: 1000,
+        flex: 1,
+        top: 0, bottom: 0, left: 0, right: 0,
+        position: 'absolute',
+        backgroundColor: color.main,
     },
     deadlineProgress:{
         height: 10,
@@ -356,7 +365,6 @@ const part = StyleSheet.create({
         fontWeight: '400',
     },
     describeItalicDark: {
-        fontStyle: 'italic',
         fontSize: size.describeSmall,
         color: color.gray,
         fontWeight: '400',

@@ -40,7 +40,8 @@ class newFeedComponent extends Component {
         this.props.products = [];
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
     }
-    pullRefresh(){
+
+    pullRefresh() {
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1)
     }
 
@@ -83,6 +84,7 @@ class newFeedComponent extends Component {
 
     componentDidMount() {
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
+
     }
 
     // Function
@@ -117,6 +119,7 @@ class newFeedComponent extends Component {
     }
 
     render() {
+        const {navigate} = this.props.navigation;
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
@@ -128,7 +131,7 @@ class newFeedComponent extends Component {
                         <Left style={{flexDirection: 'row'}}>
                             <Picker
                                 itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
-                                itemTextStyle={part.describeDarkGray}
+                                itemTextStyle={part.titleSmallDarkGrayBold}
                                 renderHeader={backAction =>
                                     <Header
                                         iosBarStyle='light-content'
@@ -145,7 +148,7 @@ class newFeedComponent extends Component {
                                         <Right/>
                                     </Header>}
                                 mode="dropdown"
-                                textStyle={part.describeDarkGray}
+                                textStyle={part.titleSmallDarkGrayBold}
                                 selectedValue={this.state.typeView}
                                 onValueChange={this.onValueChange.bind(this)}
                             >
@@ -176,21 +179,25 @@ class newFeedComponent extends Component {
                     </Item>
                 </View>
 
-
                 <Content
                     showsVerticalScrollIndicator={false}
-                    onMomentumScrollEnd={() => this.getMoreNewFeed()} style={[part.padding, part.marginTop]}
+                    onMomentumScrollEnd={
+                        () => {this.getMoreNewFeed();
+
+                        }
+                    }
+                    style={[part.padding, part.marginTop]}
                     refreshControl={
                         <RefreshControl
-                            refreshing = {this.props.isLoading}
-                        onRefresh={() => {
-                            this.pullRefresh()
-                        }}
-                        tintColor={color.gray}
+                            refreshing={this.props.isLoading}
+                            onRefresh={() => {
+                                this.pullRefresh()
+                            }}
+                            tintColor={color.gray}
                         />
 
                     }
-                    >
+                >
                     {
                         (this.state.grid)
                             ?
@@ -211,13 +218,14 @@ class newFeedComponent extends Component {
                                         </View>
                                     </View>
                                     {
+
                                         this.props.products.map((item, i) => {
                                             return (
                                                 <View key={i}
                                                       style={(item.url.indexOf('.mp4') === -1 ) ? part.wrapperGridImage : part.wrapperGridVideo}>
                                                     <TouchableOpacity
                                                         onPress={() =>
-                                                            this.props.navigation.navigate('ThePostInNewFeed',
+                                                            navigate('ThePostInNewFeed',
                                                                 item.group
                                                                     ?
                                                                     {
@@ -255,6 +263,7 @@ class newFeedComponent extends Component {
                                             )
                                         })
                                     }
+
                                 </View>
                             )
                             :
@@ -275,13 +284,13 @@ class newFeedComponent extends Component {
                                                     <CardItem header style={part.cardHeader}>
                                                         <Left>
                                                             <TouchableOpacity
-                                                                onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.author.username})}>
+                                                                onPress={() => navigate('UserInNewFeed', {username: item.author.username})}>
                                                                 <Thumbnail circle small
                                                                            source={{uri: item.author.avatar_url}}/>
                                                             </TouchableOpacity>
                                                             <Body>
                                                             <Text
-                                                                onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.author.username})}
+                                                                onPress={() => navigate('UserInNewFeed', {username: item.author.username})}
                                                                 style={part.titleSmallBlue}>
                                                                 {item.author.name}
                                                             </Text>
@@ -298,7 +307,6 @@ class newFeedComponent extends Component {
                                                         </Left>
                                                     </CardItem>
 
-
                                                     {/*PHOTO*/}
                                                     <CardItem cardBody style={part.card}>
                                                         {
@@ -307,7 +315,7 @@ class newFeedComponent extends Component {
                                                                 (
                                                                     <TouchableOpacity
                                                                         onPress={() =>
-                                                                            this.props.navigation.navigate('ThePostInNewFeed', {
+                                                                            navigate('ThePostInNewFeed', {
                                                                                 product_id: item.id,
                                                                                 group_name: item.group.name,
                                                                                 group_link: item.group.link,
@@ -363,7 +371,7 @@ class newFeedComponent extends Component {
                                                                 (
                                                                     <TouchableOpacity
                                                                         onPress={() =>
-                                                                            this.props.navigation.navigate('ThePostInNewFeed', {
+                                                                            navigate('ThePostInNewFeed', {
                                                                                 product_id: item.id,
                                                                             })}
                                                                     >
@@ -411,7 +419,6 @@ class newFeedComponent extends Component {
                                                         }
                                                     </CardItem>
 
-
                                                     {/*LIKE COMMENT VIEWS*/}
                                                     <CardItem footer style={part.cardFooter}>
                                                         <Left>
@@ -440,7 +447,7 @@ class newFeedComponent extends Component {
 
                                                             <Button transparent style={part.paddingRight}
                                                                     onPress={() =>
-                                                                        this.props.navigation.navigate('ThePostInNewFeed', {
+                                                                        navigate('ThePostInNewFeed', {
                                                                             product_id: item.id,
                                                                             group_name: item.group.name,
                                                                             group_link: item.group.link,
@@ -461,6 +468,8 @@ class newFeedComponent extends Component {
                                                         <Right>
                                                         </Right>
                                                     </CardItem>
+
+                                                    {/*HEART BIG BUTTON*/}
                                                     <TouchableOpacity style={[part.iconLikeInImage, part.shadow]}>
                                                         <Icon name="evil|heart"
                                                               size={30}
@@ -473,6 +482,15 @@ class newFeedComponent extends Component {
                                 </Content>
 
                             )
+                    }
+                    {
+                        this.props.isLoading
+                            ?
+                            <View style={part.wrapperContainer}>
+                                <Spinner color={color.gray}/>
+                            </View>
+                            :
+                            <View/>
                     }
                 </Content>
             </Container>

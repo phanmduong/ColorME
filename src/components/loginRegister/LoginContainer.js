@@ -1,14 +1,12 @@
 import React, {Component} from 'react'
 import {
-    ActivityIndicator, AsyncStorage, KeyboardAvoidingView,
-    Text, TouchableOpacity, View, StatusBar, Dimensions, Alert
+    ActivityIndicator, KeyboardAvoidingView,
+    Text, TouchableOpacity, View, StatusBar, Animated
 } from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
-import Icon from '../../commons/Icon';
 import {Container, Content, Form, Input, Item, Left} from 'native-base';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
-import * as size from '../../styles/size';
 import * as loginAction from '../../actions/loginActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
@@ -16,11 +14,21 @@ import {connect} from 'react-redux'
 class LoginComponent extends Component {
     constructor(props) {
         super(props);
+        // this.state = {
+        //     fade : new Animated.Value(1)
+        // }
     }
 
     componentWillMount() {
         this.props.loginAction.getDataLogin(this.props.login);
     }
+
+    // componentDidMount(){
+    //     Animated.timing(
+    //         this.state.fade,
+    //         {toValue: 0, duration: 2000}
+    //     ).start();
+    // }
 
     saveData() {
         this.props.loginAction.setDataLogin(this.props.login)
@@ -46,11 +54,18 @@ class LoginComponent extends Component {
         }
     }
     render() {
+        // const opacity = this.state.fade;
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
                 <StatusBar
                     barStyle="light-content"
                 />
+                {/*<Animated.View style={[part.wrapperIntro, {opacity} ]}>*/}
+                    {/*<View style={styles.wrapperColorME}>*/}
+                        {/*<Text style={styles.textColor}>Color</Text>*/}
+                        {/*<Text style={styles.textME}>ME</Text>*/}
+                    {/*</View>*/}
+                {/*</Animated.View>*/}
                 <View style={styles.wrapperColorME}>
                     <Text style={styles.textColor}>Color</Text>
                     <Text style={styles.textME}>ME</Text>

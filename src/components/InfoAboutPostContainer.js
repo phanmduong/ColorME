@@ -2,18 +2,7 @@ import React, {Component} from 'react';
 import {Image, KeyboardAvoidingView, StatusBar, Text, TouchableOpacity, View} from 'react-native';
 
 import {
-    Body,
-    Button,
-    Card,
-    CardItem,
-    Container,
-    Content,
-    Input,
-    Item,
-    Left,
-    Right,
-    Spinner,
-    Thumbnail
+    Body, Button, Card, CardItem, Container, Content, Input, Item, Left, Right, Spinner, Thumbnail
 } from 'native-base';
 import Icon from '../commons/Icon';
 import Video from 'react-native-video';
@@ -93,6 +82,8 @@ class getFullInfoAboutOnePostComponent extends Component {
     render() {
         let {liked, likeCount} = this.state;
         let colorIcon = liked ? "red" : "#d7dde5";
+        const {goBack} = this.props.navigation;
+        const {navigate} = this.props.navigation;
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
@@ -145,7 +136,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                             }
                                             {
                                                 (this.props.post.more_products) ? (
-                                                        this.props.post.more_products.map((img) => {
+                                                    this.props.post.more_products.map((img) => {
                                                         return (
                                                             <View style={part.shadow}>
                                                                 <Image source={{uri: this.props.post.image_url}}
@@ -155,12 +146,12 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                             </View>
                                                         )
                                                     })
-                                            ) : (<Text/>)
+                                                ) : (<Text/>)
                                             }
                                             <View style={part.iconInDrawer}>
                                                 <Left>
                                                     <TouchableOpacity style={part.padding}
-                                                                      onPress={() => this.props.navigation.goBack()}
+                                                                      onPress={() => goBack(null)}
                                                     >
                                                         <Icon name="entypo|chevron-thin-left"
                                                               size={size.iconBig}
@@ -200,26 +191,24 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                         <Left>
 
                                                             <TouchableOpacity
-                                                                onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: this.props.post.author.username})}
+                                                                onPress={() => navigate('UserInNewFeed', {username: this.props.post.author.username})}
                                                             >
                                                                 <Thumbnail circle
                                                                            source={{uri: this.props.post.author.avatar_url}}/>
                                                             </TouchableOpacity>
                                                             <Body>
-                                                            <TouchableOpacity
-                                                                onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: this.props.post.author.username})}
+                                                            <Text
+                                                                style={[part.describeDarkGray, part.paddingLine]}
+                                                                onPress={() => navigate('UserInNewFeed', {username: this.props.post.author.username})}
                                                             >
+                                                                Đăng bởi &nbsp;
+
                                                                 <Text
-                                                                    style={[part.describeDarkGray, part.paddingLine]}>
-                                                                    Đăng bởi &nbsp;
 
-                                                                    <Text
-                                                                        style={part.titleSmallBlue}>
-                                                                        {this.props.post.author.name}
-                                                                    </Text>
+                                                                    style={part.titleSmallBlue}>
+                                                                    {this.props.post.author.name}
                                                                 </Text>
-                                                            </TouchableOpacity>
-
+                                                            </Text>
                                                             <Text
                                                                 style={[part.describeItalicDark, part.paddingLine]}>
                                                                 {this.props.post.created_at}
