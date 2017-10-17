@@ -20,7 +20,7 @@ class LoginComponent extends Component {
     }
 
     componentWillMount() {
-        this.props.loginAction.getDataLogin(this.props.login);
+        this.props.loginAction.getDataLogin(this.props.login)
     }
 
     // componentDidMount(){
@@ -49,10 +49,13 @@ class LoginComponent extends Component {
         if (nextProps.status === 200) {
             this.props.navigation.navigate('Main');
         }
-        if (nextProps.login.password && nextProps.login.email && nextProps.status == 0) {
-            nextProps.loginAction.loginUser(nextProps.login)
+        AsyncStorage.getItem('@ColorMe:save').then(async function(){
+            let value = await AsyncStorage.getItem('@ColorMe:save')
+            if(nextProps.login && nextProps.status == 0 && value){
+                nextProps.loginAction.loginUser(nextProps.login)
+            }
+        })
         }
-    }
     render() {
         // const opacity = this.state.fade;
         return (

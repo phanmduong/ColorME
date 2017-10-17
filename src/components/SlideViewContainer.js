@@ -23,7 +23,7 @@ class SlideViewComponent extends Component {
         }
     }
 logout(){
-        this.props.logoutAction.logoutSuccess()
+        this.props.logoutAction.logout()
         this.props.navigation.navigate('Login');
 }
     render() {
@@ -45,8 +45,8 @@ logout(){
                             </Left>
                             <Body style={{alignItems: 'flex-start', marginLeft: -60}}>
                                 <Text style={part.titleNormalLight}>{this.props.user.name}</Text>
-                                <View style={{flexDirection: 'row'}}>
-                                    <Text style={part.describeGray}>Đăng xuất&nbsp;</Text>
+                                <View style={{flexDirection: 'row'}}  >
+                                    <Text style={part.describeGray} onPress = {() => this.logout()}>Đăng xuất&nbsp;</Text>
                                     <Icon name="entypo|arrow-with-circle-right"
                                           size={18}
                                           color={color.gray}
