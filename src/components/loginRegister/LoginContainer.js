@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {
-    ActivityIndicator, KeyboardAvoidingView,
+    ActivityIndicator, KeyboardAvoidingView, AsyncStorage,
     Text, TouchableOpacity, View, StatusBar, Animated
 } from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
