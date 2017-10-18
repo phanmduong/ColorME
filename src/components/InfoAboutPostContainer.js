@@ -39,18 +39,18 @@ class getFullInfoAboutOnePostComponent extends Component {
         let liked = this.state.liked;
         if (nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading) {
             let post = nextProps.post;
-            console.log(post)
-            let likers = post.likers.filter((liker) => {
-                return liker.username == nextProps.user.username
-            })
-            if (likers && likers.length == 0) {
-                liked = false;
-            }
-            else {
-                liked = true;
+            if (post) {
+                let likers = post.likers.filter((liker) => {
+                    return liker.username == nextProps.user.username
+                })
+                if (likers && likers.length == 0) {
+                    liked = false;
+                }
+                else {
+                    liked = true;
+                }
             }
         }
-
         this.setState({
             liked: liked,
             likeCount: nextProps.post.likes_count

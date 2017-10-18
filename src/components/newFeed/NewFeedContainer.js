@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    FlatList, TouchableOpacity, Image, StatusBar, View, RefreshControl
+    FlatList, TouchableOpacity, Image, StatusBar, View,ScrollView, RefreshControl
 } from 'react-native';
 import {
     Container, Header, Content, Card, CardItem, Item, Picker,
@@ -16,7 +16,6 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as likePostAction from '../../actions/likePostAction'
 import FastImage from 'react-native-fast-image'
-
 class newFeedComponent extends Component {
     constructor() {
         super();
@@ -28,9 +27,6 @@ class newFeedComponent extends Component {
             likeCount: [],
             listPost: [],
             data: [],
-
-            check: 0,
-            refreshing: false,
         }
     }
 
@@ -40,11 +36,6 @@ class newFeedComponent extends Component {
         this.props.products = [];
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
     }
-
-    pullRefresh() {
-        this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1)
-    }
-
     viewList() {
         let grid = this.state.grid;
         grid = false;
@@ -59,7 +50,7 @@ class newFeedComponent extends Component {
 
     // setup
     componentWillReceiveProps(nextProps) {
-        if (nextProps.isLoading != this.props.isLoading && this.props.isLoading == true) {
+        if ((nextProps.isLoading != this.props.isLoading && !nextProps.isLoading) || (nextProps.isRefreshing !=this.props.isRefreshing && !nextProps.isRefreshing)) {
             let arr = this.state.arrayLike;
             let count = this.state.likeCount;
             let post = nextProps.products;
@@ -84,7 +75,6 @@ class newFeedComponent extends Component {
 
     componentDidMount() {
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
-
     }
 
     // Function
@@ -179,23 +169,18 @@ class newFeedComponent extends Component {
                     </Item>
                 </View>
 
-                <Content
+                <ScrollView
                     showsVerticalScrollIndicator={false}
                     onMomentumScrollEnd={
                         () => {this.getMoreNewFeed();
-
                         }
                     }
                     style={[part.padding, part.marginTop]}
-                    refreshControl={
+                    refreshControl= {
                         <RefreshControl
-                            refreshing={this.props.isLoading}
-                            onRefresh={() => {
-                                this.pullRefresh()
-                            }}
-                            tintColor={color.gray}
+                        refreshing = {this.props.isRefreshing}
+                        onRefresh = {() => {this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)}}
                         />
-
                     }
                 >
                     {
@@ -218,7 +203,6 @@ class newFeedComponent extends Component {
                                         </View>
                                     </View>
                                     {
-
                                         this.props.products.map((item, i) => {
                                             return (
                                                 <View key={i}
@@ -483,6 +467,7 @@ class newFeedComponent extends Component {
 
                             )
                     }
+
                     {
                         this.props.isLoading
                             ?
@@ -492,7 +477,7 @@ class newFeedComponent extends Component {
                             :
                             <View/>
                     }
-                </Content>
+                </ScrollView>
             </Container>
         );
     }
@@ -504,6 +489,7 @@ function mapStateToProps(state) {
         user: state.login.user,
         token: state.login.token,
         isLoading: state.getNewFeed.isLoading,
+        isRefreshing : state.getNewFeed.isRefreshing
     }
 }
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, TouchableOpacity, View} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
-import {Container, Content, Form, Input, Item, StatusBar, Left} from 'native-base';
+import {Container, Content, Form, Input, Item, Left, StatusBar} from 'native-base';
 import Icon from '../../commons/Icon';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
@@ -10,28 +10,28 @@ import * as registerAction from '../../actions/registerAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 
- class RegisterComponent extends Component {
+class RegisterComponent extends Component {
     constructor() {
         super();
         this.state = {
-            email :'',
-            name : '',
-            username : '',
-            password : ''
+            email: '',
+            name: '',
+            username: '',
+            password: ''
         }
     }
 
-    //
     register(value) {
-        this.props.registerAction.registerUser(value)
+        this.props.registerAction.registerUser(value);
     }
+
     componentWillReceiveProps(nextProps) {
-        // if (nextProps.status === 200) {
-        //     this.props.navigation.navigate('LoginComponent');
-        // }
-        // if (nextProps.error) {
-        //     Alert.alert('Mời bạn kiểm tra lại thông tin tài khoản ')
-        // }
+        if (nextProps.status === 200) {
+            this.props.navigation.navigate('LoginComponent');
+        }
+        if (nextProps.error) {
+            Alert.alert('Mời bạn kiểm tra lại các trường thông tin')
+        }
     }
 
     render() {
@@ -40,19 +40,6 @@ import {connect} from 'react-redux'
                 <StatusBar
                     barStyle="light-content"
                 />
-                <View style={part.iconInDrawer}>
-                    <Left>
-                        <TouchableOpacity style={part.padding}
-                                          onPress={() => this.props.navigation.goBack()}
-                        >
-                            <Icon name="entypo|chevron-thin-left"
-                                  size={size.iconBig}
-                                  color={color.navTitle}
-                                  style={part.shadow}
-                            />
-                        </TouchableOpacity>
-                    </Left>
-                </View>
                 <View style={styles.wrapperColorME}>
                     <Text style={styles.textColor}>Color</Text>
                     <Text style={styles.textME}>ME</Text>
@@ -65,7 +52,7 @@ import {connect} from 'react-redux'
                                    color={color.darkGray}
                                    autoCorrect={false}
                                    onChangeText={(email) => {
-                                       this.setState({ email});
+                                       this.setState({email});
                                    }}
                             />
                         </Item>
@@ -97,42 +84,57 @@ import {connect} from 'react-redux'
                                    }}
                             />
                         </Item>
-                        <Item style={{marginLeft: 37,}}>
-                            <TouchableOpacity
-                                disabled={this.props.isLoading}
-                                block
-                                rounded
-                                style={styles.buttonRegister}
-                                onPress={() => this.register(this.state)}
+                        <View style={styles.wrapperRegister}>
+                            <Item style={styles.itemButtonLogin}>
+                                <TouchableOpacity
+                                    disabled={this.props.isLoading}
+                                    block
+                                    rounded
+                                    style={styles.buttonRegister}
+                                    onPress={() => this.register(this.state)}
 
-                            >
-                                {(this.props.isLoading) ? (
-                                    <Container style={{
-                                        padding: 10,
-                                        flex: 1,
-                                        justifyContent: 'center',
-                                        alignItems: 'center'
-                                    }}>
-                                        <ActivityIndicator
-                                            animated={true}
-                                            color={color.navTitle}
-                                            style={{
-                                                flex: 1,
-                                                justifyContent: 'center',
-                                                alignItems: 'center',
-                                                height: 40,
-                                            }}
-                                            size='small'
-                                        />
-                                    </Container>
-                                ) : (
-                                    <Icon name="user-plus" color={color.navTitle} size={size.icon}/>
-                                )
-                                }
-                            </TouchableOpacity>
-                        </Item>
+                                >
+                                    {(this.props.isLoading) ? (
+                                        <Container style={{
+                                            padding: 10,
+                                            flex: 1,
+                                            justifyContent: 'center',
+                                            alignItems: 'center'
+                                        }}>
+                                            <ActivityIndicator
+                                                animated={true}
+                                                color={color.navTitle}
+                                                style={{
+                                                    flex: 1,
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center',
+                                                    height: 40,
+                                                }}
+                                                size='small'
+                                            />
+                                        </Container>
+                                    ) : (
+                                        <Text style={styles.textButton}>Đăng kí tài khoản</Text>
+                                    )
+                                    }
+                                </TouchableOpacity>
+                            </Item>
+                        </View>
                     </Container>
                 </Container>
+                <View style={part.iconInDrawer}>
+                    <Left>
+                        <TouchableOpacity style={part.padding}
+                                          onPress={() => this.props.navigation.goBack()}
+                        >
+                            <Icon name="entypo|chevron-thin-left"
+                                  size={size.iconBig}
+                                  color={color.navTitle}
+                                  style={part.shadow}
+                            />
+                        </TouchableOpacity>
+                    </Left>
+                </View>
             </KeyboardAvoidingView>
 
         )
@@ -152,4 +154,5 @@ function mapDispatchToProps(dispatch) {
         registerAction: bindActionCreators(registerAction, dispatch)
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterComponent)

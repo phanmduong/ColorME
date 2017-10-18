@@ -25,6 +25,7 @@ export default {
         isLoading: false,
         error : false,
         result : false,
+        isRefreshing : false,
     },
 
     getFullInfoAboutOnePost: {
