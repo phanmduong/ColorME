@@ -8,6 +8,12 @@ export function beginGetNewFeed() {
         result: false,
     }
 }
+export function beginRefreshNewFeed(){
+    return {
+        type : types.BEGIN_REFRESH_NEWFEED,
+        isRefreshing: true,
+    }
+}
 
 export function getNewFeedSuccess(response) {
     return {
@@ -18,7 +24,13 @@ export function getNewFeedSuccess(response) {
         products: response.data.products,
     }
 }
-
+export function refreshNewFeedSuccess(response){
+    return {
+        type : types.REFRESH_NEWFEED_SUCCESS,
+        products: response.data.products,
+        isRefreshing: false,
+    }
+}
 export function getNewFeedError() {
     return {
         type: types.GET_NEW_FEED_ERROR,
@@ -27,7 +39,12 @@ export function getNewFeedError() {
         result: false,
     }
 }
-
+export function refreshNewFeedError(){
+    return {
+        type : types.REFRESH_NEWFEED_ERROR,
+        isRefreshing : false
+    }
+}
 export function getNewFeed(filter, page_id) {
     return (dispatch) => {
         dispatch(beginGetNewFeed());
@@ -37,6 +54,19 @@ export function getNewFeed(filter, page_id) {
             })
             .catch(function(error) {
                 dispatch(getNewFeedError(error));
+            })
+
+    }
+}
+export function refreshNewFeed(filter, page_id) {
+    return (dispatch) => {
+        dispatch(beginRefreshNewFeed());
+        newFeedApi.getNewFeedApi(filter, page_id)
+            .then(function (response) {
+                dispatch(refreshNewFeedSuccess(response));
+            })
+            .catch(function(error) {
+                dispatch(refreshNewFeedError(error));
             })
 
     }
