@@ -49,7 +49,7 @@ const part = StyleSheet.create({
     },
     wrapperImageInGetFull:{
         width: size.wid,
-        height: 200,
+        height: 250,
         justifyContent: 'center',
         backgroundColor: 'black'
     },
@@ -149,7 +149,7 @@ const part = StyleSheet.create({
         backgroundColor: color.green,
         marginBottom: 0,
         right: 20,
-        top: 178,
+        top: -22,
     },
     iconLikeInImageFullAbout:{
         width: 44,
@@ -237,6 +237,7 @@ const part = StyleSheet.create({
         borderRadius: 5,
         position: 'relative',
         resizeMode: 'cover',
+        backgroundColor: color.icon
     },
     video: {
         margin: 3,
@@ -262,7 +263,7 @@ const part = StyleSheet.create({
         resizeMode: 'cover',
     },
     imageInDrawer:{
-        opacity: 0.3,
+        opacity: 0.8,
         flex: 1,
         position: 'relative',
         resizeMode: 'cover',

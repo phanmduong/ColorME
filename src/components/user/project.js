@@ -40,7 +40,7 @@ class Project extends Component {
                                 {
                                     this.props.products.map((item, i) => {
                                             return (
-                                                <View key={i} style={[part.wrapperGridImage, part.shadow]}>
+                                                <View key={i} style={[part.wrapperGridImage]}>
                                                     <TouchableOpacity
                                                         onPress={() => this.props.navigation.navigate(
                                                             'ThePostInNewFeed',

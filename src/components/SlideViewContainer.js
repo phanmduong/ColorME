@@ -14,6 +14,10 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 import * as logoutAction from '../actions/logoutAction'
 import FastImage from 'react-native-fast-image'
+import { NavigationActions } from 'react-navigation'
+
+
+
 
 class SlideViewComponent extends Component {
     constructor() {
@@ -22,11 +26,16 @@ class SlideViewComponent extends Component {
             text: '',
         }
     }
-logout(){
+
+    logout() {
         this.props.logoutAction.logout()
         this.props.navigation.navigate('Login');
-}
+
+
+    }
+
     render() {
+
         return (
             <Container style={part.wrapperContainer}>
                 <View style={part.wrapperImageInDrawer}>
@@ -40,20 +49,17 @@ logout(){
                             <Left>
                                 <Thumbnail circle large
                                            source={{uri: this.props.user.avatar_url}}/>
-
-
                             </Left>
                             <Body style={{alignItems: 'flex-start', marginLeft: -60}}>
-                                <Text style={part.titleNormalLight}>{this.props.user.name}</Text>
-                                <View style={{flexDirection: 'row'}}  >
-                                    <Text style={part.describeGray} onPress = {() => this.logout()}>Đăng xuất&nbsp;</Text>
-                                    <Icon name="entypo|arrow-with-circle-right"
-                                          size={18}
-                                          color={color.gray}
-                                          onPress = {() => this.logout()}
-                                          />
-                                </View>
-
+                            <Text style={part.titleNormalLight}>{this.props.user.name}</Text>
+                            <View style={{flexDirection: 'row'}}>
+                                <Text style={part.describeGray} onPress={() => this.logout()}>Đăng xuất&nbsp;</Text>
+                                <Icon name="entypo|arrow-with-circle-right"
+                                      size={18}
+                                      color={color.gray}
+                                      onPress={() => this.logout()}
+                                />
+                            </View>
                             </Body>
                         </Item>
 
@@ -132,7 +138,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-    logoutAction : bindActionCreators(logoutAction,dispatch)
+        logoutAction: bindActionCreators(logoutAction, dispatch)
     }
 }
 

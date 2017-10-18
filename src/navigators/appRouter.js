@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    DrawerItems
+    DrawerItems, TouchableOpacity
 } from 'react-native';
 import {TabNavigator, StackNavigator, DrawerNavigator} from 'react-navigation';
 import Icon from '../commons/Icon';
@@ -13,13 +13,16 @@ import EmailIdentityComponent from '../components/loginRegister/EmailIdentityCon
 import ResetPasswordComponent from '../components/loginRegister/ResetPasswordContainer'
 import RegisterComponent from '../components/loginRegister/RegisterContainer'
 import CodeIdentityComponent from '../components/loginRegister/CodeIdentityContainer'
+
 // MAIN SCREEN
 import newFeedComponent from '../components/newFeed/NewFeedContainer';
+import Comment from '../components/newFeed/Comment';
 import messageComponent from '../components/message/MessageContainer';
 import notificationComponent from '../components/NotificationContainer';
 import AchievementsComponent from '../components/AchievementsContainer';
 import SlideViewComponent from '../components/SlideViewContainer'
 import getFullInfoAboutOnePostComponent from '../components/InfoAboutPostContainer';
+import { Root } from "native-base";
 
 // USER SCREEN
 import userComponent from '../components/user/userComponent';
@@ -44,9 +47,6 @@ import groupComponent from '../components/group/GroupContainer';
 import topics from '../components/group/Topics';
 import groupProject from '../components/group/GroupProject';
 import members from '../components/group/Members';
-
-
-
 
 
 export const TabNavigatorTopStyle = {
@@ -87,23 +87,32 @@ export const StackNavigatorStyle = {
 };
 
 export const HomeStackStyle = {
+
     navigationOptions: ({navigation}) => ({
         headerStyle: {
             backgroundColor: color.navTabBar,
             borderBottomWidth: 0,
             height: 60,
         },
-        headerLeft: (<Icon name="materialCommunity|menu"
-                           color={color.icon}
-                           size={size.icon}
-                           style={{paddingLeft: 10}}
-                           onPress={()=> navigation.navigate('DrawerOpen')}
-        />),
-        headerRight: (<Icon name="materialCommunity|comment-multiple-outline"
-                           color={color.icon}
-                           size={size.icon}
-                           style={{paddingRight: 10}}
-        />),
+        headerLeft: (
+            <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+                <Icon
+                    name="materialCommunity|menu"
+                    color={color.icon}
+                    size={size.icon}
+                    style={{paddingLeft: 10}}
+                />
+            </TouchableOpacity>
+        ),
+        headerRight: (
+            <TouchableOpacity onPress={() => navigation.navigate('')}>
+                <Icon name="materialCommunity|comment-multiple-outline"
+                      color={color.icon}
+                      size={size.icon}
+                      style={{paddingRight: 10}}
+                />
+            </TouchableOpacity>
+        ),
     }),
 };
 
@@ -259,13 +268,13 @@ export const ThePostInNewFeed = StackNavigator(
                 tabBarVisible: false,
             },
         },
-        GroupStack:{
+        GroupStack: {
             screen: groupComponent,
             navigationOptions: {
                 header: null,
             },
         },
-    },StackNavigatorStyle
+    }, StackNavigatorStyle
 );
 
 export const UserInNewFeed = StackNavigator(
@@ -284,7 +293,7 @@ export const NewFeedStackNavigator = StackNavigator(
     {
         NewFeedStack: {
             screen: newFeedComponent,
-            navigationOptions:{
+            navigationOptions: {
                 title: 'colorME',
                 headerTintColor: color.navTitle,
             },
@@ -302,28 +311,35 @@ export const NewFeedStackNavigator = StackNavigator(
                 tabBarVisible: false,
             },
         },
-    }, HomeStackStyle
+        Comment: {
+            screen: Comment,
+            navigationOptions: {
+                mode: 'modal',
+                header: null,
+                tabBarVisible: false,
+            },
+        },
+    },
+    HomeStackStyle
 );
-
 
 export const NotificationStackNavigator = StackNavigator(
     {
         NotificationStack: {
             screen: notificationComponent,
-            navigationOptions:{
+            navigationOptions: {
                 title: 'Thông báo',
             }
         }
-    },StackNavigatorStyle
+    }, StackNavigatorStyle
 );
-
 
 export const SearchStackNavigator = StackNavigator(
     {
         SearchStack: {
             screen: searchComponent,
-        }
-    },StackNavigatorStyle
+        },
+    }, StackNavigatorStyle
 );
 
 
@@ -331,22 +347,22 @@ export const MessageStackNavigator = StackNavigator(
     {
         MessageStack: {
             screen: messageComponent,
-            navigationOptions:{
+            navigationOptions: {
                 title: 'Tin nhắn',
             }
         }
-    },StackNavigatorStyle
+    }, StackNavigatorStyle
 );
 
 export const MyAccountStackNavigator = StackNavigator(
     {
         MyAccountStack: {
             screen: myAccountComponent,
-            navigationOptions:{
+            navigationOptions: {
                 title: 'Tài khoản',
             }
         }
-    },StackNavigatorStyle
+    }, StackNavigatorStyle
 );
 
 export const Home = TabNavigator(
@@ -416,7 +432,7 @@ export const Drawer = DrawerNavigator(
         Home: {screen: Home},
     },
     {
-        drawerWidth: size.wid * 3/4,
+        drawerWidth: size.wid * 3 / 4,
         drawerPosition: 'left',
         contentComponent: props => <SlideViewComponent {...props} />
     }
@@ -433,31 +449,31 @@ export const Main = StackNavigator(
     }
 );
 export const Login = StackNavigator({
-    LoginComponent : {
-        screen : LoginComponent,
-        navigationOptions : {
-            header : null
+    LoginComponent: {
+        screen: LoginComponent,
+        navigationOptions: {
+            header: null
         }
     },
-    RegisterComponent : {
-        screen : RegisterComponent,
-        navigationOptions : {
-            header : null
+    RegisterComponent: {
+        screen: RegisterComponent,
+        navigationOptions: {
+            header: null
         }
     },
-    ResetPasswordComponent : {
-        screen : ResetPasswordComponent,
-        navigationOptions : {
-            header :null,
+    ResetPasswordComponent: {
+        screen: ResetPasswordComponent,
+        navigationOptions: {
+            header: null,
         }
     },
-    EmailIdentityComponent : {
-        screen : EmailIdentityComponent,
-        navigationOptions : {
-            header : null,
+    EmailIdentityComponent: {
+        screen: EmailIdentityComponent,
+        navigationOptions: {
+            header: null,
         }
     },
-    CodeIdentityComponent : {
+    CodeIdentityComponent: {
         screen: CodeIdentityComponent,
         navigationOptions: {
             header: null,
@@ -481,3 +497,5 @@ export const Start = StackNavigator(
         }
 
     });
+
+export default () => <Root><Stack/></Root>

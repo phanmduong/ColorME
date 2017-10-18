@@ -210,3 +210,140 @@
                         {/*</TouchableOpacity>*/}
                     {/*</Left>*/}
                 {/*</Item>*/}
+
+
+
+
+
+
+
+
+
+
+   <View style={[part.wrapperImageInGetFull, part.shadow]}>
+                    <FastImage
+                        style={part.imageInDrawer}
+                        source={{uri: this.props.user.avatar_url}}/>
+                    <View style={part.tabInGetFull}>
+                        <Item style={{borderBottomWidth: 0,}}>
+                            <Body>
+                            <Thumbnail style={part.marginBottom}
+                                       circle large
+                                       source={{uri: this.props.user.avatar_url}}
+                            >
+                            </Thumbnail>
+                            <Text style={[part.titleNormalLight, part.paddingLine]}>{this.props.user.name}
+                            </Text>
+                            <Text style={[part.describeGray, part.paddingLine]}> {this.props.user.university}
+                            </Text>
+                            </Body>
+                        </Item>
+                    </View>
+                    <View style={part.iconInDrawer}>
+                        <Left>
+                            <TouchableOpacity style={part.padding}
+                                              onPress={() => goBack(null)}
+                            >
+                                <Icon name="entypo|chevron-thin-left"
+                                      size={size.iconBig}
+                                      color={color.navTitle}
+                                      style={{zIndex: 100}}
+                                />
+                            </TouchableOpacity>
+                        </Left>
+                        <Right style={{left: 10}}>
+                            <TouchableOpacity
+                            >
+                                <Icon name="materialCommunity|seal"
+                                      size={size.iconBig}
+                                      color={color.navTitle}/>
+                            </TouchableOpacity>
+                        </Right>
+                    </View>
+                </View>
+
+
+
+            <Container style={part.wrapperContainer}>
+                {
+                    (this.props.isLoadingGroupProducts)
+                        ?
+                        (
+                            <View
+                                style={{
+                                    flex: 1,
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Spinner
+                                    color={color.gray}/>
+                            </View>
+                        )
+                        :
+                        (
+                            <View style={[part.wrapperImageInGetFull, part.shadow]}>
+                                <Image
+                                    style={part.imageInUserProfile}
+                                    source={{uri: this.props.groupAvatar}}/>
+
+                                <View style={part.tabInGetFull}>
+                                    <Item style={{borderBottomWidth: 0,}}>
+                                        <Body>
+                                        <Thumbnail style={part.marginBottom}
+                                                   circle large
+                                                   source={{uri: this.props.groupAvatar}}/>
+                                        <Text style={[part.titleNormalLight, part.paddingLine]}>
+                                            {this.props.groupName}
+                                        </Text>
+                                        {
+                                            (this.props.members)
+                                                ?
+                                                (
+                                                    <Text style={[part.describeGray, part.paddingLine]}>
+                                                        {this.props.members.length}
+                                                        &nbsp;thành viên
+                                                    </Text>
+                                                )
+                                                :
+                                                (
+                                                    <Text style={[part.describeGray, part.paddingLine]}>
+                                                        Chưa có thành viên nào
+                                                    </Text>
+                                                )
+                                        }
+
+                                        </Body>
+                                    </Item>
+                                </View>
+                                <View style={part.iconInDrawer}>
+                                    <Left>
+                                        <TouchableOpacity style={part.padding}
+                                                          onPress={() => this.props.navigation.goBack()}
+                                        >
+                                            <Icon name="entypo|chevron-thin-left"
+                                                  size={size.iconBig}
+                                                  color={color.navTitle}
+                                            />
+                                        </TouchableOpacity>
+                                    </Left>
+                                    <Right style={{left: 10}}>
+                                        <TouchableOpacity
+                                        >
+                                            <Icon name="materialCommunity|seal"
+                                                  size={size.iconBig}
+                                                  color={color.navTitle}/>
+                                        </TouchableOpacity>
+                                    </Right>
+                                </View>
+                            </View>
+                        )
+                }
+
+                <Group/>
+                <TouchableOpacity style={[part.iconAddFriendInProfile, part.shadow]}>
+                    <Icon name="ion|ios-person-add"
+                          size={30}
+                          color={color.navTitle}/>
+                </TouchableOpacity>
+            </Container>

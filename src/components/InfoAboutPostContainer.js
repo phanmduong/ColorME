@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Image, KeyboardAvoidingView, StatusBar, Text, TouchableOpacity, View} from 'react-native';
 
 import {
-    Body, Button, Card, CardItem, Container, Content, Input, Item, Left, Right, Spinner, Thumbnail
+    Body, Button, Card, CardItem, Container, Content, Input, Item, Left, Right, Spinner, Thumbnail,
 } from 'native-base';
 import Icon from '../commons/Icon';
 import Video from 'react-native-video';
@@ -315,7 +315,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                     transparent style={part.padding}
                                                     onPress={() => this.unlikePost(this.props.navigation.state.params.product_id, this.props.token)}
                                                 >
-                                                    <Icon name="fontawesome|heart-o" size={size.iconBig}
+                                                    <Icon name="fontawesome|heart" size={size.iconBig}
                                                           color={colorIcon}/>
                                                     <Text
                                                         style={[part.describeGray, part.paddingLeft]}>{likeCount}</Text>
@@ -363,7 +363,9 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                         ?
                                                         (
                                                             <View style={part.cardCmt}>
-                                                                <TouchableOpacity style={part.paddingTRB}>
+                                                                <TouchableOpacity style={part.paddingTRB}
+                                                                  onPress={() => navigate('UserInNewFeed', {username: item.commenter.username})}
+                                                                  >
                                                                     <Image
                                                                         style={part.avatarUserNormal}
                                                                         source={{uri: item.commenter.avatar_url}}/>

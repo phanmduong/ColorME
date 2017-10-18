@@ -12,14 +12,11 @@ import * as searchAction from '../../actions/searchAction';
 import * as color from '../../styles/color';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {NavigationActions} from 'react-navigation'
-
+import {NavigationActions} from 'react-navigation';
 class searchUser extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
     }
-
     render() {
         const {navigate} = this.props.navigation;
         return (
@@ -30,26 +27,17 @@ class searchUser extends Component {
                     (this.props.isLoading)
                         ?
                         (
-                            <View
-                                style={{
-                                    flex: 1,
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                }}
-                            >
-                                <Spinner
-                                    color={color.gray}/>
-                            </View>
+                            <View/>
                         )
                         :
                         (
-                            !this.props.user
+                            this.props.users
                                 ?
                                 <FlatList
                                     onEndReachedThreshold={5}
-                                    onEndReached={() => {
+                                    onEndReached={
                                         this.props.getMoreUser
-                                    }}
+                                    }
                                     data={this.props.users}
                                     renderItem={({item}) =>
                                         <CardItem
@@ -57,16 +45,7 @@ class searchUser extends Component {
                                             style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
                                             <TouchableOpacity
                                                 style={{flex: 1}}
-                                                onPress={() => {
-                                                    this.props.navigation.dispatch({
-                                                        type: 'Navigation/NAVIGATE',
-                                                        routeName: 'Group',
-                                                        action: {
-                                                            type: 'Navigation/NAVIGATE',
-                                                            routeName: 'Group',
-                                                        }
-                                                    })
-                                                }
+                                                onPress={() => {}
                                                 }>
                                                 <Left>
                                                     <Thumbnail
@@ -92,7 +71,15 @@ class searchUser extends Component {
                                 </View>
                         )
                 }
-
+                {
+                    this.props.isLoading
+                        ?
+                        <View style={part.wrapperContainer}>
+                            <Spinner color={color.gray}/>
+                        </View>
+                        :
+                        <View/>
+                }
             </Content>
         );
     }

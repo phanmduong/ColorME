@@ -3,7 +3,7 @@ import {
     FlatList, TouchableOpacity, Image, StatusBar, View, RefreshControl
 } from 'react-native';
 import {
-    Container, Header, Content, Card, CardItem, Item, Picker,
+    Container, Header, Content, Card, CardItem, Item, Picker, ActionSheet,
     Thumbnail, Text, Button, Left, Body, Right, ListItem, Spinner, Badge
 } from 'native-base';
 import Video from 'react-native-video';
@@ -17,6 +17,10 @@ import {connect} from 'react-redux';
 import * as likePostAction from '../../actions/likePostAction'
 import FastImage from 'react-native-fast-image'
 
+
+
+
+
 class newFeedComponent extends Component {
     constructor() {
         super();
@@ -28,9 +32,9 @@ class newFeedComponent extends Component {
             likeCount: [],
             listPost: [],
             data: [],
-
             check: 0,
             refreshing: false,
+            clicked:''
         }
     }
 
@@ -81,8 +85,7 @@ class newFeedComponent extends Component {
         }
     }
 
-
-    componentDidMount() {
+    componentWillMount() {
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
 
     }
@@ -120,6 +123,8 @@ class newFeedComponent extends Component {
 
     render() {
         const {navigate} = this.props.navigation;
+        const BUTTONS = ["Mới nhất", "Hôm nay", "7 ngày qua", "30 ngày qua", "Thoát"];
+        const CANCEL_INDEX = 4;
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
@@ -143,7 +148,7 @@ class newFeedComponent extends Component {
                                             </Button>
                                         </Left>
                                         <Body style={{flex: 3}}>
-                                        <Text style={part.titleNormalLight}>Chọn kiểu xem</Text>
+                                            <Text style={part.titleNormalLight}>Chọn kiểu xem</Text>
                                         </Body>
                                         <Right/>
                                     </Header>}
@@ -181,22 +186,18 @@ class newFeedComponent extends Component {
 
                 <Content
                     showsVerticalScrollIndicator={false}
-                    onMomentumScrollEnd={
-                        () => {this.getMoreNewFeed();
-
-                        }
+                    onMomentumScrollEnd={() => {this.getMoreNewFeed();}
                     }
                     style={[part.padding, part.marginTop]}
-                    refreshControl={
-                        <RefreshControl
-                            refreshing={this.props.isLoading}
-                            onRefresh={() => {
-                                this.pullRefresh()
-                            }}
-                            tintColor={color.gray}
-                        />
-
-                    }
+//                     refreshControl={
+//                         <RefreshControl
+//                             refreshing={this.props.isLoading}
+//                             onRefresh={() => {
+//                                 this.pullRefresh()
+//                             }}
+//                             tintColor={color.gray}
+//                         />
+//                     }
                 >
                     {
                         (this.state.grid)
@@ -447,7 +448,7 @@ class newFeedComponent extends Component {
 
                                                             <Button transparent style={part.paddingRight}
                                                                     onPress={() =>
-                                                                        navigate('ThePostInNewFeed', {
+                                                                        navigate('Comment', {
                                                                             product_id: item.id,
                                                                             group_name: item.group.name,
                                                                             group_link: item.group.link,

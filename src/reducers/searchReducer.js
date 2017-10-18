@@ -19,7 +19,7 @@ export default function searchReducer(state = initialState.search, action) {
                 ...{
                     isLoading: action.isLoading,
                     error: action.error,
-                    users: action.users
+                    users: action.users,
                 }
             }
         case types.SEARCH_PRODUCT_SUCCESS:
