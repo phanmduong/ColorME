@@ -47,7 +47,6 @@ export function getUserProgressSuccess(response) {
         progress: response.data,
         isLoadingUserProgress: false,
         errorUserProgress: false,
-
     }
 }
 
