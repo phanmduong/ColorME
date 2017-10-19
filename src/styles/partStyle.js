@@ -184,7 +184,8 @@ const part = StyleSheet.create({
         height: 30,
     },
     inputTheme02: {
-        fontSize: size.title,
+        height: 40,
+        fontSize: 14,
         fontWeight : '600',
     },
     inputTheme03: {

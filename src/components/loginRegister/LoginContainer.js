@@ -143,7 +143,6 @@ class LoginComponent extends Component {
                                 ĐĂNG KÍ TÀI KHOẢN
                             </Text>
                         </View>
-
                     </Container>
                 </Container>
                 <View style={styles.wrapperForgot}>

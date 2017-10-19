@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, TouchableOpacity, View} from 'react-native'
+import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, StatusBar, TouchableOpacity, View} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
-import {Container, Content, Form, Input, Item, Left, StatusBar} from 'native-base';
+import {Container, Content, Form, Input, Item, Left} from 'native-base';
 import Icon from '../../commons/Icon';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
@@ -45,45 +45,53 @@ class RegisterComponent extends Component {
                     <Text style={styles.textME}>ME</Text>
                 </View>
                 <Container style={styles.midContainerLogin}>
-                    <Container style={styles.contentFormRegister}>
+                    <Container style={[styles.contentForm, {height: 370}]}>
                         <Text style={styles.textTitleInput}>EMAIL</Text>
-                        <Item>
-                            <Input style={part.inputTheme02}
-                                   color={color.darkGray}
-                                   autoCorrect={false}
-                                   onChangeText={(email) => {
-                                       this.setState({email});
-                                   }}
-                            />
-                        </Item>
+                        <View style={styles.wrapperRegister}>
+                            <Item style={styles.itemInput}>
+                                <Input style={part.inputTheme02}
+                                       color={color.darkGray}
+                                       autoCorrect={false}
+                                       onChangeText={(email) => {
+                                           this.setState({email});
+                                       }}
+                                />
+                            </Item>
+                        </View>
                         <Text style={styles.textTitleInput}>NAME</Text>
-                        <Item>
-                            <Input style={part.inputTheme02}
-                                   color={color.darkGray}
-                                   onChangeText={(name) => {
-                                       this.setState({name})
-                                   }}
-                            />
-                        </Item>
+                        <View style={styles.wrapperRegister}>
+                            <Item style={styles.itemInput}>
+                                <Input style={part.inputTheme02}
+                                       color={color.darkGray}
+                                       onChangeText={(name) => {
+                                           this.setState({name})
+                                       }}
+                                />
+                            </Item>
+                        </View>
                         <Text style={styles.textTitleInput}>USERNAME</Text>
-                        <Item>
-                            <Input style={part.inputTheme02}
-                                   color={color.darkGray}
-                                   onChangeText={(username) => {
-                                       this.setState({username})
-                                   }}
-                            />
-                        </Item>
+                        <View style={styles.wrapperRegister}>
+                            <Item style={styles.itemInput}>
+                                <Input style={part.inputTheme02}
+                                       color={color.darkGray}
+                                       onChangeText={(username) => {
+                                           this.setState({username})
+                                       }}
+                                />
+                            </Item>
+                        </View>
                         <Text style={styles.textTitleInput}>PASSWORD</Text>
-                        <Item>
-                            <Input style={part.inputTheme02}
-                                   color={color.darkGray}
-                                   secureTextEntry={true}
-                                   onChangeText={(password) => {
-                                       this.setState({password})
-                                   }}
-                            />
-                        </Item>
+                        <View style={[styles.wrapperRegister, {marginBottom: 5}]}>
+                            <Item style={styles.itemInput}>
+                                <Input style={part.inputTheme02}
+                                       color={color.darkGray}
+                                       secureTextEntry={true}
+                                       onChangeText={(password) => {
+                                           this.setState({password})
+                                       }}
+                                />
+                            </Item>
+                        </View>
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemButtonLogin}>
                                 <TouchableOpacity

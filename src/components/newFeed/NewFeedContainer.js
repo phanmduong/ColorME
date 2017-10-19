@@ -57,11 +57,13 @@ class newFeedComponent extends Component {
     componentWillReceiveProps(nextProps) {
         if ((nextProps.isLoading != this.props.isLoading && !nextProps.isLoading) || (nextProps.isRefreshing != this.props.isRefreshing && !nextProps.isRefreshing)) {
             let arr = this.state.arrayLike;
+            let listPost = this.state.listPost;
             let count = this.state.likeCount;
             let post = nextProps.products;
-            console.log(post);
             let item = false;
             for (var i = this.props.products.length; i < post.length; i++) {
+                let key = {key : i}
+                let arr1 = Object.assign(post[i], key)
                 let likers = post[i].likers.filter((liker) => {
                     return liker.username == nextProps.user.username
                 });
@@ -72,6 +74,7 @@ class newFeedComponent extends Component {
                 }
                 count.push(post[i].likes_count);
                 arr.push(item);
+                listPost.push(arr1)
             }
             this.setState({likeCount: count, arrayLike: arr})
         }
@@ -280,13 +283,13 @@ class newFeedComponent extends Component {
                                         onEndReachedThreshold={5}
                                         onEndReached={() => {
                                         }}
-                                        data={this.props.products}
-                                        renderItem={({item, a, i}) => {
+                                        data={this.state.listPost}
+                                        renderItem={({item}) => {
                                             let {arrayLike} = this.state;
                                             let {likeCount} = this.state;
-                                            let colorIcon = arrayLike[i] ? color.main : color.icon;
+                                            let colorIcon = arrayLike[item.key] ? color.main : color.icon;
                                             return (
-                                                <Card key={i} style={part.card}>
+                                                <Card key={item.key} style={part.card}>
                                                     <CardItem header style={part.cardHeader}>
                                                         <Left>
                                                             <TouchableOpacity
@@ -316,8 +319,6 @@ class newFeedComponent extends Component {
                                                     {/*PHOTO*/}
                                                     <CardItem cardBody style={part.card}>
                                                         <TouchableOpacity
-                                                            style={part.shadow}
-
                                                             onPress={() =>
                                                                 navigate('ThePostInNewFeed',
                                                                     item.group
@@ -383,24 +384,15 @@ class newFeedComponent extends Component {
                                                     {/*LIKE COMMENT VIEWS*/}
                                                     <CardItem footer style={part.cardFooter}>
                                                         <Left>
-                                                            <Button transparent
-                                                                    style={part.paddingRight}
-                                                                    onPress={() =>
-                                                                        arrayLike[i]
-                                                                            ?
-                                                                            this.unlikePost(item.id, this.props.token, i)
-                                                                            :
-                                                                            this.likePost(item.id, this.props.token, i)
-                                                                    }
-                                                            >
-                                                                <Icon name="fontawesome|heart"
-                                                                      size={size.iconBig}
-                                                                      color={colorIcon}/>
-                                                                <Text
-                                                                    style={[part.describeGray, part.paddingLeft]}>{likeCount[i]}</Text>
-                                                            </Button>
-
-
+                                                                <Button
+                                                                    transparent style={part.paddingRight}
+                                                                    onPress={arrayLike[item.key] ? () => this.unlikePost(item.id, this.props.token, item.key) : () => this.likePost(item.id, this.props.token, item.key)}
+                                                                >
+                                                                    <Icon name="fontawesome|heart" size={size.iconBig}
+                                                                          color={colorIcon}/>
+                                                                    <Text
+                                                                        style={[part.describeGray, part.paddingLeft]}>{likeCount[item.key]}</Text>
+                                                                </Button>
                                                             <Button transparent style={part.paddingRight}
                                                                     onPress={() =>
                                                                         navigate('Comment', {
