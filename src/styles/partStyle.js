@@ -239,6 +239,16 @@ const part = StyleSheet.create({
         resizeMode: 'cover',
         backgroundColor: color.icon
     },
+    imageTopic: {
+        margin: 3,
+        height: 250,
+        width: size.wid- 30,
+        flex: 1,
+        borderRadius: 5,
+        position: 'relative',
+        resizeMode: 'cover',
+        backgroundColor: color.icon
+    },
     video: {
         margin: 3,
         height: 400,

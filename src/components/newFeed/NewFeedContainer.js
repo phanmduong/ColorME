@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {
-    FlatList, TouchableOpacity, Image, StatusBar, View,ScrollView, RefreshControl
+    FlatList, TouchableOpacity, Image, StatusBar, View, ScrollView, RefreshControl
 } from 'react-native';
 import {
-    Container, Header, Content, Card, CardItem, Item, Picker, ActionSheet,
-    Thumbnail, Text, Button, Left, Body, Right, ListItem, Spinner, Badge
+    Container, Header, Content, Card, CardItem, Item, Picker,
+    Thumbnail, Text, Button, Left, Body, Right, Spinner
 } from 'native-base';
 import Video from 'react-native-video';
 import Icon from '../../commons/Icon';
@@ -30,7 +30,7 @@ class newFeedComponent extends Component {
             data: [],
             check: 0,
             refreshing: false,
-            clicked:''
+            clicked: ''
         }
     }
 
@@ -40,6 +40,7 @@ class newFeedComponent extends Component {
         this.props.products = [];
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
     }
+
     viewList() {
         let grid = this.state.grid;
         grid = false;
@@ -54,7 +55,7 @@ class newFeedComponent extends Component {
 
     // setup
     componentWillReceiveProps(nextProps) {
-        if ((nextProps.isLoading != this.props.isLoading && !nextProps.isLoading) || (nextProps.isRefreshing !=this.props.isRefreshing && !nextProps.isRefreshing)) {
+        if ((nextProps.isLoading != this.props.isLoading && !nextProps.isLoading) || (nextProps.isRefreshing != this.props.isRefreshing && !nextProps.isRefreshing)) {
             let arr = this.state.arrayLike;
             let listPost = this.state.listPost;
             let count = this.state.likeCount;
@@ -116,8 +117,6 @@ class newFeedComponent extends Component {
 
     render() {
         const {navigate} = this.props.navigation;
-        const BUTTONS = ["Mới nhất", "Hôm nay", "7 ngày qua", "30 ngày qua", "Thoát"];
-        const CANCEL_INDEX = 4;
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
@@ -141,7 +140,7 @@ class newFeedComponent extends Component {
                                             </Button>
                                         </Left>
                                         <Body style={{flex: 3}}>
-                                            <Text style={part.titleNormalLight}>Chọn kiểu xem</Text>
+                                        <Text style={part.titleNormalLight}>Chọn kiểu xem</Text>
                                         </Body>
                                         <Right/>
                                     </Header>}
@@ -180,14 +179,17 @@ class newFeedComponent extends Component {
                 <ScrollView
                     showsVerticalScrollIndicator={false}
                     onMomentumScrollEnd={
-                        () => {this.getMoreNewFeed();
+                        () => {
+                            this.getMoreNewFeed();
                         }
                     }
                     style={[part.padding, part.marginTop]}
-                    refreshControl= {
+                    refreshControl={
                         <RefreshControl
-                        refreshing = {this.props.isRefreshing}
-                        onRefresh = {() => {this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)}}
+                            refreshing={this.props.isRefreshing}
+                            onRefresh={() => {
+                                this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
+                            }}
                         />
                     }
                 >
@@ -301,114 +303,67 @@ class newFeedComponent extends Component {
 
                                                     {/*PHOTO*/}
                                                     <CardItem cardBody style={part.card}>
-                                                        {
-                                                            (item.group)
-                                                                ?
-                                                                (
-                                                                    <TouchableOpacity
-                                                                        onPress={() =>
-                                                                            navigate('ThePostInNewFeed', {
-                                                                                product_id: item.id,
-                                                                                group_name: item.group.name,
-                                                                                group_link: item.group.link,
-                                                                            })}
-                                                                    >
-                                                                        <Body>
+                                                        <TouchableOpacity
+                                                            onPress={() =>
+                                                                navigate('ThePostInNewFeed',
+                                                                    item.group
+                                                                        ?
                                                                         {
-                                                                            (item.url.indexOf('.mp4') === -1)
-                                                                                ?
-                                                                                (
-                                                                                    <FastImage
-                                                                                        resizeMode={'cover'}
-                                                                                        source={{
-                                                                                            uri: item.image_url,
-                                                                                            headers: {Authorization: 'Đang tải..'},
-                                                                                        }}
-                                                                                        style={[part.image, part.shadow]}
-                                                                                    />
-                                                                                )
-                                                                                :
-                                                                                (
-                                                                                    <Video
-                                                                                        repeat
-                                                                                        rate={1.0}                   // 0 is paused, 1 is normal.
-                                                                                        volume={1.0}                 // 0 is muted, 1 is normal.
-                                                                                        muted={true}                 // Mutes the audio entirely.
-                                                                                        paused={false}
-                                                                                        resizeMode={'cover'}
-                                                                                        source={{uri: item.url}}
-                                                                                        style={[part.video, part.shadow]}
-                                                                                    />
-                                                                                )
+                                                                            product_id: item.id,
+                                                                            group_name: item.group.name,
+                                                                            group_link: item.group.link,
                                                                         }
-
-                                                                        <View style={part.textInImage}>
-                                                                            <Text
-                                                                                numberOfLines={2}
-                                                                                style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
-                                                                            >
-                                                                                {item.title}
-                                                                            </Text>
-                                                                            <Text
-                                                                                numberOfLines={2}
-                                                                                style={[{paddingLeft: 15}, part.describeInImage]}
-                                                                            >
-                                                                                {item.description}
-                                                                            </Text>
-                                                                        </View>
-                                                                        </Body>
-                                                                    </TouchableOpacity>
-                                                                )
-                                                                :
-                                                                (
-                                                                    <TouchableOpacity
-                                                                        onPress={() =>
-                                                                            navigate('ThePostInNewFeed', {
-                                                                                product_id: item.id,
-                                                                            })}
-                                                                    >
-                                                                        <Body>
+                                                                        :
                                                                         {
-                                                                            (item.url.indexOf('.mp4') === -1)
-                                                                                ?
-                                                                                (
-                                                                                    <FastImage
-                                                                                        resizeMode={'cover'}
-                                                                                        source={{
-                                                                                            uri: item.image_url,
-                                                                                            headers: {Authorization: 'Đang tải..'},
-
-                                                                                        }}
-                                                                                        style={[part.image, part.shadow]}
-                                                                                    />
-                                                                                )
-                                                                                :
-                                                                                (
-                                                                                    <Video
-                                                                                        repeat
-                                                                                        rate={1.0}                   // 0 is paused, 1 is normal.
-                                                                                        volume={1.0}                 // 0 is muted, 1 is normal.
-                                                                                        muted={true}                 // Mutes the audio entirely.
-                                                                                        paused={false}
-                                                                                        resizeMode={'cover'}
-                                                                                        source={{uri: item.url}}
-                                                                                        style={[part.video, part.shadow]}
-                                                                                    />
-                                                                                )
+                                                                            product_id: item.id,
                                                                         }
+                                                                )}
+                                                        >
+                                                            <Body>
+                                                            {
+                                                                (item.url.indexOf('.mp4') === -1)
+                                                                    ?
+                                                                    (
+                                                                        <FastImage
+                                                                            resizeMode={'cover'}
+                                                                            source={{
+                                                                                uri: item.image_url,
+                                                                                headers: {Authorization: 'Đang tải..'},
+                                                                            }}
+                                                                            style={[part.image, part.shadow]}
+                                                                        />
+                                                                    )
+                                                                    :
+                                                                    (
+                                                                        <Video
+                                                                            repeat
+                                                                            rate={1.0}                   // 0 is paused, 1 is normal.
+                                                                            volume={1.0}                 // 0 is muted, 1 is normal.
+                                                                            muted={true}                 // Mutes the audio entirely.
+                                                                            paused={false}
+                                                                            resizeMode={'cover'}
+                                                                            source={{uri: item.url}}
+                                                                            style={[part.video, part.shadow]}
+                                                                        />
+                                                                    )
+                                                            }
 
-                                                                        <View style={part.textInImage}>
-                                                                            <Text
-                                                                                numberOfLines={2}
-                                                                                style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
-                                                                            >
-                                                                                {item.title}
-                                                                            </Text>
-                                                                        </View>
-                                                                        </Body>
-                                                                    </TouchableOpacity>
-                                                                )
-                                                        }
+                                                            <View style={part.textInImage}>
+                                                                <Text
+                                                                    numberOfLines={2}
+                                                                    style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
+                                                                >
+                                                                    {item.title}
+                                                                </Text>
+                                                                <Text
+                                                                    numberOfLines={2}
+                                                                    style={[{paddingLeft: 15}, part.describeInImage]}
+                                                                >
+                                                                    {item.description}
+                                                                </Text>
+                                                            </View>
+                                                            </Body>
+                                                        </TouchableOpacity>
                                                     </CardItem>
 
                                                     {/*LIKE COMMENT VIEWS*/}
@@ -436,6 +391,8 @@ class newFeedComponent extends Component {
                                                                 <Text
                                                                     style={[part.describeGray, part.paddingLeft]}>{item.comments_count}</Text>
                                                             </Button>
+
+
                                                             <Button transparent style={part.paddingRight}>
                                                                 <Icon name="fontawesome|eye" size={size.iconBig}
                                                                       color={color.icon}/>
@@ -443,8 +400,7 @@ class newFeedComponent extends Component {
                                                                     style={[part.describeGray, part.paddingLeft]}>{item.views_count}</Text>
                                                             </Button>
                                                         </Left>
-                                                        <Right>
-                                                        </Right>
+
                                                     </CardItem>
 
                                                     {/*HEART BIG BUTTON*/}
@@ -483,7 +439,7 @@ function mapStateToProps(state) {
         user: state.login.user,
         token: state.login.token,
         isLoading: state.getNewFeed.isLoading,
-        isRefreshing : state.getNewFeed.isRefreshing
+        isRefreshing: state.getNewFeed.isRefreshing
     }
 }
 

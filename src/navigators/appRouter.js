@@ -498,4 +498,4 @@ export const Start = StackNavigator(
 
     });
 
-export default () => <Root><Stack/></Root>
+export default Start;

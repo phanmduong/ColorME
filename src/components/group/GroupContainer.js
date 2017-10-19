@@ -22,9 +22,10 @@ class groupComponent extends Component {
     }
 
     componentDidMount() {
-        this.props.groupAction.getGroupTopics(this.props.navigation.state.params.group_link, this.props.token);
-        this.props.groupAction.getGroupProducts(this.props.navigation.state.params.group_link, this.props.token);
-        this.props.groupAction.getGroupMember(this.props.navigation.state.params.group_link, this.props.token);
+        const {params} = this.props.navigation.state;
+        this.props.groupAction.getGroupTopics(params.group_link, this.props.token);
+        this.props.groupAction.getGroupProducts(params.group_link, this.props.token);
+        this.props.groupAction.getGroupMember(params.group_link, this.props.token);
     }
 
     render() {
@@ -87,24 +88,13 @@ class groupComponent extends Component {
                                            source={{uri: this.props.groupAvatar}}
                                 >
                                 </Thumbnail>
-                                <Text style={[part.titleNormalLight, part.paddingLine]}>{this.props.groupName}
+                                <Text style={[part.titleNormalLight, part.paddingLine]}>
+                                    {this.props.groupName}
                                 </Text>
-                                {
-                                    (this.props.members)
-                                        ?
-                                        (
-                                            <Text style={[part.describeGray, part.paddingLine]}>
-                                                {this.props.members.length}
-                                                &nbsp;thành viên
-                                            </Text>
-                                        )
-                                        :
-                                        (
-                                            <Text style={[part.describeGray, part.paddingLine]}>
-                                                Chưa có thành viên nào
-                                            </Text>
-                                        )
-                                }
+                                <Text style={[part.describeGray, part.paddingLine]}>
+                                    {this.props.members.length}
+                                    &nbsp;thành viên
+                                </Text>
                                 </Body>
                             </Item>
                         </View>
@@ -123,7 +113,8 @@ class groupComponent extends Component {
                                         />
                                     </TouchableOpacity>
                                     <Right style={{left: 10}}>
-                                        <Text style={[part.titleNormalLight, part.paddingLine]}>{this.props.groupName}
+                                        <Text style={[part.titleNormalLight, part.paddingLine]}>
+                                            {this.props.groupName}
                                         </Text>
                                     </Right>
                                 </Left>

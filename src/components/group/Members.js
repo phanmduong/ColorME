@@ -80,8 +80,5 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {}
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(members);
+export default connect(mapStateToProps)(members);

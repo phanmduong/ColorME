@@ -5,6 +5,7 @@ import {
 import {
     Content, Spinner
 } from 'native-base';
+import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
 import {connect} from 'react-redux';
 import FastImage from 'react-native-fast-image'
@@ -66,9 +67,5 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(groupProject);
+export default connect(mapStateToProps)(groupProject);

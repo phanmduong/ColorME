@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, KeyboardAvoidingView, StatusBar, Text, TouchableOpacity, View} from 'react-native';
+import {Image, KeyboardAvoidingView, StatusBar, Text, TouchableOpacity, View, FlatList} from 'react-native';
 
 import {
     Body, Button, Card, CardItem, Container, Content, Input, Item, Left, Right, Spinner, Thumbnail,
@@ -84,6 +84,7 @@ class getFullInfoAboutOnePostComponent extends Component {
         let colorIcon = liked ? "red" : "#d7dde5";
         const {goBack} = this.props.navigation;
         const {navigate} = this.props.navigation;
+        const {params} = this.props.navigation.state;
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
@@ -113,41 +114,20 @@ class getFullInfoAboutOnePostComponent extends Component {
 
                                         {/*PHOTO*/}
                                         <CardItem cardBody>
-                                            {
-                                                (1)
-                                                    ?
-                                                    (
-                                                        <View style={part.shadow}>
-                                                            <FastImage source={{uri: this.props.post.image_url}}
-                                                                       style={[part.imageInGetFull]}
-                                                            />
-
-                                                        </View>
-                                                    )
-                                                    :
-                                                    (
-                                                        <View style={part.shadow}>
-                                                            <Video source={{uri: this.props.post.image_url}}
+                                            <View style={part.shadow}>
+                                                {
+                                                    1
+                                                        ?
+                                                        <FastImage source={{uri: this.props.post.image_url}}
                                                                    style={[part.imageInGetFull]}
-                                                            />
+                                                        />
+                                                        :
+                                                        <Video source={{uri: this.props.post.image_url}}
+                                                               style={[part.imageInGetFull]}
+                                                        />
 
-                                                        </View>
-                                                    )
-                                            }
-                                            {
-                                                (this.props.post.more_products) ? (
-                                                    this.props.post.more_products.map((img) => {
-                                                        return (
-                                                            <View style={part.shadow}>
-                                                                <Image source={{uri: this.props.post.image_url}}
-                                                                       style={[part.imageInGetFull]}
-                                                                />
-
-                                                            </View>
-                                                        )
-                                                    })
-                                                ) : (<Text/>)
-                                            }
+                                                }
+                                            </View>
                                             <View style={part.iconInDrawer}>
                                                 <Left>
                                                     <TouchableOpacity style={part.padding}
@@ -161,14 +141,14 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                     </TouchableOpacity>
                                                     <Right style={{right: 0}}>
                                                         {
-                                                            (this.props.navigation.state.params.group_name)
+                                                            (params.group_name)
                                                                 ?
                                                                 (
                                                                     <TouchableOpacity style={part.buttonGroup}
-                                                                                      onPress={() => this.props.navigation.navigate('GroupStack', {group_link: this.props.navigation.state.params.group_link})}
+                                                                                      onPress={() => navigate('GroupStack', {group_link: params.group_link})}
                                                                     >
                                                                         <Text
-                                                                            style={part.titleGroup}>{this.props.navigation.state.params.group_name}</Text>
+                                                                            style={part.titleGroup}>{params.group_name}</Text>
                                                                     </TouchableOpacity>
                                                                 )
                                                                 :
@@ -239,47 +219,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                     )
                                                     :
                                                     (
-                                                        <Left>
-                                                            <TouchableOpacity>
-                                                                <Thumbnail circle
-                                                                           source={{uri: ''}}/>
-                                                            </TouchableOpacity>
-                                                            <Body>
-                                                            <Text
-                                                                style={[part.describeDarkGray, part.paddingLine]}>
-                                                                Đăng bởi &nbsp;
-                                                                <Text
-                                                                    style={part.titleSmallBlue}>
-
-                                                                </Text>
-                                                            </Text>
-                                                            <Text
-                                                                style={[part.describeItalicDark, part.paddingLine]}>
-                                                                {this.props.post.created_at}
-                                                            </Text>
-                                                            <View style={[{flexDirection: 'row'}, part.paddingLine]}>
-                                                                {
-                                                                    (this.props.colors)
-                                                                        ?
-                                                                        (
-                                                                            this.state.colors.map((color, i) => {
-                                                                                return (
-                                                                                    <Icon key={i}
-                                                                                          name="fontawesome|circle"
-                                                                                          style={part.paddingRight}
-                                                                                          size={12}
-                                                                                          color={'#' + color}/>
-                                                                                );
-                                                                            })
-                                                                        )
-                                                                        :
-                                                                        (
-                                                                            <View/>
-                                                                        )
-                                                                }
-                                                            </View>
-                                                            </Body>
-                                                        </Left>
+                                                        <View/>
                                                     )
                                             }
                                         </CardItem>
@@ -310,27 +250,15 @@ class getFullInfoAboutOnePostComponent extends Component {
 
                                     <CardItem footer>
                                         <Left>
-                                            {(liked) ? (
-                                                <Button
-                                                    transparent style={part.padding}
-                                                    onPress={() => this.unlikePost(this.props.navigation.state.params.product_id, this.props.token)}
-                                                >
-                                                    <Icon name="fontawesome|heart" size={size.iconBig}
-                                                          color={colorIcon}/>
-                                                    <Text
-                                                        style={[part.describeGray, part.paddingLeft]}>{likeCount}</Text>
-                                                </Button>
-                                            ) : (
-                                                <Button
-                                                    transparent style={part.padding}
-                                                    onPress={() => this.likePost(this.props.navigation.state.params.product_id, this.props.token)}
-                                                >
-                                                    <Icon name="fontawesome|heart-o" size={size.iconBig}
-                                                          color={colorIcon}/>
-                                                    <Text
-                                                        style={[part.describeGray, part.paddingLeft]}>{likeCount}</Text>
-                                                </Button>
-                                            )}
+                                            <Button
+                                                transparent style={part.padding}
+                                                onPress={() => liked ? this.unlikePost(params.product_id, this.props.token) : this.likePost(params.product_id, this.props.token)}
+                                            >
+                                                <Icon name="fontawesome|heart" size={size.iconBig}
+                                                      color={colorIcon}/>
+                                                <Text
+                                                    style={[part.describeGray, part.paddingLeft]}>{likeCount}</Text>
+                                            </Button>
                                             <Button transparent style={part.paddingRight}
                                             >
                                                 <Icon name="fontawesome|comments-o" size={size.iconBig}
@@ -355,116 +283,58 @@ class getFullInfoAboutOnePostComponent extends Component {
                                             </TouchableOpacity>
                                         </Right>
                                     </CardItem>
-                                    {
-                                        this.props.comments.map((item, i) =>
+                                    <FlatList
+                                        onEndReachedThreshold={5}
+                                        data={this.props.comments}
+                                        renderItem={({item}) =>
                                             <CardItem style={part.cardHeader}>
-                                                {
-                                                    (item.parent_id === 0)
-                                                        ?
-                                                        (
-                                                            <View style={part.cardCmt}>
-                                                                <TouchableOpacity style={part.paddingTRB}
-                                                                  onPress={() => navigate('UserInNewFeed', {username: item.commenter.username})}
-                                                                  >
-                                                                    <Image
-                                                                        style={part.avatarUserNormal}
-                                                                        source={{uri: item.commenter.avatar_url}}/>
-                                                                </TouchableOpacity>
-                                                                <Body>
-                                                                <Text
-                                                                    style={[part.titleSmallBlue, part.paddingTLB]}
-                                                                >
-                                                                    {item.commenter.name}
-                                                                </Text>
-                                                                <Text
-                                                                    style={[part.describeDarkGray, part.paddingTLB]}
-                                                                >
-                                                                    {item.content}
-                                                                </Text>
-                                                                <View style={{flexDirection: 'row'}}>
-                                                                    <Text
-                                                                        style={[part.describeLightGray, part.paddingTLB]}
-                                                                    >
-                                                                        {item.created_at}
-                                                                    </Text>
-                                                                    <Text
-                                                                        style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
-                                                                    >
-                                                                        Trả lời
-                                                                    </Text>
-                                                                </View>
+                                                <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
+                                                    <TouchableOpacity style={part.paddingTRB}
+                                                                      onPress={() => navigate('UserInNewFeed', {username: item.commenter.username})}
+                                                    >
+                                                        <Image
+                                                            style={part.avatarUserNormal}
+                                                            source={{uri: item.commenter.avatar_url}}/>
+                                                    </TouchableOpacity>
+                                                    <Body>
+                                                    <Text
+                                                        style={[part.titleSmallBlue, part.paddingTLB]}
+                                                    >
+                                                        {item.commenter.name}
+                                                    </Text>
+                                                    <Text
+                                                        style={[part.describeDarkGray, part.paddingTLB]}
+                                                    >
+                                                        {item.content}
+                                                    </Text>
+                                                    <View style={{flexDirection: 'row'}}>
+                                                        <Text
+                                                            style={[part.describeLightGray, part.paddingTLB]}
+                                                        >
+                                                            {item.created_at}
+                                                        </Text>
+                                                        <Text
+                                                            style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                        >
+                                                            Trả lời
+                                                        </Text>
+                                                    </View>
 
-                                                                <View
-                                                                    style={[{flexDirection: 'row'}, part.paddingLine]}>
+                                                    <View
+                                                        style={[{flexDirection: 'row'}, part.paddingLine]}>
 
-                                                                </View>
-                                                                </Body>
-                                                                <TouchableOpacity transparent>
-                                                                    <Icon name="fontawesome|heart-o"
-                                                                          color={color.icon}
-                                                                          size={size.icon}
-                                                                          style={part.paddingRight}
-                                                                    />
-                                                                </TouchableOpacity>
-                                                            </View>
-
-                                                        )
-                                                        :
-                                                        (
-                                                            <View style={part.cardRepCmt}>
-                                                                <TouchableOpacity style={part.paddingTRB}
-                                                                                  onPress={() => this.props.navigation.navigate('UserStack')}
-                                                                >
-                                                                    <Image
-                                                                        style={part.avatarUserNormal}
-                                                                        source={{uri: item.commenter.avatar_url}}/>
-                                                                </TouchableOpacity>
-                                                                <Body>
-                                                                <Text
-                                                                    style={[part.titleSmallBlue, part.paddingTLB]}
-                                                                >
-                                                                    {item.commenter.name}
-                                                                </Text>
-
-
-                                                                <Text
-                                                                    style={[part.describeDarkGray, part.paddingTLB]}
-                                                                >
-                                                                    {item.content}
-                                                                </Text>
-                                                                <View style={{flexDirection: 'row'}}>
-                                                                    <Text
-                                                                        style={[part.describeLightGray, part.paddingTLB]}
-                                                                    >
-                                                                        {item.created_at}
-                                                                    </Text>
-                                                                    <Text
-                                                                        style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
-                                                                    >
-                                                                        Trả lời
-                                                                    </Text>
-                                                                </View>
-
-                                                                <View
-                                                                    style={[{flexDirection: 'row'}, part.paddingLine]}>
-
-                                                                </View>
-                                                                </Body>
-                                                                <TouchableOpacity transparent>
-                                                                    <Icon name="fontawesome|heart-o"
-                                                                          color={color.icon}
-                                                                          size={size.icon}
-                                                                          style={part.paddingRight}
-                                                                    />
-                                                                </TouchableOpacity>
-                                                            </View>
-
-                                                        )
-                                                }
+                                                    </View>
+                                                    </Body>
+                                                    <TouchableOpacity transparent>
+                                                        <Icon name="fontawesome|heart-o"
+                                                              color={color.icon}
+                                                              size={size.icon}
+                                                              style={part.paddingRight}
+                                                        />
+                                                    </TouchableOpacity>
+                                                </View>
                                             </CardItem>
-                                        )
-                                    }
-
+                                        }/>
                                 </View>
                             )
                     }
