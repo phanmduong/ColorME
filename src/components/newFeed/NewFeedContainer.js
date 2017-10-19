@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {
-    FlatList, TouchableOpacity, Image, StatusBar, View, ScrollView, RefreshControl
+    FlatList, TouchableOpacity, Image, StatusBar, View, RefreshControl
 } from 'react-native';
 import {
     Container, Header, Content, Card, CardItem, Item, Picker,
-    Thumbnail, Text, Button, Left, Body, Right, Spinner
+    Thumbnail, Text, Left, Body, Right, Spinner, Button
 } from 'native-base';
 import Video from 'react-native-video';
 import Icon from '../../commons/Icon';
@@ -131,10 +131,10 @@ class newFeedComponent extends Component {
                                         iosBarStyle='light-content'
                                         style={{backgroundColor: color.navTabBar}}>
                                         <Left>
-                                            <Button transparent onPress={backAction}>
+                                            <TouchableOpacity onPress={backAction}>
                                                 <Icon name="entypo|chevron-thin-left" color={color.navTitle}
                                                       size={size.iconBig}/>
-                                            </Button>
+                                            </TouchableOpacity>
                                         </Left>
                                         <Body style={{flex: 3}}>
                                         <Text style={part.titleNormalLight}>Chọn kiểu xem</Text>
@@ -173,7 +173,7 @@ class newFeedComponent extends Component {
                     </Item>
                 </View>
 
-                <ScrollView
+                <Content
                     showsVerticalScrollIndicator={false}
                     onMomentumScrollEnd={
                         () => {
@@ -196,10 +196,25 @@ class newFeedComponent extends Component {
                             (
                                 <View style={[part.wrapperGrid]}>
                                     <View style={part.featureWrapper}>
-                                        <Image
-                                            style={[part.imageInFeature, part.shadow]}
-                                            source={{uri: 'https://www.w3schools.com/css/trolltunga.jpg'}}
-                                        />
+                                        <TouchableOpacity
+                                            style={part.shadow}
+                                            onPress={() =>
+                                                navigate('ThePostInNewFeed',
+                                                    item.group
+                                                        ?
+                                                        {
+
+                                                        }
+                                                        :
+                                                        {
+                                                        }
+                                                )}
+                                        >
+                                            <FastImage
+                                                style={[part.imageInFeature, part.shadow]}
+                                                source={{uri: 'https://www.w3schools.com/css/trolltunga.jpg'}}
+                                            />
+                                        </TouchableOpacity>
                                         <View style={part.textInImage}>
                                             <Text
                                                 numberOfLines={2}
@@ -215,6 +230,7 @@ class newFeedComponent extends Component {
                                                 <View key={i}
                                                       style={(item.url.indexOf('.mp4') === -1 ) ? part.wrapperGridImage : part.wrapperGridVideo}>
                                                     <TouchableOpacity
+                                                        style={part.shadow}
                                                         onPress={() =>
                                                             navigate('ThePostInNewFeed',
                                                                 item.group
@@ -259,7 +275,6 @@ class newFeedComponent extends Component {
                             )
                             :
                             (
-
                                 <Content>
                                     <FlatList
                                         onEndReachedThreshold={5}
@@ -301,6 +316,8 @@ class newFeedComponent extends Component {
                                                     {/*PHOTO*/}
                                                     <CardItem cardBody style={part.card}>
                                                         <TouchableOpacity
+                                                            style={part.shadow}
+
                                                             onPress={() =>
                                                                 navigate('ThePostInNewFeed',
                                                                     item.group
@@ -327,7 +344,7 @@ class newFeedComponent extends Component {
                                                                                 uri: item.image_url,
                                                                                 headers: {Authorization: 'Đang tải..'},
                                                                             }}
-                                                                            style={[part.image, part.shadow]}
+                                                                            style={[part.shadow, part.image]}
                                                                         />
                                                                     )
                                                                     :
@@ -366,15 +383,15 @@ class newFeedComponent extends Component {
                                                     {/*LIKE COMMENT VIEWS*/}
                                                     <CardItem footer style={part.cardFooter}>
                                                         <Left>
-                                                            <Button
-                                                                transparent style={part.paddingRight}
-                                                                onPress={() =>
-                                                                    arrayLike[i]
-                                                                        ?
-                                                                        this.unlikePost(item.id, this.props.token, i)
-                                                                        :
-                                                                        this.likePost(item.id, this.props.token, i)
-                                                                }
+                                                            <Button transparent
+                                                                    style={part.paddingRight}
+                                                                    onPress={() =>
+                                                                        arrayLike[i]
+                                                                            ?
+                                                                            this.unlikePost(item.id, this.props.token, i)
+                                                                            :
+                                                                            this.likePost(item.id, this.props.token, i)
+                                                                    }
                                                             >
                                                                 <Icon name="fontawesome|heart"
                                                                       size={size.iconBig}
@@ -397,8 +414,6 @@ class newFeedComponent extends Component {
                                                                 <Text
                                                                     style={[part.describeGray, part.paddingLeft]}>{item.comments_count}</Text>
                                                             </Button>
-
-
                                                             <Button transparent style={part.paddingRight}>
                                                                 <Icon name="fontawesome|eye" size={size.iconBig}
                                                                       color={color.icon}/>
@@ -411,8 +426,8 @@ class newFeedComponent extends Component {
 
                                                     {/*HEART BIG BUTTON*/}
                                                     <TouchableOpacity style={[part.iconLikeInImage, part.shadow]}>
-                                                        <Icon name="evil|heart"
-                                                              size={30}
+                                                        <Icon name="fontawesome|heart-o"
+                                                              size={20}
                                                               color={color.navTitle}/>
                                                     </TouchableOpacity>
                                                 </Card>
@@ -420,7 +435,6 @@ class newFeedComponent extends Component {
                                         }}
                                     />
                                 </Content>
-
                             )
                     }
 
@@ -433,7 +447,7 @@ class newFeedComponent extends Component {
                             :
                             <View/>
                     }
-                </ScrollView>
+                </Content>
             </Container>
         );
     }

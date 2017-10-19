@@ -34,9 +34,6 @@ class members extends Component {
                         (
                             <FlatList
                                 showsVerticalScrollIndicator={false}
-                                onEndReachedThreshold={5}
-                                onEndReached={() => {
-                                }}
                                 data={this.props.members}
                                 renderItem={({item}) =>
                                     <CardItem avatar style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
@@ -62,7 +59,6 @@ class members extends Component {
                                                       color={color.navTitle}/>
                                             </TouchableOpacity>
                                         </Left>
-
                                     </CardItem>
                                 }
                             />

@@ -3,7 +3,7 @@ import {
     FlatList, Image, View
 } from 'react-native';
 import {
-    Content, Card, CardItem, Text,
+    Content, Card, CardItem, Text, Container,
     Left, Body, Right, List, ListItem, Spinner
 } from 'native-base';
 import part from '../../styles/partStyle';
@@ -15,8 +15,7 @@ import {connect} from 'react-redux';
 class Progress extends Component {
     render() {
         return (
-            <Content
-                showsVerticalScrollIndicator={false}
+            <Container
                 style={[part.wrapperContainer, part.padding]}>
                 {
 
@@ -45,6 +44,7 @@ class Progress extends Component {
                                 :
                                 (
                                     <FlatList
+                                        showsVerticalScrollIndicator={false}
                                         onEndReachedThreshold={5}
                                         data={this.props.progress}
                                         renderItem={({item}) =>
@@ -65,7 +65,7 @@ class Progress extends Component {
                                 )
                         )
                 }
-            </Content>
+            </Container>
         )
     }
 }
@@ -78,10 +78,5 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        userInformationAction: bindActionCreators(userInformationAction, dispatch),
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Progress);
+export default connect(mapStateToProps)(Progress);

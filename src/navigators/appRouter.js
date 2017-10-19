@@ -79,6 +79,20 @@ export const TabNavigatorBottomStyle = {
         showLabel: false,
     }
 };
+export const TabNavigatorTopOption = {
+    activeTintColor: color.darkGray,
+    inactiveTintColor: color.icon,
+    style: {
+        height: 70,
+        borderTopWidth: 0,
+        paddingBottom: 20,
+        backgroundColor: color.navTitle
+    },
+    labelStyle: {
+        fontWeight: '700',
+        fontSize: size.describe,
+    }
+};
 
 export const StackNavigatorStyle = {
     navigationOptions: {
@@ -199,21 +213,7 @@ export const User = TabNavigator(
     {
         initialRouteName: 'Project',
         tabBarPosition: 'top',
-        tabBarOptions: {
-            activeTintColor: color.darkGray,
-            inactiveTintColor: color.icon,
-            style: {
-                height: 70,
-                borderTopWidth: 0,
-                paddingBottom: 20,
-                backgroundColor: color.navTitle
-            },
-            labelStyle: {
-                fontWeight: '700',
-                fontSize: size.describe,
-            },
-
-        }
+        tabBarOptions: TabNavigatorTopOption
     }
 );
 
@@ -242,21 +242,7 @@ export const Group = TabNavigator(
     {
         initialRouteName: 'GroupProject',
         tabBarPosition: 'top',
-        tabBarOptions: {
-            activeTintColor: color.darkGray,
-            inactiveTintColor: color.icon,
-            style: {
-                height: 70,
-                borderTopWidth: 0,
-                paddingBottom: 20,
-                backgroundColor: color.navTitle
-            },
-            labelStyle: {
-                fontWeight: '700',
-                fontSize: size.describe,
-            },
-
-        }
+        tabBarOptions: TabNavigatorTopOption
     }
 );
 export const ThePostInNewFeed = StackNavigator(

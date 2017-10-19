@@ -160,7 +160,7 @@ const part = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: color.main,
         right: 20,
-        bottom: 65,
+        bottom: 70,
     },
     iconFollow:{
         justifyContent: 'center',
@@ -237,7 +237,10 @@ const part = StyleSheet.create({
         borderRadius: 5,
         position: 'relative',
         resizeMode: 'cover',
-        backgroundColor: color.icon
+        backgroundColor: color.icon,
+        shadowColor: color.text,
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.2,
     },
     imageTopic: {
         margin: 3,
@@ -577,7 +580,7 @@ const part = StyleSheet.create({
     },
     // SHADOW
     shadow:{
-        shadowColor: 'black',
+        shadowColor: color.text,
         shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.2,
     },

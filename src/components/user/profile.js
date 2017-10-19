@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import {
     Title, Container, Header, Content, Card, CardItem, Thumbnail, Text, CheckBox,
-    Button, Left, Body, Right, Tabs, Tab, TabHeading, List, ListItem, Spinner
+    List, ListItem, Spinner
 } from 'native-base';
 import part from '../../styles/partStyle';
 import * as userInformationAction from '../../actions/userInformationAction';
@@ -13,10 +13,6 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 class Information extends Component {
-    constructor() {
-        super();
-    }
-
     render() {
         return (
             <Container style={[part.wrapperContainer, part.padding]}>
@@ -37,7 +33,7 @@ class Information extends Component {
                         )
                         :
                         (
-                            <Container
+                            <Content
                                 showsVerticalScrollIndicator={false}
                                 style={[part.wrapperContainer]}>
                                 <List>
@@ -62,7 +58,7 @@ class Information extends Component {
                                         <Text style={part.describeDark}>Trường học: {this.props.user.university}</Text>
                                     </ListItem>
                                 </List>
-                            </Container>
+                            </Content>
                         )
                 }
             </Container>
@@ -77,10 +73,4 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return{
-        userInformationAction: bindActionCreators(userInformationAction, dispatch),
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Information);
+export default connect(mapStateToProps)(Information);

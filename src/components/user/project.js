@@ -75,11 +75,4 @@ function mapStateToProps(state) {
         isLoadingUserProducts: state.userInformation.isLoadingUserProducts,
     }
 }
-
-function mapDispatchToProps(dispatch) {
-    return {
-        userInformationAction: bindActionCreators(userInformationAction, dispatch),
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Project);
+export default connect(mapStateToProps)(Project);

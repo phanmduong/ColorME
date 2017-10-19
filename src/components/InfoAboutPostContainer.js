@@ -122,7 +122,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                                    style={[part.imageInGetFull]}
                                                         />
                                                         :
-                                                        <Video source={{uri: this.props.post.image_url}}
+                                                        <Video source={{uri: this.props.post.url}}
                                                                style={[part.imageInGetFull]}
                                                         />
 
@@ -182,9 +182,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                                 onPress={() => navigate('UserInNewFeed', {username: this.props.post.author.username})}
                                                             >
                                                                 Đăng bởi &nbsp;
-
                                                                 <Text
-
                                                                     style={part.titleSmallBlue}>
                                                                     {this.props.post.author.name}
                                                                 </Text>
@@ -195,23 +193,16 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                             </Text>
                                                             <View style={[{flexDirection: 'row'}, part.paddingLine]}>
                                                                 {
-                                                                    (this.props.colors)
-                                                                        ?
-                                                                        (
-                                                                            this.props.post.colors.map((color, i) => {
-                                                                                return (
-                                                                                    <Icon key={i}
-                                                                                          name="fontawesome|circle"
-                                                                                          style={part.paddingRight}
-                                                                                          size={12}
-                                                                                          color={'#' + color}/>
-                                                                                );
-                                                                            })
-                                                                        )
-                                                                        :
-                                                                        (
-                                                                            <View/>
-                                                                        )
+                                                                    this.props.post.colors.map((color, i) => {
+                                                                        return (
+                                                                            <Icon key={i}
+                                                                                  name="fontawesome|circle"
+                                                                                  style={part.paddingRight}
+                                                                                  size={12}
+                                                                                  color={'#' + color}/>
+                                                                        );
+                                                                    })
+
                                                                 }
                                                             </View>
                                                             </Body>
@@ -224,8 +215,8 @@ class getFullInfoAboutOnePostComponent extends Component {
                                             }
                                         </CardItem>
                                         <TouchableOpacity style={[part.iconLikeInImageFullAbout, part.shadow]}>
-                                            <Icon name="evil|heart"
-                                                  size={30}
+                                            <Icon name="fontawesome|heart-o"
+                                                  size={20}
                                                   color={color.navTitle}/>
                                         </TouchableOpacity>
                                     </View>

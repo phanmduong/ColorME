@@ -17,14 +17,12 @@ import {User} from '../../navigators/appRouter';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
 class userComponent extends Component {
-    constructor() {
-        super();
-    }
 
     componentDidMount() {
-        this.props.userInformationAction.getUserProfile(this.props.navigation.state.params.username);
-        this.props.userInformationAction.getUserProgress(this.props.navigation.state.params.username);
-        this.props.userInformationAction.getUserProducts(this.props.navigation.state.params.username, 1, this.props.token);
+        const {params} = this.props.navigation.state;
+        this.props.userInformationAction.getUserProfile(params.username);
+        this.props.userInformationAction.getUserProgress(params.username);
+        this.props.userInformationAction.getUserProducts(params.username, 1, this.props.token);
     }
 
     render() {
@@ -56,17 +54,17 @@ class userComponent extends Component {
 
                             </View>
                             <View style={[part.iconInDrawer, {zIndex: 500}]}>
-                                <Left>
-                                    <TouchableOpacity style={part.padding}
-                                                      onPress={() => goBack(null)}
-                                    >
-                                        <Icon name="entypo|chevron-thin-left"
-                                              size={size.iconBig}
-                                              color={color.navTitle}
-                                              style={{zIndex: 100}}
-                                        />
-                                    </TouchableOpacity>
-                                </Left>
+                                {/*<Left>*/}
+                                    {/*<TouchableOpacity style={part.padding}*/}
+                                                      {/*onPress={() => goBack(null)}*/}
+                                    {/*>*/}
+                                        {/*<Icon name="entypo|chevron-thin-left"*/}
+                                              {/*size={size.iconBig}*/}
+                                              {/*color={color.navTitle}*/}
+                                              {/*style={{zIndex: 100}}*/}
+                                        {/*/>*/}
+                                    {/*</TouchableOpacity>*/}
+                                {/*</Left>*/}
                                 <Right style={{left: 10}}>
                                     <TouchableOpacity
                                     >
