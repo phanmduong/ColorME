@@ -3,7 +3,7 @@ import {
     FlatList, Image, View, TouchableOpacity
 } from 'react-native';
 import {
-    Content, Card, CardItem, Text, Thumbnail,
+    Content, Card, CardItem, Text, Thumbnail, Container,
     Left, Body, Right, List, ListItem, Spinner
 } from 'native-base';
 import Icon from '../../commons/Icon';
@@ -34,12 +34,14 @@ class topics extends Component {
                 )
                 :
                 (
-                    <Content
+                    <Container
+                        style={[part.wrapperContainer, part.padding]}
+                    >
+                    <FlatList
                         showsVerticalScrollIndicator={false}
-                        style={[part.wrapperContainer, part.padding]}>
-                        {
-                            this.props.topics.map((item, i) => {
-                                let created = item.created_time;
+                        data={this.props.topics}
+                        renderItem={({item}) => {
+                        let created = item.created_time;
                                 let deadline = item.deadline_raw;
                                 let timeLimit  = moment.duration(moment(deadline).diff(moment(created))).asHours();
                                 let now = moment().format('YYYY-MM-DD HH:mm:ss');
@@ -51,7 +53,7 @@ class topics extends Component {
                                     widthDeadlineProgress = size.wid - 30;
                                 }
                                 return (
-                                    <Card key={i} style={part.card}>
+                                    <Card style={part.card}>
                                         <CardItem header style={part.cardHeader}>
                                             <Left>
                                                 <TouchableOpacity
@@ -81,14 +83,12 @@ class topics extends Component {
 
                                         {/*PHOTO*/}
                                         <CardItem cardBody style={part.card}>
-                                            <TouchableOpacity
-
-                                            >
+                                            <TouchableOpacity>
                                                 <Body>
                                                 <FastImage
                                                     resizeMode={'cover'}
                                                     source={{uri: item.avatar_url}}
-                                                    style={[part.image, part.shadow]}
+                                                    style={[part.imageTopic, part.shadow]}
                                                 />
                                                 <View style={part.textInImage}>
                                                     <Text
@@ -119,13 +119,11 @@ class topics extends Component {
                                                     </Text>
                                                 </Right>
                                             </Left>
-
                                         </CardItem>
                                     </Card>
                                 )
-                            })
-                        }
-                    </Content>
+                    }}/>
+                    </Container>
                 )
 
         )
@@ -139,8 +137,5 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {}
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(topics);
+export default connect(mapStateToProps)(topics);

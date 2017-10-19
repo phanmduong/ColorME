@@ -5,7 +5,7 @@ import {compose, applyMiddleware, createStore} from 'redux';
 import rootReducer from './reducers/index';
 import {AsyncStorage} from 'react-native';
 import {setAuthorizationToken} from './actions/loginActions'
-import {Main ,Start, SearchStackNavigator} from './navigators/appRouter';
+import Start from './navigators/appRouter';
 
 const store = createStore(rootReducer, applyMiddleware(compose(thunk)));
 class App extends React.Component {
