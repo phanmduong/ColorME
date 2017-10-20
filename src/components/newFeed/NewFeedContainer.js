@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {
-    FlatList, TouchableOpacity, StatusBar, View, RefreshControl, Modal, PanResponder
+    FlatList, TouchableOpacity, StatusBar, View, RefreshControl, Modal, PanResponder,
+    KeyboardAvoidingView,
 } from 'react-native';
 import {
-    Container, Header, Content, Card, CardItem, Item, Picker,
+    Container, Header, Content, Card, CardItem, Item, Picker, Input,
     Thumbnail, Text, Left, Body, Right, Spinner, Button
 } from 'native-base';
 import Video from 'react-native-video';
@@ -432,11 +433,73 @@ class newFeedComponent extends Component {
                           {...this.panResponder.panHandlers}
                     >
                         <View style={part.modalComment}>
+                            <KeyboardAvoidingView behavior={'position'}>
+                                <CardItem footer style={part.cardTopInModal}>
+                                    <Left>
+                                        <Button
+                                            transparent style={part.paddingRight}
+                                        >
+                                            <Icon name="fontawesome|heart" size={12}
+                                                  color={color.main}/>
+                                            <Text
+                                                style={[part.describeGray, part.paddingLeft]}>12</Text>
+                                        </Button>
 
+                                    </Left>
+                                </CardItem>
+
+
+
+                                <View style={part.wrapperCommentInModal}>
+
+                                </View>
+
+
+
+
+
+                                <CardItem style={part.cardBottomInModal}>
+                                    <Left>
+                                        <Thumbnail
+                                                   style={part.avatarUserSmall}
+                                                   source={{uri: this.props.user.avatar_url}}/>
+                                        <Body>
+                                        <Item rounded>
+                                            <Input
+                                                placeholder='Viết bình luận'
+                                                autoCorrect={false}
+                                                placeholderTextColor={color.icon}
+                                                style={part.inputTheme01}
+                                                onChangeText={
+                                                    (text) => {
+                                                        this.setState({comment_content: text})
+                                                    }
+                                                }
+                                            />
+                                            <TouchableOpacity>
+                                                <Icon active name='fontawesome|camera-retro'
+                                                      size={size.iconNormal}
+                                                      color={color.icon}
+                                                      style={{paddingRight: 15}}
+                                                />
+                                            </TouchableOpacity>
+                                        </Item>
+                                        </Body>
+                                        <TouchableOpacity
+                                            onPress={() => this.commentPost(params.product_id, this.props.token, this.state)}
+                                        >
+                                            <Icon active name='fontawesome|comment-o'
+                                                  size={size.iconBig}
+                                                  color={color.icon}
+                                                  style={[part.paddingTLB, {paddingLeft: 10}]}
+                                            />
+                                        </TouchableOpacity>
+                                    </Left>
+                                </CardItem>
+                            </KeyboardAvoidingView>
                         </View>
                     </View>
                 </Modal>
-
             </Container>
         );
     }

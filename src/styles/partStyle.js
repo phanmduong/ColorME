@@ -99,11 +99,15 @@ const part = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    wrapperCommentInModal:{
+        height: size.hei * 0.7 - 90,
+        backgroundColor: 'blue'
+    },
 
     modalComment:{
         borderRadius: 10,
-        width: size.wid - size.wid * 0.1,
-        height: size.hei - size.hei * 0.4,
+        width: size.wid * 0.9,
+        height: size.hei * 0.7,
         backgroundColor: color.backGround,
     },
 
@@ -544,6 +548,12 @@ const part = StyleSheet.create({
         borderBottomWidth: 0.5,
         borderColor: color.icon,
     },
+    cardTopInModal: {
+        backgroundColor: color.none,
+        height : 40,
+        borderBottomWidth: 0.5,
+        borderColor: color.icon,
+    },
     cardProgress: {
         margin: 5,
     },
@@ -559,8 +569,16 @@ const part = StyleSheet.create({
     cardBottom: {
         width: size.wid,
         flexDirection: 'row',
-        height: 70,
+        height: 50,
         backgroundColor: color.backGround,
+        bottom: 0,
+    },
+
+    cardBottomInModal: {
+        width: size.wid * 0.9,
+        flexDirection: 'row',
+        height: 50,
+        backgroundColor: color.none,
         bottom: 0,
     },
 

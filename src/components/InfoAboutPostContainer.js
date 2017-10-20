@@ -344,7 +344,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                     <CardItem style={part.cardBottom}>
                         <Left>
                             <Thumbnail small
-                                       style={part.avatarUserNormal}
+                                       style={part.avatarUserSmall}
                                        source={{uri: this.props.user.avatar_url}}/>
                             <Body>
                             <Item rounded>
