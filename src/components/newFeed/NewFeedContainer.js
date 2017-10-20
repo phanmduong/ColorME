@@ -35,10 +35,11 @@ class newFeedComponent extends Component {
     }
 
     onValueChange(value: string) {
-        this.setState({page_id: 1});
-        this.setState({typeView: value});
-        this.props.products = [];
-        this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
+        this.setState({
+            typeView: value,
+            listPost: [],
+        });
+        this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
     }
 
     viewList() {
@@ -62,7 +63,7 @@ class newFeedComponent extends Component {
             let post = nextProps.products;
             let item = false;
             for (var i = this.props.products.length; i < post.length; i++) {
-                let key = {key : i}
+                let key = {key: i}
                 let arr1 = Object.assign(post[i], key)
                 let likers = post[i].likers.filter((liker) => {
                     return liker.username == nextProps.user.username
@@ -176,64 +177,119 @@ class newFeedComponent extends Component {
                     </Item>
                 </View>
 
-                <Content
-                    showsVerticalScrollIndicator={false}
-                    onMomentumScrollEnd={
-                        () => {
-                            this.getMoreNewFeed();
-                        }
-                    }
+                <View
+                    // onMomentumScrollEnd={
+                    //     () => {
+                    //         this.getMoreNewFeed();
+                    //     }
+                    // }
                     style={[part.padding, part.marginTop]}
-                    refreshControl={
-                        <RefreshControl
-                            refreshing={this.props.isRefreshing}
-                            onRefresh={() => {
-                                this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
-                            }}
-                        />
-                    }
+                    // refreshControl={
+                    //     <RefreshControl
+                    //         refreshing={this.props.isRefreshing}
+                    //         onRefresh={() => {
+                    //             this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
+                    //         }}
+                    //     />
+                    // }
                 >
                     {
                         (this.state.grid)
                             ?
                             (
-                                <View style={[part.wrapperGrid]}>
-                                    <View style={part.featureWrapper}>
-                                        <TouchableOpacity
-                                            style={part.shadow}
-                                            onPress={() =>
-                                                navigate('ThePostInNewFeed',
-                                                    item.group
-                                                        ?
-                                                        {
-
-                                                        }
-                                                        :
-                                                        {
-                                                        }
-                                                )}
-                                        >
-                                            <FastImage
-                                                style={[part.imageInFeature, part.shadow]}
-                                                source={{uri: 'https://www.w3schools.com/css/trolltunga.jpg'}}
-                                            />
-                                        </TouchableOpacity>
-                                        <View style={part.textInImage}>
-                                            <Text
-                                                numberOfLines={2}
-                                                style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
+                                <FlatList
+                                    showsVerticalScrollIndicator={false}
+                                    onEndReachedThreshold={50}
+                                    onEndReached={() => {
+                                        this.getMoreNewFeed()
+                                    }}
+                                    data={this.state.listPost}
+                                    renderItem={({item}) =>
+                                        <View
+                                            style={(item.url.indexOf('.mp4') === -1 ) ? part.wrapperGridImage : part.wrapperGridVideo}>
+                                            <TouchableOpacity
+                                                style={part.shadow}
+                                                onPress={() =>
+                                                    navigate('ThePostInNewFeed',
+                                                        item.group
+                                                            ?
+                                                            {
+                                                                product_id: item.id,
+                                                                group_name: item.group.name,
+                                                                group_link: item.group.link,
+                                                            }
+                                                            :
+                                                            {
+                                                                product_id: item.id,
+                                                            }
+                                                    )}
                                             >
-                                                Top of the day
-                                            </Text>
+
+                                                {
+                                                    (item.url.indexOf('.mp4') === -1 ) ?
+                                                        <FastImage
+                                                            style={[part.imageInGrid, part.shadow]}
+                                                            source={{uri: item.thumb_url}}
+                                                        />
+                                                        :
+                                                        <Video
+                                                            repeat
+                                                            rate={1.0}    // 0 is paused, 1 is normal.
+                                                            volume={1.0}  // 0 is muted, 1 is normal.
+                                                            muted={true}  // Mutes the audio entirely.
+                                                            paused={false}
+                                                            resizeMode={'cover'}
+                                                            style={[part.videoInGrid, part.shadow]}
+                                                            source={{uri: item.url}}
+                                                        />
+                                                }
+                                            </TouchableOpacity>
                                         </View>
-                                    </View>
-                                    {
-                                        this.props.products.map((item, i) => {
-                                            return (
-                                                <View key={i}
-                                                      style={(item.url.indexOf('.mp4') === -1 ) ? part.wrapperGridImage : part.wrapperGridVideo}>
+                                    }/>
+                            )
+                            :
+                            (
+                                <FlatList
+                                    showsVerticalScrollIndicator={false}
+                                    onEndReachedThreshold={50}
+                                    onEndReached={() => {
+                                        this.getMoreNewFeed()
+                                    }}
+                                    data={this.state.listPost}
+                                    renderItem={({item}) => {
+                                        let {arrayLike} = this.state;
+                                        let {likeCount} = this.state;
+                                        let colorIcon = arrayLike[item.key] ? color.main : color.icon;
+                                        return (
+                                            <Card key={item.key} style={part.card}>
+                                                <CardItem header style={part.cardHeader}>
+                                                    <Left>
+                                                        <TouchableOpacity
+                                                            onPress={() => navigate('UserInNewFeed', {username: item.author.username})}>
+                                                            <Thumbnail circle small
+                                                                       source={{uri: item.author.avatar_url}}/>
+                                                        </TouchableOpacity>
+                                                        <Body>
+                                                        <Text
+                                                            onPress={() => navigate('UserInNewFeed', {username: item.author.username})}
+                                                            style={part.titleSmallBlue}>
+                                                            {item.author.name}
+                                                        </Text>
+                                                        <Text
+                                                            style={part.describeItalicDark}>{item.created_at}</Text>
+                                                        </Body>
+                                                        <TouchableOpacity transparent>
+                                                            <Icon name="materialCommunity|dots-horizontal"
+                                                                  color={color.icon}
+                                                                  size={size.icon}
+                                                                  style={part.paddingRight}
+                                                            />
+                                                        </TouchableOpacity>
+                                                    </Left>
+                                                </CardItem>
+                                                {/*PHOTO*/}
+                                                <CardItem cardBody style={part.card}>
                                                     <TouchableOpacity
-                                                        style={part.shadow}
                                                         onPress={() =>
                                                             navigate('ThePostInNewFeed',
                                                                 item.group
@@ -249,197 +305,110 @@ class newFeedComponent extends Component {
                                                                     }
                                                             )}
                                                     >
+                                                        <Body>
                                                         {
-                                                            (item.url.indexOf('.mp4') === -1 ) ?
-                                                                <FastImage
-                                                                    style={[part.imageInGrid, part.shadow]}
-                                                                    source={{uri: item.thumb_url}}
-                                                                />
+                                                            (item.url.indexOf('.mp4') === -1)
+                                                                ?
+                                                                (
+                                                                    <FastImage
+                                                                        resizeMode={'cover'}
+                                                                        source={{
+                                                                            uri: item.image_url,
+                                                                            headers: {Authorization: 'Đang tải..'},
+                                                                        }}
+                                                                        style={[part.shadow, part.image]}
+                                                                    />
+                                                                )
                                                                 :
-                                                                <Video
-                                                                    repeat
-                                                                    rate={1.0}    // 0 is paused, 1 is normal.
-                                                                    volume={1.0}  // 0 is muted, 1 is normal.
-                                                                    muted={true}  // Mutes the audio entirely.
-                                                                    paused={false}
-                                                                    resizeMode={'cover'}
-                                                                    style={[part.videoInGrid, part.shadow]}
-                                                                    source={{uri: item.url}}
-                                                                />
+                                                                (
+                                                                    <Video
+                                                                        repeat
+                                                                        rate={1.0}                   // 0 is paused, 1 is normal.
+                                                                        volume={1.0}                 // 0 is muted, 1 is normal.
+                                                                        muted={true}                 // Mutes the audio entirely.
+                                                                        paused={false}
+                                                                        resizeMode={'cover'}
+                                                                        source={{uri: item.url}}
+                                                                        style={[part.video, part.shadow]}
+                                                                    />
+                                                                )
                                                         }
-                                                    </TouchableOpacity>
-                                                </View>
-
-                                            )
-                                        })
-                                    }
-
-                                </View>
-                            )
-                            :
-                            (
-                                <Content>
-                                    <FlatList
-                                        onEndReachedThreshold={5}
-                                        onEndReached={() => {
-                                        }}
-                                        data={this.state.listPost}
-                                        renderItem={({item}) => {
-                                            let {arrayLike} = this.state;
-                                            let {likeCount} = this.state;
-                                            let colorIcon = arrayLike[item.key] ? color.main : color.icon;
-                                            return (
-                                                <Card key={item.key} style={part.card}>
-                                                    <CardItem header style={part.cardHeader}>
-                                                        <Left>
-                                                            <TouchableOpacity
-                                                                onPress={() => navigate('UserInNewFeed', {username: item.author.username})}>
-                                                                <Thumbnail circle small
-                                                                           source={{uri: item.author.avatar_url}}/>
-                                                            </TouchableOpacity>
-                                                            <Body>
+                                                        <View style={part.textInImage}>
                                                             <Text
-                                                                onPress={() => navigate('UserInNewFeed', {username: item.author.username})}
-                                                                style={part.titleSmallBlue}>
-                                                                {item.author.name}
+                                                                numberOfLines={2}
+                                                                style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
+                                                            >
+                                                                {item.title}
                                                             </Text>
                                                             <Text
-                                                                style={part.describeItalicDark}>{item.created_at}</Text>
-                                                            </Body>
-                                                            <TouchableOpacity transparent>
-                                                                <Icon name="materialCommunity|dots-horizontal"
-                                                                      color={color.icon}
-                                                                      size={size.icon}
-                                                                      style={part.paddingRight}
-                                                                />
-                                                            </TouchableOpacity>
-                                                        </Left>
-                                                    </CardItem>
-
-                                                    {/*PHOTO*/}
-                                                    <CardItem cardBody style={part.card}>
-                                                        <TouchableOpacity
-                                                            onPress={() =>
-                                                                navigate('ThePostInNewFeed',
-                                                                    item.group
-                                                                        ?
-                                                                        {
-                                                                            product_id: item.id,
-                                                                            group_name: item.group.name,
-                                                                            group_link: item.group.link,
-                                                                        }
-                                                                        :
-                                                                        {
-                                                                            product_id: item.id,
-                                                                        }
-                                                                )}
-                                                        >
-                                                            <Body>
-                                                            {
-                                                                (item.url.indexOf('.mp4') === -1)
-                                                                    ?
-                                                                    (
-                                                                        <FastImage
-                                                                            resizeMode={'cover'}
-                                                                            source={{
-                                                                                uri: item.image_url,
-                                                                                headers: {Authorization: 'Đang tải..'},
-                                                                            }}
-                                                                            style={[part.shadow, part.image]}
-                                                                        />
-                                                                    )
-                                                                    :
-                                                                    (
-                                                                        <Video
-                                                                            repeat
-                                                                            rate={1.0}                   // 0 is paused, 1 is normal.
-                                                                            volume={1.0}                 // 0 is muted, 1 is normal.
-                                                                            muted={true}                 // Mutes the audio entirely.
-                                                                            paused={false}
-                                                                            resizeMode={'cover'}
-                                                                            source={{uri: item.url}}
-                                                                            style={[part.video, part.shadow]}
-                                                                        />
-                                                                    )
-                                                            }
-
-                                                            <View style={part.textInImage}>
-                                                                <Text
-                                                                    numberOfLines={2}
-                                                                    style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
-                                                                >
-                                                                    {item.title}
-                                                                </Text>
-                                                                <Text
-                                                                    numberOfLines={2}
-                                                                    style={[{paddingLeft: 15}, part.describeInImage]}
-                                                                >
-                                                                    {item.description}
-                                                                </Text>
-                                                            </View>
-                                                            </Body>
-                                                        </TouchableOpacity>
-                                                    </CardItem>
-
-                                                    {/*LIKE COMMENT VIEWS*/}
-                                                    <CardItem footer style={part.cardFooter}>
-                                                        <Left>
-                                                                <Button
-                                                                    transparent style={part.paddingRight}
-                                                                    onPress={arrayLike[item.key] ? () => this.unlikePost(item.id, this.props.token, item.key) : () => this.likePost(item.id, this.props.token, item.key)}
-                                                                >
-                                                                    <Icon name="fontawesome|heart" size={size.iconBig}
-                                                                          color={colorIcon}/>
-                                                                    <Text
-                                                                        style={[part.describeGray, part.paddingLeft]}>{likeCount[item.key]}</Text>
-                                                                </Button>
-                                                            <Button transparent style={part.paddingRight}
-                                                                    onPress={() =>
-                                                                        navigate('Comment', {
-                                                                            product_id: item.id,
-                                                                            group_name: item.group.name,
-                                                                            group_link: item.group.link,
-                                                                        })}
+                                                                numberOfLines={2}
+                                                                style={[{paddingLeft: 15}, part.describeInImage]}
                                                             >
-                                                                <Icon name="fontawesome|comments-o" size={size.iconBig}
-                                                                      color={color.icon}/>
-                                                                <Text
-                                                                    style={[part.describeGray, part.paddingLeft]}>{item.comments_count}</Text>
-                                                            </Button>
-                                                            <Button transparent style={part.paddingRight}>
-                                                                <Icon name="fontawesome|eye" size={size.iconBig}
-                                                                      color={color.icon}/>
-                                                                <Text
-                                                                    style={[part.describeGray, part.paddingLeft]}>{item.views_count}</Text>
-                                                            </Button>
-                                                        </Left>
-
-                                                    </CardItem>
-
-                                                    {/*HEART BIG BUTTON*/}
-                                                    <TouchableOpacity style={[part.iconLikeInImage, part.shadow]}>
-                                                        <Icon name="fontawesome|heart-o"
-                                                              size={20}
-                                                              color={color.navTitle}/>
+                                                                {item.description}
+                                                            </Text>
+                                                        </View>
+                                                        </Body>
                                                     </TouchableOpacity>
-                                                </Card>
-                                            )
-                                        }}
-                                    />
-                                </Content>
+                                                </CardItem>
+
+                                                {/*LIKE COMMENT VIEWS*/}
+                                                <CardItem footer style={part.cardFooter}>
+                                                    <Left>
+                                                        <Button
+                                                            transparent style={part.paddingRight}
+                                                            onPress={arrayLike[item.key] ? () => this.unlikePost(item.id, this.props.token, item.key) : () => this.likePost(item.id, this.props.token, item.key)}
+                                                        >
+                                                            <Icon name="fontawesome|heart" size={size.iconBig}
+                                                                  color={colorIcon}/>
+                                                            <Text
+                                                                style={[part.describeGray, part.paddingLeft]}>{likeCount[item.key]}</Text>
+                                                        </Button>
+                                                        <Button transparent style={part.paddingRight}
+                                                                onPress={() =>
+                                                                    navigate('Comment', {
+                                                                        product_id: item.id,
+                                                                        group_name: item.group.name,
+                                                                        group_link: item.group.link,
+                                                                    })}
+                                                        >
+                                                            <Icon name="fontawesome|comments-o" size={size.iconBig}
+                                                                  color={color.icon}/>
+                                                            <Text
+                                                                style={[part.describeGray, part.paddingLeft]}>{item.comments_count}</Text>
+                                                        </Button>
+                                                        <Button transparent style={part.paddingRight}>
+                                                            <Icon name="fontawesome|eye" size={size.iconBig}
+                                                                  color={color.icon}/>
+                                                            <Text
+                                                                style={[part.describeGray, part.paddingLeft]}>{item.views_count}</Text>
+                                                        </Button>
+                                                    </Left>
+                                                </CardItem>
+                                                {/*HEART BIG BUTTON*/}
+                                                <TouchableOpacity style={[part.iconLikeInImage, part.shadow]}>
+                                                    <Icon name="fontawesome|heart-o"
+                                                          size={20}
+                                                          color={color.navTitle}/>
+                                                </TouchableOpacity>
+
+                                            </Card>
+
+                                        )
+                                    }}
+                                />
                             )
                     }
 
-                    {
-                        this.props.isLoading
-                            ?
-                            <View style={part.wrapperContainer}>
-                                <Spinner color={color.gray}/>
-                            </View>
-                            :
-                            <View/>
-                    }
-                </Content>
+                </View>
+                {
+                    this.props.isLoading
+                        ?
+                        <View style={[part.wrapperContainer, {height: 30, marginBottom: -30}]}>
+                            <Spinner color={color.gray}/>
+                        </View>
+                        :
+                        <View/>
+                }
             </Container>
         );
     }

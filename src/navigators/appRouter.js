@@ -101,7 +101,6 @@ export const StackNavigatorStyle = {
 };
 
 export const HomeStackStyle = {
-
     navigationOptions: ({navigation}) => ({
         headerStyle: {
             backgroundColor: color.navTabBar,

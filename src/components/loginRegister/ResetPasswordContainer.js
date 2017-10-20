@@ -62,7 +62,7 @@ export default class ResetPasswordComponent extends Component {
                                     style={styles.buttonRegister}
                                     onPress={() => this.props.navigation.navigate('LoginComponent')}
                                 >
-                                    <Text style={styles.textButton}>Xác nhận và đăng nhập </Text>
+                                    <Text style={styles.textButton}>Xác nhận</Text>
                                 </TouchableOpacity>
                             </Item>
                         </View>

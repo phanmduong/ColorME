@@ -1,5 +1,6 @@
 import * as types from '../constants/actionTypes';
 import * as inforAboutPostApi from '../apis/InfoAboutPostApi';
+
 export function beginGetFullInfoAboutOnePost() {
     return {
         type: types.BEGIN_GET_FULL_INFO_ABOUT_ONE_POST,
@@ -8,6 +9,14 @@ export function beginGetFullInfoAboutOnePost() {
         result: false,
     }
 }
+
+export function beginPostComment() {
+    return {
+        type: types.BEGIN_POST_COMMENT,
+        statusPostComment: 2,
+    }
+}
+
 
 export function getFullInfoAboutOnePostSuccess(response) {
     return {
@@ -26,7 +35,15 @@ export function getCommentOnePostSuccess(response) {
         isLoading: false,
         error: false,
         result: true,
-        comments : response.data.comments,
+        comments: response.data.comments,
+    }
+}
+
+export function postCommentSuccess() {
+    return {
+        type: types.POST_COMMENT_SUCCESS,
+        statusPostComment: 1,
+
     }
 }
 
@@ -39,6 +56,14 @@ export function getFullInfoAboutOnePostError() {
     }
 }
 
+export function postCommentError() {
+    return {
+        type: types.POST_COMMENT_ERROR,
+        statusPostComment: 0,
+
+    }
+}
+
 export function getFullInfoAboutOnePostOfUser(product_id) {
     return (dispatch) => {
         dispatch(beginGetFullInfoAboutOnePost());
@@ -46,10 +71,9 @@ export function getFullInfoAboutOnePostOfUser(product_id) {
             .then(function (response) {
                 dispatch(getFullInfoAboutOnePostSuccess(response));
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 dispatch(getFullInfoAboutOnePostError(error));
             })
-
     }
 }
 
@@ -60,8 +84,23 @@ export function getCommentOnePost(product_id) {
             .then(function (response) {
                 dispatch(getCommentOnePostSuccess(response));
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 dispatch(getFullInfoAboutOnePostError(error));
+            })
+
+    }
+}
+
+export function postCommentOnePost(product_id, token, value) {
+    return (dispatch) => {
+        dispatch(beginPostComment());
+        inforAboutPostApi.postCommentOnePostApi(product_id, token, value)
+            .then(function (response) {
+                dispatch(postCommentSuccess(response));
+                console.log(response);
+            })
+            .catch(function (error) {
+                dispatch(postCommentError(error));
             })
 
     }

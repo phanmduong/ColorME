@@ -22,11 +22,17 @@ class RegisterComponent extends Component {
     }
 
     register(value) {
-        this.props.registerAction.registerUser(value);
+        if (this.state.email === '' || this.state.name === '' || this.state.username === '' || this.state.password === '')
+        {
+            Alert.alert('Bạn chưa nhập đủ thông tin.');
+        } else {
+            this.props.registerAction.registerUser(value);
+        }
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.status === 200) {
+        if (nextProps.status === 200 ) {
+            Alert.alert("Đăng ký thành công.");
             this.props.navigation.navigate('LoginComponent');
         }
         if (nextProps.error) {
@@ -45,7 +51,7 @@ class RegisterComponent extends Component {
                     <Text style={styles.textME}>ME</Text>
                 </View>
                 <Container style={styles.midContainerLogin}>
-                    <Container style={[styles.contentForm, {height: 370}]}>
+                    <Container style={[styles.contentForm, {height: 300}]}>
                         <Text style={styles.textTitleInput}>EMAIL</Text>
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
@@ -53,7 +59,7 @@ class RegisterComponent extends Component {
                                        color={color.darkGray}
                                        autoCorrect={false}
                                        onChangeText={(email) => {
-                                           this.setState({email});
+                                           this.setState({email : email});
                                        }}
                                 />
                             </Item>
@@ -64,7 +70,7 @@ class RegisterComponent extends Component {
                                 <Input style={part.inputTheme02}
                                        color={color.darkGray}
                                        onChangeText={(name) => {
-                                           this.setState({name})
+                                           this.setState({name : name})
                                        }}
                                 />
                             </Item>
@@ -75,19 +81,19 @@ class RegisterComponent extends Component {
                                 <Input style={part.inputTheme02}
                                        color={color.darkGray}
                                        onChangeText={(username) => {
-                                           this.setState({username})
+                                           this.setState({username : username})
                                        }}
                                 />
                             </Item>
                         </View>
                         <Text style={styles.textTitleInput}>PASSWORD</Text>
-                        <View style={[styles.wrapperRegister, {marginBottom: 5}]}>
+                        <View style={[styles.wrapperRegister, {marginBottom: 10}]}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
                                        color={color.darkGray}
                                        secureTextEntry={true}
                                        onChangeText={(password) => {
-                                           this.setState({password})
+                                           this.setState({password : password})
                                        }}
                                 />
                             </Item>

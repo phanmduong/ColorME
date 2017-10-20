@@ -6,7 +6,7 @@ export function register(register) {
     return axios.post(url,{
         name : register.name,
         email : register.email,
-        username : register.userName,
+        username : register.username,
         password : register.password,
     });
 }

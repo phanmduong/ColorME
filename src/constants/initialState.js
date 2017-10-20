@@ -34,6 +34,7 @@ export default {
         isLoading: false,
         error: false,
         result: false,
+        statusPostComment: '',
     },
     userInformation : {
         isLoadingUserProfile: false,

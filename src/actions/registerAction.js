@@ -31,9 +31,11 @@ export function registerUser(register){
         registerApi.register(register)
             .then(function(response) {
                 dispatch(registerSuccess(response))
+                console.log(response)
             })
             .catch(function (error) {
-                dispatch(registerError(error))
+                dispatch(registerError(error));
+                console.log(error)
             })
     }
 }

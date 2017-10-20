@@ -1,11 +1,10 @@
-
 import * as types from '../constants/actionTypes';
 import initialState from '../constants/initialState';
 
 export default function getFullInfoAboutOnePostReducer(state = initialState.getFullInfoAboutOnePost, action) {
     switch (action.type) {
         case types.BEGIN_GET_FULL_INFO_ABOUT_ONE_POST:
-            return{
+            return {
                 ...state,
                 ...{
                     isLoading: action.isLoading,
@@ -13,9 +12,17 @@ export default function getFullInfoAboutOnePostReducer(state = initialState.getF
                 }
             }
 
+        case types.BEGIN_POST_COMMENT:
+            return {
+                ...state,
+                ...{
+                    statusPostComment: action.statusPostComment
+                }
+            }
+
 
         case types.GET_FULL_INFO_ABOUT_ONE_POST_SUCCESS:
-            return{
+            return {
                 ...state,
                 ...{
                     isLoading: action.isLoading,
@@ -25,7 +32,7 @@ export default function getFullInfoAboutOnePostReducer(state = initialState.getF
                 }
             }
         case types.GET_COMMENTS_POST_SUCCESS:
-            return{
+            return {
                 ...state,
                 ...{
                     isLoading: action.isLoading,
@@ -34,14 +41,30 @@ export default function getFullInfoAboutOnePostReducer(state = initialState.getF
                     result: action.result,
                 }
             }
+        case types.POST_COMMENT_SUCCESS:
+            return {
+                ...state,
+                ...{
+                    statusPostComment: action.statusPostComment
+                }
+            }
 
-        case types.GET_FULL_INFO_ABOUT_ONE_POST_ERROR:{
-            return{
+        case types.GET_FULL_INFO_ABOUT_ONE_POST_ERROR: {
+            return {
                 ...state,
                 ...{
                     isLoading: action.isLoading,
                     error: action.error,
-                    result : action.result
+                    result: action.result
+                }
+            }
+        }
+
+        case types.POST_COMMENT_ERROR: {
+            return {
+                ...state,
+                ...{
+                    statusPostComment: action.statusPostComment
                 }
             }
         }

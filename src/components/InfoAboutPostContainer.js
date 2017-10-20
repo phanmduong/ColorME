@@ -25,14 +25,16 @@ class getFullInfoAboutOnePostComponent extends Component {
             colors: [],
             likeCount: 0,
             liked: false,
-            Height: 500,
-
+            parent_id: 0,
+            comment_content: '',
+            listComment: [],
         }
     }
 
     componentWillMount() {
-        this.props.getFullInfoAboutOnePostAction.getFullInfoAboutOnePostOfUser(this.props.navigation.state.params.product_id)
-        this.props.getFullInfoAboutOnePostAction.getCommentOnePost(this.props.navigation.state.params.product_id)
+        const {params} = this.props.navigation.state;
+        this.props.getFullInfoAboutOnePostAction.getFullInfoAboutOnePostOfUser(params.product_id);
+        this.props.getFullInfoAboutOnePostAction.getCommentOnePost(params.product_id);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -77,6 +79,12 @@ class getFullInfoAboutOnePostComponent extends Component {
             liked = !liked;
         }
         this.setState({likeCount: likeCount, liked: liked});
+    }
+
+    commentPost(product_id, token, value) {
+        this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
+
+        this.setState({listComment: this.props.comments});
     }
 
     render() {
@@ -336,9 +344,9 @@ class getFullInfoAboutOnePostComponent extends Component {
                 <KeyboardAvoidingView behavior={'position'}>
                     <CardItem style={part.cardBottom}>
                         <Left>
-                            <Image
-                                style={part.avatarUserNormal}
-                                source={{uri: this.props.user.avatar_url}}/>
+                            <Thumbnail small
+                                       style={part.avatarUserNormal}
+                                       source={{uri: this.props.user.avatar_url}}/>
                             <Body>
                             <Item rounded>
                                 <Input
@@ -346,6 +354,11 @@ class getFullInfoAboutOnePostComponent extends Component {
                                     autoCorrect={false}
                                     placeholderTextColor={color.icon}
                                     style={part.inputTheme01}
+                                    onChangeText={
+                                        (text) => {
+                                            this.setState({comment_content: text})
+                                        }
+                                    }
                                 />
                                 <TouchableOpacity>
                                     <Icon active name='fontawesome|camera-retro'
@@ -358,7 +371,9 @@ class getFullInfoAboutOnePostComponent extends Component {
                             </Item>
 
                             </Body>
-                            <TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => this.commentPost(params.product_id, this.props.token, this.state)}
+                            >
                                 <Icon active name='fontawesome|comment-o'
                                       size={size.iconBig}
                                       color={color.icon}
@@ -376,6 +391,7 @@ class getFullInfoAboutOnePostComponent extends Component {
 
 function mapStateToProps(state) {
     return {
+        token: state.login.token,
         user: state.login.user,
         post: state.getFullInfoAboutOnePost.post,
         comments: state.getFullInfoAboutOnePost.comments,

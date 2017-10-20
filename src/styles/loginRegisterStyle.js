@@ -40,11 +40,12 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     textTitleInput: {
+        fontSize: 13,
         backgroundColor: color.none,
         paddingLeft: 25,
         marginTop: 25,
         color: color.main,
-        fontWeight: (Platform.OS === 'ios') ? '900' : 'normal',
+        fontWeight: (Platform.OS === 'ios') ? '700' : 'normal',
     },
     inputGroup: {
         borderColor: color.none,
@@ -92,10 +93,12 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     textAccept: {
+        fontSize: 12,
         color: color.gray,
         fontWeight: 'bold',
     },
     textBottom: {
+        fontSize: 12,
         color: color.darkGray,
         fontWeight: '600',
     },
@@ -109,9 +112,10 @@ const styles = StyleSheet.create({
         fontSize: size.describeSmall,
     },
     textButton: {
+        fontWeight: '500',
         justifyContent: 'center',
         alignItems: 'center',
-        color: 'white',
+        color: color.navTitle,
         fontSize: 13,
         fontFamily: 'Verdana-Bold'
     },

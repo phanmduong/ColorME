@@ -57,17 +57,6 @@ class groupComponent extends Component {
 
                             </View>
                             <View style={[part.iconInDrawer, {zIndex: 500}]}>
-                                <Left>
-                                    <TouchableOpacity style={part.padding}
-                                                      onPress={() => goBack(null)}
-                                    >
-                                        <Icon name="entypo|chevron-thin-left"
-                                              size={size.iconBig}
-                                              color={color.navTitle}
-                                              style={{zIndex: 100}}
-                                        />
-                                    </TouchableOpacity>
-                                </Left>
                                 <Right style={{left: 10}}>
                                     <TouchableOpacity
                                     >
