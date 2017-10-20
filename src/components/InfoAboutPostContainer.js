@@ -55,7 +55,8 @@ class getFullInfoAboutOnePostComponent extends Component {
         }
         this.setState({
             liked: liked,
-            likeCount: nextProps.post.likes_count
+            listComment: nextProps.comments,
+            likeCount: nextProps.post.likes_count,
         })
     }
 
@@ -83,7 +84,6 @@ class getFullInfoAboutOnePostComponent extends Component {
 
     commentPost(product_id, token, value) {
         this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
-
         this.setState({listComment: this.props.comments});
     }
 
@@ -321,7 +321,6 @@ class getFullInfoAboutOnePostComponent extends Component {
 
                                                     <View
                                                         style={[{flexDirection: 'row'}, part.paddingLine]}>
-
                                                     </View>
                                                     </Body>
                                                     <TouchableOpacity transparent>

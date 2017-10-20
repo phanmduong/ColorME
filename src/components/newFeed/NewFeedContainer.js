@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    FlatList, TouchableOpacity, Image, StatusBar, View, RefreshControl
+    FlatList, TouchableOpacity, StatusBar, View, RefreshControl, Modal, PanResponder
 } from 'react-native';
 import {
     Container, Header, Content, Card, CardItem, Item, Picker,
@@ -12,10 +12,10 @@ import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
 import * as getNewFeedAction from '../../actions/newFeedAction';
+import * as likePostAction from '../../actions/likePostAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as likePostAction from '../../actions/likePostAction'
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 class newFeedComponent extends Component {
     constructor() {
@@ -30,7 +30,26 @@ class newFeedComponent extends Component {
             data: [],
             check: 0,
             refreshing: false,
-            clicked: ''
+            clicked: '',
+            modalVisible: false,
+
+        }
+    }
+    componentWillMount() {
+        this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
+        this.panResponder = PanResponder.create({
+            onStartShouldSetPanResponder:(event, gestureState) => true,
+            onPanResponderGrant:this._onPanResponderGrant.bind(this),
+        })
+    }
+
+    setCommentModalVisible(visible) {
+        this.setState({modalVisible: visible});
+    }
+
+    _onPanResponderGrant(event, gestureState){
+        if(event.nativeEvent.locationX === event.nativeEvent.pageX){
+            this.setState({modalVisible: false});
         }
     }
 
@@ -56,7 +75,7 @@ class newFeedComponent extends Component {
 
     // setup
     componentWillReceiveProps(nextProps) {
-        if ((nextProps.isLoading != this.props.isLoading && !nextProps.isLoading) || (nextProps.isRefreshing != this.props.isRefreshing && !nextProps.isRefreshing)) {
+        if ((nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading) || (nextProps.isRefreshing !== this.props.isRefreshing && !nextProps.isRefreshing)) {
             let arr = this.state.arrayLike;
             let listPost = this.state.listPost;
             let count = this.state.likeCount;
@@ -66,9 +85,9 @@ class newFeedComponent extends Component {
                 let key = {key: i}
                 let arr1 = Object.assign(post[i], key)
                 let likers = post[i].likers.filter((liker) => {
-                    return liker.username == nextProps.user.username
+                    return liker.username === nextProps.user.username
                 });
-                if (likers.length == 0) {
+                if (likers.length === 0) {
                     item = false;
                 } else {
                     item = true;
@@ -81,9 +100,7 @@ class newFeedComponent extends Component {
         }
     }
 
-    componentWillMount() {
-        this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
-    }
+
 
     // Function
     getMoreNewFeed() {
@@ -178,11 +195,6 @@ class newFeedComponent extends Component {
                 </View>
 
                 <View
-                    // onMomentumScrollEnd={
-                    //     () => {
-                    //         this.getMoreNewFeed();
-                    //     }
-                    // }
                     style={[part.padding, part.marginTop]}
                     // refreshControl={
                     //     <RefreshControl
@@ -365,11 +377,8 @@ class newFeedComponent extends Component {
                                                         </Button>
                                                         <Button transparent style={part.paddingRight}
                                                                 onPress={() =>
-                                                                    navigate('Comment', {
-                                                                        product_id: item.id,
-                                                                        group_name: item.group.name,
-                                                                        group_link: item.group.link,
-                                                                    })}
+                                                                    this.setCommentModalVisible(true)
+                                                                }
                                                         >
                                                             <Icon name="fontawesome|comments-o" size={size.iconBig}
                                                                   color={color.icon}/>
@@ -409,6 +418,25 @@ class newFeedComponent extends Component {
                         :
                         <View/>
                 }
+
+                <Modal
+                    presentationStyle="overFullScreen"
+                    animationType="fade"
+                    transparent={true}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => {
+                        alert("Modal has been closed.")
+                    }}
+                >
+                    <View style={part.wrapperModalComment}
+                          {...this.panResponder.panHandlers}
+                    >
+                        <View style={part.modalComment}>
+
+                        </View>
+                    </View>
+                </Modal>
+
             </Container>
         );
     }

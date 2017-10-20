@@ -16,7 +16,7 @@ import CodeIdentityComponent from '../components/loginRegister/CodeIdentityConta
 
 // MAIN SCREEN
 import newFeedComponent from '../components/newFeed/NewFeedContainer';
-import Comment from '../components/newFeed/Comment';
+import Comment from '../components/newFeed/ModalComment';
 import messageComponent from '../components/message/MessageContainer';
 import notificationComponent from '../components/NotificationContainer';
 import AchievementsComponent from '../components/AchievementsContainer';
