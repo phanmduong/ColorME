@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     textTitleInput: {
+        fontFamily: 'Montserrat-Black',
         fontSize: 12,
         backgroundColor: color.none,
         paddingLeft: 25,
