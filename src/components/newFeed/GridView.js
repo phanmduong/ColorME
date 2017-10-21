@@ -18,8 +18,7 @@ class GridView extends Component {
         }
         return false;
     }
-    render() {
-        console.log('render list view');
+    render(){
         let {item} = this.props;
         return (
             <View style={(item.url.indexOf('.mp4') === -1 ) ? part.wrapperGridImage : part.wrapperGridImage}>

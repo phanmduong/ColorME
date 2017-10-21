@@ -56,8 +56,8 @@ class getFullInfoAboutOnePostComponent extends Component {
         }
         this.setState({
             liked: liked,
-            listComment: nextProps.comments,
             likeCount: nextProps.post.likes_count,
+            listComment : nextProps.comments
         })
     }
 
@@ -85,9 +85,22 @@ class getFullInfoAboutOnePostComponent extends Component {
 
     commentPost(product_id, token, value) {
         this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
-        this.setState({listComment: this.props.comments});
-    }
-
+        if(this.props.statusPostComment == 1) {
+            this.props.getFullInfoAboutOnePostAction.getCommentOnePost(product_id);
+        }
+        // let {user} = this.props;
+        // let arr = {
+        //     content : this.state.content,
+        //     commenter : {
+        //         username : user.username,
+        //         avatar_url : user.avatar_url,
+        //         name : user.name,
+        //         created_at : 'Vừa xong'
+        //     }
+        // }
+        // listComment.push(arr);
+        // this.setState({listComment : listComment})
+        }
     render() {
         let {liked, likeCount} = this.state;
         let colorIcon = liked ? color.main : color.icon;
@@ -394,6 +407,7 @@ function mapStateToProps(state) {
         post: state.getFullInfoAboutOnePost.post,
         comments: state.getFullInfoAboutOnePost.comments,
         isLoading: state.getFullInfoAboutOnePost.isLoading,
+        statusPostComment : state.getFullInfoAboutOnePost.statusPostComment
     }
 }
 
