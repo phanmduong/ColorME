@@ -137,6 +137,7 @@ class newFeedComponent extends Component {
         console.log('render');
         console.log(this.state);
         console.log(this.props);
+
         const {navigate} = this.props.navigation;
         return (
             <Container style={part.wrapperContainer}>
@@ -211,6 +212,7 @@ class newFeedComponent extends Component {
                                     onEndReached={() => {
                                     }}
                                     data={this.state.listPost}
+<<<<<<< HEAD
                                     // refreshControl={
                                     //     <RefreshControl
                                     //         refreshing={this.props.isRefreshing}
@@ -219,6 +221,16 @@ class newFeedComponent extends Component {
                                     //         }}
                                     //     />
                                     // }
+=======
+                                    refreshControl={
+                                        <RefreshControl
+                                            refreshing={this.props.isRefreshing}
+                                            onRefresh={() => {
+                                                this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
+                                            }}
+                                        />
+                                    }
+>>>>>>> 4a8b7c63fee99cc3f4489056769a0bcc97b0efae
                                     renderItem={({item}) =>
                                         <View
                                             style={(item.url.indexOf('.mp4') === -1 ) ? part.wrapperGridImage : part.wrapperGridVideo}>
@@ -279,6 +291,14 @@ class newFeedComponent extends Component {
                                     onEndReached={() => {
                                     }}
                                     data={this.state.listPost}
+                                    refreshControl={
+                                        <RefreshControl
+                                            refreshing={this.props.isRefreshing}
+                                            onRefresh={() => {
+                                                this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1);
+                                            }}
+                                        />
+                                    }
                                     renderItem={({item}) => {
                                         let {arrayLike} = this.state;
                                         let {likeCount} = this.state;
