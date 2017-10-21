@@ -215,6 +215,7 @@ class newFeedComponent extends Component {
                                     }}
                                     data={this.state.listPost}
 
+
                                     refreshControl={
                                         <RefreshControl
                                             refreshing={this.props.isRefreshing}
@@ -270,14 +271,6 @@ class newFeedComponent extends Component {
                             :
                             (
                                 <FlatList
-                                    //   refreshControl={
-                                    //    <RefreshControl
-                                    //         refreshing={this.props.isRefreshing}
-                                    //         onRefresh={() => {
-                                    //             this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
-                                    //        }}
-                                    //    />
-                                    // }
                                     showsVerticalScrollIndicator={false}
                                     onEndReachedThreshold={5}
                                     onEndReached={() => {
@@ -305,9 +298,9 @@ class newFeedComponent extends Component {
                                         )
                                     }}
 
-                                />
-                            )
-                    }
+                                    />
+                                    )
+                                    }
 
                 </View>
                 {
