@@ -34,6 +34,8 @@ class newFeedComponent extends Component {
             clicked: '',
         }
         this.isFirst= true;
+        this.likePost = this.likePost.bind(this);
+        this.unlikePost = this.unlikePost.bind(this);
     }
 
     componentWillMount() {
@@ -162,7 +164,7 @@ class newFeedComponent extends Component {
                 />
                 {/*VIEW TYPE*/}
                 <View>
-                    <Item style={[part.itemTab, part.shadow]}>
+                    <Item style={[part.itemTab, {paddingLeft:0}]}>
                         <Left style={{flexDirection: 'row', alignItems: 'center'}}>
                             <Picker
                                 itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
@@ -195,6 +197,7 @@ class newFeedComponent extends Component {
                             <Icon name="entypo|triangle-down"
                                   color={color.darkGray}
                                   size={size.icon * 2 / 3}
+                                  style={{marginLeft: -10}}
                             />
                         </Left>
                         <Right style={part.rightTab}>
@@ -219,7 +222,6 @@ class newFeedComponent extends Component {
                 </View>
 
                 <View>
-
                     { (!this.props.isLoading || this.state.listPost.length > 0) && (
                         (this.state.grid)
                             ?
@@ -296,6 +298,9 @@ class newFeedComponent extends Component {
                                         let colorIcon = arrayLike[item.key] ? color.main : color.icon;
                                         return (
                                             <ListView
+                                                token={this.props.token}
+                                                unlikePost={this.unlikePost}
+                                                likePost={this.likePost}
                                                 user={this.props.user}
                                                 navigation={this.props.navigation}
                                                 arrayLike={this.state.arrayLike}

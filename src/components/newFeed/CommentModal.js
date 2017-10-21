@@ -58,7 +58,7 @@ export default class CommentModal extends Component {
                                         <Icon name="fontawesome|heart" size={12}
                                               color={color.main}/>
                                         <Text
-                                            style={[part.describeGray, part.paddingLeft]}>{this.state.like_in_modal}</Text>
+                                            style={[part.describeGray, part.paddingLeft]}>{this.props.product_id}</Text>
                                     </Button>
                                 </Left>
                             </CardItem>

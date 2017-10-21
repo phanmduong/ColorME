@@ -111,7 +111,7 @@ class topics extends Component {
                                                 </View>
                                             </View>
                                         </CardItem>
-                                        <CardItem footer style={part.cardFooter}>
+                                        <CardItem footer style={[part.cardFooter, {paddingRight:25}]}>
                                             <Left>
                                                 <Right>
                                                     <Text style={[part.describeGray, {right: 0}]}>

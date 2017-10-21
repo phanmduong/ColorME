@@ -45,11 +45,11 @@ class SlideViewComponent extends Component {
                     </View>
                     <View style={part.tabInDrawer}>
                         <Item style={{borderBottomWidth: 0,}}>
-                            <Left>
+                            <Left style={{alignItems: 'center'}}>
                                 <Thumbnail circle large
                                            source={{uri: this.props.user.avatar_url}}/>
                             </Left>
-                            <Body style={{alignItems: 'flex-start', marginLeft: -60}}>
+                            <Body style={{alignItems: 'flex-start'}}>
                             <Text style={part.titleNormalLight}>{this.props.user.name}</Text>
                             <TouchableOpacity style={{flexDirection: 'row'}}
                                               onPress={() => this.logout()}
@@ -67,7 +67,7 @@ class SlideViewComponent extends Component {
 
                     </View>
                 </View>
-                <Item style={[part.itemTab, {marginTop: 20}]}>
+                <Item style={[part.itemTabInDrawer, {marginTop: 20}]}>
                     <Left>
                         <Text style={part.describeDarkGray}>Cài đặt</Text>
                     </Left>
@@ -79,7 +79,7 @@ class SlideViewComponent extends Component {
                         </TouchableOpacity>
                     </Right>
                 </Item>
-                <Item style={[part.itemTab]}>
+                <Item style={[part.itemTabInDrawer]}>
                     <Left>
                         <Text style={part.describeDarkGray}>Đăng ký học</Text>
                     </Left>
@@ -91,7 +91,7 @@ class SlideViewComponent extends Component {
                         </TouchableOpacity>
                     </Right>
                 </Item>
-                <Item style={[part.itemTab]}>
+                <Item style={[part.itemTabInDrawer]}>
                     <Left>
                         <Text style={part.describeDarkGray}>Đổi buổi học</Text>
                     </Left>
@@ -103,7 +103,7 @@ class SlideViewComponent extends Component {
                         </TouchableOpacity>
                     </Right>
                 </Item>
-                <Item style={[part.itemTab]}>
+                <Item style={[part.itemTabInDrawer]}>
                     <Left>
                         <Text style={part.describeDarkGray}>Lịch học</Text>
                     </Left>
@@ -115,7 +115,7 @@ class SlideViewComponent extends Component {
                         </TouchableOpacity>
                     </Right>
                 </Item>
-                <Item style={[part.itemTab]}>
+                <Item style={[part.itemTabInDrawer]}>
                     <Left>
                         <Text style={part.describeDarkGray}>Thành tích</Text>
                     </Left>

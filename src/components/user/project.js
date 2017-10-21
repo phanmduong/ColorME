@@ -18,7 +18,7 @@ class Project extends Component {
         return (
             <Content
                 showsVerticalScrollIndicator={false}
-                style={[part.wrapperContainer, part.padding]}>
+                style={[part.wrapperContainer]}>
                 {
                     (this.props.isLoadingUserProducts)
                         ?

@@ -14,8 +14,8 @@ import * as size from '../../styles/size';
 import FastImage from 'react-native-fast-image';
 import CommentModal from './CommentModal';
 
-class ListView extends Component{
-    constructor(props){
+class ListView extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             modalVisible: false,
@@ -27,10 +27,11 @@ class ListView extends Component{
     }
 
 
-    render(){
+    render() {
         let {item, arrayLike, likeCount, colorIcon} = this.props;
-        return(
-            <Card key={item.key} style={part.card}>
+        let {navigate} = this.props.navigation
+        return (
+            <View key={item.key} style={part.card}>
                 <CardItem header style={part.cardHeader}>
                     <Left>
                         <TouchableOpacity
@@ -57,7 +58,7 @@ class ListView extends Component{
                     </Left>
                 </CardItem>
                 {/*PHOTO*/}
-                <CardItem cardBody style={part.card}>
+                <View style={part.card}>
                     <TouchableOpacity
                         onPress={() =>
                             this.props.navigation.navigate('ThePostInNewFeed',
@@ -74,22 +75,19 @@ class ListView extends Component{
                                     }
                             )}
                     >
-                        <Body>
-                        {
-                            (item.url.indexOf('.mp4') === -1)
-                                ?
-                                (
+                        <View>
+                            {
+                                item.url.indexOf('.mp4') === -1
+                                    ?
                                     <FastImage
                                         resizeMode={'cover'}
                                         source={{
                                             uri: item.image_url,
                                             headers: {Authorization: 'Đang tải..'},
                                         }}
-                                        style={[part.shadow, part.image]}
+                                        style={[part.image]}
                                     />
-                                )
-                                :
-                                (
+                                    :
                                     <Video
                                         repeat
                                         rate={1.0}                   // 0 is paused, 1 is normal.
@@ -98,33 +96,33 @@ class ListView extends Component{
                                         paused={false}
                                         resizeMode={'cover'}
                                         source={{uri: item.url}}
-                                        style={[part.video, part.shadow]}
+                                        style={[part.video]}
                                     />
-                                )
-                        }
-                        <View style={part.textInImage}>
-                            <Text
-                                numberOfLines={2}
-                                style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
-                            >
-                                {item.title}
-                            </Text>
-                            <Text
-                                numberOfLines={2}
-                                style={[{paddingLeft: 15}, part.describeInImage]}
-                            >
-                                {item.description}
-                            </Text>
+                            }
                         </View>
-                        </Body>
                     </TouchableOpacity>
-                </CardItem>
+                    <View stle={part.textInImage}>
+                        <Text
+                            numberOfLines={2}
+                            style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
+                        >
+                            {item.title}
+                        </Text>
+                        <Text
+                            numberOfLines={2}
+                            style={[{paddingLeft: 15}, part.describeInImage]}
+                        >
+                            {item.description}
+                        </Text>
+                    </View>
+
+                </View>
                 {/*LIKE COMMENT VIEWS*/}
                 <CardItem footer style={part.cardFooter}>
                     <Left>
                         <Button
                             transparent style={part.paddingRight}
-                            onPress={arrayLike[item.key] ? () => this.unlikePost(item.id, this.props.token, item.key) : () => this.likePost(item.id, this.props.token, item.key)}
+                            onPress={arrayLike[item.key] ? () => this.props.unlikePost(item.id, this.props.token, item.key) : () => this.props.likePost(item.id, this.props.token, item.key)}
                         >
                             <Icon name="fontawesome|heart" size={size.iconBig}
                                   color={colorIcon}/>
@@ -153,25 +151,15 @@ class ListView extends Component{
                         </Button>
                     </Left>
                 </CardItem>
-                {/*HEART BIG BUTTON*/}
-                <TouchableOpacity style={[part.iconLikeInImage, part.shadow]}
-                                  onPress={arrayLike[item.key] ? () => this.unlikePost(item.id, this.props.token, item.key) : () => this.likePost(item.id, this.props.token, item.key)}
-                >
-                    <Icon name="fontawesome|heart-o"
-                          size={20}
-                          color={color.navTitle}/>
-                </TouchableOpacity>
-
                 <CommentModal
+                    product_id={this.state.product_id}
                     user={this.props.user}
                     modalVisible={this.state.modalVisible}
                 />
-            </Card>
+            </View>
         );
     }
 }
-
-
 
 
 export default ListView;

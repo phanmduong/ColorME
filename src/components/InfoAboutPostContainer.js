@@ -123,7 +123,7 @@ class getFullInfoAboutOnePostComponent extends Component {
 
                                         {/*PHOTO*/}
                                         <CardItem cardBody>
-                                            <View style={part.shadow}>
+                                            <View>
                                                 {
                                                     1
                                                         ?
@@ -174,7 +174,6 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                 </Left>
                                             </View>
                                         </CardItem>
-
 
                                         <CardItem style={[part.cardHeader, {marginTop: 10}]}>
                                             {
@@ -227,11 +226,6 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                     )
                                             }
                                         </CardItem>
-                                        <TouchableOpacity style={[part.iconLikeInImageFullAbout, part.shadow]}>
-                                            <Icon name="fontawesome|heart-o"
-                                                  size={20}
-                                                  color={color.navTitle}/>
-                                        </TouchableOpacity>
                                     </View>
                                     <View style={part.wrapperContainer}>
                                         <CardItem style={part.cardHeader}>

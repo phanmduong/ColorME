@@ -16,7 +16,6 @@ import CodeIdentityComponent from '../components/loginRegister/CodeIdentityConta
 
 // MAIN SCREEN
 import newFeedComponent from '../components/newFeed/NewFeedContainer';
-import Comment from '../components/newFeed/ModalComment';
 import messageComponent from '../components/message/MessageContainer';
 import notificationComponent from '../components/NotificationContainer';
 import AchievementsComponent from '../components/AchievementsContainer';
@@ -74,7 +73,7 @@ export const TabNavigatorBottomStyle = {
         style: {
             height: 40,
             backgroundColor: color.navTitle,
-            borderTopWidth: 0,
+            borderTopWidth: 0.5,
         },
         showLabel: false,
     }
@@ -292,14 +291,6 @@ export const NewFeedStackNavigator = StackNavigator(
         ThePostInNewFeed: {
             screen: ThePostInNewFeed,
             navigationOptions: {
-                header: null,
-                tabBarVisible: false,
-            },
-        },
-        Comment: {
-            screen: Comment,
-            navigationOptions: {
-                mode: 'modal',
                 header: null,
                 tabBarVisible: false,
             },

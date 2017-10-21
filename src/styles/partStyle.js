@@ -13,8 +13,15 @@ const part = StyleSheet.create({
 
     },
     itemTab: {
-        marginLeft: 0,
-        padding: 10,
+        paddingLeft: 10,
+        paddingRight: 10,
+        height: 40,
+        backgroundColor: color.backGround,
+        borderBottomWidth: 0.5,
+    },
+    itemTabInDrawer: {
+        paddingLeft: 10,
+        paddingRight: 10,
         height: 40,
         backgroundColor: color.backGround,
         borderBottomWidth: 0,
@@ -45,6 +52,7 @@ const part = StyleSheet.create({
 
     //WRAPPER
     wrapperContainer: {
+        padding: 0,
         backgroundColor: color.backGround,
     },
     wrapperImageInGetFull: {
@@ -250,11 +258,9 @@ const part = StyleSheet.create({
         borderColor: color.main
     },
     image: {
-        margin: 3,
         height: 400,
-        width: size.wid - 30,
+        width: size.wid,
         flex: 1,
-        borderRadius: 5,
         position: 'relative',
         backgroundColor: color.icon,
     },
@@ -400,7 +406,8 @@ const part = StyleSheet.create({
         textShadowOffset: {width: 1, height: 1},
     },
     textInImage: {
-        width: wid - 40,
+        width: size.wid,
+        padding: 10,
         position: 'absolute',
         backgroundColor: color.none,
         bottom: 20,
@@ -511,25 +518,24 @@ const part = StyleSheet.create({
     listItem: {
         backgroundColor: color.backGround,
         marginLeft: 0,
-        paddingLeft: 15,
+
     },
 
     //Card
     card: {
         position: 'relative',
-        width: size.wid - 10,
+        width: size.wid,
         borderBottomWidth: 0,
         borderColor: color.none,
         shadowColor: color.none,
-        shadowOffset: {width: 0, height: 0},
+
     },
     cardGetFull: {
         position: 'relative',
-        width: size.wid - 10,
+        width: size.wid,
         borderBottomWidth: 0,
         borderColor: color.none,
         shadowColor: color.none,
-        shadowOffset: {width: 0, height: 0},
     },
     cardHeader: {
         margin: 0,
