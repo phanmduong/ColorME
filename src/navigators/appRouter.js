@@ -119,7 +119,7 @@ export const HomeStackStyle = {
         ),
         headerRight: (
             <TouchableOpacity onPress={() => navigation.navigate('')}>
-                <Icon name="materialCommunity|comment-multiple-outline"
+                <Icon name="entypo|chat"
                       color={color.icon}
                       size={size.icon}
                       style={{paddingRight: 10}}

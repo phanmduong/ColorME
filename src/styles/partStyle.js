@@ -62,7 +62,7 @@ const part = StyleSheet.create({
     featureWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: wid - 20,
+        width: size.wid ,
         height: 220,
     },
     wrapperIcon: {
@@ -99,12 +99,12 @@ const part = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    wrapperCommentInModal:{
+    wrapperCommentInModal: {
         height: size.hei * 0.7 - 90,
         backgroundColor: 'blue'
     },
 
-    modalComment:{
+    modalComment: {
         borderRadius: 10,
         width: size.wid * 0.9,
         height: size.hei * 0.7,
@@ -294,21 +294,18 @@ const part = StyleSheet.create({
         position: 'relative',
     },
     imageInGrid: {
-        width: size.wid / 3 - 15,
-        height: size.wid / 3 - 15,
-        borderRadius: 5,
+        width: size.wid / 3 - 2,
+        height: size.wid / 3 - 2,
     },
     videoInGrid: {
         backgroundColor: color.icon,
-        width: size.wid * 2 / 3 - 22,
-        height: size.wid * 2 / 3 - 22,
-        borderRadius: 5,
+        width: size.wid * 2 / 3 - 2,
+        height: size.wid * 2 / 3 - 2,
     },
     imageInFeature: {
         position: 'relative',
-        width: wid - 28,
+        width: size.wid - 2,
         height: 210,
-        borderRadius: 5,
     },
 
     //CONTENT
@@ -544,7 +541,7 @@ const part = StyleSheet.create({
     },
     cardTopInModal: {
         backgroundColor: color.none,
-        height : 40,
+        height: 40,
         borderBottomWidth: 0.5,
         borderColor: color.icon,
     },
@@ -585,14 +582,14 @@ const part = StyleSheet.create({
         flex: 1,
     },
     wrapperGridImage: {
-        width: (size.wid - 20) / 3,
-        height: (size.wid - 20) / 3,
+        width: (size.wid) / 3,
+        height: (size.wid) / 3,
         justifyContent: 'center',
         alignItems: 'center',
     },
     wrapperGridVideo: {
-        width: (size.wid - 20) * 2 / 3,
-        height: (size.wid - 20) * 2 / 3,
+        width: (size.wid ) * 2 / 3,
+        height: (size.wid ) * 2 / 3,
         justifyContent: 'center',
         alignItems: 'center',
     },

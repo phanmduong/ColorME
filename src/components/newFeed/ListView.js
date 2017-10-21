@@ -12,28 +12,35 @@ import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
 import FastImage from 'react-native-fast-image';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import CommentModal from './CommentModal';
 
 class ListView extends Component{
     constructor(props){
-        super(props)
+        super(props);
+        this.state = {
+            modalVisible: false,
+        }
     }
+
+    setCommentModalVisible(visible) {
+        this.setState({modalVisible: visible});
+    }
+
+
     render(){
         let {item, arrayLike, likeCount, colorIcon} = this.props;
-        console.log(item);
         return(
             <Card key={item.key} style={part.card}>
                 <CardItem header style={part.cardHeader}>
                     <Left>
                         <TouchableOpacity
-                            onPress={() => navigate('UserInNewFeed', {username: item.author.username})}>
+                            onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.author.username})}>
                             <Thumbnail circle small
                                        source={{uri: item.author.avatar_url}}/>
                         </TouchableOpacity>
                         <Body>
                         <Text
-                            onPress={() => navigate('UserInNewFeed', {username: item.author.username})}
+                            onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.author.username})}
                             style={part.titleSmallBlue}>
                             {item.author.name}
                         </Text>
@@ -53,7 +60,7 @@ class ListView extends Component{
                 <CardItem cardBody style={part.card}>
                     <TouchableOpacity
                         onPress={() =>
-                            navigate('ThePostInNewFeed',
+                            this.props.navigation.navigate('ThePostInNewFeed',
                                 item.group
                                     ?
                                     {
@@ -131,9 +138,7 @@ class ListView extends Component{
                                         like_in_modal: likeCount[item.key],
                                         product_id: item.id
                                     });
-
-                                }
-                                }
+                                }}
                         >
                             <Icon name="fontawesome|comments-o" size={size.iconBig}
                                   color={color.icon}/>
@@ -156,6 +161,11 @@ class ListView extends Component{
                           size={20}
                           color={color.navTitle}/>
                 </TouchableOpacity>
+
+                <CommentModal
+                    user={this.props.user}
+                    modalVisible={this.state.modalVisible}
+                />
             </Card>
         );
     }
