@@ -31,9 +31,6 @@ class newFeedComponent extends Component {
             arrayLike: [],
             likeCount: [],
             listPost: [],
-            data: [],
-            check: 0,
-            refreshing: false,
             clicked: '',
             modalVisible: false,
         }
@@ -61,7 +58,6 @@ class newFeedComponent extends Component {
     onValueChange(value: string) {
         this.setState({
             typeView: value,
-            listPost: [],
         });
         // this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
     }
@@ -141,7 +137,9 @@ class newFeedComponent extends Component {
 
     render() {
         console.log('render');
-        console.log(this.state)
+        console.log(this.state);
+        console.log(this.props);
+
         const {navigate} = this.props.navigation;
         return (
             <Container style={part.wrapperContainer}>
@@ -216,6 +214,7 @@ class newFeedComponent extends Component {
                                     onEndReached={() => {
                                     }}
                                     data={this.state.listPost}
+
                                     refreshControl={
                                         <RefreshControl
                                             refreshing={this.props.isRefreshing}
@@ -271,6 +270,14 @@ class newFeedComponent extends Component {
                             :
                             (
                                 <FlatList
+                                    //   refreshControl={
+                                    //    <RefreshControl
+                                    //         refreshing={this.props.isRefreshing}
+                                    //         onRefresh={() => {
+                                    //             this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
+                                    //        }}
+                                    //    />
+                                    // }
                                     showsVerticalScrollIndicator={false}
                                     onEndReachedThreshold={5}
                                     onEndReached={() => {
