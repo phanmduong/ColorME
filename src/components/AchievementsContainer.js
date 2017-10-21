@@ -20,7 +20,7 @@ export default class AchievementsComponent extends Component {
                 {
                     this.state.arr.map((item, i) => {
                         return(
-                            <View>
+                            <View key={i}>
                                 <Grid>
                                     <Col style={{backgroundColor: 'red', height: 100, borderWidth:1}}><Text>{item}</Text></Col>
                                     <Col style={{backgroundColor: 'blue', height: 100, borderWidth:1}}><Text>{item}</Text></Col>

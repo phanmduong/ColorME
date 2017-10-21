@@ -22,6 +22,8 @@ class newFeedComponent extends Component {
     constructor() {
         super();
         this.state = {
+            product_id: '',
+            like_in_modal: '',
             grid: true,
             page_id: 2,
             typeView: '',
@@ -33,23 +35,24 @@ class newFeedComponent extends Component {
             refreshing: false,
             clicked: '',
             modalVisible: false,
-
         }
     }
+
     componentWillMount() {
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
         this.panResponder = PanResponder.create({
-            onStartShouldSetPanResponder:(event, gestureState) => true,
-            onPanResponderGrant:this._onPanResponderGrant.bind(this),
+            onStartShouldSetPanResponder: (event, gestureState) => true,
+            onPanResponderGrant: this._onPanResponderGrant.bind(this),
         })
     }
 
     setCommentModalVisible(visible) {
         this.setState({modalVisible: visible});
+        this.props.getFullInfoAboutOnePostAction.getCommentOnePost(this.state.product_id);
     }
 
-    _onPanResponderGrant(event, gestureState){
-        if(event.nativeEvent.locationX === event.nativeEvent.pageX){
+    _onPanResponderGrant(event, gestureState) {
+        if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
             this.setState({modalVisible: false});
         }
     }
@@ -59,7 +62,7 @@ class newFeedComponent extends Component {
             typeView: value,
             listPost: [],
         });
-        this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
+        // this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
     }
 
     viewList() {
@@ -82,7 +85,8 @@ class newFeedComponent extends Component {
             let count = this.state.likeCount;
             let post = nextProps.products;
             let item = false;
-            for (var i = this.props.products.length; i < post.length; i++) {
+            let i = this.props.products.length
+            while (i < post.length) {
                 let key = {key: i}
                 let arr1 = Object.assign(post[i], key)
                 let likers = post[i].likers.filter((liker) => {
@@ -96,11 +100,11 @@ class newFeedComponent extends Component {
                 count.push(post[i].likes_count);
                 arr.push(item);
                 listPost.push(arr1)
+                i++;
             }
             this.setState({likeCount: count, arrayLike: arr})
         }
     }
-
 
 
     // Function
@@ -135,6 +139,8 @@ class newFeedComponent extends Component {
     }
 
     render() {
+        console.log('render');
+        console.log(this.state)
         const {navigate} = this.props.navigation;
         return (
             <Container style={part.wrapperContainer}>
@@ -197,14 +203,7 @@ class newFeedComponent extends Component {
 
                 <View
                     style={[part.padding, part.marginTop]}
-                    // refreshControl={
-                    //     <RefreshControl
-                    //         refreshing={this.props.isRefreshing}
-                    //         onRefresh={() => {
-                    //             this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
-                    //         }}
-                    //     />
-                    // }
+
                 >
                     {
                         (this.state.grid)
@@ -212,11 +211,18 @@ class newFeedComponent extends Component {
                             (
                                 <FlatList
                                     showsVerticalScrollIndicator={false}
-                                    onEndReachedThreshold={50}
+                                    onEndReachedThreshold={5}
                                     onEndReached={() => {
-                                        this.getMoreNewFeed()
                                     }}
                                     data={this.state.listPost}
+                                    refreshControl={
+                                        <RefreshControl
+                                            refreshing={this.props.isRefreshing}
+                                            onRefresh={() => {
+                                                this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
+                                            }}
+                                        />
+                                    }
                                     renderItem={({item}) =>
                                         <View
                                             style={(item.url.indexOf('.mp4') === -1 ) ? part.wrapperGridImage : part.wrapperGridVideo}>
@@ -241,6 +247,7 @@ class newFeedComponent extends Component {
                                                 {
                                                     (item.url.indexOf('.mp4') === -1 ) ?
                                                         <FastImage
+                                                            resizeMode={'cover'}
                                                             style={[part.imageInGrid, part.shadow]}
                                                             source={{uri: item.thumb_url}}
                                                         />
@@ -264,11 +271,18 @@ class newFeedComponent extends Component {
                             (
                                 <FlatList
                                     showsVerticalScrollIndicator={false}
-                                    onEndReachedThreshold={50}
+                                    onEndReachedThreshold={5}
                                     onEndReached={() => {
-                                        this.getMoreNewFeed()
                                     }}
                                     data={this.state.listPost}
+                                    refreshControl={
+                                        <RefreshControl
+                                            refreshing={this.props.isRefreshing}
+                                            onRefresh={() => {
+                                                this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1);
+                                            }}
+                                        />
+                                    }
                                     renderItem={({item}) => {
                                         let {arrayLike} = this.state;
                                         let {likeCount} = this.state;
@@ -363,7 +377,6 @@ class newFeedComponent extends Component {
                                                         </Body>
                                                     </TouchableOpacity>
                                                 </CardItem>
-
                                                 {/*LIKE COMMENT VIEWS*/}
                                                 <CardItem footer style={part.cardFooter}>
                                                     <Left>
@@ -377,8 +390,14 @@ class newFeedComponent extends Component {
                                                                 style={[part.describeGray, part.paddingLeft]}>{likeCount[item.key]}</Text>
                                                         </Button>
                                                         <Button transparent style={part.paddingRight}
-                                                                onPress={() =>
-                                                                    this.setCommentModalVisible(true)
+                                                                onPress={() => {
+                                                                    this.setCommentModalVisible(true);
+                                                                    this.setState({
+                                                                        like_in_modal: likeCount[item.key],
+                                                                        product_id: item.id
+                                                                    });
+
+                                                                }
                                                                 }
                                                         >
                                                             <Icon name="fontawesome|comments-o" size={size.iconBig}
@@ -395,16 +414,19 @@ class newFeedComponent extends Component {
                                                     </Left>
                                                 </CardItem>
                                                 {/*HEART BIG BUTTON*/}
-                                                <TouchableOpacity style={[part.iconLikeInImage, part.shadow]}>
+                                                <TouchableOpacity style={[part.iconLikeInImage, part.shadow]}
+                                                                  onPress={arrayLike[item.key] ? () => this.unlikePost(item.id, this.props.token, item.key) : () => this.likePost(item.id, this.props.token, item.key)}
+                                                >
                                                     <Icon name="fontawesome|heart-o"
                                                           size={20}
                                                           color={color.navTitle}/>
                                                 </TouchableOpacity>
-
                                             </Card>
+
 
                                         )
                                     }}
+
                                 />
                             )
                     }
@@ -419,7 +441,7 @@ class newFeedComponent extends Component {
                         :
                         <View/>
                 }
-
+                {/*MODAL*/}
                 <Modal
                     presentationStyle="overFullScreen"
                     animationType="fade"
@@ -442,12 +464,10 @@ class newFeedComponent extends Component {
                                             <Icon name="fontawesome|heart" size={12}
                                                   color={color.main}/>
                                             <Text
-                                                style={[part.describeGray, part.paddingLeft]}>12</Text>
+                                                style={[part.describeGray, part.paddingLeft]}>{this.state.like_in_modal}</Text>
                                         </Button>
-
                                     </Left>
                                 </CardItem>
-
 
 
                                 <View style={part.wrapperCommentInModal}>
@@ -455,14 +475,11 @@ class newFeedComponent extends Component {
                                 </View>
 
 
-
-
-
                                 <CardItem style={part.cardBottomInModal}>
                                     <Left>
                                         <Thumbnail
-                                                   style={part.avatarUserSmall}
-                                                   source={{uri: this.props.user.avatar_url}}/>
+                                            style={part.avatarUserSmall}
+                                            source={{uri: this.props.user.avatar_url}}/>
                                         <Body>
                                         <Item rounded>
                                             <Input

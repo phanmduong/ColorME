@@ -14,9 +14,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 import * as logoutAction from '../actions/logoutAction'
 import FastImage from 'react-native-fast-image'
-import { NavigationActions } from 'react-navigation'
-
-
+import {NavigationActions} from 'react-navigation'
 
 
 class SlideViewComponent extends Component {
@@ -40,6 +38,7 @@ class SlideViewComponent extends Component {
             <Container style={part.wrapperContainer}>
                 <View style={part.wrapperImageInDrawer}>
                     <FastImage
+                        resizeMode={'cover'}
                         style={part.imageInDrawer}
                         source={{uri: this.props.user.avatar_url}}/>
                     <View style={part.iconInDrawer}>
@@ -52,14 +51,17 @@ class SlideViewComponent extends Component {
                             </Left>
                             <Body style={{alignItems: 'flex-start', marginLeft: -60}}>
                             <Text style={part.titleNormalLight}>{this.props.user.name}</Text>
-                            <View style={{flexDirection: 'row'}}>
+                            <TouchableOpacity style={{flexDirection: 'row'}}
+                                              onPress={() => this.logout()}
+
+                            >
                                 <Text style={part.describeGray} onPress={() => this.logout()}>Đăng xuất&nbsp;</Text>
                                 <Icon name="entypo|arrow-with-circle-right"
                                       size={18}
                                       color={color.gray}
-                                      onPress={() => this.logout()}
                                 />
-                            </View>
+
+                            </TouchableOpacity>
                             </Body>
                         </Item>
 

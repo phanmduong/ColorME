@@ -20,6 +20,7 @@ class getFullInfoAboutOnePostComponent extends Component {
     constructor() {
         super();
         this.state = {
+            array: [],
             author: {},
             more_products: [],
             colors: [],
@@ -89,7 +90,7 @@ class getFullInfoAboutOnePostComponent extends Component {
 
     render() {
         let {liked, likeCount} = this.state;
-        let colorIcon = liked ? "red" : "#d7dde5";
+        let colorIcon = liked ? color.main : color.icon;
         const {goBack} = this.props.navigation;
         const {navigate} = this.props.navigation;
         const {params} = this.props.navigation.state;
@@ -126,12 +127,16 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                 {
                                                     1
                                                         ?
-                                                        <FastImage source={{uri: this.props.post.image_url}}
-                                                                   style={[part.imageInGetFull]}
+                                                        <FastImage
+                                                            resizeMode={'cover'}
+                                                            source={{uri: this.props.post.image_url}}
+                                                            style={[part.imageInGetFull]}
                                                         />
                                                         :
-                                                        <Video source={{uri: this.props.post.url}}
-                                                               style={[part.imageInGetFull]}
+                                                        <Video
+                                                            resizeMode={'cover'}
+                                                            source={{uri: this.props.post.url}}
+                                                            style={[part.imageInGetFull]}
                                                         />
 
                                                 }
@@ -284,7 +289,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                     </CardItem>
                                     <FlatList
                                         onEndReachedThreshold={5}
-                                        data={this.props.comments}
+                                        data={this.state.array}
                                         renderItem={({item}) =>
                                             <CardItem style={part.cardHeader}>
                                                 <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>

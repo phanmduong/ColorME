@@ -14,6 +14,7 @@ import * as userInformationAction from '../../actions/userInformationAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {User} from '../../navigators/appRouter';
+import FastImage from 'react-native-fast-image';
 
 class myAccountComponent extends Component {
     // componentWillMount() {
@@ -25,7 +26,8 @@ class myAccountComponent extends Component {
         return (
             <Container style={part.wrapperContainer}>
                 <View style={[part.wrapperImageInGetFull, part.shadow]}>
-                    <Image
+                    <FastImage
+                        resizeMode={'cover'}
                         style={part.imageInUserProfile}
                         source={{uri: this.props.user.avatar_url}}/>
 
