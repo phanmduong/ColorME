@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    FlatList, TouchableOpacity, StatusBar, View, RefreshControl, Modal, PanResponder,ScrollView
+    FlatList, TouchableOpacity, StatusBar, View, RefreshControl, Modal, PanResponder,
     KeyboardAvoidingView,
 } from 'react-native';
 import {
@@ -133,13 +133,10 @@ class newFeedComponent extends Component {
         this.setState({arrayLike: arrayLike});
         this.setState({likeCount: likeCount});
     }
-
-    renderItem(){
-
-    }
-
     render() {
         const {navigate} = this.props.navigation;
+        console.log('render');
+        console.log(this.state)
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
@@ -207,19 +204,17 @@ class newFeedComponent extends Component {
                         (this.state.grid)
                             ?
                             (
-                                <ScrollView>
                                 <FlatList
-                                    // refreshControl={
-                                    //     <RefreshControl
-                                    //         refreshing={this.props.isRefreshing}
-                                    //         onRefresh={() => {
-                                    //             this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
-                                    //         }}
-                                    //     />
-                                    // }
+                                    refreshControl={
+                                         <RefreshControl
+                                             refreshing={this.props.isRefreshing}
+                                           onRefresh={() => {
+                                                this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
+                                         }}
+                                       />
+                                    }
                                     showsVerticalScrollIndicator={false}
                                     onEndReachedThreshold={50}
-                                    numColumns={3}
                                     onEndReached={() => {
                                         this.getMoreNewFeed()
                                     }}
@@ -266,19 +261,18 @@ class newFeedComponent extends Component {
                                             </TouchableOpacity>
                                         </View>
                                     }/>
-                                </ScrollView>
                             )
                             :
                             (
                                 <FlatList
-                                    // refreshControl={
-                                    //     <RefreshControl
-                                    //         refreshing={this.props.isRefreshing}
-                                    //         onRefresh={() => {
-                                    //             this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
-                                    //         }}
-                                    //     />
-                                    // }
+                                     refreshControl={
+                                      <RefreshControl
+                                           refreshing={this.props.isRefreshing}
+                                           onRefresh={() => {
+                                               this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
+                                          }}
+                                      />
+                                   }
                                     showsVerticalScrollIndicator={false}
                                     onEndReachedThreshold={50}
                                     onEndReached={() => {
