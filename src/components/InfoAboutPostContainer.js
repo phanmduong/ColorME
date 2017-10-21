@@ -283,7 +283,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                     </CardItem>
                                     <FlatList
                                         onEndReachedThreshold={5}
-                                        data={this.state.array}
+                                        data={this.props.comments}
                                         renderItem={({item}) =>
                                             <CardItem style={part.cardHeader}>
                                                 <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>

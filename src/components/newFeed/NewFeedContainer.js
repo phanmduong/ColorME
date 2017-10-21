@@ -264,6 +264,7 @@ class newFeedComponent extends Component {
                                             } else {
                                                 return (
                                                     <GridView
+                                                        navigation={this.props.navigation}
                                                         item={item}
                                                     />
                                                 )
