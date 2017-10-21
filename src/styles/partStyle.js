@@ -71,7 +71,7 @@ const part = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: size.wid,
-        height: size.hei / 3 + 3 ,
+        height: size.hei / 3 + 3,
     },
     wrapperIcon: {
         justifyContent: 'center',
@@ -310,7 +310,7 @@ const part = StyleSheet.create({
     },
     imageInFeature: {
         position: 'relative',
-        width: size.wid  - 2   ,
+        width: size.wid - 2,
         height: size.hei / 3,
     },
 
@@ -616,6 +616,10 @@ const part = StyleSheet.create({
         borderBottomWidth: 0.5,
         borderColor: color.icon,
     },
+
+    flatListNewFeed: {
+        height: size.hei - 145
+    }
 });
 
 
