@@ -40,12 +40,12 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     textTitleInput: {
-        fontSize: 13,
+        fontSize: 12,
         backgroundColor: color.none,
         paddingLeft: 25,
         marginTop: 25,
         color: color.main,
-        fontWeight: (Platform.OS === 'ios') ? '700' : 'normal',
+        fontWeight: (Platform.OS === 'ios') ? '600' : 'normal',
     },
     inputGroup: {
         borderColor: color.none,

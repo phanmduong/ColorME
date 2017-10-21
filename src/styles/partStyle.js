@@ -95,7 +95,7 @@ const part = StyleSheet.create({
     },
     wrapperModalComment: {
         flex: 1,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -256,7 +256,6 @@ const part = StyleSheet.create({
         flex: 1,
         borderRadius: 5,
         position: 'relative',
-        resizeMode: 'cover',
         backgroundColor: color.icon,
     },
     imageTopic: {
@@ -266,7 +265,6 @@ const part = StyleSheet.create({
         flex: 1,
         borderRadius: 5,
         position: 'relative',
-        resizeMode: 'cover',
         backgroundColor: color.icon
     },
     video: {
@@ -283,26 +281,22 @@ const part = StyleSheet.create({
         width: size.wid,
         flex: 1,
         position: 'relative',
-        resizeMode: 'cover',
     },
     imageInUserProfile: {
         opacity: 0.2,
         width: size.wid,
         flex: 1,
         position: 'relative',
-        resizeMode: 'cover',
     },
     imageInDrawer: {
-        opacity: 0.8,
+        opacity: 0.2,
         flex: 1,
         position: 'relative',
-        resizeMode: 'cover',
     },
     imageInGrid: {
         width: size.wid / 3 - 15,
         height: size.wid / 3 - 15,
         borderRadius: 5,
-        resizeMode: 'cover'
     },
     videoInGrid: {
         backgroundColor: color.icon,
