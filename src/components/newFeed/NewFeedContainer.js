@@ -87,7 +87,8 @@ class newFeedComponent extends Component {
                 listPost.push(arr1)
                 i++;
             }
-            this.setState({likeCount: count, arrayLike: arr})
+            console.log(this.groupPosts(listPost));
+            this.setState({likeCount: count, arrayLike: arr, listPost: listPost})
         }
     }
 
@@ -138,6 +139,15 @@ class newFeedComponent extends Component {
                 <View/>
             );
         }
+    }
+
+    groupPosts(posts){
+        var posts = _.chain(posts).groupBy(function(element, index){
+            return Math.floor(index/3);
+        }).toArray()
+            .value();
+
+        return posts
     }
 
     render() {
@@ -259,7 +269,7 @@ class newFeedComponent extends Component {
                                         }
                                         }
                                         renderFooter={()=>{
-                                            return this.isLoadingLoadMore();
+                                            return this.loadingLoadMore();
                                         }}
                                     />
                                 </View>
