@@ -1,5 +1,6 @@
 import * as types from '../constants/actionTypes';
 import * as registerApi from '../apis/registerApi'
+import {Alert,AsyncStorage} from 'react-native'
 export function beginRegister (){
     return{
         type : types.BEGIN_REGISTER,
@@ -29,13 +30,26 @@ export function registerUser(register){
     return (dispatch) => {
         dispatch(beginRegister());
         registerApi.register(register)
-            .then(function(response) {
-                dispatch(registerSuccess(response))
-                console.log(response)
+            .then( async function(response) {
+                dispatch(registerSuccess(response));
+                await AsyncStorage.setItem('@ColorMe:email')
+                await AsyncStorage.setItem('@ColorMe:password')
+                Alert.alert('Đăng kí thành công ')
             })
             .catch(function (error) {
-                dispatch(registerError(error));
-                console.log(error)
+                if(error == null){Alert.alert('Kiểm tra lại kết nối mạng')}
+               else{ dispatch(registerError(error))
+                  if(error.response.data.error.email && error.response.data.error.username == null){
+                   Alert.alert(error.response.data.error.email)
+                  }
+                  if(error.response.data.error.username && error.response.data.error.email == null){
+                        Alert.alert(error.response.data.error.username)
+                    }
+                    if(error.response.data.error.username && error.response.data.error.email){
+                        Alert.alert(error.response.data.error.email + '\n' + error.response.data.error.username)
+                    }
+                ;}
+
             })
     }
 }

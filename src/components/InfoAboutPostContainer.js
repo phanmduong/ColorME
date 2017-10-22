@@ -40,7 +40,7 @@ class getFullInfoAboutOnePostComponent extends Component {
 
     componentWillReceiveProps(nextProps) {
         let liked = this.state.liked;
-        if (nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading) {
+        if (nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading && nextProps.isLoading !== null) {
             let post = nextProps.post;
             if (post) {
                 let likers = post.likers.filter((liker) => {
@@ -301,10 +301,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                             </TouchableOpacity>
                                         </Right>
                                     </CardItem>
-                                    <FlatList
-                                        onEndReachedThreshold={5}
-                                        data={this.props.comments}
-                                        renderItem={({item}) =>
+                                    {this.state.listComment.map((item) => {
                                             <CardItem style={part.cardHeader}>
                                                 <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
                                                     <TouchableOpacity style={part.paddingTRB}
@@ -351,16 +348,11 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                     </TouchableOpacity>
                                                 </View>
                                             </CardItem>
-                                        }/>
+                                        })}
                                 </View>
                             )
                     }
                 </Content>
-                {(this.props.statusPostComment === 2) ? (
-                    <View style={[part.wrapperContainer, {height: 20}]}>
-                        <Spinner color={color.gray}/>
-                    </View>
-                ) : (<View/>)}
 
                 {/*INPUT COMMENT*/}
                 <KeyboardAvoidingView behavior={'position'}>

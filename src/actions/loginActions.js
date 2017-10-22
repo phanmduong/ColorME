@@ -54,11 +54,17 @@ export function loginError(response) {
     }
 }
 
-export function getDataLogin() {
+export function getDataLogin(status = 0) {
     return async function (dispatch) {
         try {
             const email = await AsyncStorage.getItem('@ColorMe:email'); // lấy data đang tồn
             const password = await AsyncStorage.getItem('@ColorMe:password');
+            dispatch(autoLogin(
+                {
+                email: email,
+                password: password
+                },status
+                ));
             dispatch(gotDataLogin(email, password));
         }
         catch (error) {
@@ -91,3 +97,13 @@ export function setDataLogin(login) { // save data
     }
 }
 
+export function autoLogin(login, status){
+    return (dispatch) => {
+        AsyncStorage.getItem('@ColorMe:save').then(async function () {
+            let value = await AsyncStorage.getItem('@ColorMe:save');
+            if (login && status == 0 && value) {
+                dispatch(loginUser(login))
+            }
+        })
+    }
+}

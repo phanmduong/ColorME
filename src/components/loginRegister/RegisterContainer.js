@@ -20,7 +20,11 @@ class RegisterComponent extends Component {
             password: ''
         }
     }
-
+    componentWillReceiveProps(nextProps){
+        // if(nextProps.status == 200) {
+        //     this.props.navigation.navigate('Main')
+        // }
+    }
     register(value) {
         if (this.state.email === '' || this.state.name === '' || this.state.username === '' || this.state.password === '')
         {
@@ -29,17 +33,6 @@ class RegisterComponent extends Component {
             this.props.registerAction.registerUser(value);
         }
     }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.status === 200 ) {
-            Alert.alert("Đăng ký thành công.");
-            this.props.navigation.navigate('LoginComponent');
-        }
-        if (nextProps.error) {
-            Alert.alert('Mời bạn kiểm tra lại các trường thông tin')
-        }
-    }
-
     render() {
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>

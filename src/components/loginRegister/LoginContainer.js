@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {
     ActivityIndicator, KeyboardAvoidingView, AsyncStorage,
-    Text, TouchableOpacity, View, StatusBar,
+    Text, TouchableOpacity, View, StatusBar,Alert
 } from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, Left} from 'native-base';
@@ -14,22 +14,12 @@ import {connect} from 'react-redux'
 class LoginComponent extends Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     fade : new Animated.Value(1)
-        // }
     }
 
 componentWillMount(){
-    this.props.loginAction.getDataLogin(this.props.login)
+    this.props.loginAction.getDataLogin(this.props.status);
+    // this.props.loginAction.autoLogin(this.props.login, this.props.status)
 }
-
-
-    // componentDidMount(){
-    //     Animated.timing(
-    //         this.state.fade,
-    //         {toValue: 0, duration: 2000}
-    //     ).start();
-    // }
 
     saveData() {
         this.props.loginAction.setDataLogin(this.props.login)
@@ -50,15 +40,16 @@ componentWillMount(){
         if (nextProps.status === 200) {
             this.props.navigation.navigate('Main');
         }
-        AsyncStorage.getItem('@ColorMe:save').then(async function(){
-            let value = await AsyncStorage.getItem('@ColorMe:save')
-            await AsyncStorage.getItem('@ColorMe:email');
-            await AsyncStorage.getItem('@ColorMe:password');
-            if(nextProps.login && nextProps.status == 0 && value){
-                nextProps.loginAction.loginUser(nextProps.login)
-            }
-        })
+        // AsyncStorage.getItem('@ColorMe:save').then(async function(){
+        //     let value = await AsyncStorage.getItem('@ColorMe:save')
+        //     await AsyncStorage.getItem('@ColorMe:email');
+        //     await AsyncStorage.getItem('@ColorMe:password');
+        //     if(nextProps.login && nextProps.status == 0 && value){
+        //         nextProps.loginAction.loginUser(nextProps.login)
+        //     }
+        // })
         }
+
     render() {
         // const opacity = this.state.fade;
         return (
