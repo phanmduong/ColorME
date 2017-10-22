@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {
     ActivityIndicator, KeyboardAvoidingView, AsyncStorage,
-    Text, TouchableOpacity, View, StatusBar, Animated
+    Text, TouchableOpacity, View, StatusBar,
 } from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, Left} from 'native-base';
@@ -19,9 +19,10 @@ class LoginComponent extends Component {
         // }
     }
 
-    componentWillMount() {
-        this.props.loginAction.getDataLogin(this.props.login)
-    }
+componentWillMount(){
+    this.props.loginAction.getDataLogin(this.props.login)
+}
+
 
     // componentDidMount(){
     //     Animated.timing(
@@ -51,6 +52,8 @@ class LoginComponent extends Component {
         }
         AsyncStorage.getItem('@ColorMe:save').then(async function(){
             let value = await AsyncStorage.getItem('@ColorMe:save')
+            await AsyncStorage.getItem('@ColorMe:email');
+            await AsyncStorage.getItem('@ColorMe:password');
             if(nextProps.login && nextProps.status == 0 && value){
                 nextProps.loginAction.loginUser(nextProps.login)
             }

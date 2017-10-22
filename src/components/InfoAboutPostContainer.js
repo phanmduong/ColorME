@@ -56,8 +56,8 @@ class getFullInfoAboutOnePostComponent extends Component {
         }
         this.setState({
             liked: liked,
-            listComment: nextProps.comments,
             likeCount: nextProps.post.likes_count,
+            listComment : nextProps.comments
         })
     }
 
@@ -85,9 +85,23 @@ class getFullInfoAboutOnePostComponent extends Component {
 
     commentPost(product_id, token, value) {
         this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
-        this.setState({listComment: this.props.comments});
+        let listComment = this.state.listComment
+        let {user} = this.props;
+        let arr = {
+            content: this.state.comment_content,
+            parent_id : 0,
+            commenter: {
+                username: user.username,
+                avatar_url: user.avatar_url,
+                name: user.name,
+            },
+            created_at: 'Vừa xong'
+        }
+         if(this.props.statusPostComment === 1) {
+          listComment.push(arr)
+            this.setState({listComment : listComment})
+        }
     }
-
     render() {
         let {liked, likeCount} = this.state;
         let colorIcon = liked ? color.main : color.icon;
@@ -343,7 +357,11 @@ class getFullInfoAboutOnePostComponent extends Component {
                             )
                     }
                 </Content>
-
+                {(this.props.statusPostComment === 2) ? (
+                    <View style={[part.wrapperContainer, {height: 20}]}>
+                        <Spinner color={color.gray}/>
+                    </View>
+                ) : (<View/>)}
 
                 {/*INPUT COMMENT*/}
                 <KeyboardAvoidingView behavior={'position'}>
@@ -401,6 +419,7 @@ function mapStateToProps(state) {
         post: state.getFullInfoAboutOnePost.post,
         comments: state.getFullInfoAboutOnePost.comments,
         isLoading: state.getFullInfoAboutOnePost.isLoading,
+        statusPostComment : state.getFullInfoAboutOnePost.statusPostComment
     }
 }
 

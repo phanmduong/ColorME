@@ -18,9 +18,10 @@ class GridView extends Component {
         }
         return false;
     }
+
+
     render() {
-        console.log('render list view');
-        let {item} = this.props;
+        let item = this.props.post;
         return (
             <View style={(item.url.indexOf('.mp4') === -1 ) ? part.wrapperGridImage : part.wrapperGridImage}>
                 <TouchableOpacity
