@@ -151,7 +151,14 @@ const part = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: color.none,
         position: 'absolute',
+        left: 10,
         top: 20,
+    },
+    iconInDrawerNav: {
+        width: wid - wid / 10,
+        flexDirection: 'row',
+        backgroundColor: color.none,
+        position: 'absolute',
         left: 10,
     },
     iconLikeInImage: {
@@ -358,9 +365,7 @@ const part = StyleSheet.create({
         fontWeight: '700',
     },
     titleNormalLight: {
-        fontSize: size.title,
         color: color.navTitle,
-        fontWeight: '700',
     },
     titleSmallDark: {
         fontSize: size.titleSmall,

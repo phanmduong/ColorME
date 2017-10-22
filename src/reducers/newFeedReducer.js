@@ -62,6 +62,7 @@ export default function getNewFeedReducer(state = initialState.getNewFeed, actio
                 }
             }
         }
+
         default:
             return state;
     }

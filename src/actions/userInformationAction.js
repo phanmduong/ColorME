@@ -112,3 +112,10 @@ export function getUserProducts(username, page_id, token) {
             })
     }
 }
+
+export function selectProfileUser(userId){
+    return {
+        type: types.SELECTED_USER_PROFILE_NEWFEED,
+        userId: userId
+    }
+}

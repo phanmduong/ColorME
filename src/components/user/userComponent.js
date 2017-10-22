@@ -31,42 +31,31 @@ class userComponent extends Component {
             <Container style={part.wrapperContainer}>
                 <ParallaxScrollView
                     showsVerticalScrollIndicator={false}
-                    headerBackgroundColor="#333"
+                    headerBackgroundColor={color.main}
                     stickyHeaderHeight={STICKY_HEADER_HEIGHT}
                     parallaxHeaderHeight={PARALLAX_HEADER_HEIGHT}
                     backgroundSpeed={10}
                     renderBackground={() =>
-                        <View style={[part.wrapperImageInGetFull, part.shadow]}>
+                        <View style={part.wrapperImageInGetFull}>
                             <View key="background">
                                 <Image
                                     source={{
-                                    uri: this.props.user.avatar_url,
-                                    width: window.width,
-                                    height: PARALLAX_HEADER_HEIGHT
-                                }}/>
+                                        uri: this.props.user.avatar_url,
+                                        width: window.width,
+                                        height: PARALLAX_HEADER_HEIGHT
+                                    }}/>
                                 <View style={{
                                     position: 'absolute',
                                     top: 0,
                                     width: window.width,
-                                    backgroundColor: 'rgba(0,0,0,.4)',
+                                    backgroundColor: 'rgba(0,0,0,.7)',
                                     height: PARALLAX_HEADER_HEIGHT
                                 }}/>
 
                             </View>
-                            <View style={[part.iconInDrawer, {zIndex: 500}]}>
-                                {/*<Left>*/}
-                                    {/*<TouchableOpacity style={part.padding}*/}
-                                                      {/*onPress={() => goBack(null)}*/}
-                                    {/*>*/}
-                                        {/*<Icon name="entypo|chevron-thin-left"*/}
-                                              {/*size={size.iconBig}*/}
-                                              {/*color={color.navTitle}*/}
-                                              {/*style={{zIndex: 100}}*/}
-                                        {/*/>*/}
-                                    {/*</TouchableOpacity>*/}
-                                {/*</Left>*/}
+                            <View style={part.iconInDrawer}>
                                 <Right style={{left: 10}}>
-                                    <TouchableOpacity
+                                    <TouchableOpacity style={part.padding}
                                     >
                                         <Icon name="materialCommunity|seal"
                                               size={size.iconBig}
@@ -76,6 +65,7 @@ class userComponent extends Component {
                             </View>
                         </View>
                     }
+
                     renderForeground={() => (
                         <View key="parallax-header" style={styles.parallaxHeader}>
                             <Item style={{borderBottomWidth: 0,}}>
@@ -93,19 +83,11 @@ class userComponent extends Component {
                             </Item>
                         </View>
                     )}
+
                     renderStickyHeader={() => (
-                        <View key="sticky-header" style={styles.stickySection}>
-                            <View style={part.iconInDrawer}>
-                                <Left style={{flexDirection: 'row'}}>
-                                        <TouchableOpacity style={part.padding}
-                                                          onPress={() => goBack(null)}
-                                        >
-                                            <Icon name="entypo|chevron-thin-left"
-                                                  size={size.iconBig}
-                                                  color={color.navTitle}
-                                                  style={{zIndex: 100}}
-                                            />
-                                        </TouchableOpacity>
+                        <View key="sticky-header" style={[styles.stickySection, {visibility: 'hidden'}]}>
+                            <View style={part.iconInDrawerNav}>
+                                <Left style={{flexDirection: 'row', marginTop: 20,}}>
                                     <Right style={{left: 10}}>
                                         <Text style={[part.titleNormalLight, part.paddingLine]}>{this.props.user.name}
                                         </Text>
@@ -113,6 +95,24 @@ class userComponent extends Component {
                                 </Left>
                             </View>
                         </View>
+                    )}
+
+                    renderFixedHeader={() => (
+                        <View key="fixed-header" style={part.iconInDrawerNav}>
+                            <Left style={{flexDirection: 'row', marginTop: 20,}}>
+                                <TouchableOpacity
+                                    style={part.padding}
+                                    onPress={() => goBack(null)}
+                                >
+                                    <Icon name="entypo|chevron-thin-left"
+                                          size={size.iconBig}
+                                          color={color.navTitle}
+                                          style={{zIndex: 100}}
+                                    />
+                                </TouchableOpacity>
+                            </Left>
+                        </View>
+
                     )}
                 >
                     <User/>
@@ -130,7 +130,7 @@ class userComponent extends Component {
 const window = Dimensions.get('window');
 
 const PARALLAX_HEADER_HEIGHT = 250;
-const STICKY_HEADER_HEIGHT = 80;
+const STICKY_HEADER_HEIGHT = 60;
 
 const styles = StyleSheet.create({
     container: {
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     stickySection: {
         height: STICKY_HEADER_HEIGHT,
         justifyContent: 'center',
-        backgroundColor: color.navTabBar
+        backgroundColor: color.main
     },
     parallaxHeader: {
         alignItems: 'center',

@@ -34,7 +34,7 @@ class groupComponent extends Component {
             <Container style={part.wrapperContainer}>
                 <ParallaxScrollView
                     showsVerticalScrollIndicator={false}
-                    headerBackgroundColor="#333"
+                    headerBackgroundColor={color.main}
                     stickyHeaderHeight={STICKY_HEADER_HEIGHT}
                     parallaxHeaderHeight={PARALLAX_HEADER_HEIGHT}
                     backgroundSpeed={10}
@@ -56,9 +56,9 @@ class groupComponent extends Component {
                                 }}/>
 
                             </View>
-                            <View style={[part.iconInDrawer, {zIndex: 500}]}>
+                            <View style={part.iconInDrawer}>
                                 <Right style={{left: 10}}>
-                                    <TouchableOpacity
+                                    <TouchableOpacity style={part.padding}
                                     >
                                         <Icon name="materialCommunity|seal"
                                               size={size.iconBig}
@@ -88,19 +88,11 @@ class groupComponent extends Component {
                             </Item>
                         </View>
                     )}
+
                     renderStickyHeader={() => (
                         <View key="sticky-header" style={styles.stickySection}>
                             <View style={part.iconInDrawer}>
                                 <Left style={{flexDirection: 'row'}}>
-                                    <TouchableOpacity style={part.padding}
-                                                      onPress={() => goBack(null)}
-                                    >
-                                        <Icon name="entypo|chevron-thin-left"
-                                              size={size.iconBig}
-                                              color={color.navTitle}
-                                              style={{zIndex: 100}}
-                                        />
-                                    </TouchableOpacity>
                                     <Right style={{left: 10}}>
                                         <Text style={[part.titleNormalLight, part.paddingLine]}>
                                             {this.props.groupName}
@@ -109,6 +101,23 @@ class groupComponent extends Component {
                                 </Left>
                             </View>
                         </View>
+                    )}
+                    renderFixedHeader={() => (
+                        <View key="fixed-header" style={part.iconInDrawerNav}>
+                            <Left style={{flexDirection: 'row', marginTop: 20,}}>
+                                <TouchableOpacity
+                                    style={part.padding}
+                                    onPress={() => goBack(null)}
+                                >
+                                    <Icon name="entypo|chevron-thin-left"
+                                          size={size.iconBig}
+                                          color={color.navTitle}
+                                          style={{zIndex: 100}}
+                                    />
+                                </TouchableOpacity>
+                            </Left>
+                        </View>
+
                     )}
                 >
                     <Group/>
@@ -126,7 +135,7 @@ class groupComponent extends Component {
 const window = Dimensions.get('window');
 
 const PARALLAX_HEADER_HEIGHT = 250;
-const STICKY_HEADER_HEIGHT = 80;
+const STICKY_HEADER_HEIGHT = 60;
 
 const styles = StyleSheet.create({
     container: {
@@ -143,7 +152,7 @@ const styles = StyleSheet.create({
     stickySection: {
         height: STICKY_HEADER_HEIGHT,
         justifyContent: 'center',
-        backgroundColor: color.navTabBar
+        backgroundColor: color.main
     },
     parallaxHeader: {
         alignItems: 'center',
@@ -151,7 +160,9 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
     },
+
 });
+
 
 function mapStateToProps(state) {
     return {

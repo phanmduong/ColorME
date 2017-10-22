@@ -102,7 +102,7 @@ export const StackNavigatorStyle = {
 export const HomeStackStyle = {
     navigationOptions: ({navigation}) => ({
         headerStyle: {
-            backgroundColor: color.navTabBar,
+            backgroundColor: color.main,
             borderBottomWidth: 0,
             height: 60,
         },
@@ -110,7 +110,7 @@ export const HomeStackStyle = {
             <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
                 <Icon
                     name="materialCommunity|menu"
-                    color={color.icon}
+                    color={color.navTitle}
                     size={size.icon}
                     style={{paddingLeft: 10}}
                 />
@@ -119,7 +119,7 @@ export const HomeStackStyle = {
         headerRight: (
             <TouchableOpacity onPress={() => navigation.navigate('')}>
                 <Icon name="entypo|chat"
-                      color={color.icon}
+                      color={color.navTitle}
                       size={size.icon}
                       style={{paddingRight: 10}}
                 />

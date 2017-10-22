@@ -93,7 +93,10 @@ class newFeedComponent extends Component {
                 i++;
             }
             console.log(this.groupPosts(listPost));
-            this.setState({likeCount: count, arrayLike: arr, listPost: listPost})
+            this.setState({
+                likeCount: count,
+                arrayLike: arr,
+                listPost: listPost})
         }
     }
 

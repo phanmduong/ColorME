@@ -79,7 +79,11 @@ export default function userInformationReducer(state = initialState.userInformat
                     errorUserProducts: action.errorUserProducts,
                 }
             }
-
+        case types.SELECTED_USER_PROFILE_NEWFEED:
+            return (
+                ...state,
+                userId: userId
+            )
         default:
             return state
     }

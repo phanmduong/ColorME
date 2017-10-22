@@ -105,14 +105,13 @@ class getFullInfoAboutOnePostComponent extends Component {
     render() {
         let {liked, likeCount} = this.state;
         let colorIcon = liked ? color.main : color.icon;
+        let likedIcon = liked ? 'fontawesome|heart' : 'fontawesome|heart-o';
+
         const {goBack} = this.props.navigation;
         const {navigate} = this.props.navigation;
         const {params} = this.props.navigation.state;
         return (
             <Container style={part.wrapperContainer}>
-                <StatusBar
-                    hidden={true}
-                />
                 <Content scrollsToTop={false}>
                     {
                         (this.props.isLoading)
@@ -273,20 +272,20 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                 transparent style={[part.padding]}
                                                 onPress={() => liked ? this.unlikePost(params.product_id, this.props.token) : this.likePost(params.product_id, this.props.token)}
                                             >
-                                                <Icon name="fontawesome|heart" size={size.iconBig}
+                                                <Icon name={likedIcon} size={size.iconBig}
                                                       color={colorIcon}/>
                                                 <Text
                                                     style={[part.describeGray, part.paddingLeft]}>{likeCount}</Text>
                                             </Button>
                                             <Button transparent style={part.padding}
                                             >
-                                                <Icon name="fontawesome|comments-o" size={size.iconBig}
+                                                <Icon name="fontawesome|comment-o" size={size.iconBig}
                                                       color={color.icon}/>
                                                 <Text
                                                     style={[part.describeGray, part.paddingLeft]}>{this.props.comments.length}</Text>
                                             </Button>
                                             <Button transparent style={part.padding}>
-                                                <Icon name="fontawesome|eye" size={size.iconBig}
+                                                <Icon name="fontawesome|bookmark-o" size={size.iconBig}
                                                       color={color.icon}/>
                                                 <Text
                                                     style={[part.describeGray, part.paddingLeft]}>{this.props.post.views_count}</Text>
