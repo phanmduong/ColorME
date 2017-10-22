@@ -85,22 +85,23 @@ class getFullInfoAboutOnePostComponent extends Component {
 
     commentPost(product_id, token, value) {
         this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
-        if(this.props.statusPostComment == 1) {
-            this.props.getFullInfoAboutOnePostAction.getCommentOnePost(product_id);
+        let listComment = this.state.listComment
+        let {user} = this.props;
+        let arr = {
+            content: this.state.comment_content,
+            parent_id : 0,
+            commenter: {
+                username: user.username,
+                avatar_url: user.avatar_url,
+                name: user.name,
+            },
+            created_at: 'Vừa xong'
         }
-        // let {user} = this.props;
-        // let arr = {
-        //     content : this.state.content,
-        //     commenter : {
-        //         username : user.username,
-        //         avatar_url : user.avatar_url,
-        //         name : user.name,
-        //         created_at : 'Vừa xong'
-        //     }
-        // }
-        // listComment.push(arr);
-        // this.setState({listComment : listComment})
+         if(this.props.statusPostComment === 1) {
+          listComment.push(arr)
+            this.setState({listComment : listComment})
         }
+    }
     render() {
         let {liked, likeCount} = this.state;
         let colorIcon = liked ? color.main : color.icon;
@@ -349,7 +350,11 @@ class getFullInfoAboutOnePostComponent extends Component {
                             )
                     }
                 </Content>
-
+                {(this.props.statusPostComment === 2) ? (
+                    <View style={[part.wrapperContainer, {height: 20}]}>
+                        <Spinner color={color.gray}/>
+                    </View>
+                ) : (<View/>)}
 
                 {/*INPUT COMMENT*/}
                 <KeyboardAvoidingView behavior={'position'}>
