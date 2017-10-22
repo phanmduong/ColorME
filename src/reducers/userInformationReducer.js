@@ -2,9 +2,9 @@ import * as types from '../constants/actionTypes';
 import initialState from '../constants/initialState';
 
 export default function userInformationReducer(state = initialState.userInformation, action) {
-    switch (action.type){
+    switch (action.type) {
         case types.BEGIN_GET_USER_PROFILE:
-            return{
+            return {
                 ...state,
                 ...{
                     isLoadingUserProfile: action.isLoadingUserProfile,
@@ -12,7 +12,7 @@ export default function userInformationReducer(state = initialState.userInformat
                 }
             }
         case types.BEGIN_GET_USER_PROGRESS:
-            return{
+            return {
                 ...state,
                 ...{
                     isLoadingUserProgress: action.isLoadingUserProgress,
@@ -29,7 +29,7 @@ export default function userInformationReducer(state = initialState.userInformat
             }
 
         case types.GET_USER_PROFILE_SUCCESS:
-            return{
+            return {
                 ...state,
                 ...{
                     user: action.user,
@@ -38,7 +38,7 @@ export default function userInformationReducer(state = initialState.userInformat
                 }
             }
         case types.GET_USER_PROGRESS_SUCCESS:
-            return{
+            return {
                 ...state,
                 ...{
                     progress: action.progress,
@@ -47,7 +47,7 @@ export default function userInformationReducer(state = initialState.userInformat
                 }
             }
         case types.GET_USER_PRODUCTS_SUCCESS:
-            return{
+            return {
                 ...state,
                 ...{
                     products: action.products,
@@ -56,7 +56,7 @@ export default function userInformationReducer(state = initialState.userInformat
                 }
             }
         case types.GET_USER_PROFILE_ERROR:
-            return{
+            return {
                 ...state,
                 ...{
                     isLoadingUserProfile: action.isLoading,
@@ -64,7 +64,7 @@ export default function userInformationReducer(state = initialState.userInformat
                 }
             }
         case types.GET_USER_PROGRESS_ERROR:
-            return{
+            return {
                 ...state,
                 ...{
                     isLoadingUserProgress: action.isLoadingUserProgress,
@@ -72,19 +72,21 @@ export default function userInformationReducer(state = initialState.userInformat
                 }
             }
         case types.GET_USER_PRODUCTS_ERROR:
-            return{
+            return {
                 ...state,
                 ...{
                     isLoadingUserProducts: action.isLoadingUserProducts,
                     errorUserProducts: action.errorUserProducts,
                 }
-            }
+            };
         case types.SELECTED_USER_PROFILE_NEWFEED:
-            return (
+            return {
                 ...state,
-                userId: userId
-            )
+                ...{
+                    userId: userId
+                }
+            }
         default:
             return state
-    }
+}
 }
