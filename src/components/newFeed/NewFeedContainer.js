@@ -1,11 +1,21 @@
 import React, {Component} from 'react';
+import {FlatList, RefreshControl, StatusBar, TouchableOpacity, View,} from 'react-native';
 import {
-    FlatList, TouchableOpacity, StatusBar, View, RefreshControl, PanResponder,
-    KeyboardAvoidingView,
-} from 'react-native';
-import {
-    Container, Header, Content, Card, CardItem, Item, Picker, Input,
-    Thumbnail, Text, Left, Body, Right, Spinner, Button
+    Body,
+    Button,
+    Card,
+    CardItem,
+    Container,
+    Content,
+    Header,
+    Input,
+    Item,
+    Left,
+    Picker,
+    Right,
+    Spinner,
+    Text,
+    Thumbnail
 } from 'native-base';
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
@@ -26,15 +36,16 @@ class newFeedComponent extends Component {
             user_avatar_url: '',
             product_id: '',
             like_in_modal: '',
-            grid: false,
+            grid: true,
             page_id: 2,
             typeView: '',
             arrayLike: [],
             likeCount: [],
             listPost: [],
+            isLoadingList: false,
             clicked: '',
         }
-        this.isFirst= true;
+        this.isFirst = true;
         this.likePost = this.likePost.bind(this);
         this.unlikePost = this.unlikePost.bind(this);
     }
@@ -43,7 +54,6 @@ class newFeedComponent extends Component {
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
 
     }
-
 
 
     onValueChange(value: string) {
@@ -56,16 +66,29 @@ class newFeedComponent extends Component {
     viewList() {
         let grid = this.state.grid;
         grid = false;
-        this.setState({grid: grid});
+        setTimeout(() => {
+            this.setState({isLoadingList: false})
+        }, 100)
+        this.setState({grid: grid, isLoadingList: true});
     }
 
     viewGrid() {
         let grid = this.state.grid;
         grid = true;
-        this.setState({grid: grid});
+        let products = this.props.products.map((post, index) => {
+            return {
+                ...post,
+                key: index
+            }
+        });
+        setTimeout(() => {
+            this.setState({isLoadingList: false})
+        }, 250);
+        this.setState({grid: grid, listPost: products, isLoadingList: true});
     }
 
-    // setup
+
+// setup
     componentWillReceiveProps(nextProps) {
         this.isFirst = true;
         if ((nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading) || (nextProps.isRefreshing !== this.props.isRefreshing && !nextProps.isRefreshing)) {
@@ -96,14 +119,14 @@ class newFeedComponent extends Component {
             this.setState({
                 likeCount: count,
                 arrayLike: arr,
-                listPost: listPost})
+                listPost: listPost
+            })
         }
     }
 
-    // Function
+// Function
     getMoreNewFeed() {
         if (this.props.isLoading != undefined && this.props.isLoading != null && !this.props.isLoading) {
-            console.log('loadmore' + this.props.isLoading);
             let page_id = this.state.page_id + 1;
             this.setState({page_id: page_id});
             this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id)
@@ -135,7 +158,7 @@ class newFeedComponent extends Component {
         this.setState({likeCount: likeCount});
     }
 
-    loadingLoadMore(){
+    loadingLoadMore() {
         if (this.props.isLoading && this.state.listPost.length > 0) {
             return (
                 <View style={[part.wrapperContainer, {height: 30, marginBottom: -30}]}>
@@ -149,9 +172,9 @@ class newFeedComponent extends Component {
         }
     }
 
-    groupPosts(posts){
-        var posts = _.chain(posts).groupBy(function(element, index){
-            return Math.floor(index/3);
+    groupPosts(posts) {
+        var posts = _.chain(posts).groupBy(function (element, index) {
+            return Math.floor(index / 3);
         }).toArray()
             .value();
 
@@ -159,10 +182,6 @@ class newFeedComponent extends Component {
     }
 
     render() {
-        console.log('render');
-        console.log(this.state);
-        console.log(this.props);
-
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
@@ -170,7 +189,7 @@ class newFeedComponent extends Component {
                 />
                 {/*VIEW TYPE*/}
                 <View>
-                    <Item style={[part.itemTab, {paddingLeft:0}]}>
+                    <Item style={[part.itemTab, {paddingLeft: 0}]}>
                         <Left style={{flexDirection: 'row', alignItems: 'center'}}>
                             <Picker
                                 itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
@@ -227,64 +246,73 @@ class newFeedComponent extends Component {
                     </Item>
                 </View>
 
-                <View>
-                    { (!this.props.isLoading || this.state.listPost.length > 0) && (
-                        (this.state.grid)
-                            ?
-                            (
-                                <View>
-                                    <FlatList
-                                        showsVerticalScrollIndicator={false}
-                                        onEndReachedThreshold={1}
-                                        numColumns={3}
-                                        onEndReached={() => {
-                                            this.getMoreNewFeed()
-                                        }}
-                                        data={this.state.listPost}
-                                        refreshControl={
-                                            <RefreshControl
-                                                refreshing={this.props.isRefreshing}
-                                                onRefresh={() => {
-                                                    this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
-                                                }}
-                                            />
-                                        }
-                                        renderItem={({item}) => {
-                                            if (item == this.state.listPost[0]) {
-                                                return (
-                                                    <View style={part.featureWrapper}>
-                                                        <FastImage
-                                                            style={[part.imageInFeature]}
-                                                            source={{uri: 'https://www.w3schools.com/css/trolltunga.jpg'}}
-                                                        />
-                                                        <View style={part.wrapperTitleFeature}>
-                                                            <Text
-                                                                numberOfLines={2}
-                                                                style={part.textTitleFeature}
-                                                            >
-                                                                Top of the day
-                                                            </Text>
-                                                        </View>
-                                                    </View>
-                                                )
-                                            } else {
-                                                return (
-                                                    <GridView
-                                                        navigation={this.props.navigation}
-                                                        item={item}
-                                                    />
-                                                )
-                                            }
-                                        }
-                                        }
-                                        renderFooter={()=>{
-                                            return this.loadingLoadMore();
-                                        }}
-                                    />
+
+                {
+                    (this.state.grid)
+                        ?
+                        (
+                            this.state.isLoadingList ? (
+                                <View style={[part.wrapperContainer, {height: 30, marginBottom: -30}]}>
+                                    <Spinner color={color.gray}/>
                                 </View>
-                            )
-                            :
-                            (
+                            ) : (
+                                <FlatList
+                                    showsVerticalScrollIndicator={false}
+                                    onEndReachedThreshold={1}
+                                    numColumns={3}
+                                    onEndReached={() => {
+                                        this.getMoreNewFeed()
+                                    }}
+                                    data={this.state.listPost}
+                                    refreshControl={
+                                        <RefreshControl
+                                            refreshing={this.props.isRefreshing || this.props.isLoading}
+                                            onRefresh={() => {
+                                                this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
+                                            }}
+                                        />
+                                    }
+                                    renderItem={({item}) => {
+                                        if (item == this.state.listPost[0]) {
+                                            return (
+                                                <View style={part.featureWrapper}>
+                                                    <FastImage
+                                                        style={[part.imageInFeature]}
+                                                        source={{uri: 'https://www.w3schools.com/css/trolltunga.jpg'}}
+                                                    />
+                                                    <View style={part.wrapperTitleFeature}>
+                                                        <Text
+                                                            numberOfLines={2}
+                                                            style={part.textTitleFeature}
+                                                        >
+                                                            Top of the day
+                                                        </Text>
+                                                    </View>
+                                                </View>
+                                            )
+                                        } else {
+                                            return (
+                                                <GridView
+                                                    navigation={this.props.navigation}
+                                                    item={item}
+                                                />
+                                            )
+                                        }
+                                    }
+                                    }
+                                    renderFooter={() => {
+                                        return this.loadingLoadMore();
+                                    }}
+                                />)
+
+                        )
+                        :
+                        (
+                            this.state.isLoadingList ? (
+                                <View style={[part.wrapperContainer, {height: 30, marginBottom: -30}]}>
+                                    <Spinner color={color.gray}/>
+                                </View>
+                            ) : (
                                 <FlatList
                                     showsVerticalScrollIndicator={false}
                                     onEndReachedThreshold={5}
@@ -300,8 +328,7 @@ class newFeedComponent extends Component {
                                         />
                                     }
                                     renderItem={({item}) => {
-                                        let {arrayLike} = this.state;
-                                        let {likeCount} = this.state;
+                                        let {arrayLike, likeCount} = this.state;
                                         let colorIcon = arrayLike[item.key] ? color.main : color.icon;
                                         let likedIcon = arrayLike[item.key] ? 'fontawesome|heart' : 'fontawesome|heart-o';
                                         return (
@@ -319,16 +346,14 @@ class newFeedComponent extends Component {
                                             />
                                         )
                                     }}
-                                    renderFooter={()=>{
+                                    renderFooter={() => {
                                         return this.loadingLoadMore();
                                     }}
 
-                                />
-                            )
+                                />)
                         )
-                    }
 
-                </View>
+                }
             </Container>
         );
     }
