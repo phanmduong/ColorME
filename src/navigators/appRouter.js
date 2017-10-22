@@ -310,6 +310,17 @@ export const NotificationStackNavigator = StackNavigator(
     }, StackNavigatorStyle
 );
 
+export const RouterToSearchUser = StackNavigator(
+    {
+        SearchUser: {
+            screen: searchUser,
+        },
+        UserInSearch: {
+            screen: userComponent,
+        },
+    }, StackNavigatorStyle
+);
+
 export const SearchStackNavigator = StackNavigator(
     {
         SearchStack: {
@@ -317,6 +328,8 @@ export const SearchStackNavigator = StackNavigator(
         },
     }, StackNavigatorStyle
 );
+
+
 
 
 export const MessageStackNavigator = StackNavigator(

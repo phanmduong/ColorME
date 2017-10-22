@@ -107,6 +107,7 @@ class searchComponent extends Component {
                 <SearchTab
                     getMoreUser={this.getMoreUser}
                     getMoreProduct={this.getMoreProduct}
+                    navigationProps={this.props.navigation}
                 />
             </Container>
         );

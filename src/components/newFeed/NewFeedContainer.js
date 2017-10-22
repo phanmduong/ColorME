@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    FlatList, TouchableOpacity, StatusBar, View, RefreshControl, Modal, PanResponder,
+    FlatList, TouchableOpacity, StatusBar, View, RefreshControl, PanResponder,
     KeyboardAvoidingView,
 } from 'react-native';
 import {
@@ -23,9 +23,10 @@ class newFeedComponent extends Component {
     constructor() {
         super();
         this.state = {
+            user_avatar_url: '',
             product_id: '',
             like_in_modal: '',
-            grid: true,
+            grid: false,
             page_id: 2,
             typeView: '',
             arrayLike: [],
@@ -39,15 +40,17 @@ class newFeedComponent extends Component {
     }
 
     componentWillMount() {
-        console.log('willmount');
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
+
     }
+
+
 
     onValueChange(value: string) {
         this.setState({
             typeView: value,
         });
-        // this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
+        this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
     }
 
     viewList() {
@@ -251,10 +254,10 @@ class newFeedComponent extends Component {
                                                             style={[part.imageInFeature]}
                                                             source={{uri: 'https://www.w3schools.com/css/trolltunga.jpg'}}
                                                         />
-                                                        <View style={part.textInImage}>
+                                                        <View style={part.wrapperTitleFeature}>
                                                             <Text
                                                                 numberOfLines={2}
-                                                                style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
+                                                                style={[part.padding, part.textTitleFeature]}
                                                             >
                                                                 Top of the day
                                                             </Text>
@@ -297,6 +300,7 @@ class newFeedComponent extends Component {
                                         let {arrayLike} = this.state;
                                         let {likeCount} = this.state;
                                         let colorIcon = arrayLike[item.key] ? color.main : color.icon;
+                                        let likedIcon = arrayLike[item.key] ? 'fontawesome|heart' : 'fontawesome|heart-o';
                                         return (
                                             <ListView
                                                 token={this.props.token}
@@ -308,6 +312,7 @@ class newFeedComponent extends Component {
                                                 likeCount={this.state.likeCount}
                                                 item={item}
                                                 colorIcon={colorIcon}
+                                                likedIcon={likedIcon}
                                             />
                                         )
                                     }}
@@ -321,11 +326,6 @@ class newFeedComponent extends Component {
                     }
 
                 </View>
-                {
-
-                }
-                {/*MODAL*/}
-
             </Container>
         );
     }

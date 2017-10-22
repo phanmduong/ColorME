@@ -13,6 +13,7 @@ import * as color from '../../styles/color';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {NavigationActions} from 'react-navigation';
+
 class searchUser extends Component {
     constructor(props) {
         super(props);
@@ -34,7 +35,7 @@ class searchUser extends Component {
                             this.props.users
                                 ?
                                 <FlatList
-                                    onEndReachedThreshold={5}
+                                    onEndThreshold={5}
                                     onEndReached={
                                         this.props.getMoreUser
                                     }
@@ -45,7 +46,11 @@ class searchUser extends Component {
                                             style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
                                             <TouchableOpacity
                                                 style={{flex: 1}}
-                                                onPress={() => {}
+                                                onPress={() => {
+                                                    console.log('ok');
+                                                    this.props.navigation.dispatch(NavigationActions.navigate({
+                                                    routeName: "UserInSearch"
+                                                }))}
                                                 }>
                                                 <Left>
                                                     <Thumbnail

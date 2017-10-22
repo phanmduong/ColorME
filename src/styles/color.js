@@ -7,6 +7,7 @@ export const navTitle           = 'rgb(255, 255, 255)';
 export const text               = 'rgb(0, 0, 0)';
 export const icon               = 'rgb(214, 214, 214)';
 export const darkGray           = 'rgb(109, 109, 109)';
+export const darkGrayText       = '#1f1f1f';
 export const titleBlue          = 'rgb(0, 128, 214)';
 export const navTabBar          = '#313131';
 export const green              = 'rgb(1, 175, 30)';

@@ -230,16 +230,23 @@ class getFullInfoAboutOnePostComponent extends Component {
                                     <View style={part.wrapperContainer}>
                                         <CardItem style={part.cardHeader}>
                                             <Item style={part.noBorder}>
-                                                <Text style={part.titleLargeGrayDark}>
+                                                <Text style={part.titleInImage}>
                                                     {this.props.post.title}
                                                 </Text>
                                             </Item>
                                         </CardItem>
                                         <CardItem style={part.cardHeader}>
                                             <Item style={part.noBorder}>
-                                                <Text style={part.describeDarkGray}>
-                                                    {this.props.post.description}
-                                                </Text>
+                                                {
+                                                    this.props.post.description
+                                                        ?
+                                                        <Text style={part.describeInImage}>
+                                                            {this.props.post.description}
+
+                                                        </Text>
+                                                        :
+                                                        <View/>
+                                                }
                                             </Item>
                                         </CardItem>
                                     </View>
@@ -249,7 +256,7 @@ class getFullInfoAboutOnePostComponent extends Component {
                                     <CardItem footer>
                                         <Left>
                                             <Button
-                                                transparent style={part.padding}
+                                                transparent style={[part.padding]}
                                                 onPress={() => liked ? this.unlikePost(params.product_id, this.props.token) : this.likePost(params.product_id, this.props.token)}
                                             >
                                                 <Icon name="fontawesome|heart" size={size.iconBig}
@@ -257,14 +264,14 @@ class getFullInfoAboutOnePostComponent extends Component {
                                                 <Text
                                                     style={[part.describeGray, part.paddingLeft]}>{likeCount}</Text>
                                             </Button>
-                                            <Button transparent style={part.paddingRight}
+                                            <Button transparent style={part.padding}
                                             >
                                                 <Icon name="fontawesome|comments-o" size={size.iconBig}
                                                       color={color.icon}/>
                                                 <Text
                                                     style={[part.describeGray, part.paddingLeft]}>{this.props.comments.length}</Text>
                                             </Button>
-                                            <Button transparent style={part.paddingRight}>
+                                            <Button transparent style={part.padding}>
                                                 <Icon name="fontawesome|eye" size={size.iconBig}
                                                       color={color.icon}/>
                                                 <Text

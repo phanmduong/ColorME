@@ -1,36 +1,30 @@
 import React, {Component} from 'react';
 import {
-    View, TouchableOpacity, Modal, PanResponder, KeyboardAvoidingView
+    View, TouchableOpacity, Modal, KeyboardAvoidingView, FlatList
 } from 'react-native';
 import {
-    Container, Header, Content, Card, CardItem, Item, Picker, Input,
-    Thumbnail, Text, Button, Left, Body, Right, ListItem, Spinner, Badge
+    Container, Header, Content, Card, CardItem,  Input, Item,
+    Thumbnail, Text, Button, Left, Body, Right, Spinner,
 } from 'native-base';
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
+import FastImage from 'react-native-fast-image';
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux';
+import * as getFullInfoAboutOnePostAction from '../../actions/inforAboutPostAction';
 
-export default class CommentModal extends Component {
+class CommentModal extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            modalVisible: false,
-        }
     }
 
     componentWillMount() {
-        this.panResponder = PanResponder.create({
-            onStartShouldSetPanResponder: (event, gestureState) => true,
-            onPanResponderGrant: this._onPanResponderGrant.bind(this),
-        })
+
     }
 
-    _onPanResponderGrant(event, gestureState) {
-        if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
-            this.setState({modalVisible: false});
-        }
-    }
+
 
 
     render() {
@@ -46,7 +40,6 @@ export default class CommentModal extends Component {
                 }}
             >
                 <View style={part.wrapperModalComment}
-                      {...this.panResponder.panHandlers}
                 >
                     <View style={part.modalComment}>
                         <KeyboardAvoidingView behavior={'position'}>
@@ -63,10 +56,65 @@ export default class CommentModal extends Component {
                                 </Left>
                             </CardItem>
 
-
                             <View style={part.wrapperCommentInModal}>
+                                {
+                                    !this.props.isLoading
+                                    ?
+                                        <FlatList
+                                            onEndReachedThreshold={5}
+                                            data={this.props.comments}
+                                            renderItem={({item}) =>
+                                                <CardItem style={part.cardHeader}>
+                                                    <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
+                                                        <TouchableOpacity style={part.paddingTRB}
+                                                        >
+                                                            <FastImage
+                                                                style={part.avatarUserNormal}
+                                                                source={{uri: item.commenter.avatar_url}}/>
+                                                        </TouchableOpacity>
+                                                        <Body>
+                                                        <Text
+                                                            style={[part.titleSmallBlue, part.paddingTLB]}
+                                                        >
+                                                            {item.commenter.name}
+                                                        </Text>
+                                                        <Text
+                                                            style={[part.describeDarkGray, part.paddingTLB]}
+                                                        >
+                                                            {item.content}
+                                                        </Text>
+                                                        <View style={{flexDirection: 'row'}}>
+                                                            <Text
+                                                                style={[part.describeLightGray, part.paddingTLB]}
+                                                            >
+                                                                {item.created_at}
+                                                            </Text>
+                                                            <Text
+                                                                style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                            >
+                                                                Trả lời
+                                                            </Text>
+                                                        </View>
 
+                                                        <View
+                                                            style={[{flexDirection: 'row'}, part.paddingLine]}>
+                                                        </View>
+                                                        </Body>
+                                                        <TouchableOpacity transparent>
+                                                            <Icon name="fontawesome|heart-o"
+                                                                  color={color.icon}
+                                                                  size={size.icon}
+                                                                  style={part.paddingRight}
+                                                            />
+                                                        </TouchableOpacity>
+                                                    </View>
+                                                </CardItem>
+                                            }/>
+                                    :
+                                        <Text>Loading</Text>
+                                }
                             </View>
+
 
                             <CardItem style={part.cardBottomInModal}>
                                 <Left>
@@ -96,7 +144,7 @@ export default class CommentModal extends Component {
                                     </Item>
                                     </Body>
                                     <TouchableOpacity
-                                        onPress={() => this.commentPost(params.product_id, this.props.token, this.state)}
+                                        onPress={() => this.commentPost(this.props.product_id, this.props.token, this.state)}
                                     >
                                         <Icon active name='fontawesome|comment-o'
                                               size={size.iconBig}
@@ -110,7 +158,23 @@ export default class CommentModal extends Component {
                     </View>
                 </View>
             </Modal>
-
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        token: state.login.token,
+        post: state.getFullInfoAboutOnePost.post,
+        comments: state.getFullInfoAboutOnePost.comments,
+        isLoading: state.getFullInfoAboutOnePost.isLoading,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        getFullInfoAboutOnePostAction: bindActionCreators(getFullInfoAboutOnePostAction, dispatch),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentModal);

@@ -387,6 +387,7 @@ const part = StyleSheet.create({
         color: color.gray,
         fontWeight: '600',
     },
+
     describeLightGray: {
         fontSize: size.describe,
         color: color.lightGray,
@@ -398,14 +399,17 @@ const part = StyleSheet.create({
         fontWeight: '400',
     },
     describeInImage: {
-        fontSize: size.describe,
-        color: color.navTitle,
-        fontWeight: '600',
-        textShadowColor: color.text,
-        textShadowRadius: 5,
-        textShadowOffset: {width: 1, height: 1},
+        marginBottom: 10,
+        fontSize: 12,
+        color: color.gray,
     },
     textInImage: {
+        width: size.wid,
+        padding: 10,
+        fontSize: 12,
+        backgroundColor: color.none,
+    },
+    wrapperTitleFeature: {
         width: size.wid,
         padding: 10,
         position: 'absolute',
@@ -413,12 +417,9 @@ const part = StyleSheet.create({
         bottom: 20,
     },
     titleInImage: {
-        color: color.navTitle,
-        fontSize: 23,
+        color: color.darkGrayText,
+        fontSize: 12,
         fontWeight: 'bold',
-        textShadowColor: color.text,
-        textShadowRadius: 5,
-        textShadowOffset: {width: 1, height: 1},
     },
     titleGroup: {
         color: color.navTitle,
@@ -428,7 +429,20 @@ const part = StyleSheet.create({
         fontWeight: '600',
         fontSize: 12,
     },
-
+    textButton: {
+        marginTop: -2,
+        fontSize: size.describe,
+        color: color.gray,
+        fontWeight: '600',
+    },
+    textTitleFeature:{
+        color: color.navTitle,
+        fontSize: 23,
+        fontWeight: 'bold',
+        textShadowColor: color.text,
+        textShadowRadius: 5,
+        textShadowOffset: {width: 1, height: 1},
+    },
     //BUTTON
     buttonTheme01: {
         backgroundColor: color.main,
@@ -542,8 +556,13 @@ const part = StyleSheet.create({
         backgroundColor: color.none,
     },
     cardFooter: {
+        paddingTop: 0,
+        paddingBottom: 10,
         borderBottomWidth: 0.5,
         borderColor: color.icon,
+    },
+    cardButton: {
+        height: size.iconBig + 15,
     },
     cardTopInModal: {
         backgroundColor: color.none,

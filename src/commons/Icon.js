@@ -9,6 +9,8 @@ import Zocial from 'react-native-vector-icons/Zocial';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import Octicons from 'react-native-vector-icons/Octicons';
+import Feather from 'react-native-vector-icons/Feather';
 
 const ICON_SET_MAP = {
     fontawesome: FontAwesome,
@@ -20,6 +22,8 @@ const ICON_SET_MAP = {
     materialCommunity: MaterialCommunityIcons,
     entypo: Entypo,
     evil: EvilIcons,
+    octi: Octicons,
+    feat: Feather,
 };
 
 // This is a composition is a drop in replacement for users migrating from the
