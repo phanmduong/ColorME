@@ -3,7 +3,7 @@ import {
     View, TouchableOpacity,
 } from 'react-native';
 import {
-    Container, Card, CardItem, Item, Thumbnail,
+    Container,  Card, CardItem, Item, Thumbnail,
     Text, Button, Left, Body, Right, ListItem, Spinner, Badge
 } from 'native-base';
 import Video from 'react-native-video';
@@ -59,23 +59,25 @@ class ListView extends Component {
                     </Left>
                 </CardItem>
                 {/*PHOTO*/}
-                <TouchableOpacity
-                    style={part.card}
-                    onPress={() =>
-                        this.props.navigation.navigate('ThePostInNewFeed',
-                            item.group
-                                ?
-                                {
-                                    product_id: item.id,
-                                    group_name: item.group.name,
-                                    group_link: item.group.link,
-                                }
-                                :
-                                {
-                                    product_id: item.id,
-                                }
-                        )}>
+                <TouchableOpacity style={part.card}>
+                    <TouchableOpacity
+                        onPress={() =>
+                            this.props.navigation.navigate('ThePostInNewFeed',
+                                item.group
+                                    ?
+                                    {
+                                        product_id: item.id,
+                                        group_name: item.group.name,
+                                        group_link: item.group.link,
+                                    }
+                                    :
+                                    {
+                                        product_id: item.id,
+                                    }
+                            )}
+                    >
 
+                    </TouchableOpacity>
                     <View>
                         {
                             item.url.indexOf('.mp4') === -1
@@ -115,13 +117,13 @@ class ListView extends Component {
                                 style={[part.describeGray, part.paddingLeft]}>{likeCount[item.key]}</Text>
                         </Button>
                         <Button transparent style={part.paddingRight}
-                            // onPress={() => {
-                            //     this.setCommentModalVisible(true);
-                            //     this.setState({
-                            //         like_in_modal: likeCount[item.key],
-                            //         product_id: item.id
-                            //     });
-                            // }}
+                                // onPress={() => {
+                                //     this.setCommentModalVisible(true);
+                                //     this.setState({
+                                //         like_in_modal: likeCount[item.key],
+                                //         product_id: item.id
+                                //     });
+                                // }}
                         >
                             <Icon name="fontawesome|comment-o" size={size.iconBig}
                                   color={color.icon}/>
