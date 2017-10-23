@@ -67,66 +67,66 @@ class SlideViewComponent extends Component {
 
                     </View>
                 </View>
-                <Item style={[part.itemTabInDrawer, {marginTop: 20}]}>
-                    <Left>
-                        <Text style={part.describeDarkGray}>Cài đặt</Text>
-                    </Left>
-                    <Right>
-                        <TouchableOpacity style={part.wrapperIcon}>
-                            <Icon name="ion|ios-settings"
-                                  size={size.iconNormal}
-                                  color={color.darkGray}/>
-                        </TouchableOpacity>
-                    </Right>
-                </Item>
-                <Item style={[part.itemTabInDrawer]}>
-                    <Left>
-                        <Text style={part.describeDarkGray}>Đăng ký học</Text>
-                    </Left>
-                    <Right>
-                        <TouchableOpacity style={part.wrapperIcon}>
-                            <Icon name="fontawesome|graduation-cap"
-                                  size={size.iconNormal}
-                                  color={color.darkGray}/>
-                        </TouchableOpacity>
-                    </Right>
-                </Item>
-                <Item style={[part.itemTabInDrawer]}>
-                    <Left>
-                        <Text style={part.describeDarkGray}>Đổi buổi học</Text>
-                    </Left>
-                    <Right>
-                        <TouchableOpacity style={part.wrapperIcon}>
-                            <Icon name="materialCommunity|arrow-expand"
-                                  size={size.iconNormal}
-                                  color={color.darkGray}/>
-                        </TouchableOpacity>
-                    </Right>
-                </Item>
-                <Item style={[part.itemTabInDrawer]}>
-                    <Left>
-                        <Text style={part.describeDarkGray}>Lịch học</Text>
-                    </Left>
-                    <Right>
-                        <TouchableOpacity style={part.wrapperIcon}>
-                            <Icon name="fontawesome|calendar"
-                                  size={size.iconNormal}
-                                  color={color.darkGray}/>
-                        </TouchableOpacity>
-                    </Right>
-                </Item>
-                <Item style={[part.itemTabInDrawer]}>
-                    <Left>
-                        <Text style={part.describeDarkGray}>Thành tích</Text>
-                    </Left>
-                    <Right>
-                        <TouchableOpacity style={part.wrapperIcon}>
-                            <Icon name="materialCommunity|star-circle"
-                                  size={size.iconNormal}
-                                  color={color.darkGray}/>
-                        </TouchableOpacity>
-                    </Right>
-                </Item>
+                {/*<Item style={[part.itemTabInDrawer, {marginTop: 20}]}>*/}
+                    {/*<Left>*/}
+                        {/*<Text style={part.describeDarkGray}>Cài đặt</Text>*/}
+                    {/*</Left>*/}
+                    {/*<Right>*/}
+                        {/*<TouchableOpacity style={part.wrapperIcon}>*/}
+                            {/*<Icon name="ion|ios-settings"*/}
+                                  {/*size={size.iconNormal}*/}
+                                  {/*color={color.darkGray}/>*/}
+                        {/*</TouchableOpacity>*/}
+                    {/*</Right>*/}
+                {/*</Item>*/}
+                {/*<Item style={[part.itemTabInDrawer]}>*/}
+                    {/*<Left>*/}
+                        {/*<Text style={part.describeDarkGray}>Đăng ký học</Text>*/}
+                    {/*</Left>*/}
+                    {/*<Right>*/}
+                        {/*<TouchableOpacity style={part.wrapperIcon}>*/}
+                            {/*<Icon name="fontawesome|graduation-cap"*/}
+                                  {/*size={size.iconNormal}*/}
+                                  {/*color={color.darkGray}/>*/}
+                        {/*</TouchableOpacity>*/}
+                    {/*</Right>*/}
+                {/*</Item>*/}
+                {/*<Item style={[part.itemTabInDrawer]}>*/}
+                    {/*<Left>*/}
+                        {/*<Text style={part.describeDarkGray}>Đổi buổi học</Text>*/}
+                    {/*</Left>*/}
+                    {/*<Right>*/}
+                        {/*<TouchableOpacity style={part.wrapperIcon}>*/}
+                            {/*<Icon name="materialCommunity|arrow-expand"*/}
+                                  {/*size={size.iconNormal}*/}
+                                  {/*color={color.darkGray}/>*/}
+                        {/*</TouchableOpacity>*/}
+                    {/*</Right>*/}
+                {/*</Item>*/}
+                {/*<Item style={[part.itemTabInDrawer]}>*/}
+                    {/*<Left>*/}
+                        {/*<Text style={part.describeDarkGray}>Lịch học</Text>*/}
+                    {/*</Left>*/}
+                    {/*<Right>*/}
+                        {/*<TouchableOpacity style={part.wrapperIcon}>*/}
+                            {/*<Icon name="fontawesome|calendar"*/}
+                                  {/*size={size.iconNormal}*/}
+                                  {/*color={color.darkGray}/>*/}
+                        {/*</TouchableOpacity>*/}
+                    {/*</Right>*/}
+                {/*</Item>*/}
+                {/*<Item style={[part.itemTabInDrawer]}>*/}
+                    {/*<Left>*/}
+                        {/*<Text style={part.describeDarkGray}>Thành tích</Text>*/}
+                    {/*</Left>*/}
+                    {/*<Right>*/}
+                        {/*<TouchableOpacity style={part.wrapperIcon}>*/}
+                            {/*<Icon name="materialCommunity|star-circle"*/}
+                                  {/*size={size.iconNormal}*/}
+                                  {/*color={color.darkGray}/>*/}
+                        {/*</TouchableOpacity>*/}
+                    {/*</Right>*/}
+                {/*</Item>*/}
             </Container>
         );
     }

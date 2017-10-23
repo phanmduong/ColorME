@@ -129,29 +129,29 @@ const MyAccountStackNavigator = StackNavigator(
 
 const Home = TabNavigator(
     {
-        Notification: {
-            screen: NotificationStackNavigator,
-            navigationOptions: {
-                tabBarIcon: ({tintColor}) => (
-                    <Icon
-                        name="materialCommunity|bell" size={size.icon}
-                        color={tintColor}
-                    />
-                ),
-            }
-        },
-
-        Achievement: {
-            screen: AchievementsComponent,
-            navigationOptions: {
-                tabBarIcon: ({tintColor}) => (
-                    <Icon
-                        name="materialCommunity|seal" size={size.icon}
-                        color={tintColor}
-                    />
-                ),
-            }
-        },
+        // Notification: {
+        //     screen: NotificationStackNavigator,
+        //     navigationOptions: {
+        //         tabBarIcon: ({tintColor}) => (
+        //             <Icon
+        //                 name="materialCommunity|bell" size={size.icon}
+        //                 color={tintColor}
+        //             />
+        //         ),
+        //     }
+        // },
+        //
+        // Achievement: {
+        //     screen: AchievementsComponent,
+        //     navigationOptions: {
+        //         tabBarIcon: ({tintColor}) => (
+        //             <Icon
+        //                 name="materialCommunity|seal" size={size.icon}
+        //                 color={tintColor}
+        //             />
+        //         ),
+        //     }
+        // },
         NewFeed: {
             screen: NewFeedStackNavigator,
             navigationOptions: {
