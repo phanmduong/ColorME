@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    View, TouchableOpacity,
+    View, TouchableOpacity, Alert
 } from 'react-native';
 import {
     Container, Card, CardItem, Item, Thumbnail,
@@ -13,6 +13,9 @@ import * as color from '../../styles/color';
 import * as size from '../../styles/size';
 import FastImage from 'react-native-fast-image';
 import CommentModal from './CommentModal';
+import * as reportAction from '../../actions/reportAction';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
 class ListView extends Component {
     constructor(props) {
@@ -22,6 +25,31 @@ class ListView extends Component {
         }
     }
 
+    alertReport() {
+        Alert.alert(
+            'Báo cáo',
+            'Bạn thực sự muốn báo cáo bài viết này?',
+            [
+                {text: 'Xác nhận', onPress: () => this.reportPost(this.props.item.id)},
+                {text: 'Hủy'},
+            ],
+            {cancelable: false}
+        )
+    }
+
+    reportPost(id) {
+        this.props.reportAction.reportPost(id);
+        if (1) {
+            Alert.alert(
+                'Gửi báo cáo thành công.',
+                'Cảm ơn bạn đã gửi báo cáo này, chúng tôi sẽ xử lý trong thời gian sớm nhất.',
+                [
+                    {text: 'Xong'},
+                ],
+                {cancelable: false}
+            )
+        }
+    }
 
     setCommentModalVisible(visible) {
         this.setState({modalVisible: visible});
@@ -49,8 +77,10 @@ class ListView extends Component {
                         <Text
                             style={part.describeItalicDark}>{item.created_at}</Text>
                         </Body>
-                        <TouchableOpacity transparent>
-                            <Icon name="materialCommunity|dots-horizontal"
+                        <TouchableOpacity transparent
+                                          onPress={() => this.alertReport()}
+                        >
+                            <Icon name="material|report"
                                   color={color.icon}
                                   size={size.icon}
                                   style={part.paddingRight}
@@ -60,20 +90,20 @@ class ListView extends Component {
                 </CardItem>
                 {/*PHOTO*/}
                 <TouchableOpacity style={part.card}
-                    onPress={() =>
-                    navigate('ThePostInNewFeed',
-                        item.group
-                            ?
-                            {
-                                product_id: item.id,
-                                group_name: item.group.name,
-                                group_link: item.group.link,
-                            }
-                            :
-                            {
-                                product_id: item.id,
-                            }
-                    )}>
+                                  onPress={() =>
+                                      navigate('ThePostInNewFeed',
+                                          item.group
+                                              ?
+                                              {
+                                                  product_id: item.id,
+                                                  group_name: item.group.name,
+                                                  group_link: item.group.link,
+                                              }
+                                              :
+                                              {
+                                                  product_id: item.id,
+                                              }
+                                      )}>
                     <View>
                         {
                             item.url.indexOf('.mp4') === -1
@@ -160,4 +190,17 @@ class ListView extends Component {
 }
 
 
-export default (ListView);
+function mapStateToProps(state) {
+    return {
+        isLoadingReportPost: state.report.isLoading,
+        reportPostStatus: state.report.reportPostStatus
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        reportAction: bindActionCreators(reportAction, dispatch),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListView);

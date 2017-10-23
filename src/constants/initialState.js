@@ -92,5 +92,10 @@ export default {
         topics:[],
         products:[],
         members:[],
-    }
+    },
+
+    report:{
+        isLoading: false,
+        reportPostStatus: 0,
+    },
 }

@@ -23,6 +23,7 @@ import * as color from '../../styles/color';
 import * as size from '../../styles/size';
 import * as getNewFeedAction from '../../actions/newFeedAction';
 import * as likePostAction from '../../actions/likePostAction';
+import * as reportAction from '../../actions/reportAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import ListView from './ListView';
@@ -402,14 +403,15 @@ function mapStateToProps(state) {
         user: state.login.user,
         token: state.login.token,
         isLoading: state.getNewFeed.isLoading,
-        isRefreshing: state.getNewFeed.isRefreshing
+        isRefreshing: state.getNewFeed.isRefreshing,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         getNewFeedAction: bindActionCreators(getNewFeedAction, dispatch),
-        likePostAction: bindActionCreators(likePostAction, dispatch)
+        likePostAction: bindActionCreators(likePostAction, dispatch),
+
     }
 }
 

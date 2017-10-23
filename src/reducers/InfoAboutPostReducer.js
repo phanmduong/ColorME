@@ -11,7 +11,6 @@ export default function getFullInfoAboutOnePostReducer(state = initialState.getF
                     error: action.error,
                 }
             }
-
         case types.BEGIN_POST_COMMENT:
             return {
                 ...state,
