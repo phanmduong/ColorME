@@ -30,25 +30,15 @@ class ListView extends Component {
             'Báo cáo',
             'Bạn thực sự muốn báo cáo bài viết này?',
             [
-                {text: 'Xác nhận', onPress: () => this.reportPost(this.props.item.id)},
+                {text: 'Xác nhận', onPress: () => this.reportPost(this.props.item.id, this.props.token)},
                 {text: 'Hủy'},
             ],
             {cancelable: false}
         )
     }
 
-    reportPost(id) {
-        this.props.reportAction.reportPost(id);
-        if (1) {
-            Alert.alert(
-                'Gửi báo cáo thành công.',
-                'Cảm ơn bạn đã gửi báo cáo này, chúng tôi sẽ xử lý trong thời gian sớm nhất.',
-                [
-                    {text: 'Xong'},
-                ],
-                {cancelable: false}
-            )
-        }
+    reportPost(id, token) {
+        this.props.reportAction.reportPost(id, token);
     }
 
     setCommentModalVisible(visible) {
@@ -192,8 +182,9 @@ class ListView extends Component {
 
 function mapStateToProps(state) {
     return {
+        token: state.login.token,
         isLoadingReportPost: state.report.isLoading,
-        reportPostStatus: state.report.reportPostStatus
+        reportPostResult: state.report.reportPostResult
     }
 }
 

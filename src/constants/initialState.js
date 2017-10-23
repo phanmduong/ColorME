@@ -96,6 +96,6 @@ export default {
 
     report:{
         isLoading: false,
-        reportPostStatus: 0,
+        reportPostResult: {},
     },
 }

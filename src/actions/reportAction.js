@@ -1,22 +1,23 @@
 import * as types from '../constants/actionTypes';
 import * as reportApi from '../apis/reportApi';
+import {AsyncStorage, Alert} from 'react-native'
 
-export function beginReportPost() {
+function beginReportPost() {
     return{
         type: types.BEGIN_REPORT_POST,
         isLoading: true,
     }
 }
 
-export function reportPostSuccess(response) {
+function reportPostSuccess(response) {
     return{
         type: types.REPORT_POST_SUCCESS,
         isLoading: false,
-        reportPostStatus: 1,
+        reportPostResult: response.data
     }
 }
 
-export function reportPostError() {
+function reportPostError() {
     return{
         type: types.REPORT_POST_ERROR,
         isLoading: false,
@@ -24,15 +25,32 @@ export function reportPostError() {
     }
 }
 
-export function reportPost(id) {
+export function reportPost(id, token) {
     return(dispatch) => {
         dispatch(beginReportPost());
-        reportApi.reportPostApi(id)
+        reportApi.reportPostApi(id, token)
             .then(function (response) {
                 dispatch(reportPostSuccess(response));
+                console.log(response.data);
+                Alert.alert(
+                    'Gửi báo cáo thành công.',
+                    response.data.data.message,
+                    [
+                        {text: 'Xong'},
+                    ],
+                )
+
             })
             .catch(function (error) {
                 dispatch(reportPostError(error));
+                console.log(error);
+                Alert.alert(
+                    'Gửi báo cáo thất bại.',
+                    'Có lỗi xảy ra trong quá trình xử lý yêu cầu của bạn. Hãy thử lại sau',
+                    [
+                        {text: 'Xác nhận'},
+                    ],
+                )
             })
     }
 }

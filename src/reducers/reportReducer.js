@@ -16,7 +16,7 @@ export default function reportReducer(state = initialState.report, action) {
                 ...state,
                 ...{
                     isLoading: action.isLoading,
-                    reportPostStatus: action.reportPostStatus
+                    reportPostResult: action.reportPostResult
                 }
             }
         case types.REPORT_POST_ERROR:
@@ -24,7 +24,7 @@ export default function reportReducer(state = initialState.report, action) {
                 ...state,
                 ...{
                     isLoading: action.isLoading,
-                    reportPostStatus: action.reportPostStatus
+                    reportPostResult: action.reportPostResult
                 }
             }
         default:
