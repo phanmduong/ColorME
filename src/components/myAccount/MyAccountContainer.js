@@ -1,24 +1,86 @@
 import React, {Component} from 'react';
 import {
-    Image, TouchableOpacity, View, Dimensions, StyleSheet
+    Image, TouchableOpacity, View,
 } from 'react-native';
 import {
-    Title, Container, Header, Content, Card, CardItem, Thumbnail, Text, CheckBox,
-    Button, Left, Body, Right, TabHeading, List, ListItem, Item
+    Body, Container, Spinner,
+    Item, Left, Right, Text, Thumbnail,
 } from 'native-base';
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
+import parallaxStyle from '../../styles/parallaxStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
 import * as userInformationAction from '../../actions/userInformationAction';
+import MyAccountProgress from './MyAccountProgress';
+import MyAccountProject from './MyAccountProject';
+import MyAccountInformation from './MyAccountInformation';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
-class myAccountComponent extends Component {
+class MyAccountContainer extends Component {
+    constructor() {
+        super();
+        this.state = {
+            tab: 1,
+            isLoading: false,
+        }
+    }
 
-    componentWillMount(){
-        this.props.userInformationAction.selectProfileUser(this.props.user.id);
+    componentWillMount() {
+        this.props.userInformationAction.getUserProfile(this.props.user.username);
+        this.props.userInformationAction.getUserProgress(this.props.user.username);
+        this.props.userInformationAction.getUserProducts(this.props.user.username, 1, this.props.token);
+    }
+
+    ViewProgress() {
+        setTimeout(() => {
+            this.setState({isLoading: false})
+        }, 100);
+        this.setState({tab: 0, isLoading: true})
+    }
+
+    ViewProject() {
+        setTimeout(() => {
+            this.setState({isLoading: false})
+        }, 100);
+        this.setState({tab: 1, isLoading: true})
+    }
+
+    ViewInformation() {
+        setTimeout(() => {
+            this.setState({isLoading: false})
+        }, 100);
+        this.setState({tab: 2, isLoading: true})
+    }
+
+    tab() {
+        switch (this.state.tab) {
+            case 0:
+                return (
+                    <MyAccountProgress
+                        user={this.props.user}
+                        progress={this.props.progress}
+                        isLoadingUserProgress={this.props.isLoadingUserProgress}
+                    />
+                );
+            case 1 :
+                return (
+                    <MyAccountProject
+                        navigation={this.props.navigation}
+                        products={this.props.products}
+                        isLoadingUserProducts={this.props.isLoadingUserProducts}
+                    />
+                );
+            case 2 :
+                return (
+                    <MyAccountInformation
+                        user={this.props.user}
+                        isLoadingUserProfile={this.props.isLoadingUserProfile}
+                    />
+                );
+        }
     }
 
     render() {
@@ -28,8 +90,8 @@ class myAccountComponent extends Component {
                 <ParallaxScrollView
                     showsVerticalScrollIndicator={false}
                     headerBackgroundColor={color.main}
-                    stickyHeaderHeight={STICKY_HEADER_HEIGHT}
-                    parallaxHeaderHeight={PARALLAX_HEADER_HEIGHT}
+                    stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
+                    parallaxHeaderHeight={size.PARALLAX_HEADER_HEIGHT}
                     backgroundSpeed={10}
                     renderBackground={() =>
                         <View style={part.wrapperImageInGetFull}>
@@ -37,17 +99,16 @@ class myAccountComponent extends Component {
                                 <Image
                                     source={{
                                         uri: this.props.user.avatar_url,
-                                        width: window.width,
-                                        height: PARALLAX_HEADER_HEIGHT
+                                        width: size.wid,
+                                        height: size.PARALLAX_HEADER_HEIGHT
                                     }}/>
                                 <View style={{
                                     position: 'absolute',
                                     top: 0,
-                                    width: window.width,
-                                    backgroundColor: 'rgba(0,0,0,.7)',
-                                    height: PARALLAX_HEADER_HEIGHT
+                                    width: size.wid,
+                                    backgroundColor: 'rgba(0,0,0,.8)',
+                                    height: size.PARALLAX_HEADER_HEIGHT
                                 }}/>
-
                             </View>
                             <View style={part.iconInDrawer}>
                                 <Right style={{left: 10}}>
@@ -63,7 +124,7 @@ class myAccountComponent extends Component {
                     }
 
                     renderForeground={() => (
-                        <View key="parallax-header" style={styles.parallaxHeader}>
+                        <View key="parallax-header" style={parallaxStyle.parallaxHeader}>
                             <Item style={{borderBottomWidth: 0,}}>
                                 <Body>
                                 <Thumbnail style={part.marginBottom}
@@ -81,7 +142,7 @@ class myAccountComponent extends Component {
                     )}
 
                     renderStickyHeader={() => (
-                        <View key="sticky-header" style={[styles.stickySection, {visibility: 'hidden'}]}>
+                        <View key="sticky-header" style={parallaxStyle.stickySection}>
                             <View style={part.iconInDrawerNav}>
                                 <Left style={{flexDirection: 'row', marginTop: 20,}}>
                                     <Right style={{left: 10}}>
@@ -111,6 +172,47 @@ class myAccountComponent extends Component {
 
                     )}
                 >
+                    <View style={part.wrapperTabBarUser}>
+                        <TouchableOpacity
+                            style={part.wrapperTextInTabBarUser}
+                            onPress={() => this.ViewProgress()}
+                        >
+                            <Text
+                                style={this.state.tab == 0 ? part.describeDarkGray : part.describeGray}
+                            >
+                                Tiến độ
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={part.wrapperTextInTabBarUser}
+                            onPress={() => this.ViewProject()}
+                        >
+                            <Text
+                                style={this.state.tab == 1 ? part.describeDarkGray : part.describeGray}
+                            >
+                                Dự án
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={part.wrapperTextInTabBarUser}
+                            onPress={() => this.ViewInformation()}
+                        >
+                            <Text
+                                style={this.state.tab == 2 ? part.describeDarkGray : part.describeGray}
+                            >
+                                Thông tin
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    {
+                        this.state.isLoading
+                            ?
+                            <View style={[part.wrapperContainer]}>
+                                <Spinner color={color.gray}/>
+                            </View>
+                            :
+                            this.tab()
+                    }
                     <TouchableOpacity style={[part.iconAddFriendInProfile, part.shadow]}>
                         <Icon name="ion|ios-person-add"
                               size={30}
@@ -121,37 +223,6 @@ class myAccountComponent extends Component {
         );
     }
 }
-
-const window = Dimensions.get('window');
-
-const PARALLAX_HEADER_HEIGHT = 250;
-const STICKY_HEADER_HEIGHT = 60;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'transparent'
-    },
-    background: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: window.width,
-        height: PARALLAX_HEADER_HEIGHT
-    },
-    stickySection: {
-        height: STICKY_HEADER_HEIGHT,
-        justifyContent: 'center',
-        backgroundColor: color.main
-    },
-    parallaxHeader: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-        flexDirection: 'column',
-    },
-
-});
 
 function mapStateToProps(state) {
     return {
@@ -167,4 +238,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(myAccountComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(MyAccountContainer);

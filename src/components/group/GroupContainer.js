@@ -22,7 +22,7 @@ class GroupContainer extends Component {
     constructor() {
         super();
         this.state = {
-            tab: 1,
+            tab: 0,
             isLoading: false,
         }
     }
@@ -34,53 +34,56 @@ class GroupContainer extends Component {
         this.props.groupAction.getGroupMember(params.group_link, this.props.token);
     }
 
-    ViewTopics(){
+    ViewTopics() {
         setTimeout(() => {
             this.setState({isLoading: false})
         }, 100);
         this.setState({tab: 0, isLoading: true})
     }
 
-    ViewProducts(){
+    ViewProducts() {
         setTimeout(() => {
             this.setState({isLoading: false})
         }, 100);
         this.setState({tab: 1, isLoading: true})
     }
 
-    ViewMembers(){
+    ViewMembers() {
         setTimeout(() => {
             this.setState({isLoading: false})
         }, 100);
         this.setState({tab: 2, isLoading: true})
     }
 
-    tab(){
-        switch (this.state.tab){
+    tab() {
+        switch (this.state.tab) {
             case 0:
-                return(
+                return (
                     <GroupTopics
                         navigation={this.props.navigation}
                         topics={this.props.topics}
                         isLoadingGroupTopics={this.props.isLoadingGroupTopics}
+                        groupName={this.props.groupName}
 
                     />
                 );
             case 1 :
-                return(
+                return (
                     <GroupProject
                         navigation={this.props.navigation}
                         products={this.props.products}
                         isLoadingGroupProducts={this.props.isLoadingGroupProducts}
+                        groupName={this.props.groupName}
 
                     />
                 );
             case 2 :
-                return(
+                return (
                     <GroupMembers
                         navigation={this.props.navigation}
                         members={this.props.members}
                         isLoadingGroupMembers={this.props.isLoadingGroupMembers}
+                        groupName={this.props.groupName}
                     />
                 );
         }
@@ -89,6 +92,7 @@ class GroupContainer extends Component {
 
     render() {
         const {goBack} = this.props.navigation;
+        const {isLoadingGroupTopics} = this.props;
         return (
             <Container style={part.wrapperContainer}>
                 <ParallaxScrollView
@@ -101,11 +105,14 @@ class GroupContainer extends Component {
                         <View style={part.wrapperImageInGetFull}>
                             <View key="background">
                                 <Image
-                                    source={{
-                                        uri: this.props.groupAvatar,
-                                        width: size.wid,
-                                        height: size.PARALLAX_HEADER_HEIGHT
-                                    }}/>
+                                    style={{width: size.wid, height: size.PARALLAX_HEADER_HEIGHT}}
+                                    source={
+                                        isLoadingGroupTopics
+                                            ?
+                                            ''
+                                            :
+                                            {uri: this.props.groupAvatar,}
+                                    }/>
                                 <View style={{
                                     position: 'absolute',
                                     top: 0,
@@ -132,15 +139,31 @@ class GroupContainer extends Component {
                                 <Body>
                                 <Thumbnail style={part.marginBottom}
                                            circle large
-                                           source={{uri: this.props.groupAvatar}}
+                                           source={
+                                               isLoadingGroupTopics
+                                                   ?
+                                                   ''
+                                                   :
+                                                   {uri: this.props.groupAvatar}
+                                           }
                                 >
                                 </Thumbnail>
                                 <Text style={[part.titleNormalLight, part.paddingLine]}>
-                                    {this.props.groupName}
+                                    {
+                                        isLoadingGroupTopics
+                                            ?
+                                            'Đang tải...'
+                                            :
+                                            this.props.groupName
+                                    }
                                 </Text>
-                                <Text style={[part.describeGray, part.paddingLine]}>
-                                    {this.props.members.length}
-                                    &nbsp;thành viên
+                                <Text style={[part.describeGray, part.paddingLine]}>{
+                                    isLoadingGroupTopics
+                                        ?
+                                        'Đang tải...'
+                                        :
+                                        `${this.props.members.length} thành viên`
+                                }
                                 </Text>
                                 </Body>
                             </Item>
@@ -212,7 +235,7 @@ class GroupContainer extends Component {
                     </View>
                     {
                         this.state.isLoading
-                        ?
+                            ?
                             <View style={[part.wrapperContainer]}>
                                 <Spinner color={color.gray}/>
                             </View>

@@ -37,6 +37,7 @@ export default {
         statusPostComment: '',
     },
     userInformation : {
+        isLoading: false,
         isLoadingUserProfile: false,
         isLoadingUserProducts: false,
         isLoadingUserProgress: false,

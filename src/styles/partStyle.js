@@ -540,6 +540,14 @@ const part = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    wrapperTextNotLength:{
+        flex: 1,
+        height: 55,
+        backgroundColor: color.none,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     noBorder: {
         borderBottomWidth: 0,
         borderTopWidth: 0,

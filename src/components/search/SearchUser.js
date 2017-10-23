@@ -39,7 +39,7 @@ class searchUser extends Component {
                                     style={[part.backgroundNone, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
                                     <TouchableOpacity
                                         style={{flex: 1}}
-                                        onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.username})}
+                                        onPress={() => this.props.navigation.navigate('UserInSearch', {username: item.username})}
                                     >
                                         <Left>
                                             <Thumbnail

@@ -28,38 +28,38 @@ class UserContainer extends Component {
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         const {params} = this.props.navigation.state;
         this.props.userInformationAction.getUserProfile(params.username);
         this.props.userInformationAction.getUserProgress(params.username);
         this.props.userInformationAction.getUserProducts(params.username, 1, this.props.token);
     }
 
-    ViewProgress(){
+    ViewProgress() {
         setTimeout(() => {
             this.setState({isLoading: false})
         }, 100);
         this.setState({tab: 0, isLoading: true})
     }
 
-    ViewProject(){
+    ViewProject() {
         setTimeout(() => {
             this.setState({isLoading: false})
         }, 100);
         this.setState({tab: 1, isLoading: true})
     }
 
-    ViewInformation(){
+    ViewInformation() {
         setTimeout(() => {
             this.setState({isLoading: false})
         }, 100);
         this.setState({tab: 2, isLoading: true})
     }
 
-    tab(){
-        switch (this.state.tab){
+    tab() {
+        switch (this.state.tab) {
             case 0:
-                return(
+                return (
                     <UserProgress
                         user={this.props.user}
                         progress={this.props.progress}
@@ -67,15 +67,16 @@ class UserContainer extends Component {
                     />
                 );
             case 1 :
-                return(
+                return (
                     <UserProject
+                        user={this.props.user}
                         navigation={this.props.navigation}
                         products={this.props.products}
                         isLoadingUserProducts={this.props.isLoadingUserProducts}
                     />
                 );
             case 2 :
-                return(
+                return (
                     <UserInformation
                         user={this.props.user}
                         isLoadingUserProfile={this.props.isLoadingUserProfile}
@@ -83,8 +84,10 @@ class UserContainer extends Component {
                 );
         }
     }
+
     render() {
         const {goBack} = this.props.navigation;
+        const {user, isLoadingUserProducts} = this.props;
         return (
             <Container style={part.wrapperContainer}>
                 <ParallaxScrollView
@@ -97,11 +100,14 @@ class UserContainer extends Component {
                         <View style={part.wrapperImageInGetFull}>
                             <View key="background">
                                 <Image
-                                    source={{
-                                        uri: this.props.user.avatar_url,
-                                        width: size.wid,
-                                        height: size.PARALLAX_HEADER_HEIGHT
-                                    }}/>
+                                    style={{width: size.wid, height: size.PARALLAX_HEADER_HEIGHT}}
+                                    source={
+                                        isLoadingUserProducts
+                                            ?
+                                            ''
+                                            :
+                                            {uri: user.avatar_url}
+                                    }/>
                                 <View style={{
                                     position: 'absolute',
                                     top: 0,
@@ -129,12 +135,30 @@ class UserContainer extends Component {
                                 <Body>
                                 <Thumbnail style={part.marginBottom}
                                            circle large
-                                           source={{uri: this.props.user.avatar_url}}
+                                           source={
+                                               isLoadingUserProducts
+                                                   ?
+                                                   ''
+                                                   :
+                                                   {uri: user.avatar_url}
+                                           }
                                 >
                                 </Thumbnail>
-                                <Text style={[part.titleNormalLight, part.paddingLine]}>{this.props.user.name}
+                                <Text style={[part.titleNormalLight, part.paddingLine]}>{
+                                    isLoadingUserProducts
+                                        ?
+                                        'Đang tải...'
+                                        :
+                                        user.name
+                                }
                                 </Text>
-                                <Text style={[part.describeGray, part.paddingLine]}> {this.props.user.university}
+                                <Text style={[part.describeGray, part.paddingLine]}>{
+                                    isLoadingUserProducts
+                                        ?
+                                        'Đang tải...'
+                                        :
+                                        user.university
+                                }
                                 </Text>
                                 </Body>
                             </Item>

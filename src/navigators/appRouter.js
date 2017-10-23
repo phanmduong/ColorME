@@ -23,13 +23,13 @@ import InfoAboutPostContainer from '../components/InfoAboutPostContainer';
 import {Root} from "native-base";
 
 // USER SCREEN
-import userComponent from '../components/user/UserContainer';
+import UserContainer from '../components/user/UserContainer';
 
 // SEARCH SCREEN
 import SearchContainer from '../components/search/SearchContainer';
 
 // MY ACCOUNT
-import myAccountComponent from '../components/myAccount/myAccountComponent';
+import MyAccountContainer from '../components/myAccount/MyAccountContainer';
 
 //GROUP
 import GroupContainer from '../components/group/GroupContainer';
@@ -94,7 +94,7 @@ const ThePostInNewFeed = StackNavigator(
 
 const UserInNewFeed = StackNavigator(
     {
-        UserInNewFeed: {screen: userComponent},
+        UserInNewFeed: {screen: UserContainer},
     }, StackNavigatorStyle
 );
 
@@ -116,12 +116,14 @@ const NotificationStackNavigator = StackNavigator(
 const SearchStackNavigator = StackNavigator(
     {
         SearchStack: {screen: SearchContainer},
+        UserInSearch: {screen: UserContainer},
+        ThePostInSearch: {screen: InfoAboutPostContainer, navigationOptions: {tabBarVisible: false}},
     }, StackNavigatorStyle
 );
 
 const MyAccountStackNavigator = StackNavigator(
     {
-        MyAccountStack: {screen: myAccountComponent}
+        MyAccountStack: {screen: MyAccountContainer}
     }, StackNavigatorStyle
 );
 

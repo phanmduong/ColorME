@@ -31,36 +31,34 @@ class UserProgress extends Component {
                         </View>)
                         :
                         (
-                            (progress.length === 0)
+                            !progress
                                 ?
-                                (
-                                    <Body>
-                                    <Text style={[part.padding, part.describeDark]}>{user.name} chưa tham gia
-                                        khóa học nào.</Text>
-                                    </Body>
-                                )
+                                <Body>
+                                    <Text style={[part.padding, part.titleSmallDarkGrayBold]}>
+                                        {user.name} chưa tham gia khóa học nào.
+                                    </Text>
+                                </Body>
                                 :
-                                (
-                                    <FlatList
-                                        showsVerticalScrollIndicator={false}
-                                        onEndReachedThreshold={5}
-                                        data={progress}
-                                        renderItem={({item}) =>
-                                            <Card style={[part.noBorder]}>
-                                                <CardItem style={[part.noBorder, part.cardProgress]}>
-                                                    <Left>
-                                                        <FastImage style={part.avatarUserNormal}
-                                                                   source={{uri: item.icon_url}}/>
-                                                        <Body>
-                                                        <Text style={part.titleSmallDarkGrayBold}>{item.name}</Text>
-                                                        <Text
-                                                            style={part.titleSmallDarkGrayBold}>{item.study_time}</Text>
-                                                        </Body>
-                                                    </Left>
-                                                </CardItem>
-                                            </Card>
-                                        }/>
-                                )
+                                <FlatList
+                                    showsVerticalScrollIndicator={false}
+                                    onEndReachedThreshold={5}
+                                    data={progress}
+                                    renderItem={({item}) =>
+                                        <Card style={[part.noBorder]}>
+                                            <CardItem style={[part.noBorder, part.cardProgress]}>
+                                                <Left>
+                                                    <FastImage style={part.avatarUserNormal}
+                                                               source={{uri: item.icon_url}}/>
+                                                    <Body>
+                                                    <Text style={part.titleSmallDarkGrayBold}>{item.name}</Text>
+                                                    <Text
+                                                        style={part.titleSmallDarkGrayBold}>{item.study_time}</Text>
+                                                    </Body>
+                                                </Left>
+                                            </CardItem>
+                                        </Card>
+                                    }/>
+
                         )
                 }
             </Container>

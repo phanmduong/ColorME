@@ -37,7 +37,7 @@ class searchProduct extends Component {
                                           style={[part.backgroundNone, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
                                     <Left>
                                         <TouchableOpacity
-                                            onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.author.username})}
+                                            onPress={() => this.props.navigation.navigate('UserInSearch', {username: item.author.username})}
 
                                         >
                                             <Thumbnail
@@ -45,13 +45,13 @@ class searchProduct extends Component {
                                         </TouchableOpacity>
                                         <Body style={part.noBorder}>
                                         <Text
-                                            onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.author.username})}
+                                            onPress={() => this.props.navigation.navigate('UserInSearch', {username: item.author.username})}
                                             style={part.titleSmallBlue}>{item.author.name}</Text>
                                         <Text style={part.describeGray} note>{item.title}</Text>
                                         </Body>
                                         <TouchableOpacity
                                             onPress={() => this.props.navigation.navigate(
-                                                'ThePostInNewFeed',
+                                                'ThePostInSearch',
                                                 item.group
                                                     ?
                                                     {
@@ -73,8 +73,8 @@ class searchProduct extends Component {
                                 </CardItem>
                             }
                         />
-
                 }
+
             </Container>
         );
     }

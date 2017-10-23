@@ -1,23 +1,22 @@
 import React, {Component} from 'react';
 import {
-    FlatList, TouchableOpacity, View, Text
+    TouchableOpacity, View, FlatList, Text
 } from 'react-native';
 import {
-    Container, Spinner, Body
+    Container, Spinner
 } from 'native-base';
-import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
+import * as color from '../../styles/color';
 import FastImage from 'react-native-fast-image'
-
-class GroupProject extends Component {
+class MyAccountProject extends Component {
     render() {
-        const {products, isLoadingGroupProducts, groupName} = this.props;
+        const {products, isLoadingUserProducts} = this.props;
         return (
             <Container
                 showsVerticalScrollIndicator={false}
                 style={[part.wrapperContainer]}>
                 {
-                    (isLoadingGroupProducts)
+                    (isLoadingUserProducts)
                         ?
                         (
                             <View
@@ -35,11 +34,11 @@ class GroupProject extends Component {
                         (
                             <View style={[part.wrapperGrid]}>
                                 {
-                                    products.length === 0
+                                    !products
                                         ?
                                         <View style={part.wrapperTextNotLength}>
                                             <Text style={[part.padding, part.titleSmallDarkGrayBold]}>
-                                                {groupName} chưa có dự án nào.
+                                                Bạn chưa có dự án nào.
                                             </Text>
                                         </View>
                                         :
@@ -85,5 +84,4 @@ class GroupProject extends Component {
     }
 }
 
-
-export default GroupProject;
+export default MyAccountProject;
