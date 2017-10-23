@@ -8,14 +8,14 @@ import {
 } from 'native-base';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
-import {connect} from 'react-redux';
 
 class UserInformation extends Component {
     render() {
+        const {user, isLoadingUserProfile} = this.props;
         return (
             <Container style={[part.wrapperContainer, part.padding]}>
                 {
-                    (this.props.isLoadingUserProfile)
+                    (isLoadingUserProfile)
                         ?
                         (
                             <View
@@ -39,21 +39,25 @@ class UserInformation extends Component {
                                         <Text style={part.titleSmallDarkBold}>Thông tin chi tiết</Text>
                                     </ListItem>
                                     <ListItem style={part.listItem}>
-                                        <Text style={part.describeDark}>Họ tên: {this.props.user.name}</Text>
+                                        <Text style={part.describeDark}>Họ tên: {user.name}</Text>
                                     </ListItem>
                                     <ListItem style={part.listItem}>
-                                        {(this.props.user.gender === 1) ?
-                                            (<Text style={part.describeDark}>Giới tính: Nam</Text>) :
-                                            (<Text style={part.describeDark}>Giới tính: Nữ</Text>)}
+                                        {
+                                            user.gender === 1
+                                                ?
+                                                <Text style={part.describeDark}>Giới tính: Nam</Text>
+                                                :
+                                                <Text style={part.describeDark}>Giới tính: Nữ</Text>
+                                        }
                                     </ListItem>
                                     <ListItem style={part.listItem}>
-                                        <Text style={part.describeDark}>Mô tả: {this.props.user.description}</Text>
+                                        <Text style={part.describeDark}>Mô tả: {user.description}</Text>
                                     </ListItem>
                                     <ListItem style={part.listItem}>
-                                        <Text style={part.describeDark}>Nơi làm việc: {this.props.user.work}</Text>
+                                        <Text style={part.describeDark}>Nơi làm việc: {user.work}</Text>
                                     </ListItem>
                                     <ListItem style={part.listItem}>
-                                        <Text style={part.describeDark}>Trường học: {this.props.user.university}</Text>
+                                        <Text style={part.describeDark}>Trường học: {user.university}</Text>
                                     </ListItem>
                                 </List>
                             </Content>
@@ -64,11 +68,6 @@ class UserInformation extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return{
-        user: state.userInformation.user,
-        isLoadingUserProfile: state.userInformation.isLoadingUserProfile
-    }
-}
 
-export default connect(mapStateToProps)(UserInformation);
+
+export default UserInformation;

@@ -1,24 +1,23 @@
 import React, {Component} from 'react';
 import {
-    FlatList, Image, View, TouchableOpacity
+    FlatList, View, TouchableOpacity
 } from 'react-native';
 import {
     Content, Card, CardItem, Text, Thumbnail, Container,
-    Left, Body, Right, List, ListItem, Spinner
+    Left, Body, Right, Spinner
 } from 'native-base';
 import Icon from '../../commons/Icon';
 import moment from 'moment';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
-import {connect} from 'react-redux';
 import FastImage from 'react-native-fast-image'
 
 class GroupTopics extends Component {
     render() {
-
+        const {topics, isLoadingGroupTopics} = this.props;
         return (
-            (this.props.isLoadingGroupTopics)
+            (isLoadingGroupTopics)
                 ?
                 (
                     <View
@@ -39,7 +38,7 @@ class GroupTopics extends Component {
                     >
                     <FlatList
                         showsVerticalScrollIndicator={false}
-                        data={this.props.topics}
+                        data={topics}
                         renderItem={({item}) => {
                         let created = item.created_time;
                                 let deadline = item.deadline_raw;
@@ -130,12 +129,7 @@ class GroupTopics extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        topics: state.group.topics,
-        isLoadingGroupTopics: state.group.isLoadingGroupTopics,
-    }
-}
 
 
-export default connect(mapStateToProps)(GroupTopics);
+
+export default GroupTopics;

@@ -42,7 +42,9 @@ export default class ResetPasswordContainer extends Component {
                                 />
                             </Item>
                         </View>
-                        <Text style={styles.textTitleInput}>NHẬP LẠI PASSWORD</Text>
+                        <Text style={styles.textTitleInput}>
+                            NHẬP LẠI PASSWORD
+                        </Text>
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
@@ -60,7 +62,7 @@ export default class ResetPasswordContainer extends Component {
                                     block
                                     rounded
                                     style={styles.buttonRegister}
-                                    onPress={() => this.props.navigation.navigate('LoginComponent')}
+                                    onPress={() => this.props.navigation.navigate('LoginContainer')}
                                 >
                                     <Text style={styles.textButton}>Xác nhận</Text>
                                 </TouchableOpacity>
@@ -68,8 +70,8 @@ export default class ResetPasswordContainer extends Component {
                         </View>
                         <View style={styles.wrapperRegister}>
                             <Text style={styles.textAccept}
-                                  onPress={() => this.props.navigation.navigate('RegisterComponent')}>ĐĂNG KÍ TÀI
-                                KHOẢN </Text>
+                                  onPress={() => this.props.navigation.navigate('ResetPasswordContainer')}
+                            >ĐĂNG KÍ TÀI KHOẢN </Text>
                         </View>
                     </Container>
                 </Container>

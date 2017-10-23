@@ -56,6 +56,7 @@ const part = StyleSheet.create({
         backgroundColor: color.backGround,
     },
     wrapperImageInGetFull: {
+        position: 'relative',
         width: wid,
         height: 250,
         justifyContent: 'center',

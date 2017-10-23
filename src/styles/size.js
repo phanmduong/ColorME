@@ -7,5 +7,7 @@ export const title              = 16;
 export const titleSmall         = 14;
 export const describe           = 14;
 export const describeSmall      = 13;
+export const PARALLAX_HEADER_HEIGHT = 250;
+export const STICKY_HEADER_HEIGHT = 60;
 export let wid = Dimensions.get('window').width;
 export let hei = Dimensions.get('window').height;

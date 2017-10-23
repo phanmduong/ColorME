@@ -87,8 +87,8 @@ const HomeStackStyle = {
 
 const ThePostInNewFeed = StackNavigator(
     {
-        ThePostInNewFeed: {screen: InfoAboutPostContainer,},
-        GroupStack: {screen: GroupComponent,},
+        ThePostInNewFeed: {screen: InfoAboutPostContainer},
+        GroupStack: {screen: GroupComponent},
     }, StackNavigatorStyle
 );
 

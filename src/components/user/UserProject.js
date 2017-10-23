@@ -11,7 +11,6 @@ import FastImage from 'react-native-fast-image'
 class UserProject extends Component {
     render() {
         const {products, isLoadingUserProducts} = this.props;
-        const {navigate} = this.props.navigation;
         return (
             <Container
                 showsVerticalScrollIndicator={false}

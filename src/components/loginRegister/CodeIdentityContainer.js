@@ -49,7 +49,7 @@ export default class CodeIdentityContainer extends Component {
                                     block
                                     rounded
                                     style={styles.buttonRegister}
-                                    onPress={() => this.props.navigation.navigate('ResetPasswordComponent')}
+                                    onPress={() => this.props.navigation.navigate('ResetPasswordContainer')}
                                 >
                                     <Text style={styles.textButton}>Tao mật khẩu mới </Text>
 
@@ -58,7 +58,7 @@ export default class CodeIdentityContainer extends Component {
                         </View>
                         <View style={styles.wrapperRegister}>
                             <Text style={styles.textAccept}
-                                  onPress={() => this.props.navigation.navigate('RegisterComponent')}>ĐĂNG KÍ TÀI
+                                  onPress={() => this.props.navigation.navigate('RegisterContainer')}>ĐĂNG KÍ TÀI
                                 KHOẢN </Text>
                         </View>
                     </Container>

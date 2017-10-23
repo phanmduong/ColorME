@@ -49,7 +49,7 @@ export default class EmailIdentityContainer extends Component {
                                     block
                                     rounded
                                     style={styles.buttonRegister}
-                                    onPress={() => this.props.navigation.navigate('CodeIdentityComponent')}
+                                    onPress={() => this.props.navigation.navigate('CodeIdentityContainer')}
                                 >
                                     <Text style={styles.textButton}>Gửi mã xác nhận </Text>
                                 </TouchableOpacity>
@@ -57,7 +57,7 @@ export default class EmailIdentityContainer extends Component {
                         </View>
                         <View style={styles.wrapperRegister}>
                             <Text style={styles.textAccept}
-                                  onPress={() => this.props.navigation.navigate('RegisterComponent')}>ĐĂNG KÍ TÀI
+                                  onPress={() => this.props.navigation.navigate('RegisterContainer')}>ĐĂNG KÍ TÀI
                                 KHOẢN </Text>
                         </View>
                     </Container>

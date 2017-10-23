@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    Image, TouchableOpacity, View, Dimensions, StyleSheet,
+    Image, TouchableOpacity, View,
 } from 'react-native';
 import {
     Body, Button, Card, CardItem, CheckBox, Container, Content, Header,
@@ -8,6 +8,7 @@ import {
 } from 'native-base';
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
+import parallaxStyle from '../../styles/parallaxStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
 import * as userInformationAction from '../../actions/userInformationAction';
@@ -55,6 +56,8 @@ class UserContainer extends Component {
             case 2 :
                 return(
                     <UserInformation
+                        user={this.props.user}
+                        isLoadingUserProfile={this.props.isLoadingUserProfile}
                     />
                 );
         }
@@ -66,8 +69,8 @@ class UserContainer extends Component {
                 <ParallaxScrollView
                     showsVerticalScrollIndicator={false}
                     headerBackgroundColor={color.main}
-                    stickyHeaderHeight={STICKY_HEADER_HEIGHT}
-                    parallaxHeaderHeight={PARALLAX_HEADER_HEIGHT}
+                    stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
+                    parallaxHeaderHeight={size.PARALLAX_HEADER_HEIGHT}
                     backgroundSpeed={10}
                     renderBackground={() =>
                         <View style={part.wrapperImageInGetFull}>
@@ -76,16 +79,15 @@ class UserContainer extends Component {
                                     source={{
                                         uri: this.props.user.avatar_url,
                                         width: size.wid,
-                                        height: PARALLAX_HEADER_HEIGHT
+                                        height: size.PARALLAX_HEADER_HEIGHT
                                     }}/>
                                 <View style={{
                                     position: 'absolute',
                                     top: 0,
                                     width: size.wid,
-                                    backgroundColor: 'rgba(0,0,0,.7)',
-                                    height: PARALLAX_HEADER_HEIGHT
+                                    backgroundColor: 'rgba(0,0,0,.8)',
+                                    height: size.PARALLAX_HEADER_HEIGHT
                                 }}/>
-
                             </View>
                             <View style={part.iconInDrawer}>
                                 <Right style={{left: 10}}>
@@ -101,7 +103,7 @@ class UserContainer extends Component {
                     }
 
                     renderForeground={() => (
-                        <View key="parallax-header" style={styles.parallaxHeader}>
+                        <View key="parallax-header" style={parallaxStyle.parallaxHeader}>
                             <Item style={{borderBottomWidth: 0,}}>
                                 <Body>
                                 <Thumbnail style={part.marginBottom}
@@ -119,7 +121,7 @@ class UserContainer extends Component {
                     )}
 
                     renderStickyHeader={() => (
-                        <View key="sticky-header" style={styles.stickySection}>
+                        <View key="sticky-header" style={parallaxStyle.stickySection}>
                             <View style={part.iconInDrawerNav}>
                                 <Left style={{flexDirection: 'row', marginTop: 20,}}>
                                     <Right style={{left: 10}}>
@@ -180,7 +182,6 @@ class UserContainer extends Component {
                                 Thông tin
                             </Text>
                         </TouchableOpacity>
-
                     </View>
                     {this.tab()}
                     <TouchableOpacity style={[part.iconAddFriendInProfile, part.shadow]}>
@@ -188,42 +189,11 @@ class UserContainer extends Component {
                               size={30}
                               color={color.navTitle}/>
                     </TouchableOpacity>
-
                 </ParallaxScrollView>
             </Container>
         );
     }
 }
-
-const PARALLAX_HEADER_HEIGHT = 250;
-const STICKY_HEADER_HEIGHT = 60;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'transparent'
-    },
-    background: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: size.wid,
-        height: PARALLAX_HEADER_HEIGHT
-    },
-    stickySection: {
-        height: STICKY_HEADER_HEIGHT,
-        justifyContent: 'center',
-        backgroundColor: color.main
-    },
-    parallaxHeader: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-        flexDirection: 'column',
-    },
-
-});
-
 
 function mapStateToProps(state) {
     return {
@@ -232,7 +202,7 @@ function mapStateToProps(state) {
         isLoadingUserProgress: state.userInformation.isLoadingUserProgress,
         products: state.userInformation.products,
         isLoadingUserProducts: state.userInformation.isLoadingUserProducts,
-
+        isLoadingUserProfile: state.userInformation.isLoadingUserProfile,
         token: state.login.token,
         isLoading: state.changeAvatar.isLoading
     }

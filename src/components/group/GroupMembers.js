@@ -3,20 +3,20 @@ import {
     View, FlatList, TouchableOpacity
 } from 'react-native';
 import {
-    Title, Container, Content, Card, CardItem, Thumbnail, Text,
-    Button, Left, Body, Right, Tabs, Tab, TabHeading, Spinner
+    Container, Card, CardItem, Thumbnail, Text,
+    Left, Body, Spinner
 } from 'native-base';
 import part from '../../styles/partStyle';
 import Icon from '../../commons/Icon';
 import * as color from '../../styles/color';
-import {connect} from 'react-redux';
 
 class GroupMembers extends Component {
     render() {
+        const {members, isLoadingGroupMembers} = this.props;
         return (
             <Container style={[part.wrapperContainer, part.padding]}>
                 {
-                    (this.props.isLoadingGroupMembers)
+                    (isLoadingGroupMembers)
                         ?
                         (
                             <View
@@ -34,7 +34,7 @@ class GroupMembers extends Component {
                         (
                             <FlatList
                                 showsVerticalScrollIndicator={false}
-                                data={this.props.members}
+                                data={members}
                                 renderItem={({item}) =>
                                     <CardItem avatar style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
                                         <Left>
@@ -69,12 +69,5 @@ class GroupMembers extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        members: state.group.members,
-        isLoadingGroupMembers: state.group.isLoadingGroupMembers,
-    }
-}
 
-
-export default connect(mapStateToProps)(GroupMembers);
+export default GroupMembers;

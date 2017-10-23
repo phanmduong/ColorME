@@ -133,7 +133,7 @@ componentWillMount(){
                         </View>
                         <View style={styles.wrapperRegister}>
                             <Text style={styles.textAccept}
-                                  onPress={() => this.props.navigation.navigate('RegisterComponent')}>
+                                  onPress={() => this.props.navigation.navigate('RegisterContainer')}>
                                 ĐĂNG KÍ TÀI KHOẢN
                             </Text>
                         </View>
@@ -141,7 +141,7 @@ componentWillMount(){
                 </Container>
                 <View style={styles.wrapperForgot}>
                     <Text style={styles.textBottom}
-                          onPress={() => this.props.navigation.navigate('EmailIdentityComponent')}>
+                          onPress={() => this.props.navigation.navigate('EmailIdentityContainer')}>
                         QUÊN MẬT KHẨU ?
                     </Text>
                 </View>
