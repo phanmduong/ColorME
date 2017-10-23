@@ -55,6 +55,28 @@ class NewFeedContainer extends Component {
 
     }
 
+    textTopShow(){
+        switch (this.state.typeView){
+            case '':
+                return(
+                    'Top of the hour'
+                );
+            case '1':
+                return(
+                    'Top of the day'
+                );
+            case '7':
+                return(
+                    'Top of the week'
+                );
+            case '30':
+                return (
+                    'Top of the month'
+                );
+
+        }
+    }
+
     onValueChange(value: string) {
         this.setState({
             typeView: value,
@@ -274,20 +296,36 @@ class NewFeedContainer extends Component {
                                     renderItem={({item}) => {
                                         if (item == this.state.listPost[0]) {
                                             return (
-                                                <View style={part.featureWrapper}>
+                                                <TouchableOpacity
+                                                    style={part.featureWrapper}
+                                                    onPress={() =>
+                                                        this.props.navigation.navigate('ThePostInNewFeed',
+                                                            item.group
+                                                                ?
+                                                                {
+                                                                    product_id: item.id,
+                                                                    group_name: item.group.name,
+                                                                    group_link: item.group.link,
+                                                                }
+                                                                :
+                                                                {
+                                                                    product_id: item.id,
+                                                                }
+                                                        )}
+                                                    >
                                                     <FastImage
                                                         style={[part.imageInFeature]}
-                                                        source={{uri: 'https://www.w3schools.com/css/trolltunga.jpg'}}
+                                                        source={{uri: item.image_url}}
                                                     />
                                                     <View style={part.wrapperTitleFeature}>
                                                         <Text
                                                             numberOfLines={2}
                                                             style={part.textTitleFeature}
                                                         >
-                                                            Top of the day
+                                                            {this.textTopShow()}
                                                         </Text>
                                                     </View>
-                                                </View>
+                                                </TouchableOpacity>
                                             )
                                         } else {
                                             return (
