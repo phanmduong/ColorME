@@ -106,7 +106,6 @@ class InfoAboutPostContainer extends Component {
         let {liked, likeCount} = this.state;
         let colorIcon = liked ? color.main : color.icon;
         let likedIcon = liked ? 'fontawesome|heart' : 'fontawesome|heart-o';
-
         const {goBack} = this.props.navigation;
         const {navigate} = this.props.navigation;
         const {params} = this.props.navigation.state;

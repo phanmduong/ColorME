@@ -20,26 +20,32 @@ class searchProduct extends Component {
                 {
                     products.length == 0 && txtSearch.length >= 2 && !isLoading
                         ?
+                        <View style={part.wrapperNotResult}>
+                            <Text style={part.describeDarkGray}>Không có kết quả phù hợp</Text>
+                        </View>
+                        :
                         <FlatList
                             showsVerticalScrollIndicator={false}
                             onEndThreshold={5}
                             onEndReached={
-                                () => {}
+                                () => {
+                                }
                             }
                             data={products}
                             renderItem={({item}) =>
                                 <CardItem avatar
                                           style={[part.backgroundNone, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
-                                <Left>
+                                    <Left>
                                         <TouchableOpacity
-                                            onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.username})}
+                                            onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.author.username})}
+
                                         >
                                             <Thumbnail
                                                 source={{uri: item.author.avatar_url}}/>
                                         </TouchableOpacity>
                                         <Body style={part.noBorder}>
                                         <Text
-                                            onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.username})}
+                                            onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.author.username})}
                                             style={part.titleSmallBlue}>{item.author.name}</Text>
                                         <Text style={part.describeGray} note>{item.title}</Text>
                                         </Body>
@@ -67,10 +73,7 @@ class searchProduct extends Component {
                                 </CardItem>
                             }
                         />
-                        :
-                        <View style={part.wrapperNotResult}>
-                            <Text style={part.describeDarkGray}>Không có kết quả phù hợp</Text>
-                        </View>
+
                 }
             </Container>
         );
