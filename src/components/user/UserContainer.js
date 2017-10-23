@@ -3,8 +3,8 @@ import {
     Image, TouchableOpacity, View,
 } from 'react-native';
 import {
-    Body, Button, Card, CardItem, CheckBox, Container, Content, Header,
-    Item, Left, List, ListItem, Right, TabHeading, Text, Thumbnail, Title
+    Body, Container, Spinner,
+    Item, Left, Right, Text, Thumbnail,
 } from 'native-base';
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
@@ -24,6 +24,7 @@ class UserContainer extends Component {
         super();
         this.state = {
             tab: 1,
+            isLoading: false,
         }
     }
 
@@ -34,6 +35,26 @@ class UserContainer extends Component {
         this.props.userInformationAction.getUserProducts(params.username, 1, this.props.token);
     }
 
+    ViewProgress(){
+        setTimeout(() => {
+            this.setState({isLoading: false})
+        }, 100);
+        this.setState({tab: 0, isLoading: true})
+    }
+
+    ViewProject(){
+        setTimeout(() => {
+            this.setState({isLoading: false})
+        }, 100);
+        this.setState({tab: 1, isLoading: true})
+    }
+
+    ViewInformation(){
+        setTimeout(() => {
+            this.setState({isLoading: false})
+        }, 100);
+        this.setState({tab: 2, isLoading: true})
+    }
 
     tab(){
         switch (this.state.tab){
@@ -154,7 +175,7 @@ class UserContainer extends Component {
                     <View style={part.wrapperTabBarUser}>
                         <TouchableOpacity
                             style={part.wrapperTextInTabBarUser}
-                            onPress={() => this.setState({tab: 0})}
+                            onPress={() => this.ViewProgress()}
                         >
                             <Text
                                 style={this.state.tab == 0 ? part.describeDarkGray : part.describeGray}
@@ -164,7 +185,7 @@ class UserContainer extends Component {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={part.wrapperTextInTabBarUser}
-                            onPress={() => this.setState({tab: 1})}
+                            onPress={() => this.ViewProject()}
                         >
                             <Text
                                 style={this.state.tab == 1 ? part.describeDarkGray : part.describeGray}
@@ -174,7 +195,7 @@ class UserContainer extends Component {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={part.wrapperTextInTabBarUser}
-                            onPress={() => this.setState({tab: 2})}
+                            onPress={() => this.ViewInformation()}
                         >
                             <Text
                                 style={this.state.tab == 2 ? part.describeDarkGray : part.describeGray}
@@ -183,7 +204,15 @@ class UserContainer extends Component {
                             </Text>
                         </TouchableOpacity>
                     </View>
-                    {this.tab()}
+                    {
+                        this.state.isLoading
+                            ?
+                            <View style={[part.wrapperContainer]}>
+                                <Spinner color={color.gray}/>
+                            </View>
+                            :
+                            this.tab()
+                    }
                     <TouchableOpacity style={[part.iconAddFriendInProfile, part.shadow]}>
                         <Icon name="ion|ios-person-add"
                               size={30}

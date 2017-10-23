@@ -44,9 +44,17 @@ class UserProject extends Component {
                                                 <TouchableOpacity
                                                     onPress={() => this.props.navigation.navigate(
                                                         'ThePostInNewFeed',
-                                                        {
-                                                            product_id: item.id
-                                                        },
+                                                        item.group
+                                                            ?
+                                                            {
+                                                                product_id: item.id,
+                                                                group_name: item.group.name,
+                                                                group_link: item.group.link,
+                                                            }
+                                                            :
+                                                            {
+                                                                product_id: item.id,
+                                                            }
                                                     )}
                                                 >
                                                     <FastImage

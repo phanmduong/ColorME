@@ -3,15 +3,10 @@ import {
     TouchableOpacity, FlatList, View
 } from 'react-native';
 import {
-    Title, Content, Thumbnail, Spinner, Container, CardItem,
-    Text, Button, Icon, Left, Body, Right, List, ListItem, Item,
+    Thumbnail, Spinner, Container, CardItem,
+    Text, Left, Body, Right, Item,
 } from 'native-base';
 import part from '../../styles/partStyle';
-import * as searchAction from '../../actions/searchAction';
-import * as color from '../../styles/color';
-import {NavigationActions} from 'react-navigation'
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
 
 class searchProduct extends Component {
     constructor() {
@@ -19,86 +14,68 @@ class searchProduct extends Component {
     }
 
     render() {
-        const {navigate} = this.props.navigation;
+        const {products, getMoreProduct, isLoading, txtSearch} = this.props;
         return (
-            <Content
-                showsVerticalScrollIndicator={false}
-            >
+            <Container>
                 {
-                    (this.props.isLoading)
+                    products.length == 0 && txtSearch.length >= 2 && !isLoading
                         ?
-                        (
-                            <View/>
-                        )
-                        :
-                        (
-                            this.props.products
-                                ?
-                                (
-                                    <FlatList
-                                        onEndReachedThreshold={5}
-                                        onEndReached={() => {
-                                            this.props.getMoreProduct
-                                        }}
-                                        data={this.props.products}
-                                        renderItem={({item}) =>
-                                            <CardItem avatar
-                                                      style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
-                                                <Left>
-                                                    <TouchableOpacity>
-                                                        <Thumbnail
-                                                            source={{uri: item.author.avatar_url}}/>
-                                                    </TouchableOpacity>
-                                                    <Body style={part.noBorder}>
-                                                    <Text style={part.titleSmallBlue}>{item.author.name}</Text>
-                                                    <Text style={part.describeGray} note>{item.title}</Text>
-                                                    </Body>
-                                                    <TouchableOpacity
-                                                        onPress={() => {
-                                                        }
-                                                        }
-                                                    >
-                                                        <Thumbnail
-                                                            source={{uri: item.thumb_url}}/>
-                                                    </TouchableOpacity>
+                        <FlatList
+                            showsVerticalScrollIndicator={false}
+                            onEndThreshold={5}
+                            onEndReached={
+                                () => {}
+                            }
+                            data={products}
+                            renderItem={({item}) =>
+                                <CardItem avatar
+                                          style={[part.backgroundNone, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
+                                <Left>
+                                        <TouchableOpacity
+                                            onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.username})}
+                                        >
+                                            <Thumbnail
+                                                source={{uri: item.author.avatar_url}}/>
+                                        </TouchableOpacity>
+                                        <Body style={part.noBorder}>
+                                        <Text
+                                            onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.username})}
+                                            style={part.titleSmallBlue}>{item.author.name}</Text>
+                                        <Text style={part.describeGray} note>{item.title}</Text>
+                                        </Body>
+                                        <TouchableOpacity
+                                            onPress={() => this.props.navigation.navigate(
+                                                'ThePostInNewFeed',
+                                                item.group
+                                                    ?
+                                                    {
+                                                        product_id: item.id,
+                                                        group_name: item.group.name,
+                                                        group_link: item.group.link,
+                                                    }
+                                                    :
+                                                    {
+                                                        product_id: item.id,
+                                                    }
+                                            )}
+                                        >
+                                            <Thumbnail
+                                                source={{uri: item.thumb_url}}/>
+                                        </TouchableOpacity>
 
-                                                </Left>
-                                            </CardItem>
-                                        }
-                                    />
-                                )
-                                :
-                                <View style={part.wrapperNotResult}>
-                                    <Text style={part.describeDarkGray}>Không có kết quả phù hợp</Text>
-                                </View>
-                        )
-                }
-                {
-                    this.props.isLoading
-                        ?
-                        <View style={part.wrapperContainer}>
-                            <Spinner color={color.gray}/>
-                        </View>
+                                    </Left>
+                                </CardItem>
+                            }
+                        />
                         :
-                        <View/>
+                        <View style={part.wrapperNotResult}>
+                            <Text style={part.describeDarkGray}>Không có kết quả phù hợp</Text>
+                        </View>
                 }
-            </Content>
+            </Container>
         );
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        products: state.search.products,
-        isLoading: state.search.isLoading
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        searchAction: bindActionCreators(searchAction, dispatch)
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(searchProduct);
+export default searchProduct;
 

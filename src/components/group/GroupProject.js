@@ -44,10 +44,18 @@ class GroupProject extends Component {
                                             <View style={[part.wrapperGridImage]}>
                                                 <TouchableOpacity
                                                     onPress={() => this.props.navigation.navigate(
-                                                        '',
-                                                        {
-                                                            product_id: item.id
-                                                        },
+                                                        'ThePostInNewFeed',
+                                                        item.group
+                                                            ?
+                                                            {
+                                                                product_id: item.id,
+                                                                group_name: item.group.name,
+                                                                group_link: item.group.link,
+                                                            }
+                                                            :
+                                                            {
+                                                                product_id: item.id,
+                                                            }
                                                     )}
                                                 >
                                                     <FastImage

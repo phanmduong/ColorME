@@ -32,7 +32,7 @@ import SearchContainer from '../components/search/SearchContainer';
 import myAccountComponent from '../components/myAccount/myAccountComponent';
 
 //GROUP
-import GroupComponent from '../components/group/GroupContainer';
+import GroupContainer from '../components/group/GroupContainer';
 
 
 export const TabNavigatorBottomStyle = {
@@ -87,8 +87,8 @@ const HomeStackStyle = {
 
 const ThePostInNewFeed = StackNavigator(
     {
-        ThePostInNewFeed: {screen: InfoAboutPostContainer},
-        GroupStack: {screen: GroupComponent},
+        ThePostInNewFeed: {screen: InfoAboutPostContainer, navigationOptions: {tabBarVisible: false}},
+        GroupStack: {screen: GroupContainer},
     }, StackNavigatorStyle
 );
 
@@ -102,7 +102,7 @@ const NewFeedStackNavigator = StackNavigator(
     {
         NewFeedStack: {screen: NewFeedContainer, navigationOptions: {title: 'colorME', headerTintColor: color.navTitle,},},
         UserInNewFeed: {screen: UserInNewFeed, StackNavigatorStyle},
-        ThePostInNewFeed: {screen: ThePostInNewFeed, StackNavigatorStyle},
+        ThePostInNewFeed: {screen: ThePostInNewFeed, navigationOptions: {tabBarVisible: false,}},
     },
     HomeStackStyle
 );

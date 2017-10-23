@@ -88,10 +88,9 @@ const part = StyleSheet.create({
         backgroundColor: color.lightGray,
     },
     wrapperNotResult: {
-        padding: 20,
+        paddingTop: 20,
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
     },
     wrapperIntro: {
         width: wid,
@@ -112,7 +111,9 @@ const part = StyleSheet.create({
         height: hei * 0.7 - 90,
         backgroundColor: 'blue'
     },
-
+    backgroundNone:{
+       backgroundColor: color.none,
+    },
     modalComment: {
         borderRadius: 10,
         width: wid * 0.9,
@@ -521,12 +522,15 @@ const part = StyleSheet.create({
         alignItems: 'center',
     },
     wrapperTabBarUser:{
-        flex: 1,
+        width: size.wid,
         height: 80,
         backgroundColor: color.none,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        borderBottomWidth: 0.5,
+        borderColor: color.icon,
+        marginBottom: 5,
     },
     wrapperTextInTabBarUser:{
         flex: 1,

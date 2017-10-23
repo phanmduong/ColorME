@@ -97,7 +97,7 @@ class NewFeedContainer extends Component {
             let count = this.state.likeCount;
             let post = nextProps.products;
             let item = false;
-            let i = this.props.products.length
+            let i = this.props.products.length;
             while (i < post.length) {
                 let key = {key: i}
                 let arr1 = Object.assign(post[i], key)
@@ -176,7 +176,6 @@ class NewFeedContainer extends Component {
             return Math.floor(index / 3);
         }).toArray()
             .value();
-
         return posts
     }
 

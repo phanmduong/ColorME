@@ -3,8 +3,7 @@ import {
     Image, TouchableOpacity, View,
 } from 'react-native';
 import {
-    Title, Container, Header, Content, Card, CardItem, Thumbnail, Text, CheckBox,
-    Button, Left, Body, Right, TabHeading, List, ListItem, Item, Spinner
+    Container, Thumbnail, Text, Left, Body, Right, Item, Spinner
 } from 'native-base';
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
@@ -19,19 +18,41 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
-class GroupComponent extends Component {
+class GroupContainer extends Component {
     constructor() {
         super();
         this.state = {
             tab: 1,
+            isLoading: false,
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         const {params} = this.props.navigation.state;
         this.props.groupAction.getGroupTopics(params.group_link, this.props.token);
         this.props.groupAction.getGroupProducts(params.group_link, this.props.token);
         this.props.groupAction.getGroupMember(params.group_link, this.props.token);
+    }
+
+    ViewTopics(){
+        setTimeout(() => {
+            this.setState({isLoading: false})
+        }, 100);
+        this.setState({tab: 0, isLoading: true})
+    }
+
+    ViewProducts(){
+        setTimeout(() => {
+            this.setState({isLoading: false})
+        }, 100);
+        this.setState({tab: 1, isLoading: true})
+    }
+
+    ViewMembers(){
+        setTimeout(() => {
+            this.setState({isLoading: false})
+        }, 100);
+        this.setState({tab: 2, isLoading: true})
     }
 
     tab(){
@@ -39,6 +60,7 @@ class GroupComponent extends Component {
             case 0:
                 return(
                     <GroupTopics
+                        navigation={this.props.navigation}
                         topics={this.props.topics}
                         isLoadingGroupTopics={this.props.isLoadingGroupTopics}
 
@@ -47,6 +69,7 @@ class GroupComponent extends Component {
             case 1 :
                 return(
                     <GroupProject
+                        navigation={this.props.navigation}
                         products={this.props.products}
                         isLoadingGroupProducts={this.props.isLoadingGroupProducts}
 
@@ -55,6 +78,7 @@ class GroupComponent extends Component {
             case 2 :
                 return(
                     <GroupMembers
+                        navigation={this.props.navigation}
                         members={this.props.members}
                         isLoadingGroupMembers={this.props.isLoadingGroupMembers}
                     />
@@ -157,7 +181,7 @@ class GroupComponent extends Component {
                     <View style={part.wrapperTabBarUser}>
                         <TouchableOpacity
                             style={part.wrapperTextInTabBarUser}
-                            onPress={() => this.setState({tab: 0})}
+                            onPress={() => this.ViewTopics()}
                         >
                             <Text
                                 style={this.state.tab == 0 ? part.describeDarkGray : part.describeGray}
@@ -167,7 +191,7 @@ class GroupComponent extends Component {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={part.wrapperTextInTabBarUser}
-                            onPress={() => this.setState({tab: 1})}
+                            onPress={() => this.ViewProducts()}
                         >
                             <Text
                                 style={this.state.tab == 1 ? part.describeDarkGray : part.describeGray}
@@ -177,7 +201,7 @@ class GroupComponent extends Component {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={part.wrapperTextInTabBarUser}
-                            onPress={() => this.setState({tab: 2})}
+                            onPress={() => this.ViewMembers()}
                         >
                             <Text
                                 style={this.state.tab == 2 ? part.describeDarkGray : part.describeGray}
@@ -186,7 +210,15 @@ class GroupComponent extends Component {
                             </Text>
                         </TouchableOpacity>
                     </View>
-                    {this.tab()}
+                    {
+                        this.state.isLoading
+                        ?
+                            <View style={[part.wrapperContainer]}>
+                                <Spinner color={color.gray}/>
+                            </View>
+                            :
+                            this.tab()
+                    }
                     <TouchableOpacity style={[part.iconAddFriendInProfile, part.shadow]}>
                         <Icon name="ion|ios-person-add"
                               size={30}
@@ -219,4 +251,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GroupComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(GroupContainer);
