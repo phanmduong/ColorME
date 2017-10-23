@@ -8,62 +8,33 @@ import * as color from '../styles/color';
 import * as size from '../styles/size';
 
 // LOGIN
-import LoginComponent from '../components/loginRegister/LoginContainer';
-import EmailIdentityComponent from '../components/loginRegister/EmailIdentityContainer'
-import ResetPasswordComponent from '../components/loginRegister/ResetPasswordContainer'
-import RegisterComponent from '../components/loginRegister/RegisterContainer'
-import CodeIdentityComponent from '../components/loginRegister/CodeIdentityContainer'
+import LoginContainer from '../components/loginRegister/LoginContainer';
+import EmailIdentityContainer from '../components/loginRegister/EmailIdentityContainer'
+import ResetPasswordContainer from '../components/loginRegister/ResetPasswordContainer'
+import RegisterContainer from '../components/loginRegister/RegisterContainer'
+import CodeIdentityContainer from '../components/loginRegister/CodeIdentityContainer'
 
 // MAIN SCREEN
-import newFeedComponent from '../components/newFeed/NewFeedContainer';
-import messageComponent from '../components/message/MessageContainer';
+import NewFeedContainer from '../components/newFeed/NewFeedContainer';
 import notificationComponent from '../components/NotificationContainer';
 import AchievementsComponent from '../components/AchievementsContainer';
 import SlideViewComponent from '../components/SlideViewContainer'
-import getFullInfoAboutOnePostComponent from '../components/InfoAboutPostContainer';
-import { Root } from "native-base";
+import InfoAboutPostContainer from '../components/InfoAboutPostContainer';
+import {Root} from "native-base";
 
 // USER SCREEN
-import userComponent from '../components/user/userComponent';
-import information from '../components/user/profile';
-import project from '../components/user/project';
-import process from '../components/user/progress';
+import userComponent from '../components/user/UserContainer';
 
 // SEARCH SCREEN
-import searchComponent from '../components/search/SearchContainer';
-import searchUser from '../components/search/SearchUser';
-import searchProduct from '../components/search/SearchProduct';
-
-// MESSAGE
-import Chat from '../components/message/Chat';
-import OnlineFriend from '../components/message/OnlineFriend';
+import SearchContainer from '../components/search/SearchContainer';
 
 // MY ACCOUNT
 import myAccountComponent from '../components/myAccount/myAccountComponent';
 
 //GROUP
-import groupComponent from '../components/group/GroupContainer';
-import topics from '../components/group/Topics';
-import groupProject from '../components/group/GroupProject';
-import members from '../components/group/Members';
+import GroupComponent from '../components/group/GroupContainer';
 
 
-export const TabNavigatorTopStyle = {
-    tabBarPosition: 'top',
-    tabBarOptions: {
-        activeTintColor: color.main,
-        style: {
-            height: 40,
-            borderTopWidth: 0,
-            backgroundColor: color.navTitle
-        },
-        labelStyle: {
-            fontSize: size.describe,
-            padding: 8,
-        },
-
-    }
-};
 export const TabNavigatorBottomStyle = {
     initialRouteName: 'NewFeed',
     tabBarPosition: 'bottom',
@@ -78,28 +49,14 @@ export const TabNavigatorBottomStyle = {
         showLabel: false,
     }
 };
-export const TabNavigatorTopOption = {
-    activeTintColor: color.darkGray,
-    inactiveTintColor: color.icon,
-    style: {
-        height: 70,
-        borderTopWidth: 0,
-        paddingBottom: 20,
-        backgroundColor: color.navTitle
-    },
-    labelStyle: {
-        fontWeight: '700',
-        fontSize: size.describe,
-    }
-};
 
-export const StackNavigatorStyle = {
+const StackNavigatorStyle = {
     navigationOptions: {
-        header: null
+        header: null,
     },
 };
 
-export const HomeStackStyle = {
+const HomeStackStyle = {
     navigationOptions: ({navigation}) => ({
         headerStyle: {
             backgroundColor: color.main,
@@ -128,233 +85,47 @@ export const HomeStackStyle = {
     }),
 };
 
-export const MessageTab = TabNavigator(
+const ThePostInNewFeed = StackNavigator(
     {
-        Chat: {
-            screen: Chat,
-            navigationOptions: {
-                tabBarLabel: 'Tin nhắn',
-            }
-        },
-        OnlineFriend: {
-            screen: OnlineFriend,
-            navigationOptions: {
-                tabBarLabel: 'Đang hoạt động',
-            }
-        },
-    },
-    TabNavigatorTopStyle
-);
-
-export const SearchTab = TabNavigator(
-    {
-        SearchUser: {
-            screen: searchUser,
-            navigationOptions: {
-                tabBarLabel: 'Người dùng',
-            }
-        },
-        SearchProduct: {
-            screen: searchProduct,
-            navigationOptions: {
-                tabBarLabel: 'Dự án',
-            }
-        },
-
-    },
-    {
-        initialRouteName: 'SearchUser',
-        tabBarPosition: 'top',
-        tabBarOptions: {
-            activeTintColor: color.darkGray,
-            inactiveTintColor: color.icon,
-            style: {
-                height: 40,
-                borderTopWidth: 0,
-                borderBottomWidth: 0.5,
-                borderColor: color.icon,
-                paddingBottom: 20,
-                backgroundColor: color.navTitle
-            },
-            labelStyle: {
-                fontWeight: '700',
-                fontSize: size.describe,
-            },
-
-        }
-    }
-);
-
-
-export const User = TabNavigator(
-    {
-        Process: {
-            screen: process,
-            navigationOptions: {
-                tabBarLabel: 'Tiến độ',
-            }
-        },
-        Project: {
-            screen: project,
-            navigationOptions: {
-                tabBarLabel: 'Dự án',
-            }
-        },
-        Information: {
-            screen: information,
-            navigationOptions: {
-                tabBarLabel: 'Thông tin',
-            }
-        },
-
-    },
-    {
-        initialRouteName: 'Project',
-        tabBarPosition: 'top',
-        tabBarOptions: TabNavigatorTopOption
-    }
-);
-
-export const Group = TabNavigator(
-    {
-        Topics: {
-            screen: topics,
-            navigationOptions: {
-                tabBarLabel: 'Chủ đề',
-            }
-        },
-        GroupProject: {
-            screen: groupProject,
-            navigationOptions: {
-                tabBarLabel: 'Dự án',
-            }
-        },
-        Members: {
-            screen: members,
-            navigationOptions: {
-                tabBarLabel: 'Thành viên',
-            }
-        },
-
-    },
-    {
-        initialRouteName: 'GroupProject',
-        tabBarPosition: 'top',
-        tabBarOptions: TabNavigatorTopOption
-    }
-);
-export const ThePostInNewFeed = StackNavigator(
-    {
-        ThePostInNewFeed: {
-            screen: getFullInfoAboutOnePostComponent,
-            navigationOptions: {
-                header: null,
-                tabBarVisible: false,
-            },
-        },
-        GroupStack: {
-            screen: groupComponent,
-            navigationOptions: {
-                header: null,
-            },
-        },
+        ThePostInNewFeed: {screen: InfoAboutPostContainer,},
+        GroupStack: {screen: GroupComponent,},
     }, StackNavigatorStyle
 );
 
-export const UserInNewFeed = StackNavigator(
+const UserInNewFeed = StackNavigator(
     {
-
-        UserInNewFeed: {
-            screen: userComponent,
-            navigationOptions: {
-                header: null,
-            }
-        },
-    }, HomeStackStyle
+        UserInNewFeed: {screen: userComponent},
+    }, StackNavigatorStyle
 );
 
-export const NewFeedStackNavigator = StackNavigator(
+const NewFeedStackNavigator = StackNavigator(
     {
-        NewFeedStack: {
-            screen: newFeedComponent,
-            navigationOptions: {
-                title: 'colorME',
-                headerTintColor: color.navTitle,
-            },
-        },
-        UserInNewFeed: {
-            screen: UserInNewFeed,
-            navigationOptions: {
-                header: null,
-            },
-        },
-        ThePostInNewFeed: {
-            screen: ThePostInNewFeed,
-            navigationOptions: {
-                header: null,
-                tabBarVisible: false,
-            },
-        },
+        NewFeedStack: {screen: NewFeedContainer, navigationOptions: {title: 'colorME', headerTintColor: color.navTitle,},},
+        UserInNewFeed: {screen: UserInNewFeed, StackNavigatorStyle},
+        ThePostInNewFeed: {screen: ThePostInNewFeed, StackNavigatorStyle},
     },
     HomeStackStyle
 );
 
-export const NotificationStackNavigator = StackNavigator(
+const NotificationStackNavigator = StackNavigator(
     {
-        NotificationStack: {
-            screen: notificationComponent,
-            navigationOptions: {
-                title: 'Thông báo',
-            }
-        }
+        NotificationStack: {screen: notificationComponent}
     }, StackNavigatorStyle
 );
 
-export const RouterToSearchUser = StackNavigator(
+const SearchStackNavigator = StackNavigator(
     {
-        SearchUser: {
-            screen: searchUser,
-        },
-        UserInSearch: {
-            screen: userComponent,
-        },
+        SearchStack: {screen: SearchContainer},
     }, StackNavigatorStyle
 );
 
-export const SearchStackNavigator = StackNavigator(
+const MyAccountStackNavigator = StackNavigator(
     {
-        SearchStack: {
-            screen: searchComponent,
-        },
+        MyAccountStack: {screen: myAccountComponent}
     }, StackNavigatorStyle
 );
 
-
-
-
-export const MessageStackNavigator = StackNavigator(
-    {
-        MessageStack: {
-            screen: messageComponent,
-            navigationOptions: {
-                title: 'Tin nhắn',
-            }
-        }
-    }, StackNavigatorStyle
-);
-
-export const MyAccountStackNavigator = StackNavigator(
-    {
-        MyAccountStack: {
-            screen: myAccountComponent,
-            navigationOptions: {
-                title: 'Tài khoản',
-            }
-        }
-    }, StackNavigatorStyle
-);
-
-export const Home = TabNavigator(
+const Home = TabNavigator(
     {
         Notification: {
             screen: NotificationStackNavigator,
@@ -401,7 +172,7 @@ export const Home = TabNavigator(
                 ),
             }
         },
-        MyAccount: {
+        User: {
             screen: MyAccountStackNavigator,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
@@ -416,9 +187,9 @@ export const Home = TabNavigator(
     TabNavigatorBottomStyle
 );
 
-export const Drawer = DrawerNavigator(
+const Drawer = DrawerNavigator(
     {
-        Home: {screen: Home},
+        Home: {screen: Home}
     },
     {
         drawerWidth: size.wid * 3 / 4,
@@ -427,64 +198,25 @@ export const Drawer = DrawerNavigator(
     }
 );
 
-export const Main = StackNavigator(
+const Main = StackNavigator(
     {
-        Drawer: {
-            screen: Drawer
-        }
-    },
-    {
-        headerMode: 'none'
-    }
+        Drawer: {screen: Drawer}
+    }, {headerMode: 'none'}
 );
-export const Login = StackNavigator({
-    LoginComponent: {
-        screen: LoginComponent,
-        navigationOptions: {
-            header: null
-        }
-    },
-    RegisterComponent: {
-        screen: RegisterComponent,
-        navigationOptions: {
-            header: null
-        }
-    },
-    ResetPasswordComponent: {
-        screen: ResetPasswordComponent,
-        navigationOptions: {
-            header: null,
-        }
-    },
-    EmailIdentityComponent: {
-        screen: EmailIdentityComponent,
-        navigationOptions: {
-            header: null,
-        }
-    },
-    CodeIdentityComponent: {
-        screen: CodeIdentityComponent,
-        navigationOptions: {
-            header: null,
-        }
-    }
-})
+const Login = StackNavigator({
+        LoginContainer: {screen: LoginContainer,},
+        RegisterContainer: {screen: RegisterContainer,},
+        ResetPasswordContainer: {screen: ResetPasswordContainer,},
+        EmailIdentityContainer: {screen: EmailIdentityContainer,},
+        CodeIdentityContainer: {screen: CodeIdentityContainer,}
+    }, StackNavigatorStyle
+)
 
-export const Start = StackNavigator(
+const Start = StackNavigator(
     {
-        Login: {
-            screen: Login,
-            navigationOptions: {
-                header: null,
-            },
-        },
-        Main: {
-            screen: Main,
-            navigationOptions: {
-                header: null,
-            },
-        }
-
-    });
+        Login: {screen: Login,},
+        Main: {screen: Main,}
+    }, StackNavigatorStyle
+);
 
 export default Start;

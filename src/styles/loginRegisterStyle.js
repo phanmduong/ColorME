@@ -2,8 +2,6 @@ import {StyleSheet, Dimensions, Platform} from 'react-native';
 import * as size from './size';
 import * as color from './color';
 
-let wid = Dimensions.get('window').width;
-let hei = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     wrapperContainer: {
@@ -27,17 +25,9 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0,
     },
     itemInput: {
-        width: wid - wid * 0.3,
+        width: size.wid - size.wid * 0.3,
         justifyContent: 'center',
         alignItems: 'center'
-    },
-    textInputGroup: {
-        width: wid - wid * 0.2,
-    },
-    textInput: {
-        margin: 5,
-        fontSize: 11,
-        padding: 10,
     },
     textTitleInput: {
         fontSize: 12,
@@ -47,18 +37,12 @@ const styles = StyleSheet.create({
         color: color.main,
         fontWeight: (Platform.OS === 'ios') ? '600' : 'normal',
     },
-    inputGroup: {
-        borderColor: color.none,
-        marginTop: 10,
-        paddingLeft: 10,
-        paddingRight: 10,
-        backgroundColor: color.navTitle
-    },
+
     contentForm: {
         backgroundColor: color.navTitle,
         flex: 1,
-        height: hei / 2 - 30,
-        width: wid - wid * 0.2,
+        height: size.hei / 2 - 30,
+        width: size.wid - size.wid * 0.2,
         borderRadius: 15,
         elevation: 10,
         shadowColor: color.gray,
@@ -71,27 +55,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-start',
         position: 'absolute',
-        marginLeft: wid * 0.2,
+        marginLeft: size.wid * 0.2,
     },
-    contentFormRegister: {
-        backgroundColor: '#fff',
-        flex: 1,
-        height: hei / 2,
-        width: wid - wid * 0.2,
-        borderRadius: 15,
-        elevation: 10,
-        shadowColor: color.gray,
-        shadowOffset: {
-            width: 0,
-            height: 3
-        },
-        shadowRadius: 10,
-        shadowOpacity: 0.4,
-        marginLeft: wid * 0.2,
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        position: 'absolute',
-    },
+
     textAccept: {
         fontSize: 12,
         color: color.gray,
@@ -120,7 +86,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Verdana-Bold'
     },
     buttonRegister: {
-        width: wid - wid * 0.4,
+        width: size.wid - size.wid * 0.4,
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',
@@ -129,25 +95,16 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         backgroundColor: 'rgba(197, 0, 0, 1)',
     },
-    textSignUp: {
-        fontSize: 11,
-        margin: 5,
-        fontWeight: (Platform.OS === 'ios') ? '700' : 'normal',
-    },
-    textSignUpTitle: {
-        fontWeight: 'bold'
-    },
-
     textME: {
         backgroundColor: 'transparent',
-        color: '#FFFFFF',
+        color: color.navTitle,
         fontSize: 100,
         fontWeight: (Platform.OS === 'ios') ? '900' : 'normal',
         lineHeight: (Platform.OS === 'ios') ? 100 : 70,
     },
     textColor: {
         backgroundColor: 'transparent',
-        color: '#FFFFFF',
+        color: color.navTitle,
         fontSize: 30,
         fontWeight: (Platform.OS === 'ios') ? '700' : 'normal',
         marginLeft: 70
@@ -155,7 +112,7 @@ const styles = StyleSheet.create({
     },
     wrapperColorME: {
         flex: 2,
-        width: wid,
+        width: size.wid,
         backgroundColor: color.main,
         justifyContent: 'center',
         alignItems: 'center',
@@ -168,7 +125,7 @@ const styles = StyleSheet.create({
     },
     wrapperRegister: {
         flex: 1,
-        width: wid - wid * 0.2,
+        width: size.wid - size.wid * 0.2,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -178,11 +135,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
 
-    textRegisterChild: {
-        marginRight: 10,
-        color: 'rgba(256, 256 , 256 , 1)',
-
-    },
     wrapperIcon: {
         width: 35,
     },

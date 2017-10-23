@@ -10,7 +10,7 @@ export default function userInformationReducer(state = initialState.userInformat
                     isLoadingUserProfile: action.isLoadingUserProfile,
                     errorUserProfile: action.errorUserProfile,
                 }
-            }
+            };
         case types.BEGIN_GET_USER_PROGRESS:
             return {
                 ...state,
@@ -18,7 +18,7 @@ export default function userInformationReducer(state = initialState.userInformat
                     isLoadingUserProgress: action.isLoadingUserProgress,
                     errorUserProgress: action.errorUserProgress,
                 }
-            }
+            };
         case types.BEGIN_GET_USER_PRODUCTS:
             return {
                 ...state,
@@ -26,7 +26,7 @@ export default function userInformationReducer(state = initialState.userInformat
                     isLoadingUserProducts: action.isLoadingUserProducts,
                     errorUserProducts: action.errorUserProducts,
                 }
-            }
+            };
 
         case types.GET_USER_PROFILE_SUCCESS:
             return {
@@ -36,7 +36,7 @@ export default function userInformationReducer(state = initialState.userInformat
                     isLoadingUserProfile: action.isLoadingUserProfile,
                     errorUserProfile: action.errorUserProfile,
                 }
-            }
+            };
         case types.GET_USER_PROGRESS_SUCCESS:
             return {
                 ...state,
@@ -45,7 +45,7 @@ export default function userInformationReducer(state = initialState.userInformat
                     isLoadingUserProgress: action.isLoadingUserProgress,
                     errorUserProgress: action.errorUserProgress,
                 }
-            }
+            };
         case types.GET_USER_PRODUCTS_SUCCESS:
             return {
                 ...state,
@@ -54,7 +54,7 @@ export default function userInformationReducer(state = initialState.userInformat
                     isLoadingUserProducts: action.isLoadingUserProducts,
                     errorUserProducts: action.errorUserProducts,
                 }
-            }
+            };
         case types.GET_USER_PROFILE_ERROR:
             return {
                 ...state,
@@ -62,7 +62,7 @@ export default function userInformationReducer(state = initialState.userInformat
                     isLoadingUserProfile: action.isLoading,
                     errorUserProfile: action.errorUserProfile,
                 }
-            }
+            };
         case types.GET_USER_PROGRESS_ERROR:
             return {
                 ...state,
@@ -70,7 +70,7 @@ export default function userInformationReducer(state = initialState.userInformat
                     isLoadingUserProgress: action.isLoadingUserProgress,
                     errorUserProgress: action.errorUserProgress,
                 }
-            }
+            };
         case types.GET_USER_PRODUCTS_ERROR:
             return {
                 ...state,
@@ -82,11 +82,8 @@ export default function userInformationReducer(state = initialState.userInformat
         case types.SELECTED_USER_PROFILE_NEWFEED:
             return {
                 ...state,
-                ...{
-                    userId: userId
-                }
-            }
+            };
         default:
-            return state
-}
+            return state;
+    }
 }

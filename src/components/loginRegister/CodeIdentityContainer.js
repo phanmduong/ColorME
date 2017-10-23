@@ -7,7 +7,7 @@ import part from '../../styles/partStyle';
 import Icon from '../../commons/Icon';
 import * as size from '../../styles/size';
 
-export default class CodeIdentityComponent extends Component {
+export default class CodeIdentityContainer extends Component {
     constructor() {
         super();
         this.state = {

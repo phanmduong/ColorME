@@ -8,7 +8,7 @@ import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
 import * as size from '../../styles/size';
 
-export default class ResetPasswordComponent extends Component {
+export default class ResetPasswordContainer extends Component {
     constructor() {
         super();
         this.state = {

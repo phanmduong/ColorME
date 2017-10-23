@@ -29,20 +29,20 @@ class ListView extends Component {
 
 
     render() {
-        let {item, arrayLike, likeCount, colorIcon, likedIcon} = this.props;
-        let {navigate} = this.props.navigation
+        const {item, arrayLike, likeCount, colorIcon, likedIcon} = this.props;
+        const {navigate} = this.props.navigation;
         return (
             <View key={item.key} style={part.card}>
                 <CardItem header style={part.cardHeader}>
                     <Left>
                         <TouchableOpacity
-                            onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.author.username})}>
+                            onPress={() => navigate('UserInNewFeed', {username: item.author.username})}>
                             <Thumbnail circle small
                                        source={{uri: item.author.avatar_url}}/>
                         </TouchableOpacity>
                         <Body>
                         <Text
-                            onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.author.username})}
+                            onPress={() => navigate('UserInNewFeed', {username: item.author.username})}
                             style={part.titleSmallBlue}>
                             {item.author.name}
                         </Text>
@@ -61,8 +61,7 @@ class ListView extends Component {
                 {/*PHOTO*/}
                 <TouchableOpacity style={part.card}
                     onPress={() =>
-
-                    this.props.navigation.navigate('ThePostInNewFeed',
+                    navigate('ThePostInNewFeed',
                         item.group
                             ?
                             {
@@ -113,15 +112,7 @@ class ListView extends Component {
                             <Text
                                 style={[part.describeGray, part.paddingLeft]}>{likeCount[item.key]}</Text>
                         </Button>
-                        <Button transparent style={part.paddingRight}
-                            // onPress={() => {
-                            //     this.setCommentModalVisible(true);
-                            //     this.setState({
-                            //         like_in_modal: likeCount[item.key],
-                            //         product_id: item.id
-                            //     });
-                            // }}
-                        >
+                        <Button transparent style={part.paddingRight}>
                             <Icon name="fontawesome|comment-o" size={size.iconBig}
                                   color={color.icon}/>
                             <Text

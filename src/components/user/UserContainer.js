@@ -11,12 +11,20 @@ import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
 import * as userInformationAction from '../../actions/userInformationAction';
+import UserProgress from './UserProgress';
+import UserProject from './UserProject';
+import UserInformation from './UserInformation';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {User} from '../../navigators/appRouter';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
-class userComponent extends Component {
+class UserContainer extends Component {
+    constructor() {
+        super();
+        this.state = {
+            tab: 1,
+        }
+    }
 
     componentDidMount() {
         const {params} = this.props.navigation.state;
@@ -25,6 +33,32 @@ class userComponent extends Component {
         this.props.userInformationAction.getUserProducts(params.username, 1, this.props.token);
     }
 
+
+    tab(){
+        switch (this.state.tab){
+            case 0:
+                return(
+                    <UserProgress
+                        user={this.props.user}
+                        progress={this.props.progress}
+                        isLoadingUserProgress={this.props.isLoadingUserProgress}
+                    />
+                );
+            case 1 :
+                return(
+                    <UserProject
+                        navigation={this.props.navigation}
+                        products={this.props.products}
+                        isLoadingUserProducts={this.props.isLoadingUserProducts}
+                    />
+                );
+            case 2 :
+                return(
+                    <UserInformation
+                    />
+                );
+        }
+    }
     render() {
         const {goBack} = this.props.navigation;
         return (
@@ -41,13 +75,13 @@ class userComponent extends Component {
                                 <Image
                                     source={{
                                         uri: this.props.user.avatar_url,
-                                        width: window.width,
+                                        width: size.wid,
                                         height: PARALLAX_HEADER_HEIGHT
                                     }}/>
                                 <View style={{
                                     position: 'absolute',
                                     top: 0,
-                                    width: window.width,
+                                    width: size.wid,
                                     backgroundColor: 'rgba(0,0,0,.7)',
                                     height: PARALLAX_HEADER_HEIGHT
                                 }}/>
@@ -85,7 +119,7 @@ class userComponent extends Component {
                     )}
 
                     renderStickyHeader={() => (
-                        <View key="sticky-header" style={[styles.stickySection, {visibility: 'hidden'}]}>
+                        <View key="sticky-header" style={styles.stickySection}>
                             <View style={part.iconInDrawerNav}>
                                 <Left style={{flexDirection: 'row', marginTop: 20,}}>
                                     <Right style={{left: 10}}>
@@ -115,19 +149,51 @@ class userComponent extends Component {
 
                     )}
                 >
-                    <User/>
+                    <View style={part.wrapperTabBarUser}>
+                        <TouchableOpacity
+                            style={part.wrapperTextInTabBarUser}
+                            onPress={() => this.setState({tab: 0})}
+                        >
+                            <Text
+                                style={this.state.tab == 0 ? part.describeDarkGray : part.describeGray}
+                            >
+                                Tiến độ
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={part.wrapperTextInTabBarUser}
+                            onPress={() => this.setState({tab: 1})}
+                        >
+                            <Text
+                                style={this.state.tab == 1 ? part.describeDarkGray : part.describeGray}
+                            >
+                                Dự án
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={part.wrapperTextInTabBarUser}
+                            onPress={() => this.setState({tab: 2})}
+                        >
+                            <Text
+                                style={this.state.tab == 2 ? part.describeDarkGray : part.describeGray}
+                            >
+                                Thông tin
+                            </Text>
+                        </TouchableOpacity>
+
+                    </View>
+                    {this.tab()}
                     <TouchableOpacity style={[part.iconAddFriendInProfile, part.shadow]}>
                         <Icon name="ion|ios-person-add"
                               size={30}
                               color={color.navTitle}/>
                     </TouchableOpacity>
+
                 </ParallaxScrollView>
             </Container>
         );
     }
 }
-
-const window = Dimensions.get('window');
 
 const PARALLAX_HEADER_HEIGHT = 250;
 const STICKY_HEADER_HEIGHT = 60;
@@ -141,7 +207,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         left: 0,
-        width: window.width,
+        width: size.wid,
         height: PARALLAX_HEADER_HEIGHT
     },
     stickySection: {
@@ -162,6 +228,11 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
     return {
         user: state.userInformation.user,
+        progress: state.userInformation.progress,
+        isLoadingUserProgress: state.userInformation.isLoadingUserProgress,
+        products: state.userInformation.products,
+        isLoadingUserProducts: state.userInformation.isLoadingUserProducts,
+
         token: state.login.token,
         isLoading: state.changeAvatar.isLoading
     }
@@ -173,4 +244,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(userComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);

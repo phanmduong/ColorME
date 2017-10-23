@@ -14,7 +14,7 @@ import * as size from '../../styles/size';
 import {connect} from 'react-redux';
 import FastImage from 'react-native-fast-image'
 
-class topics extends Component {
+class GroupTopics extends Component {
     render() {
 
         return (
@@ -138,4 +138,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(topics);
+export default connect(mapStateToProps)(GroupTopics);

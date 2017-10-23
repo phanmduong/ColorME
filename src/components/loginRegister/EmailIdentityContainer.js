@@ -7,7 +7,7 @@ import * as size from '../../styles/size';
 import part from '../../styles/partStyle';
 import Icon from '../../commons/Icon';
 
-export default class EmailIdentityComponent extends Component {
+export default class EmailIdentityContainer extends Component {
     constructor() {
         super();
         this.state = {

@@ -13,7 +13,6 @@ import * as size from '../../styles/size';
 import * as userInformationAction from '../../actions/userInformationAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {User} from '../../navigators/appRouter';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
 class myAccountComponent extends Component {
@@ -112,7 +111,6 @@ class myAccountComponent extends Component {
 
                     )}
                 >
-                    <User/>
                     <TouchableOpacity style={[part.iconAddFriendInProfile, part.shadow]}>
                         <Icon name="ion|ios-person-add"
                               size={30}

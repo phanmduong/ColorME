@@ -10,7 +10,7 @@ import * as registerAction from '../../actions/registerAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 
-class RegisterComponent extends Component {
+class RegisterContainer extends Component {
     constructor() {
         super();
         this.state = {
@@ -162,4 +162,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer)

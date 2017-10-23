@@ -14,7 +14,6 @@ export default class newFeedComponent extends Component {
     render() {
         return (
             <Container style={part.wrapperContainer}>
-                <MessageTab/>
             </Container>
         );
     }

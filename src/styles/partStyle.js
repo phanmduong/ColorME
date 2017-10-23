@@ -31,7 +31,7 @@ const part = StyleSheet.create({
         justifyContent: 'center',
         position: 'absolute',
         height: 200,
-        width: size.wid * 3 / 4,
+        width: wid * 3 / 4,
         backgroundColor: color.none,
         borderBottomWidth: 0,
 
@@ -39,7 +39,7 @@ const part = StyleSheet.create({
     tabInGetFull: {
         justifyContent: 'center',
         position: 'absolute',
-        width: size.wid,
+        width: wid,
         backgroundColor: color.none,
         borderBottomWidth: 0,
 
@@ -56,13 +56,13 @@ const part = StyleSheet.create({
         backgroundColor: color.backGround,
     },
     wrapperImageInGetFull: {
-        width: size.wid,
+        width: wid,
         height: 250,
         justifyContent: 'center',
         backgroundColor: 'black'
     },
     wrapperImageInDrawer: {
-        width: size.wid * 3 / 4,
+        width: wid * 3 / 4,
         height: 180,
         justifyContent: 'center',
         backgroundColor: 'black'
@@ -70,8 +70,8 @@ const part = StyleSheet.create({
     featureWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: size.wid,
-        height: size.hei / 3 + 3,
+        width: wid,
+        height: hei / 3 + 3,
     },
     wrapperIcon: {
         justifyContent: 'center',
@@ -81,7 +81,7 @@ const part = StyleSheet.create({
     },
     wrapperDeadline: {
         marginLeft: 3,
-        width: size.wid - 30,
+        width: wid - 30,
         height: 10,
         borderRadius: 5,
         backgroundColor: color.lightGray,
@@ -108,14 +108,14 @@ const part = StyleSheet.create({
         justifyContent: 'center',
     },
     wrapperCommentInModal: {
-        height: size.hei * 0.7 - 90,
+        height: hei * 0.7 - 90,
         backgroundColor: 'blue'
     },
 
     modalComment: {
         borderRadius: 10,
-        width: size.wid * 0.9,
-        height: size.hei * 0.7,
+        width: wid * 0.9,
+        height: hei * 0.7,
         backgroundColor: color.backGround,
     },
 
@@ -137,15 +137,7 @@ const part = StyleSheet.create({
         height: 18,
         margin: 5,
     },
-    iconTabBar: {
-        color: color.icon,
-    },
-    iconLight: {
-        color: color.navTitle,
-        width: 18,
-        height: 18,
-        margin: 5,
-    },
+
     iconInDrawer: {
         width: wid - wid / 10,
         flexDirection: 'row',
@@ -161,18 +153,7 @@ const part = StyleSheet.create({
         position: 'absolute',
         left: 10,
     },
-    iconLikeInImage: {
-        width: 44,
-        height: 44,
-        borderRadius: 22,
-        position: 'absolute',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: color.main,
-        bottom: 48,
-        marginBottom: 0,
-        right: 40,
-    },
+
     iconAddFriendInProfile: {
         width: 44,
         height: 44,
@@ -185,17 +166,7 @@ const part = StyleSheet.create({
         right: 20,
         top: -22,
     },
-    iconLikeInImageFullAbout: {
-        width: 44,
-        height: 44,
-        borderRadius: 22,
-        position: 'absolute',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: color.main,
-        right: 20,
-        bottom: 70,
-    },
+
     iconFollow: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -206,13 +177,7 @@ const part = StyleSheet.create({
     },
 
     // TEXT INPUT
-    inputSearch: {
-        width: size.wid - size.wid * 0.12,
-        height: 30,
-        color: color.navTitle,
-        padding: 5,
-        fontSize: size.title,
-    },
+
     inputTheme01: {
         fontSize: size.describe,
         height: 30,
@@ -222,11 +187,7 @@ const part = StyleSheet.create({
         fontSize: 14,
         fontWeight: '600',
     },
-    inputTheme03: {
-        fontSize: size.describe,
-        height: 40,
 
-    },
 
     //BORDER = NONE
     borderNone: {
@@ -242,12 +203,7 @@ const part = StyleSheet.create({
 
 
     //IMAGE
-    avatarUserBig: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
-        margin: 5,
-    },
+
     avatarUserNormal: {
         width: 50,
         height: 50,
@@ -258,15 +214,10 @@ const part = StyleSheet.create({
         height: 40,
         borderRadius: 20,
     },
-    online: {
-        borderWidth: 1,
-        padding: 1,
-        borderRadius: 50,
-        borderColor: color.main
-    },
+
     image: {
         height: 400,
-        width: size.wid,
+        width: wid,
         flex: 1,
         position: 'relative',
         backgroundColor: color.icon,
@@ -274,7 +225,7 @@ const part = StyleSheet.create({
     imageTopic: {
         margin: 3,
         height: 250,
-        width: size.wid - 30,
+        width: wid - 30,
         flex: 1,
         borderRadius: 5,
         position: 'relative',
@@ -283,7 +234,7 @@ const part = StyleSheet.create({
     video: {
         margin: 3,
         height: 400,
-        width: size.wid - 30,
+        width: wid - 30,
         flex: 1,
         borderRadius: 5,
         position: 'relative',
@@ -291,64 +242,33 @@ const part = StyleSheet.create({
     imageInGetFull: {
         opacity: 1,
         height: 240,
-        width: size.wid,
+        width: wid,
         flex: 1,
         position: 'relative',
     },
-    imageInUserProfile: {
-        opacity: 0.2,
-        width: size.wid,
-        flex: 1,
-        position: 'relative',
-    },
+
     imageInDrawer: {
         opacity: 0.2,
         flex: 1,
         position: 'relative',
     },
     imageInGrid: {
-        width: size.wid / 3 - 2,
-        height: size.wid / 3 - 2,
-    },
-    videoInGrid: {
-        backgroundColor: color.icon,
-        width: size.wid * 2 / 3 - 2,
-        height: size.wid * 2 / 3 - 2,
+        width: wid / 3 - 2,
+        height: wid / 3 - 2,
     },
     imageInFeature: {
         position: 'relative',
-        width: size.wid - 2,
-        height: size.hei / 3,
+        width: wid - 2,
+        height: hei / 3,
     },
 
-    //CONTENT
-    contentMid: {
-        padding: 15,
-        alignItems: 'center',
-    },
-
-
-    // TEXT
-    titleBigDark: {
-        fontSize: size.title,
-        color: color.text,
-        fontWeight: '800',
-    },
     titleLargeDarkBold: {
         fontSize: 30,
         fontWeight: 'bold',
         color: color.text,
     },
-    titleLargeGrayDark: {
-        fontSize: 25,
-        color: color.darkGray,
-        fontWeight: '600',
-    },
-    titleBigLightThin: {
-        fontSize: 25,
-        color: color.navTitle,
-        fontWeight: '300',
-    },
+
+
     titleSmallDarkBold: {
         fontSize: size.titleSmall,
         color: color.text,
@@ -367,11 +287,6 @@ const part = StyleSheet.create({
     titleNormalLight: {
         color: color.navTitle,
     },
-    titleSmallDark: {
-        fontSize: size.titleSmall,
-        color: color.text,
-        fontWeight: 'normal',
-    },
     describeDark: {
         fontSize: size.describe,
         color: color.text,
@@ -380,11 +295,6 @@ const part = StyleSheet.create({
     describeDarkGray: {
         fontSize: size.describe,
         color: 'rgb(100, 100, 100)',
-        fontWeight: '500',
-    },
-    describeLight: {
-        fontSize: size.describe,
-        color: color.navTitle,
         fontWeight: '600',
     },
     describeGray: {
@@ -392,7 +302,6 @@ const part = StyleSheet.create({
         color: color.gray,
         fontWeight: '600',
     },
-
     describeLightGray: {
         fontSize: size.describe,
         color: color.lightGray,
@@ -409,13 +318,13 @@ const part = StyleSheet.create({
         color: color.gray,
     },
     textInImage: {
-        width: size.wid,
+        width: wid,
         padding: 10,
         fontSize: 12,
         backgroundColor: color.none,
     },
     wrapperTitleFeature: {
-        width: size.wid,
+        width: wid,
         padding: 10,
         position: 'absolute',
         backgroundColor: color.none,
@@ -449,13 +358,7 @@ const part = StyleSheet.create({
         textShadowOffset: {width: 1, height: 1},
     },
     //BUTTON
-    buttonTheme01: {
-        backgroundColor: color.main,
-        justifyContent: 'center',
-        width: size.wid - size.wid * 0.1,
-        margin: 15,
-        borderRadius: 0,
-    },
+
     buttonGroup: {
         backgroundColor: 'rgba(20, 20, 20, 0.7)',
         borderRadius: 5,
@@ -503,7 +406,6 @@ const part = StyleSheet.create({
         paddingRight: 0,
     },
 
-
     margin: {
         margin: 10,
     },
@@ -543,7 +445,7 @@ const part = StyleSheet.create({
     //Card
     card: {
         position: 'relative',
-        width: size.wid,
+        width: wid,
         borderBottomWidth: 0,
         borderColor: color.none,
         shadowColor: color.none,
@@ -551,7 +453,7 @@ const part = StyleSheet.create({
     },
     cardGetFull: {
         position: 'relative',
-        width: size.wid,
+        width: wid,
         borderBottomWidth: 0,
         borderColor: color.none,
         shadowColor: color.none,
@@ -588,7 +490,7 @@ const part = StyleSheet.create({
         marginLeft: 60,
     },
     cardBottom: {
-        width: size.wid,
+        width: wid,
         flexDirection: 'row',
         height: 50,
         backgroundColor: color.backGround,
@@ -596,7 +498,7 @@ const part = StyleSheet.create({
     },
 
     cardBottomInModal: {
-        width: size.wid * 0.9,
+        width: wid * 0.9,
         flexDirection: 'row',
         height: 50,
         backgroundColor: color.none,
@@ -612,16 +514,26 @@ const part = StyleSheet.create({
         flex: 1,
     },
     wrapperGridImage: {
-        width: (size.wid) / 3,
-        height: (size.wid) / 3,
+        width: (wid) / 3,
+        height: (wid) / 3,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    wrapperGridVideo: {
-        width: (size.wid ) * 2 / 3,
-        height: (size.wid ) * 2 / 3,
+    wrapperTabBarUser:{
+        flex: 1,
+        height: 80,
+        backgroundColor: color.none,
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    wrapperTextInTabBarUser:{
+        flex: 1,
+        height: 80,
+        backgroundColor: color.none,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     noBorder: {
         borderBottomWidth: 0,
@@ -640,10 +552,6 @@ const part = StyleSheet.create({
         borderBottomWidth: 0.5,
         borderColor: color.icon,
     },
-
-    flatListNewFeed: {
-        height: size.hei - 145
-    }
 });
 
 

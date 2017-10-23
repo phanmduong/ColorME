@@ -11,7 +11,7 @@ import * as loginAction from '../../actions/loginActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 
-class LoginComponent extends Component {
+class LoginContainer extends Component {
     constructor(props) {
         super(props);
     }
@@ -169,4 +169,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)

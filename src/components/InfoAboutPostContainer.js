@@ -16,7 +16,7 @@ import * as likePostAction from '../actions/likePostAction'
 import FastImage from 'react-native-fast-image';
 import WebViewAutoHeight from '../commons/WebViewAutoHeight';
 
-class getFullInfoAboutOnePostComponent extends Component {
+class InfoAboutPostContainer extends Component {
     constructor() {
         super();
         this.state = {
@@ -421,4 +421,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(getFullInfoAboutOnePostComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(InfoAboutPostContainer);

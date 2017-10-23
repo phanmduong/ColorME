@@ -7,12 +7,10 @@ import {
     List, ListItem, Spinner
 } from 'native-base';
 import part from '../../styles/partStyle';
-import * as userInformationAction from '../../actions/userInformationAction';
 import * as color from '../../styles/color';
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-class Information extends Component {
+class UserInformation extends Component {
     render() {
         return (
             <Container style={[part.wrapperContainer, part.padding]}>
@@ -73,4 +71,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Information);
+export default connect(mapStateToProps)(UserInformation);

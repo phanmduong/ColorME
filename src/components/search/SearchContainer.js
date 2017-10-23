@@ -10,9 +10,8 @@ import * as color from '../../styles/color';
 import * as searchAction from '../../actions/searchAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {SearchTab} from '../../navigators/appRouter';
 
-class searchComponent extends Component {
+class SearchContainer extends Component {
     constructor() {
         super();
         this.state = {
@@ -104,11 +103,7 @@ class searchComponent extends Component {
                     }
                 </View>
 
-                <SearchTab
-                    getMoreUser={this.getMoreUser}
-                    getMoreProduct={this.getMoreProduct}
-                    navigationProps={this.props.navigation}
-                />
+
             </Container>
         );
     }
@@ -129,4 +124,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(searchComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer);

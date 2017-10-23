@@ -11,7 +11,7 @@ import Icon from '../../commons/Icon';
 import * as color from '../../styles/color';
 import {connect} from 'react-redux';
 
-class members extends Component {
+class GroupMembers extends Component {
     render() {
         return (
             <Container style={[part.wrapperContainer, part.padding]}>
@@ -77,4 +77,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(members);
+export default connect(mapStateToProps)(GroupMembers);

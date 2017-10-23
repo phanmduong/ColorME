@@ -10,7 +10,7 @@ import part from '../../styles/partStyle';
 import {connect} from 'react-redux';
 import FastImage from 'react-native-fast-image'
 
-class groupProject extends Component {
+class GroupProject extends Component {
     render() {
         return (
             <Content
@@ -68,4 +68,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(groupProject);
+export default connect(mapStateToProps)(GroupProject);

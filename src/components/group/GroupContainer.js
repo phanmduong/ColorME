@@ -16,7 +16,7 @@ import {connect} from 'react-redux';
 import {Group} from '../../navigators/appRouter';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
-class groupComponent extends Component {
+class GroupComponent extends Component {
     constructor() {
         super();
     }
@@ -181,4 +181,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(groupComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(GroupComponent);
