@@ -58,8 +58,9 @@ class NewFeedContainer extends Component {
     onValueChange(value: string) {
         this.setState({
             typeView: value,
+            listPost: [],
         });
-        this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
+        this.props.getNewFeedAction.getNewFeed(value, 1);
     }
 
     viewList() {
