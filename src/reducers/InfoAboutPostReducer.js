@@ -10,16 +10,14 @@ export default function getFullInfoAboutOnePostReducer(state = initialState.getF
                     isLoading: action.isLoading,
                     error: action.error,
                 }
-            }
+            };
         case types.BEGIN_POST_COMMENT:
             return {
                 ...state,
                 ...{
                     statusPostComment: action.statusPostComment
                 }
-            }
-
-
+            };
         case types.GET_FULL_INFO_ABOUT_ONE_POST_SUCCESS:
             return {
                 ...state,
@@ -29,7 +27,7 @@ export default function getFullInfoAboutOnePostReducer(state = initialState.getF
                     post: action.post,
                     result: action.result,
                 }
-            }
+            };
         case types.GET_COMMENTS_POST_SUCCESS:
             return {
                 ...state,
@@ -39,16 +37,15 @@ export default function getFullInfoAboutOnePostReducer(state = initialState.getF
                     comments: action.comments,
                     result: action.result,
                 }
-            }
+            };
         case types.POST_COMMENT_SUCCESS:
             return {
                 ...state,
                 ...{
                     statusPostComment: action.statusPostComment
                 }
-            }
-
-        case types.GET_FULL_INFO_ABOUT_ONE_POST_ERROR: {
+            };
+        case types.GET_FULL_INFO_ABOUT_ONE_POST_ERROR:
             return {
                 ...state,
                 ...{
@@ -56,18 +53,14 @@ export default function getFullInfoAboutOnePostReducer(state = initialState.getF
                     error: action.error,
                     result: action.result
                 }
-            }
-        }
-
-        case types.POST_COMMENT_ERROR: {
+            };
+        case types.POST_COMMENT_ERROR:
             return {
                 ...state,
                 ...{
                     statusPostComment: action.statusPostComment
                 }
-            }
-        }
-
+            };
         default:
             return state;
     }

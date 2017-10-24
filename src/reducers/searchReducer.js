@@ -11,8 +11,7 @@ export default function searchReducer(state = initialState.search, action) {
                     error: action.error,
                     result: action.result,
                 }
-            }
-
+            };
         case types.SEARCH_USER_SUCCESS:
             return {
                 ...state,
@@ -21,7 +20,7 @@ export default function searchReducer(state = initialState.search, action) {
                     error: action.error,
                     users: action.users,
                 }
-            }
+            };
         case types.SEARCH_PRODUCT_SUCCESS:
             return {
                 ...state,
@@ -30,8 +29,7 @@ export default function searchReducer(state = initialState.search, action) {
                     error: action.error,
                     products: action.products,
                 }
-            }
-
+            };
         case types.SEARCH_ERROR:
             return {
                 ...state,
@@ -40,7 +38,7 @@ export default function searchReducer(state = initialState.search, action) {
                     error: action.error,
                     result: action.result,
                 }
-            }
+            };
         default:
             return state;
     }

@@ -10,7 +10,7 @@ export default function groupReducer(state = initialState.group, action) {
                     isLoadingGroupTopics: action.isLoadingGroupTopics,
                     errorGroupTopics: action.errorUserProfile,
                 }
-            }
+            };
         case types.BEGIN_GET_GROUP_PRODUCTS:
             return{
                 ...state,
@@ -18,7 +18,7 @@ export default function groupReducer(state = initialState.group, action) {
                     isLoadingGroupProducts: action.isLoadingUserProgress,
                     errorGroupProducts: action.errorUserProgress,
                 }
-            }
+            };
         case types.BEGIN_GET_GROUP_MEMBER:
             return {
                 ...state,
@@ -26,7 +26,7 @@ export default function groupReducer(state = initialState.group, action) {
                     isLoadingGroupMembers: action.isLoadingUserProducts,
                     errorGroupMembers: action.errorUserProducts,
                 }
-            }
+            };
 
         case types.GET_GROUP_TOPICS_SUCCESS:
             return{
@@ -36,7 +36,7 @@ export default function groupReducer(state = initialState.group, action) {
                     isLoadingGroupTopics: action.isLoadingUserProfile,
                     errorGroupTopics: action.errorUserProfile,
                 }
-            }
+            };
         case types.GET_GROUP_PRODUCTS_SUCCESS:
             return{
                 ...state,
@@ -47,7 +47,7 @@ export default function groupReducer(state = initialState.group, action) {
                     isLoadingGroupProducts: action.isLoadingUserProgress,
                     errorGroupProducts: action.errorUserProgress,
                 }
-            }
+            };
         case types.GET_GROUP_MEMBER_SUCCESS:
             return{
                 ...state,
@@ -56,7 +56,7 @@ export default function groupReducer(state = initialState.group, action) {
                     isLoadingGroupMembers: action.isLoadingUserProducts,
                     errorGroupMembers: action.errorUserProducts,
                 }
-            }
+            };
         case types.GET_GROUP_TOPICS_ERROR:
             return{
                 ...state,
@@ -64,7 +64,7 @@ export default function groupReducer(state = initialState.group, action) {
                     isLoadingGroupTopics: action.isLoading,
                     errorGroupTopics: action.errorUserProfile,
                 }
-            }
+            };
         case types.GET_GROUP_PRODUCTS_ERROR:
             return{
                 ...state,
@@ -72,7 +72,7 @@ export default function groupReducer(state = initialState.group, action) {
                     isLoadingGroupProducts: action.isLoadingUserProgress,
                     errorGroupProducts: action.errorUserProgress,
                 }
-            }
+            };
         case types.GET_GROUP_MEMBER_ERROR:
             return{
                 ...state,
@@ -80,7 +80,7 @@ export default function groupReducer(state = initialState.group, action) {
                     isLoadingGroupMembers: action.isLoadingUserProducts,
                     errorGroupMembers: action.errorUserProducts,
                 }
-            }
+            };
         default:
             return state
     }

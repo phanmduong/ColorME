@@ -100,7 +100,10 @@ const UserInNewFeed = StackNavigator(
 
 const NewFeedStackNavigator = StackNavigator(
     {
-        NewFeedStack: {screen: NewFeedContainer, navigationOptions: {title: 'colorME', headerTintColor: color.navTitle,},},
+        NewFeedStack: {
+            screen: NewFeedContainer,
+            navigationOptions: {title: 'colorME', headerTintColor: color.navTitle,},
+        },
         UserInNewFeed: {screen: UserInNewFeed, StackNavigatorStyle},
         ThePostInNewFeed: {screen: ThePostInNewFeed, navigationOptions: {tabBarVisible: false,}},
     },
@@ -212,7 +215,7 @@ const Login = StackNavigator({
         EmailIdentityContainer: {screen: EmailIdentityContainer,},
         CodeIdentityContainer: {screen: CodeIdentityContainer,}
     }, StackNavigatorStyle
-)
+);
 
 const Start = StackNavigator(
     {

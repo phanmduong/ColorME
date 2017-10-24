@@ -8,7 +8,7 @@ export default function changAvatarReducer(state = initialState.changeAvatar, ac
                 ...{
                     isLoading : action.isLoading
                 }
-            }
+            };
         default :
             return state
     }

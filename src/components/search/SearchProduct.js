@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {
-    TouchableOpacity, FlatList, View
+    TouchableOpacity, FlatList, View,
 } from 'react-native';
 import {
-    Thumbnail, Spinner, Container, CardItem,
+    Spinner, Container, CardItem,
     Text, Left, Body, Right, Item,
 } from 'native-base';
 import part from '../../styles/partStyle';
+import FastImage from 'react-native-fast-image';
 
 class searchProduct extends Component {
     constructor() {
@@ -15,6 +16,7 @@ class searchProduct extends Component {
             page_product: 2
         }
     }
+
     render() {
         const {products, isLoading, txtSearch} = this.props;
         return (
@@ -39,19 +41,40 @@ class searchProduct extends Component {
                                           style={[part.backgroundNone, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
                                     <Left>
                                         <TouchableOpacity
+                                            activeOpacity={0.8}
                                             onPress={() => this.props.navigation.navigate('UserInSearch', {username: item.author.username})}
-
                                         >
-                                            <Thumbnail
+                                            <FastImage
+                                                style={part.avatarUserNormal}
                                                 source={{uri: item.author.avatar_url}}/>
                                         </TouchableOpacity>
                                         <Body style={part.noBorder}>
                                         <Text
+                                            onPress={() => this.props.navigation.navigate(
+                                                'ThePostInSearch',
+                                                item.group
+                                                    ?
+                                                    {
+                                                        product_id: item.id,
+                                                        group_name: item.group.name,
+                                                        group_link: item.group.link,
+                                                    }
+                                                    :
+                                                    {
+                                                        product_id: item.id,
+                                                    }
+                                            )}
+                                            style={part.titleSmallBlue}>
+                                            {item.title}
+                                        </Text>
+                                        <Text
                                             onPress={() => this.props.navigation.navigate('UserInSearch', {username: item.author.username})}
-                                            style={part.titleSmallBlue}>{item.author.name}</Text>
-                                        <Text style={part.describeGray} note>{item.title}</Text>
+                                            style={part.describeGray} note>
+                                            Đăng bởi {item.author.name}
+                                        </Text>
                                         </Body>
                                         <TouchableOpacity
+                                            activeOpacity={0.8}
                                             onPress={() => this.props.navigation.navigate(
                                                 'ThePostInSearch',
                                                 item.group
@@ -67,7 +90,8 @@ class searchProduct extends Component {
                                                     }
                                             )}
                                         >
-                                            <Thumbnail
+                                            <FastImage
+                                                style={part.avatarUserNormal}
                                                 source={{uri: item.thumb_url}}/>
                                         </TouchableOpacity>
 

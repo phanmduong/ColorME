@@ -113,7 +113,7 @@ class InfoAboutPostContainer extends Component {
         const {isLoading, post} = this.props;
         return (
             <Container style={part.wrapperContainer}>
-                <Content scrollsToTop={false}>
+                <Content stickySectionHeadersEnabled={false}>
                     {
                         isLoading
                             ?
@@ -396,7 +396,6 @@ class InfoAboutPostContainer extends Component {
                         </Left>
                     </CardItem>
                 </KeyboardAvoidingView>
-
             </Container>
         );
     }

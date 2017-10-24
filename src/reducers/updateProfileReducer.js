@@ -9,7 +9,7 @@ export default function updateProfileReducer(state = initialState.updateProfile,
                 ...{
                     isLoading : action.isLoading
                 }
-            }
+            };
         case types.UPDATE_PROFILE_SUCCESS :
             return {
                 ...state,
@@ -18,7 +18,7 @@ export default function updateProfileReducer(state = initialState.updateProfile,
                     isLoading: action.isLoading,
                     error : action.error
                 }
-            }
+            };
         case types.UPDATE_PROFILE_ERROR :
             return {
                 ...state,
@@ -27,7 +27,7 @@ export default function updateProfileReducer(state = initialState.updateProfile,
                     isLoading : false,
                     error: action.error
                 }
-            }
+            };
         default :
             return state
     }

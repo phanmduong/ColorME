@@ -55,18 +55,18 @@ class NewFeedContainer extends Component {
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
     }
 
-    textTopShow(){
-        switch (this.state.typeView){
+    textTopShow() {
+        switch (this.state.typeView) {
             case '':
-                return(
+                return (
                     'Top of the hour'
                 );
             case '1':
-                return(
+                return (
                     'Top of the day'
                 );
             case '7':
-                return(
+                return (
                     'Top of the week'
                 );
             case '30':
@@ -287,7 +287,7 @@ class NewFeedContainer extends Component {
                                     data={this.state.listPost}
                                     refreshControl={
                                         <RefreshControl
-                                            refreshing={this.props.isRefreshing|| this.props.isLoading}
+                                            refreshing={this.props.isRefreshing || this.props.isLoading}
                                             onRefresh={() => {
                                                 this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
                                             }}
@@ -303,7 +303,7 @@ class NewFeedContainer extends Component {
                                                         this.props.navigation.navigate('ThePostInNewFeed',
                                                             item.group
                                                                 ?
-                                                               {
+                                                                {
                                                                     product_id: item.id,
                                                                     group_name: item.group.name,
                                                                     group_link: item.group.link,
@@ -313,7 +313,7 @@ class NewFeedContainer extends Component {
                                                                     product_id: item.id,
                                                                 }
                                                         )}
-                                                    >
+                                                >
                                                     <FastImage
                                                         style={[part.imageInFeature]}
                                                         source={{uri: item.image_url}}
@@ -339,10 +339,11 @@ class NewFeedContainer extends Component {
                                     }
                                     }
                                     ListFooterComponent={() => {
-                                       return this.loadingLoadMore()
+                                        return this.loadingLoadMore()
                                     }
-                                       }
-                                />)
+                                    }
+                                />
+                            )
 
                         )
                         :
@@ -385,8 +386,8 @@ class NewFeedContainer extends Component {
                                             />
                                         )
                                     }}
-                                    ListFooterComponent={() =>{
-                                         return this.loadingLoadMore()
+                                    ListFooterComponent={() => {
+                                        return this.loadingLoadMore()
                                     }}
 
                                 />)

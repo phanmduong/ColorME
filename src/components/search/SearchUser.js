@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import {
-    TouchableOpacity, FlatList, View
+    TouchableOpacity, FlatList, View,
 } from 'react-native';
 import {
-    Title, Container, Header, Content, Card, CardItem, Thumbnail, Form, Label,
-    Text, Button, Left, Body, Right, List, ListItem, Item, Input, Spinner
+    Container, Card, CardItem,
+    Text, Left, Body, Right, List, Spinner
 } from 'native-base';
 import part from '../../styles/partStyle';
 import Icon from '../../commons/Icon';
 import * as color from '../../styles/color';
+import FastImage from 'react-native-fast-image';
 
 class searchUser extends Component {
     constructor(props) {
@@ -38,11 +39,13 @@ class searchUser extends Component {
                                     avatar
                                     style={[part.backgroundNone, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
                                     <TouchableOpacity
+                                        activeOpacity={0.8}
                                         style={{flex: 1}}
                                         onPress={() => this.props.navigation.navigate('UserInSearch', {username: item.username})}
                                     >
                                         <Left>
-                                            <Thumbnail
+                                            <FastImage
+                                                style={part.avatarUserNormal}
                                                 source={{uri: item.avatar_url}}/>
                                             <Body style={part.noBorder}>
                                             <Text style={part.titleSmallBlue}>{item.name}</Text>
@@ -51,7 +54,7 @@ class searchUser extends Component {
                                             <TouchableOpacity style={part.iconFollow}>
                                                 <Icon
                                                     name="ion|ios-person-add"
-                                                    size={30}
+                                                    size={25}
                                                     color={color.navTitle}/>
                                             </TouchableOpacity>
                                         </Left>

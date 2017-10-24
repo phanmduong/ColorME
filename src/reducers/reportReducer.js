@@ -9,8 +9,7 @@ export default function reportReducer(state = initialState.report, action) {
                 ...{
                     isLoading: action.isLoading,
                 }
-            }
-
+            };
         case types.REPORT_POST_SUCCESS :
             return {
                 ...state,
@@ -18,7 +17,7 @@ export default function reportReducer(state = initialState.report, action) {
                     isLoading: action.isLoading,
                     reportPostResult: action.reportPostResult
                 }
-            }
+            };
         case types.REPORT_POST_ERROR:
             return{
                 ...state,
@@ -26,7 +25,7 @@ export default function reportReducer(state = initialState.report, action) {
                     isLoading: action.isLoading,
                     reportPostResult: action.reportPostResult
                 }
-            }
+            };
         default:
             return state;
     }

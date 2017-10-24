@@ -172,9 +172,9 @@ const part = StyleSheet.create({
     iconFollow: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: 44,
-        height: 44,
-        borderRadius: 22,
+        width: 38,
+        height: 38,
+        borderRadius: 19,
         backgroundColor: color.gray,
     },
 
@@ -534,7 +534,7 @@ const part = StyleSheet.create({
     },
     wrapperTextInTabBarUser:{
         flex: 1,
-        height: 80,
+        height: 60,
         backgroundColor: color.none,
         flexDirection: 'row',
         alignItems: 'center',

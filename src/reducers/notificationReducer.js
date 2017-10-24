@@ -6,19 +6,18 @@ export default function getNotificationReducer(state = initialState.getNotificat
         case types.BEGIN_GET_NOTIFICATION:
             return{
                 ...state
-            }
-
+            };
         case types.GET_NOTIFICATION_SUCCESS:
             return{
                 ...state,
                 ...{
                     notification: action.notification,
                 }
-            }
+            };
         case types.GET_NOTIFICATION_ERROR:
             return{
                 ...state,
-            }
+            };
         default:
             return state
     }

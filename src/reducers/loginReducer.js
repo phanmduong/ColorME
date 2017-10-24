@@ -10,7 +10,7 @@ export default function loginReducer(state = initialState.login, action) {
                     error : action.error,
                     token : action.token,
                 }
-            }
+            };
         case types.LOGIN_SUCCESS :
             return {
                 ...state,
@@ -21,7 +21,7 @@ export default function loginReducer(state = initialState.login, action) {
                     status : action.status,
                     user : action.user
                 }
-            }
+            };
         case types.LOGIN_ERROR :
             return {
                 ...state,
@@ -31,7 +31,7 @@ export default function loginReducer(state = initialState.login, action) {
                     token : action.token,
                     status : action.status
                 }
-            }
+            };
         case types.GOT_DATA_LOGIN :
             return {
                 ...state,
@@ -39,7 +39,7 @@ export default function loginReducer(state = initialState.login, action) {
                     isGetLocalData : action.isGetLocalData,
                     login : action.login
                 }
-            }
+            };
         case types.UPDATE_DATA_LOGIN :
             return {
                 ...state,
@@ -47,7 +47,7 @@ export default function loginReducer(state = initialState.login, action) {
                     login : action.login,
                     error : action.error
                 }
-            }
+            };
         case types.LOGOUT : {
             return {
                 ...state,

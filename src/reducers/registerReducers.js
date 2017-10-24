@@ -10,7 +10,7 @@ export default function registerReducer (state = initialState.register, action) 
                     isLoading : action.isLoading,
                     error : action.error,
                 }
-            }
+            };
         case registerTypes.REGISTER_SUCCESS :
             return {
                 ...state,
@@ -19,7 +19,7 @@ export default function registerReducer (state = initialState.register, action) 
                     error : action.error,
                     status : action.status
                 }
-            }
+            };
         case registerTypes.REGISTER_ERROR :
             return {
                 ...state,
@@ -28,7 +28,7 @@ export default function registerReducer (state = initialState.register, action) 
                     error : action.error,
                     status: action.status,
                 }
-            }
+            };
         default :
             return state
 
