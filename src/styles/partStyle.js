@@ -109,7 +109,7 @@ const part = StyleSheet.create({
     },
     wrapperCommentInModal: {
         height: hei * 0.7 - 90,
-        backgroundColor: 'blue'
+        backgroundColor: color.backGround
     },
     backgroundNone:{
        backgroundColor: color.none,
@@ -489,7 +489,7 @@ const part = StyleSheet.create({
     cardRepCmt: {
         flexDirection: 'row',
         flex: 1,
-        marginLeft: 60,
+        marginLeft: 40,
     },
     cardBottom: {
         width: wid,
@@ -503,8 +503,9 @@ const part = StyleSheet.create({
         width: wid * 0.9,
         flexDirection: 'row',
         height: 50,
-        backgroundColor: color.none,
+        backgroundColor: color.backGround,
         bottom: 0,
+        borderRadius: 10,
     },
 
 

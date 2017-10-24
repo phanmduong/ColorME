@@ -1,18 +1,17 @@
 import React, {Component} from 'react';
 import {
-    View, TouchableOpacity, Alert
+    View, TouchableOpacity, Alert, Modal, PanResponder, KeyboardAvoidingView, FlatList, ScrollView
 } from 'react-native';
 import {
-    Container, Card, CardItem, Item, Thumbnail,
-    Text, Button, Left, Body, Right, ListItem, Spinner, Badge
+    Container, Card, CardItem, Item, Thumbnail, Input,Text, Button, Left, Body, Right, ListItem, Spinner
 } from 'native-base';
 import Video from 'react-native-video';
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
-import FastImage from 'react-native-fast-image';
-import CommentModal from './CommentModal';
+import FastImage from 'react-native-fast-image'
+import * as getFullInfoAboutOnePostAction from '../../actions/inforAboutPostAction'
 import * as reportAction from '../../actions/reportAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -22,7 +21,37 @@ class ListView extends Component {
         super(props);
         this.state = {
             modalVisible: false,
+            like_counts: 0,
+            product_id: '',
+            listCommentInModal: [],
         }
+    }
+
+    componentWillMount() {
+        this.panResponder = PanResponder.create({
+            onStartShouldSetPanResponder: (event, gestureState) => true,
+            onPanResponderGrant: this._onPanResponderGrant.bind(this),
+        })
+    }
+
+    _onPanResponderGrant(event, gestureState) {
+        if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
+            this.setState({modalVisible: false});
+        }
+    }
+
+    setCommentModalVisible(visible) {
+        this.setState({modalVisible: visible});
+    }
+
+    openCommentModal(product_id) {
+        this.props.getFullInfoAboutOnePostAction.getCommentOnePost(product_id);
+        this.setCommentModalVisible(true);
+        this.setState({
+            like_counts: this.props.item.likes_count,
+            listCommentInModal: this.props.comments,
+
+        })
     }
 
     alertReport() {
@@ -41,13 +70,8 @@ class ListView extends Component {
         this.props.reportAction.reportPost(id, token);
     }
 
-    setCommentModalVisible(visible) {
-        this.setState({modalVisible: visible});
-    }
-
-
     render() {
-        const {item, arrayLike, likeCount, colorIcon, likedIcon} = this.props;
+        const {item, arrayLike, likeCount, colorIcon, likedIcon, user} = this.props;
         const {navigate} = this.props.navigation;
         return (
             <View key={item.key} style={part.card}>
@@ -132,7 +156,11 @@ class ListView extends Component {
                             <Text
                                 style={[part.describeGray, part.paddingLeft]}>{likeCount[item.key]}</Text>
                         </Button>
-                        <Button transparent style={part.paddingRight}>
+                        <Button transparent style={part.paddingRight}
+                                onPress={
+                                    () => this.openCommentModal(item.id)
+                                }
+                        >
                             <Icon name="fontawesome|comment-o" size={size.iconBig}
                                   color={color.icon}/>
                             <Text
@@ -168,12 +196,132 @@ class ListView extends Component {
 
                     </View>
                 </CardItem>
-                <CommentModal
-                    panResponder={this.panResponder}
-                    product_id={this.state.product_id}
-                    user={this.props.user}
-                    modalVisible={this.state.modalVisible}
-                />
+                <Modal
+                    presentationStyle="overFullScreen"
+                    animationType="fade"
+                    transparent={true}
+                    visible={this.state.modalVisible}
+                >
+                    <View style={part.wrapperModalComment}
+                          {...this.panResponder.panHandlers}
+                    >
+                        <View style={part.modalComment}>
+                            <KeyboardAvoidingView behavior={'position'}>
+                                <CardItem footer style={part.cardTopInModal}>
+                                    <Left>
+                                        <Button
+                                            transparent style={part.paddingRight}
+                                        >
+                                            <Icon name="fontawesome|heart" size={12}
+                                                  color={color.main}/>
+                                            <Text
+                                                style={[part.describeGray, part.paddingLeft]}
+                                            >
+                                                {this.state.like_counts}
+                                            </Text>
+                                        </Button>
+                                    </Left>
+                                </CardItem>
+
+                                <View style={part.wrapperCommentInModal}>
+                                    <ScrollView>
+                                        <FlatList
+                                            onEndReachedThreshold={5}
+                                            data={this.props.comments}
+                                            renderItem={({item}) =>
+                                                <CardItem style={part.cardHeader}>
+                                                    <View
+                                                        style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
+                                                        <TouchableOpacity style={part.paddingTRB}
+                                                        >
+                                                            <FastImage
+                                                                style={part.avatarUserSmall}
+                                                                source={{uri: item.commenter.avatar_url}}/>
+                                                        </TouchableOpacity>
+                                                        <Body>
+                                                        <Text
+                                                            style={[part.titleSmallBlue, part.paddingTLB]}
+                                                        >
+                                                            {item.commenter.name}
+                                                        </Text>
+                                                        <Text
+                                                            style={[part.describeDarkGray, part.paddingLeft]}
+                                                        >
+                                                            {item.content}
+                                                        </Text>
+                                                        <View style={{flexDirection: 'row'}}>
+                                                            <Text
+                                                                style={[part.describeLightGray, part.paddingTLB]}
+                                                            >
+                                                                {item.created_at}
+                                                            </Text>
+                                                            <Text
+                                                                style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                            >
+                                                                Trả lời
+                                                            </Text>
+                                                        </View>
+
+                                                        <View
+                                                            style={[{flexDirection: 'row'}, part.paddingLine]}>
+                                                        </View>
+                                                        </Body>
+                                                        <TouchableOpacity transparent>
+                                                            <Icon name="fontawesome|heart-o"
+                                                                  color={color.icon}
+                                                                  size={size.iconBig}
+                                                                  style={part.paddingRight}
+                                                            />
+                                                        </TouchableOpacity>
+                                                    </View>
+                                                </CardItem>
+                                            }/>
+                                    </ScrollView>
+                                </View>
+
+
+                                <CardItem style={part.cardBottomInModal}>
+                                    <Left>
+                                        <Thumbnail
+                                            style={part.avatarUserSmall}
+                                            source={{uri: user.avatar_url}}/>
+                                        <Body>
+                                        <Item rounded>
+                                            <Input
+                                                placeholder='Viết bình luận'
+                                                autoCorrect={false}
+                                                placeholderTextColor={color.icon}
+                                                style={part.inputTheme01}
+                                                onChangeText={
+                                                    (text) => {
+                                                        this.setState({comment_content: text})
+                                                    }
+                                                }
+                                            />
+                                            <TouchableOpacity>
+                                                <Icon active name='fontawesome|camera-retro'
+                                                      size={size.iconBig}
+                                                      color={color.icon}
+                                                      style={{paddingRight: 15}}
+                                                />
+                                            </TouchableOpacity>
+                                        </Item>
+                                        </Body>
+                                        <TouchableOpacity
+                                            // onPress={() => this.commentPost(this.props.product_id, this.props.token, this.state)}
+                                        >
+                                            <Icon active name='fontawesome|comment-o'
+                                                  size={size.iconBig}
+                                                  color={color.icon}
+                                                  style={[part.paddingTLB, {paddingLeft: 10}]}
+                                            />
+                                        </TouchableOpacity>
+                                    </Left>
+                                </CardItem>
+                            </KeyboardAvoidingView>
+                        </View>
+                    </View>
+                </Modal>
             </View>
         );
     }
@@ -183,13 +331,16 @@ class ListView extends Component {
 function mapStateToProps(state) {
     return {
         token: state.login.token,
+        user: state.login.user,
         isLoadingReportPost: state.report.isLoading,
-        reportPostResult: state.report.reportPostResult
+        reportPostResult: state.report.reportPostResult,
+        comments: state.getFullInfoAboutOnePost.comments,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
+        getFullInfoAboutOnePostAction: bindActionCreators(getFullInfoAboutOnePostAction, dispatch),
         reportAction: bindActionCreators(reportAction, dispatch),
     }
 }

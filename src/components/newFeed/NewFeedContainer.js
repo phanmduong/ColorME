@@ -219,7 +219,7 @@ class NewFeedContainer extends Component {
                                 renderHeader={backAction =>
                                     <Header
                                         iosBarStyle='light-content'
-                                        style={{backgroundColor: color.navTabBar}}>
+                                        style={[{backgroundColor: color.main}, part.noBorder]}>
                                         <Left>
                                             <TouchableOpacity onPress={backAction}>
                                                 <Icon name="entypo|chevron-thin-left" color={color.navTitle}

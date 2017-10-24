@@ -311,7 +311,7 @@ class InfoAboutPostContainer extends Component {
                                                                   onPress={() => navigate('UserInNewFeed', {username: item.commenter.username})}
                                                 >
                                                     <Image
-                                                        style={part.avatarUserNormal}
+                                                        style={part.avatarUserSmall}
                                                         source={{uri: item.commenter.avatar_url}}/>
                                                 </TouchableOpacity>
                                                 <Body>
@@ -321,7 +321,7 @@ class InfoAboutPostContainer extends Component {
                                                     {item.commenter.name}
                                                 </Text>
                                                 <Text
-                                                    style={[part.describeDarkGray, part.paddingTLB]}
+                                                    style={[part.describeDarkGray, part.paddingLeft]}
                                                 >
                                                     {item.content}
                                                 </Text>
@@ -345,7 +345,7 @@ class InfoAboutPostContainer extends Component {
                                                 <TouchableOpacity transparent>
                                                     <Icon name="fontawesome|heart-o"
                                                           color={color.icon}
-                                                          size={size.icon}
+                                                          size={size.iconBig}
                                                           style={part.paddingRight}
                                                     />
                                                 </TouchableOpacity>
@@ -377,7 +377,7 @@ class InfoAboutPostContainer extends Component {
                                 />
                                 <TouchableOpacity>
                                     <Icon active name='fontawesome|camera-retro'
-                                          size={size.iconNormal}
+                                          size={size.iconBig}
                                           color={color.icon}
                                           style={{paddingRight: 15}}
                                     />

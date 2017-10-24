@@ -5,7 +5,7 @@ import * as size from './size';
 const parallaxStyle = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     background: {
         position: 'absolute',
