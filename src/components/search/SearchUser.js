@@ -3,8 +3,8 @@ import {
     TouchableOpacity, FlatList, View
 } from 'react-native';
 import {
-    Thumbnail, Spinner, Container, CardItem,
-    Text, Left, Body, Right, Item,
+    Title, Container, Header, Content, Card, CardItem, Thumbnail, Form, Label,
+    Text, Button, Left, Body, Right, List, ListItem, Item, Input, Spinner
 } from 'native-base';
 import part from '../../styles/partStyle';
 import Icon from '../../commons/Icon';
@@ -39,7 +39,7 @@ class searchUser extends Component {
                                     style={[part.backgroundNone, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
                                     <TouchableOpacity
                                         style={{flex: 1}}
-                                        onPress={() => this.props.navigation.navigate('UserInSearch', {username: item.username})}
+                                        onPress={() => this.props.navigation.navigate('UserInSearch', {username: item.link.slice(9)})}
                                     >
                                         <Left>
                                             <Thumbnail

@@ -18,7 +18,6 @@ class LoginContainer extends Component {
 
 componentWillMount(){
     this.props.loginAction.getDataLogin(this.props.status);
-    // this.props.loginAction.autoLogin(this.props.login, this.props.status)
 }
 
     saveData() {
@@ -40,14 +39,6 @@ componentWillMount(){
         if (nextProps.status === 200) {
             this.props.navigation.navigate('Main');
         }
-        // AsyncStorage.getItem('@ColorMe:save').then(async function(){
-        //     let value = await AsyncStorage.getItem('@ColorMe:save')
-        //     await AsyncStorage.getItem('@ColorMe:email');
-        //     await AsyncStorage.getItem('@ColorMe:password');
-        //     if(nextProps.login && nextProps.status == 0 && value){
-        //         nextProps.loginAction.loginUser(nextProps.login)
-        //     }
-        // })
         }
 
     render() {
@@ -57,12 +48,6 @@ componentWillMount(){
                 <StatusBar
                     barStyle="light-content"
                 />
-                {/*<Animated.View style={[part.wrapperIntro, {opacity} ]}>*/}
-                    {/*<View style={styles.wrapperColorME}>*/}
-                        {/*<Text style={styles.textColor}>Color</Text>*/}
-                        {/*<Text style={styles.textME}>ME</Text>*/}
-                    {/*</View>*/}
-                {/*</Animated.View>*/}
                 <View style={styles.wrapperColorME}>
                     <Text style={styles.textColor}>Color</Text>
                     <Text style={styles.textME}>ME</Text>

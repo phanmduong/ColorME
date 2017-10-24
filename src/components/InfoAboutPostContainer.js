@@ -40,7 +40,7 @@ class InfoAboutPostContainer extends Component {
 
     componentWillReceiveProps(nextProps) {
         let liked = this.state.liked;
-        if (nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading && nextProps.isLoading !== null) {
+        if (nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading && this.props.post !== nextProps.props) {
             let post = nextProps.post;
             if (post && post.likers) {
                 let likers = post.likers.filter((liker) => {
