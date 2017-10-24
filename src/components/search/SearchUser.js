@@ -31,7 +31,7 @@ class searchUser extends Component {
                             showsVerticalScrollIndicator={false}
                             onEndThreshold={5}
                             onEndReached={
-                                () => {}
+                                () => {this.props.getMoreUser()}
                             }
                             data={users}
                             renderItem={({item}) =>
@@ -61,6 +61,7 @@ class searchUser extends Component {
                                     </TouchableOpacity>
                                 </CardItem>
                             }
+                            ListFooterComponent = {this.props.loadingLoadMore()}
                         />
                 }
             </Container>
