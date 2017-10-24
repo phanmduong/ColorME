@@ -111,6 +111,12 @@ const part = StyleSheet.create({
         height: hei * 0.7 - 90,
         backgroundColor: color.backGround
     },
+    wrapperStatusBar:{
+        margin: -10,
+        width: size.wid,
+        height: 20,
+        backgroundColor: color.main,
+    },
     backgroundNone:{
        backgroundColor: color.none,
     },
@@ -142,6 +148,7 @@ const part = StyleSheet.create({
 
     iconInDrawer: {
         width: wid - wid / 10,
+        height: 40,
         flexDirection: 'row',
         backgroundColor: color.none,
         position: 'absolute',
@@ -149,11 +156,10 @@ const part = StyleSheet.create({
         top: 20,
     },
     iconInDrawerNav: {
-        width: wid - wid / 10,
+        width: wid,
         flexDirection: 'row',
         backgroundColor: color.none,
         position: 'absolute',
-        left: 10,
     },
 
     iconAddFriendInProfile: {
@@ -287,6 +293,7 @@ const part = StyleSheet.create({
         fontWeight: '700',
     },
     titleNormalLight: {
+        fontSize: size.title,
         color: color.navTitle,
     },
     describeDark: {
@@ -362,7 +369,7 @@ const part = StyleSheet.create({
     //BUTTON
 
     buttonGroup: {
-        backgroundColor: 'rgba(20, 20, 20, 0.7)',
+        backgroundColor: color.none,
         borderRadius: 5,
     },
 

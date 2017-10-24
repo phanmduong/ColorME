@@ -169,10 +169,11 @@ class UserContainer extends Component {
                         <View key="sticky-header" style={parallaxStyle.stickySection}>
                             <View style={part.iconInDrawerNav}>
                                 <Left style={{flexDirection: 'row', marginTop: 20,}}>
-                                    <Right style={{left: 10}}>
-                                        <Text style={[part.titleNormalLight, part.paddingLine]}>{this.props.user.name}
+                                    <Body style={{left: 10}}>
+                                        <Text style={[part.titleNormalLight, part.paddingLine]}>
+                                            {this.props.user.name}
                                         </Text>
-                                    </Right>
+                                    </Body>
                                 </Left>
                             </View>
                         </View>

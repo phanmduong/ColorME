@@ -8,7 +8,6 @@ import {
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import FastImage from 'react-native-fast-image'
-
 class UserProject extends Component {
     render() {
         const {products, user, isLoadingUserProducts} = this.props;
@@ -80,7 +79,6 @@ class UserProject extends Component {
                         )
                 }
             </Container>
-
         )
     }
 }

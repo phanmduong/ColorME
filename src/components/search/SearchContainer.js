@@ -118,9 +118,8 @@ class SearchContainer extends Component {
     render() {
         return (
             <Container style={[part.wrapperContainer, part.padding, {paddingBottom: 0}]}>
-                <StatusBar
-                    barStyle="default"
-                />
+                <View style={part.wrapperStatusBar}>
+                </View>
                 <Item style={part.noBorder}>
                     <TouchableOpacity onPress={() => this.search()}>
                         <Text style={[part.titleLargeDarkBold, part.paddingLineFar]}>

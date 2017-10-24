@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    Image, TouchableOpacity, View,
+    Image, TouchableOpacity, View, StatusBar
 } from 'react-native';
 import {
     Body, Container, Spinner,
@@ -87,6 +87,9 @@ class MyAccountContainer extends Component {
         const {goBack} = this.props.navigation;
         return (
             <Container style={part.wrapperContainer}>
+                <StatusBar
+                    barStyle="light-content"
+                />
                 <ParallaxScrollView
                     showsVerticalScrollIndicator={false}
                     headerBackgroundColor={color.main}
@@ -227,8 +230,11 @@ class MyAccountContainer extends Component {
 function mapStateToProps(state) {
     return {
         user: state.login.user,
-        productsUser: state.userInformation.productsUser,
-
+        isLoadingUserProfile: state.userInformation.isLoadingUserProfile,
+        progress: state.userInformation.progress,
+        isLoadingUserProgress: state.userInformation.isLoadingUserProgress,
+        products: state.userInformation.products,
+        isLoadingUserProducts: state.userInformation.isLoadingUserProducts,
     }
 }
 

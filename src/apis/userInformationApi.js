@@ -16,3 +16,4 @@ export function getUserProgressApi(username) {
     let url = env.API_COLORME + "/user/" + username + "/progress";
     return axios.get(url);
 }
+

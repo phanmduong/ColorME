@@ -44,8 +44,7 @@ class SlideViewComponent extends Component {
                         resizeMode={'cover'}
                         style={part.imageInDrawer}
                         source={{uri: this.props.user.avatar_url}}/>
-                    <View style={part.iconInDrawer}>
-                    </View>
+                   
                     <View style={part.tabInDrawer}>
                         <Item style={{borderBottomWidth: 0,}}>
                             <Left style={{alignItems: 'center'}}>

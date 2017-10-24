@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
-import {Image, KeyboardAvoidingView, StatusBar, Text, TouchableOpacity, View, FlatList} from 'react-native';
+import {Image, KeyboardAvoidingView, Text, TouchableOpacity, View} from 'react-native';
 
 import {
-    Body, Button, Card, CardItem, Container, Content, Input, Item, Left, Right, Spinner, Thumbnail,
+    Body, Button, Card, CardItem, Container, Content,
+    Input, Item, Left, Right, Spinner, Thumbnail
 } from 'native-base';
 import Icon from '../commons/Icon';
 import Video from 'react-native-video';
 import part from '../styles/partStyle';
+import parallaxStyle from '../styles/parallaxStyle';
 import * as color from '../styles/color';
 import * as size from '../styles/size';
 import {connect} from 'react-redux'
@@ -15,6 +17,7 @@ import * as getFullInfoAboutOnePostAction from '../actions/inforAboutPostAction'
 import * as likePostAction from '../actions/likePostAction'
 import FastImage from 'react-native-fast-image';
 import WebViewAutoHeight from '../commons/WebViewAutoHeight';
+import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
 class InfoAboutPostContainer extends Component {
     constructor() {
@@ -98,8 +101,8 @@ class InfoAboutPostContainer extends Component {
             },
             created_at: 'Vừa xong'
         }
-            listComment.push(arr)
-            this.setState({listComment: listComment, comment_content : ''})
+        listComment.push(arr)
+        this.setState({listComment: listComment, comment_content: ''})
 
     }
 
@@ -113,11 +116,113 @@ class InfoAboutPostContainer extends Component {
         const {isLoading, post} = this.props;
         return (
             <Container style={part.wrapperContainer}>
-                <Content stickySectionHeadersEnabled={false}>
+                <ParallaxScrollView
+                    showsVerticalScrollIndicator={false}
+                    headerBackgroundColor={color.main}
+                    stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
+                    parallaxHeaderHeight={size.PARALLAX_HEADER_HEIGHT}
+                    backgroundSpeed={10}
+                    renderBackground={() =>
+                        <View style={part.wrapperImageInGetFull}>
+                            <View key="background">
+                                {
+                                    isLoading
+                                        ?
+                                        <View
+                                            style={{
+                                                margin: 50,
+                                                flex: 1,
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                            }}
+                                        >
+                                            <Spinner
+                                                color={color.gray}/>
+                                        </View>
+                                        :
+                                        <View>
+                                            {
+                                                1
+                                                    ?
+                                                    <Image
+                                                        resizeMode={'cover'}
+                                                        source={{
+                                                            uri: post.image_url,
+                                                            width: size.wid,
+                                                            height: size.PARALLAX_HEADER_HEIGHT
+                                                        }}/>
+                                                    :
+                                                    <Video
+                                                        resizeMode={'cover'}
+                                                        source={{uri: post.url}}
+                                                        style={[part.imageInGetFull]}
+                                                    />
+
+                                            }
+                                        </View>
+                                }
+                                <View style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    width: size.wid,
+                                    backgroundColor: 'rgba(0,0,0,0)',
+                                    height: size.PARALLAX_HEADER_HEIGHT
+                                }}/>
+                            </View>
+                            <View style={part.iconInDrawer}>
+                                <Right style={{left: 10}}>
+
+                                </Right>
+                            </View>
+                        </View>
+                    }
+                    renderStickyHeader={() => (
+                        <View key="sticky-header" style={parallaxStyle.stickySection}>
+                            <View style={part.iconInDrawerNav}>
+
+                            </View>
+                        </View>
+                    )}
+                    renderFixedHeader={() => (
+                        <View key="fixed-header" style={part.iconInDrawerNav}>
+                            <Left style={{marginTop: 20}}>
+                                <TouchableOpacity
+                                    style={part.padding}
+                                    onPress={() => goBack(null)}
+                                >
+                                    <Icon name="entypo|chevron-thin-left"
+                                          size={size.iconBig}
+                                          color={color.navTitle}
+                                          style={{zIndex: 100}}
+                                    />
+                                </TouchableOpacity>
+                            </Left>
+                            <Right style={{marginTop: 20}}>
+                                {
+                                    (params.group_name)
+                                        ?
+                                        (
+                                            <TouchableOpacity
+                                                style={part.buttonGroup}
+                                                onPress={() => navigate('GroupStack', {group_link: params.group_link})}
+                                            >
+                                                <Text style={[part.titleNormalLight, {marginRight: 10}]}>
+                                                    {params.group_name}
+                                                </Text>
+                                            </TouchableOpacity>
+                                        )
+                                        :
+                                        (
+                                            <Text/>
+                                        )
+                                }
+                            </Right>
+                        </View>
+                    )}
+                >
                     {
                         isLoading && post == null
                             ?
-
                             <View
                                 style={{
                                     margin: 50,
@@ -131,140 +236,78 @@ class InfoAboutPostContainer extends Component {
                             </View>
                             :
                             <View>
-                                <View style={part.cardGetFull}>
+                                <CardItem style={[part.cardHeader, {marginTop: 10}]}>
+                                    {
+                                        (post.author)
+                                            ?
+                                            (
+                                                <Left>
 
-                                    {/*PHOTO*/}
-                                    <CardItem cardBody>
-                                        <View>
-                                            {
-                                                1
-                                                    ?
-                                                    <FastImage
-                                                        resizeMode={'cover'}
-                                                        source={{uri: post.image_url}}
-                                                        style={[part.imageInGetFull]}
-                                                    />
-                                                    :
-                                                    <Video
-                                                        resizeMode={'cover'}
-                                                        source={{uri: post.url}}
-                                                        style={[part.imageInGetFull]}
-                                                    />
-
-                                            }
-                                        </View>
-                                        <View style={part.iconInDrawer}>
-                                            <Left>
-                                                <TouchableOpacity style={part.padding}
-                                                                  onPress={() => goBack(null)}
-                                                >
-                                                    <Icon name="entypo|chevron-thin-left"
-                                                          size={size.iconBig}
-                                                          color={color.navTitle}
-                                                          style={part.shadow}
-                                                    />
-                                                </TouchableOpacity>
-                                                <Right style={{right: 0}}>
-                                                    {
-                                                        (params.group_name)
-                                                            ?
-                                                            (
-                                                                <TouchableOpacity style={part.buttonGroup}
-                                                                                  onPress={() => navigate('GroupStack', {group_link: params.group_link})}
-                                                                >
-                                                                    <Text
-                                                                        style={part.titleGroup}>{params.group_name}</Text>
-                                                                </TouchableOpacity>
-                                                            )
-                                                            :
-                                                            (
-                                                                <Text/>
-                                                            )
-                                                    }
-
-                                                </Right>
-                                            </Left>
-                                        </View>
-                                    </CardItem>
-
-                                    <CardItem style={[part.cardHeader, {marginTop: 10}]}>
-                                        {
-                                            (post.author)
-                                                ?
-                                                (
-                                                    <Left>
-
-                                                        <TouchableOpacity
-                                                            onPress={() => navigate('UserInNewFeed', {username: post.author.username})}
-                                                        >
-                                                            <Thumbnail circle
-                                                                       source={{uri: post.author.avatar_url}}/>
-                                                        </TouchableOpacity>
-                                                        <Body>
+                                                    <TouchableOpacity
+                                                        onPress={() => navigate('UserInNewFeed', {username: post.author.username})}
+                                                    >
+                                                        <Thumbnail circle
+                                                                   source={{uri: post.author.avatar_url}}/>
+                                                    </TouchableOpacity>
+                                                    <Body>
+                                                    <Text
+                                                        style={[part.describeDarkGray, part.paddingLine]}
+                                                        onPress={() => navigate('UserInNewFeed', {username: post.author.username})}
+                                                    >
+                                                        Đăng bởi &nbsp;
                                                         <Text
-                                                            style={[part.describeDarkGray, part.paddingLine]}
-                                                            onPress={() => navigate('UserInNewFeed', {username: post.author.username})}
-                                                        >
-                                                            Đăng bởi &nbsp;
-                                                            <Text
-                                                                style={part.titleSmallBlue}>
-                                                                {post.author.name}
-                                                            </Text>
+                                                            style={part.titleSmallBlue}>
+                                                            {post.author.name}
                                                         </Text>
-                                                        <Text
-                                                            style={[part.describeItalicDark, part.paddingLine]}>
-                                                            {post.created_at}
-                                                        </Text>
-                                                        <View style={[{flexDirection: 'row'}, part.paddingLine]}>
-                                                            {
-                                                                post.colors.map((color, i) => {
-                                                                    return (
-                                                                        <Icon key={i}
-                                                                              name="fontawesome|circle"
-                                                                              style={part.paddingRight}
-                                                                              size={12}
-                                                                              color={'#' + color}/>
-                                                                    );
-                                                                })
-
-                                                            }
-                                                        </View>
-                                                        </Body>
-                                                    </Left>
-                                                )
-                                                :
-                                                (
-                                                    <View/>
-                                                )
-                                        }
-                                    </CardItem>
-                                </View>
-                                <View style={part.wrapperContainer}>
-                                    <CardItem style={part.cardHeader}>
-                                        <Item style={part.noBorder}>
-                                            <Text style={part.titleInImage}>
-                                                {post.title}
-                                            </Text>
-                                        </Item>
-                                    </CardItem>
-                                    <CardItem style={part.cardHeader}>
-                                        <Item style={part.noBorder}>
-                                            {
-                                                post.description
-                                                    ?
-                                                    <Text style={part.describeInImage}>
-                                                        {post.description}
-
                                                     </Text>
-                                                    :
-                                                    <View/>
-                                            }
-                                        </Item>
-                                    </CardItem>
-                                </View>
+                                                    <Text
+                                                        style={[part.describeItalicDark, part.paddingLine]}>
+                                                        {post.created_at}
+                                                    </Text>
+                                                    <View style={[{flexDirection: 'row'}, part.paddingLine]}>
+                                                        {
+                                                            post.colors.map((color, i) => {
+                                                                return (
+                                                                    <Icon key={i}
+                                                                          name="fontawesome|circle"
+                                                                          style={part.paddingRight}
+                                                                          size={12}
+                                                                          color={'#' + color}/>
+                                                                );
+                                                            })
 
+                                                        }
+                                                    </View>
+                                                    </Body>
+                                                </Left>
+                                            )
+                                            :
+                                            (
+                                                <View/>
+                                            )
+                                    }
+                                </CardItem>
+                                <CardItem style={part.cardHeader}>
+                                    <Item style={part.noBorder}>
+                                        <Text style={part.titleInImage}>
+                                            {post.title}
+                                        </Text>
+                                    </Item>
+                                </CardItem>
+                                <CardItem style={part.cardHeader}>
+                                    <Item style={part.noBorder}>
+                                        {
+                                            post.description
+                                                ?
+                                                <Text style={part.describeInImage}>
+                                                    {post.description}
+                                                </Text>
+                                                :
+                                                <View/>
+                                        }
+                                    </Item>
+                                </CardItem>
                                 <WebViewAutoHeight source={post.content ? post.content : ''}/>
-
                                 <CardItem footer>
                                     <Left>
                                         <Button
@@ -290,18 +333,9 @@ class InfoAboutPostContainer extends Component {
                                                 style={[part.describeGray, part.paddingLeft]}>{post.views_count}</Text>
                                         </Button>
                                     </Left>
-                                    <Right>
-                                        <TouchableOpacity transparent>
-                                            <Icon name="materialCommunity|dots-horizontal"
-                                                  color={color.icon}
-                                                  size={size.icon}
-                                                  style={part.paddingRight}
-                                            />
-                                        </TouchableOpacity>
-                                    </Right>
                                 </CardItem>
-
-                                {this.state.listComment.map((item) =>
+                                {
+                                    this.state.listComment.map((item) =>
                                         <CardItem style={part.cardHeader}>
                                             <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
                                                 <TouchableOpacity
@@ -324,7 +358,7 @@ class InfoAboutPostContainer extends Component {
                                                 >
                                                     {item.content}
                                                 </Text>
-                                                <View style={{flexDirection:'row'}}>
+                                                <View style={{flexDirection: 'row'}}>
                                                     <Text
                                                         style={[part.describeLightGray, part.paddingTLB]}
                                                     >
@@ -350,11 +384,12 @@ class InfoAboutPostContainer extends Component {
                                                 </TouchableOpacity>
                                             </View>
                                         </CardItem>
-                                )}
+                                    )
+                                }
                             </View>
                     }
-                </Content>
-                {/*INPUT COMMENT*/}
+
+                </ParallaxScrollView>
                 <KeyboardAvoidingView behavior={'position'}>
                     <CardItem style={part.cardBottom}>
                         <Left>

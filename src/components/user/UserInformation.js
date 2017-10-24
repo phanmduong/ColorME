@@ -34,10 +34,7 @@ class UserInformation extends Component {
                             <Content
                                 showsVerticalScrollIndicator={false}
                                 style={[part.wrapperContainer]}>
-                                <List>
-                                    <ListItem itemDivider>
-                                        <Text style={part.titleSmallDarkBold}>Thông tin chi tiết</Text>
-                                    </ListItem>
+                                <List style={{padding: 20}}>
                                     <ListItem style={part.listItem}>
                                         <Text style={part.describeDark}>Họ tên: {user.name}</Text>
                                     </ListItem>

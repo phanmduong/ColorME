@@ -123,12 +123,7 @@ class GroupContainer extends Component {
                             </View>
                             <View style={part.iconInDrawer}>
                                 <Right style={{left: 10}}>
-                                    <TouchableOpacity style={part.padding}
-                                    >
-                                        <Icon name="materialCommunity|seal"
-                                              size={size.iconBig}
-                                              color={color.navTitle}/>
-                                    </TouchableOpacity>
+
                                 </Right>
                             </View>
                         </View>
@@ -174,11 +169,11 @@ class GroupContainer extends Component {
                         <View key="sticky-header" style={parallaxStyle.stickySection}>
                             <View style={part.iconInDrawer}>
                                 <Left style={{flexDirection: 'row'}}>
-                                    <Right style={{left: 10}}>
+                                    <Body style={{left: 10}}>
                                         <Text style={[part.titleNormalLight, part.paddingLine]}>
                                             {this.props.groupName}
                                         </Text>
-                                    </Right>
+                                    </Body>
                                 </Left>
                             </View>
                         </View>

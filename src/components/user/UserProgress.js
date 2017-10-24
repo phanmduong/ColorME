@@ -81,7 +81,6 @@ class UserProgress extends Component {
                                             </CardItem>
                                         </View>
                                     }/>
-
                         )
                 }
             </Container>

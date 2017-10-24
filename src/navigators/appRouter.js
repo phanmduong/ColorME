@@ -175,7 +175,7 @@ const Home = TabNavigator(
                 ),
             }
         },
-        User: {
+        MyAccount: {
             screen: MyAccountStackNavigator,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
