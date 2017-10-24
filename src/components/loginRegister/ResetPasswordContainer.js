@@ -42,9 +42,7 @@ export default class ResetPasswordContainer extends Component {
                                 />
                             </Item>
                         </View>
-                        <Text style={styles.textTitleInput}>
-                            NHẬP LẠI PASSWORD
-                        </Text>
+                        <Text style={styles.textTitleInput}>NHẬP LẠI PASSWORD</Text>
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}

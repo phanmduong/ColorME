@@ -53,7 +53,6 @@ class NewFeedContainer extends Component {
 
     componentWillMount() {
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
-
     }
 
     textTopShow(){
@@ -280,7 +279,7 @@ class NewFeedContainer extends Component {
                             ) : (
                                 <FlatList
                                     showsVerticalScrollIndicator={false}
-                                    onEndReachedThreshold={1}
+                                    onEndReachedThreshold={5}
                                     numColumns={3}
                                     onEndReached={() => {
                                         this.getMoreNewFeed()
@@ -288,7 +287,7 @@ class NewFeedContainer extends Component {
                                     data={this.state.listPost}
                                     refreshControl={
                                         <RefreshControl
-                                            refreshing={this.props.isRefreshing || this.props.isLoading}
+                                            refreshing={this.props.isRefreshing}
                                             onRefresh={() => {
                                                 this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
                                             }}
@@ -338,9 +337,10 @@ class NewFeedContainer extends Component {
                                         }
                                     }
                                     }
-                                    renderFooter={() => {
-                                        return this.loadingLoadMore();
-                                    }}
+                                    ListFooterComponent={() => {
+                                       return this.loadingLoadMore()
+                                    }
+                                       }
                                 />)
 
                         )
@@ -384,8 +384,8 @@ class NewFeedContainer extends Component {
                                             />
                                         )
                                     }}
-                                    renderFooter={() => {
-                                        return this.loadingLoadMore();
+                                    ListFooterComponent={() =>{
+                                         return this.loadingLoadMore()
                                     }}
 
                                 />)
