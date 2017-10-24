@@ -80,6 +80,7 @@ class ListView extends Component {
                 <CardItem header style={part.cardHeader}>
                     <Left>
                         <TouchableOpacity
+                            activeOpacity={0.8}
                             onPress={() => navigate('UserInNewFeed', {username: item.author.username})}>
                             <Thumbnail circle small
                                        source={{uri: item.author.avatar_url}}/>
@@ -106,6 +107,7 @@ class ListView extends Component {
                 </CardItem>
                 {/*PHOTO*/}
                 <TouchableOpacity
+                    activeOpacity={0.8}
                     style={part.card}
                     onPress={() =>
                         navigate('ThePostInNewFeed',
