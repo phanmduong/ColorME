@@ -43,7 +43,7 @@ class UserInformation extends Component {
                                     </ListItem>
                                     <ListItem style={part.listItem}>
                                         {
-                                            user.gender === 2
+                                            user.gender === 1
                                                 ?
                                                 <Text style={part.describeDark}>Giới tính: Nam</Text>
                                                 :
