@@ -85,10 +85,11 @@ class InfoAboutPostContainer extends Component {
 
     commentPost(product_id, token, value) {
         this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
-        let listComment = this.state.listComment
+        let listComment = this.state.listComment;
         let {user} = this.props;
+        // let date = new Date();
         let arr = {
-            content: this.state.comment_content,
+            content: value.comment_content,
             parent_id: 0,
             commenter: {
                 username: user.username,
@@ -97,10 +98,9 @@ class InfoAboutPostContainer extends Component {
             },
             created_at: 'Vừa xong'
         }
-        if (this.props.statusPostComment === 1) {
             listComment.push(arr)
-            this.setState({listComment: listComment})
-        }
+            this.setState({listComment: listComment, comment_content : ''})
+
     }
 
     render() {
@@ -115,7 +115,7 @@ class InfoAboutPostContainer extends Component {
             <Container style={part.wrapperContainer}>
                 <Content scrollsToTop={false}>
                     {
-                        isLoading
+                        isLoading && post == null
                             ?
 
                             <View
@@ -300,6 +300,7 @@ class InfoAboutPostContainer extends Component {
                                         </TouchableOpacity>
                                     </Right>
                                 </CardItem>
+
                                 {this.state.listComment.map((item) =>
                                         <CardItem style={part.cardHeader}>
                                             <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>

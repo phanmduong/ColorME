@@ -11,12 +11,10 @@ import part from '../../styles/partStyle';
 class searchProduct extends Component {
     constructor() {
         super();
-        this.state = {
-            page_product: 2
-        }
     }
+
     render() {
-        const {products, isLoading, txtSearch} = this.props;
+        const {products, isLoading, txtSearch, getMoreProduct} = this.props;
         return (
             <Container>
                 {
@@ -31,6 +29,7 @@ class searchProduct extends Component {
                             onEndThreshold={5}
                             onEndReached={
                                 () => {
+                                    this.props.getMoreProduct()
                                 }
                             }
                             data={products}
@@ -74,6 +73,7 @@ class searchProduct extends Component {
                                     </Left>
                                 </CardItem>
                             }
+                            ListFooterComponent = {this.props.loadingLoadMore}
                         />
                 }
 

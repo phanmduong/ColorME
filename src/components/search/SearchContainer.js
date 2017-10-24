@@ -20,19 +20,19 @@ class SearchContainer extends Component {
             tab: 0,
             isLoadingSearch: false,
             txtSearch: '',
-            page_user: 2,
-            page_product: 2,
+            page_user: 1,
+            page_product: 1,
         }
-        // this.getMoreProduct = this.getMoreProduct.bind(this);
-        // this.getMoreUser = this.getMoreUser.bind(this);
-        this.loadingLoadMore = this.loadingLoadMore.bind(this);
+         this.getMoreUser = this.getMoreUser.bind(this);
+         this.getMoreProduct = this.getMoreProduct.bind(this);
+         this.loadingLoadMore = this.loadingLoadMore.bind(this);
     }
 
     ViewUser() {
         setTimeout(() => {
-            this.setState({isLoadingSearch: false})
+            this.setState({isLoadingSearch: false});
         }, 100);
-        this.setState({tab: 0, isLoadingSearch: true})
+        this.setState({tab: 0, isLoadingSearch: true});
     }
 
     ViewProducts() {
@@ -60,6 +60,7 @@ class SearchContainer extends Component {
                     <SearchProduct
                         navigation={this.props.navigation}
                         products={this.props.products}
+                        getMoreProduct={this.getMoreProduct}
                         isLoading={this.props.isLoading}
                         txtSearch={this.state.txtSearch}
                         loadingLoadMore={this.loadingLoadMore}
@@ -73,19 +74,19 @@ class SearchContainer extends Component {
         this.props.searchAction.searchProducts(this.state.txtSearch, 30, 1);
     }
 
-    // getMoreUser() {
-    //     let page_user = this.state.page_user;
-    //     page_user += 1;
-    //     this.setState({page_user: page_user});
-    //     this.props.searchAction.searchUsers(this.state.txtSearch, 30, this.state.page_user);
-    // }
+    getMoreUser() {
+        let page_user = this.state.page_user;
+        page_user += 1;
+        this.setState({page_user: page_user});
+        this.props.searchAction.searchUsers(this.state.txtSearch, 30, this.state.page_user);
+    }
 
-    // getMoreProduct() {
-    //     let page_product = this.state.page_product;
-    //     page_product += 1;
-    //     this.setState({page_product: page_product});
-    //     this.props.searchAction.searchProducts(this.state.txtSearch, 30, this.state.page_product);
-    // }
+    getMoreProduct() {
+        let page_product = this.state.page_product;
+        page_product += 1;
+        this.setState({page_product: page_product});
+        this.props.searchAction.searchProducts(this.state.txtSearch, 30, this.state.page_product);
+    }
     loadingLoadMore(){
         if(this.props.isLoading && (this.props.users.length > 0 || this.props.products.length > 0)){
             return (

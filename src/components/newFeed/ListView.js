@@ -26,6 +26,8 @@ class ListView extends Component {
             like_counts: 0,
             product_id: '',
             listCommentInModal: [],
+            comment_content : '',
+            comments_count  :0,
         }
     }
 
@@ -49,14 +51,16 @@ class ListView extends Component {
 
     openCommentModal(product_id) {
         this.props.getFullInfoAboutOnePostAction.getCommentOnePost(product_id);
+       console.log(this.props.comments)
         this.setCommentModalVisible(true);
-        this.setState({
-            like_counts: this.props.item.likes_count,
-            listCommentInModal: this.props.comments,
-
-        })
+        if(this.props.comments && this.props.isLoadingComment == false) {
+            this.setState({
+                like_counts: this.props.item.likes_count,
+                listCommentInModal: this.props.comments,
+                comments_count: this.props.item.comments_count
+            })
+        }
     }
-
     alertReport() {
         Alert.alert(
             'Báo cáo',
@@ -72,7 +76,27 @@ class ListView extends Component {
     reportPost(id, token) {
         this.props.reportAction.reportPost(id, token);
     }
+    commentPost(product_id, token, value) {
+        this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
+        let listComment = this.state.listCommentInModal;
+        let {user} = this.props;
+        let comments_count = this.state.comments_count
+        // let date = new Date();
+        let arr = {
+            content: value.comment_content,
+            parent_id: 0,
+            commenter: {
+                username: user.username,
+                avatar_url: user.avatar_url,
+                name: user.name,
+            },
+            created_at: 'Vừa xong'
+        }
+        comments_count+=1;
+        listComment.push(arr);
+        this.setState({listCommentInModal: listComment, comment_content : '', comments_count : comments_count})
 
+    }
     render() {
         const {item, arrayLike, likeCount, colorIcon, likedIcon, user} = this.props;
         const {navigate} = this.props.navigation;
@@ -253,10 +277,7 @@ class ListView extends Component {
                                             </View>
                                             :
                                             <ScrollView>
-                                                <FlatList
-                                                    onEndReachedThreshold={5}
-                                                    data={this.props.comments}
-                                                    renderItem={({item}) =>
+                                                {this.state.listCommentInModal.map((item) =>
                                                         <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
                                                             <View
                                                                 style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
@@ -299,7 +320,7 @@ class ListView extends Component {
                                                                 </TouchableOpacity>
                                                             </View>
                                                         </CardItem>
-                                                    }/>
+                                                )}
                                             </ScrollView>
                                     }
                                 </View>
@@ -331,7 +352,7 @@ class ListView extends Component {
                                         </Item>
                                         </Body>
                                         <TouchableOpacity
-                                            // onPress={() => this.commentPost(this.props.product_id, this.props.token, this.state)}
+                                             onPress={() => this.commentPost(item.id, this.props.token, this.state)}
                                         >
                                             <Icon active name='fontawesome|comment-o'
                                                   size={size.iconBig}
