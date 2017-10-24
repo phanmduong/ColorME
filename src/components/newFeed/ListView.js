@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {
-    View, TouchableOpacity, Alert, Modal, PanResponder, KeyboardAvoidingView, FlatList, ScrollView
+    View, TouchableOpacity, Alert, Modal,
+    PanResponder, KeyboardAvoidingView, FlatList, ScrollView
 } from 'react-native';
 import {
-    Container, Card, CardItem, Item, Thumbnail, Input,Text, Button, Left, Body, Right, ListItem, Spinner
+    Container, Card, CardItem, Item, Thumbnail, Input, Text,
+    Button, Left, Body, Right, ListItem, Spinner
 } from 'native-base';
 import Video from 'react-native-video';
 import Icon from '../../commons/Icon';
@@ -103,21 +105,22 @@ class ListView extends Component {
                     </Left>
                 </CardItem>
                 {/*PHOTO*/}
-                <TouchableOpacity style={part.card}
-                                  onPress={() =>
-                                      navigate('ThePostInNewFeed',
-                                          item.group
-                                              ?
-                                              {
-                                                  product_id: item.id,
-                                                  group_name: item.group.name,
-                                                  group_link: item.group.link,
-                                              }
-                                              :
-                                              {
-                                                  product_id: item.id,
-                                              }
-                                      )}>
+                <TouchableOpacity
+                    style={part.card}
+                    onPress={() =>
+                        navigate('ThePostInNewFeed',
+                            item.group
+                                ?
+                                {
+                                    product_id: item.id,
+                                    group_name: item.group.name,
+                                    group_link: item.group.link,
+                                }
+                                :
+                                {
+                                    product_id: item.id,
+                                }
+                        )}>
                     <View>
                         {
                             item.url.indexOf('.mp4') === -1
@@ -224,7 +227,7 @@ class ListView extends Component {
                                     <Right>
                                         <Button
                                             transparent
-                                            onPress = {() => this.setCommentModalVisible(false)}
+                                            onPress={() => this.setCommentModalVisible(false)}
                                         >
                                             <Icon name="evil|close" size={size.iconBig}
                                                   color={color.gray}/>
@@ -234,58 +237,71 @@ class ListView extends Component {
                                 </CardItem>
 
                                 <View style={part.wrapperCommentInModal}>
-                                    <ScrollView>
-                                        <FlatList
-                                            onEndReachedThreshold={5}
-                                            data={this.props.comments}
-                                            renderItem={({item}) =>
-                                                <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
-                                                    <View
-                                                        style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
-                                                        <TouchableOpacity style={part.paddingTRB}
-                                                        >
-                                                            <FastImage
-                                                                style={part.avatarUserSmall}
-                                                                source={{uri: item.commenter.avatar_url}}/>
-                                                        </TouchableOpacity>
-                                                        <Body>
-                                                        <Text
-                                                            style={[part.titleSmallBlue, part.paddingTLB]}
-                                                        >
-                                                            {item.commenter.name}
-                                                        </Text>
-                                                        <Text
-                                                            style={[part.describeDarkGray, part.paddingLeft]}
-                                                        >
-                                                            {item.content}
-                                                        </Text>
-                                                        <View style={{flexDirection: 'row'}}>
-                                                            <Text
-                                                                style={[part.describeLightGray, part.paddingTLB]}
-                                                            >
-                                                                {item.created_at}
-                                                            </Text>
-                                                            <Text
-                                                                style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
-                                                            >
-                                                                Trả lời
-                                                            </Text>
-                                                        </View>
-                                                        </Body>
-                                                        <TouchableOpacity transparent>
-                                                            <Icon name="fontawesome|heart-o"
-                                                                  color={color.icon}
-                                                                  size={size.iconBig}
-                                                                  style={part.paddingTop}
-                                                            />
-                                                        </TouchableOpacity>
-                                                    </View>
-                                                </CardItem>
-                                            }/>
-                                    </ScrollView>
+                                    {
+                                        this.props.isLoadingComment
+                                            ?
+                                            <View
+                                                style={{
+                                                    flex: 1,
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center',
+                                                }}
+                                            >
+                                                <Spinner
+                                                    color={color.gray}/>
+                                            </View>
+                                            :
+                                            <ScrollView>
+                                                <FlatList
+                                                    onEndReachedThreshold={5}
+                                                    data={this.props.comments}
+                                                    renderItem={({item}) =>
+                                                        <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
+                                                            <View
+                                                                style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
+                                                                <TouchableOpacity style={part.paddingTRB}
+                                                                >
+                                                                    <FastImage
+                                                                        style={part.avatarUserSmall}
+                                                                        source={{uri: item.commenter.avatar_url}}/>
+                                                                </TouchableOpacity>
+                                                                <Body>
+                                                                <Text
+                                                                    style={[part.titleSmallBlue, part.paddingTLB]}
+                                                                >
+                                                                    {item.commenter.name}
+                                                                </Text>
+                                                                <Text
+                                                                    style={[part.describeDarkGray, part.paddingLeft]}
+                                                                >
+                                                                    {item.content}
+                                                                </Text>
+                                                                <View style={{flexDirection: 'row'}}>
+                                                                    <Text
+                                                                        style={[part.describeLightGray, part.paddingTLB]}
+                                                                    >
+                                                                        {item.created_at}
+                                                                    </Text>
+                                                                    <Text
+                                                                        style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                                    >
+                                                                        Trả lời
+                                                                    </Text>
+                                                                </View>
+                                                                </Body>
+                                                                <TouchableOpacity transparent>
+                                                                    <Icon name="fontawesome|heart-o"
+                                                                          color={color.icon}
+                                                                          size={size.iconBig}
+                                                                          style={part.paddingTop}
+                                                                    />
+                                                                </TouchableOpacity>
+                                                            </View>
+                                                        </CardItem>
+                                                    }/>
+                                            </ScrollView>
+                                    }
                                 </View>
-
-
                                 <CardItem style={part.cardBottomInModal}>
                                     <Left>
                                         <Thumbnail
@@ -341,6 +357,7 @@ function mapStateToProps(state) {
         isLoadingReportPost: state.report.isLoading,
         reportPostResult: state.report.reportPostResult,
         comments: state.getFullInfoAboutOnePost.comments,
+        isLoadingComment: state.getFullInfoAboutOnePost.isLoading,
     }
 }
 
