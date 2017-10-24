@@ -297,6 +297,7 @@ class NewFeedContainer extends Component {
                                         if (item == this.state.listPost[0]) {
                                             return (
                                                 <TouchableOpacity
+                                                    activeOpacity={0.8}
                                                     style={part.featureWrapper}
                                                     onPress={() =>
                                                         this.props.navigation.navigate('ThePostInNewFeed',

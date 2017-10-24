@@ -524,14 +524,13 @@ const part = StyleSheet.create({
     },
     wrapperTabBarUser:{
         width: size.wid,
-        height: 80,
+        height: 70,
         backgroundColor: color.none,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         borderBottomWidth: 0.5,
         borderColor: color.icon,
-        marginBottom: 5,
     },
     wrapperTextInTabBarUser:{
         flex: 1,

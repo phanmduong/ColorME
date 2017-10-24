@@ -304,8 +304,10 @@ class InfoAboutPostContainer extends Component {
                                 {this.state.listComment.map((item) =>
                                         <CardItem style={part.cardHeader}>
                                             <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
-                                                <TouchableOpacity style={part.paddingTRB}
-                                                                  onPress={() => navigate('UserInNewFeed', {username: item.commenter.username})}
+                                                <TouchableOpacity
+                                                    activeOpacity={0.8}
+                                                    style={part.paddingTRB}
+                                                    onPress={() => navigate('UserInNewFeed', {username: item.commenter.username})}
                                                 >
                                                     <Image
                                                         style={part.avatarUserSmall}
