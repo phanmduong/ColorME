@@ -300,12 +300,8 @@ class InfoAboutPostContainer extends Component {
                                         </TouchableOpacity>
                                     </Right>
                                 </CardItem>
-                                <FlatList
-                                    showsVerticalScrollIndicator={false}
-                                    onEndReachedThreshold={5}
-                                    data={this.props.comments}
-                                    renderItem={({item}) =>
-                                        <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
+                                {this.state.listComment.map((item) =>
+                                        <CardItem style={part.cardHeader}>
                                             <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
                                                 <TouchableOpacity
                                                     activeOpacity={0.8}
@@ -327,7 +323,7 @@ class InfoAboutPostContainer extends Component {
                                                 >
                                                     {item.content}
                                                 </Text>
-                                                <View style={{flexDirection: 'row'}}>
+                                                <View style={{flexDirection:'row'}}>
                                                     <Text
                                                         style={[part.describeLightGray, part.paddingTLB]}
                                                     >
@@ -339,6 +335,10 @@ class InfoAboutPostContainer extends Component {
                                                         Trả lời
                                                     </Text>
                                                 </View>
+
+                                                <View
+                                                    style={[{flexDirection: 'row'}, part.paddingLine]}>
+                                                </View>
                                                 </Body>
                                                 <TouchableOpacity transparent>
                                                     <Icon name="fontawesome|heart-o"
@@ -349,7 +349,7 @@ class InfoAboutPostContainer extends Component {
                                                 </TouchableOpacity>
                                             </View>
                                         </CardItem>
-                                    }/>
+                                )}
                             </View>
                     }
                 </Content>

@@ -287,7 +287,7 @@ class NewFeedContainer extends Component {
                                     data={this.state.listPost}
                                     refreshControl={
                                         <RefreshControl
-                                            refreshing={this.props.isRefreshing}
+                                            refreshing={this.props.isRefreshing|| this.props.isLoading}
                                             onRefresh={() => {
                                                 this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
                                             }}
@@ -303,7 +303,7 @@ class NewFeedContainer extends Component {
                                                         this.props.navigation.navigate('ThePostInNewFeed',
                                                             item.group
                                                                 ?
-                                                                {
+                                                               {
                                                                     product_id: item.id,
                                                                     group_name: item.group.name,
                                                                     group_link: item.group.link,

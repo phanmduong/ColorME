@@ -32,9 +32,7 @@ export function registerUser(register){
         registerApi.register(register)
             .then( async function(response) {
                 dispatch(registerSuccess(response));
-                await AsyncStorage.setItem('@ColorMe:email')
-                await AsyncStorage.setItem('@ColorMe:password')
-                Alert.alert('Đăng kí thành công ')
+                Alert.alert('Đăng kí thành công')
             })
             .catch(function (error) {
                 if(error == null){Alert.alert('Kiểm tra lại kết nối mạng')}
