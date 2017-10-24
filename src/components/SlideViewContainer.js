@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {
-    View, Text, Image, TouchableOpacity
+    View, Text, TouchableOpacity, StatusBar
 } from 'react-native';
 import {
-    Title, Container, Header, Content, Card, CardItem, Item,
-    Thumbnail, Button, Left, Body, Right, ListItem
+    Container, Item,
+    Left, Body, Right, ListItem
 } from 'native-base';
 import Icon from '../commons/Icon';
 import part from '../styles/partStyle';
@@ -36,6 +36,9 @@ class SlideViewComponent extends Component {
 
         return (
             <Container style={part.wrapperContainer}>
+                <StatusBar
+                    barStyle="light-content"
+                />
                 <View style={part.wrapperImageInDrawer}>
                     <FastImage
                         resizeMode={'cover'}
@@ -46,7 +49,7 @@ class SlideViewComponent extends Component {
                     <View style={part.tabInDrawer}>
                         <Item style={{borderBottomWidth: 0,}}>
                             <Left style={{alignItems: 'center'}}>
-                                <Thumbnail circle large
+                                <FastImage style={part.avatarUserNormal}
                                            source={{uri: this.props.user.avatar_url}}/>
                             </Left>
                             <Body style={{alignItems: 'flex-start'}}>

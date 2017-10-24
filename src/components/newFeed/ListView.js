@@ -359,7 +359,7 @@ class ListView extends Component {
                                             </TouchableOpacity>
                                         </Left>
                                     </CardItem>
-x                                </KeyboardAvoidingView>
+                             </KeyboardAvoidingView>
                             </View>
                         </View>
                     </View>
