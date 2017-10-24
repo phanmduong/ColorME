@@ -325,7 +325,7 @@ class InfoAboutPostContainer extends Component {
                                                 >
                                                     {item.content}
                                                 </Text>
-                                                <View style={{flexDirection: 'row'}}>
+                                                <View style={{flexDirection:'row'}}>
                                                     <Text
                                                         style={[part.describeLightGray, part.paddingTLB]}
                                                     >
