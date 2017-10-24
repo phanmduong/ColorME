@@ -205,8 +205,9 @@ class ListView extends Component {
                     transparent={true}
                     visible={this.state.modalVisible}
                 >
-                    <View style={part.wrapperModalComment}
-                          {...this.panResponder.panHandlers}
+                    <View
+                        style={part.wrapperModalComment}
+                        {...this.panResponder.panHandlers}
                     >
                         <View style={part.modalComment}>
                             <KeyboardAvoidingView behavior={'position'}>
@@ -259,7 +260,14 @@ class ListView extends Component {
                                                         <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
                                                             <View
                                                                 style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
-                                                                <TouchableOpacity style={part.paddingTRB}
+                                                                <TouchableOpacity
+                                                                    style={part.paddingTRB}
+                                                                    onPress={() => {
+                                                                        this.setCommentModalVisible(false);
+                                                                        navigate('UserInNewFeed', {username: item.commenter.username});
+                                                                        }
+                                                                    }
+
                                                                 >
                                                                     <FastImage
                                                                         style={part.avatarUserSmall}
@@ -267,6 +275,11 @@ class ListView extends Component {
                                                                 </TouchableOpacity>
                                                                 <Body>
                                                                 <Text
+                                                                    onPress={() => {
+                                                                        this.setCommentModalVisible(false);
+                                                                        navigate('UserInNewFeed', {username: item.commenter.username});
+                                                                    }
+                                                                    }
                                                                     style={[part.titleSmallBlue, part.paddingTLB]}
                                                                 >
                                                                     {item.commenter.name}
