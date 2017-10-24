@@ -303,7 +303,7 @@ class InfoAboutPostContainer extends Component {
                                                     {post.description}
                                                 </Text>
                                                 :
-                                                <View/>
+                                                <Text/>
                                         }
                                     </Item>
                                 </CardItem>
@@ -311,7 +311,7 @@ class InfoAboutPostContainer extends Component {
                                 <CardItem footer>
                                     <Left>
                                         <Button
-                                            transparent style={[part.padding]}
+                                            transparent style={[part.padding, {paddingLeft: 0}]}
                                             onPress={() => liked ? this.unlikePost(params.product_id, this.props.token) : this.likePost(params.product_id, this.props.token)}
                                         >
                                             <Icon name={likedIcon} size={size.iconBig}

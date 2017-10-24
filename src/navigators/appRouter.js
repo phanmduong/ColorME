@@ -71,15 +71,15 @@ const HomeStackStyle = {
                 />
             </TouchableOpacity>
         ),
-        headerRight: (
-            <TouchableOpacity onPress={() => navigation.navigate('')}>
-                <Icon name="entypo|chat"
-                      color={color.navTitle}
-                      size={size.icon}
-                      style={{paddingRight: 10}}
-                />
-            </TouchableOpacity>
-        ),
+        // headerRight: (
+        //     <TouchableOpacity onPress={() => navigation.navigate('')}>
+        //         <Icon name="entypo|chat"
+        //               color={color.navTitle}
+        //               size={size.icon}
+        //               style={{paddingRight: 10}}
+        //         />
+        //     </TouchableOpacity>
+        // ),
     }),
 };
 

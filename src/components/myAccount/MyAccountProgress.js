@@ -5,6 +5,7 @@ import {
 import {
     Container, Card, CardItem, Text, Left, Body, Spinner
 } from 'native-base';
+import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import FastImage from 'react-native-fast-image';

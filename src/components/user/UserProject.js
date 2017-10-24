@@ -34,7 +34,7 @@ class UserProject extends Component {
                         (
                             <View style={[part.wrapperGrid]}>
                                 {
-                                    products.length === 0
+                                    !products
                                         ?
                                         <View style={part.wrapperTextNotLength}>
                                             <Text style={[part.padding, part.titleSmallDarkGrayBold]}>

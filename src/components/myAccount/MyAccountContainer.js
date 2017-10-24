@@ -12,9 +12,9 @@ import parallaxStyle from '../../styles/parallaxStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
 import * as userInformationAction from '../../actions/userInformationAction';
-import MyAccountProgress from './MyAccountProgress';
-import MyAccountProject from './MyAccountProject';
-import MyAccountInformation from './MyAccountInformation';
+import UserProgress from '../user/UserProgress';
+import UserInformation from '../user/UserInformation';
+import UserProject from '../user/UserProject';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
@@ -59,7 +59,7 @@ class MyAccountContainer extends Component {
         switch (this.state.tab) {
             case 0:
                 return (
-                    <MyAccountProgress
+                    <UserProgress
                         user={this.props.user}
                         progress={this.props.progress}
                         isLoadingUserProgress={this.props.isLoadingUserProgress}
@@ -67,7 +67,8 @@ class MyAccountContainer extends Component {
                 );
             case 1 :
                 return (
-                    <MyAccountProject
+                    <UserProject
+                        user={this.props.user}
                         navigation={this.props.navigation}
                         products={this.props.products}
                         isLoadingUserProducts={this.props.isLoadingUserProducts}
@@ -75,7 +76,7 @@ class MyAccountContainer extends Component {
                 );
             case 2 :
                 return (
-                    <MyAccountInformation
+                    <UserInformation
                         user={this.props.user}
                         isLoadingUserProfile={this.props.isLoadingUserProfile}
                     />
@@ -115,12 +116,7 @@ class MyAccountContainer extends Component {
                             </View>
                             <View style={part.iconInDrawer}>
                                 <Right style={{left: 10}}>
-                                    <TouchableOpacity style={part.padding}
-                                    >
-                                        <Icon name="materialCommunity|seal"
-                                              size={size.iconBig}
-                                              color={color.navTitle}/>
-                                    </TouchableOpacity>
+
                                 </Right>
                             </View>
                         </View>
@@ -229,7 +225,7 @@ class MyAccountContainer extends Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.login.user,
+        user: state.userInformation.user,
         isLoadingUserProfile: state.userInformation.isLoadingUserProfile,
         progress: state.userInformation.progress,
         isLoadingUserProgress: state.userInformation.isLoadingUserProgress,
