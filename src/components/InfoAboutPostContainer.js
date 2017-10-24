@@ -305,7 +305,7 @@ class InfoAboutPostContainer extends Component {
                                     onEndReachedThreshold={5}
                                     data={this.props.comments}
                                     renderItem={({item}) =>
-                                        <CardItem style={part.cardHeader}>
+                                        <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
                                             <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
                                                 <TouchableOpacity style={part.paddingTRB}
                                                                   onPress={() => navigate('UserInNewFeed', {username: item.commenter.username})}
@@ -325,7 +325,7 @@ class InfoAboutPostContainer extends Component {
                                                 >
                                                     {item.content}
                                                 </Text>
-                                                <View style={{flexDirection:'row'}}>
+                                                <View style={{flexDirection: 'row'}}>
                                                     <Text
                                                         style={[part.describeLightGray, part.paddingTLB]}
                                                     >
@@ -336,10 +336,6 @@ class InfoAboutPostContainer extends Component {
                                                     >
                                                         Trả lời
                                                     </Text>
-                                                </View>
-
-                                                <View
-                                                    style={[{flexDirection: 'row'}, part.paddingLine]}>
                                                 </View>
                                                 </Body>
                                                 <TouchableOpacity transparent>

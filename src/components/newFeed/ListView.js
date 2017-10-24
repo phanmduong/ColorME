@@ -221,6 +221,16 @@ class ListView extends Component {
                                             </Text>
                                         </Button>
                                     </Left>
+                                    <Right>
+                                        <Button
+                                            transparent
+                                            onPress = {() => this.setCommentModalVisible(false)}
+                                        >
+                                            <Icon name="evil|close" size={size.iconBig}
+                                                  color={color.gray}/>
+
+                                        </Button>
+                                    </Right>
                                 </CardItem>
 
                                 <View style={part.wrapperCommentInModal}>
@@ -229,7 +239,7 @@ class ListView extends Component {
                                             onEndReachedThreshold={5}
                                             data={this.props.comments}
                                             renderItem={({item}) =>
-                                                <CardItem style={part.cardHeader}>
+                                                <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
                                                     <View
                                                         style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
                                                         <TouchableOpacity style={part.paddingTRB}
@@ -261,16 +271,12 @@ class ListView extends Component {
                                                                 Trả lời
                                                             </Text>
                                                         </View>
-
-                                                        <View
-                                                            style={[{flexDirection: 'row'}, part.paddingLine]}>
-                                                        </View>
                                                         </Body>
                                                         <TouchableOpacity transparent>
                                                             <Icon name="fontawesome|heart-o"
                                                                   color={color.icon}
                                                                   size={size.iconBig}
-                                                                  style={part.paddingRight}
+                                                                  style={part.paddingTop}
                                                             />
                                                         </TouchableOpacity>
                                                     </View>
