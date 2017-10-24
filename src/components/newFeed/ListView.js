@@ -213,7 +213,7 @@ class ListView extends Component {
                         {...this.panResponder.panHandlers}
                     >
                         <View style={part.modalComment}>
-                            <KeyboardAvoidingView behavior={'position'}>
+                            <View>
                                 <CardItem footer style={part.cardTopInModal}>
                                     <Left>
                                         <Button
@@ -268,7 +268,7 @@ class ListView extends Component {
                                                                     onPress={() => {
                                                                         this.setCommentModalVisible(false);
                                                                         navigate('UserInNewFeed', {username: item.commenter.username});
-                                                                        }
+                                                                    }
                                                                     }
 
                                                                 >
@@ -318,45 +318,50 @@ class ListView extends Component {
                                             </ScrollView>
                                     }
                                 </View>
-                                <CardItem style={part.cardBottomInModal}>
-                                    <Left>
-                                        <Thumbnail
-                                            style={part.avatarUserSmall}
-                                            source={{uri: user.avatar_url}}/>
-                                        <Body>
-                                        <Item rounded>
-                                            <Input
-                                                placeholder='Viết bình luận'
-                                                autoCorrect={false}
-                                                placeholderTextColor={color.icon}
-                                                style={part.inputTheme01}
-                                                onChangeText={
-                                                    (text) => {
-                                                        this.setState({comment_content: text})
+                                <KeyboardAvoidingView
+                                    behavior={'position'}
+                                >
+                                    <CardItem style={part.cardBottomInModal}>
+                                        <Left>
+                                            <Thumbnail
+                                                style={part.avatarUserSmall}
+                                                source={{uri: user.avatar_url}}/>
+                                            <Body>
+                                            <Item rounded>
+                                                <Input
+                                                    placeholder='Viết bình luận'
+                                                    autoCorrect={false}
+                                                    placeholderTextColor={color.icon}
+                                                    style={part.inputTheme01}
+                                                    onChangeText={
+                                                        (text) => {
+                                                            this.setState({comment_content: text})
+                                                        }
                                                     }
-                                                }
-                                            />
-                                            <TouchableOpacity>
-                                                <Icon active name='fontawesome|camera-retro'
+                                                />
+                                                <TouchableOpacity>
+                                                    <Icon active name='fontawesome|camera-retro'
+                                                          size={size.iconBig}
+                                                          color={color.icon}
+                                                          style={{paddingRight: 15}}
+                                                    />
+                                                </TouchableOpacity>
+                                            </Item>
+                                            </Body>
+                                            <TouchableOpacity
+                                                // onPress={() => this.commentPost(this.props.product_id, this.props.token, this.state)}
+                                            >
+                                                <Icon active name='fontawesome|comment-o'
                                                       size={size.iconBig}
                                                       color={color.icon}
-                                                      style={{paddingRight: 15}}
+                                                      style={[part.paddingTLB, {paddingLeft: 10}]}
                                                 />
                                             </TouchableOpacity>
-                                        </Item>
-                                        </Body>
-                                        <TouchableOpacity
-                                            // onPress={() => this.commentPost(this.props.product_id, this.props.token, this.state)}
-                                        >
-                                            <Icon active name='fontawesome|comment-o'
-                                                  size={size.iconBig}
-                                                  color={color.icon}
-                                                  style={[part.paddingTLB, {paddingLeft: 10}]}
-                                            />
-                                        </TouchableOpacity>
-                                    </Left>
-                                </CardItem>
-                            </KeyboardAvoidingView>
+                                        </Left>
+                                    </CardItem>
+
+                                </KeyboardAvoidingView>
+                            </View>
                         </View>
                     </View>
                 </Modal>

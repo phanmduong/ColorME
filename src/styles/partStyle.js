@@ -531,7 +531,6 @@ const part = StyleSheet.create({
         alignItems: 'center',
         borderBottomWidth: 0.5,
         borderColor: color.icon,
-        marginBottom: 5,
     },
     wrapperTextInTabBarUser:{
         flex: 1,
