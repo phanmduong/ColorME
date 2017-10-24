@@ -29,9 +29,9 @@ class MyAccountContainer extends Component {
     }
 
     componentWillMount() {
-        this.props.userInformationAction.getUserProfile(this.props.user.username);
-        this.props.userInformationAction.getUserProgress(this.props.user.username);
-        this.props.userInformationAction.getUserProducts(this.props.user.username, 1, this.props.token);
+        this.props.userInformationAction.getUserProfile(this.props.myUser.username);
+        this.props.userInformationAction.getUserProgress(this.props.myUser.username);
+        this.props.userInformationAction.getUserProducts(this.props.myUser.username, 1, this.props.token);
     }
 
     ViewProgress() {
@@ -225,6 +225,7 @@ class MyAccountContainer extends Component {
 
 function mapStateToProps(state) {
     return {
+        myUser: state.login.user,
         user: state.userInformation.user,
         isLoadingUserProfile: state.userInformation.isLoadingUserProfile,
         progress: state.userInformation.progress,

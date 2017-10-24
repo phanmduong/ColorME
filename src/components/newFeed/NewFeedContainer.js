@@ -423,7 +423,6 @@ function mapStateToProps(state) {
         isRefreshing: state.getNewFeed.isRefreshing,
     }
 }
-
 function mapDispatchToProps(dispatch) {
     return {
         getNewFeedAction: bindActionCreators(getNewFeedAction, dispatch),
