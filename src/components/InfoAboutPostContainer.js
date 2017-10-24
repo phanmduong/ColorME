@@ -300,11 +300,7 @@ class InfoAboutPostContainer extends Component {
                                         </TouchableOpacity>
                                     </Right>
                                 </CardItem>
-                                <FlatList
-                                    showsVerticalScrollIndicator={false}
-                                    onEndReachedThreshold={5}
-                                    data={this.props.comments}
-                                    renderItem={({item}) =>
+                                {this.state.listComment.map((item) =>
                                         <CardItem style={part.cardHeader}>
                                             <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
                                                 <TouchableOpacity style={part.paddingTRB}
@@ -351,7 +347,7 @@ class InfoAboutPostContainer extends Component {
                                                 </TouchableOpacity>
                                             </View>
                                         </CardItem>
-                                    }/>
+                                )}
                             </View>
                     }
                 </Content>

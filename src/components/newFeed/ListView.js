@@ -36,6 +36,7 @@ class ListView extends Component {
         })
     }
 
+
     _onPanResponderGrant(event, gestureState) {
         if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
             this.setState({modalVisible: false});
