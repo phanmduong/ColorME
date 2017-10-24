@@ -25,6 +25,7 @@ class SearchContainer extends Component {
         }
         // this.getMoreProduct = this.getMoreProduct.bind(this);
         // this.getMoreUser = this.getMoreUser.bind(this);
+        this.loadingLoadMore = this.loadingLoadMore.bind(this);
     }
 
     ViewUser() {
@@ -51,6 +52,7 @@ class SearchContainer extends Component {
                         getMoreUser={this.getMoreUser}
                         isLoading={this.props.isLoading}
                         txtSearch={this.state.txtSearch}
+                        loadingLoadMore={this.loadingLoadMore}
                     />
                 );
             case 1 :
@@ -58,9 +60,9 @@ class SearchContainer extends Component {
                     <SearchProduct
                         navigation={this.props.navigation}
                         products={this.props.products}
-                        getMoreProduct={this.getMoreProduct}
                         isLoading={this.props.isLoading}
                         txtSearch={this.state.txtSearch}
+                        loadingLoadMore={this.loadingLoadMore}
                     />
                 );
         }
@@ -77,13 +79,24 @@ class SearchContainer extends Component {
     //     this.setState({page_user: page_user});
     //     this.props.searchAction.searchUsers(this.state.txtSearch, 30, this.state.page_user);
     // }
-    //
+
     // getMoreProduct() {
     //     let page_product = this.state.page_product;
     //     page_product += 1;
     //     this.setState({page_product: page_product});
     //     this.props.searchAction.searchProducts(this.state.txtSearch, 30, this.state.page_product);
     // }
+    loadingLoadMore(){
+        if(this.props.isLoading && (this.props.users.length > 0 || this.props.products.length > 0)){
+            return (
+                <View style={[part.wrapperContainer]}>
+                    <Spinner color={color.gray}/>
+                </View>
+            )
+        }else{
+            return <View/>
+        }
+    }
 
     searchHaveTimeout(value) {
         this.setState({

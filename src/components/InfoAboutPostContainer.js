@@ -24,6 +24,7 @@ class InfoAboutPostContainer extends Component {
             author: {},
             more_products: [],
             colors: [],
+            commentCount : 0,
             likeCount: 0,
             liked: false,
             parent_id: 0,
@@ -46,7 +47,7 @@ class InfoAboutPostContainer extends Component {
                 let likers = post.likers.filter((liker) => {
                     return liker.username == nextProps.user.username
                 })
-                if (likers && likers.length == 0) {
+                if (likers.length == 0){
                     liked = false;
                 }
                 else {
@@ -57,7 +58,8 @@ class InfoAboutPostContainer extends Component {
         this.setState({
             liked: liked,
             likeCount: nextProps.post.likes_count,
-            listComment: nextProps.comments
+            listComment: nextProps.comments,
+            commentCount : nextProps.comments
         })
     }
 
@@ -67,7 +69,7 @@ class InfoAboutPostContainer extends Component {
         if (liked == false) {
             this.props.likePostAction.likePost(product_id, token);
             likeCount++;
-            liked = !liked;
+            liked = true;
         }
         this.setState({likeCount: likeCount, liked: liked});
     }
@@ -78,14 +80,15 @@ class InfoAboutPostContainer extends Component {
         if (liked == true) {
             this.props.likePostAction.unlikePost(product_id, token);
             likeCount--;
-            liked = !liked;
+            liked = false;
         }
         this.setState({likeCount: likeCount, liked: liked});
     }
 
     commentPost(product_id, token, value) {
         this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
-        let listComment = this.state.listComment
+        let listComment = this.state.listComment;
+        let commentCount = this.state.commentCount;
         let {user} = this.props;
         let arr = {
             content: this.state.comment_content,
@@ -97,10 +100,10 @@ class InfoAboutPostContainer extends Component {
             },
             created_at: 'Vừa xong'
         }
-        if (this.props.statusPostComment === 1) {
-            listComment.push(arr)
-            this.setState({listComment: listComment})
-        }
+            listComment.push(arr);
+            commentCount +=1;
+            this.setState({listComment: listComment, commentCount: commentCount})
+
     }
 
     render() {
@@ -300,11 +303,7 @@ class InfoAboutPostContainer extends Component {
                                         </TouchableOpacity>
                                     </Right>
                                 </CardItem>
-                                <FlatList
-                                    showsVerticalScrollIndicator={false}
-                                    onEndReachedThreshold={5}
-                                    data={this.props.comments}
-                                    renderItem={({item}) =>
+                                {this.state.listComment.map((item) =>
                                         <CardItem style={part.cardHeader}>
                                             <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
                                                 <TouchableOpacity style={part.paddingTRB}
@@ -351,7 +350,7 @@ class InfoAboutPostContainer extends Component {
                                                 </TouchableOpacity>
                                             </View>
                                         </CardItem>
-                                    }/>
+                                ) }
                             </View>
                     }
                 </Content>

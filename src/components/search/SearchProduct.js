@@ -11,10 +11,12 @@ import part from '../../styles/partStyle';
 class searchProduct extends Component {
     constructor() {
         super();
+        this.state = {
+            page_product: 2
+        }
     }
-
     render() {
-        const {products, getMoreProduct, isLoading, txtSearch} = this.props;
+        const {products, isLoading, txtSearch} = this.props;
         return (
             <Container>
                 {
