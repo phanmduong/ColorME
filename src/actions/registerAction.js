@@ -35,18 +35,21 @@ export function registerUser(register){
                 Alert.alert('Đăng kí thành công')
             })
             .catch(function (error) {
-                if(error == null){Alert.alert('Kiểm tra lại kết nối mạng')}
-               else{ dispatch(registerError(error))
-                  if(error.response.data.error.email && error.response.data.error.username == null){
-                   Alert.alert(error.response.data.error.email)
-                  }
-                  if(error.response.data.error.username && error.response.data.error.email == null){
+                if (error.response.data.error) {
+                    dispatch(registerError(error))
+                    if (error.response.data.error.email && error.response.data.error.username == null) {
+                        Alert.alert(error.response.data.error.email)
+                    }
+                    if (error.response.data.error.username && error.response.data.error.email == null) {
                         Alert.alert(error.response.data.error.username)
                     }
-                    if(error.response.data.error.username && error.response.data.error.email){
+                    if (error.response.data.error.username && error.response.data.error.email) {
                         Alert.alert(error.response.data.error.email + '\n' + error.response.data.error.username)
                     }
-                ;}
+                    ;
+                } else {
+                    Alert.alert('Kiểm tra lại kết nối mạng')
+                }
 
             })
     }

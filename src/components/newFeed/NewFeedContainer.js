@@ -183,7 +183,7 @@ class NewFeedContainer extends Component {
     loadingLoadMore() {
         if (this.props.isLoading && this.state.listPost.length > 0) {
             return (
-                <View style={[part.wrapperContainer, {height: 30, marginBottom: -30}]}>
+                <View style={[part.wrapperContainer, {height: 80}]}>
                     <Spinner color={color.gray}/>
                 </View>
             )

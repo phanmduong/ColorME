@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    View, Text, ScrollView
+    View, Text, StatusBar
 } from 'react-native';
 import {Col, Row, Grid} from "react-native-easy-grid";
 import part from '../styles/partStyle';
@@ -16,30 +16,14 @@ export default class AchievementsComponent extends Component {
 
     render() {
         return (
-            <ScrollView style={{flex: 1}}>
-                {
-                    this.state.arr.map((item, i) => {
-                        return(
-                            <View key={i}>
-                                <Grid>
-                                    <Col style={{backgroundColor: 'red', height: 100, borderWidth:1}}><Text>{item}</Text></Col>
-                                    <Col style={{backgroundColor: 'blue', height: 100, borderWidth:1}}><Text>{item}</Text></Col>
-                                    <Col style={{backgroundColor: 'pink', height: 100, borderWidth:1}}><Text>{item}</Text></Col>
-                                </Grid>
-                                <Grid>
-                                    <Col style={{flex: 1}}>
-                                        <Row style={{backgroundColor: 'gray', height: 100}}><Text>{item}</Text></Row>
-                                        <Row style={{backgroundColor: 'yellow', height: 100}}><Text>{item}</Text></Row>
-                                    </Col>
-                                    <Col style={{backgroundColor: 'black', height: 200, flex: 2}}><Text>{item}</Text></Col>
-                                </Grid>
-                            </View>
-                        )
-                    })
-                }
-
-
-            </ScrollView>
+            <View style={{marginTop: 22}}>
+                <StatusBar
+                    barStyle="default"
+                />
+                <View>
+                    <Text>Tính năng không khả dụng</Text>
+                </View>
+            </View>
 
         );
     }

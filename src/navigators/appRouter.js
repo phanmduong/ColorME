@@ -42,9 +42,7 @@ export const TabNavigatorBottomStyle = {
         activeTintColor: color.darkGray,
         inactiveTintColor: color.icon,
         style: {
-            height: 40,
             backgroundColor: color.navTitle,
-            borderTopWidth: 0.5,
         },
         showLabel: false,
     }

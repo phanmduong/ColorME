@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    View,
+    View,StatusBar,Text
 } from 'react-native';
 import {
    Container, Thumbnail
@@ -13,6 +13,12 @@ class notificationComponent extends Component {
     render() {
         return (
             <View style={{marginTop: 22}}>
+                <StatusBar
+                    barStyle="default"
+                />
+                <View>
+                    <Text>Tính năng không khả dụng</Text>
+                </View>
             </View>
         );
     }
