@@ -23,12 +23,12 @@ import * as color from '../../styles/color';
 import * as size from '../../styles/size';
 import * as getNewFeedAction from '../../actions/newFeedAction';
 import * as likePostAction from '../../actions/likePostAction';
-import * as reportAction from '../../actions/reportAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import ListView from './ListView';
 import GridView from './GridView';
 import FastImage from 'react-native-fast-image';
+import _ from 'lodash'
 
 class NewFeedContainer extends Component {
     constructor() {
@@ -91,22 +91,22 @@ class NewFeedContainer extends Component {
         setTimeout(() => {
             this.setState({isLoadingList: false})
         }, 100);
-        this.setState({grid: grid, isLoadingList: true});
+        let products = this.props.products.map((post, index) => {
+            return {
+                ...post,
+                key : index
+            }
+        })
+        this.setState({grid: grid, isLoadingList: true,listPost : products});
     }
 
     viewGrid() {
         let grid = this.state.grid;
         grid = true;
-        let products = this.props.products.map((post, index) => {
-            return {
-                ...post,
-                key: index
-            }
-        });
         setTimeout(() => {
             this.setState({isLoadingList: false})
         }, 250);
-        this.setState({grid: grid, listPost: products, isLoadingList: true});
+        this.setState({grid: grid, isLoadingList: true, listPost : this.groupPosts(this.props.products)});
     }
 
 
@@ -122,8 +122,6 @@ class NewFeedContainer extends Component {
             let item = false;
             let i = this.props.products.length;
             while (i < post.length) {
-                let key = {key: i}
-                let arr1 = Object.assign(post[i], key)
                 let likers = post[i].likers.filter((liker) => {
                     return liker.username === nextProps.user.username
                 });
@@ -134,15 +132,18 @@ class NewFeedContainer extends Component {
                 }
                 count.push(post[i].likes_count);
                 arr.push(item);
-                listPost.push(arr1)
                 i++;
             }
-            console.log(this.groupPosts(listPost));
-            this.setState({
-                likeCount: count,
-                arrayLike: arr,
-                listPost: listPost
-            })
+            if (this.state.grid) {
+                this.setState({listPost: this.groupPosts(nextProps.products)});
+            }
+            else {
+                this.setState({
+                    likeCount: count,
+                    arrayLike: arr,
+                    listPost: nextProps.products,
+                })
+            }
         }
     }
 
@@ -195,11 +196,18 @@ class NewFeedContainer extends Component {
     }
 
     groupPosts(posts) {
-        var posts = _.chain(posts).groupBy(function (element, index) {
-            return Math.floor(index / 3);
-        }).toArray()
-            .value();
-        return posts
+        posts = posts.map((post, index) => {
+            return {
+                ...post,
+                key: index
+            }
+        });
+        let postsGrid = posts.filter(({value, key}) => key > 0);
+        postsGrid = _.groupBy(postsGrid, ({element, key}) => {
+            return Math.floor((key-1) / 3);
+        });
+        postsGrid = [posts[0], ..._.toArray(postsGrid)];
+        return postsGrid;
     }
 
     render() {
@@ -280,7 +288,6 @@ class NewFeedContainer extends Component {
                                 <FlatList
                                     showsVerticalScrollIndicator={false}
                                     onEndReachedThreshold={5}
-                                    numColumns={3}
                                     onEndReached={() => {
                                         this.getMoreNewFeed()
                                     }}
@@ -303,7 +310,7 @@ class NewFeedContainer extends Component {
                                                         this.props.navigation.navigate('ThePostInNewFeed',
                                                             item.group
                                                                 ?
-                                                                {
+                                                               {
                                                                     product_id: item.id,
                                                                     group_name: item.group.name,
                                                                     group_link: item.group.link,
@@ -313,7 +320,7 @@ class NewFeedContainer extends Component {
                                                                     product_id: item.id,
                                                                 }
                                                         )}
-                                                >
+                                                    >
                                                     <FastImage
                                                         style={[part.imageInFeature]}
                                                         source={{uri: item.image_url}}
@@ -330,20 +337,28 @@ class NewFeedContainer extends Component {
                                             )
                                         } else {
                                             return (
-                                                <GridView
-                                                    navigation={this.props.navigation}
-                                                    item={item}
-                                                />
+                                                <View style={{flex: 1, flexDirection: 'row'}}>
+                                                    {
+                                                        item.map((post, index) => {
+                                                            return (
+                                                                <GridView
+                                                                    navigation={this.props.navigation}
+                                                                    post={post}
+                                                                    key={index}
+                                                                />
+                                                            )
+                                                        })
+                                                    }
+                                                </View>
                                             )
                                         }
                                     }
                                     }
-                                    ListFooterComponent={() => {
-                                        return this.loadingLoadMore()
+                                    ListFooterComponent={
+                                        this.loadingLoadMore()
                                     }
-                                    }
-                                />
-                            )
+
+                                />)
 
                         )
                         :
@@ -386,9 +401,9 @@ class NewFeedContainer extends Component {
                                             />
                                         )
                                     }}
-                                    ListFooterComponent={() => {
-                                        return this.loadingLoadMore()
-                                    }}
+                                    ListFooterComponent={
+                                        this.loadingLoadMore()
+                                    }
 
                                 />)
                         )
