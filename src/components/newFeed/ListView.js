@@ -35,7 +35,9 @@ class ListView extends Component {
             onPanResponderGrant: this._onPanResponderGrant.bind(this),
         })
     }
-
+    componentWillReceiveProps(nextProps){
+        this.setState({listCommentInModal : nextProps.comments})
+    }
 
     _onPanResponderGrant(event, gestureState) {
         if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
@@ -52,8 +54,6 @@ class ListView extends Component {
         this.setCommentModalVisible(true);
         this.setState({
             like_counts: this.props.item.likes_count,
-            listCommentInModal: this.props.comments,
-
         })
     }
 
@@ -72,7 +72,25 @@ class ListView extends Component {
     reportPost(id, token) {
         this.props.reportAction.reportPost(id, token);
     }
+    commentPost(product_id, token, value) {
+        this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
+        let listCommentInModal = this.state.listCommentInModal;
+        let {user} = this.props;
+        // let date = new Date();
+        let arr = {
+            content: value.comment_content,
+            parent_id: 0,
+            commenter: {
+                username: user.username,
+                avatar_url: user.avatar_url,
+                name: user.name,
+            },
+            created_at: 'Vừa xong'
+        }
+        listCommentInModal.push(arr)
+        this.setState({listCommentInModal: listCommentInModal, comment_content: ''})
 
+    }
     render() {
         const {item, arrayLike, likeCount, colorIcon, likedIcon, user} = this.props;
         const {navigate} = this.props.navigation;
@@ -257,7 +275,7 @@ class ListView extends Component {
                                             <ScrollView>
                                                 <FlatList
                                                     onEndReachedThreshold={5}
-                                                    data={this.props.comments}
+                                                    data={this.state.listCommentInModal}
                                                     renderItem={({item}) =>
                                                         <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
                                                             <View
@@ -348,7 +366,7 @@ class ListView extends Component {
                                             </Item>
                                             </Body>
                                             <TouchableOpacity
-                                                // onPress={() => this.commentPost(this.props.product_id, this.props.token, this.state)}
+                                                 onPress={() => this.commentPost(this.props.item.id, this.props.token, this.state)}
                                             >
                                                 <Icon active name='fontawesome|comment-o'
                                                       size={size.iconBig}
