@@ -99,6 +99,8 @@ class ListView extends Component {
         {
             const {item, arrayLike, likeCount, colorIcon, likedIcon, user} = this.props;
             const {navigate} = this.props.navigation;
+            let colorCommentIcon = this.state.comment_content == '' ? color.icon : color.main;
+            let commentIcon = this.state.comment_content == '' ? 'fontawesome|comment-o' : 'fontawesome|paper-plane';
             return (
                 <View key={item.key} style={part.card}>
                     <CardItem header style={part.cardHeader}>
@@ -369,11 +371,18 @@ class ListView extends Component {
                                                 </Item>
                                                 </Body>
                                                 <TouchableOpacity
-                                                    onPress={() => this.commentPost(this.props.item.id, this.props.token, this.state)}
+                                                    onPress={
+                                                        this.state.comment_content == ''
+                                                            ?
+                                                            () => {
+                                                            }
+                                                            :
+                                                        () => this.commentPost(this.props.item.id, this.props.token, this.state)
+                                                    }
                                                 >
-                                                    <Icon active name='fontawesome|comment-o'
+                                                    <Icon active name={commentIcon}
                                                           size={size.iconBig}
-                                                          color={color.icon}
+                                                          color={colorCommentIcon}
                                                           style={[part.paddingTLB, {paddingLeft: 10}]}
                                                     />
                                                 </TouchableOpacity>
