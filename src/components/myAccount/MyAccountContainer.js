@@ -11,7 +11,7 @@ import part from '../../styles/partStyle';
 import parallaxStyle from '../../styles/parallaxStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
-import * as userInformationAction from '../../actions/userInformationAction';
+import * as myAccountInformationAction from '../../actions/myAccountInformationAction';
 import MyAccountInformation from './MyAccountInformation';
 import MyAccountProject from './MyAccountProject';
 import MyAccountProgress from './MyAccountProgress';
@@ -23,17 +23,16 @@ class MyAccountContainer extends Component {
     constructor() {
         super();
         this.state = {
-            tab: 1,
+            tab: 2,
             isLoading: false,
         }
     }
 
     componentWillMount() {
-        this.props.userInformationAction.getUserProfile(this.props.user.username);
-        this.props.userInformationAction.getUserProgress(this.props.user.username);
-        this.props.userInformationAction.getUserProducts(this.props.user.username, 1, this.props.token);
+        this.props.myAccountInformationAction.getUserProfile(this.props.user.username);
+        this.props.myAccountInformationAction.getUserProgress(this.props.user.username);
+        this.props.myAccountInformationAction.getUserProducts(this.props.user.username, 1, this.props.token);
     }
-
     ViewProgress() {
         setTimeout(() => {
             this.setState({isLoading: false})
@@ -226,6 +225,7 @@ class MyAccountContainer extends Component {
 
 function mapStateToProps(state) {
     return {
+        token : state.login.token,
         user: state.login.user,
         isLoadingUserProfile: state.myAccountInformation.isLoadingUserProfile,
         progress: state.myAccountInformation.progress,
@@ -237,7 +237,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        userInformationAction: bindActionCreators(userInformationAction, dispatch),
+        myAccountInformationAction: bindActionCreators(myAccountInformationAction, dispatch),
     }
 }
 
