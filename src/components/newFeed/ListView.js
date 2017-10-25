@@ -54,6 +54,8 @@ class ListView extends Component {
         this.setCommentModalVisible(true);
         this.setState({
             like_counts: this.props.item.likes_count,
+            listCommentInModal: this.props.comments,
+
         })
     }
 
@@ -90,7 +92,6 @@ class ListView extends Component {
         listCommentInModal.push(arr)
         this.setState({listCommentInModal: listCommentInModal, comment_content: ''})
 
-    }
     render() {
         const {item, arrayLike, likeCount, colorIcon, likedIcon, user} = this.props;
         const {navigate} = this.props.navigation;
@@ -273,10 +274,8 @@ class ListView extends Component {
                                             </View>
                                             :
                                             <ScrollView>
-                                                <FlatList
-                                                    onEndReachedThreshold={5}
-                                                    data={this.state.listCommentInModal}
-                                                    renderItem={({item}) =>
+                                                {
+                                                    this.state.listCommentInModal.map((item, i) =>
                                                         <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
                                                             <View
                                                                 style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
@@ -331,7 +330,7 @@ class ListView extends Component {
                                                                 </TouchableOpacity>
                                                             </View>
                                                         </CardItem>
-                                                    }/>
+                                                    )}
                                             </ScrollView>
                                     }
                                 </View>

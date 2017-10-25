@@ -217,6 +217,11 @@ const part = StyleSheet.create({
         height: 50,
         borderRadius: 25,
     },
+    avatarUserInDrawer: {
+        width: size.wid / 4,
+        height: size.wid / 4,
+        borderRadius: size.wid / 8,
+    },
     avatarUserSmall: {
         width: 40,
         height: 40,
@@ -379,6 +384,7 @@ const part = StyleSheet.create({
     },
     paddingIcon: {
         paddingRight: 5,
+        paddingLeft: 5,
     },
     paddingRight: {
         paddingRight: 5,

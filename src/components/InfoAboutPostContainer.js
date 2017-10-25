@@ -15,7 +15,6 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux';
 import * as getFullInfoAboutOnePostAction from '../actions/inforAboutPostAction'
 import * as likePostAction from '../actions/likePostAction'
-import FastImage from 'react-native-fast-image';
 import WebViewAutoHeight from '../commons/WebViewAutoHeight';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
@@ -103,7 +102,6 @@ class InfoAboutPostContainer extends Component {
         }
         listComment.push(arr)
         this.setState({listComment: listComment, comment_content: ''})
-
     }
 
     render() {
@@ -221,7 +219,7 @@ class InfoAboutPostContainer extends Component {
                     )}
                 >
                     {
-                        isLoading && post == null
+                        isLoading
                             ?
                             <View
                                 style={{
@@ -336,7 +334,7 @@ class InfoAboutPostContainer extends Component {
                                 </CardItem>
                                 {
                                     this.state.listComment.map((item, i) =>
-                                        <CardItem key={i} style={part.cardHeader}>
+                                        <CardItem key={i} style={[part.cardHeader, {paddingBottom: 0}]}>
                                             <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
                                                 <TouchableOpacity
                                                     activeOpacity={0.8}
@@ -370,18 +368,14 @@ class InfoAboutPostContainer extends Component {
                                                         Trả lời
                                                     </Text>
                                                 </View>
-
-                                                <View
-                                                    style={[{flexDirection: 'row'}, part.paddingLine]}>
-                                                </View>
                                                 </Body>
-                                                <TouchableOpacity transparent>
-                                                    <Icon name="fontawesome|heart-o"
-                                                          color={color.icon}
-                                                          size={size.iconBig}
-                                                          style={part.paddingRight}
-                                                    />
-                                                </TouchableOpacity>
+                                                {/*<TouchableOpacity transparent>*/}
+                                                    {/*<Icon name="fontawesome|heart-o"*/}
+                                                          {/*color={color.icon}*/}
+                                                          {/*size={size.iconBig}*/}
+                                                          {/*style={part.paddingRight}*/}
+                                                    {/*/>*/}
+                                                {/*</TouchableOpacity>*/}
                                             </View>
                                         </CardItem>
                                     )
