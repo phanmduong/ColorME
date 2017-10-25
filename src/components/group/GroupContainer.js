@@ -96,6 +96,7 @@ class GroupContainer extends Component {
         return (
             <Container style={part.wrapperContainer}>
                 <ParallaxScrollView
+                    backgroundColor={color.main}
                     showsVerticalScrollIndicator={false}
                     headerBackgroundColor={color.main}
                     stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}

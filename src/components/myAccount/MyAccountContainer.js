@@ -91,6 +91,7 @@ class MyAccountContainer extends Component {
                     barStyle="light-content"
                 />
                 <ParallaxScrollView
+                    backgroundColor={color.main}
                     showsVerticalScrollIndicator={false}
                     headerBackgroundColor={color.main}
                     stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
@@ -143,10 +144,11 @@ class MyAccountContainer extends Component {
                         <View key="sticky-header" style={parallaxStyle.stickySection}>
                             <View style={part.iconInDrawerNav}>
                                 <Left style={{flexDirection: 'row', marginTop: 20,}}>
-                                    <Right style={{left: 10}}>
-                                        <Text style={[part.titleNormalLight, part.paddingLine]}>{this.props.user.name}
-                                        </Text>
-                                    </Right>
+                                    <Body style={{left: 10}}>
+                                    <Text style={[part.titleNormalLight, part.paddingLine]}>
+                                        {this.props.user.name}
+                                    </Text>
+                                    </Body>
                                 </Left>
                             </View>
                         </View>

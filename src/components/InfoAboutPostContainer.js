@@ -119,6 +119,7 @@ class InfoAboutPostContainer extends Component {
         return (
             <Container style={part.wrapperContainer}>
                 <ParallaxScrollView
+                    backgroundColor={color.main}
                     showsVerticalScrollIndicator={false}
                     headerBackgroundColor={color.main}
                     stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
@@ -336,54 +337,54 @@ class InfoAboutPostContainer extends Component {
                                         </Button>
                                     </Left>
                                 </CardItem>
-                                {
-                                    this.state.listComment.map((item, i) =>
-                                        <CardItem key={i} style={[part.cardHeader, {paddingBottom: 0}]}>
-                                            <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
-                                                <TouchableOpacity
-                                                    activeOpacity={0.8}
-                                                    style={part.paddingTRB}
-                                                    onPress={() => navigate('UserInNewFeed', {username: item.commenter.username})}
-                                                >
-                                                    <Image
-                                                        style={part.avatarUserSmall}
-                                                        source={{uri: item.commenter.avatar_url}}/>
-                                                </TouchableOpacity>
-                                                <Body>
-                                                <Text
-                                                    style={[part.titleSmallBlue, part.paddingTLB]}
-                                                >
-                                                    {item.commenter.name}
-                                                </Text>
-                                                <Text
-                                                    style={[part.describeDarkGray, part.paddingLeft]}
-                                                >
-                                                    {item.content}
-                                                </Text>
-                                                <View style={{flexDirection: 'row'}}>
-                                                    <Text
-                                                        style={[part.describeLightGray, part.paddingTLB]}
+                                    {
+                                        this.state.listComment.map((item, i) =>
+                                            <CardItem key={i} style={[part.cardHeader, {paddingBottom: 0}]}>
+                                                <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
+                                                    <TouchableOpacity
+                                                        activeOpacity={0.8}
+                                                        style={part.paddingTRB}
+                                                        onPress={() => navigate('UserInNewFeed', {username: item.commenter.username})}
                                                     >
-                                                        {item.created_at}
+                                                        <Image
+                                                            style={part.avatarUserSmall}
+                                                            source={{uri: item.commenter.avatar_url}}/>
+                                                    </TouchableOpacity>
+                                                    <Body>
+                                                    <Text
+                                                        style={[part.titleSmallBlue, part.paddingTLB]}
+                                                    >
+                                                        {item.commenter.name}
                                                     </Text>
                                                     <Text
-                                                        style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                        style={[part.describeDarkGray, part.paddingLeft]}
                                                     >
-                                                        Trả lời
+                                                        {item.content}
                                                     </Text>
+                                                    <View style={{flexDirection: 'row'}}>
+                                                        <Text
+                                                            style={[part.describeLightGray, part.paddingTLB]}
+                                                        >
+                                                            {item.created_at}
+                                                        </Text>
+                                                        <Text
+                                                            style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                        >
+                                                            Trả lời
+                                                        </Text>
+                                                    </View>
+                                                    </Body>
+                                                    {/*<TouchableOpacity transparent>*/}
+                                                    {/*<Icon name="fontawesome|heart-o"*/}
+                                                    {/*color={color.icon}*/}
+                                                    {/*size={size.iconBig}*/}
+                                                    {/*style={part.paddingRight}*/}
+                                                    {/*/>*/}
+                                                    {/*</TouchableOpacity>*/}
                                                 </View>
-                                                </Body>
-                                                {/*<TouchableOpacity transparent>*/}
-                                                {/*<Icon name="fontawesome|heart-o"*/}
-                                                {/*color={color.icon}*/}
-                                                {/*size={size.iconBig}*/}
-                                                {/*style={part.paddingRight}*/}
-                                                {/*/>*/}
-                                                {/*</TouchableOpacity>*/}
-                                            </View>
-                                        </CardItem>
-                                    )
-                                }
+                                            </CardItem>
+                                        )
+                                    }
                             </View>
                     }
 
@@ -407,14 +408,13 @@ class InfoAboutPostContainer extends Component {
                                         }
                                     }
                                 />
-                                <TouchableOpacity>
-                                    <Icon active name='fontawesome|camera-retro'
-                                          size={size.iconBig}
-                                          color={color.icon}
-                                          style={{paddingRight: 15}}
-                                    />
-                                </TouchableOpacity>
-
+                                {/*<TouchableOpacity>*/}
+                                {/*<Icon active name='fontawesome|camera-retro'*/}
+                                {/*size={size.iconBig}*/}
+                                {/*color={color.icon}*/}
+                                {/*style={{paddingRight: 15}}*/}
+                                {/*/>*/}
+                                {/*</TouchableOpacity>*/}
                             </Item>
 
                             </Body>

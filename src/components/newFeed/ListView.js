@@ -264,7 +264,7 @@ class ListView extends Component {
                                         </Right>
                                     </CardItem>
 
-                                    <View style={part.wrapperCommentInModal}>
+                                    <ScrollView style={part.wrapperCommentInModal}>
                                         {
                                             this.props.isLoadingComment
                                                 ?
@@ -279,7 +279,7 @@ class ListView extends Component {
                                                         color={color.gray}/>
                                                 </View>
                                                 :
-                                                <ScrollView>
+                                                <View>
                                                     {
                                                         this.state.listCommentInModal.map((item, i) =>
                                                             <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
@@ -337,9 +337,9 @@ class ListView extends Component {
                                                             </View>
                                                         </CardItem>
                                                     )}
-                                            </ScrollView>
+                                            </View>
                                     }
-                                </View>
+                                </ScrollView>
                                 <KeyboardAvoidingView
                                     behavior={'position'}
                                 >
@@ -361,13 +361,13 @@ class ListView extends Component {
                                                         }
                                                     }
                                                     />
-                                                    <TouchableOpacity>
-                                                        <Icon active name='fontawesome|camera-retro'
-                                                              size={size.iconBig}
-                                                              color={color.icon}
-                                                              style={{paddingRight: 15}}
-                                                        />
-                                                    </TouchableOpacity>
+                                                    {/*<TouchableOpacity>*/}
+                                                        {/*<Icon active name='fontawesome|camera-retro'*/}
+                                                              {/*size={size.iconBig}*/}
+                                                              {/*color={color.icon}*/}
+                                                              {/*style={{paddingRight: 15}}*/}
+                                                        {/*/>*/}
+                                                    {/*</TouchableOpacity>*/}
                                                 </Item>
                                                 </Body>
                                                 <TouchableOpacity
