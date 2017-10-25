@@ -26,7 +26,7 @@ class ListView extends Component {
             like_counts: 0,
             product_id: '',
             listComment: [],
-
+            comment_content: '',
         }
     }
 
@@ -52,7 +52,7 @@ class ListView extends Component {
         this.setCommentModalVisible(true);
         this.setState({
             like_counts: this.props.item.likes_count,
-            listCommentInModal: this.props.comments,
+            listComment: this.props.comments,
 
         })
     }
@@ -101,6 +101,8 @@ class ListView extends Component {
     render() {
         const {item, arrayLike, likeCount, colorIcon, likedIcon, user} = this.props;
         const {navigate} = this.props.navigation;
+        let colorCommentIcon = this.state.comment_content == '' ? color.icon : color.main;
+        let commentIcon = this.state.comment_content == '' ? 'fontawesome|comment-o' : 'fontawesome|comment';
         return (
             <View key={item.key} style={part.card}>
                 <CardItem header style={part.cardHeader}>
@@ -370,17 +372,23 @@ class ListView extends Component {
                                             </Item>
                                             </Body>
                                             <TouchableOpacity
-                                                 onPress={() => this.commentPost(this.props.product_id, this.props.token, this.state)}
+                                                onPress={
+                                                    this.state.comment_content == ''
+                                                        ?
+                                                        () => {
+                                                        }
+                                                        :
+                                                        () => this.commentPost(this.props.product_id, this.props.token, this.state)}
                                             >
-                                                <Icon active name='fontawesome|comment-o'
+                                                <Icon active name={commentIcon}
                                                       size={size.iconBig}
-                                                      color={color.icon}
+                                                      color={colorCommentIcon}
                                                       style={[part.paddingTLB, {paddingLeft: 10}]}
                                                 />
                                             </TouchableOpacity>
                                         </Left>
                                     </CardItem>
-                             </KeyboardAvoidingView>
+                                </KeyboardAvoidingView>
                             </View>
                         </View>
                     </View>

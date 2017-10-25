@@ -108,6 +108,10 @@ class InfoAboutPostContainer extends Component {
         let {liked, likeCount} = this.state;
         let colorIcon = liked ? color.main : color.icon;
         let likedIcon = liked ? 'fontawesome|heart' : 'fontawesome|heart-o';
+        let colorCommentIcon = this.state.comment_content == '' ? color.icon : color.main;
+        let commentIcon = this.state.comment_content == '' ? 'fontawesome|comment-o' : 'fontawesome|comment';
+
+
         const {goBack} = this.props.navigation;
         const {navigate} = this.props.navigation;
         const {params} = this.props.navigation.state;
@@ -370,11 +374,11 @@ class InfoAboutPostContainer extends Component {
                                                 </View>
                                                 </Body>
                                                 {/*<TouchableOpacity transparent>*/}
-                                                    {/*<Icon name="fontawesome|heart-o"*/}
-                                                          {/*color={color.icon}*/}
-                                                          {/*size={size.iconBig}*/}
-                                                          {/*style={part.paddingRight}*/}
-                                                    {/*/>*/}
+                                                {/*<Icon name="fontawesome|heart-o"*/}
+                                                {/*color={color.icon}*/}
+                                                {/*size={size.iconBig}*/}
+                                                {/*style={part.paddingRight}*/}
+                                                {/*/>*/}
                                                 {/*</TouchableOpacity>*/}
                                             </View>
                                         </CardItem>
@@ -415,11 +419,17 @@ class InfoAboutPostContainer extends Component {
 
                             </Body>
                             <TouchableOpacity
-                                onPress={() => this.commentPost(params.product_id, this.props.token, this.state)}
+                                onPress={
+                                    this.state.comment_content == ''
+                                        ?
+                                        () => {
+                                        }
+                                        :
+                                        () => this.commentPost(params.product_id, this.props.token, this.state)}
                             >
-                                <Icon active name='fontawesome|comment-o'
+                                <Icon active name={commentIcon}
                                       size={size.iconBig}
-                                      color={color.icon}
+                                      color={colorCommentIcon}
                                       style={[part.paddingTLB, {paddingLeft: 10}]}
                                 />
                             </TouchableOpacity>
