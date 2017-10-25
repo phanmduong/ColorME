@@ -101,7 +101,6 @@ class ListView extends Component {
                             <Icon name="material|report"
                                   color={color.icon}
                                   size={size.icon}
-                                  style={part.paddingRight}
                             />
                         </TouchableOpacity>
                     </Left>

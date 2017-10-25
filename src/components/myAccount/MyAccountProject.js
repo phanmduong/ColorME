@@ -34,7 +34,7 @@ class MyAccountProject extends Component {
                         (
                             <View style={[part.wrapperGrid]}>
                                 {
-                                    products.length === 0
+                                    products.length == 0
                                         ?
                                         <View style={part.wrapperTextNotLength}>
                                             <Text style={[part.padding, part.titleSmallDarkGrayBold]}>

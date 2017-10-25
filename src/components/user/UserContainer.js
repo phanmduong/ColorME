@@ -104,7 +104,7 @@ class UserContainer extends Component {
                                     source={
                                         isLoadingUserProducts
                                             ?
-                                            ''
+                                            {}
                                             :
                                             {uri: user.avatar_url}
                                     }/>
@@ -138,7 +138,7 @@ class UserContainer extends Component {
                                            source={
                                                isLoadingUserProducts
                                                    ?
-                                                   ''
+                                                   {}
                                                    :
                                                    {uri: user.avatar_url}
                                            }

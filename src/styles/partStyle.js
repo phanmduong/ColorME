@@ -378,7 +378,7 @@ const part = StyleSheet.create({
         padding: 10,
     },
     paddingIcon: {
-        paddingLeft: 10
+        paddingRight: 5,
     },
     paddingRight: {
         paddingRight: 5,

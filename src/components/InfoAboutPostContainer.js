@@ -335,8 +335,8 @@ class InfoAboutPostContainer extends Component {
                                     </Left>
                                 </CardItem>
                                 {
-                                    this.state.listComment.map((item) =>
-                                        <CardItem style={part.cardHeader}>
+                                    this.state.listComment.map((item, i) =>
+                                        <CardItem key={i} style={part.cardHeader}>
                                             <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
                                                 <TouchableOpacity
                                                     activeOpacity={0.8}

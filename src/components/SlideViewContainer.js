@@ -46,7 +46,7 @@ class SlideViewComponent extends Component {
                         source={{uri: this.props.user.avatar_url}}/>
                    
                     <View style={part.tabInDrawer}>
-                        <Item style={{borderBottomWidth: 0,}}>
+                        <Item style={part.noBorder}>
                             <Left style={{alignItems: 'center'}}>
                                 <FastImage style={part.avatarUserNormal}
                                            source={{uri: this.props.user.avatar_url}}/>
@@ -62,7 +62,6 @@ class SlideViewComponent extends Component {
                                       size={18}
                                       color={color.gray}
                                 />
-
                             </TouchableOpacity>
                             </Body>
                         </Item>

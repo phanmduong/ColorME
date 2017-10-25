@@ -11,13 +11,6 @@ import FastImage from 'react-native-fast-image';
 import Icon from '../../commons/Icon';
 
 class UserProgress extends Component {
-    constructor() {
-        super();
-        this.state = {
-            class: [0, 1, 2, 3, 4, 5, 6, 7]
-        }
-    }
-
     render() {
         const {user, progress, isLoadingUserProgress} = this.props;
         return (
