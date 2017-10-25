@@ -2,14 +2,16 @@ import * as types from '../constants/actionTypes';
 import {AsyncStorage, Alert} from 'react-native'
 import * as loginApi from '../apis/loginApi';
 import axios from 'axios';
+
 export function beginLogin() {
     return {
         type: types.BEGIN_LOGIN,
         isLoading: true,
         error: false,
-        token : undefined,
+        token: undefined,
     }
 }
+
 export function loginUser(login) {
     return function (dispatch) {
         dispatch(beginLogin());
@@ -17,9 +19,15 @@ export function loginUser(login) {
             .then(function (response) {
                 dispatch(loginSuccess(response));
             })
-            .catch(error => {
+            .catch(function (error) {
                 dispatch(loginError(error));
-                Alert.alert('Mời bạn kiểm tra lại thông tin tài khoản và kết nối mạng');
+                Alert.alert(
+                    'Đăng nhập thất bại.',
+                    'Mời bạn kiểm tra lại thông tin tài khoản hoặc đường truyền kết nối mạng.',
+                    [
+                        {text: 'Đồng ý'}
+                    ],
+                );
             })
     }
 }
@@ -39,9 +47,9 @@ export function loginSuccess(response) {
         type: types.LOGIN_SUCCESS,
         isLoading: false,
         error: false,
-        token : token,
-        status :response.status,
-        user : response.data.user
+        token: token,
+        status: response.status,
+        user: response.data.user
     }
 }
 
@@ -61,10 +69,10 @@ export function getDataLogin(status = 0) {
             const password = await AsyncStorage.getItem('@ColorMe:password');
             dispatch(autoLogin(
                 {
-                email: email,
-                password: password
-                },status
-                ));
+                    email: email,
+                    password: password
+                }, status
+            ));
             dispatch(gotDataLogin(email, password));
         }
         catch (error) {
@@ -85,7 +93,7 @@ export function gotDataLogin(email, password) { // dữ liệu từ local thành
 }
 
 export function setDataLogin(login) { // save data
-    return async function(){
+    return async function () {
         try {
             await AsyncStorage.setItem('@ColorMe:email', login.email);
             await AsyncStorage.setItem('@ColorMe:password', login.password);
@@ -97,7 +105,7 @@ export function setDataLogin(login) { // save data
     }
 }
 
-export function autoLogin(login, status){
+export function autoLogin(login, status) {
     return (dispatch) => {
         AsyncStorage.getItem('@ColorMe:save').then(async function () {
             let value = await AsyncStorage.getItem('@ColorMe:save');

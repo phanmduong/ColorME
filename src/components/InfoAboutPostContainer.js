@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import {Image, KeyboardAvoidingView, Text, TouchableOpacity, View} from 'react-native';
+import {
+    Image, KeyboardAvoidingView, Text, TouchableOpacity, View
+} from 'react-native';
 
 import {
     Body, Button, Card, CardItem, Container, Content,
@@ -100,7 +102,7 @@ class InfoAboutPostContainer extends Component {
             },
             created_at: 'Vừa xong'
         }
-        listComment.push(arr)
+        listComment.push(arr);
         this.setState({listComment: listComment, comment_content: ''})
     }
 
@@ -110,8 +112,7 @@ class InfoAboutPostContainer extends Component {
         let likedIcon = liked ? 'fontawesome|heart' : 'fontawesome|heart-o';
         let colorCommentIcon = this.state.comment_content == '' ? color.icon : color.main;
         let commentIcon = this.state.comment_content == '' ? 'fontawesome|comment-o' : 'fontawesome|paper-plane';
-        const {goBack} = this.props.navigation;
-        const {navigate} = this.props.navigation;
+        const {goBack, navigate} = this.props.navigation;
         const {params} = this.props.navigation.state;
         const {isLoading, post} = this.props;
         return (

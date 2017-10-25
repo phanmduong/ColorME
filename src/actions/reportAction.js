@@ -31,7 +31,6 @@ export function reportPost(id, token) {
         reportApi.reportPostApi(id, token)
             .then(function (response) {
                 dispatch(reportPostSuccess(response));
-                console.log(response.data);
                 Alert.alert(
                     'Gửi báo cáo thành công.',
                     response.data.data.message,
@@ -43,7 +42,6 @@ export function reportPost(id, token) {
             })
             .catch(function (error) {
                 dispatch(reportPostError(error));
-                console.log(error);
                 Alert.alert(
                     'Gửi báo cáo thất bại.',
                     'Có lỗi xảy ra trong quá trình xử lý yêu cầu của bạn. Hãy thử lại sau',

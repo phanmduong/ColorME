@@ -328,13 +328,13 @@ class ListView extends Component {
                                                                     </Text>
                                                                 </View>
                                                                 </Body>
-                                                                <TouchableOpacity transparent>
-                                                                    <Icon name="fontawesome|heart-o"
-                                                                          color={color.icon}
-                                                                          size={size.iconBig}
-                                                                          style={part.paddingTop}
-                                                                    />
-                                                                </TouchableOpacity>
+                                                                {/*<TouchableOpacity transparent>*/}
+                                                                    {/*<Icon name="fontawesome|heart-o"*/}
+                                                                          {/*color={color.icon}*/}
+                                                                          {/*size={size.iconBig}*/}
+                                                                          {/*style={part.paddingTop}*/}
+                                                                    {/*/>*/}
+                                                                {/*</TouchableOpacity>*/}
                                                             </View>
                                                         </CardItem>
                                                     )}

@@ -92,17 +92,17 @@ class NewFeedContainer extends Component {
         let products = this.props.products.map((post, index) => {
             return {
                 ...post,
-                key : index
+                key: index
             }
         });
-        this.setState({grid: false, isLoadingList: true,listPost : products});
+        this.setState({grid: false, isLoadingList: true, listPost: products});
     }
 
     viewGrid() {
         setTimeout(() => {
             this.setState({isLoadingList: false})
         }, 250);
-        this.setState({grid: true, isLoadingList: true, listPost : this.groupPosts(this.props.products)});
+        this.setState({grid: true, isLoadingList: true, listPost: this.groupPosts(this.props.products)});
     }
 
 // setup
@@ -117,7 +117,7 @@ class NewFeedContainer extends Component {
             let item = false;
             let i = this.props.products.length;
             while (i < post.length) {
-                let key = {key : i};
+                let key = {key: i};
                 let arr1 = Object.assign(post[i], key)
                 let likers = post[i].likers.filter((liker) => {
                     return liker.username === nextProps.user.username
@@ -202,14 +202,14 @@ class NewFeedContainer extends Component {
         });
         let postsGrid = posts.filter(({value, key}) => key > 0);
         postsGrid = _.groupBy(postsGrid, ({element, key}) => {
-            return Math.floor((key-1) / 3);
+            return Math.floor((key - 1) / 3);
         });
         postsGrid = [posts[0], ..._.toArray(postsGrid)];
         return postsGrid;
     }
 
     render() {
-         return (
+        return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
                     barStyle="light-content"
@@ -299,56 +299,58 @@ class NewFeedContainer extends Component {
                                         />
                                     }
                                     renderItem={({item}) => {
-                                        if (item == this.state.listPost[0]) {
-                                            return (
-                                                <TouchableOpacity
-                                                    activeOpacity={0.8}
-                                                    style={part.featureWrapper}
-                                                    onPress={() =>
-                                                        this.props.navigation.navigate('ThePostInNewFeed',
-                                                            item.group
-                                                                ?
-                                                               {
-                                                                    product_id: item.id,
-                                                                    group_name: item.group.name,
-                                                                    group_link: item.group.link,
-                                                                }
-                                                                :
-                                                                {
-                                                                    product_id: item.id,
-                                                                }
-                                                        )}
+                                        if (this.state.listPost[0]) {
+                                            if (item == this.state.listPost[0]) {
+                                                return (
+                                                    <TouchableOpacity
+                                                        activeOpacity={0.8}
+                                                        style={part.featureWrapper}
+                                                        onPress={() =>
+                                                            this.props.navigation.navigate('ThePostInNewFeed',
+                                                                item.group
+                                                                    ?
+                                                                    {
+                                                                        product_id: item.id,
+                                                                        group_name: item.group.name,
+                                                                        group_link: item.group.link,
+                                                                    }
+                                                                    :
+                                                                    {
+                                                                        product_id: item.id,
+                                                                    }
+                                                            )}
                                                     >
-                                                    <FastImage
-                                                        style={[part.imageInFeature]}
-                                                        source={{uri: item.image_url}}
-                                                    />
-                                                    <View style={part.wrapperTitleFeature}>
-                                                        <Text
-                                                            numberOfLines={2}
-                                                            style={part.textTitleFeature}
-                                                        >
-                                                            {this.textTopShow()}
-                                                        </Text>
+                                                        <FastImage
+                                                            style={[part.imageInFeature]}
+                                                            source={{uri: item.image_url}}
+                                                        />
+                                                        <View style={part.wrapperTitleFeature}>
+                                                            <Text
+                                                                numberOfLines={2}
+                                                                style={part.textTitleFeature}
+                                                            >
+                                                                {this.textTopShow()}
+                                                            </Text>
+                                                        </View>
+                                                    </TouchableOpacity>
+                                                )
+                                            } else {
+                                                return (
+                                                    <View style={{flex: 1, flexDirection: 'row'}}>
+                                                        {
+                                                            item.map((post, index) => {
+                                                                return (
+                                                                    <GridView
+                                                                        navigation={this.props.navigation}
+                                                                        post={post}
+                                                                        key={index}
+                                                                    />
+                                                                )
+                                                            })
+                                                        }
                                                     </View>
-                                                </TouchableOpacity>
-                                            )
-                                        } else {
-                                            return (
-                                                <View style={{flex: 1, flexDirection: 'row'}}>
-                                                    {
-                                                        item.map((post, index) => {
-                                                            return (
-                                                                <GridView
-                                                                    navigation={this.props.navigation}
-                                                                    post={post}
-                                                                    key={index}
-                                                                />
-                                                            )
-                                                        })
-                                                    }
-                                                </View>
-                                            )
+                                                )
+                                            }
                                         }
                                     }
                                     }
@@ -421,6 +423,7 @@ function mapStateToProps(state) {
         isRefreshing: state.getNewFeed.isRefreshing,
     }
 }
+
 function mapDispatchToProps(dispatch) {
     return {
         getNewFeedAction: bindActionCreators(getNewFeedAction, dispatch),
