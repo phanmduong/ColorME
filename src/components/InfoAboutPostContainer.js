@@ -102,8 +102,9 @@ class InfoAboutPostContainer extends Component {
             },
             created_at: 'Vừa xong'
         }
-        listComment.push(arr);
-        this.setState({listComment: listComment, comment_content: ''})
+
+        listComment.push(arr)
+        this.setState({listComment: listComment})
     }
 
     render() {
