@@ -117,6 +117,8 @@ class NewFeedContainer extends Component {
             let item = false;
             let i = this.props.products.length;
             while (i < post.length) {
+                let key = {key : i};
+                let arr1 = Object.assign(post[i], key)
                 let likers = post[i].likers.filter((liker) => {
                     return liker.username === nextProps.user.username
                 });
@@ -127,6 +129,7 @@ class NewFeedContainer extends Component {
                 }
                 count.push(post[i].likes_count);
                 arr.push(item);
+                listPost.push(arr1)
                 i++;
             }
             if (this.state.grid) {
@@ -136,7 +139,7 @@ class NewFeedContainer extends Component {
                 this.setState({
                     likeCount: count,
                     arrayLike: arr,
-                    listPost: nextProps.products,
+                    listPost: listPost,
                 })
             }
         }

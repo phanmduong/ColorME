@@ -109,9 +109,7 @@ class InfoAboutPostContainer extends Component {
         let colorIcon = liked ? color.main : color.icon;
         let likedIcon = liked ? 'fontawesome|heart' : 'fontawesome|heart-o';
         let colorCommentIcon = this.state.comment_content == '' ? color.icon : color.main;
-        let commentIcon = this.state.comment_content == '' ? 'fontawesome|comment-o' : 'fontawesome|comment';
-
-
+        let commentIcon = this.state.comment_content == '' ? 'fontawesome|comment-o' : 'fontawesome|paper-plane';
         const {goBack} = this.props.navigation;
         const {navigate} = this.props.navigation;
         const {params} = this.props.navigation.state;

@@ -27,6 +27,7 @@ class ListView extends Component {
             product_id: '',
             listComment: [],
             comment_content: '',
+            listCommentInModal: [],
         }
     }
 
@@ -35,6 +36,10 @@ class ListView extends Component {
             onStartShouldSetPanResponder: (event, gestureState) => true,
             onPanResponderGrant: this._onPanResponderGrant.bind(this),
         })
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({listCommentInModal: nextProps.comments})
     }
 
     _onPanResponderGrant(event, gestureState) {
@@ -52,33 +57,8 @@ class ListView extends Component {
         this.setCommentModalVisible(true);
         this.setState({
             like_counts: this.props.item.likes_count,
-            listComment: this.props.comments,
+            listCommentInModal: this.props.comments,
 
-        })
-    }
-
-    commentPost(product_id, token, value) {
-        this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
-        let listComment = this.state.listComment;
-        let {user} = this.props;
-        // let date = new Date();
-        let arr = {
-            content: value.comment_content,
-            parent_id: 0,
-            commenter: {
-                username: user.username,
-                avatar_url: user.avatar_url,
-                name: user.name,
-            },
-            created_at: 'Vừa xong'
-        };
-        listComment.push(arr);
-        this.setState({listComment: listComment, comment_content: ''})
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            listComment: nextProps.comments
         })
     }
 
@@ -98,11 +78,31 @@ class ListView extends Component {
         this.props.reportAction.reportPost(id, token);
     }
 
+    commentPost(product_id, token, value) {
+        this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
+        let listCommentInModal = this.state.listCommentInModal;
+        let {user} = this.props;
+
+        // let date = new Date();
+        let arr = {
+            content: value.comment_content,
+            parent_id: 0,
+            commenter: {
+                username: user.username,
+                avatar_url: user.avatar_url,
+                name: user.name,
+            },
+            created_at: 'Vừa xong'
+        }
+        listCommentInModal.push(arr)
+        this.setState({listCommentInModal: listCommentInModal, comment_content: ''})
+    }
+
     render() {
         const {item, arrayLike, likeCount, colorIcon, likedIcon, user} = this.props;
         const {navigate} = this.props.navigation;
         let colorCommentIcon = this.state.comment_content == '' ? color.icon : color.main;
-        let commentIcon = this.state.comment_content == '' ? 'fontawesome|comment-o' : 'fontawesome|comment';
+        let commentIcon = this.state.comment_content == '' ? 'fontawesome|comment-o' : 'fontawesome|paper-plane';
         return (
             <View key={item.key} style={part.card}>
                 <CardItem header style={part.cardHeader}>
@@ -223,7 +223,9 @@ class ListView extends Component {
                                 </Text>
                                 :
                                 <View/>
+
                         }
+
                     </View>
                 </CardItem>
                 <Modal
@@ -263,7 +265,6 @@ class ListView extends Component {
                                         </Button>
                                     </Right>
                                 </CardItem>
-
                                 <View style={part.wrapperCommentInModal}>
                                     {
                                         this.props.isLoadingComment
@@ -281,7 +282,7 @@ class ListView extends Component {
                                             :
                                             <ScrollView>
                                                 {
-                                                    this.state.listComment.map((item, i) =>
+                                                    this.state.listCommentInModal.map((item, i) =>
                                                         <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
                                                             <View
                                                                 style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
@@ -327,17 +328,16 @@ class ListView extends Component {
                                                                     </Text>
                                                                 </View>
                                                                 </Body>
-                                                                {/*<TouchableOpacity transparent>*/}
-                                                                {/*<Icon name="fontawesome|heart-o"*/}
-                                                                {/*color={color.icon}*/}
-                                                                {/*size={size.iconBig}*/}
-                                                                {/*style={part.paddingTop}*/}
-                                                                {/*/>*/}
-                                                                {/*</TouchableOpacity>*/}
+                                                                <TouchableOpacity transparent>
+                                                                    <Icon name="fontawesome|heart-o"
+                                                                          color={color.icon}
+                                                                          size={size.iconBig}
+                                                                          style={part.paddingTop}
+                                                                    />
+                                                                </TouchableOpacity>
                                                             </View>
                                                         </CardItem>
-                                                    )
-                                                }
+                                                    )}
                                             </ScrollView>
                                     }
                                 </View>
@@ -378,7 +378,8 @@ class ListView extends Component {
                                                         () => {
                                                         }
                                                         :
-                                                        () => this.commentPost(this.props.product_id, this.props.token, this.state)}
+                                                        () => this.commentPost(this.props.item.id, this.props.token, this.state)
+                                                }
                                             >
                                                 <Icon active name={commentIcon}
                                                       size={size.iconBig}
