@@ -105,7 +105,6 @@ class NewFeedContainer extends Component {
         this.setState({grid: true, isLoadingList: true, listPost : this.groupPosts(this.props.products)});
     }
 
-
 // setup
     componentWillReceiveProps(nextProps) {
         this.isFirst = true;
@@ -210,7 +209,7 @@ class NewFeedContainer extends Component {
     }
 
     render() {
-        return (
+         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
                     barStyle="light-content"
