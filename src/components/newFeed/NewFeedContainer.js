@@ -86,8 +86,6 @@ class NewFeedContainer extends Component {
     }
 
     viewList() {
-        let grid = this.state.grid;
-        grid = false;
         setTimeout(() => {
             this.setState({isLoadingList: false})
         }, 100);
@@ -96,17 +94,15 @@ class NewFeedContainer extends Component {
                 ...post,
                 key : index
             }
-        })
-        this.setState({grid: grid, isLoadingList: true,listPost : products});
+        });
+        this.setState({grid: false, isLoadingList: true,listPost : products});
     }
 
     viewGrid() {
-        let grid = this.state.grid;
-        grid = true;
         setTimeout(() => {
             this.setState({isLoadingList: false})
         }, 250);
-        this.setState({grid: grid, isLoadingList: true, listPost : this.groupPosts(this.props.products)});
+        this.setState({grid: true, isLoadingList: true, listPost : this.groupPosts(this.props.products)});
     }
 
 

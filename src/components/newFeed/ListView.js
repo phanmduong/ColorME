@@ -25,7 +25,8 @@ class ListView extends Component {
             modalVisible: false,
             like_counts: 0,
             product_id: '',
-            listCommentInModal: [],
+            listComment: [],
+
         }
     }
 
@@ -35,7 +36,6 @@ class ListView extends Component {
             onPanResponderGrant: this._onPanResponderGrant.bind(this),
         })
     }
-
 
     _onPanResponderGrant(event, gestureState) {
         if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
@@ -54,6 +54,31 @@ class ListView extends Component {
             like_counts: this.props.item.likes_count,
             listCommentInModal: this.props.comments,
 
+        })
+    }
+
+    commentPost(product_id, token, value) {
+        this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
+        let listComment = this.state.listComment;
+        let {user} = this.props;
+        // let date = new Date();
+        let arr = {
+            content: value.comment_content,
+            parent_id: 0,
+            commenter: {
+                username: user.username,
+                avatar_url: user.avatar_url,
+                name: user.name,
+            },
+            created_at: 'Vừa xong'
+        };
+        listComment.push(arr);
+        this.setState({listComment: listComment, comment_content: ''})
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            listComment: nextProps.comments
         })
     }
 
@@ -196,9 +221,7 @@ class ListView extends Component {
                                 </Text>
                                 :
                                 <View/>
-
                         }
-
                     </View>
                 </CardItem>
                 <Modal
@@ -255,10 +278,8 @@ class ListView extends Component {
                                             </View>
                                             :
                                             <ScrollView>
-                                                <FlatList
-                                                    onEndReachedThreshold={5}
-                                                    data={this.props.comments}
-                                                    renderItem={({item}) =>
+                                                {
+                                                    this.state.listComment.map((item, i) =>
                                                         <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
                                                             <View
                                                                 style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
@@ -304,16 +325,17 @@ class ListView extends Component {
                                                                     </Text>
                                                                 </View>
                                                                 </Body>
-                                                                <TouchableOpacity transparent>
-                                                                    <Icon name="fontawesome|heart-o"
-                                                                          color={color.icon}
-                                                                          size={size.iconBig}
-                                                                          style={part.paddingTop}
-                                                                    />
-                                                                </TouchableOpacity>
+                                                                {/*<TouchableOpacity transparent>*/}
+                                                                {/*<Icon name="fontawesome|heart-o"*/}
+                                                                {/*color={color.icon}*/}
+                                                                {/*size={size.iconBig}*/}
+                                                                {/*style={part.paddingTop}*/}
+                                                                {/*/>*/}
+                                                                {/*</TouchableOpacity>*/}
                                                             </View>
                                                         </CardItem>
-                                                    }/>
+                                                    )
+                                                }
                                             </ScrollView>
                                     }
                                 </View>
@@ -348,7 +370,7 @@ class ListView extends Component {
                                             </Item>
                                             </Body>
                                             <TouchableOpacity
-                                                // onPress={() => this.commentPost(this.props.product_id, this.props.token, this.state)}
+                                                 onPress={() => this.commentPost(this.props.product_id, this.props.token, this.state)}
                                             >
                                                 <Icon active name='fontawesome|comment-o'
                                                       size={size.iconBig}

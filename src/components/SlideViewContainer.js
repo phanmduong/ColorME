@@ -18,20 +18,10 @@ import {NavigationActions} from 'react-navigation'
 
 
 class SlideViewComponent extends Component {
-    constructor() {
-        super();
-        this.state = {
-            text: '',
-        }
-    }
-
     logout() {
-        this.props.logoutAction.logout()
+        this.props.logoutAction.logout();
         this.props.navigation.navigate('Login');
-
-
     }
-
     render() {
 
         return (
@@ -48,7 +38,7 @@ class SlideViewComponent extends Component {
                     <View style={part.tabInDrawer}>
                         <Item style={part.noBorder}>
                             <Left style={{alignItems: 'center'}}>
-                                <FastImage style={part.avatarUserNormal}
+                                <FastImage style={part.avatarUserInDrawer}
                                            source={{uri: this.props.user.avatar_url}}/>
                             </Left>
                             <Body style={{alignItems: 'flex-start'}}>
