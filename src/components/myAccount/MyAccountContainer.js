@@ -225,11 +225,11 @@ class MyAccountContainer extends Component {
 function mapStateToProps(state) {
     return {
         user: state.login.user,
-        isLoadingUserProfile: state.userInformation.isLoadingUserProfile,
-        progress: state.userInformation.progress,
-        isLoadingUserProgress: state.userInformation.isLoadingUserProgress,
-        products: state.userInformation.products,
-        isLoadingUserProducts: state.userInformation.isLoadingUserProducts,
+        isLoadingUserProfile: state.myAccountInformation.isLoadingUserProfile,
+        progress: state.myAccountInformation.progress,
+        isLoadingUserProgress: state.myAccountInformation.isLoadingUserProgress,
+        products: state.myAccountInformation.products,
+        isLoadingUserProducts: state.myAccountInformation.isLoadingUserProducts,
     }
 }
 

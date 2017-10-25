@@ -10,6 +10,7 @@ import getNotificationReducer from "./notificationReducer";
 import changeAvatarReducer from './changeAvatarReducer'
 import groupReducer from "./groupReducer";
 import reportReducer from "./reportReducer";
+import myAccountInformationReducer from './myAccountInformationReducer'
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
@@ -25,7 +26,7 @@ const rootReducer = combineReducers({
     changeAvatar                : changeAvatarReducer,
     group                       : groupReducer,
     report                      : reportReducer,
-
+    myAccountInformation        : myAccountInformationReducer
 
 });
 export default rootReducer;

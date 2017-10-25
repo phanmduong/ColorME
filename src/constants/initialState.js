@@ -48,6 +48,18 @@ export default {
         products: [],
         progress: [],
     },
+    myAccountInformation : {
+        isLoading: false,
+        isLoadingUserProfile: false,
+        isLoadingUserProducts: false,
+        isLoadingUserProgress: false,
+        errorUserProfile: false,
+        errorUserProducts: false,
+        errorUserProgress: false,
+        user:{},
+        products: [],
+        progress: [],
+    },
 
     search:{
         users:[],
