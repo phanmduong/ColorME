@@ -26,6 +26,8 @@ class ListView extends Component {
             like_counts: 0,
             product_id: '',
             listCommentInModal: [],
+            comment_content: '',
+            parent_id: 0,
         }
     }
 
@@ -76,11 +78,10 @@ class ListView extends Component {
         this.props.reportAction.reportPost(id, token);
     }
 
-    commentPost(product_id, token, value) {
-        this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
+    commentPost(product_id, token,value) {
+        this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token,value);
         let listCommentInModal = this.state.listCommentInModal;
         let {user} = this.props;
-        // let date = new Date();
         let arr = {
             content: value.comment_content,
             parent_id: 0,
@@ -92,8 +93,8 @@ class ListView extends Component {
             created_at: 'Vừa xong'
         }
         listCommentInModal.push(arr)
-        this.setState({listCommentInModal: listCommentInModal, comment_content: ''})
-
+        this.setState({listCommentInModal: listCommentInModal})
+    }
         render()
         {
             const {item, arrayLike, likeCount, colorIcon, likedIcon, user} = this.props;
@@ -386,7 +387,6 @@ class ListView extends Component {
                 </View>
             );
         }
-    }
 }
 
 
