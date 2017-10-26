@@ -62,6 +62,14 @@ export default function getNewFeedReducer(state = initialState.getNewFeed, actio
                 }
             }
         }
+        case types.CHANGE_THE_VIEW : {
+            return {
+                ...state,
+                ...{
+                    products : action.products
+                }
+            }
+        }
         default:
             return state;
     }

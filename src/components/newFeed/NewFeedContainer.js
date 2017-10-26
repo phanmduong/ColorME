@@ -78,32 +78,29 @@ class NewFeedContainer extends Component {
     }
 
     onValueChange(value: string) {
-        this.setState({
-            typeView: value,
-            listPost: [],
-        });
-        this.props.getNewFeedAction.getNewFeed(value, 1);
+           this.props.getNewFeedAction.changeTheView();
+           this.props.getNewFeedAction.getNewFeed(value, 1);
+        this.setState({listPost : [], typeView: value, arrayLike : [], likeCount : []})
     }
 
     viewList() {
         setTimeout(() => {
             this.setState({isLoadingList: false})
         }, 100);
-        this.setState({grid: false, isLoadingList: true,listPost : this.props.products});
+        this.setState({grid: false, isLoadingList: true, listPost: this.props.products});
     }
 
     viewGrid() {
         setTimeout(() => {
             this.setState({isLoadingList: false})
         }, 250);
-        this.setState({grid: true, isLoadingList: true, listPost : this.groupPosts(this.props.products)});
+        this.setState({grid: true, isLoadingList: true, listPost: this.groupPosts(this.props.products)});
     }
 
 // setup
     componentWillReceiveProps(nextProps) {
         this.isFirst = true;
         if ((nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading) || (nextProps.isRefreshing !== this.props.isRefreshing && !nextProps.isRefreshing)) {
-
             let arr = this.state.arrayLike;
             let listPost = this.state.listPost;
             let count = this.state.likeCount;
@@ -111,8 +108,8 @@ class NewFeedContainer extends Component {
             let item = false;
             let i = this.props.products.length;
             while (i < post.length) {
-                let key = {key : i};
-                let arr1 = Object.assign(post[i], key)
+                let key = {key: i};
+                let arr1 = Object.assign(post[i], key);
                 let likers = post[i].likers.filter((liker) => {
                     return liker.username === nextProps.user.username
                 });
@@ -142,7 +139,6 @@ class NewFeedContainer extends Component {
             this.setState({page_id: page_id});
             this.props.getNewFeedAction.getNewFeed(this.state.typeView, this.state.page_id);
         }
-
     }
 
     likePost(product_id, token, index) {
@@ -192,14 +188,14 @@ class NewFeedContainer extends Component {
         });
         let postsGrid = posts.filter(({value, key}) => key > 0);
         postsGrid = _.groupBy(postsGrid, ({element, key}) => {
-            return Math.floor((key-1) / 3);
+            return Math.floor((key - 1) / 3);
         });
         postsGrid = [posts[0], ..._.toArray(postsGrid)];
         return postsGrid;
     }
 
     render() {
-         return (
+        return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
                     barStyle="light-content"
@@ -298,7 +294,7 @@ class NewFeedContainer extends Component {
                                                         this.props.navigation.navigate('ThePostInNewFeed',
                                                             item.group
                                                                 ?
-                                                               {
+                                                                {
                                                                     product_id: item.id,
                                                                     group_name: item.group.name,
                                                                     group_link: item.group.link,
@@ -308,7 +304,7 @@ class NewFeedContainer extends Component {
                                                                     product_id: item.id,
                                                                 }
                                                         )}
-                                                    >
+                                                >
                                                     <FastImage
                                                         style={[part.imageInFeature]}
                                                         source={{uri: item.image_url}}
@@ -410,6 +406,7 @@ function mapStateToProps(state) {
         isRefreshing: state.getNewFeed.isRefreshing,
     }
 }
+
 function mapDispatchToProps(dispatch) {
     return {
         getNewFeedAction: bindActionCreators(getNewFeedAction, dispatch),

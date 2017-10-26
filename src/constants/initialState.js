@@ -21,7 +21,7 @@ export default {
         status : 0,
     },
     getNewFeed : {
-        products: [],
+        products : [],
         isLoading: false,
         error : false,
         result : false,
