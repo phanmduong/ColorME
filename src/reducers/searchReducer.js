@@ -39,6 +39,15 @@ export default function searchReducer(state = initialState.search, action) {
                     result: action.result,
                 }
             };
+        case types.CHANGE_VALUE_SEARCH : {
+            return {
+                ...state,
+                ...{
+                    users : action.users,
+                    products : action.products,
+                }
+            }
+        }
         default:
             return state;
     }

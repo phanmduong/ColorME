@@ -61,3 +61,10 @@ export function searchProducts(term, limit, page) {
             })
     }
 }
+export function changeValueSearch(){
+    return {
+        type : types.CHANGE_VALUE_SEARCH,
+        users : [],
+        products : [],
+    }
+}
