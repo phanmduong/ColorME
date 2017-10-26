@@ -38,6 +38,16 @@ export default function getFullInfoAboutOnePostReducer(state = initialState.getF
                     result: action.result,
                 }
             };
+        case types.GET_POST_LIKER_SUCCESS:
+            return {
+                ...state,
+                ...{
+                    isLoading: action.isLoading,
+                    error: action.error,
+                    likers: action.likers,
+                    result: action.result,
+                }
+            };
         case types.POST_COMMENT_SUCCESS:
             return {
                 ...state,

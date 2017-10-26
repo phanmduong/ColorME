@@ -28,6 +28,16 @@ export function getFullInfoAboutOnePostSuccess(response) {
     }
 }
 
+export function getPostLikerSuccess(response) {
+    return {
+        type: types.GET_POST_LIKER_SUCCESS,
+        isLoading: false,
+        error: false,
+        result: true,
+        likers: response.data.likers,
+    }
+}
+
 
 export function getCommentOnePostSuccess(response) {
     return {
@@ -83,6 +93,21 @@ export function getCommentOnePost(product_id) {
         inforAboutPostApi.getCommentOnePost(product_id)
             .then(function (response) {
                 dispatch(getCommentOnePostSuccess(response));
+            })
+            .catch(function (error) {
+                dispatch(getFullInfoAboutOnePostError(error));
+            })
+
+    }
+}
+
+export function getPostLiker(product_id) {
+    return (dispatch) => {
+        dispatch(beginGetFullInfoAboutOnePost());
+        inforAboutPostApi.getFullInfoAboutOnePostApi(product_id)
+            .then(function (response) {
+                dispatch(getPostLikerSuccess(response));
+                console.log(response.data.likers)
             })
             .catch(function (error) {
                 dispatch(getFullInfoAboutOnePostError(error));

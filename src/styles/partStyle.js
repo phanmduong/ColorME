@@ -6,8 +6,9 @@ import {wid, hei} from "./size";
 const part = StyleSheet.create({
     // NAV BAR
     navTop: {
+        paddingTop: 20,
+        height: 60,
         borderBottomWidth: 0,
-        shadowColor: 'transparent',
         backgroundColor: color.main,
         alignItems: 'center',
 

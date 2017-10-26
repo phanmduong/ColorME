@@ -29,6 +29,7 @@ export default {
     },
 
     getFullInfoAboutOnePost: {
+        likers:[],
         post:{},
         comments:[],
         isLoading: false,

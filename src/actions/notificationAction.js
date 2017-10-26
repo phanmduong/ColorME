@@ -1,5 +1,5 @@
 import * as types from '../constants/actionTypes';
-import * as notificaionApi from '../apis/notificationApi';
+import * as notificationApi from '../apis/notificationApi';
 
 export function beginGetNotification() {
     return{
@@ -25,7 +25,7 @@ export function getNotificationError() {
 export function getNotification(page_id, token) {
     return(dispatch) => {
         dispatch(beginGetNotification());
-        notificaionApi.getNotificationApi(page_id, token)
+        notificationApi.getNotificationApi(page_id, token)
             .then(function (response) {
                 dispatch(getNotificationSuccess(response));
             })

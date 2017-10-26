@@ -20,7 +20,6 @@ import notificationComponent from '../components/NotificationContainer';
 import AchievementsComponent from '../components/AchievementsContainer';
 import SlideViewComponent from '../components/SlideViewContainer'
 import InfoAboutPostContainer from '../components/InfoAboutPostContainer';
-import {Root} from "native-base";
 
 // USER SCREEN
 import UserContainer from '../components/user/UserContainer';
@@ -33,6 +32,8 @@ import MyAccountContainer from '../components/myAccount/MyAccountContainer';
 
 //GROUP
 import GroupContainer from '../components/group/GroupContainer';
+
+import PostLiker from '../components/newFeed/PostLiker';
 
 
 export const TabNavigatorBottomStyle = {
@@ -96,12 +97,16 @@ const UserInNewFeed = StackNavigator(
     }, StackNavigatorStyle
 );
 
+const PostLikerInModal = StackNavigator(
+    {
+        UserInNewFeed: {screen: PostLiker},
+    }, StackNavigatorStyle
+);
+
 const NewFeedStackNavigator = StackNavigator(
     {
-        NewFeedStack: {
-            screen: NewFeedContainer,
-            navigationOptions: {title: 'colorME', headerTintColor: color.navTitle,},
-        },
+        NewFeedStack: {screen: NewFeedContainer, navigationOptions: {title: 'colorME', headerTintColor: color.navTitle,},},
+        PostLiker: {screen: PostLikerInModal, StackNavigatorStyle},
         UserInNewFeed: {screen: UserInNewFeed, StackNavigatorStyle},
         ThePostInNewFeed: {screen: ThePostInNewFeed, navigationOptions: {tabBarVisible: false,}},
     },
