@@ -52,7 +52,7 @@ class SearchContainer extends Component {
                         getMoreUser={this.getMoreUser}
                         isLoading={this.props.isLoading}
                         txtSearch={this.state.txtSearch}
-                        loadingLoadMore={this.loadingLoadMore}
+                        // loadingLoadMore={this.loadingLoadMore}
                     />
                 );
             case 1 :
@@ -63,7 +63,7 @@ class SearchContainer extends Component {
                         getMoreProduct={this.getMoreProduct}
                         isLoading={this.props.isLoading}
                         txtSearch={this.state.txtSearch}
-                        loadingLoadMore={this.loadingLoadMore}
+                        // loadingLoadMore={this.loadingLoadMore}
                     />
                 );
         }

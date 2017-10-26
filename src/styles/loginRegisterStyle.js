@@ -142,5 +142,5 @@ const styles = StyleSheet.create({
         color: color.navTitle,
         paddingRight: 10,
     }
-})
+});
 export default styles
