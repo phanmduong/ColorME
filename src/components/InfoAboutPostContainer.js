@@ -290,14 +290,14 @@ class InfoAboutPostContainer extends Component {
                                             )
                                     }
                                 </CardItem>
-                                <CardItem style={part.cardHeader}>
+                                <CardItem style={[part.cardHeader, part.noPaddingTopBottom]}>
                                     <Item style={part.noBorder}>
                                         <Text style={part.titleInImage}>
                                             {post.title}
                                         </Text>
                                     </Item>
                                 </CardItem>
-                                <CardItem style={part.cardHeader}>
+                                <CardItem style={[part.cardHeader, part.noPaddingBottom]}>
                                     <Item style={part.noBorder}>
                                         {
                                             post.description
@@ -311,7 +311,7 @@ class InfoAboutPostContainer extends Component {
                                     </Item>
                                 </CardItem>
                                 <WebViewAutoHeight source={post.content ? post.content : ''}/>
-                                <CardItem footer>
+                                <CardItem footer style={part.noPaddingTopBottom}>
                                     <Left>
                                         <Button
                                             transparent style={[part.padding, {paddingLeft: 0}]}

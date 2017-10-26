@@ -343,7 +343,6 @@ class NewFeedContainer extends Component {
                                     }
 
                                 />)
-
                         )
                         :
                         (

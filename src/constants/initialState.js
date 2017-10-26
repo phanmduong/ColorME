@@ -70,9 +70,8 @@ export default {
         status : 0,
     },
     getCourse:{
-        courses:[],
+        courses: [],
         isLoading : false,
-        error : false,
     },
     getNotification:{
         notification:[],

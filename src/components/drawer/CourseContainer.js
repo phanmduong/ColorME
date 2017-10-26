@@ -5,25 +5,23 @@ import {
 
 import {
     Body, CardItem, Header, Container,
-    Left, Right, Spinner, Title
+    Left, Right, Spinner,
 } from 'native-base';
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color'
 import * as size from '../../styles/size';
-import * as getFullInfoAboutOnePostAction from '../../actions/inforAboutPostAction'
+import * as courseAction from '../../actions/courseAction';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux';
 import FastImage from 'react-native-fast-image';
-
-class PostLiker extends Component {
+class CourseContainer extends Component {
     componentWillMount() {
-        const {params} = this.props.navigation.state;
-        this.props.getFullInfoAboutOnePostAction.getPostLiker(params.product_id);
+        this.props.courseAction.getCourse(this.props.token);
     }
 
     render() {
-        const {likers, isLoading} = this.props;
+        const {courses, isLoading} = this.props;
         const {goBack} = this.props.navigation;
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
@@ -45,7 +43,7 @@ class PostLiker extends Component {
 
                     </Left>
                     <Body style={part.wrapperTextRight}>
-                        <Text style={part.titleNormalLight}>Người thích bài viết</Text>
+                        <Text style={part.titleNormalLight}>Đăng ký khóa học</Text>
                     </Body>
                 </Header>
                 {
@@ -64,7 +62,7 @@ class PostLiker extends Component {
                         :
                         <FlatList
                             showsVerticalScrollIndicator={false}
-                            data={likers}
+                            data={courses}
                             renderItem={({item}) =>
                                 <CardItem
                                     avatar
@@ -72,22 +70,14 @@ class PostLiker extends Component {
                                     <TouchableOpacity
                                         activeOpacity={0.8}
                                         style={{flex: 1}}
-                                        onPress={() => this.props.navigation.navigate('UserInPostLiker', {username: item.username})}
                                     >
                                         <Left>
                                             <FastImage
                                                 style={part.avatarUserNormal}
-                                                source={{uri: item.avatar_url}}/>
+                                                source={{uri: item.icon_url}}/>
                                             <Body style={part.noBorder}>
-                                            <Text style={part.titleSmallBlue}>{item.name}</Text>
-                                            <Text style={part.describeGray} note>{item.university}</Text>
+                                                <Text style={part.titleSmallBlue}>{item.name}</Text>
                                             </Body>
-                                            <TouchableOpacity style={part.iconFollow}>
-                                                <Icon
-                                                    name="ion|ios-person-add"
-                                                    size={25}
-                                                    color={color.navTitle}/>
-                                            </TouchableOpacity>
                                         </Left>
                                     </TouchableOpacity>
                                 </CardItem>
@@ -101,15 +91,16 @@ class PostLiker extends Component {
 
 function mapStateToProps(state) {
     return {
-        likers: state.getFullInfoAboutOnePost.likers,
-        isLoading: state.getFullInfoAboutOnePost.isLoading,
+        token: state.login.token,
+        courses: state.getCourse.courses,
+        isLoading: state.getCourse.isLoading,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getFullInfoAboutOnePostAction: bindActionCreators(getFullInfoAboutOnePostAction, dispatch),
+        courseAction: bindActionCreators(courseAction, dispatch),
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostLiker);
+export default connect(mapStateToProps, mapDispatchToProps)(CourseContainer);

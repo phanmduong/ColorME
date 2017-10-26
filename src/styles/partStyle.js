@@ -21,6 +21,7 @@ const part = StyleSheet.create({
         borderBottomWidth: 0.5,
     },
     itemTabInDrawer: {
+        flexDirection: 'row',
         paddingLeft: 10,
         paddingRight: 10,
         height: 40,
@@ -210,6 +211,9 @@ const part = StyleSheet.create({
         borderColor: color.none,
     },
 
+    wrapperTextRight:{
+        alignItems: 'flex-end',
+    },
 
     //IMAGE
 
@@ -301,6 +305,7 @@ const part = StyleSheet.create({
     titleNormalLight: {
         fontSize: size.title,
         color: color.navTitle,
+        fontWeight: '500'
     },
     describeDark: {
         fontSize: size.describe,
@@ -420,6 +425,16 @@ const part = StyleSheet.create({
     noPadding: {
         paddingLeft: 0,
         paddingRight: 0,
+    },
+    noPaddingTop: {
+        paddingTop: 0,
+    },
+    noPaddingTopBottom: {
+        paddingTop: 0,
+        paddingBottom: 0,
+    },
+    noPaddingBottom: {
+        paddingBottom: 0,
     },
 
     margin: {
