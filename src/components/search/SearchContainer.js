@@ -20,8 +20,8 @@ class SearchContainer extends Component {
             tab: 0,
             isLoadingSearch: false,
             txtSearch: '',
-            page_user: 1,
-            page_product: 1,
+            page_user: 2,
+            page_product: 2,
         }
          this.getMoreUser = this.getMoreUser.bind(this);
          this.getMoreProduct = this.getMoreProduct.bind(this);
@@ -73,6 +73,9 @@ class SearchContainer extends Component {
         this.props.searchAction.searchUsers(this.state.txtSearch, 30, 1);
         this.props.searchAction.searchProducts(this.state.txtSearch, 30, 1);
     }
+    changeSearch(){
+        this.props.searchAction.changeValueSearch();
+    }
 
     getMoreUser() {
         let page_user = this.state.page_user;
@@ -112,6 +115,7 @@ class SearchContainer extends Component {
 
         this.timeOut = setTimeout(function () {
             this.search();
+            this.changeSearch();
         }.bind(this), 500)
     }
 
