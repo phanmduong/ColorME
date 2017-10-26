@@ -18,7 +18,8 @@ import CodeIdentityContainer from '../components/loginRegister/CodeIdentityConta
 import NewFeedContainer from '../components/newFeed/NewFeedContainer';
 import notificationComponent from '../components/NotificationContainer';
 import AchievementsComponent from '../components/AchievementsContainer';
-import SlideViewComponent from '../components/SlideViewContainer'
+import SlideViewComponent from '../components/drawer/SlideViewContainer'
+import CourseContainer from '../components/drawer/CourseContainer'
 import InfoAboutPostContainer from '../components/InfoAboutPostContainer';
 
 // USER SCREEN
@@ -199,7 +200,8 @@ const Home = TabNavigator(
 
 const Drawer = DrawerNavigator(
     {
-        Home: {screen: Home}
+        Home: {screen: Home},
+        Course: {screen: CourseContainer}
     },
     {
         drawerWidth: size.wid * 3 / 4,

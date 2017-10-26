@@ -28,6 +28,7 @@ class ListView extends Component {
             listCommentInModal: [],
             comment_content: '',
             parent_id: 0,
+            lastPress: 0,
         }
     }
 
@@ -61,6 +62,10 @@ class ListView extends Component {
 
         })
     }
+
+
+
+
 
     openPostLiker(product_id){
         this.setCommentModalVisible(false);
@@ -142,18 +147,18 @@ class ListView extends Component {
                     style={part.card}
                     onPress={() =>
                         navigate('ThePostInNewFeed',
-                            item.group
-                                ?
-                                {
-                                    product_id: item.id,
-                                    group_name: item.group.name,
-                                    group_link: item.group.link,
-                                }
-                                :
-                                {
-                                    product_id: item.id,
-                                }
-                        )}>
+                        item.group
+                            ?
+                            {
+                                product_id: item.id,
+                                group_name: item.group.name,
+                                group_link: item.group.link,
+                            }
+                            :
+                            {
+                                product_id: item.id,
+                            }
+                    )}>
                     <View>
                         {
                             item.url.indexOf('.mp4') === -1

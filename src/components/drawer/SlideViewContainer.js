@@ -6,13 +6,13 @@ import {
     Container, Item,
     Left, Body, Right, ListItem
 } from 'native-base';
-import Icon from '../commons/Icon';
-import part from '../styles/partStyle';
-import * as size from '../styles/size';
-import * as color from '../styles/color';
+import Icon from '../../commons/Icon';
+import part from '../../styles/partStyle';
+import * as size from '../../styles/size';
+import * as color from '../../styles/color';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
-import * as logoutAction from '../actions/logoutAction'
+import * as logoutAction from '../../actions/logoutAction'
 import FastImage from 'react-native-fast-image'
 import {NavigationActions} from 'react-navigation'
 
@@ -70,18 +70,20 @@ class SlideViewComponent extends Component {
                         {/*</TouchableOpacity>*/}
                     {/*</Right>*/}
                 {/*</Item>*/}
-                {/*<Item style={[part.itemTabInDrawer]}>*/}
+                {/*<TouchableOpacity style={[part.itemTabInDrawer]}*/}
+                    {/*onPress={() => this.props.navigation.navigate('Course')}*/}
+                {/*>*/}
                     {/*<Left>*/}
                         {/*<Text style={part.describeDarkGray}>Đăng ký học</Text>*/}
                     {/*</Left>*/}
                     {/*<Right>*/}
-                        {/*<TouchableOpacity style={part.wrapperIcon}>*/}
+                        {/*<View style={part.wrapperIcon}>*/}
                             {/*<Icon name="fontawesome|graduation-cap"*/}
                                   {/*size={size.iconNormal}*/}
                                   {/*color={color.darkGray}/>*/}
-                        {/*</TouchableOpacity>*/}
+                        {/*</View>*/}
                     {/*</Right>*/}
-                {/*</Item>*/}
+                {/*</TouchableOpacity>*/}
                 {/*<Item style={[part.itemTabInDrawer]}>*/}
                     {/*<Left>*/}
                         {/*<Text style={part.describeDarkGray}>Đổi buổi học</Text>*/}
