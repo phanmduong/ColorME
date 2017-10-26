@@ -72,7 +72,7 @@ class PostLiker extends Component {
                                     <TouchableOpacity
                                         activeOpacity={0.8}
                                         style={{flex: 1}}
-                                        onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.username})}
+                                        onPress={() => this.props.navigation.navigate('UserInPostLiker', {username: item.username})}
                                     >
                                         <Left>
                                             <FastImage

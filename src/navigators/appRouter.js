@@ -100,6 +100,8 @@ const UserInNewFeed = StackNavigator(
 const PostLikerInModal = StackNavigator(
     {
         UserInNewFeed: {screen: PostLiker},
+        UserInPostLiker: {screen: UserContainer},
+
     }, StackNavigatorStyle
 );
 
