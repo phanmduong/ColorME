@@ -78,9 +78,9 @@ class NewFeedContainer extends Component {
     }
 
     onValueChange(value: string) {
-        this.props.getNewFeedAction.changeTheView();
-        this.props.getNewFeedAction.getNewFeed(value, 1);
-        this.setState({typeView: value, listPost : []})
+           this.props.getNewFeedAction.changeTheView();
+           this.props.getNewFeedAction.getNewFeed(value, 1);
+        this.setState({listPost : [], typeView: value, arrayLike : [], likeCount : []})
     }
 
     viewList() {
@@ -101,7 +101,6 @@ class NewFeedContainer extends Component {
     componentWillReceiveProps(nextProps) {
         this.isFirst = true;
         if ((nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading) || (nextProps.isRefreshing !== this.props.isRefreshing && !nextProps.isRefreshing)) {
-
             let arr = this.state.arrayLike;
             let listPost = this.state.listPost;
             let count = this.state.likeCount;
@@ -110,7 +109,7 @@ class NewFeedContainer extends Component {
             let i = this.props.products.length;
             while (i < post.length) {
                 let key = {key: i};
-                let arr1 = Object.assign(post[i], key)
+                let arr1 = Object.assign(post[i], key);
                 let likers = post[i].likers.filter((liker) => {
                     return liker.username === nextProps.user.username
                 });
