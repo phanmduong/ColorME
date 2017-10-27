@@ -93,7 +93,7 @@ class ListView extends Component {
     reportPost(id, token) {
         this.props.reportAction.reportPost(id, token);
         this.setState({
-           modalMenu: false,
+            modalMenu: false,
         });
     }
 
@@ -139,14 +139,7 @@ class ListView extends Component {
                         <Text
                             style={part.describeItalicDark}>{item.created_at}</Text>
                         </Body>
-                        {/*<TouchableOpacity transparent*/}
-                        {/**/}
-                        {/*>*/}
-                        {/*<Icon name="material|report"*/}
-                        {/*color={color.icon}*/}
-                        {/*size={size.icon}*/}
-                        {/*/>*/}
-                        {/*</TouchableOpacity>*/}
+
                         <TouchableOpacity
                             transparent
                             onPress={
@@ -184,7 +177,7 @@ class ListView extends Component {
                             item.url.indexOf('.mp4') === -1
                                 ?
                                 <FastImage
-                                    resizeMode={'contain'}
+                                    resizeMode={'cover'}
                                     source={{
                                         uri: item.image_url,
                                         headers: {Authorization: 'Đang tải..'},
@@ -447,12 +440,12 @@ class ListView extends Component {
                     >
                         <View style={[part.modalMenu, part.paddingLine]}>
                             <List>
-                                <ListItem style={part.noBorder}>
+                                <ListItem style={[part.noBorder, part.noPaddingTopBottom]}>
                                     <TouchableOpacity style={part.backgroundNone}>
                                         <Text style={part.titleMenuModal}>Đánh dấu là nổi bật</Text>
                                     </TouchableOpacity>
                                 </ListItem>
-                                <ListItem style={part.noBorder}>
+                                <ListItem style={[part.noBorder, part.noPaddingTopBottom]}>
                                     <TouchableOpacity
                                         style={part.backgroundNone}
                                         onPress={

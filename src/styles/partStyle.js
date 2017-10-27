@@ -112,19 +112,19 @@ const part = StyleSheet.create({
         height: hei * 0.7 - 90,
         backgroundColor: color.backGround
     },
-    wrapperStatusBar:{
+    wrapperStatusBar: {
         margin: -10,
         width: size.wid,
         height: 20,
         backgroundColor: color.main,
     },
-    wrapperRowCenter:{
+    wrapperRowCenter: {
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row'
     },
-    backgroundNone:{
-       backgroundColor: color.none,
+    backgroundNone: {
+        backgroundColor: color.none,
     },
     modalComment: {
         borderRadius: 10,
@@ -220,7 +220,7 @@ const part = StyleSheet.create({
         borderColor: color.none,
     },
 
-    wrapperTextRight:{
+    wrapperTextRight: {
         alignItems: 'flex-end',
     },
 
@@ -243,7 +243,7 @@ const part = StyleSheet.create({
     },
 
     image: {
-        height: size.hei * 0.9,
+        height: size.hei * 0.6,
         width: wid,
         flex: 1,
         position: 'relative',
@@ -318,7 +318,11 @@ const part = StyleSheet.create({
         color: color.navTitle,
         fontWeight: '500'
     },
-    titleMenuModal:{
+    titleMenuModal: {
+        paddingTop: 20,
+        paddingBottom: 20,
+        paddingLeft: 10,
+        paddingRight: 50,
         fontSize: 14,
         color: color.darkGray,
         fontWeight: '500'
@@ -385,7 +389,7 @@ const part = StyleSheet.create({
         color: color.gray,
         fontWeight: '600',
     },
-    textTitleFeature:{
+    textTitleFeature: {
         color: color.navTitle,
         fontSize: 23,
         fontWeight: 'bold',
@@ -399,6 +403,7 @@ const part = StyleSheet.create({
         backgroundColor: color.none,
         borderRadius: 5,
     },
+
 
     // PADDING
     padding: {
@@ -567,7 +572,7 @@ const part = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    wrapperTabBarUser:{
+    wrapperTabBarUser: {
         width: size.wid,
         height: 70,
         backgroundColor: color.none,
@@ -577,7 +582,7 @@ const part = StyleSheet.create({
         borderBottomWidth: 0.5,
         borderColor: color.icon,
     },
-    wrapperTextInTabBarUser:{
+    wrapperTextInTabBarUser: {
         flex: 1,
         height: 60,
         backgroundColor: color.none,
@@ -585,7 +590,7 @@ const part = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    wrapperTextNotLength:{
+    wrapperTextNotLength: {
         flex: 1,
         height: 55,
         backgroundColor: color.none,
