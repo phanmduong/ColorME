@@ -164,32 +164,6 @@ class UserContainer extends Component {
                                 </Text>
                                 </Body>
                             </Item>
-                            <Item style={part.noBorder}>
-                                <View style={[part.wrapperRowCenter, part.padding]}>
-                                    <Icon name="materialCommunity|book"
-                                          size={size.iconBig}
-                                          color={color.navTitle}
-                                          style={part.paddingIcon}
-                                    />
-                                    <Text style={part.describeGray}>{dataSideNav.project_count}</Text>
-                                </View>
-                                <View style={[part.wrapperRowCenter, part.padding]}>
-                                    <Icon name="fontawesome|heart"
-                                          size={size.iconBig}
-                                          color={color.navTitle}
-                                          style={part.paddingIcon}
-                                    />
-                                    <Text style={part.describeGray}>{dataSideNav.project_likes}</Text>
-                                </View>
-                                <View style={[part.wrapperRowCenter, part.padding]}>
-                                    <Icon name="entypo|eye"
-                                          size={size.iconBig}
-                                          color={color.navTitle}
-                                          style={part.paddingIcon}
-                                    />
-                                    <Text style={part.describeGray}>{dataSideNav.project_views}</Text>
-                                </View>
-                            </Item>
                         </View>
                     )}
 
