@@ -164,7 +164,7 @@ class ListView extends Component {
                             item.url.indexOf('.mp4') === -1
                                 ?
                                 <FastImage
-                                    resizeMode={'cover'}
+                                    resizeMode={'contain'}
                                     source={{
                                         uri: item.image_url,
                                         headers: {Authorization: 'Đang tải..'},
@@ -187,6 +187,37 @@ class ListView extends Component {
                 </TouchableOpacity>
                 {/*LIKE COMMENT VIEWS*/}
                 <CardItem style={part.cardButton}>
+                    <Left>
+                        <Button
+                            transparent style={part.paddingRight}
+                            onPress={arrayLike[item.key] ? () => this.props.unlikePost(item.id, this.props.token, item.key) : () => this.props.likePost(item.id, this.props.token, item.key)}
+                        >
+                            <Icon name={likedIcon} size={size.iconBig}
+                                  color={colorIcon}/>
+                            <Text
+                                style={[part.describeGray, part.paddingLeft]}>{likeCount[item.key]}</Text>
+                        </Button>
+                        <Button transparent style={part.paddingRight}
+                                onPress={
+                                    () => {
+                                        this.setState({product_id: item.id});
+                                        this.openCommentModal(item.id);
+                                    }
+                                }
+                        >
+                            <Icon name="fontawesome|comment-o" size={size.iconBig}
+                                  color={color.icon}/>
+                            <Text
+                                style={[part.describeGray, part.paddingLeft]}>{item.comments_count}</Text>
+                        </Button>
+                        <Button transparent style={part.paddingRight}>
+                            <Icon name="fontawesome|bookmark-o" size={size.iconBig}
+                                  color={color.icon}/>
+                            <Text
+                                style={[part.describeGray, part.paddingLeft]}>{item.views_count}</Text>
+                        </Button>
+                    </Left>
+                </CardItem><CardItem style={part.cardButton}>
                     <Left>
                         <Button
                             transparent style={part.paddingRight}

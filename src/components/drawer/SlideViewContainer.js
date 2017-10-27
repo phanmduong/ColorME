@@ -3,7 +3,7 @@ import {
     View, Text, TouchableOpacity, StatusBar, FlatList
 } from 'react-native';
 import {
-    Container, Item,
+    Container, Item, CardItem, Button,
     Left, Body, Right, ListItem
 } from 'native-base';
 import Icon from '../../commons/Icon';
@@ -64,12 +64,10 @@ class SlideViewComponent extends Component {
                             </TouchableOpacity>
                             </Body>
                         </Item>
-
                     </View>
                 </View>
-
                 <TouchableOpacity
-                    style={[part.itemTabInDrawer]}
+                    style={[part.itemTabInDrawer,part.marginTop]}
                     onPress={
                         isLoadingCourses
                             ?
@@ -78,16 +76,12 @@ class SlideViewComponent extends Component {
                             :
                             () => this.props.navigation.navigate('Courses', {courses: courses})}
                 >
-                    <Left>
-                        <Text style={part.describeDarkGray}>Đăng ký học</Text>
-                    </Left>
-                    <Right>
-                        <View style={part.wrapperIcon}>
-                            <Icon name="fontawesome|graduation-cap"
-                                  size={size.iconNormal}
-                                  color={color.darkGray}/>
-                        </View>
-                    </Right>
+                    <View style={[part.wrapperIcon]}>
+                        <Icon name="fontawesome|graduation-cap"
+                              size={size.iconNormal}
+                              color={color.darkGray}/>
+                    </View>
+                    <Text style={part.describeDarkGray}>Đăng ký học</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[part.itemTabInDrawer]}
@@ -99,16 +93,13 @@ class SlideViewComponent extends Component {
                             :
                             () => this.props.navigation.navigate('AttendGroup', {groups: sideNav.groups})}
                 >
-                    <Left>
-                        <Text style={part.describeDarkGray}>Nhóm tham gia</Text>
-                    </Left>
-                    <Right>
-                        <View style={part.wrapperIcon}>
-                            <Icon name="fontawesome|group"
-                                  size={size.iconNormal}
-                                  color={color.darkGray}/>
-                        </View>
-                    </Right>
+                    <View style={part.wrapperIcon}>
+                        <Icon name="fontawesome|group"
+                              size={size.iconNormal}
+                              color={color.darkGray}/>
+                    </View>
+                    <Text style={part.describeDarkGray}>Nhóm tham gia</Text>
+
                 </TouchableOpacity>
                 <FlatList
                     showsVerticalScrollIndicator={false}

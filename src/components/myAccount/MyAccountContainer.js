@@ -12,6 +12,7 @@ import parallaxStyle from '../../styles/parallaxStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
 import * as myAccountInformationAction from '../../actions/myAccountInformationAction';
+import * as sideNavAction from '../../actions/sideNavAction';
 import MyAccountInformation from './MyAccountInformation';
 import MyAccountProject from './MyAccountProject';
 import MyAccountProgress from './MyAccountProgress';
@@ -29,10 +30,13 @@ class MyAccountContainer extends Component {
     }
 
     componentWillMount() {
-        this.props.myAccountInformationAction.getUserProfile(this.props.user.username);
-        this.props.myAccountInformationAction.getUserProgress(this.props.user.username);
-        this.props.myAccountInformationAction.getUserProducts(this.props.user.username, 1, this.props.token);
+        const {user, token} = this.props;
+        this.props.sideNavAction.getSideNav(user.id);
+        this.props.myAccountInformationAction.getUserProfile(user.username);
+        this.props.myAccountInformationAction.getUserProgress(user.username);
+        this.props.myAccountInformationAction.getUserProducts(user.username, 1, token);
     }
+
     ViewProgress() {
         setTimeout(() => {
             this.setState({isLoading: false})
@@ -84,6 +88,7 @@ class MyAccountContainer extends Component {
 
     render() {
         const {goBack} = this.props.navigation;
+        const {sideNav} = this.props;
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
@@ -123,7 +128,7 @@ class MyAccountContainer extends Component {
 
                     renderForeground={() => (
                         <View key="parallax-header" style={parallaxStyle.parallaxHeader}>
-                            <Item style={{borderBottomWidth: 0,}}>
+                            <Item style={[part.noBorder, part.marginStatusBar]}>
                                 <Body>
                                 <Thumbnail style={part.marginBottom}
                                            circle large
@@ -136,9 +141,34 @@ class MyAccountContainer extends Component {
                                 </Text>
                                 </Body>
                             </Item>
+                            <Item style={part.noBorder}>
+                                <View style={[part.wrapperRowCenter, part.padding]}>
+                                    <Icon name="materialCommunity|book"
+                                          size={size.iconBig}
+                                          color={color.navTitle}
+                                          style={part.paddingIcon}
+                                    />
+                                    <Text style={part.describeGray}>{sideNav.project_count}</Text>
+                                </View>
+                                <View style={[part.wrapperRowCenter, part.padding]}>
+                                    <Icon name="fontawesome|heart"
+                                          size={size.iconBig}
+                                          color={color.navTitle}
+                                          style={part.paddingIcon}
+                                    />
+                                    <Text style={part.describeGray}>{sideNav.project_likes}</Text>
+                                </View>
+                                <View style={[part.wrapperRowCenter, part.padding]}>
+                                    <Icon name="entypo|eye"
+                                          size={size.iconBig}
+                                          color={color.navTitle}
+                                          style={part.paddingIcon}
+                                    />
+                                    <Text style={part.describeGray}>{sideNav.project_views}</Text>
+                                </View>
+                            </Item>
                         </View>
                     )}
-
                     renderStickyHeader={() => (
                         <View key="sticky-header" style={parallaxStyle.stickySection}>
                             <View style={part.iconInDrawerNav}>
@@ -152,7 +182,6 @@ class MyAccountContainer extends Component {
                             </View>
                         </View>
                     )}
-
                     renderFixedHeader={() => (
                         <View key="fixed-header" style={part.iconInDrawerNav}>
                             <Left style={{flexDirection: 'row', marginTop: 20,}}>
@@ -168,7 +197,6 @@ class MyAccountContainer extends Component {
                                 </TouchableOpacity>
                             </Left>
                         </View>
-
                     )}
                 >
                     <View style={part.wrapperTabBarUser}>
@@ -225,8 +253,9 @@ class MyAccountContainer extends Component {
 
 function mapStateToProps(state) {
     return {
-        token : state.login.token,
+        token: state.login.token,
         user: state.login.user,
+        sideNav: state.sideNav.data,
         isLoadingUserProfile: state.myAccountInformation.isLoadingUserProfile,
         progress: state.myAccountInformation.progress,
         isLoadingUserProgress: state.myAccountInformation.isLoadingUserProgress,
@@ -237,6 +266,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
+        sideNavAction: bindActionCreators(sideNavAction, dispatch),
         myAccountInformationAction: bindActionCreators(myAccountInformationAction, dispatch),
     }
 }

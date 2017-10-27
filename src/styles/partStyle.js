@@ -21,9 +21,8 @@ const part = StyleSheet.create({
         borderBottomWidth: 0.5,
     },
     itemTabInDrawer: {
+        alignItems: 'center',
         flexDirection: 'row',
-        paddingLeft: 10,
-        paddingRight: 10,
         height: 40,
         backgroundColor: color.backGround,
         borderBottomWidth: 0,
@@ -80,7 +79,7 @@ const part = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: 25,
-        width: 25,
+        width: 50,
     },
     wrapperDeadline: {
         marginLeft: 3,
@@ -118,6 +117,11 @@ const part = StyleSheet.create({
         width: size.wid,
         height: 20,
         backgroundColor: color.main,
+    },
+    wrapperRowCenter:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row'
     },
     backgroundNone:{
        backgroundColor: color.none,
@@ -234,11 +238,11 @@ const part = StyleSheet.create({
     },
 
     image: {
-        height: 400,
+        height: size.hei * 0.9,
         width: wid,
         flex: 1,
         position: 'relative',
-        backgroundColor: color.icon,
+        backgroundColor: color.backGround,
     },
     imageTopic: {
         margin: 3,
@@ -266,6 +270,8 @@ const part = StyleSheet.create({
     },
 
     imageInDrawer: {
+        width: wid * 3 / 4,
+        height: 180,
         opacity: 0.2,
         flex: 1,
         position: 'relative',

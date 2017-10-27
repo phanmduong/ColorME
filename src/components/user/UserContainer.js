@@ -132,8 +132,8 @@ class UserContainer extends Component {
 
                     renderForeground={() => (
                         <View key="parallax-header" style={parallaxStyle.parallaxHeader}>
-                            <Item style={{borderBottomWidth: 0,}}>
-                                <Body>
+                            <Item style={[part.noBorder, part.marginStatusBar]}>
+                            <Body>
                                 <Thumbnail style={part.marginBottom}
                                            circle large
                                            source={

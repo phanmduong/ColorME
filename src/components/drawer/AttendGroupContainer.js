@@ -37,7 +37,7 @@ class AttendGroupContainer extends Component {
 
                     </Left>
                     <Body style={part.wrapperTextRight}>
-                    <Text style={part.titleNormalLight}>Nhóm tham gia</Text>
+                        <Text style={part.titleNormalLight}>Nhóm tham gia</Text>
                     </Body>
                 </Header>
                 {
@@ -51,9 +51,7 @@ class AttendGroupContainer extends Component {
                             showsVerticalScrollIndicator={false}
                             data={params.groups}
                             renderItem={({item}) =>
-                                <CardItem
-                                    avatar
-                                    style={[part.backgroundNone, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
+                                <CardItem style={[part.noBorder, part.cardProgress, part.haveBorderBottom]}>
                                     <TouchableOpacity
                                         activeOpacity={0.8}
                                         style={{flex: 1}}
