@@ -20,6 +20,7 @@ import notificationComponent from '../components/NotificationContainer';
 import AchievementsComponent from '../components/AchievementsContainer';
 import SlideViewComponent from '../components/drawer/SlideViewContainer'
 import CourseContainer from '../components/drawer/CourseContainer'
+import AttendGroupContainer from '../components/drawer/AttendGroupContainer'
 import InfoAboutPostContainer from '../components/InfoAboutPostContainer';
 
 // USER SCREEN
@@ -119,7 +120,7 @@ const NewFeedStackNavigator = StackNavigator(
 const NotificationStackNavigator = StackNavigator(
     {
         NotificationStack: {screen: notificationComponent}
-    }, StackNavigatorStyle
+    },  StackNavigatorStyle
 );
 
 const SearchStackNavigator = StackNavigator(
@@ -201,7 +202,9 @@ const Home = TabNavigator(
 const Drawer = DrawerNavigator(
     {
         Home: {screen: Home},
-        Course: {screen: CourseContainer}
+        Course: {screen: CourseContainer},
+        AttendGroup: {screen: AttendGroupContainer},
+        GroupInDrawer: {screen: GroupContainer},
     },
     {
         drawerWidth: size.wid * 3 / 4,

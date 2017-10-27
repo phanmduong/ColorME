@@ -11,19 +11,23 @@ import part from '../../styles/partStyle';
 import * as size from '../../styles/size';
 import * as color from '../../styles/color';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux'
-import * as logoutAction from '../../actions/logoutAction'
-import FastImage from 'react-native-fast-image'
-import {NavigationActions} from 'react-navigation'
+import {bindActionCreators} from 'redux';
+import * as logoutAction from '../../actions/logoutAction';
+import * as sideNavAction from '../../actions/sideNavAction';
+import FastImage from 'react-native-fast-image';
 
 
 class SlideViewComponent extends Component {
+    componentWillMount(){
+        this.props.sideNavAction.getSideNav(this.props.user.id);
+    }
+
     logout() {
         this.props.logoutAction.logout();
         this.props.navigation.navigate('Login');
     }
     render() {
-
+        const {sideNav} = this.props;
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
@@ -58,18 +62,7 @@ class SlideViewComponent extends Component {
 
                     </View>
                 </View>
-                {/*<Item style={[part.itemTabInDrawer, {marginTop: 20}]}>*/}
-                    {/*<Left>*/}
-                        {/*<Text style={part.describeDarkGray}>Cài đặt</Text>*/}
-                    {/*</Left>*/}
-                    {/*<Right>*/}
-                        {/*<TouchableOpacity style={part.wrapperIcon}>*/}
-                            {/*<Icon name="ion|ios-settings"*/}
-                                  {/*size={size.iconNormal}*/}
-                                  {/*color={color.darkGray}/>*/}
-                        {/*</TouchableOpacity>*/}
-                    {/*</Right>*/}
-                {/*</Item>*/}
+
                 {/*<TouchableOpacity style={[part.itemTabInDrawer]}*/}
                     {/*onPress={() => this.props.navigation.navigate('Course')}*/}
                 {/*>*/}
@@ -84,42 +77,21 @@ class SlideViewComponent extends Component {
                         {/*</View>*/}
                     {/*</Right>*/}
                 {/*</TouchableOpacity>*/}
-                {/*<Item style={[part.itemTabInDrawer]}>*/}
-                    {/*<Left>*/}
-                        {/*<Text style={part.describeDarkGray}>Đổi buổi học</Text>*/}
-                    {/*</Left>*/}
-                    {/*<Right>*/}
-                        {/*<TouchableOpacity style={part.wrapperIcon}>*/}
-                            {/*<Icon name="materialCommunity|arrow-expand"*/}
-                                  {/*size={size.iconNormal}*/}
-                                  {/*color={color.darkGray}/>*/}
-                        {/*</TouchableOpacity>*/}
-                    {/*</Right>*/}
-                {/*</Item>*/}
-                {/*<Item style={[part.itemTabInDrawer]}>*/}
-                    {/*<Left>*/}
-                        {/*<Text style={part.describeDarkGray}>Lịch học</Text>*/}
-                    {/*</Left>*/}
-                    {/*<Right>*/}
-                        {/*<TouchableOpacity style={part.wrapperIcon}>*/}
-                            {/*<Icon name="fontawesome|calendar"*/}
-                                  {/*size={size.iconNormal}*/}
-                                  {/*color={color.darkGray}/>*/}
-                        {/*</TouchableOpacity>*/}
-                    {/*</Right>*/}
-                {/*</Item>*/}
-                {/*<Item style={[part.itemTabInDrawer]}>*/}
-                    {/*<Left>*/}
-                        {/*<Text style={part.describeDarkGray}>Thành tích</Text>*/}
-                    {/*</Left>*/}
-                    {/*<Right>*/}
-                        {/*<TouchableOpacity style={part.wrapperIcon}>*/}
-                            {/*<Icon name="materialCommunity|star-circle"*/}
-                                  {/*size={size.iconNormal}*/}
-                                  {/*color={color.darkGray}/>*/}
-                        {/*</TouchableOpacity>*/}
-                    {/*</Right>*/}
-                {/*</Item>*/}
+                <TouchableOpacity style={[part.itemTabInDrawer]}
+                    onPress={() => this.props.navigation.navigate('AttendGroup', {groups : sideNav.groups})}
+                >
+                    <Left>
+                        <Text style={part.describeDarkGray}>Nhóm tham gia</Text>
+                    </Left>
+                    <Right>
+                        <View style={part.wrapperIcon}>
+                            <Icon name="fontawesome|group"
+                                  size={size.iconNormal}
+                                  color={color.darkGray}/>
+                        </View>
+                    </Right>
+                </TouchableOpacity>
+
             </Container>
         );
     }
@@ -128,12 +100,14 @@ class SlideViewComponent extends Component {
 function mapStateToProps(state) {
     return {
         user: state.login.user,
+        sideNav: state.sideNav.data,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        logoutAction: bindActionCreators(logoutAction, dispatch)
+        logoutAction: bindActionCreators(logoutAction, dispatch),
+        sideNavAction: bindActionCreators(sideNavAction, dispatch)
     }
 }
 

@@ -37,21 +37,21 @@ class GroupContainer extends Component {
     ViewTopics() {
         setTimeout(() => {
             this.setState({isLoading: false})
-        }, 100);
+        }, 200);
         this.setState({tab: 0, isLoading: true})
     }
 
     ViewProducts() {
         setTimeout(() => {
             this.setState({isLoading: false})
-        }, 100);
+        }, 200);
         this.setState({tab: 1, isLoading: true})
     }
 
     ViewMembers() {
         setTimeout(() => {
             this.setState({isLoading: false})
-        }, 100);
+        }, 200);
         this.setState({tab: 2, isLoading: true})
     }
 
