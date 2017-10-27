@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import {
     Container, Card, CardItem, Item, Thumbnail, Input, Text,
-    Button, Left, Body, Right, ListItem, Spinner
+    Button, Left, Body, Right, ListItem, Spinner, List,
 } from 'native-base';
 import Video from 'react-native-video';
 import Icon from '../../commons/Icon';
@@ -22,7 +22,8 @@ class ListView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            modalVisible: false,
+            modalComment: false,
+            modalMenu: false,
             like_counts: 0,
             product_id: '',
             listCommentInModal: [],
@@ -45,17 +46,24 @@ class ListView extends Component {
 
     _onPanResponderGrant(event, gestureState) {
         if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
-            this.setState({modalVisible: false});
+            this.setState({
+                modalComment: false,
+                modalMenu: false,
+            });
         }
     }
 
-    setCommentModalVisible(visible) {
-        this.setState({modalVisible: visible});
+    setCommentModalComment(visible) {
+        this.setState({modalComment: visible});
+    }
+
+    setCommentModalMenu(visible) {
+        this.setState({modalMenu: visible});
     }
 
     openCommentModal(product_id) {
         this.props.getFullInfoAboutOnePostAction.getCommentOnePost(product_id);
-        this.setCommentModalVisible(true);
+        this.setCommentModalComment(true);
         this.setState({
             like_counts: this.props.item.likes_count,
             listCommentInModal: this.props.comments,
@@ -64,11 +72,8 @@ class ListView extends Component {
     }
 
 
-
-
-
-    openPostLiker(product_id){
-        this.setCommentModalVisible(false);
+    openPostLiker(product_id) {
+        this.setCommentModalComment(false);
         this.props.navigation.navigate('PostLiker', {product_id: product_id});
         console.log(product_id)
     }
@@ -87,6 +92,9 @@ class ListView extends Component {
 
     reportPost(id, token) {
         this.props.reportAction.reportPost(id, token);
+        this.setState({
+           modalMenu: false,
+        });
     }
 
     commentPost(product_id, token, value) {
@@ -131,12 +139,24 @@ class ListView extends Component {
                         <Text
                             style={part.describeItalicDark}>{item.created_at}</Text>
                         </Body>
-                        <TouchableOpacity transparent
-                                          onPress={() => this.alertReport()}
+                        {/*<TouchableOpacity transparent*/}
+                        {/**/}
+                        {/*>*/}
+                        {/*<Icon name="material|report"*/}
+                        {/*color={color.icon}*/}
+                        {/*size={size.icon}*/}
+                        {/*/>*/}
+                        {/*</TouchableOpacity>*/}
+                        <TouchableOpacity
+                            transparent
+                            onPress={
+                                () => this.setCommentModalMenu(true)
+                            }
                         >
-                            <Icon name="material|report"
+                            <Icon name="materialCommunity|dots-horizontal"
                                   color={color.icon}
                                   size={size.icon}
+                                  style={part.paddingRight}
                             />
                         </TouchableOpacity>
                     </Left>
@@ -147,18 +167,18 @@ class ListView extends Component {
                     style={part.card}
                     onPress={() =>
                         navigate('ThePostInNewFeed',
-                        item.group
-                            ?
-                            {
-                                product_id: item.id,
-                                group_name: item.group.name,
-                                group_link: item.group.link,
-                            }
-                            :
-                            {
-                                product_id: item.id,
-                            }
-                    )}>
+                            item.group
+                                ?
+                                {
+                                    product_id: item.id,
+                                    group_name: item.group.name,
+                                    group_link: item.group.link,
+                                }
+                                :
+                                {
+                                    product_id: item.id,
+                                }
+                        )}>
                     <View>
                         {
                             item.url.indexOf('.mp4') === -1
@@ -244,7 +264,7 @@ class ListView extends Component {
                     presentationStyle="overFullScreen"
                     animationType="fade"
                     transparent={true}
-                    visible={this.state.modalVisible}
+                    visible={this.state.modalComment}
                 >
                     <View
                         style={part.wrapperModalComment}
@@ -277,15 +297,15 @@ class ListView extends Component {
                                     <Right>
                                         <Button
                                             transparent
-                                            onPress={() => this.setCommentModalVisible(false)}
+                                            onPress={() => this.setCommentModalComment(false)}
                                         >
                                             <Icon name="evil|close" size={size.iconBig}
                                                   color={color.gray}/>
 
                                         </Button>
+
                                     </Right>
                                 </CardItem>
-
                                 <ScrollView style={part.wrapperCommentInModal}>
                                     {
                                         this.props.isLoadingComment
@@ -310,7 +330,7 @@ class ListView extends Component {
                                                                 <TouchableOpacity
                                                                     style={part.paddingTRB}
                                                                     onPress={() => {
-                                                                        this.setCommentModalVisible(false);
+                                                                        this.setCommentModalComment(false);
                                                                         navigate('UserInNewFeed', {username: item.commenter.username});
                                                                     }
                                                                     }
@@ -323,7 +343,7 @@ class ListView extends Component {
                                                                 <Body>
                                                                 <Text
                                                                     onPress={() => {
-                                                                        this.setCommentModalVisible(false);
+                                                                        this.setCommentModalComment(false);
                                                                         navigate('UserInNewFeed', {username: item.commenter.username});
                                                                     }
                                                                     }
@@ -412,6 +432,40 @@ class ListView extends Component {
                                     </CardItem>
                                 </KeyboardAvoidingView>
                             </View>
+                        </View>
+                    </View>
+                </Modal>
+                <Modal
+                    presentationStyle="overFullScreen"
+                    animationType="fade"
+                    transparent={true}
+                    visible={this.state.modalMenu}
+                >
+                    <View
+                        style={part.wrapperModalComment}
+                        {...this.panResponder.panHandlers}
+                    >
+                        <View style={[part.modalMenu, part.paddingLine]}>
+                            <List>
+                                <ListItem style={part.noBorder}>
+                                    <TouchableOpacity style={part.backgroundNone}>
+                                        <Text style={part.titleMenuModal}>Đánh dấu là nổi bật</Text>
+                                    </TouchableOpacity>
+                                </ListItem>
+                                <ListItem style={part.noBorder}>
+                                    <TouchableOpacity
+                                        style={part.backgroundNone}
+                                        onPress={
+                                            () => {
+                                                this.alertReport();
+                                            }
+                                        }
+                                    >
+                                        <Text style={part.titleMenuModal}>Báo cáo...</Text>
+                                    </TouchableOpacity>
+                                </ListItem>
+
+                            </List>
                         </View>
                     </View>
                 </Modal>

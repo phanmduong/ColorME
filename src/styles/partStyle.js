@@ -132,6 +132,11 @@ const part = StyleSheet.create({
         height: hei * 0.7,
         backgroundColor: color.backGround,
     },
+    modalMenu: {
+        borderRadius: 5,
+        width: wid * 0.7,
+        backgroundColor: color.backGround,
+    },
 
     deadlineProgress: {
         height: 10,
@@ -311,6 +316,11 @@ const part = StyleSheet.create({
     titleNormalLight: {
         fontSize: size.title,
         color: color.navTitle,
+        fontWeight: '500'
+    },
+    titleMenuModal:{
+        fontSize: 14,
+        color: color.darkGray,
         fontWeight: '500'
     },
     describeDark: {
