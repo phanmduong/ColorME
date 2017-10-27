@@ -27,18 +27,19 @@ export function getUserProfileSuccess(response) {
     return{
         type: types.GET_USER_PROFILE_SUCCESS,
         user: response.data.user,
+        id: response.data.user.id,
         isLoadingUserProfile: false,
         errorUserProfile: false,
 
     }
 }
+
 export function getUserProductsSuccess(response) {
     return{
         type: types.GET_USER_PRODUCTS_SUCCESS,
         products: response.data.products,
         isLoadingUserProducts: false,
         errorUserProducts: false,
-
     }
 }
 export function getUserProgressSuccess(response) {
@@ -112,3 +113,4 @@ export function getUserProducts(username, page_id, token) {
             })
     }
 }
+

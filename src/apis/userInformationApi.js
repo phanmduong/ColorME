@@ -17,3 +17,7 @@ export function getUserProgressApi(username) {
     return axios.get(url);
 }
 
+export function sideNavUserApi(id){
+    let url = env.API_COLORME + '/user/' + id + '/side-nav';
+    return axios.get(url);
+}

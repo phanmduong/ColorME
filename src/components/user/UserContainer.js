@@ -33,6 +33,7 @@ class UserContainer extends Component {
         this.props.userInformationAction.getUserProfile(params.username);
         this.props.userInformationAction.getUserProgress(params.username);
         this.props.userInformationAction.getUserProducts(params.username, 1, this.props.token);
+
     }
 
     ViewProgress() {
@@ -87,7 +88,7 @@ class UserContainer extends Component {
 
     render() {
         const {goBack} = this.props.navigation;
-        const {user, isLoadingUserProducts} = this.props;
+        const {user, isLoadingUserProducts, dataSideNav} = this.props;
         return (
             <Container style={part.wrapperContainer}>
                 <ParallaxScrollView
@@ -133,7 +134,7 @@ class UserContainer extends Component {
                     renderForeground={() => (
                         <View key="parallax-header" style={parallaxStyle.parallaxHeader}>
                             <Item style={[part.noBorder, part.marginStatusBar]}>
-                            <Body>
+                                <Body>
                                 <Thumbnail style={part.marginBottom}
                                            circle large
                                            source={
@@ -163,6 +164,32 @@ class UserContainer extends Component {
                                 </Text>
                                 </Body>
                             </Item>
+                            <Item style={part.noBorder}>
+                                <View style={[part.wrapperRowCenter, part.padding]}>
+                                    <Icon name="materialCommunity|book"
+                                          size={size.iconBig}
+                                          color={color.navTitle}
+                                          style={part.paddingIcon}
+                                    />
+                                    <Text style={part.describeGray}>{dataSideNav.project_count}</Text>
+                                </View>
+                                <View style={[part.wrapperRowCenter, part.padding]}>
+                                    <Icon name="fontawesome|heart"
+                                          size={size.iconBig}
+                                          color={color.navTitle}
+                                          style={part.paddingIcon}
+                                    />
+                                    <Text style={part.describeGray}>{dataSideNav.project_likes}</Text>
+                                </View>
+                                <View style={[part.wrapperRowCenter, part.padding]}>
+                                    <Icon name="entypo|eye"
+                                          size={size.iconBig}
+                                          color={color.navTitle}
+                                          style={part.paddingIcon}
+                                    />
+                                    <Text style={part.describeGray}>{dataSideNav.project_views}</Text>
+                                </View>
+                            </Item>
                         </View>
                     )}
 
@@ -171,9 +198,9 @@ class UserContainer extends Component {
                             <View style={part.iconInDrawerNav}>
                                 <Left style={{flexDirection: 'row', marginTop: 20,}}>
                                     <Body style={{left: 10}}>
-                                        <Text style={[part.titleNormalLight, part.paddingLine]}>
-                                            {this.props.user.name}
-                                        </Text>
+                                    <Text style={[part.titleNormalLight, part.paddingLine]}>
+                                        {this.props.user.name}
+                                    </Text>
                                     </Body>
                                 </Left>
                             </View>
@@ -259,7 +286,7 @@ function mapStateToProps(state) {
         isLoadingUserProducts: state.userInformation.isLoadingUserProducts,
         isLoadingUserProfile: state.userInformation.isLoadingUserProfile,
         token: state.login.token,
-        isLoading: state.changeAvatar.isLoading
+        isLoading: state.changeAvatar.isLoading,
     }
 }
 

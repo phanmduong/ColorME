@@ -27,7 +27,6 @@ export default function userInformationReducer(state = initialState.userInformat
                     errorUserProducts: action.errorUserProducts,
                 }
             };
-
         case types.GET_USER_PROFILE_SUCCESS:
             return {
                 ...state,
