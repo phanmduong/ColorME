@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    View, Text, TouchableOpacity, StatusBar
+    View, Text, TouchableOpacity, StatusBar, FlatList
 } from 'react-native';
 import {
     Container, Item,
@@ -19,17 +19,21 @@ import FastImage from 'react-native-fast-image';
 
 
 class SlideViewComponent extends Component {
-    componentWillMount(){
+    componentWillMount() {
         this.props.sideNavAction.getSideNav(this.props.user.id);
         this.props.courseAction.getCourse(this.props.token);
+        console.log(this.props.sideNav);
+        console.log(this.props.courses);
+
     }
 
     logout() {
         this.props.logoutAction.logout();
         this.props.navigation.navigate('Login');
     }
+
     render() {
-        const {sideNav, courses} = this.props;
+        const {sideNav, courses, isLoadingGroup, isLoadingCourses} = this.props;
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
@@ -40,7 +44,7 @@ class SlideViewComponent extends Component {
                         resizeMode={'cover'}
                         style={part.imageInDrawer}
                         source={{uri: this.props.user.avatar_url}}/>
-                   
+
                     <View style={part.tabInDrawer}>
                         <Item style={part.noBorder}>
                             <Left style={{alignItems: 'center'}}>
@@ -64,8 +68,15 @@ class SlideViewComponent extends Component {
                     </View>
                 </View>
 
-                <TouchableOpacity style={[part.itemTabInDrawer]}
-                    onPress={() => this.props.navigation.navigate('Courses', {courses: courses})}
+                <TouchableOpacity
+                    style={[part.itemTabInDrawer]}
+                    onPress={
+                        isLoadingCourses
+                            ?
+                            () => {
+                            }
+                            :
+                            () => this.props.navigation.navigate('Courses', {courses: courses})}
                 >
                     <Left>
                         <Text style={part.describeDarkGray}>Đăng ký học</Text>
@@ -78,8 +89,15 @@ class SlideViewComponent extends Component {
                         </View>
                     </Right>
                 </TouchableOpacity>
-                <TouchableOpacity style={[part.itemTabInDrawer]}
-                    onPress={() => this.props.navigation.navigate('AttendGroup', {groups : sideNav.groups})}
+                <TouchableOpacity
+                    style={[part.itemTabInDrawer]}
+                    onPress={
+                        isLoadingCourses
+                            ?
+                            () => {
+                            }
+                            :
+                            () => this.props.navigation.navigate('AttendGroup', {groups: sideNav.groups})}
                 >
                     <Left>
                         <Text style={part.describeDarkGray}>Nhóm tham gia</Text>
@@ -92,7 +110,13 @@ class SlideViewComponent extends Component {
                         </View>
                     </Right>
                 </TouchableOpacity>
-
+                <FlatList
+                    showsVerticalScrollIndicator={false}
+                    data={this.props.courses}
+                    renderItem={({item}) =>
+                        <Text>dk</Text>
+                    }
+                />
             </Container>
         );
     }
@@ -103,7 +127,9 @@ function mapStateToProps(state) {
         user: state.login.user,
         token: state.login.token,
         sideNav: state.sideNav.data,
-        courses : state.getCourse.courses,
+        courses: state.getCourse.courses,
+        isLoadingCourses: state.getCourse.isLoading,
+        isLoadingGroup: state.sideNav.isLoading,
     }
 }
 

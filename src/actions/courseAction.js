@@ -29,12 +29,9 @@ export function getCourse(token) {
         courseApi.getCourseApi(token)
             .then(function (response) {
                 dispatch(getCourseSuccess(response));
-                console.log(response.data)
             })
             .catch(function (error) {
                 dispatch(getCourseError(error));
-                console.log(error)
-
             });
     }
 }

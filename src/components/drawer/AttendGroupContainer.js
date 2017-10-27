@@ -40,29 +40,41 @@ class AttendGroupContainer extends Component {
                     <Text style={part.titleNormalLight}>Nhóm tham gia</Text>
                     </Body>
                 </Header>
-                <FlatList
-                    showsVerticalScrollIndicator={false}
-                    data={params.groups}
-                    renderItem={({item}) =>
-                        <CardItem
-                            avatar
-                            style={[part.backgroundNone, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
-                            <TouchableOpacity
-                                activeOpacity={0.8}
-                                style={{flex: 1}}
-                            >
-                                <Left>
-                                    <FastImage
-                                        style={part.avatarUserNormal}
-                                        source={{uri: item.icon_url}}/>
-                                    <Body style={part.noBorder}>
-                                    <Text style={part.titleSmallBlue}>{item.name}</Text>
-                                    </Body>
-                                </Left>
-                            </TouchableOpacity>
-                        </CardItem>
-                    }
-                />
+                {
+                    params.groups.length == 0
+                        ?
+                        <Body>
+                            <Text style={[part.padding, part.titleSmallDarkGrayBold]}>Bạn chưa tham gia nhóm nào.</Text>
+                        </Body>
+                        :
+                        <FlatList
+                            showsVerticalScrollIndicator={false}
+                            data={params.groups}
+                            renderItem={({item}) =>
+                                <CardItem
+                                    avatar
+                                    style={[part.backgroundNone, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
+                                    <TouchableOpacity
+                                        activeOpacity={0.8}
+                                        style={{flex: 1}}
+                                        onPress={() => navigate('GroupInDrawer', {group_link: `/group/${item.link}`})}
+                                    >
+                                        <Left>
+                                            <FastImage
+                                                style={part.avatarUserNormal}
+                                                source={{uri: item.avatar_url}}/>
+                                            <Body style={part.noBorder}>
+                                            <Text style={part.titleSmallBlue}>{item.name}</Text>
+                                            <Text style={part.titleSmallDarkGrayBold}>{item.mems_count} thành
+                                                viên</Text>
+                                            </Body>
+                                        </Left>
+                                    </TouchableOpacity>
+                                </CardItem>
+                            }
+                        />
+
+                }
             </Container>
         );
     }

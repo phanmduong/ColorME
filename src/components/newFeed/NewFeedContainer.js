@@ -278,7 +278,7 @@ class NewFeedContainer extends Component {
                                     data={this.state.listPost}
                                     refreshControl={
                                         <RefreshControl
-                                            refreshing={this.props.isRefreshing || this.props.isLoading}
+                                            refreshing={this.props.isRefreshing}
                                             onRefresh={() => {
                                                 this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1)
                                             }}
