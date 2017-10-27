@@ -10,6 +10,7 @@ import getNotificationReducer from "./notificationReducer";
 import changeAvatarReducer from './changeAvatarReducer'
 import groupReducer from "./groupReducer";
 import reportReducer from "./reportReducer";
+import sideNavReducer from "./sideNavReducer";
 import myAccountInformationReducer from './myAccountInformationReducer'
 import {combineReducers} from 'redux';
 
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
     changeAvatar                : changeAvatarReducer,
     group                       : groupReducer,
     report                      : reportReducer,
-    myAccountInformation        : myAccountInformationReducer
+    myAccountInformation        : myAccountInformationReducer,
+    sideNav                     : sideNavReducer,
 
 });
 export default rootReducer;

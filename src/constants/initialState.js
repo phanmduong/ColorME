@@ -105,4 +105,9 @@ export default {
         isLoading: false,
         reportPostResult: {},
     },
+
+    sideNav:{
+        data: {},
+        isLoading: false,
+    }
 }
