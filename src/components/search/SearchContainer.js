@@ -52,7 +52,7 @@ class SearchContainer extends Component {
                         getMoreUser={this.getMoreUser}
                         isLoading={this.props.isLoading}
                         txtSearch={this.state.txtSearch}
-                        // loadingLoadMore={this.loadingLoadMore}
+                        loadingLoadMore={this.loadingLoadMore}
                     />
                 );
             case 1 :
@@ -63,15 +63,15 @@ class SearchContainer extends Component {
                         getMoreProduct={this.getMoreProduct}
                         isLoading={this.props.isLoading}
                         txtSearch={this.state.txtSearch}
-                        // loadingLoadMore={this.loadingLoadMore}
+                        loadingLoadMore={this.loadingLoadMore}
                     />
                 );
         }
     }
 
     search() {
-        this.props.searchAction.searchUsers(this.state.txtSearch, 30, 1);
-        this.props.searchAction.searchProducts(this.state.txtSearch, 30, 1);
+        this.props.searchAction.searchUsers(this.state.txtSearch, 5, 1);
+        this.props.searchAction.searchProducts(this.state.txtSearch, 5, 1);
     }
     changeSearch(){
         this.props.searchAction.changeValueSearch();
@@ -81,14 +81,14 @@ class SearchContainer extends Component {
         let page_user = this.state.page_user;
         page_user += 1;
         this.setState({page_user: page_user});
-        this.props.searchAction.searchUsers(this.state.txtSearch, 30, this.state.page_user);
+        this.props.searchAction.searchUsers(this.state.txtSearch, 5, this.state.page_user);
     }
 
     getMoreProduct() {
         let page_product = this.state.page_product;
         page_product += 1;
         this.setState({page_product: page_product});
-        this.props.searchAction.searchProducts(this.state.txtSearch, 30, this.state.page_product);
+        this.props.searchAction.searchProducts(this.state.txtSearch, 5, this.state.page_product);
     }
     loadingLoadMore(){
         if(this.props.isLoading && (this.props.users.length > 0 || this.props.products.length > 0)){
@@ -114,8 +114,8 @@ class SearchContainer extends Component {
         }
 
         this.timeOut = setTimeout(function () {
-            this.search();
             this.changeSearch();
+            this.search();
         }.bind(this), 500)
     }
 
