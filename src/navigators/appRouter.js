@@ -202,7 +202,7 @@ const Home = TabNavigator(
 const Drawer = DrawerNavigator(
     {
         Home: {screen: Home},
-        Course: {screen: CourseContainer},
+        Courses: {screen: CourseContainer},
         AttendGroup: {screen: AttendGroupContainer},
         GroupInDrawer: {screen: GroupContainer},
     },

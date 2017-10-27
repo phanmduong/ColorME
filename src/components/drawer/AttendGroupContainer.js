@@ -50,15 +50,13 @@ class AttendGroupContainer extends Component {
                             <TouchableOpacity
                                 activeOpacity={0.8}
                                 style={{flex: 1}}
-                                onPress={() => navigate('GroupInDrawer', {group_link: `/group/${item.link}`})}
                             >
                                 <Left>
                                     <FastImage
                                         style={part.avatarUserNormal}
-                                        source={{uri: item.avatar_url}}/>
+                                        source={{uri: item.icon_url}}/>
                                     <Body style={part.noBorder}>
                                     <Text style={part.titleSmallBlue}>{item.name}</Text>
-                                    <Text style={part.titleSmallDarkGrayBold}>{item.mems_count} thành viên.</Text>
                                     </Body>
                                 </Left>
                             </TouchableOpacity>
