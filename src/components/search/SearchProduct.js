@@ -15,7 +15,7 @@ class searchProduct extends Component {
     }
 
     render() {
-        const {products, isLoading, txtSearch, getMoreProduct} = this.props;
+        const {products, isLoading, txtSearch} = this.props;
         return (
             <Container>
                 {
@@ -29,7 +29,7 @@ class searchProduct extends Component {
                             showsVerticalScrollIndicator={false}
                             onEndThreshold={5}
                             onEndReached={
-                                () => getMoreProduct
+                                () => this.props.getMoreProduct()
 
                             }
                             data={products}
@@ -95,7 +95,7 @@ class searchProduct extends Component {
                                     </Left>
                                 </CardItem>
                             }
-                            // ListFooterComponent = {this.props.loadingLoadMore}
+                             ListFooterComponent = {this.props.loadingLoadMore}
                         />
                 }
 
