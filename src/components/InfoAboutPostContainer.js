@@ -33,6 +33,7 @@ class InfoAboutPostContainer extends Component {
             parent_id: 0,
             comment_content: '',
             listComment: [],
+            likedComment: [],
         }
     }
 
@@ -44,7 +45,10 @@ class InfoAboutPostContainer extends Component {
 
     componentWillReceiveProps(nextProps) {
         let liked = this.state.liked;
+        let likedComment = this.state.likedComment;
         if (nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading && this.props.post !== nextProps.props) {
+            let comments = nextProps.comments;
+            let item = false;
             let post = nextProps.post;
             if (post && post.likers) {
                 let likers = post.likers.filter((liker) => {
@@ -57,12 +61,28 @@ class InfoAboutPostContainer extends Component {
                     liked = true;
                 }
             }
-        }
+            let i = this.props.comments.length;
+            while (i < nextProps.comments.length){
+                let likersComment = comments[i].likers.filter((liker) => {
+                    return liker.name == nextProps.user.name;
+                })
+                if (likersComment && likersComment.length == 0) {
+                    item = false;
+                }
+                else {
+                    item = true;
+                }
+                likedComment.push(item);
+                i++;
+            }
+            }
         this.setState({
             liked: liked,
             likeCount: nextProps.post.likes_count,
-            listComment: nextProps.comments
+            listComment: nextProps.comments,
+            likedComment : likedComment
         })
+        console.log(this.state.likedComment)
     }
 
     likePost(product_id, token) {
@@ -79,7 +99,7 @@ class InfoAboutPostContainer extends Component {
     unlikePost(product_id, token) {
         let liked = this.state.liked;
         let likeCount = this.state.likeCount;
-        if (liked == true) {
+        if (liked) {
             this.props.likePostAction.unlikePost(product_id, token);
             likeCount--;
             liked = !liked;
@@ -105,6 +125,12 @@ class InfoAboutPostContainer extends Component {
 
         listComment.push(arr)
         this.setState({listComment: listComment})
+    }
+    likeComment(product_id, user_id, index){
+        let likedComment = this.state.likedComment;
+        this.props.likePostAction.likeComment(product_id, user_id);
+        likedComment[index] = !likedComment[index];
+        this.setState({likedComment: likedComment})
     }
 
     render() {
@@ -338,7 +364,11 @@ class InfoAboutPostContainer extends Component {
                                     </Left>
                                 </CardItem>
                                     {
-                                        this.state.listComment.map((item, i) =>
+                                        this.state.listComment.map((item, i) => {
+                                            let {likedComment} = this.state;
+                                            let iconLikeComment =  likedComment[i] ? color.main : color.icon;
+                                            let likedIcon = likedComment[i] ? 'fontawesome|heart' : 'fontawesome|heart-o';
+                                            return(
                                             <CardItem key={i} style={[part.cardHeader, {paddingBottom: 0}]}>
                                                 <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
                                                     <TouchableOpacity
@@ -374,16 +404,16 @@ class InfoAboutPostContainer extends Component {
                                                         </Text>
                                                     </View>
                                                     </Body>
-                                                    {/*<TouchableOpacity transparent>*/}
-                                                    {/*<Icon name="fontawesome|heart-o"*/}
-                                                    {/*color={color.icon}*/}
-                                                    {/*size={size.iconBig}*/}
-                                                    {/*style={part.paddingRight}*/}
-                                                    {/*/>*/}
-                                                    {/*</TouchableOpacity>*/}
+                                                    <TouchableOpacity transparent onPress = {() => {this.likeComment(item.id, this.props.user.id, i)}} >
+                                                        <Icon name= {likedIcon}
+                                                              color={iconLikeComment}
+                                                              size={size.iconBig}
+                                                              style={part.paddingRight}
+                                                        />
+                                                    </TouchableOpacity>
                                                 </View>
                                             </CardItem>
-                                        )
+                                            )})
                                     }
                             </View>
                     }

@@ -10,3 +10,8 @@ export function unlikePost(product_id, token){
         likeApi.unlikePostApi(product_id, token)
     }
 }
+export function likeComment(comment_id, user_id) {
+    return function (){
+        likeApi.likeComment(comment_id, user_id)
+    }
+}

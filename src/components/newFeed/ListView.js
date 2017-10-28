@@ -15,6 +15,7 @@ import * as size from '../../styles/size';
 import FastImage from 'react-native-fast-image'
 import * as getFullInfoAboutOnePostAction from '../../actions/inforAboutPostAction'
 import * as reportAction from '../../actions/reportAction';
+import * as likePostAction from '../../actions/likePostAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
@@ -30,6 +31,7 @@ class ListView extends Component {
             comment_content: '',
             parent_id: 0,
             lastPress: 0,
+            likedComment : [],
         }
     }
 
@@ -41,7 +43,20 @@ class ListView extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({listCommentInModal: nextProps.comments})
+        let likedComment = this.state.likedComment;
+        let listComment = nextProps.comments;
+        let item = false;
+        let i = 0;
+        while(i < nextProps.comments.length) {
+            let likers = listComment[i].likers.filter((liker) => {
+                return liker.name == nextProps.user.name;
+            })
+            if(liker && likers.length == 0) {
+                item = false;
+            }else{item = true;}
+            likedComment.push(item);
+        }
+        this.setState({listCommentInModal: nextProps.comments, likedComment: likedComment});
     }
 
     _onPanResponderGrant(event, gestureState) {
@@ -67,10 +82,15 @@ class ListView extends Component {
         this.setState({
             like_counts: this.props.item.likes_count,
             listCommentInModal: this.props.comments,
-
         })
     }
 
+    likeComment(product_id, user_id, index){
+        let likedComment = this.state.likedComment;
+        this.props.likePostAction.likeComment(product_id, user_id);
+        likedComment[index] = !likedComment[index];
+        this.setState({likedComment: likedComment})
+    }
 
     openPostLiker(product_id) {
         this.setCommentModalComment(false);
@@ -322,7 +342,11 @@ class ListView extends Component {
                                             :
                                             <View>
                                                 {
-                                                    this.state.listCommentInModal.map((item, i) =>
+                                                    this.state.listCommentInModal.map((item, i) => {
+                                                        let {likedComment} = this.state;
+                                                        let iconLikeComment =  likedComment[i] ? color.main : color.icon;
+                                                        let likedIcon = likedComment[i] ? 'fontawesome|heart' : 'fontawesome|heart-o';
+                                                        return (
                                                         <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
                                                             <View
                                                                 style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
@@ -368,16 +392,18 @@ class ListView extends Component {
                                                                     </Text>
                                                                 </View>
                                                                 </Body>
-                                                                {/*<TouchableOpacity transparent>*/}
-                                                                {/*<Icon name="fontawesome|heart-o"*/}
-                                                                {/*color={color.icon}*/}
-                                                                {/*size={size.iconBig}*/}
-                                                                {/*style={part.paddingTop}*/}
-                                                                {/*/>*/}
-                                                                {/*</TouchableOpacity>*/}
+                                                                <TouchableOpacity transparent onPress={() => {
+                                                                    this.likeComment(item.id, this.props.user.id, i)
+                                                                }}>
+                                                                    <Icon name={likedIcon}
+                                                                          color={iconLikeComment}
+                                                                          size={size.iconBig}
+                                                                          style={part.paddingRight}
+                                                                    />
+                                                                </TouchableOpacity>
                                                             </View>
                                                         </CardItem>
-                                                    )}
+                                                        )})}
                                             </View>
                                     }
                                 </ScrollView>
@@ -490,6 +516,7 @@ function mapDispatchToProps(dispatch) {
     return {
         getFullInfoAboutOnePostAction: bindActionCreators(getFullInfoAboutOnePostAction, dispatch),
         reportAction: bindActionCreators(reportAction, dispatch),
+        likePostAction : bindActionCreators(likePostAction, dispatch)
     }
 }
 
