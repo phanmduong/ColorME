@@ -11,7 +11,6 @@ export default function getCourseReducer(state = initialState.getCourse, action)
                 }
             };
         case types.GET_COURSE_SUCCESS:
-            console.log(action.courses)
             return{
                 ...state,
                 ...{
@@ -30,7 +29,7 @@ export default function getCourseReducer(state = initialState.getCourse, action)
             return{
                 ...state,
                 ...{
-                    isLoadingCourseInformation: action.isLoading,
+                    isLoadingCourseInformation: action.isLoadingCourseInformation,
                 }
             };
         case types.GET_COURSE_INFORMATION_SUCCESS:
@@ -38,14 +37,14 @@ export default function getCourseReducer(state = initialState.getCourse, action)
                 ...state,
                 ...{
                     courseInformation: action.courseInformation,
-                    isLoadingCourseInformation: action.isLoading,
+                    isLoadingCourseInformation: action.isLoadingCourseInformation,
                 }
             };
         case types.GET_COURSE_INFORMATION_ERROR:
             return{
                 ...state,
                 ...{
-                    isLoadingCourseInformation: action.isLoading,
+                    isLoadingCourseInformation: action.isLoadingCourseInformation,
                 }
             };
         default:

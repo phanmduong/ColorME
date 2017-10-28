@@ -12,6 +12,7 @@ export function sideNavSuccess(response) {
     return{
         type: types.GET_SIDE_NAV_SUCCESS,
         data: response.data,
+        attendGroup: response.data.groups,
         isLoading: false,
     }
 }

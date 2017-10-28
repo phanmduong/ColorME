@@ -21,7 +21,6 @@ import FastImage from 'react-native-fast-image';
 class SlideViewComponent extends Component {
     componentWillMount() {
         this.props.sideNavAction.getSideNav(this.props.user.id);
-        this.props.courseAction.getCourse(this.props.token);
     }
 
     logout() {
@@ -72,7 +71,7 @@ class SlideViewComponent extends Component {
                             () => {
                             }
                             :
-                            () => this.props.navigation.navigate('CourseInDrawer', {courses: courses})}
+                            () => this.props.navigation.navigate('CourseInDrawer')}
                 >
                     <View style={[part.wrapperIcon]}>
                         <Icon name="fontawesome|graduation-cap"
@@ -89,7 +88,7 @@ class SlideViewComponent extends Component {
                             () => {
                             }
                             :
-                            () => this.props.navigation.navigate('AttendGroup', {groups: sideNav.groups})}
+                            () => this.props.navigation.navigate('AttendGroup')}
                 >
                     <View style={part.wrapperIcon}>
                         <Icon name="fontawesome|group"
@@ -109,8 +108,6 @@ function mapStateToProps(state) {
         user: state.login.user,
         token: state.login.token,
         sideNav: state.sideNav.data,
-        courses: state.getCourse.courses,
-        isLoadingCourses: state.getCourse.isLoading,
         isLoadingGroup: state.sideNav.isLoading,
     }
 }

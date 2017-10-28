@@ -109,6 +109,7 @@ export default {
     },
 
     sideNav:{
+        attendGroup:[],
         data: {},
         isLoading: false,
     }

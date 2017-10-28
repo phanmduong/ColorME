@@ -78,9 +78,12 @@ class NewFeedContainer extends Component {
     }
 
     onValueChange(value: string) {
+        setTimeout(() => {
+            this.setState({isLoadingList: false})
+        }, 1000);
         this.props.getNewFeedAction.changeTheView();
         this.props.getNewFeedAction.getNewFeed(value, 1);
-        this.setState({listPost: [], typeView: value, arrayLike: [], likeCount: []})
+        this.setState({listPost: [], typeView: value, arrayLike: [], likeCount: [], isLoadingList: true})
     }
 
     viewList() {
@@ -259,16 +262,18 @@ class NewFeedContainer extends Component {
                     </Item>
                 </View>
 
-
                 {
                     (this.state.grid)
                         ?
                         (
-                            this.state.isLoadingList ? (
-                                <View style={[part.wrapperContainer, {height: 30, marginBottom: -30}]}>
-                                    <Spinner color={color.gray}/>
-                                </View>
-                            ) : (
+                            this.state.isLoadingList
+                                ? (
+                                    <View style={[part.wrapperContainer, {height: 30, marginBottom: -30}]}>
+                                        <Spinner color={color.gray}/>
+                                    </View>
+                                ) : (
+                                this.state.listPost
+                                &&
                                 <FlatList
                                     showsVerticalScrollIndicator={false}
                                     onEndReachedThreshold={5}
@@ -346,55 +351,55 @@ class NewFeedContainer extends Component {
                         )
                         :
                         (
-                            this.state.isLoadingList ? (
-                                <View style={[part.wrapperContainer, {height: 30, marginBottom: -30}]}>
-                                    <Spinner color={color.gray}/>
-                                </View>
-                            ) : (
-                                <FlatList
-                                    showsVerticalScrollIndicator={false}
-                                    onEndReachedThreshold={5}
-                                    onEndReached={() => {
-                                    }}
-                                    data={this.state.listPost}
-                                    refreshControl={
-                                        <RefreshControl
-                                            refreshing={this.props.isRefreshing}
-                                            onRefresh={() => {
-                                                this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1);
-                                            }}
-                                        />
-                                    }
-                                    renderItem={({item}) => {
-                                        let {arrayLike, likeCount} = this.state;
-                                        let colorIcon = arrayLike[item.key] ? color.main : color.icon;
-                                        let likedIcon = arrayLike[item.key] ? 'fontawesome|heart' : 'fontawesome|heart-o';
-                                        let featureIcon = item.feature_id == 0 ? 'fontawesome|star-o' : 'fontawesome|star';
-                                        let colorFeatureIcon = item.feature_id == 0 ? color.icon : color.star;
-
-                                        console.log(item.feature_id)
-                                        return (
-                                            <ListView
-                                                token={this.props.token}
-                                                unlikePost={this.unlikePost}
-                                                likePost={this.likePost}
-                                                user={this.props.user}
-                                                navigation={this.props.navigation}
-                                                arrayLike={arrayLike}
-                                                likeCount={likeCount}
-                                                item={item}
-                                                colorIcon={colorIcon}
-                                                likedIcon={likedIcon}
-                                                featureIcon={featureIcon}
-                                                colorFeatureIcon={colorFeatureIcon}
+                            this.state.isLoadingList
+                                ? (
+                                    <View style={[part.wrapperContainer, {height: 30, marginBottom: -30}]}>
+                                        <Spinner color={color.gray}/>
+                                    </View>
+                                ) : (
+                                    <FlatList
+                                        showsVerticalScrollIndicator={false}
+                                        onEndReachedThreshold={5}
+                                        onEndReached={() => {
+                                        }}
+                                        data={this.state.listPost}
+                                        refreshControl={
+                                            <RefreshControl
+                                                refreshing={this.props.isRefreshing}
+                                                onRefresh={() => {
+                                                    this.props.getNewFeedAction.refreshNewFeed(this.state.typeView, 1);
+                                                }}
                                             />
-                                        )
-                                    }}
-                                    ListFooterComponent={
-                                        this.loadingLoadMore()
-                                    }
+                                        }
+                                        renderItem={({item}) => {
+                                            let {arrayLike, likeCount} = this.state;
+                                            let colorIcon = arrayLike[item.key] ? color.main : color.icon;
+                                            let likedIcon = arrayLike[item.key] ? 'fontawesome|heart' : 'fontawesome|heart-o';
+                                            let featureIcon = item.feature_id == 0 ? 'fontawesome|star-o' : 'fontawesome|star';
+                                            let colorFeatureIcon = item.feature_id == 0 ? color.icon : color.star;
 
-                                />)
+                                            return (
+                                                <ListView
+                                                    token={this.props.token}
+                                                    unlikePost={this.unlikePost}
+                                                    likePost={this.likePost}
+                                                    user={this.props.user}
+                                                    navigation={this.props.navigation}
+                                                    arrayLike={arrayLike}
+                                                    likeCount={likeCount}
+                                                    item={item}
+                                                    colorIcon={colorIcon}
+                                                    likedIcon={likedIcon}
+                                                    featureIcon={featureIcon}
+                                                    colorFeatureIcon={colorFeatureIcon}
+                                                />
+                                            )
+                                        }}
+                                        ListFooterComponent={
+                                            this.loadingLoadMore()
+                                        }
+
+                                    />)
                         )
 
                 }

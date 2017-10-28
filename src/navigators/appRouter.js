@@ -203,13 +203,23 @@ const Home = TabNavigator(
     TabNavigatorBottomStyle
 );
 
+const Course = StackNavigator(
+    {
+        CourseList: {screen: CourseContainer},
+        CourseInFormation: {screen: CourseInformation},
+    }, StackNavigatorStyle
+);
+const Group = StackNavigator(
+    {
+        AttendGroup: {screen: AttendGroupContainer},
+        GroupInDrawer: {screen: GroupContainer},
+    }, StackNavigatorStyle
+);
 const Drawer = DrawerNavigator(
     {
         Home: {screen: Home},
-        CourseInDrawer: {screen: CourseContainer},
-        CourseInFormation: {screen: CourseInformation},
-        AttendGroup: {screen: AttendGroupContainer},
-        GroupInDrawer: {screen: GroupContainer},
+        CourseInDrawer: {screen: Course},
+        AttendGroup: {screen: Group},
     },
     {
         drawerWidth: size.wid * 3 / 4,

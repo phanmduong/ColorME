@@ -16,6 +16,7 @@ export default function sideNavReducer(state = initialState.sideNav, action) {
                 ...{
                     isLoading: action.isLoading,
                     data: action.data,
+                    attendGroup: action.data.groups,
                 }
             };
         case types.GET_SIDE_NAV_ERROR:
