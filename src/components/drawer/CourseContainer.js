@@ -22,7 +22,6 @@ class CourseContainer extends Component {
                 <Header
                     style={part.navTop}
                     iosBarStyle='light-content'
-
                 >
                     <Left>
                         <TouchableOpacity
@@ -50,6 +49,7 @@ class CourseContainer extends Component {
                             <TouchableOpacity
                                 activeOpacity={0.8}
                                 style={{flex: 1}}
+                                onPress={() => navigate('CourseInFormation', {linkId: item.linkId})}
                             >
                                 <Left>
                                     <FastImage

@@ -63,6 +63,13 @@ const part = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: 'black'
     },
+    wrapperImageInCourseInformation: {
+        position: 'relative',
+        width: wid,
+        height: size.PARALLAX_HEADER_HEIGHT_COURSE_INFORMATION,
+        justifyContent: 'center',
+        backgroundColor: 'black'
+    },
     wrapperImageInDrawer: {
         width: wid * 3 / 4,
         height: 180,

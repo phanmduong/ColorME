@@ -71,7 +71,9 @@ export default {
     },
     getCourse:{
         courses: [],
+        courseInformation: {},
         isLoading : false,
+        isLoadingCourseInformation: false,
     },
     getNotification:{
         notification:[],

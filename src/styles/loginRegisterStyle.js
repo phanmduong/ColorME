@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     },
     textTitleInput: {
         fontFamily: 'Segoe UI',
-        fontSize: 14,
+        fontSize: 13,
         backgroundColor: color.none,
         paddingLeft: 25,
         marginTop: 25,

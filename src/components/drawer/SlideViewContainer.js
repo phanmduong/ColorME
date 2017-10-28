@@ -22,9 +22,6 @@ class SlideViewComponent extends Component {
     componentWillMount() {
         this.props.sideNavAction.getSideNav(this.props.user.id);
         this.props.courseAction.getCourse(this.props.token);
-        console.log(this.props.sideNav);
-        console.log(this.props.courses);
-
     }
 
     logout() {
@@ -34,6 +31,7 @@ class SlideViewComponent extends Component {
 
     render() {
         const {sideNav, courses, isLoadingGroup, isLoadingCourses} = this.props;
+        console.log(courses);
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
@@ -74,7 +72,7 @@ class SlideViewComponent extends Component {
                             () => {
                             }
                             :
-                            () => this.props.navigation.navigate('Courses', {courses: courses})}
+                            () => this.props.navigation.navigate('CourseInDrawer', {courses: courses})}
                 >
                     <View style={[part.wrapperIcon]}>
                         <Icon name="fontawesome|graduation-cap"
@@ -101,13 +99,6 @@ class SlideViewComponent extends Component {
                     <Text style={part.describeDarkGray}>Nhóm tham gia</Text>
 
                 </TouchableOpacity>
-                <FlatList
-                    showsVerticalScrollIndicator={false}
-                    data={this.props.courses}
-                    renderItem={({item}) =>
-                        <Text>dk</Text>
-                    }
-                />
             </Container>
         );
     }

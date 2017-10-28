@@ -17,9 +17,9 @@ import CodeIdentityContainer from '../components/loginRegister/CodeIdentityConta
 // MAIN SCREEN
 import NewFeedContainer from '../components/newFeed/NewFeedContainer';
 import notificationComponent from '../components/NotificationContainer';
-import AchievementsComponent from '../components/AchievementsContainer';
 import SlideViewComponent from '../components/drawer/SlideViewContainer'
 import CourseContainer from '../components/drawer/CourseContainer'
+import CourseInformation from '../components/drawer/CourseInformation'
 import AttendGroupContainer from '../components/drawer/AttendGroupContainer'
 import InfoAboutPostContainer from '../components/InfoAboutPostContainer';
 
@@ -63,6 +63,10 @@ const HomeStackStyle = {
             backgroundColor: color.main,
             borderBottomWidth: 0,
             height: 60,
+        },
+        headerTitleStyle: {
+            fontFamily: 'Segoe UI',
+            color: color.navTitle,
         },
         headerLeft: (
             <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
@@ -109,7 +113,7 @@ const PostLikerInModal = StackNavigator(
 
 const NewFeedStackNavigator = StackNavigator(
     {
-        NewFeedStack: {screen: NewFeedContainer, navigationOptions: {title: 'colorME', headerTintColor: color.navTitle,},},
+        NewFeedStack: {screen: NewFeedContainer, navigationOptions: {title: 'colorME'},},
         PostLiker: {screen: PostLikerInModal, StackNavigatorStyle},
         UserInNewFeed: {screen: UserInNewFeed, StackNavigatorStyle},
         ThePostInNewFeed: {screen: ThePostInNewFeed, navigationOptions: {tabBarVisible: false,}},
@@ -202,7 +206,8 @@ const Home = TabNavigator(
 const Drawer = DrawerNavigator(
     {
         Home: {screen: Home},
-        Courses: {screen: CourseContainer},
+        CourseInDrawer: {screen: CourseContainer},
+        CourseInFormation: {screen: CourseInformation},
         AttendGroup: {screen: AttendGroupContainer},
         GroupInDrawer: {screen: GroupContainer},
     },
