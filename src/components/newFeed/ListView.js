@@ -116,7 +116,7 @@ class ListView extends Component {
     }
 
     render() {
-        const {item, arrayLike, likeCount, colorIcon, likedIcon, user} = this.props;
+        const {item, arrayLike, likeCount, colorIcon, likedIcon, user, featureIcon, colorFeatureIcon} = this.props;
         const {navigate} = this.props.navigation;
         let colorCommentIcon = this.state.comment_content == '' ? color.icon : color.main;
         let commentIcon = this.state.comment_content == '' ? 'fontawesome|comment-o' : 'fontawesome|paper-plane';
@@ -230,6 +230,12 @@ class ListView extends Component {
                                 style={[part.describeGray, part.paddingLeft]}>{item.views_count}</Text>
                         </Button>
                     </Left>
+                    <Right>
+                        <Button transparent>
+                            <Icon name={featureIcon} size={size.iconBig}
+                                  color={colorFeatureIcon}/>
+                        </Button>
+                    </Right>
                 </CardItem>
                 <CardItem footer style={[part.cardFooter]}>
                     <View stle={part.textInImage}>

@@ -369,6 +369,10 @@ class NewFeedContainer extends Component {
                                         let {arrayLike, likeCount} = this.state;
                                         let colorIcon = arrayLike[item.key] ? color.main : color.icon;
                                         let likedIcon = arrayLike[item.key] ? 'fontawesome|heart' : 'fontawesome|heart-o';
+                                        let featureIcon = item.feature_id == 0 ? 'fontawesome|star-o' : 'fontawesome|star';
+                                        let colorFeatureIcon = item.feature_id == 0 ? color.icon : color.star;
+
+                                        console.log(item.feature_id)
                                         return (
                                             <ListView
                                                 token={this.props.token}
@@ -381,6 +385,8 @@ class NewFeedContainer extends Component {
                                                 item={item}
                                                 colorIcon={colorIcon}
                                                 likedIcon={likedIcon}
+                                                featureIcon={featureIcon}
+                                                colorFeatureIcon={colorFeatureIcon}
                                             />
                                         )
                                     }}
