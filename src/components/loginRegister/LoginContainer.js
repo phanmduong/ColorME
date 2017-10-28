@@ -49,7 +49,7 @@ componentWillMount(){
                     barStyle="light-content"
                 />
                 <View style={styles.wrapperColorME}>
-                    <Text style={styles.textColor}>Color</Text>
+                    <Text style={styles.textColor}>color</Text>
                     <Text style={styles.textME}>ME</Text>
                 </View>
                 <Container style={styles.midContainerLogin}>

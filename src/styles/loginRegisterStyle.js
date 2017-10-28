@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     textTitleInput: {
-        fontSize: 12,
+        fontFamily: 'Segoe UI',
+        fontSize: 14,
         backgroundColor: color.none,
         paddingLeft: 25,
         marginTop: 25,
@@ -96,6 +97,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(197, 0, 0, 1)',
     },
     textME: {
+        fontFamily: 'Segoe UI',
         backgroundColor: 'transparent',
         color: color.navTitle,
         fontSize: 100,
@@ -103,9 +105,10 @@ const styles = StyleSheet.create({
         lineHeight: (Platform.OS === 'ios') ? 100 : 70,
     },
     textColor: {
+        fontFamily: 'Segoe UI',
         backgroundColor: 'transparent',
         color: color.navTitle,
-        fontSize: 30,
+        fontSize: 35,
         fontWeight: (Platform.OS === 'ios') ? '700' : 'normal',
         marginLeft: 70
 
