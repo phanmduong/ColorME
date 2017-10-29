@@ -244,23 +244,3 @@ const Main = StackNavigator(
         Main: {screen: Main,}
     }, StackNavigatorStyle
 );
-
-class Router extends Component{
-    render() {
-        const {dispatch, nav} = this.props;
-        return (
-            <View style={{flex: 1}}>
-                <StatusBar
-                    barStyle="light-content"
-                />
-                <Start navigation={addNavigationHelpers({dispatch, state: nav})}/>
-            </View>
-        );
-    }
-}
-function mapStateToProps(state) {
-    return {
-        nav : state.nav
-    }
-}
-export default connect(mapStateToProps)(Router)
