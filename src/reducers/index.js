@@ -29,6 +29,5 @@ const rootReducer = combineReducers({
     report                      : reportReducer,
     myAccountInformation        : myAccountInformationReducer,
     sideNav                     : sideNavReducer,
-
 });
 export default rootReducer;

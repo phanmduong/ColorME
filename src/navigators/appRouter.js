@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
-    DrawerItems, TouchableOpacity
+    DrawerItems, TouchableOpacity,StatusBar,View
 } from 'react-native';
-import {TabNavigator, StackNavigator, DrawerNavigator} from 'react-navigation';
+import {TabNavigator, StackNavigator, DrawerNavigator,addNavigationHelpers} from 'react-navigation';
 import Icon from '../commons/Icon';
 import * as color from '../styles/color';
 import * as size from '../styles/size';
-
+import {connect} from 'react-redux'
 // LOGIN
 import LoginContainer from '../components/loginRegister/LoginContainer';
 import EmailIdentityContainer from '../components/loginRegister/EmailIdentityContainer'
@@ -237,20 +237,14 @@ const Main = StackNavigator(
         Drawer: {screen: Drawer}
     }, {headerMode: 'none'}
 );
-const Login = StackNavigator({
-        LoginContainer: {screen: LoginContainer,},
-        RegisterContainer: {screen: RegisterContainer,},
-        ResetPasswordContainer: {screen: ResetPasswordContainer,},
-        EmailIdentityContainer: {screen: EmailIdentityContainer,},
-        CodeIdentityContainer: {screen: CodeIdentityContainer,}
-    }, StackNavigatorStyle
-);
 
-const Start = StackNavigator(
+ export const Start = StackNavigator(
     {
-        Login: {screen: Login,},
+        Login: {screen: LoginContainer},
+        RegisterContainer: {screen: RegisterContainer,},
+        EmailIdentityContainer: {screen: EmailIdentityContainer,},
+        ResetPasswordContainer: {screen: ResetPasswordContainer,},
+        CodeIdentityContainer: {screen: CodeIdentityContainer,},
         Main: {screen: Main,}
     }, StackNavigatorStyle
 );
-
-export default Start;
