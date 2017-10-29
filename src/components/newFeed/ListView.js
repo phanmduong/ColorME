@@ -422,6 +422,7 @@ class ListView extends Component {
                                                 <Input
                                                     placeholder='Viết bình luận'
                                                     autoCorrect={false}
+                                                    returnKeyType={'send'}
                                                     placeholderTextColor={color.icon}
                                                     style={part.inputTheme01}
                                                     onChangeText={

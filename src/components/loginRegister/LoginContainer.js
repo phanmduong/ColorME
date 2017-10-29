@@ -65,6 +65,8 @@ componentWillMount(){
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
                                        color={color.darkGray}
+                                       keyboardType={'email-address'}
+                                       returnKeyType={'next'}
                                        autoCorrect={false}
                                        onChangeText={(email) => {
                                            this.updateData('email', email);
@@ -79,6 +81,7 @@ componentWillMount(){
                                 <Input style={part.inputTheme02}
                                        color={color.darkGray}
                                        secureTextEntry={true}
+                                       returnKeyType={'go'}
                                        onChangeText={(password) => {
                                            this.updateData('password', password)
                                        }}

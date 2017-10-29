@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {KeyboardAvoidingView, Text, TouchableOpacity, StatusBar, View} from 'react-native'
+import {KeyboardAvoidingView, Text, TouchableOpacity, StatusBar, View, Alert} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, Left} from 'native-base';
 import * as color from '../../styles/color';
@@ -14,7 +14,14 @@ export default class CodeIdentityContainer extends Component {
             code: ''
         }
     }
-
+    sendCode() {
+        if (this.state.code === '')
+        {
+            Alert.alert('Có lỗi xảy ra', 'Bạn chưa nhập mã xác nhận.');
+        } else {
+            this.props.navigation.navigate('ResetPasswordContainer')
+        }
+    }
     render() {
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
@@ -35,6 +42,7 @@ export default class CodeIdentityContainer extends Component {
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
                                        color={color.darkGray}
+                                       returnKeyType={'next'}
                                        autoCorrect={false}
                                        onChangeText={(code) => {
                                            this.setState({code});
@@ -49,7 +57,7 @@ export default class CodeIdentityContainer extends Component {
                                     block
                                     rounded
                                     style={styles.buttonRegister}
-                                    onPress={() => this.props.navigation.navigate('ResetPasswordContainer')}
+                                    onPress={() => this.sendCode()}
                                 >
                                     <Text style={styles.textButton}>Tao mật khẩu mới </Text>
 

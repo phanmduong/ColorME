@@ -16,7 +16,23 @@ export default class ResetPasswordContainer extends Component {
             confirm_password: ''
         }
     }
-
+    sendNewPassword() {
+        if (this.state.password === '')
+        {
+            Alert.alert('Có lỗi xảy ra', 'Bạn chưa nhập mật khẩu mới.');
+        }
+        else if (this.state.confirm_password === '')
+        {
+            Alert.alert('Có lỗi xảy ra', 'Bạn chưa nhập mật khẩu xác nhận.');
+        }
+        else if (this.state.password !== this.state.confirm_password)
+        {
+            Alert.alert('Có lỗi xảy ra', 'Mật khẩu xác nhận chưa đúng.');
+        }
+        else{
+            this.props.navigation.navigate('Login')
+        }
+    }
     render() {
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
@@ -35,6 +51,7 @@ export default class ResetPasswordContainer extends Component {
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
                                        color={color.darkGray}
+                                       returnKeyType={'next'}
                                        secureTextEntry={true}
                                        onChangeText={(password) => {
                                            this.setState({password});
@@ -48,6 +65,7 @@ export default class ResetPasswordContainer extends Component {
                                 <Input style={part.inputTheme02}
                                        color={color.darkGray}
                                        secureTextEntry={true}
+                                       returnKeyType={'go'}
                                        onChangeText={(confirm_password) => {
                                            this.setState({confirm_password})
                                        }}
@@ -60,7 +78,7 @@ export default class ResetPasswordContainer extends Component {
                                     block
                                     rounded
                                     style={styles.buttonRegister}
-                                    onPress={() => this.props.navigation.navigate('LoginContainer')}
+                                    onPress={() => this.sendNewPassword()}
                                 >
                                     <Text style={styles.textButton}>Xác nhận</Text>
                                 </TouchableOpacity>

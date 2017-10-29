@@ -28,7 +28,7 @@ class RegisterContainer extends Component {
     register(value) {
         if (this.state.email === '' || this.state.name === '' || this.state.username === '' || this.state.password === '')
         {
-            Alert.alert('Bạn chưa nhập đủ thông tin.');
+            Alert.alert('Có lỗi xảy ra','Bạn chưa nhập đủ thông tin.');
         } else {
             this.props.registerAction.registerUser(value);
         }
@@ -49,6 +49,8 @@ class RegisterContainer extends Component {
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
+                                       keyboardType={'email-address'}
+                                       returnKeyType={'next'}
                                        color={color.darkGray}
                                        autoCorrect={false}
                                        onChangeText={(email) => {
@@ -61,6 +63,8 @@ class RegisterContainer extends Component {
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
+                                       returnKeyType={'next'}
+                                       autoCorrect={false}
                                        color={color.darkGray}
                                        onChangeText={(name) => {
                                            this.setState({name : name})
@@ -73,6 +77,8 @@ class RegisterContainer extends Component {
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
                                        color={color.darkGray}
+                                       returnKeyType={'next'}
+                                       autoCorrect={false}
                                        onChangeText={(username) => {
                                            this.setState({username : username})
                                        }}
@@ -84,6 +90,7 @@ class RegisterContainer extends Component {
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
                                        color={color.darkGray}
+                                       returnKeyType={'send'}
                                        secureTextEntry={true}
                                        onChangeText={(password) => {
                                            this.setState({password : password})

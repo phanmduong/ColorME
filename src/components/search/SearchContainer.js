@@ -137,6 +137,7 @@ class SearchContainer extends Component {
                         placeholder="Nhập từ khóa"
                         placeholderTextColor={color.gray}
                         style={part.inputTheme02}
+                        returnKeyType={'search'}
                         onChangeText={(txtSearch) => {
                             this.searchHaveTimeout(txtSearch);
                         }}

@@ -15,7 +15,9 @@ export default class InputSearchCommon extends Component{
         return(
             <Item style={part.borderNone}>
                 <Input placeholder="Search"
+                       returnKeyType={'search'}
                        style={part.inputTheme01}
+
                 />
                 <TouchableOpacity>
                     <Icon name="search" style={part.padding} size={size.icon} color={color.gray}/>

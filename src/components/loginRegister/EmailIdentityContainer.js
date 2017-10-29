@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {KeyboardAvoidingView, Text, TouchableOpacity, StatusBar, View} from 'react-native'
+import {KeyboardAvoidingView, Text, TouchableOpacity, StatusBar, View, Alert} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, Left, Header, Button} from 'native-base';
 import * as color from '../../styles/color';
@@ -14,7 +14,14 @@ export default class EmailIdentityContainer extends Component {
             email: ''
         }
     }
-
+    sendEmail() {
+        if (this.state.email === '')
+        {
+            Alert.alert('Có lỗi xảy ra','Bạn chưa nhập địa chỉ email.');
+        } else {
+            this.props.navigation.navigate('CodeIdentityContainer')
+        }
+    }
     render() {
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
@@ -28,13 +35,15 @@ export default class EmailIdentityContainer extends Component {
                 </View>
                 <Container style={styles.midContainerLogin}>
                     <Container style={styles.contentForm}>
-                        <Text style={styles.text}>Vui lòng nhập lại mà bạn đã đăng kí với ColorMe. Chúng tôi gửi mã xác
-                            nhận email của
+                        <Text style={styles.text}>Vui lòng nhập lại email mà bạn đã đăng kí với ColorMe. Chúng tôi gửi mã xác
+                            nhận vào email của
                             bạn</Text>
                         <Text style={[styles.textTitleInput, {marginTop: 0}]}>EMAIL</Text>
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
+                                       keyboardType={'email-address'}
+                                       returnKeyType={'send'}
                                        color={color.darkGray}
                                        autoCorrect={false}
                                        onChangeText={(email) => {
@@ -49,7 +58,7 @@ export default class EmailIdentityContainer extends Component {
                                     block
                                     rounded
                                     style={styles.buttonRegister}
-                                    onPress={() => this.props.navigation.navigate('CodeIdentityContainer')}
+                                    onPress={() => this.sendEmail()}
                                 >
                                     <Text style={styles.textButton}>Gửi mã xác nhận </Text>
                                 </TouchableOpacity>
