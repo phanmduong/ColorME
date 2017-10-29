@@ -1,11 +1,20 @@
 import React, {Component} from 'react';
+import {Alert, KeyboardAvoidingView, Modal, PanResponder, ScrollView, TouchableOpacity, View} from 'react-native';
 import {
-    View, TouchableOpacity, Alert, Modal,
-    PanResponder, KeyboardAvoidingView, FlatList, ScrollView
-} from 'react-native';
-import {
-    Container, Card, CardItem, Item, Thumbnail, Input, Text,
-    Button, Left, Body, Right, ListItem, Spinner, List,
+    Body,
+    Button,
+    Card,
+    CardItem,
+    Container,
+    Input,
+    Item,
+    Left,
+    List,
+    ListItem,
+    Right,
+    Spinner,
+    Text,
+    Thumbnail,
 } from 'native-base';
 import Video from 'react-native-video';
 import Icon from '../../commons/Icon';
@@ -31,7 +40,8 @@ class ListView extends Component {
             comment_content: '',
             parent_id: 0,
             lastPress: 0,
-            likedComment : [],
+            likedComment: [],
+            idComment: 0,
         }
     }
 
@@ -44,20 +54,28 @@ class ListView extends Component {
 
     componentWillReceiveProps(nextProps) {
         let likedComment = this.state.likedComment;
-        let listComment = nextProps.comments;
-        let item = false;
-        let i = 0;
-        while(i < nextProps.comments.length) {
-            let likers = listComment[i].likers.filter((liker) => {
-                return liker.name == nextProps.user.name;
-            })
-            if(likers && likers.length == 0) {
-                item = false;
-            }else{item = true;}
-            likedComment.push(item);
-            i++;
+        if (nextProps.isLoadingComment !== this.props.isLoadingComment && this.props.statusPostComment !== nextProps.props || nextProps.idComment !== this.props.idComment) {
+            let listComment = nextProps.comments;
+            let item = false;
+            let i = this.props.comments.length;
+            while (i < nextProps.comments.length) {
+                let likers = listComment[i].likers.filter((liker) => {
+                    return liker.name == nextProps.user.name;
+                })
+                if (likers && likers.length == 0) {
+                    item = false;
+                } else {
+                    item = true;
+                }
+                likedComment.push(item);
+                i++;
+            }
+            this.setState({
+                listCommentInModal: nextProps.comments,
+                likedComment: likedComment,
+                idComment: nextProps.idComment
+            });
         }
-        this.setState({listCommentInModal: nextProps.comments, likedComment: likedComment});
     }
 
     _onPanResponderGrant(event, gestureState) {
@@ -86,7 +104,7 @@ class ListView extends Component {
         })
     }
 
-    likeComment(product_id, user_id, index){
+    likeComment(product_id, user_id, index) {
         let likedComment = this.state.likedComment;
         this.props.likePostAction.likeComment(product_id, user_id);
         likedComment[index] = !likedComment[index];
@@ -96,7 +114,6 @@ class ListView extends Component {
     openPostLiker(product_id) {
         this.setCommentModalComment(false);
         this.props.navigation.navigate('PostLiker', {product_id: product_id});
-        console.log(product_id)
     }
 
     alertReport() {
@@ -124,7 +141,7 @@ class ListView extends Component {
         let {user} = this.props;
         let arr = {
             content: value.comment_content,
-            id : this.props.idComment,
+            id: value.idComment,
             parent_id: 0,
             commenter: {
                 username: user.username,
@@ -134,13 +151,14 @@ class ListView extends Component {
             created_at: 'Vừa xong'
         };
         listCommentInModal.push(arr);
-        this.setState({listCommentInModal: listCommentInModal})
+        this.setState({listCommentInModal: listCommentInModal, comment_content: ''})
     }
-    deleteComment(product_id, token, index){
+
+    deleteComment(product_id, token, index) {
         let listComment = this.state.listCommentInModal;
         this.props.getFullInfoAboutOnePostAction.deleteComment(product_id, token);
         listComment.splice(index, 1);
-        this.setState({listCommentInModal : listComment})
+        this.setState({listCommentInModal: listComment})
     }
 
     render() {
@@ -354,82 +372,83 @@ class ListView extends Component {
                                                 {
                                                     this.state.listCommentInModal.map((item, i) => {
                                                         let {likedComment} = this.state;
-                                                        let iconLikeComment =  likedComment[i] ? color.main : color.icon;
+                                                        let iconLikeComment = likedComment[i] ? color.main : color.icon;
                                                         let likedIcon = likedComment[i] ? 'fontawesome|heart' : 'fontawesome|heart-o';
                                                         return (
-                                                        <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
-                                                            <View
-                                                                style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
-                                                                <TouchableOpacity
-                                                                    style={part.paddingTRB}
-                                                                    onPress={() => {
-                                                                        this.setCommentModalComment(false);
-                                                                        navigate('UserInNewFeed', {username: item.commenter.username});
-                                                                    }
-                                                                    }
+                                                            <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
+                                                                <View
+                                                                    style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
+                                                                    <TouchableOpacity
+                                                                        style={part.paddingTRB}
+                                                                        onPress={() => {
+                                                                            this.setCommentModalComment(false);
+                                                                            navigate('UserInNewFeed', {username: item.commenter.username});
+                                                                        }
+                                                                        }
 
-                                                                >
-                                                                    <FastImage
-                                                                        style={part.avatarUserSmall}
-                                                                        source={{uri: item.commenter.avatar_url}}/>
-                                                                </TouchableOpacity>
-                                                                <Body>
-                                                                <Text
-                                                                    onPress={() => {
-                                                                        this.setCommentModalComment(false);
-                                                                        navigate('UserInNewFeed', {username: item.commenter.username});
-                                                                    }
-                                                                    }
-                                                                    style={[part.titleSmallBlue, part.paddingTLB]}
-                                                                >
-                                                                    {item.commenter.name}
-                                                                </Text>
-                                                                <Text
-                                                                    style={[part.describeDarkGray, part.paddingLeft]}
-                                                                >
-                                                                    {item.content}
-                                                                </Text>
-                                                                <View style={{flexDirection: 'row'}}>
-                                                                    <Text
-                                                                        style={[part.describeLightGray, part.paddingTLB]}
                                                                     >
-                                                                        {item.created_at}
+                                                                        <FastImage
+                                                                            style={part.avatarUserSmall}
+                                                                            source={{uri: item.commenter.avatar_url}}/>
+                                                                    </TouchableOpacity>
+                                                                    <Body>
+                                                                    <Text
+                                                                        onPress={() => {
+                                                                            this.setCommentModalComment(false);
+                                                                            navigate('UserInNewFeed', {username: item.commenter.username});
+                                                                        }
+                                                                        }
+                                                                        style={[part.titleSmallBlue, part.paddingTLB]}
+                                                                    >
+                                                                        {item.commenter.name}
                                                                     </Text>
-                                                                    {/*<Text*/}
+                                                                    <Text
+                                                                        style={[part.describeDarkGray, part.paddingLeft]}
+                                                                    >
+                                                                        {item.content}
+                                                                    </Text>
+                                                                    <View style={{flexDirection: 'row'}}>
+                                                                        <Text
+                                                                            style={[part.describeLightGray, part.paddingTLB]}
+                                                                        >
+                                                                            {item.created_at}
+                                                                        </Text>
+                                                                        {/*<Text*/}
                                                                         {/*style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}*/}
-                                                                    {/*>*/}
+                                                                        {/*>*/}
                                                                         {/*Trả lời*/}
-                                                                    {/*</Text>*/}
+                                                                        {/*</Text>*/}
                                                                         {item.commenter.username === this.props.user.username ?
                                                                             (
                                                                                 <Text
                                                                                     style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
-                                                                                    onPress = {() => this.deleteComment(item.id, this.props.token, i)}
+                                                                                    onPress={() => this.deleteComment(item.id, this.props.token, i)}
                                                                                 >
                                                                                     Xoá
                                                                                 </Text>
                                                                             ) : (<TouchableOpacity/>)
                                                                         }
 
+                                                                    </View>
+                                                                    </Body>
+                                                                    <TouchableOpacity transparent onPress={() => {
+                                                                        this.likeComment(item.id, this.props.user.id, i)
+                                                                    }}>
+                                                                        <Icon name={likedIcon}
+                                                                              color={iconLikeComment}
+                                                                              size={size.iconBig}
+                                                                              style={part.paddingRight}
+                                                                        />
+                                                                    </TouchableOpacity>
                                                                 </View>
-                                                                </Body>
-                                                                <TouchableOpacity transparent onPress={() => {
-                                                                    this.likeComment(item.id, this.props.user.id, i)
-                                                                }}>
-                                                                    <Icon name={likedIcon}
-                                                                          color={iconLikeComment}
-                                                                          size={size.iconBig}
-                                                                          style={part.paddingRight}
-                                                                    />
-                                                                </TouchableOpacity>
-                                                            </View>
-                                                        </CardItem>
-                                                        )})}
+                                                            </CardItem>
+                                                        )
+                                                    })}
                                             </View>
                                     }
                                 </ScrollView>
                                 <KeyboardAvoidingView
-                                    behavior={'position'}
+                                    behavior={'padding'}
                                 >
                                     <CardItem style={part.cardBottomInModal}>
                                         <Left>
@@ -449,6 +468,7 @@ class ListView extends Component {
                                                             this.setState({comment_content: text})
                                                         }
                                                     }
+                                                    value={this.state.comment_content}
                                                 />
                                                 {/*<TouchableOpacity>*/}
                                                 {/*<Icon active name='fontawesome|camera-retro'*/}
@@ -531,7 +551,8 @@ function mapStateToProps(state) {
         reportPostResult: state.report.reportPostResult,
         comments: state.getFullInfoAboutOnePost.comments,
         isLoadingComment: state.getFullInfoAboutOnePost.isLoading,
-        idComment : state.getFullInfoAboutOnePost.idComment,
+        idComment: state.getFullInfoAboutOnePost.idComment,
+        statusPostComment: state.getFullInfoAboutOnePost.statusPostComment,
     }
 }
 
@@ -539,7 +560,7 @@ function mapDispatchToProps(dispatch) {
     return {
         getFullInfoAboutOnePostAction: bindActionCreators(getFullInfoAboutOnePostAction, dispatch),
         reportAction: bindActionCreators(reportAction, dispatch),
-        likePostAction : bindActionCreators(likePostAction, dispatch)
+        likePostAction: bindActionCreators(likePostAction, dispatch)
     }
 }
 
