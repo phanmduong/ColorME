@@ -397,11 +397,11 @@ class InfoAboutPostContainer extends Component {
                                                         >
                                                             {item.created_at}
                                                         </Text>
-                                                        <Text
-                                                            style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
-                                                        >
-                                                            Trả lời
-                                                        </Text>
+                                                        {/*<Text*/}
+                                                            {/*style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}*/}
+                                                        {/*>*/}
+                                                            {/*Trả lời*/}
+                                                        {/*</Text>*/}
                                                     </View>
                                                     </Body>
                                                     <TouchableOpacity transparent onPress = {() => {this.likeComment(item.id, this.props.user.id, i)}} >

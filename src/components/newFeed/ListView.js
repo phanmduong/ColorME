@@ -55,6 +55,7 @@ class ListView extends Component {
                 item = false;
             }else{item = true;}
             likedComment.push(item);
+            i++;
         }
         this.setState({listCommentInModal: nextProps.comments, likedComment: likedComment});
     }
