@@ -11,7 +11,6 @@ import part from '../../styles/partStyle';
 import FastImage from 'react-native-fast-image';
 
 class GridView extends Component {
-
     shouldComponentUpdate(nextProps){
         if (nextProps.post !== this.props.post){
             return true;

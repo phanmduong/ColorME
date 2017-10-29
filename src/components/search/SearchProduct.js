@@ -30,7 +30,6 @@ class searchProduct extends Component {
                             onEndThreshold={5}
                             onEndReached={
                                 () => this.props.getMoreProduct()
-
                             }
                             data={products}
                             renderItem={({item}) =>
@@ -95,7 +94,7 @@ class searchProduct extends Component {
                                     </Left>
                                 </CardItem>
                             }
-                             ListFooterComponent = {this.props.loadingLoadMore}
+                            ListFooterComponent = {this.props.loadingLoadMore}
                         />
                 }
 

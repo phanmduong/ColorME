@@ -51,7 +51,7 @@ class ListView extends Component {
             let likers = listComment[i].likers.filter((liker) => {
                 return liker.name == nextProps.user.name;
             })
-            if(liker && likers.length == 0) {
+            if(likers && likers.length == 0) {
                 item = false;
             }else{item = true;}
             likedComment.push(item);
@@ -157,7 +157,9 @@ class ListView extends Component {
                             {item.author.name}
                         </Text>
                         <Text
-                            style={part.describeItalicDark}>{item.created_at}</Text>
+                            style={part.describeItalicDark}>
+                            {item.created_at}
+                        </Text>
                         </Body>
 
                         <TouchableOpacity

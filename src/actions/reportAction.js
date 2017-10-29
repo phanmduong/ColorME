@@ -38,7 +38,6 @@ export function reportPost(id, token) {
                         {text: 'Xong'},
                     ],
                 )
-
             })
             .catch(function (error) {
                 dispatch(reportPostError(error));

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    View, Text, TouchableOpacity, StatusBar, FlatList
+    View, Text, TouchableOpacity, StatusBar,
 } from 'react-native';
 import {
     Container, Item, CardItem, Button,
@@ -29,8 +29,7 @@ class SlideViewComponent extends Component {
     }
 
     render() {
-        const {sideNav, courses, isLoadingGroup, isLoadingCourses} = this.props;
-        console.log(courses);
+        const {isLoadingCourses} = this.props;
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar

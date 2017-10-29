@@ -16,9 +16,10 @@ import CodeIdentityContainer from '../components/loginRegister/CodeIdentityConta
 
 // MAIN SCREEN
 import NewFeedContainer from '../components/newFeed/NewFeedContainer';
-import notificationComponent from '../components/NotificationContainer';
+import NotificationContainer from '../components/NotificationContainer';
 import SlideViewComponent from '../components/drawer/SlideViewContainer'
 import CourseContainer from '../components/drawer/CourseContainer'
+import LearnRegisterContainer from '../components/drawer/LearnRegisterContainer'
 import CourseInformation from '../components/drawer/CourseInformation'
 import AttendGroupContainer from '../components/drawer/AttendGroupContainer'
 import InfoAboutPostContainer from '../components/InfoAboutPostContainer';
@@ -123,7 +124,9 @@ const NewFeedStackNavigator = StackNavigator(
 
 const NotificationStackNavigator = StackNavigator(
     {
-        NotificationStack: {screen: notificationComponent}
+        NotificationStack: {screen: NotificationContainer},
+        UserInNotification: {screen: UserContainer},
+        ThePostInNotification: {screen: InfoAboutPostContainer, navigationOptions: {tabBarVisible: false}},
     },  StackNavigatorStyle
 );
 
@@ -143,18 +146,18 @@ const MyAccountStackNavigator = StackNavigator(
 
 const Home = TabNavigator(
     {
-        // Notification: {
-        //     screen: NotificationStackNavigator,
-        //     navigationOptions: {
-        //         tabBarIcon: ({tintColor}) => (
-        //             <Icon
-        //                 name="materialCommunity|bell" size={size.icon}
-        //                 color={tintColor}
-        //             />
-        //         ),
-        //     }
-        // },
-        //
+        Notification: {
+            screen: NotificationStackNavigator,
+            navigationOptions: {
+                tabBarIcon: ({tintColor}) => (
+                    <Icon
+                        name="materialCommunity|bell" size={size.icon}
+                        color={tintColor}
+                    />
+                ),
+            }
+        },
+
         // Achievement: {
         //     screen: AchievementsComponent,
         //     navigationOptions: {
@@ -207,6 +210,7 @@ const Course = StackNavigator(
     {
         CourseList: {screen: CourseContainer},
         CourseInFormation: {screen: CourseInformation},
+        LearnRegister: {screen: LearnRegisterContainer},
     }, StackNavigatorStyle
 );
 const Group = StackNavigator(

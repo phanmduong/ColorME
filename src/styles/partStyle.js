@@ -82,7 +82,7 @@ const part = StyleSheet.create({
         width: wid,
         height: hei / 3 + 3,
     },
-    wrapperIcon: {
+    wrapperIcon:{
         justifyContent: 'center',
         alignItems: 'center',
         height: 25,
@@ -94,6 +94,14 @@ const part = StyleSheet.create({
         height: 10,
         borderRadius: 5,
         backgroundColor: color.lightGray,
+    },
+    wrapperTextLoadMore:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 5,
+        width: wid,
+        height: 20,
+
     },
     wrapperNotResult: {
         paddingTop: 20,
@@ -125,6 +133,11 @@ const part = StyleSheet.create({
         height: 20,
         backgroundColor: color.main,
     },
+    wrapperStatusBarNoPadding: {
+        width: size.wid,
+        height: 20,
+        backgroundColor: color.main,
+    },
     wrapperRowCenter: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -132,6 +145,9 @@ const part = StyleSheet.create({
     },
     backgroundNone: {
         backgroundColor: color.none,
+    },
+    backgroundGray: {
+        backgroundColor: '#f2f2f2',
     },
     modalComment: {
         borderRadius: 10,
@@ -142,6 +158,11 @@ const part = StyleSheet.create({
     modalMenu: {
         borderRadius: 5,
         width: wid * 0.7,
+        backgroundColor: color.backGround,
+    },
+    modalRegister: {
+        borderRadius: 5,
+        width: wid * 0.9,
         backgroundColor: color.backGround,
     },
 
@@ -238,6 +259,10 @@ const part = StyleSheet.create({
         height: 50,
         borderRadius: 25,
     },
+    avatarUserNormalSquare: {
+        width: 50,
+        height: 50,
+    },
     avatarUserInDrawer: {
         width: size.wid / 4,
         height: size.wid / 4,
@@ -310,9 +335,21 @@ const part = StyleSheet.create({
         color: color.text,
         fontWeight: '700',
     },
+
     titleSmallDarkGrayBold: {
         fontSize: size.titleSmall,
         color: color.darkGray,
+        fontWeight: '700',
+    },
+
+    titleGrayThin: {
+        fontSize: size.titleNormal,
+        color: color.darkGray,
+        fontWeight: '500',
+    },
+    titleDarkBold: {
+        fontSize: size.titleNormal,
+        color: color.text,
         fontWeight: '700',
     },
     titleSmallBlue: {
@@ -323,7 +360,7 @@ const part = StyleSheet.create({
     titleNormalLight: {
         fontSize: size.title,
         color: color.navTitle,
-        fontWeight: '500'
+        fontWeight: '600'
     },
     titleMenuModal: {
         paddingTop: 20,
@@ -410,7 +447,31 @@ const part = StyleSheet.create({
         backgroundColor: color.none,
         borderRadius: 5,
     },
+    buttonAcceptFull: {
+        borderBottomRightRadius: 5,
+        borderBottomLeftRadius: 5,
+        height: 35,
+        backgroundColor: color.main,
 
+    },
+    buttonLeftRegisterMain:{
+        marginTop: 5,
+        backgroundColor: color.main,
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingRight: 10,
+        paddingLeft: 10,
+
+    },
+    buttonLeftRegisterGray:{
+        marginTop: 5,
+        backgroundColor: color.icon,
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingRight: 10,
+        paddingLeft: 10,
+
+    },
 
     // PADDING
     padding: {
@@ -473,6 +534,9 @@ const part = StyleSheet.create({
     },
     marginRight: {
         marginRight: 5,
+    },
+    marginRightFar: {
+        marginRight: 15,
     },
     marginLeft: {
         marginLeft: 5,

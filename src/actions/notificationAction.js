@@ -4,7 +4,7 @@ import * as notificationApi from '../apis/notificationApi';
 export function beginGetNotification() {
     return{
         type: types.BEGIN_GET_NOTIFICATION,
-        notification: [],
+        isLoading: true,
     }
 }
 
@@ -12,13 +12,15 @@ export function getNotificationSuccess(response) {
     return{
         type: types.GET_NOTIFICATION_SUCCESS,
         notification: response.data.notifications,
+        isLoading: false,
+
     }
 }
 
 export function getNotificationError() {
     return{
         type: types.GET_NOTIFICATION_ERROR,
-        notification: [],
+        isLoading: false,
     }
 }
 

@@ -75,7 +75,7 @@ class CourseContainer extends Component {
                                     >
                                         <Left>
                                             <FastImage
-                                                style={part.avatarUserNormal}
+                                                style={part.avatarUserNormalSquare}
                                                 source={{uri: item.icon_url}}/>
                                             <Body style={part.noBorder}>
                                             <Text style={part.titleSmallBlue}>{item.name}</Text>

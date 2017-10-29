@@ -119,7 +119,7 @@ class NewFeedContainer extends Component {
                 (likers.length == 0) ? item = false : item = true;
                 count.push(post[i].likes_count);
                 arr.push(item);
-                listPost.push(arr1)
+                listPost.push(arr1);
                 i++;
             }
             if (this.state.grid) {
@@ -261,7 +261,6 @@ class NewFeedContainer extends Component {
                         </Right>
                     </Item>
                 </View>
-
                 {
                     (this.state.grid)
                         ?

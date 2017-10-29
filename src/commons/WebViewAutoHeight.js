@@ -9,6 +9,7 @@ var script = `
 ;(function() {
 var wrapper = document.createElement("div");
 wrapper.id = "height-wrapper";
+
 while (document.body.firstChild) {
     wrapper.appendChild(document.body.firstChild);
 }
@@ -39,6 +40,31 @@ body, html, #height-wrapper {
     top: 0;
     left: 0;
     right: 0;
+}
+p{
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: sans-serif;
+}
+table, th, td{
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+p.wrapperImg{
+    padding-left: 0;
+    padding-right: 0;
+}
+table:{
+    margin: 10px;
+    padding: 10px;
+}
+iframe{
+    width: 100%;
+    height: 150px;
 }
 </style>
 <script>
@@ -71,7 +97,12 @@ class WebViewAutoHeight extends React.Component {
 
     render() {
         const {source, style, ...otherProps} = this.props;
-        const html = '<!DOCTYPE html><html><body>' + source.replace(/width: 100%px/g, 'width: 100%') + '</body></html>';
+        let sourceData = source.replace(/width: 100%px/g, 'width: 100%');
+        const html = '<!DOCTYPE html><html><body>'
+            +
+            sourceData.replace(/<p><img/g, '<p class="wrapperImg"><img')
+            +
+            '</body></html>';
 
 
         if (!html) {

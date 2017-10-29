@@ -22,7 +22,7 @@ class SearchContainer extends Component {
             txtSearch: '',
             page_user: 2,
             page_product: 2,
-        }
+        };
          this.getMoreUser = this.getMoreUser.bind(this);
          this.getMoreProduct = this.getMoreProduct.bind(this);
          this.loadingLoadMore = this.loadingLoadMore.bind(this);

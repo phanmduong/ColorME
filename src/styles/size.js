@@ -1,9 +1,11 @@
 import {Dimensions} from 'react-native';
 
 export const iconNormal         = 20;
+export const iconSmall          = 15;
 export const icon               = 25;
 export const iconBig            = 20;
 export const title              = 15;
+export const titleNormal        = 13;
 export const titleSmall         = 12;
 export const describe           = 12;
 export const describeSmall      = 12;

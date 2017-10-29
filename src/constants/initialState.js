@@ -70,9 +70,11 @@ export default {
         status : 0,
     },
     getCourse:{
+        message: '',
         courses: [],
         courseInformation: {},
         isLoading : false,
+        isLoadingLearnRegister: false,
         isLoadingCourseInformation: false,
     },
     getNotification:{

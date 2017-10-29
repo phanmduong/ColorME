@@ -117,7 +117,9 @@ class CourseInformation extends Component {
                             <WebViewAutoHeight source={courseInformation.detail ? courseInformation.detail : ''}/>
                         </ParallaxScrollView>
                 }
-                <Button full warning style={{backgroundColor: color.main}}>
+                <Button full style={{backgroundColor: color.main}}
+                    onPress={() => navigate('LearnRegister', {classes: courseInformation.classes})}
+                >
                     <Text style={part.titleNormalLight}>Đăng ký ngay</Text>
                 </Button>
             </Container>
