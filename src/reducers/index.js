@@ -1,6 +1,7 @@
 import getNewFeedReducer from './newFeedReducer';
 import userInformationReducer from './userInformationReducer';
 import loginReducer from './loginReducer';
+ import openMainAppReducer from './openMainAppReducer'
 import getFullInfoAboutOnePostReducer from './InfoAboutPostReducer';
 import searchReducer from './searchReducer';
 import getCourseReducer from './courseReducer';
@@ -29,6 +30,6 @@ const rootReducer = combineReducers({
     report                      : reportReducer,
     myAccountInformation        : myAccountInformationReducer,
     sideNav                     : sideNavReducer,
-
+    nav                         : openMainAppReducer,
 });
 export default rootReducer;

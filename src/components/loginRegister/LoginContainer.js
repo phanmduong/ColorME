@@ -10,7 +10,7 @@ import part from '../../styles/partStyle';
 import * as loginAction from '../../actions/loginActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
-
+import {NavigationActions} from'react-navigation'
 class LoginContainer extends Component {
     constructor(props) {
         super(props);
@@ -34,13 +34,19 @@ componentWillMount(){
         login[name] = value;
         this.props.loginAction.updateDataLogin(login);
     }
+    componentWillReceiveProps(nextProps){
+    if(nextProps.status == 200) {
+        const resetAction = NavigationActions.reset({
+            index: 0,
+            actions: [
+                NavigationActions.navigate({ routeName: 'Main'})
+            ]
+        })
+        this.props.navigation.dispatch(resetAction)
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.status === 200) {
-            this.props.navigation.navigate('Main');
-        }
-        }
 
+    }
+    }
     render() {
         // const opacity = this.state.fade;
         return (

@@ -1,8 +1,6 @@
 import * as types from '../constants/actionTypes';
 import {AsyncStorage, Alert} from 'react-native'
 import * as loginApi from '../apis/loginApi';
-import axios from 'axios';
-
 export function beginLogin() {
     return {
         type: types.BEGIN_LOGIN,
@@ -11,7 +9,11 @@ export function beginLogin() {
         token: undefined,
     }
 }
-
+export function openMainApp() {
+    return {
+        type: types.LOGIN,
+    }
+}
 export function loginUser(login) {
     return function (dispatch) {
         dispatch(beginLogin());
