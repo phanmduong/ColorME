@@ -52,7 +52,8 @@ export default function getFullInfoAboutOnePostReducer(state = initialState.getF
             return {
                 ...state,
                 ...{
-                    statusPostComment: action.statusPostComment
+                    statusPostComment: action.statusPostComment,
+                    idComment : action.idComment,
                 }
             };
         case types.GET_FULL_INFO_ABOUT_ONE_POST_ERROR:

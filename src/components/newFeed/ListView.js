@@ -124,6 +124,7 @@ class ListView extends Component {
         let {user} = this.props;
         let arr = {
             content: value.comment_content,
+            id : this.props.idComment,
             parent_id: 0,
             commenter: {
                 username: user.username,
@@ -134,6 +135,12 @@ class ListView extends Component {
         };
         listCommentInModal.push(arr);
         this.setState({listCommentInModal: listCommentInModal})
+    }
+    deleteComment(product_id, token, index){
+        let listComment = this.state.listCommentInModal;
+        this.props.getFullInfoAboutOnePostAction.deleteComment(product_id, token);
+        listComment.splice(index, 1);
+        this.setState({listCommentInModal : listComment})
     }
 
     render() {
@@ -388,11 +395,22 @@ class ListView extends Component {
                                                                     >
                                                                         {item.created_at}
                                                                     </Text>
-                                                                    <Text
-                                                                        style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
-                                                                    >
-                                                                        Trả lời
-                                                                    </Text>
+                                                                    {/*<Text*/}
+                                                                        {/*style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}*/}
+                                                                    {/*>*/}
+                                                                        {/*Trả lời*/}
+                                                                    {/*</Text>*/}
+                                                                        {item.commenter.username === this.props.user.username ?
+                                                                            (
+                                                                                <Text
+                                                                                    style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                                                    onPress = {() => this.deleteComment(item.id, this.props.token, i)}
+                                                                                >
+                                                                                    Xoá
+                                                                                </Text>
+                                                                            ) : (<TouchableOpacity/>)
+                                                                        }
+
                                                                 </View>
                                                                 </Body>
                                                                 <TouchableOpacity transparent onPress={() => {
@@ -513,6 +531,7 @@ function mapStateToProps(state) {
         reportPostResult: state.report.reportPostResult,
         comments: state.getFullInfoAboutOnePost.comments,
         isLoadingComment: state.getFullInfoAboutOnePost.isLoading,
+        idComment : state.getFullInfoAboutOnePost.idComment,
     }
 }
 

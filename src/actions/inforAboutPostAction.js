@@ -49,11 +49,11 @@ export function getCommentOnePostSuccess(response) {
     }
 }
 
-export function postCommentSuccess() {
+export function postCommentSuccess(response) {
     return {
         type: types.POST_COMMENT_SUCCESS,
         statusPostComment: 1,
-
+        idComment : response.data.id,
     }
 }
 
@@ -122,11 +122,14 @@ export function postCommentOnePost(product_id, token, value) {
         inforAboutPostApi.postCommentOnePostApi(product_id, token, value)
             .then(function (response) {
                 dispatch(postCommentSuccess(response));
-                console.log(response);
             })
             .catch(function (error) {
                 dispatch(postCommentError(error));
             })
-
+    }
+}
+export function deleteComment(product_id, token){
+    return function (){
+        inforAboutPostApi.deleteCommentApi(product_id, token);
     }
 }

@@ -114,6 +114,7 @@ class InfoAboutPostContainer extends Component {
         // let date = new Date();
         let arr = {
             content: value.comment_content,
+            id : this.props.idComment,
             parent_id: 0,
             commenter: {
                 username: user.username,
@@ -131,6 +132,12 @@ class InfoAboutPostContainer extends Component {
         this.props.likePostAction.likeComment(product_id, user_id);
         likedComment[index] = !likedComment[index];
         this.setState({likedComment: likedComment})
+    }
+    deleteComment(product_id, token, index){
+        let listComment = this.state.listComment;
+        this.props.getFullInfoAboutOnePostAction.deleteComment(product_id, token);
+        listComment.splice(index, 1);
+        this.setState({listComment : listComment})
     }
 
     render() {
@@ -402,6 +409,21 @@ class InfoAboutPostContainer extends Component {
                                                         {/*>*/}
                                                             {/*Trả lời*/}
                                                         {/*</Text>*/}
+                                                        <Text
+                                                            style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                        >
+                                                            Trả lời
+                                                        </Text>
+                                                        {item.commenter.username === this.props.user.username ?
+                                                            (
+                                                                <Text
+                                                                    style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                                    onPress = {() => this.deleteComment(item.id, this.props.token, i)}
+                                                                >
+                                                                    Xoá
+                                                                </Text>
+                                                            ) : (<TouchableOpacity/>)
+                                                        }
                                                     </View>
                                                     </Body>
                                                     <TouchableOpacity transparent onPress = {() => {this.likeComment(item.id, this.props.user.id, i)}} >
@@ -479,14 +501,15 @@ function mapStateToProps(state) {
         post: state.getFullInfoAboutOnePost.post,
         comments: state.getFullInfoAboutOnePost.comments,
         isLoading: state.getFullInfoAboutOnePost.isLoading,
-        statusPostComment: state.getFullInfoAboutOnePost.statusPostComment
+        statusPostComment: state.getFullInfoAboutOnePost.statusPostComment,
+        idComment : state.getFullInfoAboutOnePost.idComment
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         getFullInfoAboutOnePostAction: bindActionCreators(getFullInfoAboutOnePostAction, dispatch),
-        likePostAction: bindActionCreators(likePostAction, dispatch)
+        likePostAction: bindActionCreators(likePostAction, dispatch),
     }
 }
 

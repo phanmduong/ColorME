@@ -18,3 +18,7 @@ export function postCommentOnePostApi(product_id, token, value){
         comment_content: value.comment_content,
     });
 }
+export function deleteCommentApi(product_id, token) {
+    let url = env.API_COLORME + '/comment/'+ product_id + '/delete?token=' +token;
+    return axios.post(url);
+}
