@@ -39,7 +39,7 @@ class NewFeedContainer extends Component {
             like_in_modal: '',
             grid: true,
             page_id: 2,
-            typeView: '7',
+            typeView: '',
             arrayLike: [],
             likeCount: [],
             listPost: [],
@@ -82,8 +82,8 @@ class NewFeedContainer extends Component {
             this.setState({isLoadingList: false})
         }, 1000);
         this.props.getNewFeedAction.changeTheView();
+        this.setState({listPost: [], arrayLike: [], likeCount: [], isLoadingList: true, page_id: 2});
         this.props.getNewFeedAction.getNewFeed(value, 1);
-        this.setState({listPost: [], typeView: value, arrayLike: [], likeCount: [], isLoadingList: true, page_id: 2})
     }
 
     viewList() {

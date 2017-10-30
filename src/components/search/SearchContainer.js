@@ -162,9 +162,9 @@ class SearchContainer extends Component {
                             (<Text/>)
                     }
                 </View>
-                <View style={part.wrapperTabBarUser}>
+                <View style={part.wrapperTabBarSearch}>
                     <TouchableOpacity
-                        style={part.wrapperTextInTabBarUser}
+                        style={part.wrapperTextInTabBarSearch}
                         onPress={() => this.ViewUser()}
                     >
                         <Text
@@ -174,7 +174,7 @@ class SearchContainer extends Component {
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={part.wrapperTextInTabBarUser}
+                        style={part.wrapperTextInTabBarSearch}
                         onPress={() => this.ViewProducts()}
                     >
                         <Text
