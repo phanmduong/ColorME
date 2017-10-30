@@ -438,22 +438,16 @@ class ListView extends Component {
                                                                             style={[part.describeLightGray, part.paddingTLB]}
                                                                         >
                                                                             {item.created_at}
-                                                                        </Text>
-                                                                        {/*<Text*/}
-                                                                        {/*style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}*/}
-                                                                        {/*>*/}
-                                                                        {/*Trả lời*/}
-                                                                        {/*</Text>*/}
-                                                                        {item.commenter.username === this.props.user.username ?
-                                                                            (
-                                                                                <Text
-                                                                                    style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
-                                                                                    onPress={() => this.deleteComment(item.id, this.props.token, i)}
-                                                                                >
-                                                                                    Xoá
-                                                                                </Text>
-                                                                            ) : (<TouchableOpacity/>)
-                                                                        }
+                                                                        {/*{item.commenter.username === this.props.user.username ?*/}
+                                                                            {/*(*/}
+                                                                                {/*<Text*/}
+                                                                                    {/*style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}*/}
+                                                                                    {/*onPress={() => this.deleteComment(item.id, this.props.token, i)}*/}
+                                                                                {/*>*/}
+                                                                                    {/*Xoá*/}
+                                                                                {/*</Text>*/}
+                                                                            {/*) : (<TouchableOpacity/>)*/}
+                                                                        {/*}*/}
 
                                                                     </View>
                                                                     </Body>

@@ -39,7 +39,7 @@ class NewFeedContainer extends Component {
             like_in_modal: '',
             grid: true,
             page_id: 2,
-            typeView: '',
+            typeView: '7',
             arrayLike: [],
             likeCount: [],
             listPost: [],

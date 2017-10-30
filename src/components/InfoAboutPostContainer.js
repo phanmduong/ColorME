@@ -107,26 +107,28 @@ class InfoAboutPostContainer extends Component {
         this.setState({likeCount: likeCount, liked: liked});
     }
 
-    commentPost(product_id, token, value) {
-        this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
-        let listComment = this.state.listComment;
-        let {user} = this.props;
-        // let date = new Date();
-        let arr = {
-            content: value.comment_content,
-            id: this.props.idComment,
-            parent_id: 0,
-            commenter: {
-                username: user.username,
-                avatar_url: user.avatar_url,
-                name: user.name,
-            },
-            created_at: 'Vừa xong'
-        };
-        listComment.push(arr);
-        this.setState({listComment: listComment, comment_content: ''});
+    async commentPost(product_id, token, value) {
+        await this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
+        try {
+            let listComment = this.state.listComment;
+            let {user} = this.props;
+            // let date = new Date();
+                let arr = {
+                    content: value.comment_content,
+                    id: this.props.idComment,
+                    parent_id: 0,
+                    commenter: {
+                        username: user.username,
+                        avatar_url: user.avatar_url,
+                        name: user.name,
+                    },
+                    created_at: 'Vừa xong'
+                };
+                listComment.push(arr);
+                this.setState({listComment: listComment, comment_content: ''});
+            }
+        catch (error){}
     }
-
     likeComment(product_id, user_id, index) {
         let likedComment = this.state.likedComment;
         this.props.likePostAction.likeComment(product_id, user_id);
@@ -423,21 +425,17 @@ class InfoAboutPostContainer extends Component {
                                                             >
                                                                 {item.created_at}
                                                             </Text>
-                                                            {/*<Text*/}
-                                                            {/*style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}*/}
-                                                            {/*>*/}
-                                                            {/*Trả lời*/}
-                                                            {/*</Text>*/}
-                                                            {item.commenter.username === this.props.user.username ?
-                                                                (
-                                                                    <Text
-                                                                        style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
-                                                                        onPress={() => this.deleteComment(item.id, this.props.token, i)}
-                                                                    >
-                                                                        Xoá
-                                                                    </Text>
-                                                                ) : (<TouchableOpacity/>)
-                                                            }
+
+                                                            {/*{item.commenter.username === this.props.user.username ?*/}
+                                                                {/*(*/}
+                                                                    {/*<Text*/}
+                                                                        {/*style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}*/}
+                                                                        {/*onPress={() => this.deleteComment(item.id, this.props.token, i)}*/}
+                                                                    {/*>*/}
+                                                                        {/*Xoá*/}
+                                                                    {/*</Text>*/}
+                                                                {/*) : (<TouchableOpacity/>)*/}
+                                                            {/*}*/}
                                                         </View>
                                                         </Body>
                                                         <TouchableOpacity transparent onPress={() => {
