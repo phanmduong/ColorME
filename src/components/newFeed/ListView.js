@@ -444,17 +444,16 @@ class ListView extends Component {
                                                                         >
                                                                             {item.created_at}
                                                                         </Text>
-                                                                        {/*{item.commenter.username === this.props.user.username ?*/}
-                                                                            {/*(*/}
-                                                                                {/*<Text*/}
-                                                                                    {/*style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}*/}
-                                                                                    {/*onPress={() => this.deleteComment(item.id, this.props.token, i)}*/}
-                                                                                {/*>*/}
-                                                                                    {/*Xoá*/}
-                                                                                {/*</Text>*/}
-                                                                            {/*) : (<TouchableOpacity/>)*/}
-                                                                        {/*}*/}
-
+                                                                        {item.commenter.username === this.props.user.username ?
+                                                                            (
+                                                                                <Text
+                                                                                    style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                                                    onPress={() => this.deleteComment(item.id, this.props.token, i)}
+                                                                                >
+                                                                                    Xoá
+                                                                                </Text>
+                                                                            ) : (<TouchableOpacity/>)
+                                                                        }
                                                                     </View>
                                                                     </Body>
                                                                     <TouchableOpacity transparent onPress={() => {
