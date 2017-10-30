@@ -455,6 +455,7 @@ class InfoAboutPostContainer extends Component {
                                             this.setState({comment_content: text})
                                         }
                                     }
+                                    value={this.state.comment_content}
                                 />
                                 {/*<TouchableOpacity>*/}
                                 {/*<Icon active name='fontawesome|camera-retro'*/}
