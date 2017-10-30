@@ -34,6 +34,7 @@ const style = `
 body, html, #height-wrapper {
     margin: 0;
     padding: 0;
+    font-family: Montserrat;
 }
 #height-wrapper {
     position: absolute;
@@ -45,7 +46,6 @@ p{
     font-size: 14px;
     padding-left: 10px;
     padding-right: 10px;
-    font-family: Montserrat;
 }
 table, th, td{
     margin: 5px;

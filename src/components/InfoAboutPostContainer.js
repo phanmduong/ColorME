@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {
-    Image, KeyboardAvoidingView, Text, TouchableOpacity, View
+    Image, KeyboardAvoidingView, Text, TouchableOpacity, View, Keyboard
 } from 'react-native';
-
 import {
     Body, Button, Card, CardItem, Container, Content,
     Input, Item, Left, Right, Spinner, Thumbnail
@@ -34,6 +33,8 @@ class InfoAboutPostContainer extends Component {
             comment_content: '',
             listComment: [],
             likedComment: [],
+            width: 0,
+            height: 0,
         }
     }
 
@@ -62,7 +63,7 @@ class InfoAboutPostContainer extends Component {
                 }
             }
             let i = this.props.comments.length;
-            while (i < nextProps.comments.length){
+            while (i < nextProps.comments.length) {
                 let likersComment = comments[i].likers.filter((liker) => {
                     return liker.name == nextProps.user.name;
                 })
@@ -75,14 +76,13 @@ class InfoAboutPostContainer extends Component {
                 likedComment.push(item);
                 i++;
             }
-            }
+        }
         this.setState({
             liked: liked,
             likeCount: nextProps.post.likes_count,
             listComment: nextProps.comments,
-            likedComment : likedComment
+            likedComment: likedComment
         })
-        console.log(this.state.likedComment)
     }
 
     likePost(product_id, token) {
@@ -114,7 +114,7 @@ class InfoAboutPostContainer extends Component {
         // let date = new Date();
         let arr = {
             content: value.comment_content,
-            id : this.props.idComment,
+            id: this.props.idComment,
             parent_id: 0,
             commenter: {
                 username: user.username,
@@ -122,22 +122,34 @@ class InfoAboutPostContainer extends Component {
                 name: user.name,
             },
             created_at: 'Vừa xong'
-        }
-
-        listComment.push(arr)
-        this.setState({listComment: listComment})
+        };
+        listComment.push(arr);
+        this.setState({listComment: listComment, comment_content: ''});
     }
-    likeComment(product_id, user_id, index){
+
+    likeComment(product_id, user_id, index) {
         let likedComment = this.state.likedComment;
         this.props.likePostAction.likeComment(product_id, user_id);
         likedComment[index] = !likedComment[index];
         this.setState({likedComment: likedComment})
     }
-    deleteComment(product_id, token, index){
+
+    deleteComment(product_id, token, index) {
         let listComment = this.state.listComment;
         this.props.getFullInfoAboutOnePostAction.deleteComment(product_id, token);
         listComment.splice(index, 1);
-        this.setState({listComment : listComment})
+        this.setState({listComment: listComment})
+    }
+
+    getSize(url) {
+        Image.getSize(url, (width, height) => {
+            this.setState({width, height})
+        });
+        if (this.state.height != 0) {
+            console.log(this.state.height)
+            console.log(this.state.width)
+        }
+
     }
 
     render() {
@@ -150,7 +162,7 @@ class InfoAboutPostContainer extends Component {
         const {params} = this.props.navigation.state;
         const {isLoading, post} = this.props;
         return (
-            <Container style={part.wrapperContainer}>
+            <Container ref="page" style={part.wrapperContainer}>
                 <ParallaxScrollView
                     backgroundColor={color.main}
                     showsVerticalScrollIndicator={false}
@@ -195,6 +207,7 @@ class InfoAboutPostContainer extends Component {
                                                     />
 
                                             }
+
                                         </View>
                                 }
                                 <View style={{
@@ -221,18 +234,18 @@ class InfoAboutPostContainer extends Component {
                     )}
                     renderFixedHeader={() => (
                         <View key="fixed-header" style={part.iconInDrawerNav}>
-                                <Left style={{marginTop: 20}}>
-                                    <TouchableOpacity
-                                        style={[part.padding, part.wrapperBackButton]}
-                                        onPress={() => goBack(null)}
-                                    >
-                                        <Icon name="entypo|chevron-thin-left"
-                                              size={size.iconBig}
-                                              color={color.navTitle}
-                                              style={{zIndex: 100}}
-                                        />
-                                    </TouchableOpacity>
-                                </Left>
+                            <Left style={{marginTop: 20}}>
+                                <TouchableOpacity
+                                    style={[part.padding, part.wrapperBackButton]}
+                                    onPress={() => goBack(null)}
+                                >
+                                    <Icon name="entypo|chevron-thin-left"
+                                          size={size.iconBig}
+                                          color={color.navTitle}
+                                          style={{zIndex: 100}}
+                                    />
+                                </TouchableOpacity>
+                            </Left>
                             <Right style={{marginTop: 20}}>
                                 {
                                     (params.group_name)
@@ -245,6 +258,7 @@ class InfoAboutPostContainer extends Component {
                                                 <Text style={[part.titleNormalLight, {marginRight: 10}]}>
                                                     {params.group_name}
                                                 </Text>
+
                                             </TouchableOpacity>
                                         )
                                         :
@@ -302,15 +316,19 @@ class InfoAboutPostContainer extends Component {
                                                     </Text>
                                                     <View style={[{flexDirection: 'row'}, part.paddingLine]}>
                                                         {
-                                                            post.colors.map((color, i) => {
-                                                                return (
-                                                                    <Icon key={i}
-                                                                          name="fontawesome|circle"
-                                                                          style={part.paddingRight}
-                                                                          size={12}
-                                                                          color={'#' + color}/>
-                                                                );
-                                                            })
+                                                            post.colors
+                                                                ?
+                                                                post.colors.map((color, i) => {
+                                                                    return (
+                                                                        <Icon key={i}
+                                                                              name="fontawesome|circle"
+                                                                              style={part.paddingRight}
+                                                                              size={12}
+                                                                              color={'#' + color}/>
+                                                                    );
+                                                                })
+                                                                :
+                                                                <Text></Text>
 
                                                         }
                                                     </View>
@@ -370,68 +388,73 @@ class InfoAboutPostContainer extends Component {
                                         </Button>
                                     </Left>
                                 </CardItem>
+                                <View>
                                     {
                                         this.state.listComment.map((item, i) => {
                                             let {likedComment} = this.state;
-                                            let iconLikeComment =  likedComment[i] ? color.main : color.icon;
+                                            let iconLikeComment = likedComment[i] ? color.main : color.icon;
                                             let likedIcon = likedComment[i] ? 'fontawesome|heart' : 'fontawesome|heart-o';
-                                            return(
-                                            <CardItem key={i} style={[part.cardHeader, {paddingBottom: 0}]}>
-                                                <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
-                                                    <TouchableOpacity
-                                                        activeOpacity={0.8}
-                                                        style={part.paddingTRB}
-                                                        onPress={() => navigate('UserInNewFeed', {username: item.commenter.username})}
-                                                    >
-                                                        <Image
-                                                            style={part.avatarUserSmall}
-                                                            source={{uri: item.commenter.avatar_url}}/>
-                                                    </TouchableOpacity>
-                                                    <Body>
-                                                    <Text
-                                                        style={[part.titleSmallBlue, part.paddingTLB]}
-                                                    >
-                                                        {item.commenter.name}
-                                                    </Text>
-                                                    <Text
-                                                        style={[part.describeDarkGray, part.paddingLeft]}
-                                                    >
-                                                        {item.content}
-                                                    </Text>
-                                                    <View style={{flexDirection: 'row'}}>
-                                                        <Text
-                                                            style={[part.describeLightGray, part.paddingTLB]}
+                                            return (
+                                                <CardItem key={i} style={[part.cardHeader, {paddingBottom: 0}]}>
+                                                    <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
+                                                        <TouchableOpacity
+                                                            activeOpacity={0.8}
+                                                            style={part.paddingTRB}
+                                                            onPress={() => navigate('UserInNewFeed', {username: item.commenter.username})}
                                                         >
-                                                            {item.created_at}
+                                                            <Image
+                                                                style={part.avatarUserSmall}
+                                                                source={{uri: item.commenter.avatar_url}}/>
+                                                        </TouchableOpacity>
+                                                        <Body>
+                                                        <Text
+                                                            style={[part.titleSmallBlue, part.paddingTLB]}
+                                                        >
+                                                            {item.commenter.name}
                                                         </Text>
-                                                        {/*<Text*/}
+                                                        <Text
+                                                            style={[part.describeDarkGray, part.paddingLeft]}
+                                                        >
+                                                            {item.content}
+                                                        </Text>
+                                                        <View style={{flexDirection: 'row'}}>
+                                                            <Text
+                                                                style={[part.describeLightGray, part.paddingTLB]}
+                                                            >
+                                                                {item.created_at}
+                                                            </Text>
+                                                            {/*<Text*/}
                                                             {/*style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}*/}
-                                                        {/*>*/}
+                                                            {/*>*/}
                                                             {/*Trả lời*/}
-                                                        {/*</Text>*/}
-                                                        {item.commenter.username === this.props.user.username ?
-                                                            (
-                                                                <Text
-                                                                    style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
-                                                                    onPress = {() => this.deleteComment(item.id, this.props.token, i)}
-                                                                >
-                                                                    Xoá
-                                                                </Text>
-                                                            ) : (<TouchableOpacity/>)
-                                                        }
+                                                            {/*</Text>*/}
+                                                            {item.commenter.username === this.props.user.username ?
+                                                                (
+                                                                    <Text
+                                                                        style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                                        onPress={() => this.deleteComment(item.id, this.props.token, i)}
+                                                                    >
+                                                                        Xoá
+                                                                    </Text>
+                                                                ) : (<TouchableOpacity/>)
+                                                            }
+                                                        </View>
+                                                        </Body>
+                                                        <TouchableOpacity transparent onPress={() => {
+                                                            this.likeComment(item.id, this.props.user.id, i)
+                                                        }}>
+                                                            <Icon name={likedIcon}
+                                                                  color={iconLikeComment}
+                                                                  size={size.iconBig}
+                                                                  style={part.paddingRight}
+                                                            />
+                                                        </TouchableOpacity>
                                                     </View>
-                                                    </Body>
-                                                    <TouchableOpacity transparent onPress = {() => {this.likeComment(item.id, this.props.user.id, i)}} >
-                                                        <Icon name= {likedIcon}
-                                                              color={iconLikeComment}
-                                                              size={size.iconBig}
-                                                              style={part.paddingRight}
-                                                        />
-                                                    </TouchableOpacity>
-                                                </View>
-                                            </CardItem>
-                                            )})
+                                                </CardItem>
+                                            )
+                                        })
                                     }
+                                </View>
                             </View>
                     }
 
@@ -445,6 +468,18 @@ class InfoAboutPostContainer extends Component {
                             <Body>
                             <Item rounded>
                                 <Input
+                                    onSubmit={Keyboard.dismiss}
+                                    onSubmitEditing={
+                                        this.state.comment_content == ''
+                                            ?
+                                            () => {
+                                            }
+                                            :
+                                            () => {
+                                                this.commentPost(params.product_id, this.props.token, this.state);
+
+                                            }
+                                    }
                                     placeholder='Viết bình luận'
                                     autoCorrect={false}
                                     returnKeyType={'send'}
@@ -471,15 +506,20 @@ class InfoAboutPostContainer extends Component {
                                 onPress={
                                     this.state.comment_content == ''
                                         ?
-                                        () => {
-                                        }
+                                        Keyboard.dismiss
                                         :
-                                        () => this.commentPost(params.product_id, this.props.token, this.state)}
+                                        () => {
+                                            this.commentPost(params.product_id, this.props.token, this.state);
+                                        }
+
+                                }
+
                             >
-                                <Icon active name={commentIcon}
-                                      size={size.iconBig}
-                                      color={colorCommentIcon}
-                                      style={[part.paddingTLB, {paddingLeft: 10}]}
+                                <Icon
+                                    active name={commentIcon}
+                                    size={size.iconBig}
+                                    color={colorCommentIcon}
+                                    style={[part.paddingTLB, {paddingLeft: 10}]}
                                 />
                             </TouchableOpacity>
                         </Left>
@@ -498,7 +538,7 @@ function mapStateToProps(state) {
         comments: state.getFullInfoAboutOnePost.comments,
         isLoading: state.getFullInfoAboutOnePost.isLoading,
         statusPostComment: state.getFullInfoAboutOnePost.statusPostComment,
-        idComment : state.getFullInfoAboutOnePost.idComment
+        idComment: state.getFullInfoAboutOnePost.idComment
     }
 }
 

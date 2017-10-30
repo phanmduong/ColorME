@@ -39,7 +39,7 @@ class NewFeedContainer extends Component {
             like_in_modal: '',
             grid: true,
             page_id: 2,
-            typeView: '7',
+            typeView: '',
             arrayLike: [],
             likeCount: [],
             listPost: [],
@@ -83,7 +83,7 @@ class NewFeedContainer extends Component {
         }, 1000);
         this.props.getNewFeedAction.changeTheView();
         this.props.getNewFeedAction.getNewFeed(value, 1);
-        this.setState({listPost: [], typeView: value, arrayLike: [], likeCount: [], isLoadingList: true})
+        this.setState({listPost: [], typeView: value, arrayLike: [], likeCount: [], isLoadingList: true, page_id: 2})
     }
 
     viewList() {
@@ -271,7 +271,7 @@ class NewFeedContainer extends Component {
                                         <Spinner color={color.gray}/>
                                     </View>
                                 ) : (
-                                this.state.listPost
+                                this.props.products
                                 &&
                                 <FlatList
                                     showsVerticalScrollIndicator={false}

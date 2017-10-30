@@ -1,5 +1,14 @@
 import React, {Component} from 'react';
-import {Alert, KeyboardAvoidingView, Modal, PanResponder, ScrollView, TouchableOpacity, View} from 'react-native';
+import {
+    Alert,
+    Image,
+    KeyboardAvoidingView,
+    Modal,
+    PanResponder,
+    ScrollView,
+    TouchableOpacity,
+    View
+} from 'react-native';
 import {
     Body,
     Button,
@@ -28,6 +37,8 @@ import * as likePostAction from '../../actions/likePostAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
+let keyboardHeight = 0;
+
 class ListView extends Component {
     constructor(props) {
         super(props);
@@ -42,8 +53,11 @@ class ListView extends Component {
             lastPress: 0,
             likedComment: [],
             idComment: 0,
+            width: 0,
+            height: 0,
         }
     }
+
 
     componentWillMount() {
         this.panResponder = PanResponder.create({
@@ -448,7 +462,9 @@ class ListView extends Component {
                                     }
                                 </ScrollView>
                                 <KeyboardAvoidingView
-                                    behavior={'padding'}
+                                    behavior={'position'}
+                                    keyboardVerticalOffset={200 - size.hei * 0.15}
+                                    // NEED HEIGHT KEYBOARD
                                 >
                                     <CardItem style={part.cardBottomInModal}>
                                         <Left>
