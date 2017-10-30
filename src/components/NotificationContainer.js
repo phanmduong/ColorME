@@ -50,7 +50,7 @@ class NotificationContainer extends Component {
         switch (type) {
             case 'also_comment':
                 return (
-                    <Text style={part.titleSmallBlue}  onPress={() => this.props.navigation.navigate('UserInNotification', {username: item.actor.username})}>
+                    <Text style={part.titleSmallBlue}>
                         {item.actor.name}
                         <Text style={part.titleSmallDarkGrayBold}>
                             &nbsp;đã bình luận về
@@ -61,7 +61,7 @@ class NotificationContainer extends Component {
                 );
             case 'like':
                 return (
-                    <Text style={part.titleSmallBlue}  onPress={() => this.props.navigation.navigate('UserInNotification', {username: item.actor.username})}>
+                    <Text style={part.titleSmallBlue} >
                         {item.actor.name}
                         <Text style={part.titleSmallDarkGrayBold}>
                             &nbsp;đã thích
@@ -72,7 +72,7 @@ class NotificationContainer extends Component {
                 );
             case 'new_comment':
                 return (
-                    <Text style={part.titleSmallBlue}  onPress={() => this.props.navigation.navigate('UserInNotification', {username: item.actor.username})}>
+                    <Text style={part.titleSmallBlue}  >
                         {item.actor.name}
                         <Text style={part.titleSmallDarkGrayBold}>
                             &nbsp;đã bình luận về
@@ -87,7 +87,7 @@ class NotificationContainer extends Component {
                 return (
                     <Text style={part.titleSmallDarkGrayBold}>
                         Bạn chuyển tiền cho
-                        <Text style={part.titleSmallBlue}  onPress={() => this.props.navigation.navigate('UserInNotification', {username: item.actor.username})}>
+                        <Text style={part.titleSmallBlue}>
                             &nbsp;{item.actor.name}&nbsp;
                         </Text>
                         {
@@ -122,11 +122,9 @@ class NotificationContainer extends Component {
                                 <TouchableOpacity
                                     activeOpacity={0.8}
                                     style={{flex: 1}}
-                                    onPress={() => navigate('ThePostInNotification', {product_id: item.product.id})}
                                 >
                                     <Left>
                                         <TouchableOpacity
-                                            onPress={() => navigate('UserInNotification', {username: item.actor.username})}
                                         >
                                             <FastImage
                                                 style={part.avatarUserNormalSquare}

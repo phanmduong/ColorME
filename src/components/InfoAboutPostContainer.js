@@ -472,8 +472,7 @@ class InfoAboutPostContainer extends Component {
                                     onSubmitEditing={
                                         this.state.comment_content == ''
                                             ?
-                                            () => {
-                                            }
+                                            Keyboard.dismiss
                                             :
                                             () => {
                                                 this.commentPost(params.product_id, this.props.token, this.state);

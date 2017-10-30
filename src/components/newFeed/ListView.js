@@ -303,7 +303,20 @@ class ListView extends Component {
                     <View stle={part.textInImage}>
                         <Text
                             style={part.titleInImage}
-                        >
+                            onPress={() =>
+                                navigate('ThePostInNewFeed',
+                                    item.group
+                                        ?
+                                        {
+                                            product_id: item.id,
+                                            group_name: item.group.name,
+                                            group_link: item.group.link,
+                                        }
+                                        :
+                                        {
+                                            product_id: item.id,
+                                        }
+                                )}>
                             {item.title}
                         </Text>
                         {
@@ -544,6 +557,7 @@ class ListView extends Component {
                                             }
                                         }
                                     >
+
                                         <Text style={part.titleMenuModal}>Báo cáo...</Text>
                                     </TouchableOpacity>
                                 </ListItem>

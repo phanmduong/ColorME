@@ -341,8 +341,10 @@ class NewFeedContainer extends Component {
                                             )
                                         }
                                     }}
-                                    ListFooterComponent={this.loadingLoadMore()
-                                    }/>)
+                                    ListFooterComponent={
+                                        this.loadingLoadMore()
+                                    }
+                                />)
                         )
                         :
                         (
@@ -356,6 +358,7 @@ class NewFeedContainer extends Component {
                                         showsVerticalScrollIndicator={false}
                                         onEndReachedThreshold={5}
                                         onEndReached={() => {
+                                            this.getMoreNewFeed()
                                         }}
                                         data={this.state.listPost}
                                         refreshControl={
@@ -372,7 +375,6 @@ class NewFeedContainer extends Component {
                                             let likedIcon = arrayLike[item.key] ? 'fontawesome|heart' : 'fontawesome|heart-o';
                                             let featureIcon = item.feature_id == 0 ? 'fontawesome|star-o' : 'fontawesome|star';
                                             let colorFeatureIcon = item.feature_id == 0 ? color.icon : color.star;
-
                                             return (
                                                 <ListView
                                                     token={this.props.token}
