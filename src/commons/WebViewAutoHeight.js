@@ -45,7 +45,7 @@ p{
     font-size: 14px;
     padding-left: 10px;
     padding-right: 10px;
-    font-family: sans-serif;
+    font-family: Montserrat;
 }
 table, th, td{
     margin: 5px;

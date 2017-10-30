@@ -186,7 +186,7 @@ class MyAccountContainer extends Component {
                         <View key="fixed-header" style={part.iconInDrawerNav}>
                             <Left style={{flexDirection: 'row', marginTop: 20,}}>
                                 <TouchableOpacity
-                                    style={part.padding}
+                                    style={[part.padding, part.wrapperBackButton]}
                                     onPress={() => goBack(null)}
                                 >
                                     <Icon name="entypo|chevron-thin-left"

@@ -92,7 +92,7 @@ class CourseInformation extends Component {
                                 <View key="fixed-header" style={part.iconInDrawerNav}>
                                     <Left style={{marginTop: 20}}>
                                         <TouchableOpacity
-                                            style={part.padding}
+                                            style={[part.padding, part.wrapperBackButton]}
                                             onPress={() => goBack()}
                                         >
                                             <Icon name="entypo|chevron-thin-left"

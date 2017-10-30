@@ -66,7 +66,7 @@ export default class CodeIdentityContainer extends Component {
                 <Text style={styles.textBottom}/>
                 <View style={part.iconInDrawer}>
                     <Left>
-                        <TouchableOpacity style={part.padding}
+                        <TouchableOpacity style={[part.padding, part.wrapperBackButton]}
                                           onPress={() => this.props.navigation.goBack()}
                         >
                             <Icon name="entypo|chevron-thin-left"

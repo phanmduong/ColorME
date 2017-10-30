@@ -34,6 +34,7 @@ class PostLiker extends Component {
                 >
                     <Left>
                         <TouchableOpacity
+                            style={part.wrapperBackButton}
                             onPress={() => goBack(null)}
                         >
                             <Icon name="entypo|chevron-thin-left"

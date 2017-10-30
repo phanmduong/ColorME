@@ -690,6 +690,9 @@ const part = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    wrapperBackButton:{
+        width: 80,
+    },
     noBorder: {
         borderBottomWidth: 0,
         borderTopWidth: 0,

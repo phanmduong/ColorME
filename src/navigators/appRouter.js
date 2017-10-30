@@ -75,7 +75,7 @@ const HomeStackStyle = {
                     name="materialCommunity|menu"
                     color={color.navTitle}
                     size={size.icon}
-                    style={{paddingLeft: 15}}
+                    style={{paddingLeft: 15, paddingRight: 15}}
                 />
             </TouchableOpacity>
         ),

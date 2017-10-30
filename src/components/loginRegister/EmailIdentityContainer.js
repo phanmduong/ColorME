@@ -14,14 +14,15 @@ export default class EmailIdentityContainer extends Component {
             email: ''
         }
     }
+
     sendEmail() {
-        if (this.state.email === '')
-        {
-            Alert.alert('Có lỗi xảy ra','Bạn chưa nhập địa chỉ email.');
+        if (this.state.email === '') {
+            Alert.alert('Có lỗi xảy ra', 'Bạn chưa nhập địa chỉ email.');
         } else {
             this.props.navigation.navigate('CodeIdentityContainer')
         }
     }
+
     render() {
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
@@ -35,7 +36,8 @@ export default class EmailIdentityContainer extends Component {
                 </View>
                 <Container style={styles.midContainerLogin}>
                     <Container style={styles.contentForm}>
-                        <Text style={styles.text}>Vui lòng nhập lại email mà bạn đã đăng kí với ColorMe. Chúng tôi gửi mã xác
+                        <Text style={styles.text}>Vui lòng nhập lại email mà bạn đã đăng kí với ColorMe. Chúng tôi gửi
+                            mã xác
                             nhận vào email của
                             bạn</Text>
                         <Text style={[styles.textTitleInput, {marginTop: 0}]}>EMAIL</Text>
@@ -75,8 +77,9 @@ export default class EmailIdentityContainer extends Component {
 
                 <View style={part.iconInDrawer}>
                     <Left>
-                        <TouchableOpacity style={part.padding}
-                                          onPress={() => this.props.navigation.goBack()}
+                        <TouchableOpacity
+                            style={[part.padding, part.wrapperBackButton]}
+                            onPress={() => this.props.navigation.goBack()}
                         >
                             <Icon name="entypo|chevron-thin-left"
                                   size={size.iconBig}

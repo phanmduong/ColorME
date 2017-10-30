@@ -221,18 +221,18 @@ class InfoAboutPostContainer extends Component {
                     )}
                     renderFixedHeader={() => (
                         <View key="fixed-header" style={part.iconInDrawerNav}>
-                            <Left style={{marginTop: 20}}>
-                                <TouchableOpacity
-                                    style={part.padding}
-                                    onPress={() => goBack(null)}
-                                >
-                                    <Icon name="entypo|chevron-thin-left"
-                                          size={size.iconBig}
-                                          color={color.navTitle}
-                                          style={{zIndex: 100}}
-                                    />
-                                </TouchableOpacity>
-                            </Left>
+                                <Left style={{marginTop: 20}}>
+                                    <TouchableOpacity
+                                        style={[part.padding, part.wrapperBackButton]}
+                                        onPress={() => goBack(null)}
+                                    >
+                                        <Icon name="entypo|chevron-thin-left"
+                                              size={size.iconBig}
+                                              color={color.navTitle}
+                                              style={{zIndex: 100}}
+                                        />
+                                    </TouchableOpacity>
+                                </Left>
                             <Right style={{marginTop: 20}}>
                                 {
                                     (params.group_name)

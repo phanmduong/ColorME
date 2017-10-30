@@ -114,6 +114,8 @@ class LearnRegisterContainer extends Component {
                     <Left>
                         <TouchableOpacity
                             onPress={() => goBack()}
+                            style={part.wrapperBackButton}
+
                         >
                             <Icon name="entypo|chevron-thin-left"
                                   size={size.iconBig}

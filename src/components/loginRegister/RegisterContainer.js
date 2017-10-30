@@ -20,19 +20,21 @@ class RegisterContainer extends Component {
             password: ''
         }
     }
-    componentWillReceiveProps(nextProps){
+
+    componentWillReceiveProps(nextProps) {
         // if(nextProps.status == 200) {
         //     this.props.navigation.navigate('Main')
         // }
     }
+
     register(value) {
-        if (this.state.email === '' || this.state.name === '' || this.state.username === '' || this.state.password === '')
-        {
-            Alert.alert('Có lỗi xảy ra','Bạn chưa nhập đủ thông tin.');
+        if (this.state.email === '' || this.state.name === '' || this.state.username === '' || this.state.password === '') {
+            Alert.alert('Có lỗi xảy ra', 'Bạn chưa nhập đủ thông tin.');
         } else {
             this.props.registerAction.registerUser(value);
         }
     }
+
     render() {
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
@@ -54,7 +56,7 @@ class RegisterContainer extends Component {
                                        color={color.darkGray}
                                        autoCorrect={false}
                                        onChangeText={(email) => {
-                                           this.setState({email : email});
+                                           this.setState({email: email});
                                        }}
                                 />
                             </Item>
@@ -67,7 +69,7 @@ class RegisterContainer extends Component {
                                        autoCorrect={false}
                                        color={color.darkGray}
                                        onChangeText={(name) => {
-                                           this.setState({name : name})
+                                           this.setState({name: name})
                                        }}
                                 />
                             </Item>
@@ -80,7 +82,7 @@ class RegisterContainer extends Component {
                                        returnKeyType={'next'}
                                        autoCorrect={false}
                                        onChangeText={(username) => {
-                                           this.setState({username : username})
+                                           this.setState({username: username})
                                        }}
                                 />
                             </Item>
@@ -93,7 +95,7 @@ class RegisterContainer extends Component {
                                        returnKeyType={'send'}
                                        secureTextEntry={true}
                                        onChangeText={(password) => {
-                                           this.setState({password : password})
+                                           this.setState({password: password})
                                        }}
                                 />
                             </Item>
@@ -138,8 +140,9 @@ class RegisterContainer extends Component {
                 </Container>
                 <View style={part.iconInDrawer}>
                     <Left>
-                        <TouchableOpacity style={part.padding}
-                                          onPress={() => this.props.navigation.goBack()}
+                        <TouchableOpacity
+                            style={[part.padding, part.wrapperBackButton]}
+                            onPress={() => this.props.navigation.goBack()}
                         >
                             <Icon name="entypo|chevron-thin-left"
                                   size={size.iconBig}

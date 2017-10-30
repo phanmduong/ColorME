@@ -16,23 +16,22 @@ export default class ResetPasswordContainer extends Component {
             confirm_password: ''
         }
     }
+
     sendNewPassword() {
-        if (this.state.password === '')
-        {
+        if (this.state.password === '') {
             Alert.alert('Có lỗi xảy ra', 'Bạn chưa nhập mật khẩu mới.');
         }
-        else if (this.state.confirm_password === '')
-        {
+        else if (this.state.confirm_password === '') {
             Alert.alert('Có lỗi xảy ra', 'Bạn chưa nhập mật khẩu xác nhận.');
         }
-        else if (this.state.password !== this.state.confirm_password)
-        {
+        else if (this.state.password !== this.state.confirm_password) {
             Alert.alert('Có lỗi xảy ra', 'Mật khẩu xác nhận chưa đúng.');
         }
-        else{
+        else {
             this.props.navigation.navigate('Login')
         }
     }
+
     render() {
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
@@ -94,8 +93,9 @@ export default class ResetPasswordContainer extends Component {
                 <Text style={styles.textBottom}/>
                 <View style={part.iconInDrawer}>
                     <Left>
-                        <TouchableOpacity style={part.padding}
-                                          onPress={() => this.props.navigation.goBack()}
+                        <TouchableOpacity
+                            style={[part.padding, part.wrapperBackButton]}
+                            onPress={() => this.props.navigation.goBack()}
                         >
                             <Icon name="entypo|chevron-thin-left"
                                   size={size.iconBig}
