@@ -409,11 +409,6 @@ class InfoAboutPostContainer extends Component {
                                                         {/*>*/}
                                                             {/*Trả lời*/}
                                                         {/*</Text>*/}
-                                                        <Text
-                                                            style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
-                                                        >
-                                                            Trả lời
-                                                        </Text>
                                                         {item.commenter.username === this.props.user.username ?
                                                             (
                                                                 <Text

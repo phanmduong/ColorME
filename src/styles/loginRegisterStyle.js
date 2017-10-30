@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     textTitleInput: {
-        fontFamily: 'Segoe UI',
+        fontFamily: 'Montserrat',
         fontSize: 13,
         backgroundColor: color.none,
         paddingLeft: 25,
@@ -60,12 +60,16 @@ const styles = StyleSheet.create({
     },
 
     textAccept: {
+        fontFamily: 'Montserrat',
+
         fontSize: 12,
         color: color.gray,
         fontWeight: 'bold',
     },
     textBottom: {
-        fontSize: 12,
+        fontFamily: 'Montserrat',
+
+        fontSize: size.describe,
         color: color.darkGray,
         fontWeight: '600',
     },
@@ -75,8 +79,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 20,
         color: '#797979',
-        fontFamily: 'Verdana',
-        fontSize: size.describeSmall,
+        fontFamily: 'Montserrat',
+
+        fontSize: size.describe,
     },
     textButton: {
         fontWeight: '500',
@@ -84,7 +89,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         color: color.navTitle,
         fontSize: 13,
-        fontFamily: 'Verdana-Bold'
+        fontFamily: 'Montserrat',
+
     },
     buttonRegister: {
         width: size.wid - size.wid * 0.4,

@@ -226,10 +226,12 @@ const part = StyleSheet.create({
     // TEXT INPUT
 
     inputTheme01: {
+        fontFamily: 'Montserrat',
         fontSize: size.describe,
         height: 30,
     },
     inputTheme02: {
+        fontFamily: 'Montserrat',
         height: 30,
         fontSize: 14,
         fontWeight: '600',
@@ -324,6 +326,7 @@ const part = StyleSheet.create({
     },
 
     titleLargeDarkBold: {
+        fontFamily: 'Montserrat',
         fontSize: 30,
         fontWeight: 'bold',
         color: color.text,
@@ -331,38 +334,45 @@ const part = StyleSheet.create({
 
 
     titleSmallDarkBold: {
+        fontFamily: 'Montserrat',
         fontSize: size.titleSmall,
         color: color.text,
         fontWeight: '700',
     },
 
     titleSmallDarkGrayBold: {
+        fontFamily: 'Montserrat',
         fontSize: size.titleSmall,
         color: color.darkGray,
         fontWeight: '700',
     },
 
     titleGrayThin: {
+        fontFamily: 'Montserrat',
         fontSize: size.titleNormal,
         color: color.darkGray,
         fontWeight: '500',
     },
     titleDarkBold: {
+        fontFamily: 'Montserrat',
         fontSize: size.titleNormal,
         color: color.text,
         fontWeight: '700',
     },
     titleSmallBlue: {
+        fontFamily: 'Montserrat',
         fontSize: size.titleSmall,
         color: color.titleBlue,
         fontWeight: '700',
     },
     titleNormalLight: {
+        fontFamily: 'Montserrat',
         fontSize: size.title,
         color: color.navTitle,
         fontWeight: '600'
     },
     titleMenuModal: {
+        fontFamily: 'Montserrat',
         paddingTop: 20,
         paddingBottom: 20,
         paddingLeft: 10,
@@ -372,36 +382,43 @@ const part = StyleSheet.create({
         fontWeight: '500'
     },
     describeDark: {
+        fontFamily: 'Montserrat',
         fontSize: size.describe,
         color: color.text,
         fontWeight: '400',
     },
     describeDarkGray: {
+        fontFamily: 'Montserrat',
         fontSize: size.describe,
         color: 'rgb(100, 100, 100)',
         fontWeight: '600',
     },
     describeGray: {
+        fontFamily: 'Montserrat',
         fontSize: size.describe,
         color: color.gray,
         fontWeight: '600',
     },
     describeLightGray: {
+        fontFamily: 'Montserrat',
         fontSize: size.describe,
         color: color.lightGray,
         fontWeight: '400',
     },
     describeItalicDark: {
-        fontSize: size.describeSmall,
+        fontFamily: 'Montserrat',
+        fontSize: size.describe,
         color: color.gray,
         fontWeight: '400',
     },
     describeInImage: {
+        fontFamily: 'Montserrat',
         marginBottom: 10,
         fontSize: 12,
         color: color.gray,
     },
     textInImage: {
+        fontFamily: 'Montserrat',
         width: wid,
         padding: 10,
         fontSize: 12,
@@ -415,11 +432,13 @@ const part = StyleSheet.create({
         bottom: 20,
     },
     titleInImage: {
+        fontFamily: 'Montserrat',
         color: color.darkGrayText,
         fontSize: 12,
         fontWeight: 'bold',
     },
     titleGroup: {
+        fontFamily: 'Montserrat',
         color: color.navTitle,
         padding: 3,
         paddingLeft: 7,
@@ -428,12 +447,14 @@ const part = StyleSheet.create({
         fontSize: 12,
     },
     textButton: {
+        fontFamily: 'Montserrat',
         marginTop: -2,
         fontSize: size.describe,
         color: color.gray,
         fontWeight: '600',
     },
     textTitleFeature: {
+        fontFamily: 'Montserrat',
         color: color.navTitle,
         fontSize: 23,
         fontWeight: 'bold',

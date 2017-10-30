@@ -14,14 +14,6 @@ export default class CodeIdentityContainer extends Component {
             code: ''
         }
     }
-    sendCode() {
-        if (this.state.code === '')
-        {
-            Alert.alert('Có lỗi xảy ra', 'Bạn chưa nhập mã xác nhận.');
-        } else {
-            this.props.navigation.navigate('ResetPasswordContainer')
-        }
-    }
     render() {
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
