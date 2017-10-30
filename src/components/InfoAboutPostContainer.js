@@ -62,7 +62,7 @@ class InfoAboutPostContainer extends Component {
                     liked = true;
                 }
             }
-            let i = this.props.comments.length;
+            let i = 0;
             while (i < nextProps.comments.length) {
                 let likersComment = comments[i].likers.filter((liker) => {
                     return liker.name == nextProps.user.name;
