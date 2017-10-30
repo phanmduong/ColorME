@@ -35,6 +35,7 @@ import * as getFullInfoAboutOnePostAction from '../../actions/inforAboutPostActi
 import * as reportAction from '../../actions/reportAction';
 import * as likePostAction from '../../actions/likePostAction';
 import {bindActionCreators} from 'redux';
+import * as inforAboutPostApi from '../../apis/InfoAboutPostApi';
 import {connect} from 'react-redux';
 
 let keyboardHeight = 0;
@@ -68,10 +69,10 @@ class ListView extends Component {
 
     componentWillReceiveProps(nextProps) {
         let likedComment = this.state.likedComment;
-        if (nextProps.isLoadingComment !== this.props.isLoadingComment && this.props.statusPostComment !== nextProps.props || nextProps.idComment !== this.props.idComment) {
+        if (nextProps.isLoadingComment !== this.props.isLoadingComment && this.props.statusPostComment !== nextProps.props) {
             let listComment = nextProps.comments;
             let item = false;
-            let i = this.props.comments.length;
+            let i = 0;
             while (i < nextProps.comments.length) {
                 let likers = listComment[i].likers.filter((liker) => {
                     return liker.name == nextProps.user.name;
@@ -87,7 +88,6 @@ class ListView extends Component {
             this.setState({
                 listCommentInModal: nextProps.comments,
                 likedComment: likedComment,
-                idComment: nextProps.idComment
             });
         }
     }
@@ -150,12 +150,12 @@ class ListView extends Component {
     }
 
     commentPost(product_id, token, value) {
-        this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
+       this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value)
         let listCommentInModal = this.state.listCommentInModal;
         let {user} = this.props;
         let arr = {
-            content: value.comment_content,
-            id: value.idComment,
+            content: this.state.comment_content,
+            id: this.props.idComment,
             parent_id: 0,
             commenter: {
                 username: user.username,
@@ -167,7 +167,6 @@ class ListView extends Component {
         listCommentInModal.push(arr);
         this.setState({listCommentInModal: listCommentInModal, comment_content: ''})
     }
-
     deleteComment(product_id, token, index) {
         let listComment = this.state.listCommentInModal;
         this.props.getFullInfoAboutOnePostAction.deleteComment(product_id, token);
