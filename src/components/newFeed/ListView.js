@@ -444,17 +444,16 @@ class ListView extends Component {
                                                                         >
                                                                             {item.created_at}
                                                                         </Text>
-                                                                        {/*{item.commenter.username === this.props.user.username ?*/}
-                                                                            {/*(*/}
-                                                                                {/*<Text*/}
-                                                                                    {/*style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}*/}
-                                                                                    {/*onPress={() => this.deleteComment(item.id, this.props.token, i)}*/}
-                                                                                {/*>*/}
-                                                                                    {/*Xoá*/}
-                                                                                {/*</Text>*/}
-                                                                            {/*) : (<TouchableOpacity/>)*/}
-                                                                        {/*}*/}
-
+                                                                        {item.commenter.username === this.props.user.username ?
+                                                                            (
+                                                                                <Text
+                                                                                    style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                                                    onPress={() => this.deleteComment(item.id, this.props.token, i)}
+                                                                                >
+                                                                                    Xoá
+                                                                                </Text>
+                                                                            ) : (<TouchableOpacity/>)
+                                                                        }
                                                                     </View>
                                                                     </Body>
                                                                     <TouchableOpacity transparent onPress={() => {
@@ -542,11 +541,11 @@ class ListView extends Component {
                     >
                         <View style={[part.modalMenu, part.paddingLine]}>
                             <List>
-                                <ListItem style={[part.noBorder, part.noPaddingTopBottom]}>
-                                    <TouchableOpacity style={part.backgroundNone}>
-                                        <Text style={part.titleMenuModal}>Đánh dấu là nổi bật</Text>
-                                    </TouchableOpacity>
-                                </ListItem>
+                                {/*<ListItem style={[part.noBorder, part.noPaddingTopBottom]}>*/}
+                                    {/*<TouchableOpacity style={part.backgroundNone}>*/}
+                                        {/*<Text style={part.titleMenuModal}>Đánh dấu là nổi bật</Text>*/}
+                                    {/*</TouchableOpacity>*/}
+                                {/*</ListItem>*/}
                                 <ListItem style={[part.noBorder, part.noPaddingTopBottom]}>
                                     <TouchableOpacity
                                         style={part.backgroundNone}
@@ -556,7 +555,6 @@ class ListView extends Component {
                                             }
                                         }
                                     >
-
                                         <Text style={part.titleMenuModal}>Báo cáo...</Text>
                                     </TouchableOpacity>
                                 </ListItem>

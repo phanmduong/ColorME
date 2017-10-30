@@ -82,13 +82,7 @@ class NewFeedContainer extends Component {
             this.setState({isLoadingList: false})
         }, 1000);
         this.props.getNewFeedAction.changeTheView();
-        this.setState({
-            listPost: [],
-            arrayLike: [],
-            likeCount: [],
-            isLoadingList: true,
-            page_id: 2
-        });
+        this.setState({listPost: [], arrayLike: [], likeCount: [], isLoadingList: true, page_id: 2, typeView: value});
         this.props.getNewFeedAction.getNewFeed(value, 1);
     }
 
