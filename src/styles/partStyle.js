@@ -82,7 +82,7 @@ const part = StyleSheet.create({
         width: wid,
         height: hei / 3 + 3,
     },
-    wrapperIcon:{
+    wrapperIcon: {
         justifyContent: 'center',
         alignItems: 'center',
         height: 25,
@@ -95,7 +95,7 @@ const part = StyleSheet.create({
         borderRadius: 5,
         backgroundColor: color.lightGray,
     },
-    wrapperTextLoadMore:{
+    wrapperTextLoadMore: {
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 5,
@@ -475,7 +475,7 @@ const part = StyleSheet.create({
         backgroundColor: color.main,
 
     },
-    buttonLeftRegisterMain:{
+    buttonLeftRegisterMain: {
         marginTop: 5,
         backgroundColor: color.main,
         paddingTop: 5,
@@ -484,7 +484,7 @@ const part = StyleSheet.create({
         paddingLeft: 10,
 
     },
-    buttonLeftRegisterGray:{
+    buttonLeftRegisterGray: {
         marginTop: 5,
         backgroundColor: color.icon,
         paddingTop: 5,
@@ -499,8 +499,7 @@ const part = StyleSheet.create({
         padding: 10,
     },
     paddingIcon: {
-        paddingRight: 5,
-        paddingLeft: 5,
+        padding: 5,
     },
     paddingRight: {
         paddingRight: 5,
@@ -690,7 +689,7 @@ const part = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    wrapperBackButton:{
+    wrapperBackButton: {
         width: 80,
     },
     noBorder: {

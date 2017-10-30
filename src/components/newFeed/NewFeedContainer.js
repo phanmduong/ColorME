@@ -340,13 +340,9 @@ class NewFeedContainer extends Component {
                                                 </View>
                                             )
                                         }
-                                    }
-                                    }
-                                    ListFooterComponent={
-                                        this.loadingLoadMore()
-                                    }
-
-                                />)
+                                    }}
+                                    ListFooterComponent={this.loadingLoadMore()
+                                    }/>)
                         )
                         :
                         (

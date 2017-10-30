@@ -50,7 +50,7 @@ class NotificationContainer extends Component {
         switch (type) {
             case 'also_comment':
                 return (
-                    <Text style={part.titleSmallBlue}>
+                    <Text style={part.titleSmallBlue}  onPress={() => this.props.navigation.navigate('UserInNotification', {username: item.actor.username})}>
                         {item.actor.name}
                         <Text style={part.titleSmallDarkGrayBold}>
                             &nbsp;đã bình luận về
@@ -61,7 +61,7 @@ class NotificationContainer extends Component {
                 );
             case 'like':
                 return (
-                    <Text style={part.titleSmallBlue}>
+                    <Text style={part.titleSmallBlue}  onPress={() => this.props.navigation.navigate('UserInNotification', {username: item.actor.username})}>
                         {item.actor.name}
                         <Text style={part.titleSmallDarkGrayBold}>
                             &nbsp;đã thích
@@ -72,7 +72,7 @@ class NotificationContainer extends Component {
                 );
             case 'new_comment':
                 return (
-                    <Text style={part.titleSmallBlue}>
+                    <Text style={part.titleSmallBlue}  onPress={() => this.props.navigation.navigate('UserInNotification', {username: item.actor.username})}>
                         {item.actor.name}
                         <Text style={part.titleSmallDarkGrayBold}>
                             &nbsp;đã bình luận về
@@ -87,7 +87,7 @@ class NotificationContainer extends Component {
                 return (
                     <Text style={part.titleSmallDarkGrayBold}>
                         Bạn chuyển tiền cho
-                        <Text style={part.titleSmallBlue}>
+                        <Text style={part.titleSmallBlue}  onPress={() => this.props.navigation.navigate('UserInNotification', {username: item.actor.username})}>
                             &nbsp;{item.actor.name}&nbsp;
                         </Text>
                         {
@@ -133,7 +133,7 @@ class NotificationContainer extends Component {
                                                 source={{uri: item.actor.avatar_url}}/>
                                         </TouchableOpacity>
                                         <Body style={part.noBorder}>
-                                        {this.textNotification(item.type, item)}
+                                            {this.textNotification(item.type, item)}
                                         <Text
                                             style={part.describeItalicDark}>
                                             {item.created_at}

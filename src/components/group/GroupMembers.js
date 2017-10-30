@@ -60,10 +60,10 @@ class GroupMembers extends Component {
                                                             onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.username})}
                                                         >
                                                             <Text style={part.titleSmallBlue}>{item.name}</Text>
+                                                            <Text style={part.describeGray} note>
+                                                                {item.university}
+                                                            </Text>
                                                         </TouchableOpacity>
-                                                        <Text style={part.describeGray} note>
-                                                            {item.university}
-                                                        </Text>
                                                         </Body>
                                                         <TouchableOpacity style={part.iconFollow}>
                                                             <Icon name="ion|ios-person-add"

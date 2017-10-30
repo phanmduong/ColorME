@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    Image, KeyboardAvoidingView, Text, TouchableOpacity, View, Keyboard
+    Image, KeyboardAvoidingView, Text, TouchableOpacity, View, Keyboard, ScrollView
 } from 'react-native';
 import {
     Body, Button, Card, CardItem, Container, Content,
@@ -477,7 +477,6 @@ class InfoAboutPostContainer extends Component {
                                             :
                                             () => {
                                                 this.commentPost(params.product_id, this.props.token, this.state);
-
                                             }
                                     }
                                     placeholder='Viết bình luận'
@@ -508,9 +507,14 @@ class InfoAboutPostContainer extends Component {
                                         ?
                                         Keyboard.dismiss
                                         :
-                                        () => {
-                                            this.commentPost(params.product_id, this.props.token, this.state);
-                                        }
+                                        (
+                                            Keyboard.dismiss,
+                                            () => {
+                                                this.commentPost(params.product_id, this.props.token, this.state);
+                                            }
+                                        )
+
+
 
                                 }
 

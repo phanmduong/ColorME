@@ -125,7 +125,7 @@ class SearchContainer extends Component {
                 <View style={part.wrapperStatusBar}>
                 </View>
                 <Item style={part.noBorder}>
-                    <TouchableOpacity onPress={() => this.search()}>
+                    <TouchableOpacity>
                         <Text style={[part.titleLargeDarkBold, part.paddingLineFar]}>
                             Tìm kiếm
                         </Text>
