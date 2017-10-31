@@ -27,6 +27,10 @@ const part = StyleSheet.create({
         backgroundColor: color.backGround,
         borderBottomWidth: 0,
     },
+    itemInformation:{
+        marginLeft: 0,
+        borderBottomWidth: 0,
+    },
     tabInDrawer: {
         padding: 10,
         justifyContent: 'center',
@@ -55,6 +59,13 @@ const part = StyleSheet.create({
     wrapperContainer: {
         padding: 0,
         backgroundColor: color.backGround,
+    },
+    wrapperIsLoading: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 100,
+        padding: 0,
+        backgroundColor: color.none,
     },
     wrapperImageInGetFull: {
         position: 'relative',
@@ -95,13 +106,21 @@ const part = StyleSheet.create({
         borderRadius: 5,
         backgroundColor: color.lightGray,
     },
+    wrapperProfile: {
+        width: wid - 20,
+        height: 10,
+        backgroundColor: color.lightGray,
+    },
     wrapperTextLoadMore:{
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 5,
         width: wid,
-        height: 20,
-
+        height: 30,
+    },
+    wrapperTextCenter:{
+        alignItems: 'center',
+        flex: 1,
+        height: 70,
     },
     wrapperNotResult: {
         paddingTop: 20,
@@ -171,6 +190,10 @@ const part = StyleSheet.create({
         borderRadius: 5,
         backgroundColor: 'rgb(41, 173, 5)',
     },
+    profileProgress: {
+        height: 10,
+        backgroundColor: color.main,
+    },
 
 
     navTitle: {
@@ -236,6 +259,12 @@ const part = StyleSheet.create({
         fontSize: 14,
         fontWeight: '600',
     },
+    inputTheme03: {
+        fontFamily: 'Montserrat',
+        fontSize: 14,
+        lineHeight: 10,
+        fontWeight: '600',
+    },
 
 
     //BORDER = NONE
@@ -260,20 +289,24 @@ const part = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 25,
+        backgroundColor: color.icon,
     },
     avatarUserNormalSquare: {
         width: 50,
         height: 50,
+        backgroundColor: color.icon,
     },
     avatarUserInDrawer: {
         width: size.wid / 4,
         height: size.wid / 4,
         borderRadius: size.wid / 8,
+        backgroundColor: color.icon,
     },
     avatarUserSmall: {
         width: 40,
         height: 40,
         borderRadius: 20,
+        backgroundColor: color.icon,
     },
 
     image: {
@@ -331,7 +364,11 @@ const part = StyleSheet.create({
         fontWeight: 'bold',
         color: color.text,
     },
-
+    titleProfile:{
+        fontFamily: 'Montserrat',
+        fontSize: 16,
+        color: color.darkGray,
+    },
 
     titleSmallDarkBold: {
         fontFamily: 'Montserrat',
@@ -358,6 +395,12 @@ const part = StyleSheet.create({
         fontSize: size.titleNormal,
         color: color.text,
         fontWeight: '700',
+    },
+    titleDark: {
+        fontFamily: 'Montserrat',
+        fontSize: size.titleNormal,
+        color: color.text,
+        fontWeight: '600',
     },
     titleSmallBlue: {
         fontFamily: 'Montserrat',

@@ -15,20 +15,13 @@ class MyAccountProgress extends Component {
         const {progress, isLoadingUserProgress} = this.props;
         return (
             <Container
-                style={[part.wrapperContainer, part.padding]}>
+                style={part.wrapperContainer}>
                 {
 
                     (isLoadingUserProgress)
                         ?
-                        (<View
-                            style={{
-                                flex: 1,
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                            }}
-                        >
-                            <Spinner
-                                color={color.gray}/>
+                        (<View style={part.wrapperIsLoading}>
+                            <Spinner color={color.gray}/>
                         </View>)
                         :
                         (
@@ -65,7 +58,7 @@ class MyAccountProgress extends Component {
                                                                         <Icon key={i}
                                                                               name="fontawesome|circle"
                                                                               style={part.paddingRight}
-                                                                              size={17}
+                                                                              size={12}
                                                                               color={item.status == 1 ? color.green : color.icon}
                                                                         />
                                                                     );

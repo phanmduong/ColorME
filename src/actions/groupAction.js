@@ -56,24 +56,24 @@ export function getGroupMemberSuccess(response) {
 export function getGroupTopicsError() {
     return{
         type: types.GET_GROUP_TOPICS_ERROR,
-        isLoadingUserProfile: false,
-        errorUserProfile: true,
+        isLoadingGroupTopics: false,
+        errorGroupTopics: true,
     }
 }
 
 export function getGroupProductsError() {
     return{
         type: types.GET_GROUP_PRODUCTS_ERROR,
-        isLoadingUserProgress: false,
-        errorUserProgress: true,
+        isLoadingGroupProducts: false,
+        errorGroupProducts: true,
     }
 }
 
 export function getGroupMemberError() {
     return{
         type: types.GET_GROUP_MEMBER_ERROR,
-        isLoadingUserProducts: false,
-        errorUserProducts: true,
+        isLoadingGroupMembers: false,
+        errorGroupMembers: true,
     }
 }
 

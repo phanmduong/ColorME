@@ -234,7 +234,7 @@ class UserContainer extends Component {
                     {
                         this.state.isLoading
                             ?
-                            <View style={[part.wrapperContainer]}>
+                            <View style={part.wrapperIsLoading}>
                                 <Spinner color={color.gray}/>
                             </View>
                             :
