@@ -261,8 +261,8 @@ const part = StyleSheet.create({
     },
     inputTheme03: {
         fontFamily: 'Montserrat',
-        height: 30,
         fontSize: 14,
+        lineHeight: 10,
         fontWeight: '600',
     },
 

@@ -55,7 +55,7 @@ class UserProgress extends Component {
                                                                         <Icon key={i}
                                                                               name="fontawesome|circle"
                                                                               style={part.paddingRight}
-                                                                              size={17}
+                                                                              size={12}
                                                                               color={item.status == 1 ? color.green : color.icon}
                                                                         />
                                                                     );

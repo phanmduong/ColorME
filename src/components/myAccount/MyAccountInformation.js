@@ -39,6 +39,11 @@ class MyAccountInformation extends Component {
             temp++;
         if (user.university !== '')
             temp++;
+        if (user.name !== '' && user.username !== '' && user.gender !== '' && user.description !== '' && user.work !== '' && user.university !== ''){
+            profileProgressWidth = size.wid - 20;
+            profileProgressIndex = 100;
+            temp = 1;
+        }
         this.setState({
             profileProgressWidth: profileProgressWidth * temp,
             profileProgressIndex: profileProgressIndex * temp
@@ -75,28 +80,32 @@ class MyAccountInformation extends Component {
                                         <Item stackedLabel style={part.itemInformation}>
                                             <Label style={[part.describeGray, part.noPadding]}>Họ tên</Label>
                                             <Input
-                                                value={user.name}
+                                                editable={false}
+                                                defaultValue={user.name}
                                                 style={[part.inputTheme03]}
                                             />
                                         </Item>
                                         <Item stackedLabel style={part.itemInformation}>
                                             <Label style={[part.describeGray, part.noPadding]}>Username</Label>
                                             <Input
-                                                value={user.username}
+                                                editable={false}
+                                                defaultValue={user.username}
                                                 style={[part.inputTheme03]}
                                             />
                                         </Item>
                                         <Item stackedLabel style={part.itemInformation}>
                                             <Label style={[part.describeGray, part.noPadding]}>Giới tính</Label>
                                             <Input
-                                                value={user.gender === '1' ? 'Nam' : 'Nữ'}
+                                                editable={false}
+                                                defaultValue={user.gender === '1' ? 'Nam' : 'Nữ'}
                                                 style={[part.inputTheme03]}
                                             />
                                         </Item>
                                         <Item stackedLabel style={part.itemInformation}>
                                             <Label style={[part.describeGray, part.noPadding]}>Mô tả</Label>
                                             <Input
-                                                value={user.description}
+                                                editable={false}
+                                                defaultValue={user.description}
                                                 style={[part.inputTheme03]}
                                             />
                                         </Item>
@@ -104,7 +113,7 @@ class MyAccountInformation extends Component {
                                             <Label style={[part.describeGray, part.noPadding]}>Nơi làm việc</Label>
                                             <Input
                                                 editable={false}
-                                                value={user.work}
+                                                defaultValue={user.work}
                                                 style={[part.inputTheme03]}
                                             />
                                         </Item>
@@ -112,7 +121,7 @@ class MyAccountInformation extends Component {
                                             <Label style={[part.describeGray, part.noPadding]}>Trường học</Label>
                                             <Input
                                                 editable={false}
-                                                value={user.university}
+                                                defaultValue={user.university}
                                                 style={[part.inputTheme03]}
                                             />
                                         </Item>
