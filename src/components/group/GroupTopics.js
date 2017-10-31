@@ -19,18 +19,9 @@ class GroupTopics extends Component {
         return (
             (isLoadingGroupTopics)
                 ?
-                (
-                    <View
-                        style={{
-                            flex: 1,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Spinner
-                            color={color.gray}/>
-                    </View>
-                )
+                <View style={part.wrapperIsLoading}>
+                    <Spinner color={color.gray}/>
+                </View>
                 :
                 (
                     <Container style={[part.wrapperContainer, part.padding]}>

@@ -14,23 +14,13 @@ class GroupProject extends Component {
         const {products, isLoadingGroupProducts, groupName} = this.props;
         return (
             <Container
-                showsVerticalScrollIndicator={false}
                 style={[part.wrapperContainer]}>
                 {
                     (isLoadingGroupProducts)
                         ?
-                        (
-                            <View
-                                style={{
-                                    flex: 1,
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                }}
-                            >
-                                <Spinner
-                                    color={color.gray}/>
-                            </View>
-                        )
+                        <View style={part.wrapperIsLoading}>
+                            <Spinner color={color.gray}/>
+                        </View>
                         :
                         (
                             <View style={[part.wrapperGrid]}>

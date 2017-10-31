@@ -14,22 +14,13 @@ class MyAccountProject extends Component {
         return (
             <Container
                 showsVerticalScrollIndicator={false}
-                style={[part.wrapperContainer]}>
+                style={part.wrapperContainer}>
                 {
                     (isLoadingUserProducts)
                         ?
-                        (
-                            <View
-                                style={{
-                                    flex: 1,
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                }}
-                            >
-                                <Spinner
-                                    color={color.gray}/>
-                            </View>
-                        )
+                        (<View style={part.wrapperIsLoading}>
+                            <Spinner color={color.gray}/>
+                        </View>)
                         :
                         (
                             <View style={[part.wrapperGrid]}>

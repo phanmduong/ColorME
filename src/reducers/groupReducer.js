@@ -8,23 +8,23 @@ export default function groupReducer(state = initialState.group, action) {
                 ...state,
                 ...{
                     isLoadingGroupTopics: action.isLoadingGroupTopics,
-                    errorGroupTopics: action.errorUserProfile,
+                    errorGroupTopics: action.errorGroupTopics,
                 }
             };
         case types.BEGIN_GET_GROUP_PRODUCTS:
             return{
                 ...state,
                 ...{
-                    isLoadingGroupProducts: action.isLoadingUserProgress,
-                    errorGroupProducts: action.errorUserProgress,
+                    isLoadingGroupProducts: action.isLoadingGroupProducts,
+                    errorGroupProducts: action.errorGroupProducts,
                 }
             };
         case types.BEGIN_GET_GROUP_MEMBER:
             return {
                 ...state,
                 ...{
-                    isLoadingGroupMembers: action.isLoadingUserProducts,
-                    errorGroupMembers: action.errorUserProducts,
+                    isLoadingGroupMembers: action.isLoadingGroupMembers,
+                    errorGroupMembers: action.errorGroupMembers,
                 }
             };
 
@@ -33,8 +33,8 @@ export default function groupReducer(state = initialState.group, action) {
                 ...state,
                 ...{
                     topics: action.topics,
-                    isLoadingGroupTopics: action.isLoadingUserProfile,
-                    errorGroupTopics: action.errorUserProfile,
+                    isLoadingGroupTopics: action.isLoadingGroupTopics,
+                    errorGroupTopics: action.errorGroupTopics,
                 }
             };
         case types.GET_GROUP_PRODUCTS_SUCCESS:
@@ -44,8 +44,8 @@ export default function groupReducer(state = initialState.group, action) {
                     products: action.products,
                     groupName: action.groupName,
                     groupAvatar: action.groupAvatar,
-                    isLoadingGroupProducts: action.isLoadingUserProgress,
-                    errorGroupProducts: action.errorUserProgress,
+                    isLoadingGroupProducts: action.isLoadingGroupProducts,
+                    errorGroupProducts: action.errorGroupProducts,
                 }
             };
         case types.GET_GROUP_MEMBER_SUCCESS:
@@ -53,32 +53,32 @@ export default function groupReducer(state = initialState.group, action) {
                 ...state,
                 ...{
                     members: action.members,
-                    isLoadingGroupMembers: action.isLoadingUserProducts,
-                    errorGroupMembers: action.errorUserProducts,
+                    isLoadingGroupMembers: action.isLoadingGroupMembers,
+                    errorGroupMembers: action.errorGroupMembers,
                 }
             };
         case types.GET_GROUP_TOPICS_ERROR:
             return{
                 ...state,
                 ...{
-                    isLoadingGroupTopics: action.isLoading,
-                    errorGroupTopics: action.errorUserProfile,
+                    isLoadingGroupTopics: action.isLoadingGroupTopics,
+                    errorGroupTopics: action.errorGroupTopics,
                 }
             };
         case types.GET_GROUP_PRODUCTS_ERROR:
             return{
                 ...state,
                 ...{
-                    isLoadingGroupProducts: action.isLoadingUserProgress,
-                    errorGroupProducts: action.errorUserProgress,
+                    isLoadingGroupProducts: action.isLoadingGroupProducts,
+                    errorGroupProducts: action.errorGroupProducts,
                 }
             };
         case types.GET_GROUP_MEMBER_ERROR:
             return{
                 ...state,
                 ...{
-                    isLoadingGroupMembers: action.isLoadingUserProducts,
-                    errorGroupMembers: action.errorUserProducts,
+                    isLoadingGroupMembers: action.isLoadingGroupMembers,
+                    errorGroupMembers: action.errorGroupMembers,
                 }
             };
         default:

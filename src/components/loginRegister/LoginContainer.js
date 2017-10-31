@@ -82,6 +82,7 @@ componentWillMount(){
                                        color={color.darkGray}
                                        secureTextEntry={true}
                                        returnKeyType={'go'}
+                                       onSubmitEditing={()=>this.signIn()}
                                        onChangeText={(password) => {
                                            this.updateData('password', password)
                                        }}

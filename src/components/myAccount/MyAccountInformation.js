@@ -13,22 +13,13 @@ class MyAccountInformation extends Component {
     render() {
         const {user, isLoadingUserProfile} = this.props;
         return (
-            <Container style={[part.wrapperContainer, part.padding]}>
+            <Container style={part.wrapperContainer}>
                 {
                     (isLoadingUserProfile)
                         ?
-                        (
-                            <View
-                                style={{
-                                    flex: 1,
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                }}
-                            >
-                                <Spinner
-                                    color={color.gray}/>
-                            </View>
-                        )
+                        (<View style={part.wrapperIsLoading}>
+                            <Spinner color={color.gray}/>
+                        </View>)
                         :
                         (
                             <Content

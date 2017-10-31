@@ -56,6 +56,13 @@ const part = StyleSheet.create({
         padding: 0,
         backgroundColor: color.backGround,
     },
+    wrapperIsLoading: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 100,
+        padding: 0,
+        backgroundColor: color.none,
+    },
     wrapperImageInGetFull: {
         position: 'relative',
         width: wid,
@@ -98,9 +105,8 @@ const part = StyleSheet.create({
     wrapperTextLoadMore:{
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 5,
         width: wid,
-        height: 20,
+        height: 30,
 
     },
     wrapperNotResult: {

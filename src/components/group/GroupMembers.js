@@ -14,22 +14,13 @@ class GroupMembers extends Component {
     render() {
         const {members, isLoadingGroupMembers, groupName} = this.props;
         return (
-            <Container style={[part.wrapperContainer, part.padding]}>
+            <Container style={part.wrapperContainer}>
                 {
                     (isLoadingGroupMembers)
                         ?
-                        (
-                            <View
-                                style={{
-                                    flex: 1,
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                }}
-                            >
-                                <Spinner
-                                    color={color.gray}/>
-                            </View>
-                        )
+                        <View style={part.wrapperIsLoading}>
+                            <Spinner color={color.gray}/>
+                        </View>
                         :
                         (
                             <View>
@@ -38,7 +29,7 @@ class GroupMembers extends Component {
                                         ?
                                         <Body>
                                             <Text style={[part.padding, part.titleSmallDarkGrayBold]}>
-                                                {groupName} chưa tạo chủ đề nào.
+                                                {groupName} chưa có thành viên nào.
                                             </Text>
                                         </Body>
                                         :
