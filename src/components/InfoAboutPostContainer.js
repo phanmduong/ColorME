@@ -50,21 +50,22 @@ class InfoAboutPostContainer extends Component {
         const {params} = this.props.navigation.state;
         this.props.getFullInfoAboutOnePostAction.getFullInfoAboutOnePostOfUser(params.product_id);
         this.props.getFullInfoAboutOnePostAction.getCommentOnePost(params.product_id);
+        this.props.getFullInfoAboutOnePostAction.getPostLiker(params.product_id);
 
     }
 
     componentWillReceiveProps(nextProps) {
         let likedComment = this.state.likedComment;
-        let liked = this.state.liked;
+        let liked;
         if (nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading && this.props.post !== nextProps.props) {
             let comments = nextProps.comments;
             let item = false;
             let post = nextProps.post;
-            if (post && post.likers) {
+            if( post && post.likers) {
                 let likers = post.likers.filter((liker) => {
-                    return liker.username == this.props.user.username
+                    return liker.username == nextProps.user.username;
                 })
-                if (likers.length == 0) {
+                if (likers && likers.length == 0) {
                     liked = false;
                 }
                 else {
@@ -544,7 +545,8 @@ function mapStateToProps(state) {
         comments: state.getFullInfoAboutOnePost.comments,
         isLoading: state.getFullInfoAboutOnePost.isLoading,
         statusPostComment: state.getFullInfoAboutOnePost.statusPostComment,
-        idComment: state.getFullInfoAboutOnePost.idComment
+        idComment: state.getFullInfoAboutOnePost.idComment,
+        likers: state.getFullInfoAboutOnePost.likers,
     }
 }
 

@@ -107,7 +107,6 @@ export function getPostLiker(product_id) {
         inforAboutPostApi.getFullInfoAboutOnePostApi(product_id)
             .then(function (response) {
                 dispatch(getPostLikerSuccess(response));
-                console.log(response.data.likers)
             })
             .catch(function (error) {
                 dispatch(getFullInfoAboutOnePostError(error));

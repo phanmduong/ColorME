@@ -6,7 +6,6 @@ import {TabNavigator, StackNavigator, DrawerNavigator,addNavigationHelpers} from
 import Icon from '../commons/Icon';
 import * as color from '../styles/color';
 import * as size from '../styles/size';
-import {connect} from 'react-redux'
 // LOGIN
 import LoginContainer from '../components/loginRegister/LoginContainer';
 import EmailIdentityContainer from '../components/loginRegister/EmailIdentityContainer'
