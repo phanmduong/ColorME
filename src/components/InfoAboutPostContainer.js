@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, Keyboard, KeyboardAvoidingView, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Keyboard, KeyboardAvoidingView, Text, TouchableOpacity, View} from 'react-native';
 import {
     Body,
     Button,
@@ -26,6 +26,7 @@ import * as getFullInfoAboutOnePostAction from '../actions/inforAboutPostAction'
 import * as likePostAction from '../actions/likePostAction'
 import WebViewAutoHeight from '../commons/WebViewAutoHeight';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
+import {getFullInfoAboutOnePostSuccess} from "../actions/inforAboutPostAction";
 
 class InfoAboutPostContainer extends Component {
     constructor() {
@@ -51,19 +52,17 @@ class InfoAboutPostContainer extends Component {
         this.props.getFullInfoAboutOnePostAction.getFullInfoAboutOnePostOfUser(params.product_id);
         this.props.getFullInfoAboutOnePostAction.getCommentOnePost(params.product_id);
         this.props.getFullInfoAboutOnePostAction.getPostLiker(params.product_id);
-
     }
 
     componentWillReceiveProps(nextProps) {
+        let liked = this.state.liked;
         let likedComment = this.state.likedComment;
-        let liked;
-        if (nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading && this.props.post !== nextProps.props) {
+        if (nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading && this.props.post !== nextProps.props || (nextProps.likers !== this.props.likers)) {
             let comments = nextProps.comments;
             let item = false;
-            let post = nextProps.post;
-            if( post && post.likers) {
-                let likers = post.likers.filter((liker) => {
-                    return liker.username == nextProps.user.username;
+            if (nextProps.likers) {
+                 let likers = nextProps.likers.filter((liker) => {
+                    return liker.username == this.props.user.username
                 })
                 if (likers && likers.length == 0) {
                     liked = false;
@@ -86,15 +85,14 @@ class InfoAboutPostContainer extends Component {
                 likedComment.push(item);
                 i++;
             }
-            this.setState({
-                likeCount: nextProps.post.likes_count,
-                listComment: nextProps.comments,
-                likedComment: likedComment,
-                liked : liked
-            })
         }
+        this.setState({
+            liked: liked,
+            likeCount: nextProps.post.likes_count,
+            listComment: nextProps.comments,
+            likedComment: likedComment
+        })
     }
-
     likePost(product_id, token) {
         let liked = this.state.liked;
         let likeCount = this.state.likeCount;
@@ -117,25 +115,26 @@ class InfoAboutPostContainer extends Component {
         this.setState({likeCount: likeCount, liked: liked});
     }
 
-     commentPost(product_id, token, value) {
+    commentPost(product_id, token, value) {
         this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
-            let listComment = this.state.listComment;
-            let {user} = this.props;
-            // let date = new Date();
-            let arr = {
-                content: value.comment_content,
-                id: this.props.idComment,
-                parent_id: 0,
-                commenter: {
-                    username: user.username,
-                    avatar_url: user.avatar_url,
-                    name: user.name,
-                },
-                created_at: 'Vừa xong'
-            };
-            listComment.push(arr);
-            this.setState({listComment: listComment, comment_content: ''});
-        }
+        let listComment = this.state.listComment;
+        let {user} = this.props;
+        // let date = new Date();
+        let arr = {
+            content: value.comment_content,
+            id: this.props.idComment,
+            parent_id: 0,
+            commenter: {
+                username: user.username,
+                avatar_url: user.avatar_url,
+                name: user.name,
+            },
+            created_at: 'Vừa xong'
+        };
+        listComment.push(arr);
+        this.setState({listComment: listComment, comment_content: ''});
+    }
+
     likeComment(product_id, user_id, index) {
         let likedComment = this.state.likedComment;
         this.props.likePostAction.likeComment(product_id, user_id);
@@ -546,7 +545,7 @@ function mapStateToProps(state) {
         isLoading: state.getFullInfoAboutOnePost.isLoading,
         statusPostComment: state.getFullInfoAboutOnePost.statusPostComment,
         idComment: state.getFullInfoAboutOnePost.idComment,
-        likers: state.getFullInfoAboutOnePost.likers,
+        likers : state.getFullInfoAboutOnePost.likers,
     }
 }
 
