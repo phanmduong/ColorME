@@ -150,28 +150,23 @@ class ListView extends Component {
     }
 
     commentPost(product_id, token, value) {
-        return async function () {
-            try{
-                await this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
-                let listCommentInModal = this.state.listCommentInModal;
-                let {user} = this.props;
-                let arr = {
-                    content: this.state.comment_content,
-                    id: this.props.idComment,
-                    parent_id: 0,
-                    commenter: {
-                        username: user.username,
-                        avatar_url: user.avatar_url,
-                        name: user.name,
-                    },
-                    created_at: 'Vừa xong'
-                };
-                listCommentInModal.push(arr);
-                this.setState({listCommentInModal: listCommentInModal, comment_content: ''})
-            }
-            catch (error){}
-            }
-        }
+        this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
+        let listCommentInModal = this.state.listCommentInModal;
+        let {user} = this.props;
+        let arr = {
+            content: this.state.comment_content,
+            id: this.props.idComment,
+            parent_id: 0,
+            commenter: {
+                username: user.username,
+                avatar_url: user.avatar_url,
+                name: user.name,
+            },
+            created_at: 'Vừa xong'
+        };
+        listCommentInModal.push(arr);
+        this.setState({listCommentInModal: listCommentInModal, comment_content: ''})
+    }
     deleteComment(product_id, token, index) {
         let listComment = this.state.listCommentInModal;
         this.props.getFullInfoAboutOnePostAction.deleteComment(product_id, token);

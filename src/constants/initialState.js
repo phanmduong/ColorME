@@ -31,7 +31,8 @@ export default {
         error: false,
         result: false,
         statusPostComment: '',
-        idComment: 0
+        idComment: 0,
+        liked : {},
     },
     userInformation : {
         isLoading: false,

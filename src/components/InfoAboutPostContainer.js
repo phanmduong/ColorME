@@ -1,10 +1,18 @@
 import React, {Component} from 'react';
+import {Image, Keyboard, KeyboardAvoidingView, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {
-    Image, KeyboardAvoidingView, Text, TouchableOpacity, View, Keyboard, ScrollView
-} from 'react-native';
-import {
-    Body, Button, Card, CardItem, Container, Content,
-    Input, Item, Left, Right, Spinner, Thumbnail
+    Body,
+    Button,
+    Card,
+    CardItem,
+    Container,
+    Content,
+    Input,
+    Item,
+    Left,
+    Right,
+    Spinner,
+    Thumbnail
 } from 'native-base';
 import Icon from '../commons/Icon';
 import Video from 'react-native-video';
@@ -42,18 +50,20 @@ class InfoAboutPostContainer extends Component {
         const {params} = this.props.navigation.state;
         this.props.getFullInfoAboutOnePostAction.getFullInfoAboutOnePostOfUser(params.product_id);
         this.props.getFullInfoAboutOnePostAction.getCommentOnePost(params.product_id);
+        this.props.getFullInfoAboutOnePostAction.getPostLiker(params.product_id);
+
     }
 
     componentWillReceiveProps(nextProps) {
-        let liked = this.state.liked;
         let likedComment = this.state.likedComment;
+        let liked;
         if (nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading && this.props.post !== nextProps.props) {
             let comments = nextProps.comments;
             let item = false;
             let post = nextProps.post;
-            if (post && post.likers) {
+            if( post && post.likers) {
                 let likers = post.likers.filter((liker) => {
-                    return liker.username == nextProps.user.username
+                    return liker.username == nextProps.user.username;
                 })
                 if (likers && likers.length == 0) {
                     liked = false;
@@ -76,13 +86,13 @@ class InfoAboutPostContainer extends Component {
                 likedComment.push(item);
                 i++;
             }
+            this.setState({
+                likeCount: nextProps.post.likes_count,
+                listComment: nextProps.comments,
+                likedComment: likedComment,
+                liked : liked
+            })
         }
-        this.setState({
-            liked: liked,
-            likeCount: nextProps.post.likes_count,
-            listComment: nextProps.comments,
-            likedComment: likedComment
-        })
     }
 
     likePost(product_id, token) {
@@ -107,28 +117,25 @@ class InfoAboutPostContainer extends Component {
         this.setState({likeCount: likeCount, liked: liked});
     }
 
-    async commentPost(product_id, token, value) {
-        await this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
-        try {
+     commentPost(product_id, token, value) {
+        this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
             let listComment = this.state.listComment;
             let {user} = this.props;
             // let date = new Date();
-                let arr = {
-                    content: value.comment_content,
-                    id: this.props.idComment,
-                    parent_id: 0,
-                    commenter: {
-                        username: user.username,
-                        avatar_url: user.avatar_url,
-                        name: user.name,
-                    },
-                    created_at: 'Vừa xong'
-                };
-                listComment.push(arr);
-                this.setState({listComment: listComment, comment_content: ''});
-            }
-        catch (error){}
-    }
+            let arr = {
+                content: value.comment_content,
+                id: this.props.idComment,
+                parent_id: 0,
+                commenter: {
+                    username: user.username,
+                    avatar_url: user.avatar_url,
+                    name: user.name,
+                },
+                created_at: 'Vừa xong'
+            };
+            listComment.push(arr);
+            this.setState({listComment: listComment, comment_content: ''});
+        }
     likeComment(product_id, user_id, index) {
         let likedComment = this.state.likedComment;
         this.props.likePostAction.likeComment(product_id, user_id);
@@ -427,14 +434,14 @@ class InfoAboutPostContainer extends Component {
                                                             </Text>
 
                                                             {/*{item.commenter.username === this.props.user.username ?*/}
-                                                                {/*(*/}
-                                                                    {/*<Text*/}
-                                                                        {/*style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}*/}
-                                                                        {/*onPress={() => this.deleteComment(item.id, this.props.token, i)}*/}
-                                                                    {/*>*/}
-                                                                        {/*Xoá*/}
-                                                                    {/*</Text>*/}
-                                                                {/*) : (<TouchableOpacity/>)*/}
+                                                            {/*(*/}
+                                                            {/*<Text*/}
+                                                            {/*style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}*/}
+                                                            {/*onPress={() => this.deleteComment(item.id, this.props.token, i)}*/}
+                                                            {/*>*/}
+                                                            {/*Xoá*/}
+                                                            {/*</Text>*/}
+                                                            {/*) : (<TouchableOpacity/>)*/}
                                                             {/*}*/}
                                                         </View>
                                                         </Body>
@@ -506,11 +513,10 @@ class InfoAboutPostContainer extends Component {
                                         :
                                         (
                                             Keyboard.dismiss,
-                                            () => {
-                                                this.commentPost(params.product_id, this.props.token, this.state);
-                                            }
+                                                () => {
+                                                    this.commentPost(params.product_id, this.props.token, this.state);
+                                                }
                                         )
-
 
 
                                 }
@@ -539,7 +545,8 @@ function mapStateToProps(state) {
         comments: state.getFullInfoAboutOnePost.comments,
         isLoading: state.getFullInfoAboutOnePost.isLoading,
         statusPostComment: state.getFullInfoAboutOnePost.statusPostComment,
-        idComment: state.getFullInfoAboutOnePost.idComment
+        idComment: state.getFullInfoAboutOnePost.idComment,
+        likers: state.getFullInfoAboutOnePost.likers,
     }
 }
 

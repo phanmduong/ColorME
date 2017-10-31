@@ -72,6 +72,18 @@ export default function getFullInfoAboutOnePostReducer(state = initialState.getF
                     statusPostComment: action.statusPostComment
                 }
             };
+        case types.UNLIKE_POST_SUCCESS : {
+            return {
+                ...state,
+                ...{liked : action.liked}
+            }
+        }
+        case types.LIKE_POST_SUCCESS : {
+            return {
+                ...state,
+                ...{liked: action.liked}
+            }
+        }
         default:
             return state;
     }
