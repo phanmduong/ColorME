@@ -19,7 +19,7 @@ import NotificationContainer from '../components/NotificationContainer';
 import SlideViewComponent from '../components/drawer/SlideViewContainer'
 import CourseContainer from '../components/drawer/CourseContainer'
 import LearnRegisterContainer from '../components/drawer/LearnRegisterContainer'
-import CourseInformation from '../components/drawer/CourseInformation'
+import CourseInformation from '../components/drawer/CourseInformationContainer'
 import AttendGroupContainer from '../components/drawer/AttendGroupContainer'
 import InfoAboutPostContainer from '../components/InfoAboutPostContainer';
 

@@ -105,7 +105,6 @@ class UserInformation extends Component {
                                         <Item stackedLabel style={part.itemInformation}>
                                             <Label style={[part.describeGray, part.noPadding]}>Mô tả</Label>
                                             <Input
-                                                multiline={true}
                                                 editable={false}
                                                 defaultValue={user.description}
                                                 style={[part.inputTheme03]}

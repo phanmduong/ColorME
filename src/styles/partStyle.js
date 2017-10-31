@@ -414,6 +414,12 @@ const part = StyleSheet.create({
         color: color.navTitle,
         fontWeight: '600'
     },
+    titleNormalDarkGray: {
+        fontFamily: 'Montserrat',
+        fontSize: size.title,
+        color: color.darkGray,
+        fontWeight: '600'
+    },
     titleMenuModal: {
         fontFamily: 'Montserrat',
         paddingTop: 20,

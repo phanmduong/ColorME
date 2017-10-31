@@ -27,6 +27,13 @@ export default function userInformationReducer(state = initialState.userInformat
                     errorUserProducts: action.errorUserProducts,
                 }
             };
+            case types.BEGIN_GET_USER_SIDE_NAV:
+            return {
+                ...state,
+                ...{
+                    isLoadingUserSideNav: action.isLoadingUserSideNav,
+                }
+            };
         case types.GET_USER_PROFILE_SUCCESS:
             return {
                 ...state,
@@ -43,6 +50,14 @@ export default function userInformationReducer(state = initialState.userInformat
                     progress: action.progress,
                     isLoadingUserProgress: action.isLoadingUserProgress,
                     errorUserProgress: action.errorUserProgress,
+                }
+            };
+        case types.GET_USER_SIDE_NAV_SUCCESS:
+            return {
+                ...state,
+                ...{
+                    dataSideNav: action.dataSideNav,
+                    isLoadingUserSideNav: action.isLoadingUserSideNav,
                 }
             };
         case types.GET_USER_PRODUCTS_SUCCESS:
@@ -76,6 +91,13 @@ export default function userInformationReducer(state = initialState.userInformat
                 ...{
                     isLoadingUserProducts: action.isLoadingUserProducts,
                     errorUserProducts: action.errorUserProducts,
+                }
+            };
+            case types.GET_USER_SIDE_NAV_ERROR:
+            return {
+                ...state,
+                ...{
+                    isLoadingUserSideNav: action.isLoadingUserSideNav,
                 }
             };
         case types.SELECTED_USER_PROFILE_NEWFEED:

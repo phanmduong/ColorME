@@ -1,5 +1,6 @@
 import * as types from '../constants/actionTypes';
 import * as userInformationApi from '../apis/userInformationApi';
+import * as sideNavApi from '../apis/sideNavApi';
 
 export function beginGetUserProfile() {
     return{
@@ -74,7 +75,25 @@ export function getUserProductsError() {
         errorUserProducts: true,
     }
 }
-
+export function beginGetUserSideNav() {
+    return{
+        type: types.BEGIN_GET_USER_SIDE_NAV,
+        isLoadingUserSideNav: true,
+    }
+}
+export function getUserSideNavSuccess(response) {
+    return{
+        type: types.GET_USER_SIDE_NAV_SUCCESS,
+        dataSideNav: response.data,
+        isLoadingUserSideNav: false,
+    }
+}
+export function getUserSideNavError() {
+    return{
+        type: types.GET_USER_SIDE_NAV_ERROR,
+        isLoadingUserSideNav: false,
+    }
+}
 export function getUserProfile(userName) {
     return(dispatch) => {
         dispatch(beginGetUserProfile());
@@ -114,3 +133,16 @@ export function getUserProducts(username, page_id, token) {
     }
 }
 
+
+export function getUserSideNav(id) {
+    return(dispatch) => {
+        dispatch(beginGetUserSideNav());
+        sideNavApi.sideNavApi(id)
+            .then(function (response) {
+                dispatch(getUserSideNavSuccess(response));
+            })
+            .catch(function (error) {
+                dispatch(getUserSideNavError(error));
+            })
+    }
+}

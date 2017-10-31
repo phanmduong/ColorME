@@ -45,6 +45,8 @@ export default {
         user:{},
         products: [],
         progress: [],
+        dataSideNav: {},
+        isLoadingUserSideNav: false,
     },
     myAccountInformation : {
         isLoading: false,

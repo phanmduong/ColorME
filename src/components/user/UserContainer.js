@@ -25,17 +25,15 @@ class UserContainer extends Component {
         this.state = {
             tab: 1,
             isLoading: false,
+            id: 0,
         }
     }
-
     componentWillMount() {
         const {params} = this.props.navigation.state;
         this.props.userInformationAction.getUserProfile(params.username);
         this.props.userInformationAction.getUserProgress(params.username);
         this.props.userInformationAction.getUserProducts(params.username, 1, this.props.token);
-
     }
-
     ViewProgress() {
         setTimeout(() => {
             this.setState({isLoading: false})
@@ -88,7 +86,7 @@ class UserContainer extends Component {
 
     render() {
         const {goBack} = this.props.navigation;
-        const {user, isLoadingUserProducts, dataSideNav} = this.props;
+        const {user, isLoadingUserProfile,  dataSideNav, isLoadingUserSideNav} = this.props;
         return (
             <Container style={part.wrapperContainer}>
                 <ParallaxScrollView
@@ -104,7 +102,7 @@ class UserContainer extends Component {
                                 <Image
                                     style={{width: size.wid, height: size.PARALLAX_HEADER_HEIGHT}}
                                     source={
-                                        isLoadingUserProducts
+                                        isLoadingUserProfile
                                             ?
                                             {}
                                             :
@@ -138,7 +136,7 @@ class UserContainer extends Component {
                                 <Thumbnail style={part.marginBottom}
                                            circle large
                                            source={
-                                               isLoadingUserProducts
+                                               isLoadingUserProfile
                                                    ?
                                                    {}
                                                    :
@@ -147,7 +145,7 @@ class UserContainer extends Component {
                                 >
                                 </Thumbnail>
                                 <Text style={[part.titleNormalLight, part.paddingLine]}>{
-                                    isLoadingUserProducts
+                                    isLoadingUserProfile
                                         ?
                                         'Đang tải...'
                                         :
@@ -155,7 +153,7 @@ class UserContainer extends Component {
                                 }
                                 </Text>
                                 <Text style={[part.describeGray, part.paddingLine]}>{
-                                    isLoadingUserProducts
+                                    isLoadingUserProfile
                                         ?
                                         'Đang tải...'
                                         :
@@ -254,9 +252,9 @@ class UserContainer extends Component {
 function mapStateToProps(state) {
     return {
         user: state.userInformation.user,
+        products: state.userInformation.products,
         progress: state.userInformation.progress,
         isLoadingUserProgress: state.userInformation.isLoadingUserProgress,
-        products: state.userInformation.products,
         isLoadingUserProducts: state.userInformation.isLoadingUserProducts,
         isLoadingUserProfile: state.userInformation.isLoadingUserProfile,
         token: state.login.token,

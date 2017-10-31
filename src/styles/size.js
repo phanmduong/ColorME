@@ -4,6 +4,7 @@ export const iconNormal         = 20;
 export const iconBack           = 30;
 export const icon               = 25;
 export const iconBig            = 20;
+export const iconGiant          = 100;
 export const title              = 15;
 export const titleNormal        = 13;
 export const titleSmall         = 12;

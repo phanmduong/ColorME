@@ -98,7 +98,6 @@ componentWillMount(){
                                     rounded
                                     style={styles.buttonRegister}
                                     onPress={() => this.signIn()}
-
                                 >
                                     {(this.props.isLoading) ? (
                                         <Container style={{
