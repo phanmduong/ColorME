@@ -107,7 +107,7 @@ const part = StyleSheet.create({
         backgroundColor: color.lightGray,
     },
     wrapperProfile: {
-        width: wid - 20,
+        width: size.profileProgressWidth,
         height: 10,
         backgroundColor: color.lightGray,
     },
