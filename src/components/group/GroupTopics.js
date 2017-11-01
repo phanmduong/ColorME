@@ -7,7 +7,6 @@ import {
     Left, Body, Right, Spinner
 } from 'native-base';
 import Icon from '../../commons/Icon';
-import moment from 'moment';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
