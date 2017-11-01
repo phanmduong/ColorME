@@ -7,7 +7,7 @@ import {
     PanResponder,
     ScrollView,
     TouchableOpacity,
-    View
+    View,
 } from 'react-native';
 import {
     Body,
@@ -145,7 +145,6 @@ class ListView extends Component {
             modalMenu: false,
         });
     }
-
     commentPost(product_id, token, value) {
         this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
         let listCommentInModal = this.state.listCommentInModal;
@@ -548,6 +547,18 @@ class ListView extends Component {
                                         }
                                     >
                                         <Text style={part.titleMenuModal}>Báo cáo...</Text>
+                                    </TouchableOpacity>
+                                </ListItem>
+                                <ListItem>
+                                    <TouchableOpacity
+                                        style={part.backgroundNone}
+                                        onPress={
+                                            () => {
+                                                this.props.alertHiddenPost(this.props.item, this.props.key);
+                                            }
+                                        }
+                                    >
+                                        <Text style={part.titleMenuModal}>Ẩn bài viết...</Text>
                                     </TouchableOpacity>
                                 </ListItem>
 

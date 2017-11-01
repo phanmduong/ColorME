@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, RefreshControl, StatusBar, TouchableOpacity, View,} from 'react-native';
+import {FlatList, RefreshControl, StatusBar, TouchableOpacity, View,AsyncStorage,Alert} from 'react-native';
 import {
     Body,
     Button,
@@ -45,10 +45,13 @@ class NewFeedContainer extends Component {
             listPost: [],
             isLoadingList: false,
             clicked: '',
+            deleteId : null,
         };
         this.isFirst = true;
         this.likePost = this.likePost.bind(this);
         this.unlikePost = this.unlikePost.bind(this);
+        this.alertHiddenPost = this.alertHiddenPost.bind(this);
+        this.hiddenPost = this.hiddenPost.bind(this);
     }
 
     componentWillMount() {
@@ -76,7 +79,9 @@ class NewFeedContainer extends Component {
 
         }
     }
-
+     refreshFlatList = (deleteId) =>{
+        this.setState({deleteId : deleteId})
+     }
     onValueChange(value: string) {
         setTimeout(() => {
             this.setState({isLoadingList: false})
@@ -99,6 +104,37 @@ class NewFeedContainer extends Component {
         }, 250);
         this.setState({grid: true, isLoadingList: true, listPost: this.groupPosts(this.props.products)});
     }
+    alertHiddenPost(item, key){
+        Alert.alert(
+            'Báo cáo',
+            'Bạn thực sự muốn  bài viết này?',
+            [
+                {text: 'Xác nhận', onPress: () => this.hiddenPost(item, key)},
+                {text: 'Hủy'},
+            ],
+            {cancelable: false}
+        )
+    }
+    async hiddenPost(item, key){
+        try{
+            let value = await AsyncStorage.getItem('@idPost');
+            if (value == null) {
+                let array = [];
+                array.push(item.id);
+                let arrayString = JSON.stringify(array);
+                await  AsyncStorage.setItem('@idPost', arrayString)
+            }else{
+                let array = JSON.parse(value);
+                array.push(item.id);
+                let arrayString = JSON.stringify(array);
+                await  AsyncStorage.setItem('@idPost', arrayString);
+            }
+            let listPost = this.state.listPost;
+            listPost.splice(key, 1);
+            this.setState({listPost : listPost});
+            this.props.parentFlatList.refreshFlatList(key)
+        }catch (error){}
+    }
 
 // setup
     componentWillReceiveProps(nextProps) {
@@ -109,7 +145,8 @@ class NewFeedContainer extends Component {
             let count = this.state.likeCount;
             let post = nextProps.products;
             let item = false;
-            let i = this.props.products.length;
+
+            let i = 0;
             while (i < post.length) {
                 let key = {key: i};
                 let arr1 = Object.assign(post[i], key);
@@ -198,6 +235,7 @@ class NewFeedContainer extends Component {
     }
 
     render() {
+        console.log(AsyncStorage.getItem('@idPost'));
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
@@ -377,6 +415,8 @@ class NewFeedContainer extends Component {
                                             let colorFeatureIcon = item.feature_id == 0 ? color.icon : color.star;
                                             return (
                                                 <ListView
+                                                    hiddenPost = {this.hiddenPost}
+                                                    alertHiddenPost = {this.alertHiddenPost}
                                                     token={this.props.token}
                                                     unlikePost={this.unlikePost}
                                                     likePost={this.likePost}
@@ -385,10 +425,12 @@ class NewFeedContainer extends Component {
                                                     arrayLike={arrayLike}
                                                     likeCount={likeCount}
                                                     item={item}
+                                                    key={item.key}
                                                     colorIcon={colorIcon}
                                                     likedIcon={likedIcon}
                                                     featureIcon={featureIcon}
                                                     colorFeatureIcon={colorFeatureIcon}
+                                                    parentFlatList={this}
                                                 />
                                             )
                                         }}
