@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, Keyboard, KeyboardAvoidingView, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Keyboard, KeyboardAvoidingView, Text, TouchableOpacity, View, Alert} from 'react-native';
 import {
     Body,
     Button,
@@ -24,6 +24,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux';
 import * as getFullInfoAboutOnePostAction from '../actions/inforAboutPostAction'
 import * as likePostAction from '../actions/likePostAction'
+import * as reportAction from '../actions/reportAction';
 import WebViewAutoHeight from '../commons/WebViewAutoHeight';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import {getFullInfoAboutOnePostSuccess} from "../actions/inforAboutPostAction";
@@ -61,7 +62,7 @@ class InfoAboutPostContainer extends Component {
             let comments = nextProps.comments;
             let item = false;
             if (nextProps.likers) {
-                 let likers = nextProps.likers.filter((liker) => {
+                let likers = nextProps.likers.filter((liker) => {
                     return liker.username == this.props.user.username
                 })
                 if (likers && likers.length == 0) {
@@ -93,6 +94,7 @@ class InfoAboutPostContainer extends Component {
             likedComment: likedComment
         })
     }
+
     likePost(product_id, token) {
         let liked = this.state.liked;
         let likeCount = this.state.likeCount;
@@ -149,15 +151,23 @@ class InfoAboutPostContainer extends Component {
         this.setState({listComment: listComment})
     }
 
-    getSize(url) {
-        Image.getSize(url, (width, height) => {
-            this.setState({width, height})
-        });
-        if (this.state.height != 0) {
-            console.log(this.state.height)
-            console.log(this.state.width)
-        }
+    alertReport() {
+        Alert.alert(
+            'Báo cáo',
+            'Bạn thực sự muốn báo cáo bài viết này?',
+            [
+                {text: 'Xác nhận', onPress: () => this.reportPost(this.props.post.id, this.props.token)},
+                {text: 'Hủy'},
+            ],
+            {cancelable: false}
+        )
+    }
 
+    reportPost(id, token) {
+        this.props.reportAction.reportPost(id, token);
+        this.setState({
+            modalMenu: false,
+        });
     }
 
     render() {
@@ -394,7 +404,16 @@ class InfoAboutPostContainer extends Component {
                                             <Text
                                                 style={[part.describeGray, part.paddingLeft]}>{post.views_count}</Text>
                                         </Button>
+                                        <Right>
+                                            <Button transparent style={part.paddingRight}
+                                                onPress={() => this.alertReport()}
+                                            >
+                                                <Icon name="entypo|warning" size={size.iconBig}
+                                                      color={color.icon}/>
+                                            </Button>
+                                        </Right>
                                     </Left>
+
                                 </CardItem>
                                 <View>
                                     {
@@ -545,7 +564,7 @@ function mapStateToProps(state) {
         isLoading: state.getFullInfoAboutOnePost.isLoading,
         statusPostComment: state.getFullInfoAboutOnePost.statusPostComment,
         idComment: state.getFullInfoAboutOnePost.idComment,
-        likers : state.getFullInfoAboutOnePost.likers,
+        likers: state.getFullInfoAboutOnePost.likers,
     }
 }
 
@@ -553,6 +572,7 @@ function mapDispatchToProps(dispatch) {
     return {
         getFullInfoAboutOnePostAction: bindActionCreators(getFullInfoAboutOnePostAction, dispatch),
         likePostAction: bindActionCreators(likePostAction, dispatch),
+        reportAction: bindActionCreators(reportAction, dispatch),
     }
 }
 

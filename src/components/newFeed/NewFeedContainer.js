@@ -419,7 +419,6 @@ function mapDispatchToProps(dispatch) {
     return {
         getNewFeedAction: bindActionCreators(getNewFeedAction, dispatch),
         likePostAction: bindActionCreators(likePostAction, dispatch),
-
     }
 }
 

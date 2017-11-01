@@ -35,10 +35,7 @@ import * as getFullInfoAboutOnePostAction from '../../actions/inforAboutPostActi
 import * as reportAction from '../../actions/reportAction';
 import * as likePostAction from '../../actions/likePostAction';
 import {bindActionCreators} from 'redux';
-import * as inforAboutPostApi from '../../apis/InfoAboutPostApi';
 import {connect} from 'react-redux';
-
-let keyboardHeight = 0;
 
 class ListView extends Component {
     constructor(props) {
