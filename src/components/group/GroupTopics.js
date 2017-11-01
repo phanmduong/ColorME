@@ -7,7 +7,6 @@ import {
     Left, Body, Right, Spinner
 } from 'native-base';
 import Icon from '../../commons/Icon';
-import moment from 'moment';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
@@ -29,26 +28,16 @@ class GroupTopics extends Component {
                             topics.length === 0
                                 ?
                                 <Body>
-                                    <Text style={[part.padding, part.titleSmallDarkGrayBold]}>
-                                        {groupName} chưa tạo chủ đề nào.
-                                    </Text>
+                                <Text style={[part.padding, part.titleSmallDarkGrayBold]}>
+                                    {groupName} chưa tạo chủ đề nào.
+                                </Text>
                                 </Body>
                                 :
                                 <FlatList
                                     showsVerticalScrollIndicator={false}
                                     data={topics}
                                     renderItem={({item}) => {
-                                        let created = item.created_time;
-                                        let deadline = item.deadline_raw;
-                                        let timeLimit = moment.duration(moment(deadline).diff(moment(created))).asHours();
-                                        let now = moment().format('YYYY-MM-DD HH:mm:ss');
-                                        let timeRemaining = moment.duration(moment(deadline).diff(moment(now))).asHours();
-                                        let widthDeadlineProgress = 0;
-                                        if (timeRemaining > 0) {
-                                            widthDeadlineProgress = ((size.wid - 30) * (timeLimit - timeRemaining )) / timeLimit;
-                                        } else {
-                                            widthDeadlineProgress = size.wid - 30;
-                                        }
+                                        let widthDeadlineProgress = (size.wid - 30) * item.submitted_members / item.total_members;
                                         return (
                                             <Card style={part.card}>
                                                 <CardItem header style={part.cardHeader}>

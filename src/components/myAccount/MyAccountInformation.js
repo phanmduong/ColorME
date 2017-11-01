@@ -25,7 +25,7 @@ class MyAccountInformation extends Component {
 
     profileProgress(user) {
         let temp = 0;
-        let profileProgressWidth = ( size.wid - 20 ) / 6;
+        let profileProgressWidth = ( size.profileProgressWidth ) / 6;
         let profileProgressIndex = parseInt(100 / 6);
         if (user.name !== '')
             temp++;
@@ -40,7 +40,7 @@ class MyAccountInformation extends Component {
         if (user.university !== '')
             temp++;
         if (user.name !== '' && user.username !== '' && user.gender !== '' && user.description !== '' && user.work !== '' && user.university !== ''){
-            profileProgressWidth = size.wid - 20;
+            profileProgressWidth = size.profileProgressWidth;
             profileProgressIndex = 100;
             temp = 1;
         }
@@ -64,7 +64,7 @@ class MyAccountInformation extends Component {
                         (
                             <Content
                                 showsVerticalScrollIndicator={false}
-                                style={[part.wrapperContainer]}>
+                                style={[part.wrapperContainer, part.padding]}>
                                 <View style={[part.wrapperTextCenter, part.padding]}>
                                     <Text style={[part.titleProfile, part.marginTop]}>Hoàn thành thông tin ({this.state.profileProgressIndex}%)</Text>
                                     <CardItem style={[{height: 20}, part.marginTop]}>
