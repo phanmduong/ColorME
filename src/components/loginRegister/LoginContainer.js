@@ -16,9 +16,9 @@ class LoginContainer extends Component {
         super(props);
     }
 
-componentWillMount(){
-    this.props.loginAction.getDataLogin(this.props.status);
-}
+    componentWillMount(){
+        this.props.loginAction.getDataLogin(this.props.status);
+    }
 
     saveData() {
         this.props.loginAction.setDataLogin(this.props.login)

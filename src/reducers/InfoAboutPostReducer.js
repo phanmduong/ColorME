@@ -1,7 +1,7 @@
 import * as types from '../constants/actionTypes';
 import initialState from '../constants/initialState';
 
-export default function getFullInfoAboutOnePostReducer(state = initialState.getFullInfoAboutOnePost, action) {
+export default function infoAboutPostReducer(state = initialState.infoAboutPost, action) {
     switch (action.type) {
         case types.BEGIN_GET_FULL_INFO_ABOUT_ONE_POST:
             return {

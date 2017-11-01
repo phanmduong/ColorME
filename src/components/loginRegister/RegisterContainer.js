@@ -21,11 +21,11 @@ class RegisterContainer extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
+    // componentWillReceiveProps(nextProps) {
         // if(nextProps.status == 200) {
         //     this.props.navigation.navigate('Main')
         // }
-    }
+    // }
 
     register(value) {
         if (this.state.email === '' || this.state.name === '' || this.state.username === '' || this.state.password === '') {

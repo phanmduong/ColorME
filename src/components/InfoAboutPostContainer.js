@@ -22,12 +22,11 @@ import * as color from '../styles/color';
 import * as size from '../styles/size';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux';
-import * as getFullInfoAboutOnePostAction from '../actions/inforAboutPostAction'
+import * as infoAboutPostAction from '../actions/inforAboutPostAction'
 import * as likePostAction from '../actions/likePostAction'
 import * as reportAction from '../actions/reportAction';
 import WebViewAutoHeight from '../commons/WebViewAutoHeight';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
-import {getFullInfoAboutOnePostSuccess} from "../actions/inforAboutPostAction";
 
 class InfoAboutPostContainer extends Component {
     constructor() {
@@ -50,9 +49,9 @@ class InfoAboutPostContainer extends Component {
 
     componentWillMount() {
         const {params} = this.props.navigation.state;
-        this.props.getFullInfoAboutOnePostAction.getFullInfoAboutOnePostOfUser(params.product_id);
-        this.props.getFullInfoAboutOnePostAction.getCommentOnePost(params.product_id);
-        this.props.getFullInfoAboutOnePostAction.getPostLiker(params.product_id);
+        this.props.infoAboutPostAction.getInfoAboutPost(params.product_id);
+        this.props.infoAboutPostAction.getCommentOnePost(params.product_id);
+        this.props.infoAboutPostAction.getPostLiker(params.product_id);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -118,7 +117,7 @@ class InfoAboutPostContainer extends Component {
     }
 
     commentPost(product_id, token, value) {
-        this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
+        this.props.infoAboutPostAction.postCommentOnePost(product_id, token, value);
         let listComment = this.state.listComment;
         let {user} = this.props;
         // let date = new Date();
@@ -146,7 +145,7 @@ class InfoAboutPostContainer extends Component {
 
     deleteComment(product_id, token, index) {
         let listComment = this.state.listComment;
-        this.props.getFullInfoAboutOnePostAction.deleteComment(product_id, token);
+        this.props.infoAboutPostAction.deleteComment(product_id, token);
         listComment.splice(index, 1);
         this.setState({listComment: listComment})
     }
@@ -207,6 +206,7 @@ class InfoAboutPostContainer extends Component {
                                         </View>
                                         :
                                         <View>
+
                                             {
                                                 1
                                                     ?
@@ -225,7 +225,6 @@ class InfoAboutPostContainer extends Component {
                                                     />
 
                                             }
-
                                         </View>
                                 }
                                 <View style={{
@@ -406,7 +405,7 @@ class InfoAboutPostContainer extends Component {
                                         </Button>
                                         <Right>
                                             <Button transparent style={part.paddingRight}
-                                                onPress={() => this.alertReport()}
+                                                    onPress={() => this.alertReport()}
                                             >
                                                 <Icon name="entypo|warning" size={size.iconBig}
                                                       color={color.icon}/>
@@ -559,18 +558,18 @@ function mapStateToProps(state) {
     return {
         token: state.login.token,
         user: state.login.user,
-        post: state.getFullInfoAboutOnePost.post,
-        comments: state.getFullInfoAboutOnePost.comments,
-        isLoading: state.getFullInfoAboutOnePost.isLoading,
-        statusPostComment: state.getFullInfoAboutOnePost.statusPostComment,
-        idComment: state.getFullInfoAboutOnePost.idComment,
-        likers: state.getFullInfoAboutOnePost.likers,
+        post: state.infoAboutPost.post,
+        comments: state.infoAboutPost.comments,
+        isLoading: state.infoAboutPost.isLoading,
+        statusPostComment: state.infoAboutPost.statusPostComment,
+        idComment: state.infoAboutPost.idComment,
+        likers: state.infoAboutPost.likers,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getFullInfoAboutOnePostAction: bindActionCreators(getFullInfoAboutOnePostAction, dispatch),
+        infoAboutPostAction: bindActionCreators(infoAboutPostAction, dispatch),
         likePostAction: bindActionCreators(likePostAction, dispatch),
         reportAction: bindActionCreators(reportAction, dispatch),
     }

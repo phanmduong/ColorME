@@ -31,7 +31,7 @@ import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
 import FastImage from 'react-native-fast-image'
-import * as getFullInfoAboutOnePostAction from '../../actions/inforAboutPostAction'
+import * as infoAboutPostAction from '../../actions/inforAboutPostAction'
 import * as reportAction from '../../actions/reportAction';
 import * as likePostAction from '../../actions/likePostAction';
 import {bindActionCreators} from 'redux';
@@ -576,19 +576,19 @@ function mapStateToProps(state) {
     return {
         token: state.login.token,
         user: state.login.user,
-        likers: state.getFullInfoAboutOnePost.likers,
+        likers: state.infoAboutPost.likers,
         isLoadingReportPost: state.report.isLoading,
         reportPostResult: state.report.reportPostResult,
-        comments: state.getFullInfoAboutOnePost.comments,
-        isLoadingComment: state.getFullInfoAboutOnePost.isLoading,
-        idComment: state.getFullInfoAboutOnePost.idComment,
-        statusPostComment: state.getFullInfoAboutOnePost.statusPostComment,
+        comments: state.infoAboutPost.comments,
+        isLoadingComment: state.infoAboutPost.isLoading,
+        idComment: state.infoAboutPost.idComment,
+        statusPostComment: state.infoAboutPost.statusPostComment,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getFullInfoAboutOnePostAction: bindActionCreators(getFullInfoAboutOnePostAction, dispatch),
+        infoAboutPostAction: bindActionCreators(infoAboutPostAction, dispatch),
         reportAction: bindActionCreators(reportAction, dispatch),
         likePostAction: bindActionCreators(likePostAction, dispatch)
     }

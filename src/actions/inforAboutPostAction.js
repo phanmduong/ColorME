@@ -1,5 +1,5 @@
 import * as types from '../constants/actionTypes';
-import * as inforAboutPostApi from '../apis/InfoAboutPostApi';
+import * as infoAboutPostApi from '../apis/InfoAboutPostApi';
 
 export function beginGetFullInfoAboutOnePost() {
     return {
@@ -74,10 +74,10 @@ export function postCommentError() {
     }
 }
 
-export function getFullInfoAboutOnePostOfUser(product_id) {
+export function getInfoAboutPost(product_id) {
     return (dispatch) => {
         dispatch(beginGetFullInfoAboutOnePost());
-        inforAboutPostApi.getFullInfoAboutOnePostApi(product_id)
+        infoAboutPostApi.getInfoAboutPostApi(product_id)
             .then(function (response) {
                 dispatch(getFullInfoAboutOnePostSuccess(response));
             })
@@ -90,7 +90,7 @@ export function getFullInfoAboutOnePostOfUser(product_id) {
 export function getCommentOnePost(product_id) {
     return (dispatch) => {
         dispatch(beginGetFullInfoAboutOnePost());
-        inforAboutPostApi.getCommentOnePost(product_id)
+        infoAboutPostApi.getCommentOnePost(product_id)
             .then(function (response) {
                 dispatch(getCommentOnePostSuccess(response));
             })
@@ -104,7 +104,7 @@ export function getCommentOnePost(product_id) {
 export function getPostLiker(product_id) {
     return (dispatch) => {
         dispatch(beginGetFullInfoAboutOnePost());
-        inforAboutPostApi.getFullInfoAboutOnePostApi(product_id)
+        infoAboutPostApi.getInfoAboutPostApi(product_id)
             .then(function (response) {
                 dispatch(getPostLikerSuccess(response));
             })
@@ -118,7 +118,7 @@ export function getPostLiker(product_id) {
 export function postCommentOnePost(product_id, token, value) {
     return (dispatch) => {
         dispatch(beginPostComment());
-        inforAboutPostApi.postCommentOnePostApi(product_id, token, value)
+        infoAboutPostApi.postCommentOnePostApi(product_id, token, value)
             .then(function (response) {
                 dispatch(postCommentSuccess(response));
             })
@@ -129,6 +129,6 @@ export function postCommentOnePost(product_id, token, value) {
 }
 export function deleteComment(product_id, token){
     return function (){
-        inforAboutPostApi.deleteCommentApi(product_id, token);
+        infoAboutPostApi.deleteCommentApi(product_id, token);
     }
 }

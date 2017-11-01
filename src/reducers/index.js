@@ -1,7 +1,7 @@
 import getNewFeedReducer from './newFeedReducer';
 import userInformationReducer from './userInformationReducer';
 import loginReducer from './loginReducer';
-import getFullInfoAboutOnePostReducer from './InfoAboutPostReducer';
+import infoAboutPostReducer from './InfoAboutPostReducer';
 import searchReducer from './searchReducer';
 import getCourseReducer from './courseReducer';
 import updateProfileReducer from './updateProfileReducer'
@@ -17,7 +17,7 @@ import {combineReducers} from 'redux';
 const rootReducer = combineReducers({
     getNewFeed                  : getNewFeedReducer,
     userInformation             : userInformationReducer,
-    getFullInfoAboutOnePost     : getFullInfoAboutOnePostReducer,
+    infoAboutPost               : infoAboutPostReducer,
     login                       : loginReducer,
     register                    : registerReducer,
     search                      : searchReducer,

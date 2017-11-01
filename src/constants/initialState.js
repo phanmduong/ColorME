@@ -23,7 +23,7 @@ export default {
         isRefreshing : false,
     },
 
-    getFullInfoAboutOnePost: {
+    infoAboutPost: {
         likers:[],
         post:{},
         comments:[],
