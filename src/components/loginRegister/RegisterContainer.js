@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, StatusBar, TouchableOpacity, View} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
-import {Container, Content, Form, Input, Item, Left} from 'native-base';
+import {Container, Content, Form, Input, Item, Left, CheckBox, Body} from 'native-base';
 import Icon from '../../commons/Icon';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
@@ -17,25 +17,31 @@ class RegisterContainer extends Component {
             email: '',
             name: '',
             username: '',
-            password: ''
+            password: '',
+            checkRules: false,
         }
     }
 
     // componentWillReceiveProps(nextProps) {
-        // if(nextProps.status == 200) {
-        //     this.props.navigation.navigate('Main')
-        // }
+    // if(nextProps.status == 200) {
+    //     this.props.navigation.navigate('Main')
+    // }
     // }
 
     register(value) {
         if (this.state.email === '' || this.state.name === '' || this.state.username === '' || this.state.password === '') {
             Alert.alert('Có lỗi xảy ra', 'Bạn chưa nhập đủ thông tin.');
-        } else {
+        }
+        else if (this.state.checkRules === false){
+            Alert.alert('Có lỗi xảy ra', 'Bạn chưa đồng ý với điều khoản sử dụng.');
+        }
+        else {
             this.props.registerAction.registerUser(value);
         }
     }
 
     render() {
+        const {navigate} = this.props.navigation;
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
                 <StatusBar
@@ -46,8 +52,8 @@ class RegisterContainer extends Component {
                     <Text style={styles.textME}>ME</Text>
                 </View>
                 <Container style={styles.midContainerLogin}>
-                    <Container style={[styles.contentForm, {height: 300}]}>
-                        <Text style={styles.textTitleInput}>EMAIL</Text>
+                    <Container style={[styles.contentForm]}>
+                        <Text style={[styles.textTitleInput, {marginTop: 15,}]}>EMAIL</Text>
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
@@ -61,7 +67,7 @@ class RegisterContainer extends Component {
                                 />
                             </Item>
                         </View>
-                        <Text style={styles.textTitleInput}>NAME</Text>
+                        <Text style={[styles.textTitleInput, {marginTop: 15}]}>NAME</Text>
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
@@ -74,7 +80,7 @@ class RegisterContainer extends Component {
                                 />
                             </Item>
                         </View>
-                        <Text style={styles.textTitleInput}>USERNAME</Text>
+                        <Text style={[styles.textTitleInput, {marginTop: 15}]}>USERNAME</Text>
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
@@ -87,7 +93,7 @@ class RegisterContainer extends Component {
                                 />
                             </Item>
                         </View>
-                        <Text style={styles.textTitleInput}>PASSWORD</Text>
+                        <Text style={[styles.textTitleInput, {marginTop: 15}]}>PASSWORD</Text>
                         <View style={[styles.wrapperRegister, {marginBottom: 10}]}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
@@ -99,6 +105,28 @@ class RegisterContainer extends Component {
                                        }}
                                 />
                             </Item>
+                        </View>
+                        <View style={[styles.wrapperRegister, {marginBottom: 10}]}>
+                            <Item style={[part.noBorder]}>
+                                <CheckBox
+                                    style={part.margin}
+                                    color={color.main}
+                                    checked={this.state.checkRules}
+                                    onPress={() => {
+                                        let checkRules = this.state.checkRules
+                                        this.setState({checkRules: !checkRules})
+                                    }}
+
+                                />
+                                <Left>
+                                    <TouchableOpacity
+                                        onPress={() => navigate('RulesContainer')}
+                                    >
+                                        <Text style={[part.titleGrayThin, part.paddingLeft]}>Tôi đồng ý với điều khoản sử dụng</Text>
+                                    </TouchableOpacity>
+                                </Left>
+                            </Item>
+
                         </View>
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemButtonLogin}>

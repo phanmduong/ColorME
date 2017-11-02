@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
         color: color.main,
         fontWeight: (Platform.OS === 'ios') ? '600' : 'normal',
     },
-
     contentForm: {
         backgroundColor: color.navTitle,
         flex: 1,

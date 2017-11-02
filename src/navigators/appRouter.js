@@ -10,6 +10,7 @@ import * as size from '../styles/size';
 import LoginContainer from '../components/loginRegister/LoginContainer';
 import EmailIdentityContainer from '../components/loginRegister/EmailIdentityContainer'
 import ResetPasswordContainer from '../components/loginRegister/ResetPasswordContainer'
+import RulesContainer from '../components/loginRegister/RulesContainer'
 import RegisterContainer from '../components/loginRegister/RegisterContainer'
 import CodeIdentityContainer from '../components/loginRegister/CodeIdentityContainer'
 
@@ -244,6 +245,7 @@ const Main = StackNavigator(
         EmailIdentityContainer: {screen: EmailIdentityContainer,},
         ResetPasswordContainer: {screen: ResetPasswordContainer,},
         CodeIdentityContainer: {screen: CodeIdentityContainer,},
+        RulesContainer: {screen: RulesContainer},
         Main: {screen: Main,}
     }, StackNavigatorStyle
 );

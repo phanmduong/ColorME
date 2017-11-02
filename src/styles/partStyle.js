@@ -214,7 +214,7 @@ const part = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: color.none,
         position: 'absolute',
-        left: 10,
+        left: 0,
         top: 20,
     },
     iconInDrawerNav: {
@@ -387,7 +387,13 @@ const part = StyleSheet.create({
     titleGrayThin: {
         fontFamily: 'Montserrat',
         fontSize: size.titleNormal,
-        color: color.darkGray,
+        color: color.gray,
+        fontWeight: '500',
+    },
+    titleDarkGrayThin: {
+        fontFamily: 'Montserrat',
+        fontSize: size.titleNormal,
+        color: '#3a3a3a',
         fontWeight: '500',
     },
     titleDarkBold: {
@@ -439,7 +445,7 @@ const part = StyleSheet.create({
     describeDarkGray: {
         fontFamily: 'Montserrat',
         fontSize: size.describe,
-        color: 'rgb(100, 100, 100)',
+        color: color.darkGray,
         fontWeight: '600',
     },
     describeGray: {
