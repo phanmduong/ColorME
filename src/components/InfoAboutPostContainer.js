@@ -467,8 +467,8 @@ class InfoAboutPostContainer extends Component {
                                                         }}>
                                                             <Icon name={likedIcon}
                                                                   color={iconLikeComment}
-                                                                  size={size.iconBig}
-                                                                  style={part.paddingRight}
+                                                                  size={size.iconNormal}
+                                                                  style={[part.paddingRight, part.marginTop]}
                                                             />
                                                         </TouchableOpacity>
                                                     </View>

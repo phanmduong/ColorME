@@ -75,7 +75,7 @@ class SlideViewComponent extends Component {
                 >
                     <View style={[part.wrapperIcon]}>
                         <Icon name="fontawesome|graduation-cap"
-                              size={size.iconNormal}
+                              size={size.iconBig}
                               color={color.darkGray}/>
                     </View>
                     <Text style={part.describeDarkGray}>Đăng ký học</Text>
@@ -92,7 +92,7 @@ class SlideViewComponent extends Component {
                 >
                     <View style={part.wrapperIcon}>
                         <Icon name="fontawesome|group"
-                              size={size.iconNormal}
+                              size={size.iconBig}
                               color={color.darkGray}/>
                     </View>
                     <Text style={part.describeDarkGray}>Nhóm tham gia</Text>
@@ -104,7 +104,7 @@ class SlideViewComponent extends Component {
                 >
                     <View style={part.wrapperIcon}>
                         <Icon name="ion|ios-paper"
-                              size={size.iconNormal}
+                              size={size.iconBig}
                               color={color.darkGray}/>
                     </View>
                     <Text style={part.describeDarkGray}>Điều khoản sử dụng</Text>

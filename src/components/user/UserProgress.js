@@ -25,7 +25,7 @@ class UserProgress extends Component {
                         </View>
                         :
                         (
-                            !progress
+                            progress.length == 0
                                 ?
                                 <Body>
                                 <Text style={[part.padding, part.titleSmallDarkGrayBold]}>

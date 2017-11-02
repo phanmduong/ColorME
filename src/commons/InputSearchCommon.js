@@ -20,7 +20,7 @@ export default class InputSearchCommon extends Component{
 
                 />
                 <TouchableOpacity>
-                    <Icon name="search" style={part.padding} size={size.icon} color={color.gray}/>
+                    <Icon name="search" style={part.padding} size={size.iconGiant} color={color.gray}/>
                 </TouchableOpacity>
             </Item>
         );

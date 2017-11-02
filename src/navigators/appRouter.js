@@ -74,7 +74,7 @@ const HomeStackStyle = {
                 <Icon
                     name="materialCommunity|menu"
                     color={color.navTitle}
-                    size={size.icon}
+                    size={size.iconGiant}
                     style={{paddingLeft: 15, paddingRight: 15}}
                 />
             </TouchableOpacity>
@@ -83,7 +83,7 @@ const HomeStackStyle = {
         //     <TouchableOpacity onPress={() => navigation.navigate('')}>
         //         <Icon name="entypo|chat"
         //               color={color.navTitle}
-        //               size={size.icon}
+        //               size={size.iconGiant}
         //               style={{paddingRight: 10}}
         //         />
         //     </TouchableOpacity>
@@ -151,7 +151,7 @@ const Home = TabNavigator(
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
                     <Icon
-                        name="materialCommunity|bell" size={size.icon}
+                        name="materialCommunity|bell" size={size.iconGiant}
                         color={tintColor}
                     />
                 ),
@@ -163,7 +163,7 @@ const Home = TabNavigator(
         //     navigationOptions: {
         //         tabBarIcon: ({tintColor}) => (
         //             <Icon
-        //                 name="materialCommunity|seal" size={size.icon}
+        //                 name="materialCommunity|seal" size={size.iconGiant}
         //                 color={tintColor}
         //             />
         //         ),
@@ -185,7 +185,7 @@ const Home = TabNavigator(
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
                     <Icon
-                        name="ion|ios-search" size={size.icon}
+                        name="ion|ios-search" size={size.iconGiant}
                         color={tintColor}
                     />
                 ),
@@ -196,7 +196,7 @@ const Home = TabNavigator(
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
                     <Icon
-                        name="fontawesome|user-circle" size={size.icon}
+                        name="fontawesome|user-circle" size={size.iconGiant}
                         color={tintColor}
                     />
                 ),

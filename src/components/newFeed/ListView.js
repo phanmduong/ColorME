@@ -205,7 +205,7 @@ class ListView extends Component {
                         >
                             <Icon name="materialCommunity|dots-horizontal"
                                   color={color.icon}
-                                  size={size.icon}
+                                  size={size.iconGiant}
                                   style={part.paddingRight}
                             />
                         </TouchableOpacity>
@@ -452,8 +452,8 @@ class ListView extends Component {
                                                                     }}>
                                                                         <Icon name={likedIcon}
                                                                               color={iconLikeComment}
-                                                                              size={size.iconBig}
-                                                                              style={part.paddingRight}
+                                                                              size={size.iconNormal}
+                                                                              style={[part.paddingRight, part.marginTop]}
                                                                         />
                                                                     </TouchableOpacity>
                                                                 </View>

@@ -81,7 +81,7 @@ class NewFeedContainer extends Component {
     }
      refreshFlatList = (deleteId) =>{
         this.setState({deleteId : deleteId})
-     }
+     };
     onValueChange(value: string) {
         setTimeout(() => {
             this.setState({isLoadingList: false})
@@ -107,7 +107,7 @@ class NewFeedContainer extends Component {
     alertHiddenPost(item, key){
         Alert.alert(
             'Báo cáo',
-            'Bạn thực sự muốn  bài viết này?',
+            'Bạn thực sự muốn ẩn bài viết này?',
             [
                 {text: 'Xác nhận', onPress: () => this.hiddenPost(item, key)},
                 {text: 'Hủy'},
@@ -275,7 +275,7 @@ class NewFeedContainer extends Component {
                             </Picker>
                             <Icon name="entypo|triangle-down"
                                   color={color.darkGray}
-                                  size={size.icon * 2 / 3}
+                                  size={size.iconGiant * 2 / 3}
                                   style={{marginLeft: -10}}
                             />
                         </Left>
@@ -283,7 +283,7 @@ class NewFeedContainer extends Component {
                             <TouchableOpacity style={{backgroundColor: 'transparent'}}>
                                 <Icon name="material|view-list"
                                       color={this.state.grid ? color.icon : color.darkGray}
-                                      size={size.icon}
+                                      size={size.iconGiant}
                                       style={part.paddingIcon}
                                       onPress={() => this.viewList()}
                                 />
@@ -291,7 +291,7 @@ class NewFeedContainer extends Component {
                             <TouchableOpacity style={{backgroundColor: 'transparent'}}>
                                 <Icon name="material|view-module"
                                       color={this.state.grid ? color.darkGray : color.icon}
-                                      size={size.icon}
+                                      size={size.iconGiant}
                                       style={part.paddingIcon}
                                       onPress={() => this.viewGrid()}
                                 />

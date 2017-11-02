@@ -60,7 +60,7 @@ class GroupTopics extends Component {
                                                         <TouchableOpacity transparent>
                                                             <Icon name="materialCommunity|dots-horizontal"
                                                                   color={color.icon}
-                                                                  size={size.icon}
+                                                                  size={size.iconGiant}
                                                                   style={part.paddingRight}
                                                             />
                                                         </TouchableOpacity>

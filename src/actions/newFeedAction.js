@@ -1,5 +1,6 @@
 import * as types from '../constants/actionTypes';
 import * as newFeedApi from '../apis/newFeedApi';
+
 export function beginGetNewFeed() {
     return {
         type: types.BEGIN_GET_NEW_FEED,
@@ -8,6 +9,7 @@ export function beginGetNewFeed() {
         result: false,
     }
 }
+
 export function getNewFeedSuccess(response) {
     return {
         type: types.GET_NEW_FEED_SUCCESS,
@@ -17,6 +19,7 @@ export function getNewFeedSuccess(response) {
         products: response.data.products,
     }
 }
+
 export function getNewFeedError() {
     return {
         type: types.GET_NEW_FEED_ERROR,
@@ -25,6 +28,7 @@ export function getNewFeedError() {
         result: false,
     }
 }
+
 export function getNewFeed(filter, page_id) {
     return (dispatch) => {
         dispatch(beginGetNewFeed());
@@ -32,31 +36,34 @@ export function getNewFeed(filter, page_id) {
             .then(function (response) {
                 dispatch(getNewFeedSuccess(response));
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 dispatch(getNewFeedError(error));
             })
     }
 }
 
-export function beginRefreshNewFeed(){
+export function beginRefreshNewFeed() {
     return {
-        type : types.BEGIN_REFRESH_NEWFEED,
+        type: types.BEGIN_REFRESH_NEWFEED,
         isRefreshing: true,
     }
 }
-export function refreshNewFeedSuccess(response){
+
+export function refreshNewFeedSuccess(response) {
     return {
-        type : types.REFRESH_NEWFEED_SUCCESS,
+        type: types.REFRESH_NEWFEED_SUCCESS,
         products: response.data.products,
         isRefreshing: false,
     }
 }
-export function refreshNewFeedError(){
+
+export function refreshNewFeedError() {
     return {
-        type : types.REFRESH_NEWFEED_ERROR,
-        isRefreshing : false
+        type: types.REFRESH_NEWFEED_ERROR,
+        isRefreshing: false
     }
 }
+
 export function refreshNewFeed(filter, page_id) {
     return (dispatch) => {
         dispatch(beginRefreshNewFeed());
@@ -64,16 +71,16 @@ export function refreshNewFeed(filter, page_id) {
             .then(function (response) {
                 dispatch(refreshNewFeedSuccess(response));
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 dispatch(refreshNewFeedError(error));
             })
     }
 }
 
-export function changeTheView(){
+export function changeTheView() {
     return {
-       type : types.CHANGE_THE_VIEW,
-        products : [],
+        type: types.CHANGE_THE_VIEW,
+        products: [],
     }
 }
 

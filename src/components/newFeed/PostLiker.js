@@ -81,7 +81,6 @@ class PostLiker extends Component {
                                                 source={{uri: item.avatar_url}}/>
                                             <Body style={part.noBorder}>
                                             <Text style={part.titleSmallBlue}>{item.name}</Text>
-                                            <Text style={part.describeGray} note>{item.university}</Text>
                                             </Body>
                                             <TouchableOpacity style={part.iconFollow}>
                                                 <Icon
