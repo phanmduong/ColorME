@@ -101,7 +101,7 @@ class LoginContainer extends Component {
                         <View style={[styles.wrapperRegister, {marginBottom: 10}]}>
                             <Item style={[part.noBorder]}>
                                 <CheckBox
-                                    style={part.margin}
+                                    style={part.margin5}
                                     color={color.main}
                                     checked={this.state.checkRules}
                                     onPress={() => {
@@ -114,7 +114,7 @@ class LoginContainer extends Component {
                                     <TouchableOpacity
                                         onPress={() => navigate('RulesContainer')}
                                     >
-                                        <Text style={[part.titleGrayThin, part.paddingLeft]}>Tôi đồng ý với điều khoản sử dụng</Text>
+                                        <Text style={[part.titleGrayRules, part.paddingLeft]}>Tôi đồng ý với điều khoản sử dụng</Text>
                                     </TouchableOpacity>
                                 </Left>
                             </Item>

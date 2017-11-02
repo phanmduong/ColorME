@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     },
     textTitleInput: {
         fontFamily: 'Montserrat',
-        fontSize: 13,
+        fontSize: 12,
         backgroundColor: color.none,
         paddingLeft: 25,
         marginTop: 25,
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     contentForm: {
         backgroundColor: color.navTitle,
         flex: 1,
-        height: size.hei / 2 - 30,
+        height: size.hei / 2 - 10,
         width: size.wid - size.wid * 0.2,
         borderRadius: 15,
         elevation: 10,
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 
     textAccept: {
         fontFamily: 'Montserrat',
-
+        backgroundColor: color.none,
         fontSize: 12,
         color: color.gray,
         fontWeight: 'bold',
@@ -93,12 +93,12 @@ const styles = StyleSheet.create({
     },
     buttonRegister: {
         width: size.wid - size.wid * 0.4,
-        height: 40,
+        height: 35,
         alignItems: 'center',
         justifyContent: 'center',
         padding: 15,
-        marginTop: 15,
-        borderRadius: 20,
+        marginTop: 0,
+        borderRadius: 17,
         backgroundColor: 'rgba(197, 0, 0, 1)',
     },
     textME: {

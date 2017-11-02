@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Text, TouchableOpacity, StatusBar, View} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
-import {Container, Content, Form, Input, Item, Left, Header, Button, Body} from 'native-base';
+import {Container, Content, Form, Input, Item, Left, Header, Button, Body, Right} from 'native-base';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
 import part from '../../styles/partStyle';
@@ -23,7 +23,7 @@ export default class RulesContainer extends Component {
                     style={part.navTop}
                     iosBarStyle='light-content'
                 >
-                    <Left>
+                    <Left style={{flexDirection: 'row'}}>
                         <TouchableOpacity
                             onPress={() => goBack(null)}
                             style={part.wrapperBackButton}
@@ -31,14 +31,14 @@ export default class RulesContainer extends Component {
                             <Icon name="entypo|chevron-thin-left"
                                   size={size.iconBig}
                                   color={color.navTitle}
-                                  style={{zIndex: 100}}
                             />
                         </TouchableOpacity>
-
+                        <Body>
+                            <Text style={part.titleNormalLightNav}>Điều khoản sử dụng</Text>
+                        </Body>
                     </Left>
-                    <Body style={part.wrapperTextRight}>
-                    <Text style={part.titleNormalLight}>Điều khoản sử dụng</Text>
-                    </Body>
+
+
                 </Header>
                 <Content style={part.padding}>
                     <Text style={[part.describeGray, part.paddingLine]}>

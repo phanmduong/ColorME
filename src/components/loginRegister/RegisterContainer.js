@@ -109,7 +109,7 @@ class RegisterContainer extends Component {
                         <View style={[styles.wrapperRegister, {marginBottom: 10}]}>
                             <Item style={[part.noBorder]}>
                                 <CheckBox
-                                    style={part.margin}
+                                    style={part.margin5}
                                     color={color.main}
                                     checked={this.state.checkRules}
                                     onPress={() => {
@@ -122,7 +122,7 @@ class RegisterContainer extends Component {
                                     <TouchableOpacity
                                         onPress={() => navigate('RulesContainer')}
                                     >
-                                        <Text style={[part.titleGrayThin, part.paddingLeft]}>Tôi đồng ý với điều khoản sử dụng</Text>
+                                        <Text style={[part.titleGrayRules, part.paddingLeft]}>Tôi đồng ý với điều khoản sử dụng</Text>
                                     </TouchableOpacity>
                                 </Left>
                             </Item>
@@ -133,9 +133,8 @@ class RegisterContainer extends Component {
                                     disabled={this.props.isLoading}
                                     block
                                     rounded
-                                    style={styles.buttonRegister}
+                                    style={[styles.buttonRegister, part.marginTop]}
                                     onPress={() => this.register(this.state)}
-
                                 >
                                     {(this.props.isLoading) ? (
                                         <Container style={{

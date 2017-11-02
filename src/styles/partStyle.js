@@ -256,7 +256,7 @@ const part = StyleSheet.create({
     inputTheme02: {
         fontFamily: 'Montserrat',
         height: 30,
-        fontSize: 14,
+        fontSize: 13,
         fontWeight: '600',
     },
     inputTheme03: {
@@ -388,7 +388,13 @@ const part = StyleSheet.create({
         fontFamily: 'Montserrat',
         fontSize: size.titleNormal,
         color: color.gray,
-        fontWeight: '500',
+        fontWeight: '400',
+    },
+    titleGrayRules: {
+        fontFamily: 'Montserrat',
+        fontSize: 12,
+        color: color.gray,
+        fontWeight: '400',
     },
     titleDarkGrayThin: {
         fontFamily: 'Montserrat',
@@ -418,7 +424,14 @@ const part = StyleSheet.create({
         fontFamily: 'Montserrat',
         fontSize: size.title,
         color: color.navTitle,
-        fontWeight: '600'
+        fontWeight: '500'
+    },
+    titleNormalLightNav: {
+        fontFamily: 'Montserrat',
+        fontSize: size.title,
+        color: color.navTitle,
+        fontWeight: '500',
+        marginLeft: -50,
     },
     titleNormalDarkGray: {
         fontFamily: 'Montserrat',
@@ -604,6 +617,9 @@ padding : 5,
     margin: {
         margin: 10,
     },
+    margin5: {
+        margin: 8,
+    },
     marginLeftFar: {
         paddingLeft: 20
     },
@@ -763,7 +779,7 @@ padding : 5,
         justifyContent: 'center',
     },
     wrapperBackButton:{
-        width: 80,
+        width: 50,
     },
     noBorder: {
         borderBottomWidth: 0,

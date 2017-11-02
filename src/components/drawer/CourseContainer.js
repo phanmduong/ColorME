@@ -30,7 +30,7 @@ class CourseContainer extends Component {
                     style={part.navTop}
                     iosBarStyle='light-content'
                 >
-                    <Left>
+                    <Left style={{flexDirection: 'row'}}>
                         <TouchableOpacity
                             onPress={() => goBack(null)}
                             style={part.wrapperBackButton}
@@ -41,11 +41,11 @@ class CourseContainer extends Component {
                                   style={{zIndex: 100}}
                             />
                         </TouchableOpacity>
-
+                        <Body>
+                            <Text style={part.titleNormalLightNav}>Đăng ký khóa học</Text>
+                        </Body>
                     </Left>
-                    <Body style={part.wrapperTextRight}>
-                    <Text style={part.titleNormalLight}>Đăng ký khóa học</Text>
-                    </Body>
+
                 </Header>
                 {
                     isLoading

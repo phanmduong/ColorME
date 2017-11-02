@@ -173,8 +173,8 @@ class MyAccountContainer extends Component {
                         <View key="sticky-header" style={parallaxStyle.stickySection}>
                             <View style={part.iconInDrawerNav}>
                                 <Left style={{flexDirection: 'row', marginTop: 20,}}>
-                                    <Body style={{left: 10}}>
-                                    <Text style={[part.titleNormalLight, part.paddingLine]}>
+                                    <Body>
+                                    <Text style={part.titleNormalLight}>
                                         {this.props.user.name}
                                     </Text>
                                     </Body>

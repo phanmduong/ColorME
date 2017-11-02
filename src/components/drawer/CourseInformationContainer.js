@@ -84,7 +84,13 @@ class CourseInformation extends Component {
                             renderStickyHeader={() => (
                                 <View key="sticky-header" style={parallaxStyle.stickySection}>
                                     <View style={part.iconInDrawerNav}>
-
+                                        <Left style={{flexDirection: 'row', marginTop: 20,}}>
+                                            <Body >
+                                                <Text style={part.titleNormalLight}>
+                                                    {courseInformation.name}
+                                                </Text>
+                                            </Body>
+                                        </Left>
                                     </View>
                                 </View>
                             )}
@@ -98,19 +104,9 @@ class CourseInformation extends Component {
                                             <Icon name="entypo|chevron-thin-left"
                                                   size={size.iconBig}
                                                   color={color.navTitle}
-                                                  style={{zIndex: 100}}
                                             />
                                         </TouchableOpacity>
                                     </Left>
-                                    <Right style={{marginTop: 20}}>
-                                        <TouchableOpacity
-                                            style={part.buttonGroup}
-                                        >
-                                            <Text style={[part.titleNormalLight, {marginRight: 10}]}>
-                                                {courseInformation.name}
-                                            </Text>
-                                        </TouchableOpacity>
-                                    </Right>
                                 </View>
                             )}
                         >

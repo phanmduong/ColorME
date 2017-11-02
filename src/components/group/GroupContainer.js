@@ -168,12 +168,12 @@ class GroupContainer extends Component {
 
                     renderStickyHeader={() => (
                         <View key="sticky-header" style={parallaxStyle.stickySection}>
-                            <View style={part.iconInDrawer}>
-                                <Left style={{flexDirection: 'row'}}>
-                                    <Body style={{left: 10}}>
-                                        <Text style={[part.titleNormalLight, part.paddingLine]}>
-                                            {this.props.groupName}
-                                        </Text>
+                            <View style={part.iconInDrawerNav}>
+                                <Left style={{flexDirection: 'row', marginTop: 20,}}>
+                                <Body>
+                                    <Text style={part.titleNormalLight}>
+                                        {this.props.groupName}
+                                    </Text>
                                     </Body>
                                 </Left>
                             </View>

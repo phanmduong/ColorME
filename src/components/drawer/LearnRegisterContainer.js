@@ -111,7 +111,7 @@ class LearnRegisterContainer extends Component {
                     style={part.navTop}
                     iosBarStyle='light-content'
                 >
-                    <Left>
+                    <Left style={{flexDirection: 'row'}}>
                         <TouchableOpacity
                             onPress={() => goBack()}
                             style={part.wrapperBackButton}
@@ -122,11 +122,11 @@ class LearnRegisterContainer extends Component {
                                   color={color.navTitle}
                             />
                         </TouchableOpacity>
-
+                        <Body>
+                            <Text style={part.titleNormalLightNav}>Đăng ký lớp học</Text>
+                        </Body>
                     </Left>
-                    <Body style={part.wrapperTextRight}>
-                    <Text style={part.titleNormalLight}>Đăng ký lớp học</Text>
-                    </Body>
+
                 </Header>
                 <FlatList
                     showsVerticalScrollIndicator={false}

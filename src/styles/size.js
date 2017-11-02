@@ -3,7 +3,7 @@ import {Dimensions} from 'react-native';
 export const iconNormal         = 15;
 export const iconBig            = 20;
 export const iconGiant          = 25;
-export const title              = 15;
+export const title              = 14;
 export const titleNormal        = 13;
 export const titleSmall         = 12;
 export const describe           = 12;

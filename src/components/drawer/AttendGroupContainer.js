@@ -31,8 +31,8 @@ class AttendGroupContainer extends Component {
                     iosBarStyle='light-content'
 
                 >
-                    <Left>
-                        <TouchableOpacity
+                    <Left style={{flexDirection: 'row'}}>
+                    <TouchableOpacity
                             onPress={() => goBack(null)}
                             style={part.wrapperBackButton}
 
@@ -43,11 +43,11 @@ class AttendGroupContainer extends Component {
                                   style={{zIndex: 100}}
                             />
                         </TouchableOpacity>
-
+                        <Body>
+                            <Text style={part.titleNormalLightNav}>Nhóm tham gia</Text>
+                        </Body>
                     </Left>
-                    <Body style={part.wrapperTextRight}>
-                    <Text style={part.titleNormalLight}>Nhóm tham gia</Text>
-                    </Body>
+
                 </Header>
                 {
                     isLoading
