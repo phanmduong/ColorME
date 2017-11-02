@@ -18,7 +18,7 @@ class RegisterContainer extends Component {
             name: '',
             username: '',
             password: '',
-            checkRules: false,
+            checkRules: true,
         }
     }
 
@@ -32,7 +32,7 @@ class RegisterContainer extends Component {
         if (this.state.email === '' || this.state.name === '' || this.state.username === '' || this.state.password === '') {
             Alert.alert('Có lỗi xảy ra', 'Bạn chưa nhập đủ thông tin.');
         }
-        else if (this.state.checkRules === false){
+        else if (!this.state.checkRules){
             Alert.alert('Có lỗi xảy ra', 'Bạn chưa đồng ý với điều khoản sử dụng.');
         }
         else {
@@ -126,7 +126,6 @@ class RegisterContainer extends Component {
                                     </TouchableOpacity>
                                 </Left>
                             </Item>
-
                         </View>
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemButtonLogin}>

@@ -224,6 +224,8 @@ const Drawer = DrawerNavigator(
         Home: {screen: Home},
         CourseInDrawer: {screen: Course},
         AttendGroup: {screen: Group},
+        Rules: {screen: RulesContainer},
+
     },
     {
         drawerWidth: size.wid * 3 / 4,

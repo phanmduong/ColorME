@@ -30,6 +30,7 @@ class SlideViewComponent extends Component {
 
     render() {
         const {isLoadingCourses} = this.props;
+        const {navigate} = this.props.navigation;
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
@@ -70,7 +71,7 @@ class SlideViewComponent extends Component {
                             () => {
                             }
                             :
-                            () => this.props.navigation.navigate('CourseInDrawer')}
+                            () => navigate('CourseInDrawer')}
                 >
                     <View style={[part.wrapperIcon]}>
                         <Icon name="fontawesome|graduation-cap"
@@ -87,7 +88,7 @@ class SlideViewComponent extends Component {
                             () => {
                             }
                             :
-                            () => this.props.navigation.navigate('AttendGroup')}
+                            () => navigate('AttendGroup')}
                 >
                     <View style={part.wrapperIcon}>
                         <Icon name="fontawesome|group"
@@ -95,6 +96,18 @@ class SlideViewComponent extends Component {
                               color={color.darkGray}/>
                     </View>
                     <Text style={part.describeDarkGray}>Nhóm tham gia</Text>
+
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[part.itemTabInDrawer]}
+                    onPress={() => navigate('Rules')}
+                >
+                    <View style={part.wrapperIcon}>
+                        <Icon name="ion|ios-paper"
+                              size={size.iconNormal}
+                              color={color.darkGray}/>
+                    </View>
+                    <Text style={part.describeDarkGray}>Điều khoản sử dụng</Text>
 
                 </TouchableOpacity>
             </Container>

@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {
-    ActivityIndicator, KeyboardAvoidingView, AsyncStorage,
+    ActivityIndicator, KeyboardAvoidingView,
     Text, TouchableOpacity, View, StatusBar,Alert
 } from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
-import {Container, Content, Form, Input, Item, Left} from 'native-base';
+import {Container, Content, Form, Input, Item, Left, CheckBox} from 'native-base';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
 import * as loginAction from '../../actions/loginActions';
@@ -14,6 +14,9 @@ import {NavigationActions} from'react-navigation'
 class LoginContainer extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            checkRules: true,
+        }
     }
 
     componentWillMount(){
@@ -25,8 +28,13 @@ class LoginContainer extends Component {
     }
 
     signIn() {
-        this.props.loginAction.loginUser(this.props.login);
-        this.saveData();
+        if(!this.state.checkRules){
+            Alert.alert('Có lỗi xảy ra', 'Bạn chưa đồng ý với điều khoản sử dụng.');
+        } else {
+            this.props.loginAction.loginUser(this.props.login);
+            this.saveData();
+        }
+
     }
 
     updateData(name, value) {
@@ -48,7 +56,7 @@ class LoginContainer extends Component {
     }
     }
     render() {
-        // const opacity = this.state.fade;
+        const {navigate} = this.props.navigation;
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
                 <StatusBar
@@ -88,6 +96,27 @@ class LoginContainer extends Component {
                                        }}
                                        value={this.props.login.password}
                                 />
+                            </Item>
+                        </View>
+                        <View style={[styles.wrapperRegister, {marginBottom: 10}]}>
+                            <Item style={[part.noBorder]}>
+                                <CheckBox
+                                    style={part.margin}
+                                    color={color.main}
+                                    checked={this.state.checkRules}
+                                    onPress={() => {
+                                        let checkRules = this.state.checkRules
+                                        this.setState({checkRules: !checkRules})
+                                    }}
+
+                                />
+                                <Left>
+                                    <TouchableOpacity
+                                        onPress={() => navigate('RulesContainer')}
+                                    >
+                                        <Text style={[part.titleGrayThin, part.paddingLeft]}>Tôi đồng ý với điều khoản sử dụng</Text>
+                                    </TouchableOpacity>
+                                </Left>
                             </Item>
                         </View>
                         <View style={styles.wrapperRegister}>
