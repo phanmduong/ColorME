@@ -22,7 +22,7 @@ import * as color from '../styles/color';
 import * as size from '../styles/size';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux';
-import * as infoAboutPostAction from '../actions/inforAboutPostAction'
+import * as infoAboutPostAction from '../actions/infoAboutPostAction'
 import * as likePostAction from '../actions/likePostAction'
 import * as reportAction from '../actions/reportAction';
 import WebViewAutoHeight from '../commons/WebViewAutoHeight';

@@ -11,7 +11,7 @@ import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color'
 import * as size from '../../styles/size';
-import * as getFullInfoAboutOnePostAction from '../../actions/inforAboutPostAction'
+import * as infoAboutPostAction from '../../actions/infoAboutPostAction'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux';
 import FastImage from 'react-native-fast-image';
@@ -19,7 +19,7 @@ import FastImage from 'react-native-fast-image';
 class PostLiker extends Component {
     componentWillMount() {
         const {params} = this.props.navigation.state;
-        this.props.getFullInfoAboutOnePostAction.getPostLiker(params.product_id);
+        this.props.infoAboutPostAction.getPostLiker(params.product_id);
     }
 
     render() {
@@ -102,14 +102,14 @@ class PostLiker extends Component {
 
 function mapStateToProps(state) {
     return {
-        likers: state.getFullInfoAboutOnePost.likers,
-        isLoading: state.getFullInfoAboutOnePost.isLoading,
+        likers: state.infoAboutPost.likers,
+        isLoading: state.infoAboutPost.isLoading,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getFullInfoAboutOnePostAction: bindActionCreators(getFullInfoAboutOnePostAction, dispatch),
+        infoAboutPostAction: bindActionCreators(infoAboutPostAction, dispatch),
     }
 }
 

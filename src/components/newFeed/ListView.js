@@ -31,7 +31,7 @@ import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
 import FastImage from 'react-native-fast-image'
-import * as infoAboutPostAction from '../../actions/inforAboutPostAction'
+import * as infoAboutPostAction from '../../actions/infoAboutPostAction'
 import * as reportAction from '../../actions/reportAction';
 import * as likePostAction from '../../actions/likePostAction';
 import {bindActionCreators} from 'redux';
@@ -107,7 +107,7 @@ class ListView extends Component {
     }
 
     openCommentModal(product_id) {
-        this.props.getFullInfoAboutOnePostAction.getCommentOnePost(product_id);
+        this.props.infoAboutPostAction.getCommentOnePost(product_id);
         this.setCommentModalComment(true);
         this.setState({
             like_counts: this.props.item.likes_count,
@@ -146,7 +146,7 @@ class ListView extends Component {
         });
     }
     commentPost(product_id, token, value) {
-        this.props.getFullInfoAboutOnePostAction.postCommentOnePost(product_id, token, value);
+        this.props.infoAboutPostAction.postCommentOnePost(product_id, token, value);
         let listCommentInModal = this.state.listCommentInModal;
         let {user} = this.props;
         let arr = {
@@ -165,7 +165,7 @@ class ListView extends Component {
     }
     deleteComment(product_id, token, index) {
         let listComment = this.state.listCommentInModal;
-        this.props.getFullInfoAboutOnePostAction.deleteComment(product_id, token);
+        this.props.infoAboutPostAction.deleteComment(product_id, token);
         listComment.splice(index, 1);
         this.setState({listCommentInModal: listComment})
     }
