@@ -173,7 +173,7 @@ class ListView extends Component {
     }
 
     render() {
-        const {item, arrayLike, likeCount, colorIcon, likedIcon, user, featureIcon, colorFeatureIcon} = this.props;
+        const {item, arrayLike, likeCount, colorIcon, likedIcon, user, featureIcon, colorFeatureIcon,key} = this.props;
         const {navigate} = this.props.navigation;
         let colorCommentIcon = this.state.comment_content == '' ? color.icon : color.main;
         let commentIcon = this.state.comment_content == '' ? 'fontawesome|comment-o' : 'fontawesome|paper-plane';
@@ -539,7 +539,7 @@ class ListView extends Component {
                                         style={part.backgroundNone}
                                         onPress={
                                             () => {
-                                                this.props.alertHiddenPost(this.props.item, this.props.key);
+                                                this.props.alertHiddenPost(this.props.item, item.key);
                                             }
                                         }
                                     >

@@ -82,6 +82,7 @@ class NewFeedContainer extends Component {
     }
 
     viewList() {
+        let listPost = this.state.listPost
         setTimeout(() => {
             this.setState({isLoadingList: false})
         }, 100);
@@ -139,29 +140,22 @@ class NewFeedContainer extends Component {
             let post = nextProps.products;
             let item = false;
             let j = this.props.products.length;
-            AsyncStorage.getItem('@idPost').then(async function () {
-                let value = await AsyncStorage.getItem('@idPost');
-                if (value) {
-                    let data = JSON.parse(value);
-                    while (j < nextProps.products) {
-                        let posted = data.filter((data) => {
-                            return data = post[j].id
-                        });
-                        if (posted && posted.length !== 0) {
-                            let key = {key: j};
-                            let arr1 = Object.assign(post[j], key);
-                            let likers = post[j].likers.filter((liker) => {
-                                return liker.username === nextProps.user.username
-                            });
-                            (likers.length == 0) ? item = false : item = true;
-                            count.push(post[j].likes_count);
-                            arr.push(item);
-                            listPost.push(arr1);
-                            j++;
-                        }
-                    }
+            while (j < post.length) {
+                let key = {key: j};
+                let arr1 = Object.assign(post[j], key);
+                let likers = post[j].likers.filter((liker) => {
+                    return liker.username === nextProps.user.username
+                });
+                if (likers.length == 0) {
+                    item = false;
+                } else {
+                    item = true;
                 }
-            })
+                count.push(post[j].likes_count);
+                arr.push(item);
+                listPost.push(arr1);
+                j++;
+            }
             if (this.state.grid) {
                 this.setState({listPost: this.groupPosts(nextProps.products)});
             }
@@ -427,7 +421,7 @@ class NewFeedContainer extends Component {
                                                 }}
                                             />
                                         }
-                                        renderItem={({item}) => {
+                                        renderItem={({item, index}) => {
                                             let {arrayLike, likeCount} = this.state;
                                             let colorIcon = arrayLike[item.key] ? color.main : color.icon;
                                             let likedIcon = arrayLike[item.key] ? 'fontawesome|heart' : 'fontawesome|heart-o';
@@ -445,7 +439,6 @@ class NewFeedContainer extends Component {
                                                     arrayLike={arrayLike}
                                                     likeCount={likeCount}
                                                     item={item}
-                                                    key={item.key}
                                                     colorIcon={colorIcon}
                                                     likedIcon={likedIcon}
                                                     featureIcon={featureIcon}
