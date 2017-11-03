@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {
-    Text, TouchableOpacity, View, Image
+    Text, View, Image
 } from 'react-native';
 
 import {
     Body, CardItem, Header, Container, Button,
     Left, Right, Spinner,
 } from 'native-base';
-import Icon from '../../commons/Icon';
+import BackButton from '../../commons/BackButton';
 import part from '../../styles/partStyle';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -17,7 +17,6 @@ import * as size from '../../styles/size';
 import * as courseAction from '../../actions/courseAction';
 import WebViewAutoHeight from '../../commons/WebViewAutoHeight';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
-import FastImage from 'react-native-fast-image';
 
 class CourseInformation extends Component {
     componentDidMount() {
@@ -97,15 +96,7 @@ class CourseInformation extends Component {
                             renderFixedHeader={() => (
                                 <View key="fixed-header" style={part.iconInDrawerNav}>
                                     <Left style={{marginTop: 20}}>
-                                        <TouchableOpacity
-                                            style={[part.padding, part.wrapperBackButton]}
-                                            onPress={() => goBack()}
-                                        >
-                                            <Icon name="entypo|chevron-thin-left"
-                                                  size={size.iconBig}
-                                                  color={color.navTitle}
-                                            />
-                                        </TouchableOpacity>
+                                        <BackButton goBack={goBack}/>
                                     </Left>
                                 </View>
                             )}

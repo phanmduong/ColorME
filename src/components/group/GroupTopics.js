@@ -23,7 +23,7 @@ class GroupTopics extends Component {
                 </View>
                 :
                 (
-                    <Container style={[part.wrapperContainer, part.padding]}>
+                    <Container style={[part.wrapperContainer, part.padding, part.noPaddingTop]}>
                         {
                             topics.length === 0
                                 ?
@@ -74,12 +74,12 @@ class GroupTopics extends Component {
                                                         <FastImage
                                                             resizeMode={'cover'}
                                                             source={{uri: item.avatar_url}}
-                                                            style={[part.imageTopic, part.shadow]}
+                                                            style={part.imageTopic}
                                                         />
                                                         <View style={part.textInImage}>
                                                             <Text
                                                                 numberOfLines={2}
-                                                                style={[part.padding, {paddingLeft: 15}, part.titleInImage]}
+                                                                style={part.titleInImage}
                                                             >
                                                                 {item.title}
                                                             </Text>

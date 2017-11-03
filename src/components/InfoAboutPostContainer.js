@@ -15,6 +15,7 @@ import {
     Thumbnail
 } from 'native-base';
 import Icon from '../commons/Icon';
+import BackButton from '../commons/BackButton';
 import Video from 'react-native-video';
 import part from '../styles/partStyle';
 import parallaxStyle from '../styles/parallaxStyle';
@@ -252,16 +253,7 @@ class InfoAboutPostContainer extends Component {
                     renderFixedHeader={() => (
                         <View key="fixed-header" style={part.iconInDrawerNav}>
                             <Left style={{marginTop: 20}}>
-                                <TouchableOpacity
-                                    style={[part.padding, part.wrapperBackButton]}
-                                    onPress={() => goBack(null)}
-                                >
-                                    <Icon name="entypo|chevron-thin-left"
-                                          size={size.iconBig}
-                                          color={color.navTitle}
-                                          style={{zIndex: 100}}
-                                    />
-                                </TouchableOpacity>
+                                <BackButton goBack={goBack}/>
                             </Left>
                             <Right style={{marginTop: 20}}>
                                 {

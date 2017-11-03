@@ -7,6 +7,7 @@ import {
     Item, Left, Right, Text, Thumbnail,
 } from 'native-base';
 import Icon from '../../commons/Icon';
+import BackButton from '../../commons/BackButton';
 import part from '../../styles/partStyle';
 import parallaxStyle from '../../styles/parallaxStyle';
 import * as color from '../../styles/color';
@@ -185,16 +186,7 @@ class MyAccountContainer extends Component {
                     renderFixedHeader={() => (
                         <View key="fixed-header" style={part.iconInDrawerNav}>
                             <Left style={{flexDirection: 'row', marginTop: 20,}}>
-                                <TouchableOpacity
-                                    style={[part.padding, part.wrapperBackButton]}
-                                    onPress={() => goBack(null)}
-                                >
-                                    <Icon name="entypo|chevron-thin-left"
-                                          size={size.iconBig}
-                                          color={color.navTitle}
-                                          style={{zIndex: 100}}
-                                    />
-                                </TouchableOpacity>
+                                <BackButton goBack={goBack}/>
                             </Left>
                         </View>
                     )}

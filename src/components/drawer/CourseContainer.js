@@ -7,10 +7,9 @@ import {
     Body, CardItem, Header, Container,
     Left, Right, Spinner,
 } from 'native-base';
-import Icon from '../../commons/Icon';
+import BackButtonHeader from '../../commons/BackButtonHeader';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color'
-import * as size from '../../styles/size';
 import FastImage from 'react-native-fast-image';
 import * as courseAction from '../../actions/courseAction';
 import {connect} from 'react-redux';
@@ -31,21 +30,11 @@ class CourseContainer extends Component {
                     iosBarStyle='light-content'
                 >
                     <Left style={{flexDirection: 'row'}}>
-                        <TouchableOpacity
-                            onPress={() => goBack(null)}
-                            style={part.wrapperBackButton}
-                        >
-                            <Icon name="entypo|chevron-thin-left"
-                                  size={size.iconBig}
-                                  color={color.navTitle}
-                                  style={{zIndex: 100}}
-                            />
-                        </TouchableOpacity>
+                        <BackButtonHeader goBack={goBack}/>
                         <Body>
                             <Text style={part.titleNormalLightNav}>Đăng ký khóa học</Text>
                         </Body>
                     </Left>
-
                 </Header>
                 {
                     isLoading

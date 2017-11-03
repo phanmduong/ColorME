@@ -3,11 +3,9 @@ import {View} from 'react-native'
 import {KeyboardAvoidingView, TouchableOpacity, StatusBar, ActivityIndicator, Alert, Text} from 'react-native';
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Item, Input, Header, Button, Left} from 'native-base';
-import Icon from '../../commons/Icon';
+import BackButton from '../../commons/BackButton';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
-import * as size from '../../styles/size';
-
 export default class ResetPasswordContainer extends Component {
     constructor() {
         super();
@@ -33,6 +31,7 @@ export default class ResetPasswordContainer extends Component {
     }
 
     render() {
+        const {goBack} = this.props.navigation;
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
                 <StatusBar
@@ -93,17 +92,7 @@ export default class ResetPasswordContainer extends Component {
                 <Text style={styles.textBottom}/>
                 <View style={part.iconInDrawer}>
                     <Left>
-                        <TouchableOpacity
-                            style={[part.padding, part.wrapperBackButton]}
-                            onPress={() => this.props.navigation.goBack()}
-                        >
-                            <Icon name="entypo|chevron-thin-left"
-                                  size={size.iconBig}
-                                  color={color.navTitle}
-                                  style={part.shadow}
-                            />
-                        </TouchableOpacity>
-
+                        <BackButton goBack={goBack}/>
                     </Left>
                 </View>
             </KeyboardAvoidingView>

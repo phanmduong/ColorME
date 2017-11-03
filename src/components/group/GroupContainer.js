@@ -5,6 +5,7 @@ import {
 import {
     Container, Thumbnail, Text, Left, Body, Right, Item, Spinner
 } from 'native-base';
+import BackButton from '../../commons/BackButton';
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
 import parallaxStyle from '../../styles/parallaxStyle';
@@ -182,16 +183,7 @@ class GroupContainer extends Component {
                     renderFixedHeader={() => (
                         <View key="fixed-header" style={part.iconInDrawerNav}>
                             <Left style={{flexDirection: 'row', marginTop: 20,}}>
-                                <TouchableOpacity
-                                    style={[part.padding, part.wrapperBackButton]}
-                                    onPress={() => goBack(null)}
-                                >
-                                    <Icon name="entypo|chevron-thin-left"
-                                          size={size.iconBig}
-                                          color={color.navTitle}
-                                          style={{zIndex: 100}}
-                                    />
-                                </TouchableOpacity>
+                                <BackButton goBack={goBack}/>
                             </Left>
                         </View>
 

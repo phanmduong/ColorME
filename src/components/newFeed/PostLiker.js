@@ -11,6 +11,7 @@ import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color'
 import * as size from '../../styles/size';
+import BackButtonHeader from '../../commons/BackButtonHeader';
 import * as infoAboutPostAction from '../../actions/infoAboutPostAction'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux';
@@ -30,24 +31,14 @@ class PostLiker extends Component {
                 <Header
                     style={part.navTop}
                     iosBarStyle='light-content'
-
                 >
-                    <Left>
-                        <TouchableOpacity
-                            style={part.wrapperBackButton}
-                            onPress={() => goBack(null)}
-                        >
-                            <Icon name="entypo|chevron-thin-left"
-                                  size={size.iconBig}
-                                  color={color.navTitle}
-                                  style={{zIndex: 100}}
-                            />
-                        </TouchableOpacity>
-
+                    <Left style={{flexDirection: 'row'}}>
+                        <BackButtonHeader goBack={goBack}/>
+                        <Body>
+                            <Text style={part.titleNormalLightNav}>Người thích bài viết</Text>
+                        </Body>
                     </Left>
-                    <Body style={part.wrapperTextRight}>
-                        <Text style={part.titleNormalLight}>Người thích bài viết</Text>
-                    </Body>
+
                 </Header>
                 {
                     isLoading

@@ -1,11 +1,8 @@
 import React, {Component} from 'react'
-import {Text, TouchableOpacity, StatusBar, View} from 'react-native'
-import styles from '../../styles/loginRegisterStyle'
-import {Container, Content, Form, Input, Item, Left, Header, Button, Body, Right} from 'native-base';
-import * as color from '../../styles/color';
-import * as size from '../../styles/size';
+import {Text} from 'react-native'
+import {Container, Content, Header} from 'native-base';
 import part from '../../styles/partStyle';
-import Icon from '../../commons/Icon';
+import BackButtonHeader from '../../commons/BackButtonHeader';
 
 export default class RulesContainer extends Component {
     constructor() {
@@ -24,15 +21,7 @@ export default class RulesContainer extends Component {
                     iosBarStyle='light-content'
                 >
                     <Left style={{flexDirection: 'row'}}>
-                        <TouchableOpacity
-                            onPress={() => goBack(null)}
-                            style={part.wrapperBackButton}
-                        >
-                            <Icon name="entypo|chevron-thin-left"
-                                  size={size.iconBig}
-                                  color={color.navTitle}
-                            />
-                        </TouchableOpacity>
+                        <BackButtonHeader goBack={goBack}/>
                         <Body>
                             <Text style={part.titleNormalLightNav}>Điều khoản sử dụng</Text>
                         </Body>

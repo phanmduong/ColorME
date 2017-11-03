@@ -4,7 +4,8 @@ import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, Left} from 'native-base';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
-import Icon from '../../commons/Icon';
+import BackButton from '../../commons/BackButton';
+
 import * as size from '../../styles/size';
 
 export default class CodeIdentityContainer extends Component {
@@ -15,6 +16,7 @@ export default class CodeIdentityContainer extends Component {
         }
     }
     render() {
+        const {goBack} = this.props.navigation;
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
                 <StatusBar
@@ -66,16 +68,7 @@ export default class CodeIdentityContainer extends Component {
                 <Text style={styles.textBottom}/>
                 <View style={part.iconInDrawer}>
                     <Left>
-                        <TouchableOpacity style={[part.padding, part.wrapperBackButton]}
-                                          onPress={() => this.props.navigation.goBack()}
-                        >
-                            <Icon name="entypo|chevron-thin-left"
-                                  size={size.iconBig}
-                                  color={color.navTitle}
-                                  style={part.shadow}
-                            />
-                        </TouchableOpacity>
-
+                        <BackButton goBack={goBack}/>
                     </Left>
                 </View>
 

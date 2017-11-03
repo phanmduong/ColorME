@@ -7,12 +7,10 @@ import {
     Body, Button, CardItem, Container, Content, Header,
     Left, Right,
 } from 'native-base';
-import Icon from '../../commons/Icon';
+import BackButtonHeader from '../../commons/BackButtonHeader';
 import part from '../../styles/partStyle';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as color from '../../styles/color';
-import * as size from '../../styles/size';
 import * as courseAction from '../../actions/courseAction';
 import FastImage from 'react-native-fast-image';
 
@@ -101,7 +99,6 @@ class LearnRegisterContainer extends Component {
                 )
         }
     }
-
     render() {
         const {params} = this.props.navigation.state;
         const {goBack} = this.props.navigation;
@@ -112,16 +109,7 @@ class LearnRegisterContainer extends Component {
                     iosBarStyle='light-content'
                 >
                     <Left style={{flexDirection: 'row'}}>
-                        <TouchableOpacity
-                            onPress={() => goBack()}
-                            style={part.wrapperBackButton}
-
-                        >
-                            <Icon name="entypo|chevron-thin-left"
-                                  size={size.iconBig}
-                                  color={color.navTitle}
-                            />
-                        </TouchableOpacity>
+                        <BackButtonHeader goBack={goBack}/>
                         <Body>
                             <Text style={part.titleNormalLightNav}>Đăng ký lớp học</Text>
                         </Body>

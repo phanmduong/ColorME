@@ -3,13 +3,13 @@ import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, StatusBar, Touchab
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, Left, CheckBox, Body} from 'native-base';
 import Icon from '../../commons/Icon';
+import BackButton from '../../commons/BackButton';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
 import * as size from '../../styles/size';
 import * as registerAction from '../../actions/registerAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
-
 class RegisterContainer extends Component {
     constructor() {
         super();
@@ -42,6 +42,7 @@ class RegisterContainer extends Component {
 
     render() {
         const {navigate} = this.props.navigation;
+        const {goBack} = this.props.navigation;
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
                 <StatusBar
@@ -166,16 +167,7 @@ class RegisterContainer extends Component {
                 </Container>
                 <View style={part.iconInDrawer}>
                     <Left>
-                        <TouchableOpacity
-                            style={[part.padding, part.wrapperBackButton]}
-                            onPress={() => this.props.navigation.goBack()}
-                        >
-                            <Icon name="entypo|chevron-thin-left"
-                                  size={size.iconBig}
-                                  color={color.navTitle}
-                                  style={part.shadow}
-                            />
-                        </TouchableOpacity>
+                        <BackButton goBack={goBack}/>
                     </Left>
                 </View>
             </KeyboardAvoidingView>

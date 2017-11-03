@@ -309,7 +309,7 @@ class NewFeedContainer extends Component {
                                         <Spinner color={color.gray}/>
                                     </View>
                                 ) : (
-                                this.props.products
+                                this.state.listPost[0]
                                 &&
                                 <FlatList
                                     showsVerticalScrollIndicator={false}
