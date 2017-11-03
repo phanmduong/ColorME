@@ -533,23 +533,7 @@ class ListView extends Component {
                     >
                         <View style={[part.modalMenu, part.paddingLine]}>
                             <List>
-                                {/*<ListItem style={[part.noBorder, part.noPaddingTopBottom]}>*/}
-                                {/*<TouchableOpacity style={part.backgroundNone}>*/}
-                                {/*<Text style={part.titleMenuModal}>Đánh dấu là nổi bật</Text>*/}
-                                {/*</TouchableOpacity>*/}
-                                {/*</ListItem>*/}
-                                <ListItem style={[part.noBorder, part.noPaddingTopBottom]}>
-                                    <TouchableOpacity
-                                        style={part.backgroundNone}
-                                        onPress={
-                                            () => {
-                                                this.alertReport();
-                                            }
-                                        }
-                                    >
-                                        <Text style={part.titleMenuModal}>Báo cáo...</Text>
-                                    </TouchableOpacity>
-                                </ListItem>
+
                                 <ListItem style={[part.noBorder, part.noPaddingTopBottom]}>
                                     <TouchableOpacity
                                         style={part.backgroundNone}
@@ -562,7 +546,18 @@ class ListView extends Component {
                                         <Text style={part.titleMenuModal}>Ẩn bài viết...</Text>
                                     </TouchableOpacity>
                                 </ListItem>
-
+                                <ListItem style={[part.noBorder, part.noPaddingTopBottom]}>
+                                    <TouchableOpacity
+                                        style={part.backgroundNone}
+                                        onPress={
+                                            () => {
+                                                this.alertReport();
+                                            }
+                                        }
+                                    >
+                                        <Text style={part.titleMenuModal}>Báo cáo...</Text>
+                                    </TouchableOpacity>
+                                </ListItem>
                             </List>
                         </View>
                     </View>

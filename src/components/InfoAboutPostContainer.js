@@ -87,7 +87,6 @@ class InfoAboutPostContainer extends Component {
         this.setState({modalMenu: visible});
     }
 
-
     componentWillReceiveProps(nextProps) {
         let liked = this.state.liked;
         let likedComment = this.state.likedComment;
@@ -242,24 +241,23 @@ class InfoAboutPostContainer extends Component {
                                         </View>
                                         :
                                         <View>
-
                                             {
                                                 1
                                                     ?
                                                     <Image
                                                         resizeMode={'cover'}
                                                         source={{
-                                                            uri: post.image_url,
+                                                            uri: post.url,
                                                             width: size.wid,
                                                             height: size.PARALLAX_HEADER_HEIGHT
                                                         }}/>
+
                                                     :
                                                     <Video
                                                         resizeMode={'cover'}
                                                         source={{uri: post.url}}
                                                         style={[part.imageInGetFull]}
                                                     />
-
                                             }
                                         </View>
                                 }
@@ -269,7 +267,7 @@ class InfoAboutPostContainer extends Component {
                                     position: 'absolute',
                                     top: 0,
                                     width: size.wid,
-                                    height: size.PARALLAX_HEADER_HEIGHT - 80,
+                                    height: size.PARALLAX_HEADER_HEIGHT - 100,
                                 }}>
                                 </LinearGradient>
                             </View>
