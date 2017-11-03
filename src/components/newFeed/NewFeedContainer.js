@@ -16,6 +16,7 @@ import ListView from './ListView';
 import GridView from './GridView';
 import FastImage from 'react-native-fast-image';
 import _ from 'lodash'
+import {gray} from "../../styles/color";
 
 class NewFeedContainer extends Component {
     constructor() {
@@ -137,20 +138,30 @@ class NewFeedContainer extends Component {
             let count = this.state.likeCount;
             let post = nextProps.products;
             let item = false;
-
-            let i = 0;
-            while (i < post.length) {
-                let key = {key: i};
-                let arr1 = Object.assign(post[i], key);
-                let likers = post[i].likers.filter((liker) => {
-                    return liker.username === nextProps.user.username
-                });
-                (likers.length == 0) ? item = false : item = true;
-                count.push(post[i].likes_count);
-                arr.push(item);
-                listPost.push(arr1);
-                i++;
-            }
+            let j = this.props.products.length;
+            AsyncStorage.getItem('@idPost').then(async function () {
+                let value = await AsyncStorage.getItem('@idPost');
+                if (value) {
+                    let data = JSON.parse(value);
+                    while (j < nextProps.products) {
+                        let posted = data.filter((data) => {
+                            return data = post[j].id
+                        });
+                        if (posted && posted.length !== 0) {
+                            let key = {key: j};
+                            let arr1 = Object.assign(post[j], key);
+                            let likers = post[j].likers.filter((liker) => {
+                                return liker.username === nextProps.user.username
+                            });
+                            (likers.length == 0) ? item = false : item = true;
+                            count.push(post[j].likes_count);
+                            arr.push(item);
+                            listPost.push(arr1);
+                            j++;
+                        }
+                    }
+                }
+            })
             if (this.state.grid) {
                 this.setState({listPost: this.groupPosts(nextProps.products)});
             }
@@ -163,7 +174,6 @@ class NewFeedContainer extends Component {
             }
         }
     }
-
 // Function
     getMoreNewFeed() {
         if (this.props.isLoading != undefined && this.props.isLoading != null && !this.props.isLoading) {
