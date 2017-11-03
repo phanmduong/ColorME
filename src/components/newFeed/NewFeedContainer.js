@@ -232,28 +232,28 @@ class NewFeedContainer extends Component {
         return (
             <Container style={part.wrapperContainer}>
                 <Header
-                    style={part.navTop}
+                    style={[part.navTop, part.noPadding]}
                     iosBarStyle='light-content'
                 >
-                <Left style={{flexDirection: 'row'}}>
-                    <TouchableOpacity style={{backgroundColor: 'transparent'}}>
-                        <Icon name="material|view-list"
-                              color={this.state.grid ? color.navTitle : color.icon}
-                              size={size.iconGiant}
-                              style={part.paddingIcon}
-                              onPress={() => this.viewList()}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{backgroundColor: 'transparent'}}>
-                        <Icon name="material|view-module"
-                              color={this.state.grid ? color.icon : color.navTitle}
-                              size={size.iconGiant}
-                              style={part.paddingIcon}
-                              onPress={() => this.viewGrid()}
-                        />
-                    </TouchableOpacity>
-                </Left>
-                    <Body>
+                    <Left style={[{flexDirection: 'row'}, part.paddingLeft]}>
+                        <TouchableOpacity style={{backgroundColor: 'transparent'}}>
+                            <Icon name="material|view-list"
+                                  color={this.state.grid ? color.navTitle : color.icon}
+                                  size={size.iconGiant}
+                                  style={part.paddingIcon}
+                                  onPress={() => this.viewList()}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{backgroundColor: 'transparent'}}>
+                            <Icon name="material|view-module"
+                                  color={this.state.grid ? color.icon : color.navTitle}
+                                  size={size.iconGiant}
+                                  style={part.paddingIcon}
+                                  onPress={() => this.viewGrid()}
+                            />
+                        </TouchableOpacity>
+                    </Left>
+                    <Body >
                     <Picker
                         itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
                         itemTextStyle={part.titleSmallDarkGrayBold}
@@ -279,11 +279,11 @@ class NewFeedContainer extends Component {
                     >
                         <Item label="Mới nhất" value=""/>
                         <Item label="Hôm nay" value="1"/>
-                        <Item label="7 ngày qua" value="7"/>
-                        <Item label="30 ngày qua" value="30"/>
+                        <Item label="Tuần qua" value="7"/>
+                        <Item label="Tháng qua" value="30"/>
                     </Picker>
                     </Body>
-                    <Right>
+                    <Right style={part.paddingRight}>
                         <TouchableOpacity onPress={() => navigate('DrawerOpen')}>
                             <Icon
                                 name="materialCommunity|menu"
@@ -296,18 +296,18 @@ class NewFeedContainer extends Component {
                 </Header>
                 {/*VIEW TYPE*/}
                 {/*<View>*/}
-                    {/*<Item style={[part.itemTab, {paddingLeft: 0}]}>*/}
-                        {/*<Left style={{flexDirection: 'row', alignItems: 'center'}}>*/}
-                            {/*<Icon name="entypo|triangle-down"*/}
-                            {/*color={color.darkGray}*/}
-                            {/*size={size.iconGiant * 2 / 3}*/}
-                            {/*style={{marginLeft: -10}}*/}
-                            {/*/>*/}
-                        {/*</Left>*/}
-                        {/*<Right style={part.rightTab}>*/}
+                {/*<Item style={[part.itemTab, {paddingLeft: 0}]}>*/}
+                {/*<Left style={{flexDirection: 'row', alignItems: 'center'}}>*/}
+                {/*<Icon name="entypo|triangle-down"*/}
+                {/*color={color.darkGray}*/}
+                {/*size={size.iconGiant * 2 / 3}*/}
+                {/*style={{marginLeft: -10}}*/}
+                {/*/>*/}
+                {/*</Left>*/}
+                {/*<Right style={part.rightTab}>*/}
 
-                        {/*</Right>*/}
-                    {/*</Item>*/}
+                {/*</Right>*/}
+                {/*</Item>*/}
                 {/*</View>*/}
                 {
                     (this.state.grid)

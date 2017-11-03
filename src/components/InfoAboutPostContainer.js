@@ -1,5 +1,15 @@
 import React, {Component} from 'react';
-import {Image, Keyboard, KeyboardAvoidingView, Text, TouchableOpacity, View, Alert, Modal,PanResponder } from 'react-native';
+import {
+    Image,
+    Keyboard,
+    KeyboardAvoidingView,
+    Text,
+    TouchableOpacity,
+    View,
+    Alert,
+    Modal,
+    PanResponder
+} from 'react-native';
 import {
     List,
     ListItem,
@@ -17,6 +27,7 @@ import {
     Thumbnail
 } from 'native-base';
 import Icon from '../commons/Icon';
+import BackButton from '../commons/BackButton';
 import Video from 'react-native-video';
 import part from '../styles/partStyle';
 import parallaxStyle from '../styles/parallaxStyle';
@@ -29,6 +40,8 @@ import * as likePostAction from '../actions/likePostAction'
 import * as reportAction from '../actions/reportAction';
 import WebViewAutoHeight from '../commons/WebViewAutoHeight';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
+import LinearGradient from 'react-native-linear-gradient';
+
 
 class InfoAboutPostContainer extends Component {
     constructor() {
@@ -60,6 +73,7 @@ class InfoAboutPostContainer extends Component {
             onPanResponderGrant: this._onPanResponderGrant.bind(this),
         })
     }
+
     _onPanResponderGrant(event, gestureState) {
         if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
             this.setState({
@@ -68,6 +82,7 @@ class InfoAboutPostContainer extends Component {
             });
         }
     }
+
     setCommentModalMenu(visible) {
         this.setState({modalMenu: visible});
     }
@@ -248,13 +263,15 @@ class InfoAboutPostContainer extends Component {
                                             }
                                         </View>
                                 }
-                                <View style={{
+                                <LinearGradient
+                                    colors={['black', 'transparent']}
+                                    style={{
                                     position: 'absolute',
                                     top: 0,
                                     width: size.wid,
-                                    backgroundColor: 'rgba(0,0,0,0)',
-                                    height: size.PARALLAX_HEADER_HEIGHT
-                                }}/>
+                                    height: size.PARALLAX_HEADER_HEIGHT - 80,
+                                }}>
+                                </LinearGradient>
                             </View>
                             <View style={part.iconInDrawer}>
                                 <Right style={{left: 10}}>
@@ -272,19 +289,9 @@ class InfoAboutPostContainer extends Component {
                     )}
                     renderFixedHeader={() => (
                         <View key="fixed-header" style={part.iconInDrawerNav}>
-                            <Left style={{marginTop: 20}}>
-                                <TouchableOpacity
-                                    style={[part.padding, part.wrapperBackButton]}
-                                    onPress={() => goBack(null)}
-                                >
-                                    <Icon name="entypo|chevron-thin-left"
-                                          size={size.iconBig}
-                                          color={color.navTitle}
-                                          style={{zIndex: 100}}
-                                    />
-                                </TouchableOpacity>
-                            </Left>
-                            <Right style={{marginTop: 20}}>
+                            <Left style={{marginTop: 20, flexDirection: 'row'}}>
+                                <BackButton goBack={goBack}/>
+                                <Body>
                                 {
                                     (params.group_name)
                                         ?
@@ -293,7 +300,7 @@ class InfoAboutPostContainer extends Component {
                                                 style={part.buttonGroup}
                                                 onPress={() => navigate('GroupStack', {group_link: params.group_link})}
                                             >
-                                                <Text style={[part.titleNormalLight, {marginRight: 10}]}>
+                                                <Text style={[part.titleNormalLightNav]}>
                                                     {params.group_name}
                                                 </Text>
 
@@ -304,7 +311,8 @@ class InfoAboutPostContainer extends Component {
                                             <Text/>
                                         )
                                 }
-                            </Right>
+                                </Body>
+                            </Left>
                         </View>
                     )}
                 >
@@ -330,7 +338,6 @@ class InfoAboutPostContainer extends Component {
                                             ?
                                             (
                                                 <Left>
-
                                                     <TouchableOpacity
                                                         onPress={() => navigate('UserInNewFeed', {username: post.author.username})}
                                                     >
@@ -371,7 +378,6 @@ class InfoAboutPostContainer extends Component {
                                                         }
                                                     </View>
                                                     </Body>
-
                                                     <TouchableOpacity
                                                         transparent
                                                         onPress={
@@ -438,8 +444,12 @@ class InfoAboutPostContainer extends Component {
                                         </Button>
                                         <Right>
                                             <Button transparent>
-                                                <Icon name={featureIcon} size={size.iconBig}
-                                                      color={colorFeatureIcon}/>
+                                                <Icon
+                                                    name={featureIcon}
+                                                    size={size.iconBig}
+                                                    color={colorFeatureIcon}
+                                                    style={{marginRight: 3}}
+                                                />
                                             </Button>
                                         </Right>
                                     </Left>

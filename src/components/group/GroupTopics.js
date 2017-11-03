@@ -102,9 +102,7 @@ class GroupTopics extends Component {
                                                     <Left>
                                                         <Right>
                                                             <Text style={[part.describeGray, {right: 0}]}>
-                                                                {item.deadline}
-                                                                - {item.submitted_members}/{item.total_members}
-                                                                đã nộp
+                                                                {item.deadline} - {item.submitted_members}/{item.total_members} đã nộp
                                                             </Text>
                                                         </Right>
                                                     </Left>

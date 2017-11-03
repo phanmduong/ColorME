@@ -43,7 +43,7 @@ body, html, #height-wrapper {
     right: 0;
 }
 p{
-    font-size: 14px;
+    font-size: 13px;
     padding-left: 10px;
     padding-right: 10px;
 }

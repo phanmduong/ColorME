@@ -263,7 +263,7 @@ const part = StyleSheet.create({
         fontFamily: 'Montserrat',
         fontSize: 14,
         lineHeight: 10,
-        fontWeight: '600',
+        fontWeight: '400',
     },
 
 
@@ -381,7 +381,7 @@ const part = StyleSheet.create({
         fontFamily: 'Montserrat',
         fontSize: size.titleSmall,
         color: color.darkGray,
-        fontWeight: '700',
+        fontWeight: '500',
     },
 
     titleGrayThin: {
@@ -418,6 +418,12 @@ const part = StyleSheet.create({
         fontFamily: 'Montserrat',
         fontSize: size.titleSmall,
         color: color.titleBlue,
+        fontWeight: '600',
+    },
+    titleSmallDarkGray: {
+        fontFamily: 'Montserrat',
+        fontSize: size.titleSmall,
+        color: color.darkGray,
         fontWeight: '600',
     },
     titleNormalLight: {
@@ -465,7 +471,7 @@ const part = StyleSheet.create({
         fontFamily: 'Montserrat',
         fontSize: size.describe,
         color: color.gray,
-        fontWeight: '600',
+        fontWeight: '400',
     },
     describeLightGray: {
         fontFamily: 'Montserrat',

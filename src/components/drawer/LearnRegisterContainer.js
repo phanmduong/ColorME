@@ -162,8 +162,8 @@ class LearnRegisterContainer extends Component {
                                         style={part.avatarUserNormal}
                                         source={{uri: this.state.avatar_url}}/>
                                     <Body style={part.noBorder}>
-                                    <Text style={part.titleDarkBold}>Đăng ký học {this.state.course}</Text>
-                                    <Text style={part.describeGray}>Xác nhận đăng ký</Text>
+                                    <Text style={part.titleSmallBlue}>Đăng ký học {this.state.course}</Text>
+                                    <Text style={part.titleSmallDarkGray}>Xác nhận đăng ký</Text>
                                     </Body>
                                 </Left>
                             </CardItem>
@@ -171,10 +171,10 @@ class LearnRegisterContainer extends Component {
                                 style={[part.backgroundNone, part.noMarginLeft,part.noBorder, part.noPadding]}>
                                 <Left>
                                     <Body>
-                                        <Text style={[part.titleGrayThin, part.paddingLine]}>Bạn đang tiến hành đăng ký lớp <Text style={part.titleDarkBold}>{this.state.course} {this.state.name}</Text></Text>
-                                        <Text style={[part.titleGrayThin, part.paddingLine]}>Thời gian học <Text style={part.titleDarkBold}>{this.state.study_time}</Text></Text>
-                                        <Text style={[part.titleGrayThin, part.paddingLine]}><Text style={part.titleDarkBold}>{this.state.description}</Text></Text>
-                                        <Text style={[part.titleGrayThin, part.paddingLine]}>Tại: <Text style={part.titleDarkBold}>{this.state.address}</Text></Text>
+                                        <Text style={[part.titleGrayThin, part.paddingLine]}>Bạn đang tiến hành đăng ký lớp <Text style={part.titleSmallDarkGray}>{this.state.course} {this.state.name}</Text></Text>
+                                        <Text style={[part.titleGrayThin, part.paddingLine]}>Thời gian học <Text style={part.titleSmallDarkGray}>{this.state.study_time}</Text></Text>
+                                        <Text style={[part.titleGrayThin, part.paddingLine]}><Text style={part.titleSmallDarkGray}>{this.state.description}</Text></Text>
+                                        <Text style={[part.titleGrayThin, part.paddingLine]}>Tại: <Text style={part.titleSmallDarkGray}>{this.state.address}</Text></Text>
                                         <Text style={[part.titleGrayThin, part.paddingLine]}>Hãy xác nhận để colorME giúp bạn hoàn thành thủ tục nhé</Text>
                                     </Body>
                                 </Left>

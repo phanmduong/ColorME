@@ -23,6 +23,7 @@ import LearnRegisterContainer from '../components/drawer/LearnRegisterContainer'
 import CourseInformation from '../components/drawer/CourseInformationContainer'
 import AttendGroupContainer from '../components/drawer/AttendGroupContainer'
 import InfoAboutPostContainer from '../components/InfoAboutPostContainer';
+import AchievementsContainer from '../components/AchievementsContainer';
 
 // USER SCREEN
 import UserContainer from '../components/user/UserContainer';
@@ -158,9 +159,8 @@ const Home = TabNavigator(
                 ),
             }
         },
-
         // Achievement: {
-        //     screen: AchievementsComponent,
+        //     screen: AchievementsContainer,
         //     navigationOptions: {
         //         tabBarIcon: ({tintColor}) => (
         //             <Icon
