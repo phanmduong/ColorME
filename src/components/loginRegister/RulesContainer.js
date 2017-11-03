@@ -1,17 +1,10 @@
 import React, {Component} from 'react'
 import {Text} from 'react-native'
-import {Container, Content, Header} from 'native-base';
+import {Container, Content, Header, Body, Left} from 'native-base';
 import part from '../../styles/partStyle';
 import BackButtonHeader from '../../commons/BackButtonHeader';
 
 export default class RulesContainer extends Component {
-    constructor() {
-        super();
-        this.state = {
-            text: '',
-        }
-    }
-
     render() {
         const {goBack} = this.props.navigation;
         return (

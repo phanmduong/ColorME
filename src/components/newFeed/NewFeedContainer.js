@@ -1,21 +1,8 @@
 import React, {Component} from 'react';
-import {FlatList, RefreshControl, StatusBar, TouchableOpacity, View,AsyncStorage,Alert} from 'react-native';
+import {FlatList, RefreshControl, StatusBar, TouchableOpacity, View, AsyncStorage, Alert} from 'react-native';
 import {
-    Body,
-    Button,
-    Card,
-    CardItem,
-    Container,
-    Content,
-    Header,
-    Input,
-    Item,
-    Left,
-    Picker,
-    Right,
-    Spinner,
-    Text,
-    Thumbnail
+    Body, Button, Card, CardItem, Container, Content, Header, Input, Item, Left, Picker,
+    Right, Spinner, Text, Thumbnail,
 } from 'native-base';
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
@@ -45,7 +32,7 @@ class NewFeedContainer extends Component {
             listPost: [],
             isLoadingList: false,
             clicked: '',
-            deleteId : null,
+            deleteId: null,
         };
         this.isFirst = true;
         this.likePost = this.likePost.bind(this);
@@ -79,9 +66,11 @@ class NewFeedContainer extends Component {
 
         }
     }
-     refreshFlatList = (deleteId) =>{
-        this.setState({deleteId : deleteId})
-     };
+
+    refreshFlatList = (deleteId) => {
+        this.setState({deleteId: deleteId})
+    };
+
     onValueChange(value: string) {
         setTimeout(() => {
             this.setState({isLoadingList: false})
@@ -104,7 +93,8 @@ class NewFeedContainer extends Component {
         }, 250);
         this.setState({grid: true, isLoadingList: true, listPost: this.groupPosts(this.props.products)});
     }
-    alertHiddenPost(item, key){
+
+    alertHiddenPost(item, key) {
         Alert.alert(
             'Báo cáo',
             'Bạn thực sự muốn ẩn bài viết này?',
@@ -115,15 +105,16 @@ class NewFeedContainer extends Component {
             {cancelable: false}
         )
     }
-    async hiddenPost(item, key){
-        try{
+
+    async hiddenPost(item, key) {
+        try {
             let value = await AsyncStorage.getItem('@idPost');
             if (value == null) {
                 let array = [];
                 array.push(item.id);
                 let arrayString = JSON.stringify(array);
                 await  AsyncStorage.setItem('@idPost', arrayString)
-            }else{
+            } else {
                 let array = JSON.parse(value);
                 array.push(item.id);
                 let arrayString = JSON.stringify(array);
@@ -131,9 +122,10 @@ class NewFeedContainer extends Component {
             }
             let listPost = this.state.listPost;
             listPost.splice(key, 1);
-            this.setState({listPost : listPost});
+            this.setState({listPost: listPost});
             this.props.parentFlatList.refreshFlatList(key)
-        }catch (error){}
+        } catch (error) {
+        }
     }
 
 // setup
@@ -235,70 +227,88 @@ class NewFeedContainer extends Component {
     }
 
     render() {
+        const {navigate} = this.props.navigation;
         console.log(AsyncStorage.getItem('@idPost'));
         return (
             <Container style={part.wrapperContainer}>
-                <StatusBar
-                    barStyle="light-content"
-                />
-                {/*VIEW TYPE*/}
-                <View>
-                    <Item style={[part.itemTab, {paddingLeft: 0}]}>
-                        <Left style={{flexDirection: 'row', alignItems: 'center'}}>
-                            <Picker
-                                itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
-                                itemTextStyle={part.titleSmallDarkGrayBold}
-                                renderHeader={backAction =>
-                                    <Header
-                                        iosBarStyle='light-content'
-                                        style={[{backgroundColor: color.main}, part.noBorder]}>
-                                        <Left>
-                                            <TouchableOpacity onPress={backAction}>
-                                                <Icon name="entypo|chevron-thin-left" color={color.navTitle}
-                                                      size={size.iconBig}/>
-                                            </TouchableOpacity>
-                                        </Left>
-                                        <Body style={{flex: 3}}>
-                                        <Text style={part.titleNormalLight}>Chọn kiểu xem</Text>
-                                        </Body>
-                                        <Right/>
-                                    </Header>}
-                                mode="dropdown"
-                                textStyle={part.titleSmallDarkGrayBold}
-                                selectedValue={this.state.typeView}
-                                onValueChange={this.onValueChange.bind(this)}
-                            >
-                                <Item label="Mới nhất" value=""/>
-                                <Item label="Hôm nay" value="1"/>
-                                <Item label="7 ngày qua" value="7"/>
-                                <Item label="30 ngày qua" value="30"/>
-                            </Picker>
-                            <Icon name="entypo|triangle-down"
-                                  color={color.darkGray}
-                                  size={size.iconGiant * 2 / 3}
-                                  style={{marginLeft: -10}}
+                <Header
+                    style={part.navTop}
+                    iosBarStyle='light-content'
+                >
+                <Left style={{flexDirection: 'row'}}>
+                    <TouchableOpacity style={{backgroundColor: 'transparent'}}>
+                        <Icon name="material|view-list"
+                              color={this.state.grid ? color.navTitle : color.icon}
+                              size={size.iconGiant}
+                              style={part.paddingIcon}
+                              onPress={() => this.viewList()}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{backgroundColor: 'transparent'}}>
+                        <Icon name="material|view-module"
+                              color={this.state.grid ? color.icon : color.navTitle}
+                              size={size.iconGiant}
+                              style={part.paddingIcon}
+                              onPress={() => this.viewGrid()}
+                        />
+                    </TouchableOpacity>
+                </Left>
+                    <Body>
+                    <Picker
+                        itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
+                        itemTextStyle={part.titleSmallDarkGrayBold}
+                        renderHeader={backAction =>
+                            <Header
+                                iosBarStyle='light-content'
+                                style={[{backgroundColor: color.main}, part.noBorder]}>
+                                <Left>
+                                    <TouchableOpacity onPress={backAction}>
+                                        <Icon name="entypo|chevron-thin-left" color={color.navTitle}
+                                              size={size.iconBig}/>
+                                    </TouchableOpacity>
+                                </Left>
+                                <Body style={{flex: 3}}>
+                                <Text style={part.titleNormalLight}>Chọn kiểu xem</Text>
+                                </Body>
+                                <Right/>
+                            </Header>}
+                        mode="dropdown"
+                        textStyle={part.titleNormalLight}
+                        selectedValue={this.state.typeView}
+                        onValueChange={this.onValueChange.bind(this)}
+                    >
+                        <Item label="Mới nhất" value=""/>
+                        <Item label="Hôm nay" value="1"/>
+                        <Item label="7 ngày qua" value="7"/>
+                        <Item label="30 ngày qua" value="30"/>
+                    </Picker>
+                    </Body>
+                    <Right>
+                        <TouchableOpacity onPress={() => navigate('DrawerOpen')}>
+                            <Icon
+                                name="materialCommunity|menu"
+                                color={color.navTitle}
+                                size={size.iconGiant}
+                                style={{paddingLeft: 15, paddingRight: 5}}
                             />
-                        </Left>
-                        <Right style={part.rightTab}>
-                            <TouchableOpacity style={{backgroundColor: 'transparent'}}>
-                                <Icon name="material|view-list"
-                                      color={this.state.grid ? color.icon : color.darkGray}
-                                      size={size.iconGiant}
-                                      style={part.paddingIcon}
-                                      onPress={() => this.viewList()}
-                                />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={{backgroundColor: 'transparent'}}>
-                                <Icon name="material|view-module"
-                                      color={this.state.grid ? color.darkGray : color.icon}
-                                      size={size.iconGiant}
-                                      style={part.paddingIcon}
-                                      onPress={() => this.viewGrid()}
-                                />
-                            </TouchableOpacity>
-                        </Right>
-                    </Item>
-                </View>
+                        </TouchableOpacity>
+                    </Right>
+                </Header>
+                {/*VIEW TYPE*/}
+                {/*<View>*/}
+                    {/*<Item style={[part.itemTab, {paddingLeft: 0}]}>*/}
+                        {/*<Left style={{flexDirection: 'row', alignItems: 'center'}}>*/}
+                            {/*<Icon name="entypo|triangle-down"*/}
+                            {/*color={color.darkGray}*/}
+                            {/*size={size.iconGiant * 2 / 3}*/}
+                            {/*style={{marginLeft: -10}}*/}
+                            {/*/>*/}
+                        {/*</Left>*/}
+                        {/*<Right style={part.rightTab}>*/}
+
+                        {/*</Right>*/}
+                    {/*</Item>*/}
+                {/*</View>*/}
                 {
                     (this.state.grid)
                         ?
@@ -415,8 +425,8 @@ class NewFeedContainer extends Component {
                                             let colorFeatureIcon = item.feature_id == 0 ? color.icon : color.star;
                                             return (
                                                 <ListView
-                                                    hiddenPost = {this.hiddenPost}
-                                                    alertHiddenPost = {this.alertHiddenPost}
+                                                    hiddenPost={this.hiddenPost}
+                                                    alertHiddenPost={this.alertHiddenPost}
                                                     token={this.props.token}
                                                     unlikePost={this.unlikePost}
                                                     likePost={this.likePost}

@@ -145,6 +145,7 @@ class ListView extends Component {
             modalMenu: false,
         });
     }
+
     commentPost(product_id, token, value) {
         this.props.infoAboutPostAction.postCommentOnePost(product_id, token, value);
         let listCommentInModal = this.state.listCommentInModal;
@@ -163,6 +164,7 @@ class ListView extends Component {
         listCommentInModal.push(arr);
         this.setState({listCommentInModal: listCommentInModal, comment_content: ''})
     }
+
     deleteComment(product_id, token, index) {
         let listComment = this.state.listCommentInModal;
         this.props.infoAboutPostAction.deleteComment(product_id, token);
@@ -206,7 +208,6 @@ class ListView extends Component {
                             <Icon name="materialCommunity|dots-horizontal"
                                   color={color.icon}
                                   size={size.iconGiant}
-                                  style={part.paddingRight}
                             />
                         </TouchableOpacity>
                     </Left>
@@ -533,9 +534,9 @@ class ListView extends Component {
                         <View style={[part.modalMenu, part.paddingLine]}>
                             <List>
                                 {/*<ListItem style={[part.noBorder, part.noPaddingTopBottom]}>*/}
-                                    {/*<TouchableOpacity style={part.backgroundNone}>*/}
-                                        {/*<Text style={part.titleMenuModal}>Đánh dấu là nổi bật</Text>*/}
-                                    {/*</TouchableOpacity>*/}
+                                {/*<TouchableOpacity style={part.backgroundNone}>*/}
+                                {/*<Text style={part.titleMenuModal}>Đánh dấu là nổi bật</Text>*/}
+                                {/*</TouchableOpacity>*/}
                                 {/*</ListItem>*/}
                                 <ListItem style={[part.noBorder, part.noPaddingTopBottom]}>
                                     <TouchableOpacity
@@ -549,7 +550,7 @@ class ListView extends Component {
                                         <Text style={part.titleMenuModal}>Báo cáo...</Text>
                                     </TouchableOpacity>
                                 </ListItem>
-                                <ListItem>
+                                <ListItem style={[part.noBorder, part.noPaddingTopBottom]}>
                                     <TouchableOpacity
                                         style={part.backgroundNone}
                                         onPress={

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import {Image, Keyboard, KeyboardAvoidingView, Text, TouchableOpacity, View, Alert} from 'react-native';
+import {Image, Keyboard, KeyboardAvoidingView, Text, TouchableOpacity, View, Alert, Modal,PanResponder } from 'react-native';
 import {
+    List,
+    ListItem,
     Body,
     Button,
     Card,
@@ -15,7 +17,6 @@ import {
     Thumbnail
 } from 'native-base';
 import Icon from '../commons/Icon';
-import BackButton from '../commons/BackButton';
 import Video from 'react-native-video';
 import part from '../styles/partStyle';
 import parallaxStyle from '../styles/parallaxStyle';
@@ -33,6 +34,7 @@ class InfoAboutPostContainer extends Component {
     constructor() {
         super();
         this.state = {
+            modalMenu: false,
             array: [],
             author: {},
             more_products: [],
@@ -53,7 +55,23 @@ class InfoAboutPostContainer extends Component {
         this.props.infoAboutPostAction.getInfoAboutPost(params.product_id);
         this.props.infoAboutPostAction.getCommentOnePost(params.product_id);
         this.props.infoAboutPostAction.getPostLiker(params.product_id);
+        this.panResponder = PanResponder.create({
+            onStartShouldSetPanResponder: (event, gestureState) => true,
+            onPanResponderGrant: this._onPanResponderGrant.bind(this),
+        })
     }
+    _onPanResponderGrant(event, gestureState) {
+        if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
+            this.setState({
+                modalComment: false,
+                modalMenu: false,
+            });
+        }
+    }
+    setCommentModalMenu(visible) {
+        this.setState({modalMenu: visible});
+    }
+
 
     componentWillReceiveProps(nextProps) {
         let liked = this.state.liked;
@@ -171,14 +189,16 @@ class InfoAboutPostContainer extends Component {
     }
 
     render() {
+        const {goBack, navigate} = this.props.navigation;
+        const {params} = this.props.navigation.state;
+        const {isLoading, post} = this.props;
         let {liked, likeCount} = this.state;
         let colorIcon = liked ? color.main : color.icon;
         let likedIcon = liked ? 'fontawesome|heart' : 'fontawesome|heart-o';
         let colorCommentIcon = this.state.comment_content == '' ? color.icon : color.main;
         let commentIcon = this.state.comment_content == '' ? 'fontawesome|comment-o' : 'fontawesome|paper-plane';
-        const {goBack, navigate} = this.props.navigation;
-        const {params} = this.props.navigation.state;
-        const {isLoading, post} = this.props;
+        let featureIcon = post.feature_id == 0 ? 'fontawesome|star-o' : 'fontawesome|star';
+        let colorFeatureIcon = post.feature_id == 0 ? color.icon : color.star;
         return (
             <Container ref="page" style={part.wrapperContainer}>
                 <ParallaxScrollView
@@ -253,7 +273,16 @@ class InfoAboutPostContainer extends Component {
                     renderFixedHeader={() => (
                         <View key="fixed-header" style={part.iconInDrawerNav}>
                             <Left style={{marginTop: 20}}>
-                                <BackButton goBack={goBack}/>
+                                <TouchableOpacity
+                                    style={[part.padding, part.wrapperBackButton]}
+                                    onPress={() => goBack(null)}
+                                >
+                                    <Icon name="entypo|chevron-thin-left"
+                                          size={size.iconBig}
+                                          color={color.navTitle}
+                                          style={{zIndex: 100}}
+                                    />
+                                </TouchableOpacity>
                             </Left>
                             <Right style={{marginTop: 20}}>
                                 {
@@ -342,6 +371,18 @@ class InfoAboutPostContainer extends Component {
                                                         }
                                                     </View>
                                                     </Body>
+
+                                                    <TouchableOpacity
+                                                        transparent
+                                                        onPress={
+                                                            () => this.setCommentModalMenu(true)
+                                                        }
+                                                    >
+                                                        <Icon name="materialCommunity|dots-horizontal"
+                                                              color={color.icon}
+                                                              size={size.iconGiant}
+                                                        />
+                                                    </TouchableOpacity>
                                                 </Left>
                                             )
                                             :
@@ -396,11 +437,9 @@ class InfoAboutPostContainer extends Component {
                                                 style={[part.describeGray, part.paddingLeft]}>{post.views_count}</Text>
                                         </Button>
                                         <Right>
-                                            <Button transparent style={part.paddingRight}
-                                                    onPress={() => this.alertReport()}
-                                            >
-                                                <Icon name="entypo|warning" size={size.iconBig}
-                                                      color={color.icon}/>
+                                            <Button transparent>
+                                                <Icon name={featureIcon} size={size.iconBig}
+                                                      color={colorFeatureIcon}/>
                                             </Button>
                                         </Right>
                                     </Left>
@@ -473,6 +512,52 @@ class InfoAboutPostContainer extends Component {
                     }
 
                 </ParallaxScrollView>
+                <Modal
+                    presentationStyle="overFullScreen"
+                    animationType="fade"
+                    transparent={true}
+                    visible={this.state.modalMenu}
+                >
+                    <View
+                        style={part.wrapperModalComment}
+                        {...this.panResponder.panHandlers}
+                    >
+                        <View style={[part.modalMenu, part.paddingLine]}>
+                            <List>
+                                {/*<ListItem style={[part.noBorder, part.noPaddingTopBottom]}>*/}
+                                {/*<TouchableOpacity style={part.backgroundNone}>*/}
+                                {/*<Text style={part.titleMenuModal}>Đánh dấu là nổi bật</Text>*/}
+                                {/*</TouchableOpacity>*/}
+                                {/*</ListItem>*/}
+                                <ListItem style={[part.noBorder, part.noPaddingTopBottom]}>
+                                    <TouchableOpacity
+                                        style={part.backgroundNone}
+                                        onPress={
+                                            () => {
+                                                this.alertReport();
+                                            }
+                                        }
+                                    >
+                                        <Text style={part.titleMenuModal}>Báo cáo...</Text>
+                                    </TouchableOpacity>
+                                </ListItem>
+                                <ListItem style={[part.noBorder, part.noPaddingTopBottom]}>
+                                    <TouchableOpacity
+                                        style={part.backgroundNone}
+                                        onPress={
+                                            () => {
+                                                this.props.alertHiddenPost(this.props.item, this.props.key);
+                                            }
+                                        }
+                                    >
+                                        <Text style={part.titleMenuModal}>Ẩn bài viết...</Text>
+                                    </TouchableOpacity>
+                                </ListItem>
+
+                            </List>
+                        </View>
+                    </View>
+                </Modal>
                 <KeyboardAvoidingView behavior={'position'}>
                     <CardItem style={part.cardBottom}>
                         <Left>

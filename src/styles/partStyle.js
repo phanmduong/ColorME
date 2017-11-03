@@ -418,7 +418,7 @@ const part = StyleSheet.create({
         fontFamily: 'Montserrat',
         fontSize: size.titleSmall,
         color: color.titleBlue,
-        fontWeight: '700',
+        fontWeight: '600',
     },
     titleNormalLight: {
         fontFamily: 'Montserrat',
@@ -437,7 +437,7 @@ const part = StyleSheet.create({
         fontFamily: 'Montserrat',
         fontSize: size.title,
         color: color.darkGray,
-        fontWeight: '600'
+        fontWeight: '500'
     },
     titleMenuModal: {
         fontFamily: 'Montserrat',
@@ -459,7 +459,7 @@ const part = StyleSheet.create({
         fontFamily: 'Montserrat',
         fontSize: size.describe,
         color: color.darkGray,
-        fontWeight: '600',
+        fontWeight: '400',
     },
     describeGray: {
         fontFamily: 'Montserrat',
@@ -481,7 +481,6 @@ const part = StyleSheet.create({
     },
     describeInImage: {
         fontFamily: 'Montserrat',
-        marginBottom: 10,
         fontSize: 12,
         color: color.gray,
     },
@@ -567,7 +566,7 @@ const part = StyleSheet.create({
         padding: 10,
     },
     paddingIcon: {
-padding : 5,
+        paddingRight : 5,
     },
     paddingRight: {
         paddingRight: 5,
@@ -787,13 +786,11 @@ padding : 5,
         borderLeftWidth: 0,
         borderRightWidth: 0,
     },
-    // SHADOW
     shadow: {
         shadowColor: color.text,
         shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.2,
     },
-    //
     haveBorderBottom: {
         borderBottomWidth: 0.5,
         borderColor: color.icon,

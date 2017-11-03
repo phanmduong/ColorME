@@ -69,7 +69,7 @@ const HomeStackStyle = {
             fontFamily: 'Segoe UI',
             color: color.navTitle,
         },
-        headerLeft: (
+        headerRight: (
             <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
                 <Icon
                     name="materialCommunity|menu"
@@ -79,12 +79,13 @@ const HomeStackStyle = {
                 />
             </TouchableOpacity>
         ),
-        // headerRight: (
+        // headerLeft: (
         //     <TouchableOpacity onPress={() => navigation.navigate('')}>
         //         <Icon name="entypo|chat"
         //               color={color.navTitle}
         //               size={size.iconGiant}
-        //               style={{paddingRight: 10}}
+        //               style={{paddingLeft: 15, paddingRight: 15}}
+        //
         //         />
         //     </TouchableOpacity>
         // ),
@@ -119,7 +120,7 @@ const NewFeedStackNavigator = StackNavigator(
         UserInNewFeed: {screen: UserInNewFeed, StackNavigatorStyle},
         ThePostInNewFeed: {screen: ThePostInNewFeed, navigationOptions: {tabBarVisible: false,}},
     },
-    HomeStackStyle
+    StackNavigatorStyle
 );
 
 const NotificationStackNavigator = StackNavigator(
@@ -229,7 +230,7 @@ const Drawer = DrawerNavigator(
     },
     {
         drawerWidth: size.wid * 3 / 4,
-        drawerPosition: 'left',
+        drawerPosition: 'right',
         contentComponent: props => <SlideViewComponent {...props} />
     }
 );
