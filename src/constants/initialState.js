@@ -84,6 +84,7 @@ export default {
     getNotification:{
         notification:[],
         isLoading : false,
+        isLoadingRef : false,
         error : false,
     },
     getComment:{

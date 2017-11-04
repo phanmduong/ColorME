@@ -4,8 +4,8 @@ import {
 } from 'react-native';
 
 import {
-    Body, CardItem, Header, Container,
-    Left, Right, Spinner,
+    Body, CardItem, Header, Container, Content,
+    Left, Right, Spinner, Item
 } from 'native-base';
 import BackButtonHeader from '../../commons/BackButtonHeader';
 import part from '../../styles/partStyle';
@@ -25,57 +25,63 @@ class CourseContainer extends Component {
         const {isLoading, courses} = this.props;
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
-                <Header
-                    style={part.navTop}
-                    iosBarStyle='light-content'
+                <View style={part.wrapperStatusBarNoPadding}>
+                </View>
+                <Content
+                    showsVerticalScrollIndicator={false}
                 >
-                    <Left style={{flexDirection: 'row'}}>
-                        <Body>
-                            <Text style={part.titleNormalLight}>Đăng ký khóa học</Text>
-                        </Body>
-                    </Left>
-                </Header>
-                {
-                    isLoading
-                        ?
-                        <View
-                            style={{
-                                marginTop: -100,
-                                flex: 1,
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                            }}
-                        >
-                            <Spinner
-                                color={color.gray}/>
-                        </View>
-                        :
-                        <FlatList
-                            showsVerticalScrollIndicator={false}
-                            data={courses}
-                            renderItem={({item}) =>
-                                <CardItem
-                                    avatar
-                                    style={[part.backgroundNone, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
-                                    <TouchableOpacity
-                                        activeOpacity={0.8}
-                                        style={{flex: 1}}
-                                        onPress={() => navigate('CourseInFormation', {linkId: item.linkId})}
-                                    >
-                                        <Left>
-                                            <FastImage
-                                                style={part.avatarUserNormal}
-                                                source={{uri: item.icon_url}}/>
-                                            <Body style={part.noBorder}>
-                                            <Text style={part.titleSmallBlue}>{item.name}</Text>
-                                            </Body>
-                                        </Left>
-                                    </TouchableOpacity>
-                                </CardItem>
-                            }
-                        />
-                }
-
+                    <Item style={[part.noBorder, {paddingLeft: 15}]}>
+                        <TouchableOpacity>
+                            <Text style={[part.titleLargeDarkBold, part.paddingLineFar]}>
+                                Đăng ký học
+                            </Text>
+                        </TouchableOpacity>
+                    </Item>
+                    {
+                        isLoading
+                            ?
+                            <View
+                                style={{
+                                    marginTop: -100,
+                                    flex: 1,
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Spinner
+                                    color={color.gray}/>
+                            </View>
+                            :
+                            <FlatList
+                                showsVerticalScrollIndicator={false}
+                                data={courses}
+                                renderItem={({item}) =>
+                                    <CardItem
+                                        avatar
+                                        style={[part.backgroundNone, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
+                                        <TouchableOpacity
+                                            activeOpacity={0.8}
+                                            style={{flex: 1}}
+                                            onPress={() => navigate('CourseInFormation', {linkId: item.linkId})}
+                                        >
+                                            <Left>
+                                                <FastImage
+                                                    style={part.avatarUserNormal}
+                                                    source={{uri: item.icon_url}}/>
+                                                <Body style={part.noBorder}>
+                                                <Text style={part.titleSmallBlue}>{item.name}</Text>
+                                                <Text
+                                                    style={[part.describeItalicDark, part.paddingLine]}>
+                                                    Buổi học
+                                                </Text>
+                                                </Body>
+                                            </Left>
+                                        </TouchableOpacity>
+                                    </CardItem>
+                                }
+                            />
+                    }
+                </Content>
             </Container>
         );
     }

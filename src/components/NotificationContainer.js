@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    Image, Text, TouchableOpacity, View, FlatList
+    Image, Text, TouchableOpacity, View, FlatList, RefreshControl
 } from 'react-native';
 
 import {
@@ -62,7 +62,7 @@ class NotificationContainer extends Component {
                 );
             case 'like':
                 return (
-                    <Text style={part.titleSmallBlue} >
+                    <Text style={part.titleSmallBlue}>
                         {item.actor.name}
                         <Text style={part.titleSmallDarkGrayBold}>
                             &nbsp;đã thích
@@ -73,7 +73,7 @@ class NotificationContainer extends Component {
                 );
             case 'new_comment':
                 return (
-                    <Text style={part.titleSmallBlue}  >
+                    <Text style={part.titleSmallBlue}>
                         {item.actor.name}
                         <Text style={part.titleSmallDarkGrayBold}>
                             &nbsp;đã bình luận về
@@ -111,11 +111,30 @@ class NotificationContainer extends Component {
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <View style={part.wrapperStatusBarNoPadding}>
                 </View>
-                <Content>
+
+                <Content
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.props.isLoadingRef}
+                            onRefresh={() => {
+                                this.props.getNotificationAction.refNotification(1, this.props.token)
+
+                            }}
+                        />
+                    }
+                >
+                    <Item style={[part.noBorder, {paddingLeft: 15}]}>
+                        <TouchableOpacity>
+                            <Text style={[part.titleLargeDarkBold, part.paddingLineFar]}>
+                                Thông báo
+                            </Text>
+                        </TouchableOpacity>
+                    </Item>
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         data={notification}
                         onEndThreshold={5}
+
                         renderItem={({item}) =>
                             <CardItem
                                 avatar
@@ -133,7 +152,7 @@ class NotificationContainer extends Component {
                                                 source={{uri: item.actor.avatar_url}}/>
                                         </TouchableOpacity>
                                         <Body style={part.noBorder}>
-                                            {this.textNotification(item.type, item)}
+                                        {this.textNotification(item.type, item)}
                                         <Text
                                             style={part.describeItalicDark}>
                                             {item.created_at}
@@ -167,6 +186,7 @@ function mapStateToProps(state) {
     return {
         token: state.login.token,
         isLoading: state.getNotification.isLoading,
+        isLoadingRef: state.getNotification.isLoadingRef,
         notification: state.getNotification.notification,
     }
 }

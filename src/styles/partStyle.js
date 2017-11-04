@@ -165,12 +165,12 @@ const part = StyleSheet.create({
         margin: -10,
         width: size.wid,
         height: 20,
-        backgroundColor: color.main,
+        backgroundColor: color.text,
     },
     wrapperStatusBarNoPadding: {
         width: size.wid,
         height: 20,
-        backgroundColor: color.main,
+        backgroundColor: color.text,
     },
 
     wrapperRowCenter: {

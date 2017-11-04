@@ -23,6 +23,28 @@ export function getNotificationError() {
         isLoading: false,
     }
 }
+export function beginRefNotification() {
+    return{
+        type: types.BEGIN_REFRESH_NOTIFICATION,
+        isLoadingRef: true,
+    }
+}
+
+export function refNotificationSuccess(response) {
+    return{
+        type: types.REFRESH_NOTIFICATION_SUCCESS,
+        notification: response.data.notifications,
+        isLoadingRef: false,
+
+    }
+}
+
+export function refNotificationError() {
+    return{
+        type: types.REFRESH_NOTIFICATION_ERROR,
+        isLoadingRef: false,
+    }
+}
 
 export function getNotification(page_id, token) {
     return(dispatch) => {
@@ -33,6 +55,18 @@ export function getNotification(page_id, token) {
             })
             .catch(function (error) {
                 dispatch(getNotificationError(error));
+            })
+    }
+}
+export function refNotification(page_id, token) {
+    return(dispatch) => {
+        dispatch(beginRefNotification());
+        notificationApi.getNotificationApi(page_id, token)
+            .then(function (response) {
+                dispatch(refNotificationSuccess(response));
+            })
+            .catch(function (error) {
+                dispatch(refNotificationError(error));
             })
     }
 }
