@@ -41,7 +41,7 @@ import * as reportAction from '../actions/reportAction';
 import WebViewAutoHeight from '../commons/WebViewAutoHeight';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import LinearGradient from 'react-native-linear-gradient';
-
+import * as infoAboutPostApi from '../apis/InfoAboutPostApi';
 
 class InfoAboutPostContainer extends Component {
     constructor() {
@@ -126,7 +126,6 @@ class InfoAboutPostContainer extends Component {
             likedComment: likedComment
         })
     }
-
     likePost(product_id, token) {
         let liked = this.state.liked;
         let likeCount = this.state.likeCount;
@@ -149,24 +148,26 @@ class InfoAboutPostContainer extends Component {
         this.setState({likeCount: likeCount, liked: liked});
     }
 
-    commentPost(product_id, token, value) {
-        this.props.infoAboutPostAction.postCommentOnePost(product_id, token, value);
-        let listComment = this.state.listComment;
-        let {user} = this.props;
-        // let date = new Date();
-        let arr = {
-            content: value.comment_content,
-            id: this.props.idComment,
-            parent_id: 0,
-            commenter: {
-                username: user.username,
-                avatar_url: user.avatar_url,
-                name: user.name,
-            },
-            created_at: 'Vừa xong'
-        };
-        listComment.push(arr);
-        this.setState({listComment: listComment, comment_content: ''});
+   async commentPost(product_id, token, value) {
+       const response = await infoAboutPostApi.postCommentOnePostApi(product_id, token, value);
+            let listComment = this.state.listComment;
+            let id = await response.data.id;
+            let {user} = this.props;
+            // let date = new Date();
+            let arr = {
+                content: value.comment_content,
+                id: id,
+                parent_id: 0,
+                commenter: {
+                    username: user.username,
+                    avatar_url: user.avatar_url,
+                    name: user.name,
+                },
+                created_at: 'Vừa xong'
+            };
+            listComment.push(arr);
+            this.setState({listComment: listComment, comment_content: ''});
+            this.ref.scrollView.scrollToEnd();
     }
 
     likeComment(product_id, user_id, index) {
@@ -489,16 +490,16 @@ class InfoAboutPostContainer extends Component {
                                                                 {item.created_at}
                                                             </Text>
 
-                                                            {/*{item.commenter.username === this.props.user.username ?*/}
-                                                            {/*(*/}
-                                                            {/*<Text*/}
-                                                            {/*style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}*/}
-                                                            {/*onPress={() => this.deleteComment(item.id, this.props.token, i)}*/}
-                                                            {/*>*/}
-                                                            {/*Xoá*/}
-                                                            {/*</Text>*/}
-                                                            {/*) : (<TouchableOpacity/>)*/}
-                                                            {/*}*/}
+                                                            {item.commenter.username === this.props.user.username ?
+                                                            (
+                                                            <Text
+                                                            style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                            onPress={() => this.deleteComment(item.id, this.props.token, i)}
+                                                            >
+                                                            Xoá
+                                                            </Text>
+                                                            ) : (<TouchableOpacity/>)
+                                                            }
                                                         </View>
                                                         </Body>
                                                         <TouchableOpacity transparent onPress={() => {

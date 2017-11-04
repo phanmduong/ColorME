@@ -36,6 +36,7 @@ import * as reportAction from '../../actions/reportAction';
 import * as likePostAction from '../../actions/likePostAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import * as infoAboutPostApi from '../../apis/InfoAboutPostApi';
 
 class ListView extends Component {
     constructor(props) {
@@ -146,13 +147,14 @@ class ListView extends Component {
         });
     }
 
-    commentPost(product_id, token, value) {
-        this.props.infoAboutPostAction.postCommentOnePost(product_id, token, value);
+    async commentPost(product_id, token, value) {
+        const response = await infoAboutPostApi.postCommentOnePostApi(product_id, token, value);
+        let id = await response.data.id;
         let listCommentInModal = this.state.listCommentInModal;
         let {user} = this.props;
         let arr = {
             content: this.state.comment_content,
-            id: this.props.idComment,
+            id: id,
             parent_id: 0,
             commenter: {
                 username: user.username,
@@ -163,6 +165,7 @@ class ListView extends Component {
         };
         listCommentInModal.push(arr);
         this.setState({listCommentInModal: listCommentInModal, comment_content: ''})
+        this.ref.scrollView.scrollToEnd();
     }
 
     deleteComment(product_id, token, index) {
@@ -170,6 +173,15 @@ class ListView extends Component {
         this.props.infoAboutPostAction.deleteComment(product_id, token);
         listComment.splice(index, 1);
         this.setState({listCommentInModal: listComment})
+    }
+    renderFooter(){
+        if(this.props.statusPostComment == 0 || this.props.statusPostComment == 2){
+            return (
+                <View style={[part.wrapperContainer, {height: 80}]}>
+                    <Spinner color={color.gray}/>
+                </View>
+            )
+        }
     }
 
     render() {
@@ -463,6 +475,7 @@ class ListView extends Component {
                                                     })}
                                             </View>
                                     }
+                                    renderFooter = {() => {this.renderFooter}}
                                 </ScrollView>
                                 <KeyboardAvoidingView
                                     behavior={'position'}
