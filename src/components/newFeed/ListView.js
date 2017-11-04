@@ -71,6 +71,7 @@ class ListView extends Component {
             let item = false;
             let i = 0;
             while (i < nextProps.comments.length) {
+
                 let likers = listComment[i].likers.filter((liker) => {
                     return liker.name == nextProps.user.name;
                 })
@@ -397,6 +398,7 @@ class ListView extends Component {
                                                         let {likedComment} = this.state;
                                                         let iconLikeComment = likedComment[i] ? color.main : color.icon;
                                                         let likedIcon = likedComment[i] ? 'fontawesome|heart' : 'fontawesome|heart-o';
+
                                                         return (
                                                             <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
                                                                 <View

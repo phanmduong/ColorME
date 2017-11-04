@@ -159,6 +159,17 @@ const Home = TabNavigator(
                 ),
             }
         },
+        CourseInDrawer: {
+            screen: CourseContainer,
+            navigationOptions: {
+                tabBarIcon: ({tintColor}) => (
+                    <Icon
+                        name="fontawesome|graduation-cap" size={size.iconGiant}
+                        color={tintColor}
+                    />
+                )
+            }
+        },
         // Achievement: {
         //     screen: AchievementsContainer,
         //     navigationOptions: {

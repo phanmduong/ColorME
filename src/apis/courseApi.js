@@ -1,8 +1,8 @@
 import axios from 'axios';
 import * as env from '../constants/env';
 
-export function getCourseApi(token) {
-    let url = env.API_COLORME + "/paid-courses?token=" + token;
+export function getCourseApi() {
+    let url = env.API_DATA+ "/public/home-info";
     return axios.get(url);
 }
 
