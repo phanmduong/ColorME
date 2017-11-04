@@ -15,7 +15,7 @@ class MyAccountProgress extends Component {
         const {progress, isLoadingUserProgress} = this.props;
         return (
             <Container
-                style={part.wrapperContainer}>
+                style={[part.wrapperContainer, part.paddingLBR]}>
                 {
 
                     (isLoadingUserProgress)

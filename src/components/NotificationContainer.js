@@ -47,6 +47,7 @@ class NotificationContainer extends Component {
     }
 
     textNotification(type, item) {
+        const {navigate} = this.props.navigation;
         switch (type) {
             case 'also_comment':
                 return (
@@ -125,6 +126,7 @@ class NotificationContainer extends Component {
                                 >
                                     <Left>
                                         <TouchableOpacity
+                                            activeOpacity={0.8}
                                         >
                                             <FastImage
                                                 style={part.avatarUserNormalSquare}

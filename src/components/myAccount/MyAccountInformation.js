@@ -53,7 +53,7 @@ class MyAccountInformation extends Component {
     render() {
         const {user, isLoadingUserProfile} = this.props;
         return (
-            <Container style={part.wrapperContainer}>
+            <Container style={[part.wrapperContainer]}>
                 {
                     (isLoadingUserProfile)
                         ?

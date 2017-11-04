@@ -53,7 +53,7 @@ class UserInformation extends Component {
     render() {
         const {user, isLoadingUserProfile} = this.props;
         return (
-            <Container style={[part.wrapperContainer, part.padding]}>
+            <Container style={[part.wrapperContainer, part.paddingLBR]}>
                 {
                     (isLoadingUserProfile)
                         ?

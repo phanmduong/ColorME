@@ -48,18 +48,12 @@ class InfoAboutPostContainer extends Component {
         super();
         this.state = {
             modalMenu: false,
-            array: [],
-            author: {},
-            more_products: [],
-            colors: [],
             likeCount: 0,
             liked: false,
             parent_id: 0,
             comment_content: '',
             listComment: [],
             likedComment: [],
-            width: 0,
-            height: 0,
         }
     }
 
@@ -202,6 +196,7 @@ class InfoAboutPostContainer extends Component {
         });
     }
 
+
     render() {
         const {goBack, navigate} = this.props.navigation;
         const {params} = this.props.navigation.state;
@@ -267,7 +262,7 @@ class InfoAboutPostContainer extends Component {
                                     position: 'absolute',
                                     top: 0,
                                     width: size.wid,
-                                    height: size.PARALLAX_HEADER_HEIGHT - 100,
+                                    height: size.PARALLAX_HEADER_HEIGHT / 2.5,
                                 }}>
                                 </LinearGradient>
                             </View>
