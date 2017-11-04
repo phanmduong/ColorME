@@ -23,9 +23,9 @@ class SearchContainer extends Component {
             page_user: 2,
             page_product: 2,
         };
-         this.getMoreUser = this.getMoreUser.bind(this);
-         this.getMoreProduct = this.getMoreProduct.bind(this);
-         this.loadingLoadMore = this.loadingLoadMore.bind(this);
+        this.getMoreUser = this.getMoreUser.bind(this);
+        this.getMoreProduct = this.getMoreProduct.bind(this);
+        this.loadingLoadMore = this.loadingLoadMore.bind(this);
     }
 
     ViewUser() {
@@ -73,7 +73,8 @@ class SearchContainer extends Component {
         this.props.searchAction.searchUsers(this.state.txtSearch, 5, 1);
         this.props.searchAction.searchProducts(this.state.txtSearch, 5, 1);
     }
-    changeSearch(){
+
+    changeSearch() {
         this.props.searchAction.changeValueSearch();
     }
 
@@ -90,14 +91,15 @@ class SearchContainer extends Component {
         this.setState({page_product: page_product});
         this.props.searchAction.searchProducts(this.state.txtSearch, 5, this.state.page_product);
     }
-    loadingLoadMore(){
-        if(this.props.isLoading && (this.props.users.length > 0 || this.props.products.length > 0)){
+
+    loadingLoadMore() {
+        if (this.props.isLoading && (this.props.users.length > 0 || this.props.products.length > 0)) {
             return (
                 <View style={[part.wrapperContainer]}>
                     <Spinner color={color.gray}/>
                 </View>
             )
-        }else{
+        } else {
             return <View/>
         }
     }
@@ -121,30 +123,32 @@ class SearchContainer extends Component {
 
     render() {
         return (
-            <Container style={[part.wrapperContainer, part.padding, {paddingBottom: 0}]}>
-                <View style={part.wrapperStatusBar}>
+            <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
+                <View style={part.wrapperStatusBarNoPadding}>
                 </View>
-                <Item style={part.noBorder}>
+                <Item style={[part.noBorder, {paddingLeft: 15}]}>
                     <TouchableOpacity>
                         <Text style={[part.titleLargeDarkBold, part.paddingLineFar]}>
                             Tìm kiếm
                         </Text>
                     </TouchableOpacity>
                 </Item>
+                <View style={part.paddingLR}>
+                    <Item regular style={part.margin}>
+                        <Input
+                            placeholder="Nhập từ khóa"
+                            placeholderTextColor={color.gray}
+                            style={part.inputTheme02}
+                            returnKeyType={'search'}
+                            onChangeText={(txtSearch) => {
+                                this.searchHaveTimeout(txtSearch);
+                            }}
 
-                <Item regular style={part.margin}>
-                    <Input
-                        placeholder="Nhập từ khóa"
-                        placeholderTextColor={color.gray}
-                        style={part.inputTheme02}
-                        returnKeyType={'search'}
-                        onChangeText={(txtSearch) => {
-                            this.searchHaveTimeout(txtSearch);
-                        }}
+                        />
+                    </Item>
+                </View>
 
-                    />
-                </Item>
-                <View style={{height: 30}}>
+                <View style={[{height: 30},part.paddingLR]}>
                     {
                         (this.state.txtSearch !== '')
                             ?

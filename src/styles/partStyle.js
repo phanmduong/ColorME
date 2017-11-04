@@ -643,6 +643,10 @@ const part = StyleSheet.create({
         paddingLeft: 0,
         paddingRight: 0,
     },
+    paddingLR: {
+        paddingLeft: 10,
+        paddingRight: 10,
+    },
     noPaddingTop: {
         paddingTop: 0,
     },
