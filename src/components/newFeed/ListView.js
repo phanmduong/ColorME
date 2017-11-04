@@ -36,6 +36,7 @@ import * as reportAction from '../../actions/reportAction';
 import * as likePostAction from '../../actions/likePostAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import * as infoAboutPostApi from '../../apis/InfoAboutPostApi'
 
 class ListView extends Component {
     constructor(props) {
@@ -71,7 +72,6 @@ class ListView extends Component {
             let item = false;
             let i = 0;
             while (i < nextProps.comments.length) {
-
                 let likers = listComment[i].likers.filter((liker) => {
                     return liker.name == nextProps.user.name;
                 })
@@ -147,13 +147,14 @@ class ListView extends Component {
         });
     }
 
-    commentPost(product_id, token, value) {
-        this.props.infoAboutPostAction.postCommentOnePost(product_id, token, value);
+   async commentPost(product_id, token, value) {
+     let response = await infoAboutPostApi.postCommentOnePostApi(product_id, token, value)
+       let id = await response.data.id;
         let listCommentInModal = this.state.listCommentInModal;
         let {user} = this.props;
         let arr = {
             content: this.state.comment_content,
-            id: this.props.idComment,
+            id: id,
             parent_id: 0,
             commenter: {
                 username: user.username,
@@ -377,7 +378,8 @@ class ListView extends Component {
 
                                     </Right>
                                 </CardItem>
-                                <ScrollView style={part.wrapperCommentInModal}>
+                                <ScrollView style={part.wrapperCommentInModal}
+                                >
                                     {
                                         this.props.isLoadingComment
                                             ?
@@ -398,7 +400,6 @@ class ListView extends Component {
                                                         let {likedComment} = this.state;
                                                         let iconLikeComment = likedComment[i] ? color.main : color.icon;
                                                         let likedIcon = likedComment[i] ? 'fontawesome|heart' : 'fontawesome|heart-o';
-
                                                         return (
                                                             <CardItem style={[part.cardHeader, {paddingBottom: 0}]}>
                                                                 <View

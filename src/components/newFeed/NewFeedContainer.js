@@ -82,7 +82,6 @@ class NewFeedContainer extends Component {
     }
 
     viewList() {
-        let listPost = this.state.listPost
         setTimeout(() => {
             this.setState({isLoadingList: false})
         }, 100);
@@ -127,8 +126,8 @@ class NewFeedContainer extends Component {
             }
             let listPost = this.state.listPost;
             listPost.splice(key, 1);
-            this.setState({listPost: listPost});
-            this.props.parentFlatList.refreshFlatList(key)
+            this.setState({listPost: listPost});this.props.parentFlatList.refreshFlatList(key)
+
         } catch (error) {
         }
     }
@@ -475,7 +474,7 @@ class NewFeedContainer extends Component {
                                                 }}
                                             />
                                         }
-                                        renderItem={({item, index}) => {
+                                        renderItem={({item}) => {
                                             let {arrayLike, likeCount} = this.state;
                                             let colorIcon = arrayLike[item.key] ? color.main : color.icon;
                                             let likedIcon = arrayLike[item.key] ? 'fontawesome|heart' : 'fontawesome|heart-o';

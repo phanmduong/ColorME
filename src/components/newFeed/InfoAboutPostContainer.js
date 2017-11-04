@@ -54,6 +54,7 @@ class InfoAboutPostContainer extends Component {
             comment_content: '',
             listComment: [],
             likedComment: [],
+            numberOfLikesComment: [],
         }
     }
 
@@ -84,6 +85,7 @@ class InfoAboutPostContainer extends Component {
     componentWillReceiveProps(nextProps) {
         let liked = this.state.liked;
         let likedComment = this.state.likedComment;
+        let numberOfLikesComment = [];
         if (nextProps.isLoading !== this.props.isLoading && !nextProps.isLoading && this.props.post !== nextProps.props || (nextProps.likers !== this.props.likers)) {
             let comments = nextProps.comments;
             let item = false;
@@ -110,6 +112,7 @@ class InfoAboutPostContainer extends Component {
                     item = true;
                 }
                 likedComment.push(item);
+                numberOfLikesComment.push(comments[i].likes)
                 i++;
             }
         }
@@ -117,7 +120,8 @@ class InfoAboutPostContainer extends Component {
             liked: liked,
             likeCount: nextProps.post.likes_count,
             listComment: nextProps.comments,
-            likedComment: likedComment
+            likedComment: likedComment,
+            numberOfLikesComment: numberOfLikesComment
         })
     }
     likePost(product_id, token) {
@@ -166,9 +170,12 @@ class InfoAboutPostContainer extends Component {
 
     likeComment(product_id, user_id, index) {
         let likedComment = this.state.likedComment;
+        let numberOfLikesComment = this.state.numberOfLikesComment;
         this.props.likePostAction.likeComment(product_id, user_id);
+        if(likedComment[index]){ numberOfLikesComment[index] --;}
+        else{numberOfLikesComment[index] ++;}
         likedComment[index] = !likedComment[index];
-        this.setState({likedComment: likedComment})
+        this.setState({likedComment: likedComment, numberOfLikesComment : numberOfLikesComment})
     }
 
     deleteComment(product_id, token, index) {
@@ -452,7 +459,7 @@ class InfoAboutPostContainer extends Component {
                                 <View>
                                     {
                                         this.state.listComment.map((item, i) => {
-                                            let {likedComment} = this.state;
+                                            let {likedComment, numberOfLikesComment} = this.state;
                                             let iconLikeComment = likedComment[i] ? color.main : color.icon;
                                             let likedIcon = likedComment[i] ? 'fontawesome|heart' : 'fontawesome|heart-o';
                                             return (
@@ -482,7 +489,7 @@ class InfoAboutPostContainer extends Component {
                                                             <Text
                                                                 style={[part.describeLightGray, part.paddingTLB]}
                                                             >
-                                                                {item.created_at} &middot; {item.likes} lượt thích
+                                                                {item.created_at} &middot; {numberOfLikesComment[i]} lượt thích
                                                             </Text>
 
                                                             {item.commenter.username === this.props.user.username ?
