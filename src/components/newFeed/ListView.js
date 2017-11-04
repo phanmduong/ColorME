@@ -162,9 +162,7 @@ class ListView extends Component {
             created_at: 'Vừa xong'
         };
         listCommentInModal.push(arr);
-        this.setState({listCommentInModal: listCommentInModal, comment_content: ''});
-
-
+        this.setState({listCommentInModal: listCommentInModal, comment_content: ''})
     }
 
     deleteComment(product_id, token, index) {

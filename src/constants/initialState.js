@@ -30,7 +30,7 @@ export default {
         isLoading: false,
         error: false,
         result: false,
-        statusPostComment: '',
+        statusPostComment: 0,
         idComment: 0,
         liked : {},
     },
