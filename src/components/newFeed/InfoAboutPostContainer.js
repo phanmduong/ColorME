@@ -431,7 +431,7 @@ class InfoAboutPostContainer extends Component {
                                                 style={[part.describeGray, part.paddingLeft]}>{this.props.comments.length}</Text>
                                         </Button>
                                         <Button transparent style={part.padding}>
-                                            <Icon name="fontawesome|bookmark-o" size={size.iconBig}
+                                            <Icon name="fontawesome|circle-thin" size={size.iconBig}
                                                   color={color.icon}/>
                                             <Text
                                                 style={[part.describeGray, part.paddingLeft]}>{post.views_count}</Text>
@@ -482,7 +482,7 @@ class InfoAboutPostContainer extends Component {
                                                             <Text
                                                                 style={[part.describeLightGray, part.paddingTLB]}
                                                             >
-                                                                {item.created_at}
+                                                                {item.created_at} &middot; {item.likes} lượt thích
                                                             </Text>
 
                                                             {item.commenter.username === this.props.user.username ?

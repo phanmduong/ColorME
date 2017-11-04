@@ -34,7 +34,7 @@ class SlideViewComponent extends Component {
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
-                    barStyle="dark-content"
+                    barStyle="light-content"
                 />
                 <View style={part.wrapperImageInDrawer}>
                     <FastImage
@@ -96,7 +96,6 @@ class SlideViewComponent extends Component {
                               color={color.darkGray}/>
                     </View>
                     <Text style={part.describeDarkGray}>Nhóm tham gia</Text>
-
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[part.itemTabInDrawer]}

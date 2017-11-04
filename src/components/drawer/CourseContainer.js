@@ -30,9 +30,8 @@ class CourseContainer extends Component {
                     iosBarStyle='light-content'
                 >
                     <Left style={{flexDirection: 'row'}}>
-                        <BackButtonHeader goBack={goBack}/>
                         <Body>
-                            <Text style={part.titleNormalLightNav}>Đăng ký khóa học</Text>
+                            <Text style={part.titleNormalLight}>Đăng ký khóa học</Text>
                         </Body>
                     </Left>
                 </Header>

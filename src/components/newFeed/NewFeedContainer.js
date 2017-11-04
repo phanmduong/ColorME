@@ -16,7 +16,7 @@ import ListView from './ListView';
 import GridView from './GridView';
 import FastImage from 'react-native-fast-image';
 import _ from 'lodash'
-import {gray} from "../../styles/color";
+import LinearGradient from 'react-native-linear-gradient';
 
 class NewFeedContainer extends Component {
     constructor() {
@@ -27,7 +27,7 @@ class NewFeedContainer extends Component {
             like_in_modal: '',
             grid: true,
             page_id: 2,
-            typeView: '7',
+            typeView: '1',
             arrayLike: [],
             likeCount: [],
             listPost: [],
@@ -386,14 +386,47 @@ class NewFeedContainer extends Component {
                                                         style={[part.imageInFeature]}
                                                         source={{uri: item.image_url}}
                                                     />
-                                                    <View style={part.wrapperTitleFeature}>
+                                                    <LinearGradient
+                                                        colors={['transparent', 'black']}
+                                                        style={part.wrapperTitleFeature}>
                                                         <Text
                                                             numberOfLines={2}
                                                             style={part.textTitleFeature}
                                                         >
                                                             {this.textTopShow()}
                                                         </Text>
-                                                    </View>
+                                                        <CardItem style={[part.cardButtonFeature, part.noPadding]}>
+                                                            <Left >
+                                                                <Button
+                                                                    transparent style={part.paddingRight}
+                                                                >
+                                                                    <Icon name="fontawesome|heart" size={size.describe}
+                                                                          color={color.navTitle}/>
+                                                                    <Text
+                                                                        style={[part.describeLight, part.paddingLeft]}>{item.likes_count}</Text>
+                                                                </Button>
+                                                                <Button transparent style={part.paddingRight}
+                                                                >
+                                                                    <Icon name="fontawesome|comment" size={size.describe}
+                                                                          color={color.navTitle}/>
+                                                                    <Text
+                                                                        style={[part.describeLight, part.paddingLeft]}>{item.comments_count}</Text>
+                                                                </Button>
+                                                                <Button transparent style={part.paddingRight}>
+                                                                    <Icon name="materialCommunity|eye" size={size.describe + 3}
+                                                                          color={color.navTitle}/>
+                                                                    <Text
+                                                                        style={[part.describeLight, part.paddingLeft]}>{item.views_count}</Text>
+                                                                </Button>
+                                                            </Left>
+                                                            <Right>
+                                                                <Button transparent style={{marginRight: 20}}>
+                                                                    <Icon name="fontawesome|star" size={size.iconNormal}
+                                                                          color={color.star}/>
+                                                                </Button>
+                                                            </Right>
+                                                        </CardItem>
+                                                    </LinearGradient>
                                                 </TouchableOpacity>
                                             )
                                         } else {
@@ -405,7 +438,7 @@ class NewFeedContainer extends Component {
                                                                 <GridView
                                                                     navigation={this.props.navigation}
                                                                     post={post}
-                                                                    key={index}
+                                                                    key={post.key}
                                                                 />
                                                             )
                                                         })

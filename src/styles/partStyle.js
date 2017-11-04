@@ -35,7 +35,7 @@ const part = StyleSheet.create({
         backgroundColor: color.backGround,
         borderBottomWidth: 0,
     },
-    itemInformation:{
+    itemInformation: {
         marginLeft: 0,
         borderBottomWidth: 0,
     },
@@ -75,7 +75,7 @@ const part = StyleSheet.create({
         padding: 0,
         backgroundColor: color.none,
     },
-    wrapperFullCenter:{
+    wrapperFullCenter: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
@@ -106,8 +106,9 @@ const part = StyleSheet.create({
         alignItems: 'center',
         width: wid,
         height: hei / 3,
+        marginBottom: 0.5,
     },
-    wrapperIcon:{
+    wrapperIcon: {
         justifyContent: 'center',
         alignItems: 'center',
         height: 25,
@@ -125,13 +126,13 @@ const part = StyleSheet.create({
         height: 10,
         backgroundColor: color.lightGray,
     },
-    wrapperTextLoadMore:{
+    wrapperTextLoadMore: {
         justifyContent: 'center',
         alignItems: 'center',
         width: wid,
         height: 30,
     },
-    wrapperTextCenter:{
+    wrapperTextCenter: {
         alignItems: 'center',
         flex: 1,
         height: 70,
@@ -365,7 +366,11 @@ const part = StyleSheet.create({
     },
     imageInGrid: {
         width: wid / 3,
-        height: wid / 3,
+        height: wid / 3 - 1,
+    },
+    imageInGridMid: {
+        width: wid / 3 - 2,
+        height: wid / 3 - 1,
     },
     imageInFeature: {
         position: 'relative',
@@ -379,7 +384,7 @@ const part = StyleSheet.create({
         fontWeight: 'bold',
         color: color.text,
     },
-    titleProfile:{
+    titleProfile: {
         fontFamily: 'Montserrat',
         fontSize: 16,
         color: color.darkGray,
@@ -488,6 +493,12 @@ const part = StyleSheet.create({
         color: color.gray,
         fontWeight: '400',
     },
+    describeLight: {
+        fontFamily: 'Montserrat',
+        fontSize: size.describe,
+        color: color.navTitle,
+        fontWeight: '400',
+    },
     describeLightGray: {
         fontFamily: 'Montserrat',
         fontSize: size.describe,
@@ -514,10 +525,17 @@ const part = StyleSheet.create({
     },
     wrapperTitleFeature: {
         width: wid,
+        height: 70,
         padding: 10,
         position: 'absolute',
         backgroundColor: color.none,
-        bottom: 20,
+        bottom: 0,
+    },
+    wrapperFeatureIcon: {
+        position: 'absolute',
+        backgroundColor: color.none,
+        top: 0,
+        right: 20,
     },
     titleInImage: {
         fontFamily: 'Montserrat',
@@ -545,10 +563,7 @@ const part = StyleSheet.create({
         fontFamily: 'Montserrat',
         color: color.navTitle,
         fontSize: 23,
-        fontWeight: 'bold',
-        textShadowColor: color.text,
-        textShadowRadius: 5,
-        textShadowOffset: {width: 1, height: 1},
+        fontWeight: '500',
     },
     //BUTTON
 
@@ -563,7 +578,7 @@ const part = StyleSheet.create({
         backgroundColor: color.main,
 
     },
-    buttonLeftRegisterMain:{
+    buttonLeftRegisterMain: {
         marginTop: 5,
         backgroundColor: color.main,
         paddingTop: 5,
@@ -572,7 +587,7 @@ const part = StyleSheet.create({
         paddingLeft: 10,
 
     },
-    buttonLeftRegisterGray:{
+    buttonLeftRegisterGray: {
         marginTop: 5,
         backgroundColor: color.icon,
         paddingTop: 5,
@@ -592,7 +607,7 @@ const part = StyleSheet.create({
         paddingRight: 10,
     },
     paddingIcon: {
-        paddingRight : 5,
+        paddingRight: 5,
     },
     paddingRight: {
         paddingRight: 5,
@@ -709,6 +724,13 @@ const part = StyleSheet.create({
     },
     cardButton: {
         height: size.iconBig + 15,
+        backgroundColor: color.none,
+    },
+    cardButtonFeature: {
+        width: size.wid,
+        height: size.iconBig + 15,
+        backgroundColor: color.none,
+        bottom: 7,
     },
     cardTopInModal: {
         backgroundColor: color.none,
@@ -803,7 +825,7 @@ const part = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    wrapperBackButton:{
+    wrapperBackButton: {
         width: 50,
     },
     noBorder: {

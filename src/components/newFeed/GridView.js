@@ -19,6 +19,7 @@ class GridView extends Component {
     }
     render() {
         let item = this.props.post;
+        console.log(this.props.post);
         return (
             <View style={part.wrapperGridImage}>
                 <TouchableOpacity
@@ -43,7 +44,7 @@ class GridView extends Component {
                         (item.url.indexOf('.mp4') === -1 ) ?
                             <FastImage
                                 resizeMode={'cover'}
-                                style={[part.imageInGrid]}
+                                style={item.key % 3 == 2 ? part.imageInGridMid : part.imageInGrid}
                                 source={{uri: item.thumb_url}}
                             />
                             :

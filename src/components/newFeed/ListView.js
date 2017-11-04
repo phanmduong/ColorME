@@ -283,7 +283,7 @@ class ListView extends Component {
                                 style={[part.describeGray, part.paddingLeft]}>{item.comments_count}</Text>
                         </Button>
                         <Button transparent style={part.paddingRight}>
-                            <Icon name="fontawesome|bookmark-o" size={size.iconBig}
+                            <Icon name="fontawesome|circle-thin" size={size.iconBig}
                                   color={color.icon}/>
                             <Text
                                 style={[part.describeGray, part.paddingLeft]}>{item.views_count}</Text>
