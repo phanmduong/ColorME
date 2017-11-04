@@ -93,7 +93,10 @@ class NewFeedContainer extends Component {
         setTimeout(() => {
             this.setState({isLoadingList: false})
         }, 250);
-        this.setState({grid: true, isLoadingList: true, listPost: this.groupPosts(this.props.products)});
+        this.setState({
+            grid: true,
+            isLoadingList: true, listPost: this.groupPosts(this.props.products)
+        });
     }
 
     alertHiddenPost(item, key) {
@@ -168,6 +171,7 @@ class NewFeedContainer extends Component {
             }
         }
     }
+
 // Function
     getMoreNewFeed() {
         if (this.props.isLoading != undefined && this.props.isLoading != null && !this.props.isLoading) {
@@ -233,65 +237,82 @@ class NewFeedContainer extends Component {
     render() {
         const {navigate} = this.props.navigation;
         console.log(AsyncStorage.getItem('@idPost'));
+        let iconGird = this.state.grid ? "material|view-module" : "material|view-list";
         return (
             <Container style={part.wrapperContainer}>
+                <View style={part.wrapperStatusBarNoPadding}>
+                </View>
                 <Header
-                    style={[part.navTop, part.noPadding]}
+                    style={[part.navTopNewFeed, part.noPaddingTop]}
                     iosBarStyle='light-content'
                 >
                     <Left style={[{flexDirection: 'row'}, part.paddingLeft]}>
                         <TouchableOpacity style={{backgroundColor: 'transparent'}}>
-                            <Icon name="material|view-list"
-                                  color={this.state.grid ? color.navTitle : color.icon}
+                            <Icon name={iconGird}
+                                  color={color.darkGray}
                                   size={size.iconGiant}
                                   style={part.paddingIcon}
-                                  onPress={() => this.viewList()}
+                                  onPress={
+                                      () => {
+                                          !this.state.grid
+                                              ?
+                                              this.viewGrid()
+                                              :
+                                              this.viewList()
+
+                                      }
+                                  }
                             />
                         </TouchableOpacity>
-                        <TouchableOpacity style={{backgroundColor: 'transparent'}}>
-                            <Icon name="material|view-module"
-                                  color={this.state.grid ? color.icon : color.navTitle}
-                                  size={size.iconGiant}
-                                  style={part.paddingIcon}
-                                  onPress={() => this.viewGrid()}
-                            />
-                        </TouchableOpacity>
+                        {/*<TouchableOpacity style={{backgroundColor: 'transparent'}}>*/}
+                            {/*<Icon name="material|view-module"*/}
+                                  {/*color={this.state.grid ? color.icon : color.navTitle}*/}
+                                  {/*size={size.iconGiant}*/}
+                                  {/*style={part.paddingIcon}*/}
+                                  {/*onPress={() => this.viewGrid()}*/}
+                            {/*/>*/}
+                        {/*</TouchableOpacity>*/}
                     </Left>
-                    <Body >
-                    <Picker
-                        itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
-                        itemTextStyle={part.titleSmallDarkGrayBold}
-                        renderHeader={backAction =>
-                            <Header
-                                iosBarStyle='light-content'
-                                style={[{backgroundColor: color.main}, part.noBorder]}>
-                                <Left>
-                                    <TouchableOpacity onPress={backAction}>
-                                        <Icon name="entypo|chevron-thin-left" color={color.navTitle}
-                                              size={size.iconBig}/>
-                                    </TouchableOpacity>
-                                </Left>
-                                <Body style={{flex: 3}}>
-                                <Text style={part.titleNormalLight}>Chọn kiểu xem</Text>
-                                </Body>
-                                <Right/>
-                            </Header>}
-                        mode="dropdown"
-                        textStyle={part.titleNormalLight}
-                        selectedValue={this.state.typeView}
-                        onValueChange={this.onValueChange.bind(this)}
-                    >
-                        <Item label="Mới nhất" value=""/>
-                        <Item label="Hôm nay" value="1"/>
-                        <Item label="Tuần qua" value="7"/>
-                        <Item label="Tháng qua" value="30"/>
-                    </Picker>
+                    <Body style={{flexDirection: 'row'}}>
+                        <Picker
+                            itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
+                            itemTextStyle={part.titleSmallDarkGrayBold}
+                            renderHeader={backAction =>
+                                <Header
+                                    iosBarStyle='light-content'
+                                    style={[{backgroundColor: color.main}, part.noBorder]}>
+                                    <Left>
+                                        <TouchableOpacity onPress={backAction}>
+                                            <Icon name="entypo|chevron-thin-left" color={color.navTitle}
+                                                  size={size.iconBig}/>
+                                        </TouchableOpacity>
+                                    </Left>
+                                    <Body style={{flex: 3}}>
+                                    <Text style={part.titleNormalLight}>Chọn kiểu xem</Text>
+                                    </Body>
+                                    <Right/>
+                                </Header>}
+                            mode="dropdown"
+                            textStyle={part.titleNormalDarkGray}
+                            selectedValue={this.state.typeView}
+                            onValueChange={this.onValueChange.bind(this)}
+                        >
+                            <Item label="Mới nhất" value=""/>
+                            <Item label="Hôm nay" value="1"/>
+                            <Item label="Tuần qua" value="7"/>
+                            <Item label="Tháng qua" value="30"/>
+                        </Picker>
+                        <Icon name="entypo|triangle-down"
+                              color={color.darkGray}
+                              size={size.iconBig * 2 / 3}
+                              style={{marginTop: 2, marginLeft: -12}}
+                        />
                     </Body>
                     <Right style={part.paddingRight}>
                         <TouchableOpacity onPress={() => navigate('DrawerOpen')}>
                             <Icon
                                 name="materialCommunity|menu"
-                                color={color.navTitle}
+                                color={color.darkGray}
                                 size={size.iconGiant}
                                 style={{paddingLeft: 15, paddingRight: 5}}
                             />

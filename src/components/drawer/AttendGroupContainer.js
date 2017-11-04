@@ -27,7 +27,7 @@ class AttendGroupContainer extends Component {
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <Header
-                    style={part.navTop}
+                    style={[part.navTop]}
                     iosBarStyle='light-content'
 
                 >
@@ -47,7 +47,6 @@ class AttendGroupContainer extends Component {
                             <Text style={part.titleNormalLightNav}>Nhóm tham gia</Text>
                         </Body>
                     </Left>
-
                 </Header>
                 {
                     isLoading

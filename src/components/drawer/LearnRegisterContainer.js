@@ -25,6 +25,9 @@ class LearnRegisterContainer extends Component {
             description: '',
             address: '',
             avatar_url: '',
+            isEnrolled: false,
+            classes:[],
+
         }
     }
 
@@ -33,6 +36,7 @@ class LearnRegisterContainer extends Component {
             onStartShouldSetPanResponder: (event, gestureState) => true,
             onPanResponderGrant: this._onPanResponderGrant.bind(this),
         })
+        this.setState({classes: this.props.navigation.state.params.classes});
     }
 
     _onPanResponderGrant(event, gestureState) {
@@ -60,7 +64,7 @@ class LearnRegisterContainer extends Component {
         })
     }
 
-    learnRegister(id, token){
+    learnRegister(id, token) {
         this.props.courseAction.learnRegister(id, token);
     }
 
@@ -95,10 +99,10 @@ class LearnRegisterContainer extends Component {
                             style={part.buttonLeftRegisterGray}>
                             <Text style={part.titleNormalLight}>Đã hết chỗ</Text>
                         </TouchableOpacity>
-
                 )
         }
     }
+
     render() {
         const {params} = this.props.navigation.state;
         const {goBack} = this.props.navigation;
@@ -111,14 +115,14 @@ class LearnRegisterContainer extends Component {
                     <Left style={{flexDirection: 'row'}}>
                         <BackButtonHeader goBack={goBack}/>
                         <Body>
-                            <Text style={part.titleNormalLightNav}>Đăng ký lớp học</Text>
+                        <Text style={part.titleNormalLightNav}>Đăng ký lớp học</Text>
                         </Body>
                     </Left>
 
                 </Header>
                 <FlatList
                     showsVerticalScrollIndicator={false}
-                    data={params.classes}
+                    data={this.state.classes}
                     renderItem={({item}) =>
                         <CardItem
                             avatar
@@ -168,14 +172,20 @@ class LearnRegisterContainer extends Component {
                                 </Left>
                             </CardItem>
                             <CardItem
-                                style={[part.backgroundNone, part.noMarginLeft,part.noBorder, part.noPadding]}>
+                                style={[part.backgroundNone, part.noMarginLeft, part.noBorder, part.noPadding]}>
                                 <Left>
                                     <Body>
-                                        <Text style={[part.titleGrayThin, part.paddingLine]}>Bạn đang tiến hành đăng ký lớp <Text style={part.titleSmallDarkGray}>{this.state.course} {this.state.name}</Text></Text>
-                                        <Text style={[part.titleGrayThin, part.paddingLine]}>Thời gian học <Text style={part.titleSmallDarkGray}>{this.state.study_time}</Text></Text>
-                                        <Text style={[part.titleGrayThin, part.paddingLine]}><Text style={part.titleSmallDarkGray}>{this.state.description}</Text></Text>
-                                        <Text style={[part.titleGrayThin, part.paddingLine]}>Tại: <Text style={part.titleSmallDarkGray}>{this.state.address}</Text></Text>
-                                        <Text style={[part.titleGrayThin, part.paddingLine]}>Hãy xác nhận để colorME giúp bạn hoàn thành thủ tục nhé</Text>
+                                    <Text style={[part.titleGrayThin, part.paddingLine]}>Bạn đang tiến hành đăng ký lớp
+                                        <Text
+                                            style={part.titleSmallDarkGray}>{this.state.course} {this.state.name}</Text></Text>
+                                    <Text style={[part.titleGrayThin, part.paddingLine]}>Thời gian học <Text
+                                        style={part.titleSmallDarkGray}>{this.state.study_time}</Text></Text>
+                                    <Text style={[part.titleGrayThin, part.paddingLine]}><Text
+                                        style={part.titleSmallDarkGray}>{this.state.description}</Text></Text>
+                                    <Text style={[part.titleGrayThin, part.paddingLine]}>Tại: <Text
+                                        style={part.titleSmallDarkGray}>{this.state.address}</Text></Text>
+                                    <Text style={[part.titleGrayThin, part.paddingLine]}>Hãy xác nhận để colorME giúp
+                                        bạn hoàn thành thủ tục nhé</Text>
                                     </Body>
                                 </Left>
                             </CardItem>
@@ -192,6 +202,7 @@ class LearnRegisterContainer extends Component {
         );
     }
 }
+
 function mapStateToProps(state) {
     return {
         token: state.login.token,

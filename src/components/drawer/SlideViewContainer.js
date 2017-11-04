@@ -34,7 +34,7 @@ class SlideViewComponent extends Component {
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
-                    barStyle="light-content"
+                    barStyle="dark-content"
                 />
                 <View style={part.wrapperImageInDrawer}>
                     <FastImage

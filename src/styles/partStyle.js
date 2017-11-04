@@ -13,6 +13,14 @@ const part = StyleSheet.create({
         alignItems: 'center',
 
     },
+    navTopNewFeed: {
+        height: 40,
+        borderBottomColor: color.icon,
+        borderBottomWidth: 0.5,
+        backgroundColor: color.backGround,
+        alignItems: 'center',
+
+    },
     itemTab: {
         paddingLeft: 10,
         paddingRight: 10,
@@ -67,6 +75,12 @@ const part = StyleSheet.create({
         padding: 0,
         backgroundColor: color.none,
     },
+    wrapperFullCenter:{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: color.text,
+    },
     wrapperImageInGetFull: {
         position: 'relative',
         width: wid,
@@ -91,7 +105,7 @@ const part = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: wid,
-        height: hei / 3 + 3,
+        height: hei / 3,
     },
     wrapperIcon:{
         justifyContent: 'center',
@@ -157,6 +171,7 @@ const part = StyleSheet.create({
         height: 20,
         backgroundColor: color.main,
     },
+
     wrapperRowCenter: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -349,12 +364,12 @@ const part = StyleSheet.create({
         position: 'relative',
     },
     imageInGrid: {
-        width: wid / 3 - 2,
-        height: wid / 3 - 2,
+        width: wid / 3,
+        height: wid / 3,
     },
     imageInFeature: {
         position: 'relative',
-        width: wid - 2,
+        width: wid,
         height: hei / 3,
     },
 

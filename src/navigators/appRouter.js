@@ -22,7 +22,7 @@ import CourseContainer from '../components/drawer/CourseContainer'
 import LearnRegisterContainer from '../components/drawer/LearnRegisterContainer'
 import CourseInformation from '../components/drawer/CourseInformationContainer'
 import AttendGroupContainer from '../components/drawer/AttendGroupContainer'
-import InfoAboutPostContainer from '../components/InfoAboutPostContainer';
+import InfoAboutPostContainer from '../components/newFeed/InfoAboutPostContainer';
 import AchievementsContainer from '../components/AchievementsContainer';
 
 // USER SCREEN
@@ -74,7 +74,7 @@ const HomeStackStyle = {
             <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
                 <Icon
                     name="materialCommunity|menu"
-                    color={color.navTitle}
+                    color={color.darkGray}
                     size={size.iconGiant}
                     style={{paddingLeft: 15, paddingRight: 15}}
                 />

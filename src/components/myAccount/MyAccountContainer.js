@@ -25,7 +25,7 @@ class MyAccountContainer extends Component {
     constructor() {
         super();
         this.state = {
-            tab: 2,
+            tab: 1,
             isLoading: false,
         }
     }

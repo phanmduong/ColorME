@@ -26,22 +26,22 @@ import {
     Spinner,
     Thumbnail
 } from 'native-base';
-import Icon from '../commons/Icon';
-import BackButton from '../commons/BackButton';
+import Icon from '../../commons/Icon';
+import BackButton from '../../commons/BackButton';
 import Video from 'react-native-video';
-import part from '../styles/partStyle';
-import parallaxStyle from '../styles/parallaxStyle';
-import * as color from '../styles/color';
-import * as size from '../styles/size';
+import part from '../../styles/partStyle';
+import parallaxStyle from '../../styles/parallaxStyle';
+import * as color from '../../styles/color';
+import * as size from '../../styles/size';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux';
-import * as infoAboutPostAction from '../actions/infoAboutPostAction'
-import * as likePostAction from '../actions/likePostAction'
-import * as reportAction from '../actions/reportAction';
-import WebViewAutoHeight from '../commons/WebViewAutoHeight';
+import * as infoAboutPostAction from '../../actions/infoAboutPostAction'
+import * as likePostAction from '../../actions/likePostAction'
+import * as reportAction from '../../actions/reportAction';
+import WebViewAutoHeight from '../../commons/WebViewAutoHeight';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import LinearGradient from 'react-native-linear-gradient';
-import * as infoAboutPostApi from '../apis/InfoAboutPostApi';
+import * as infoAboutPostApi from '../../apis/InfoAboutPostApi';
 
 class InfoAboutPostContainer extends Component {
     constructor() {
