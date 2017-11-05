@@ -42,7 +42,8 @@ class MyAccountProgress extends Component {
                                         data={progress}
                                         renderItem={({item}) =>
                                             <View style={[part.noBorder]}>
-                                                <CardItem style={[part.noBorder, part.cardProgress, part.haveBorderBottom]}>
+                                                <CardItem
+                                                    style={[part.noBorder, part.cardProgress, part.haveBorderBottom]}>
                                                     <Left>
                                                         <FastImage style={part.avatarUserNormal}
                                                                    source={{uri: item.icon_url}}/>

@@ -91,102 +91,57 @@ class UserContainer extends Component {
         return (
             <Container style={part.wrapperContainer}>
                 <ParallaxScrollView
-                    backgroundColor={color.main}
+                    backgroundColor={color.backGround}
                     showsVerticalScrollIndicator={false}
-                    headerBackgroundColor={color.main}
+                    headerBackgroundColor={color.backGround}
                     stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
-                    parallaxHeaderHeight={size.PARALLAX_HEADER_HEIGHT}
+                    parallaxHeaderHeight={size.PARALLAX_HEADER_HEIGHT_USER}
                     backgroundSpeed={10}
                     renderBackground={() =>
                         <View style={part.wrapperImageInGetFull}>
                             <View key="background">
-                                <Image
-                                    style={{width: size.wid, height: size.PARALLAX_HEADER_HEIGHT}}
-                                    source={
-                                        isLoadingUserProfile
-                                            ?
-                                            {}
-                                            :
-                                            {uri: user.avatar_url}
-                                    }/>
-                                <View style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    width: size.wid,
-                                    backgroundColor: 'rgba(0,0,0,.8)',
-                                    height: size.PARALLAX_HEADER_HEIGHT
-                                }}/>
-                            </View>
-                            <View style={part.iconInDrawer}>
-                                <Right style={{left: 10}}>
-                                    <TouchableOpacity style={part.padding}
-                                    >
-                                        <Icon name="materialCommunity|seal"
-                                              size={size.iconBig}
-                                              color={color.navTitle}/>
-                                    </TouchableOpacity>
-                                </Right>
                             </View>
                         </View>
                     }
 
                     renderForeground={() => (
-                        <View key="parallax-header" style={parallaxStyle.parallaxHeader}>
-                            <Item style={[part.noBorder, part.marginStatusBar]}>
-                                <Body>
-                                <Thumbnail style={part.marginBottom}
-                                           circle large
-                                           source={
-                                               isLoadingUserProfile
-                                                   ?
-                                                   {}
-                                                   :
-                                                   {uri: user.avatar_url}
-                                           }
+                        <View key="parallax-header" style={[parallaxStyle.parallaxHeader, {flexDirection: 'row'}]}>
+                            <View style={part.wrapperAvatarUser}>
+                                <Thumbnail
+                                    circle large
+                                    source={{uri: this.props.user.avatar_url}}
                                 >
                                 </Thumbnail>
-                                <Text style={[part.titleNormalLight, part.paddingLine]}>{
-                                    isLoadingUserProfile
-                                        ?
-                                        'Đang tải...'
-                                        :
-                                        user.name
-                                }
+
+                            </View>
+                            <View style={part.wrapperInformationUser}>
+                                <Text style={[part.titleNormalDarkGray, part.paddingLine]}> {this.props.user.name}
                                 </Text>
-                                <Text style={[part.describeGray, part.paddingLine]}>{
-                                    isLoadingUserProfile
-                                        ?
-                                        'Đang tải...'
-                                        :
-                                        user.university
-                                }
+                                <Text style={[part.describeGray, part.paddingLine]}> {this.props.user.university}
                                 </Text>
-                                </Body>
-                            </Item>
+                            </View>
+
                         </View>
                     )}
-
                     renderStickyHeader={() => (
                         <View key="sticky-header" style={parallaxStyle.stickySection}>
                             <View style={part.iconInDrawerNav}>
-                                <Left style={{flexDirection: 'row', marginTop: 20,}}>
+                                <Left style={{flexDirection: 'row', marginTop: 20}}>
                                     <Body>
-                                        <Text style={part.titleNormalLight}>
-                                            {this.props.user.name}
-                                        </Text>
+                                    <Text style={part.titleSmallDarkGrayBold}>
+                                        {this.props.user.name}
+                                    </Text>
                                     </Body>
                                 </Left>
                             </View>
                         </View>
                     )}
-
                     renderFixedHeader={() => (
                         <View key="fixed-header" style={part.iconInDrawerNav}>
                             <Left style={{flexDirection: 'row', marginTop: 20,}}>
                                 <BackButton goBack={goBack}/>
                             </Left>
                         </View>
-
                     )}
                 >
                     <View style={part.wrapperTabBarUser}>

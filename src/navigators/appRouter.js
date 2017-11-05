@@ -177,23 +177,12 @@ const Home = TabNavigator(
                 )
             }
         },
-        // Achievement: {
-        //     screen: AchievementsContainer,
-        //     navigationOptions: {
-        //         tabBarIcon: ({tintColor}) => (
-        //             <Icon
-        //                 name="materialCommunity|seal" size={size.iconGiant}
-        //                 color={tintColor}
-        //             />
-        //         ),
-        //     }
-        // },
         NewFeed: {
             screen: NewFeedStackNavigator,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
                     <Icon
-                        name="ion|ios-home" size={25}
+                        name="fontawesome|bandcamp" size={25}
                         color={tintColor}
                     />
                 ),

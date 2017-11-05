@@ -3,7 +3,7 @@ import {
     Image, TouchableOpacity, View, StatusBar
 } from 'react-native';
 import {
-    Body, Container, Spinner,
+    Body, Container, Spinner, Content,
     Item, Left, Right, Text, Thumbnail,
 } from 'native-base';
 import Icon from '../../commons/Icon';
@@ -96,28 +96,16 @@ class MyAccountContainer extends Component {
                     barStyle="dark-content"
                 />
                 <ParallaxScrollView
-                    backgroundColor={color.main}
+                    backgroundColor={color.backGround}
                     showsVerticalScrollIndicator={false}
-                    headerBackgroundColor={color.main}
+                    headerBackgroundColor={color.backGround}
                     stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
-                    parallaxHeaderHeight={size.PARALLAX_HEADER_HEIGHT}
+                    parallaxHeaderHeight={size.PARALLAX_HEADER_HEIGHT_USER}
                     backgroundSpeed={10}
                     renderBackground={() =>
                         <View style={part.wrapperImageInGetFull}>
                             <View key="background">
-                                <Image
-                                    source={{
-                                        uri: this.props.user.avatar_url,
-                                        width: size.wid,
-                                        height: size.PARALLAX_HEADER_HEIGHT
-                                    }}/>
-                                <View style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    width: size.wid,
-                                    backgroundColor: 'rgba(0,0,0,.8)',
-                                    height: size.PARALLAX_HEADER_HEIGHT
-                                }}/>
+
                             </View>
                             <View style={part.iconInDrawer}>
                                 <Right style={{left: 10}}>
@@ -128,54 +116,56 @@ class MyAccountContainer extends Component {
                     }
 
                     renderForeground={() => (
-                        <View key="parallax-header" style={parallaxStyle.parallaxHeader}>
-                            <Item style={[part.noBorder, part.marginStatusBar]}>
-                                <Body>
-                                <Thumbnail style={part.marginBottom}
-                                           circle large
-                                           source={{uri: this.props.user.avatar_url}}
+                        <View key="parallax-header" style={[parallaxStyle.parallaxHeader, {flexDirection: 'row'}]}>
+                            <View style={part.wrapperAvatarUser}>
+                                <Thumbnail
+                                    circle large
+                                    source={{uri: this.props.user.avatar_url}}
                                 >
                                 </Thumbnail>
-                                <Text style={[part.titleNormalLight, part.paddingLine]}>{this.props.user.name}
+
+                            </View>
+                            <View style={part.wrapperInformationUser}>
+                                <Text style={[part.titleNormalDarkGray, part.paddingLine]}> {this.props.user.name}
                                 </Text>
                                 <Text style={[part.describeGray, part.paddingLine]}> {this.props.user.university}
                                 </Text>
-                                </Body>
-                            </Item>
-                            <Item style={part.noBorder}>
-                                <View style={[part.wrapperRowCenter, part.padding]}>
-                                    <Icon name="materialCommunity|book"
-                                          size={size.iconBig}
-                                          color={color.navTitle}
-                                          style={part.paddingIcon}
-                                    />
-                                    <Text style={part.describeGray}>{sideNav.project_count}</Text>
-                                </View>
-                                <View style={[part.wrapperRowCenter, part.padding]}>
-                                    <Icon name="fontawesome|heart"
-                                          size={size.iconBig}
-                                          color={color.navTitle}
-                                          style={part.paddingIcon}
-                                    />
-                                    <Text style={part.describeGray}>{sideNav.project_likes}</Text>
-                                </View>
-                                <View style={[part.wrapperRowCenter, part.padding]}>
-                                    <Icon name="entypo|eye"
-                                          size={size.iconBig}
-                                          color={color.navTitle}
-                                          style={part.paddingIcon}
-                                    />
-                                    <Text style={part.describeGray}>{sideNav.project_views}</Text>
-                                </View>
-                            </Item>
+                                <Item style={part.noBorder}>
+                                    <View style={[part.wrapperRowCenter]}>
+                                        <Icon name="materialCommunity|book"
+                                              size={size.iconNormal}
+                                              color={color.gray}
+                                              style={part.paddingIcon}
+                                        />
+                                        <Text style={[part.describeGray, part.paddingRightFar]}>{sideNav.project_count}</Text>
+                                    </View>
+                                    <View style={[part.wrapperRowCenter]}>
+                                        <Icon name="fontawesome|heart"
+                                              size={size.iconNormal}
+                                              color={color.gray}
+                                              style={part.paddingIcon}
+                                        />
+                                        <Text style={[part.describeGray, part.paddingRightFar]}>{sideNav.project_likes}</Text>
+                                    </View>
+                                    <View style={[part.wrapperRowCenter]}>
+                                        <Icon name="entypo|eye"
+                                              size={size.iconNormal}
+                                              color={color.gray}
+                                              style={part.paddingIcon}
+                                        />
+                                        <Text style={[part.describeGray, part.paddingRightFar]}>{sideNav.project_views}</Text>
+                                    </View>
+                                </Item>
+                            </View>
+
                         </View>
                     )}
                     renderStickyHeader={() => (
                         <View key="sticky-header" style={parallaxStyle.stickySection}>
                             <View style={part.iconInDrawerNav}>
-                                <Left style={{flexDirection: 'row', marginTop: 20,}}>
+                                <Left style={{flexDirection: 'row', marginTop: 20}}>
                                     <Body>
-                                    <Text style={part.titleNormalLight}>
+                                    <Text style={part.titleSmallDarkGrayBold}>
                                         {this.props.user.name}
                                     </Text>
                                     </Body>
@@ -191,47 +181,47 @@ class MyAccountContainer extends Component {
                         </View>
                     )}
                 >
-                    <View style={part.wrapperTabBarUser}>
-                        <TouchableOpacity
-                            style={part.wrapperTextInTabBarUser}
-                            onPress={() => this.ViewProgress()}
-                        >
-                            <Text
-                                style={this.state.tab == 0 ? part.describeDarkGray : part.describeGray}
+                        <View style={part.wrapperTabBarUser}>
+                            <TouchableOpacity
+                                style={part.wrapperTextInTabBarUser}
+                                onPress={() => this.ViewProgress()}
                             >
-                                Tiến độ
-                            </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={part.wrapperTextInTabBarUser}
-                            onPress={() => this.ViewProject()}
-                        >
-                            <Text
-                                style={this.state.tab == 1 ? part.describeDarkGray : part.describeGray}
+                                <Text
+                                    style={this.state.tab == 0 ? part.describeDarkGray : part.describeGray}
+                                >
+                                    Tiến độ
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={part.wrapperTextInTabBarUser}
+                                onPress={() => this.ViewProject()}
                             >
-                                Dự án
-                            </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={part.wrapperTextInTabBarUser}
-                            onPress={() => this.ViewInformation()}
-                        >
-                            <Text
-                                style={this.state.tab == 2 ? part.describeDarkGray : part.describeGray}
+                                <Text
+                                    style={this.state.tab == 1 ? part.describeDarkGray : part.describeGray}
+                                >
+                                    Dự án
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={part.wrapperTextInTabBarUser}
+                                onPress={() => this.ViewInformation()}
                             >
-                                Thông tin
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
-                    {
-                        this.state.isLoading
-                            ?
-                            <View style={[part.wrapperIsLoading]}>
-                                <Spinner color={color.gray}/>
-                            </View>
-                            :
-                            this.tab()
-                    }
+                                <Text
+                                    style={this.state.tab == 2 ? part.describeDarkGray : part.describeGray}
+                                >
+                                    Thông tin
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                        {
+                            this.state.isLoading
+                                ?
+                                <View style={[part.wrapperIsLoading]}>
+                                    <Spinner color={color.gray}/>
+                                </View>
+                                :
+                                this.tab()
+                        }
                 </ParallaxScrollView>
             </Container>
         );

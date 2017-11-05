@@ -124,6 +124,7 @@ class InfoAboutPostContainer extends Component {
             numberOfLikesComment: numberOfLikesComment
         })
     }
+
     likePost(product_id, token) {
         let liked = this.state.liked;
         let likeCount = this.state.likeCount;
@@ -146,36 +147,40 @@ class InfoAboutPostContainer extends Component {
         this.setState({likeCount: likeCount, liked: liked});
     }
 
-   async commentPost(product_id, token, value) {
-       const response = await infoAboutPostApi.postCommentOnePostApi(product_id, token, value);
-            let listComment = this.state.listComment;
-            let id = await response.data.id;
-            let {user} = this.props;
-            // let date = new Date();
-            let arr = {
-                content: value.comment_content,
-                id: id,
-                parent_id: 0,
-                commenter: {
-                    username: user.username,
-                    avatar_url: user.avatar_url,
-                    name: user.name,
-                },
-                created_at: 'Vừa xong'
-            };
-            listComment.push(arr);
-            this.setState({listComment: listComment, comment_content: ''});
-            this.ref.scrollView.scrollToEnd();
+    async commentPost(product_id, token, value) {
+        const response = await infoAboutPostApi.postCommentOnePostApi(product_id, token, value);
+        let listComment = this.state.listComment;
+        let id = await response.data.id;
+        let {user} = this.props;
+        // let date = new Date();
+        let arr = {
+            content: value.comment_content,
+            id: id,
+            parent_id: 0,
+            commenter: {
+                username: user.username,
+                avatar_url: user.avatar_url,
+                name: user.name,
+            },
+            created_at: 'Vừa xong'
+        };
+        listComment.push(arr);
+        this.setState({listComment: listComment, comment_content: ''});
+        this.ref.scrollView.scrollToEnd();
     }
 
     likeComment(product_id, user_id, index) {
         let likedComment = this.state.likedComment;
         let numberOfLikesComment = this.state.numberOfLikesComment;
         this.props.likePostAction.likeComment(product_id, user_id);
-        if(likedComment[index]){ numberOfLikesComment[index] --;}
-        else{numberOfLikesComment[index] ++;}
+        if (likedComment[index]) {
+            numberOfLikesComment[index]--;
+        }
+        else {
+            numberOfLikesComment[index]++;
+        }
         likedComment[index] = !likedComment[index];
-        this.setState({likedComment: likedComment, numberOfLikesComment : numberOfLikesComment})
+        this.setState({likedComment: likedComment, numberOfLikesComment: numberOfLikesComment})
     }
 
     deleteComment(product_id, token, index) {
@@ -219,120 +224,66 @@ class InfoAboutPostContainer extends Component {
         return (
             <Container ref="page" style={part.wrapperContainer}>
                 <ParallaxScrollView
-                    backgroundColor={color.main}
+                    backgroundColor={color.backGround}
                     showsVerticalScrollIndicator={false}
-                    headerBackgroundColor={color.main}
+                    headerBackgroundColor={color.backGround}
                     stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
-                    parallaxHeaderHeight={size.PARALLAX_HEADER_HEIGHT}
+                    parallaxHeaderHeight={220}
                     backgroundSpeed={10}
-                    renderBackground={() =>
+                    renderBackground={() => (
                         <View style={part.wrapperImageInGetFull}>
                             <View key="background">
-                                {
-                                    isLoading
-                                        ?
-                                        <View
-                                            style={{
-                                                margin: 50,
-                                                flex: 1,
-                                                justifyContent: 'center',
-                                                alignItems: 'center',
-                                            }}
-                                        >
-                                            <Spinner
-                                                color={color.gray}/>
-                                        </View>
-                                        :
-                                        <View>
-                                            {
-                                                1
-                                                    ?
-                                                    <Image
-                                                        resizeMode={'cover'}
-                                                        source={{
-                                                            uri: post.url,
-                                                            width: size.wid,
-                                                            height: size.PARALLAX_HEADER_HEIGHT
-                                                        }}/>
-
-                                                    :
-                                                    <Video
-                                                        resizeMode={'cover'}
-                                                        source={{uri: post.url}}
-                                                        style={[part.imageInGetFull]}
-                                                    />
-                                            }
-                                        </View>
-                                }
-                                <LinearGradient
-                                    colors={['black', 'transparent']}
-                                    style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    width: size.wid,
-                                    height: size.PARALLAX_HEADER_HEIGHT / 2.5,
-                                }}>
-                                </LinearGradient>
-                            </View>
-                            <View style={part.iconInDrawer}>
-                                <Right style={{left: 10}}>
-
-                                </Right>
-                            </View>
-                        </View>
-                    }
-                    renderStickyHeader={() => (
-                        <View key="sticky-header" style={parallaxStyle.stickySection}>
-                            <View style={part.iconInDrawerNav}>
-
                             </View>
                         </View>
                     )}
-                    renderFixedHeader={() => (
-                        <View key="fixed-header" style={part.iconInDrawerNav}>
-                            <Left style={{marginTop: 20, flexDirection: 'row'}}>
-                                <BackButton goBack={goBack}/>
-                                <Body>
-                                {
-                                    (params.group_name)
-                                        ?
-                                        (
-                                            <TouchableOpacity
-                                                style={part.buttonGroup}
-                                                onPress={() => navigate('GroupStack', {group_link: params.group_link})}
-                                            >
-                                                <Text style={[part.titleNormalLightNav]}>
-                                                    {params.group_name}
-                                                </Text>
-
-                                            </TouchableOpacity>
-                                        )
-                                        :
-                                        (
-                                            <Text/>
-                                        )
-                                }
-                                </Body>
-                            </Left>
-                        </View>
-                    )}
-                >
-                    {
-                        isLoading
-                            ?
-                            <View
-                                style={{
-                                    margin: 50,
-                                    flex: 1,
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                }}
-                            >
-                                <Spinner
-                                    color={color.gray}/>
-                            </View>
-                            :
+                    renderForeground={() => (
+                        <View key="parallax-header" style={[parallaxStyle.parallaxHeaderTitle]}>
                             <View>
+                                <CardItem style={[part.cardHeader, part.noPaddingTopBottom]}>
+                                    <Item style={part.noBorder}>
+                                        <Text style={part.titlePost}>
+                                            {post.title}
+                                        </Text>
+                                    </Item>
+                                </CardItem>
+                                {
+                                    post.description == ""
+                                    ?
+                                        <View/>
+                                        :
+                                        <CardItem style={[part.cardHeader, part.noPaddingBottom]}>
+                                            <Item style={part.noBorder}>
+                                                <Text style={part.describeInImage}>
+                                                    {post.description}
+                                                </Text>
+                                            </Item>
+                                        </CardItem>
+                                }
+                                <CardItem style={[part.cardHeader, part.noPaddingBottom]}>
+                                <Item style={part.noBorder}>
+                                    {
+                                        (params.group_name)
+                                            ?
+                                            (
+                                                <TouchableOpacity
+                                                    style={part.buttonGroup}
+                                                    onPress={() => navigate('GroupStack', {group_link: params.group_link})}
+                                                >
+                                                    <Text style={[part.describeInImage]}>
+                                                        {params.group_name}
+                                                    </Text>
+
+                                                </TouchableOpacity>
+                                            )
+                                            :
+                                            (
+                                                <Text/>
+                                            )
+                                    }
+                                </Item>
+                            </CardItem>
+                            </View>
+                            <View style={[parallaxStyle.parallaxHeader, {flexDirection: 'row'}]}>
                                 <CardItem style={[part.cardHeader, {marginTop: 10}]}>
                                     {
                                         (post.author)
@@ -398,26 +349,73 @@ class InfoAboutPostContainer extends Component {
                                             )
                                     }
                                 </CardItem>
-                                <CardItem style={[part.cardHeader, part.noPaddingTopBottom]}>
-                                    <Item style={part.noBorder}>
-                                        <Text style={part.titleInImage}>
-                                            {post.title}
-                                        </Text>
-                                    </Item>
-                                </CardItem>
-                                <CardItem style={[part.cardHeader, part.noPaddingBottom]}>
-                                    <Item style={part.noBorder}>
-                                        {
-                                            post.description
-                                                ?
-                                                <Text style={part.describeInImage}>
-                                                    {post.description}
-                                                </Text>
-                                                :
-                                                <Text/>
-                                        }
-                                    </Item>
-                                </CardItem>
+                            </View>
+                        </View>
+
+                    )}
+                    renderStickyHeader={() => (
+                        <View key="sticky-header" style={parallaxStyle.stickySection}>
+                            <View style={part.iconInDrawerNav}>
+                                <Left style={{flexDirection: 'row', marginTop: 20}}>
+                                    <Body>
+                                    <Text style={part.titleSmallDarkGrayBold}>
+                                        {post.title}
+                                    </Text>
+                                    </Body>
+                                </Left>
+                            </View>
+                        </View>
+                    )}
+                    renderFixedHeader={() => (
+                        <View key="fixed-header" style={part.iconInDrawerNav}>
+                            <Left style={{marginTop: 20, flexDirection: 'row'}}>
+                                <BackButton goBack={goBack}/>
+                                <Body>
+
+                                </Body>
+                            </Left>
+                        </View>
+                    )}
+                >
+                    {
+                        isLoading
+                            ?
+                            <View
+                                style={{
+                                    margin: 50,
+                                    flex: 1,
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Spinner
+                                    color={color.gray}/>
+                            </View>
+                            :
+
+                            <View>
+                                <View>
+                                    {
+                                        1
+                                            ?
+                                            <Image
+                                                resizeMode={'cover'}
+                                                source={{
+                                                    uri: post.url,
+                                                    width: size.wid,
+                                                    height: size.PARALLAX_HEADER_HEIGHT
+                                                }}/>
+
+                                            :
+                                            <Video
+                                                resizeMode={'cover'}
+                                                source={{uri: post.url}}
+                                                style={[part.imageInGetFull]}
+                                            />
+                                    }
+                                </View>
+
+
                                 <WebViewAutoHeight source={post.content ? post.content : ''}/>
                                 <CardItem footer style={part.noPaddingTopBottom}>
                                     <Left>
@@ -489,18 +487,19 @@ class InfoAboutPostContainer extends Component {
                                                             <Text
                                                                 style={[part.describeLightGray, part.paddingTLB]}
                                                             >
-                                                                {item.created_at} &middot; {numberOfLikesComment[i]} lượt thích
+                                                                {item.created_at} &middot; {numberOfLikesComment[i]}
+                                                                lượt thích
                                                             </Text>
 
                                                             {item.commenter.username === this.props.user.username ?
-                                                            (
-                                                            <Text
-                                                            style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
-                                                            onPress={() => this.deleteComment(item.id, this.props.token, i)}
-                                                            >
-                                                            Xoá
-                                                            </Text>
-                                                            ) : (<TouchableOpacity/>)
+                                                                (
+                                                                    <Text
+                                                                        style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                                        onPress={() => this.deleteComment(item.id, this.props.token, i)}
+                                                                    >
+                                                                        Xoá
+                                                                    </Text>
+                                                                ) : (<TouchableOpacity/>)
                                                             }
                                                         </View>
                                                         </Body>

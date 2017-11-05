@@ -13,7 +13,6 @@ class MyAccountProject extends Component {
         const {products, isLoadingUserProducts} = this.props;
         return (
             <Container
-                showsVerticalScrollIndicator={false}
                 style={part.wrapperContainer}>
                 {
                     (isLoadingUserProducts)

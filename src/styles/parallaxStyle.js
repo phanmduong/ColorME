@@ -18,12 +18,16 @@ const parallaxStyle = StyleSheet.create({
         alignItems: 'center',
         height: size.STICKY_HEADER_HEIGHT,
         justifyContent: 'center',
-        backgroundColor: color.main
+        backgroundColor: color.backGround
     },
     parallaxHeader: {
         alignItems: 'center',
         justifyContent: 'center',
+        flexDirection: 'column',
+    },
+    parallaxHeaderTitle: {
         flex: 1,
+        justifyContent: 'flex-end',
         flexDirection: 'column',
     },
 });

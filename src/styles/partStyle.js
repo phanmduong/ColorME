@@ -86,7 +86,7 @@ const part = StyleSheet.create({
         width: wid,
         height: 250,
         justifyContent: 'center',
-        backgroundColor: 'black'
+        backgroundColor: color.backGround,
     },
     wrapperImageInCourseInformation: {
         position: 'relative',
@@ -177,6 +177,19 @@ const part = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row'
+    },
+    wrapperAvatarUser: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        flex: 1,
+        width: size.wid / 3
+    },
+    wrapperInformationUser: {
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        width: size.wid * 2 / 3,
+
     },
     backgroundNone: {
         backgroundColor: color.none,
@@ -305,6 +318,12 @@ const part = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 25,
+        backgroundColor: color.icon,
+    },
+    avatarUserLikeGrid: {
+        width: (wid - 24) / 3 -4,
+        height: (wid- 24) / 3 -4,
+        borderRadius: ((wid- 24) / 3 - 4) / 2,
         backgroundColor: color.icon,
     },
     avatarUserNormalSquare: {
@@ -547,6 +566,12 @@ const part = StyleSheet.create({
         fontSize: 12,
         fontWeight: 'bold',
     },
+    titlePost: {
+        fontFamily: 'Montserrat',
+        color: color.darkGrayText,
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
     titleGroup: {
         fontFamily: 'Montserrat',
         color: color.navTitle,
@@ -615,6 +640,9 @@ const part = StyleSheet.create({
     },
     paddingRight: {
         paddingRight: 5,
+    },
+    paddingRightFar: {
+        paddingRight: 10,
     },
     paddingLeft: {
         paddingLeft: 5,
@@ -781,7 +809,6 @@ const part = StyleSheet.create({
         width: wid,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        flex: 1,
     },
     wrapperGridImage: {
         marginLeft:6,
@@ -798,7 +825,6 @@ const part = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        borderBottomWidth: 0.5,
         borderColor: color.icon,
     },
     wrapperTextInTabBarUser: {
