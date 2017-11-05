@@ -487,8 +487,7 @@ class InfoAboutPostContainer extends Component {
                                                             <Text
                                                                 style={[part.describeLightGray, part.paddingTLB]}
                                                             >
-                                                                {item.created_at} &middot; {numberOfLikesComment[i]}
-                                                                lượt thích
+                                                                {item.created_at} &middot; {numberOfLikesComment[i]} lượt thích
                                                             </Text>
 
                                                             {item.commenter.username === this.props.user.username ?

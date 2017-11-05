@@ -1,12 +1,10 @@
 import React, {Component} from 'react'
-import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, StatusBar, TouchableOpacity, View} from 'react-native'
+import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, TouchableOpacity, View} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
-import {Container, Content, Form, Input, Item, Left, CheckBox, Body} from 'native-base';
-import Icon from '../../commons/Icon';
+import {Container, Content, Form, Input, Item, Left, CheckBox, Body, Header} from 'native-base';
 import BackButton from '../../commons/BackButton';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
-import * as size from '../../styles/size';
 import * as registerAction from '../../actions/registerAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
@@ -45,8 +43,8 @@ class RegisterContainer extends Component {
         const {goBack} = this.props.navigation;
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
-                <StatusBar
-                    barStyle="light-content"
+                <Header
+                    iosBarStyle='light-content'
                 />
                 <View style={styles.wrapperColorME}>
                     <Text style={styles.textColor}>Color</Text>
