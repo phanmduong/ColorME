@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, RefreshControl, StatusBar, TouchableOpacity, View, AsyncStorage, Alert} from 'react-native';
+import {FlatList, RefreshControl, TouchableOpacity, View, AsyncStorage, Alert} from 'react-native';
 import {
     Body, Button, Card, CardItem, Container, Content, Header, Input, Item, Left, Picker,
     Right, Spinner, Text, Thumbnail,

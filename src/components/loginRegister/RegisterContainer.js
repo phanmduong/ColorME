@@ -43,9 +43,7 @@ class RegisterContainer extends Component {
         const {goBack} = this.props.navigation;
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
-                <Header
-                    iosBarStyle='light-content'
-                />
+                <Header iosBarStyle='light-content'/>
                 <View style={styles.wrapperColorME}>
                     <Text style={styles.textColor}>Color</Text>
                     <Text style={styles.textME}>ME</Text>

@@ -33,9 +33,6 @@ class SlideViewComponent extends Component {
         const {navigate} = this.props.navigation;
         return (
             <Container style={part.wrapperContainer}>
-                <StatusBar
-                    barStyle="dark-content"
-                />
                 <View style={part.wrapperImageInDrawer}>
                     <FastImage
                         resizeMode={'cover'}

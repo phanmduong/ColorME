@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    Image, Text, TouchableOpacity, View, FlatList, RefreshControl
+    Text, TouchableOpacity, View, FlatList, RefreshControl
 } from 'react-native';
 
 import {

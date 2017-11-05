@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {
-    Image, TouchableOpacity, View, StatusBar
+    TouchableOpacity, View
 } from 'react-native';
 import {
-    Body, Container, Spinner, Content,
+    Body, Container, Spinner, Content, Header,
     Item, Left, Right, Text, Thumbnail,
 } from 'native-base';
 import Icon from '../../commons/Icon';
@@ -92,9 +92,6 @@ class MyAccountContainer extends Component {
         const {sideNav} = this.props;
         return (
             <Container style={part.wrapperContainer}>
-                <StatusBar
-                    barStyle="dark-content"
-                />
                 <ParallaxScrollView
                     backgroundColor={color.backGround}
                     showsVerticalScrollIndicator={false}

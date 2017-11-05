@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {
-    Image, TouchableOpacity, View,
+    TouchableOpacity, View,
 } from 'react-native';
 import {
     Container, Thumbnail, Text, Left, Body, Right, Item, Spinner
 } from 'native-base';
 import BackButton from '../../commons/BackButton';
-import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
 import parallaxStyle from '../../styles/parallaxStyle';
 import * as color from '../../styles/color';

@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {
     ActivityIndicator, KeyboardAvoidingView,
-    Text, TouchableOpacity, View, StatusBar,Alert
+    Text, TouchableOpacity, View, Alert
 } from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
-import {Container, Content, Form, Input, Item, Left, CheckBox} from 'native-base';
+import {Container, Content, Form, Input, Item, Left, CheckBox, Header} from 'native-base';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
 import * as loginAction from '../../actions/loginActions';
@@ -59,9 +59,8 @@ class LoginContainer extends Component {
         const {navigate} = this.props.navigation;
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
-                <StatusBar
-                    barStyle="light-content"
-                />
+                <Header iosBarStyle='dark-content'/>
+
                 <View style={styles.wrapperColorME}>
                     <Text style={styles.textColor}>color</Text>
                     <Text style={styles.textME}>ME</Text>

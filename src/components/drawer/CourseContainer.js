@@ -7,7 +7,6 @@ import {
     Body, CardItem, Header, Container, Content,
     Left, Right, Spinner, Item
 } from 'native-base';
-import BackButtonHeader from '../../commons/BackButtonHeader';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color'
 import FastImage from 'react-native-fast-image';
