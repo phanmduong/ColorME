@@ -9,7 +9,7 @@ const part = StyleSheet.create({
         paddingTop: 20,
         height: 60,
         borderBottomWidth: 0,
-        backgroundColor: color.main,
+        backgroundColor: color.backGround,
         alignItems: 'center',
 
     },
@@ -480,6 +480,13 @@ const part = StyleSheet.create({
         fontWeight: '500',
         marginLeft: -50,
     },
+    titleSmallDark: {
+        fontFamily: 'Montserrat',
+        fontSize: size.titleSmall,
+        color: color.darkGray,
+        fontWeight: '500',
+        marginLeft: -50,
+    },
     titleNormalDarkGray: {
         fontFamily: 'Montserrat',
         fontSize: size.title,
@@ -608,21 +615,23 @@ const part = StyleSheet.create({
 
     },
     buttonLeftRegisterMain: {
+        borderRadius: 100,
         marginTop: 5,
         backgroundColor: color.main,
         paddingTop: 5,
         paddingBottom: 5,
-        paddingRight: 10,
-        paddingLeft: 10,
+        paddingRight: 20,
+        paddingLeft: 20,
 
     },
     buttonLeftRegisterGray: {
+        borderRadius: 100,
         marginTop: 5,
         backgroundColor: color.icon,
         paddingTop: 5,
         paddingBottom: 5,
-        paddingRight: 10,
-        paddingLeft: 10,
+        paddingRight: 20,
+        paddingLeft: 20,
 
     },
 

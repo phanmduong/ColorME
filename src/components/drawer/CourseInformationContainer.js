@@ -44,9 +44,9 @@ class CourseInformation extends Component {
                         </View>
                         :
                         <ParallaxScrollView
-                            backgroundColor={color.main}
+                            backgroundColor={color.backGround}
                             showsVerticalScrollIndicator={false}
-                            headerBackgroundColor={color.main}
+                            headerBackgroundColor={color.backGround}
                             stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
                             parallaxHeaderHeight={size.PARALLAX_HEADER_HEIGHT_COURSE_INFORMATION}
                             backgroundSpeed={10}
@@ -85,7 +85,7 @@ class CourseInformation extends Component {
                                     <View style={part.iconInDrawerNav}>
                                         <Left style={{flexDirection: 'row', marginTop: 20,}}>
                                             <Body >
-                                                <Text style={part.titleNormalLight}>
+                                                <Text style={part.titleSmallDarkGrayBold}>
                                                     {courseInformation.name}
                                                 </Text>
                                             </Body>

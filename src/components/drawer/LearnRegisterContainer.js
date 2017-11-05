@@ -7,11 +7,13 @@ import {
     Body, Button, CardItem, Container, Content, Header,
     Left, Right,
 } from 'native-base';
+import styles from '../../styles/loginRegisterStyle'
 import BackButtonHeader from '../../commons/BackButtonHeader';
 import part from '../../styles/partStyle';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as courseAction from '../../actions/courseAction';
+import * as size from '../../styles/size';
 import FastImage from 'react-native-fast-image';
 
 class LearnRegisterContainer extends Component {
@@ -26,7 +28,7 @@ class LearnRegisterContainer extends Component {
             address: '',
             avatar_url: '',
             isEnrolled: false,
-            classes:[],
+            classes: [],
 
         }
     }
@@ -46,7 +48,6 @@ class LearnRegisterContainer extends Component {
             });
         }
     }
-
 
 
     setVisibleModalRegister(visible) {
@@ -112,12 +113,12 @@ class LearnRegisterContainer extends Component {
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <Header
                     style={part.navTop}
-                    iosBarStyle='light-content'
+                    iosBarStyle='dark-content'
                 >
                     <Left style={{flexDirection: 'row'}}>
                         <BackButtonHeader goBack={goBack}/>
                         <Body>
-                        <Text style={part.titleNormalLightNav}>Đăng ký lớp học</Text>
+                        <Text style={part.titleSmallDark}>Đăng ký lớp học</Text>
                         </Body>
                     </Left>
 
@@ -156,10 +157,10 @@ class LearnRegisterContainer extends Component {
                     visible={this.state.modalRegister}
                 >
                     <View
-                        style={part.wrapperModalComment}
+                        style={[part.wrapperModalComment]}
                         {...this.panResponder.panHandlers}
                     >
-                        <View style={part.modalRegister}>
+                        <View style={[part.modalRegister, part.padding]}>
                             <CardItem
                                 avatar
                                 style={[part.backgroundNone, part.noMarginLeft, part.padding, part.noBorder, part.noPaddingBottom]}>
@@ -178,8 +179,7 @@ class LearnRegisterContainer extends Component {
                                 <Left>
                                     <Body>
                                     <Text style={[part.titleGrayThin, part.paddingLine]}>Bạn đang tiến hành đăng ký lớp
-                                        <Text
-                                            style={part.titleSmallDarkGray}>{this.state.course} {this.state.name}</Text></Text>
+                                        <Text style={part.titleSmallDarkGray}> {this.state.course} {this.state.name}</Text></Text>
                                     <Text style={[part.titleGrayThin, part.paddingLine]}>Thời gian học <Text
                                         style={part.titleSmallDarkGray}>{this.state.study_time}</Text></Text>
                                     <Text style={[part.titleGrayThin, part.paddingLine]}><Text
@@ -191,12 +191,21 @@ class LearnRegisterContainer extends Component {
                                     </Body>
                                 </Left>
                             </CardItem>
-                            <Button
-                                full style={part.buttonAcceptFull}
-                                onPress={() => this.learnRegister(this.state.id, this.props.token)}
-                            >
-                                <Text style={part.titleNormalLight}>Xác nhận</Text>
-                            </Button>
+                            <View style={{
+                                width: size.wid * 0.9 - 20,
+                                alignItems: 'center',
+                            }}>
+                                <TouchableOpacity
+                                    rounded
+                                    style={styles.buttonRegister}
+                                    onPress={() => this.learnRegister(this.state.id, this.props.token)}
+
+                                >
+
+                                    <Text style={styles.textButton}>Xác nhận</Text>
+                                </TouchableOpacity>
+                            </View>
+
                         </View>
                     </View>
                 </Modal>
