@@ -103,13 +103,12 @@ class UserContainer extends Component {
                             </View>
                         </View>
                     }
-
                     renderForeground={() => (
                         <View key="parallax-header" style={[parallaxStyle.parallaxHeader, {flexDirection: 'row'}]}>
                             <View style={part.wrapperAvatarUser}>
                                 <Thumbnail
                                     circle large
-                                    source={{uri: this.props.user.avatar_url}}
+                                    source={{uri: user.avatar_url}}
                                 >
                                 </Thumbnail>
 
@@ -117,7 +116,7 @@ class UserContainer extends Component {
                             <View style={part.wrapperInformationUser}>
                                 <Text style={[part.titleNormalDarkGray, part.paddingLine]}> {this.props.user.name}
                                 </Text>
-                                <Text style={[part.describeGray, part.paddingLine]}> {this.props.user.university}
+                                <Text style={[part.describeGray, part.paddingLine]}> {user.university}
                                 </Text>
                             </View>
 

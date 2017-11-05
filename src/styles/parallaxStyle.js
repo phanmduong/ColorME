@@ -21,6 +21,7 @@ const parallaxStyle = StyleSheet.create({
         backgroundColor: color.backGround
     },
     parallaxHeader: {
+        height: size.PARALLAX_HEADER_HEIGHT_USER,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
