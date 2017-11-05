@@ -98,7 +98,7 @@ class CourseInformation extends Component {
                                     source={{
                                         uri: courseInformation.image_url,
                                         width: size.wid,
-                                        height: size.PARALLAX_HEADER_HEIGHT_USER
+                                        height: 180
                                     }}/>
                             </View>
                             <WebViewAutoHeight source={courseInformation.detail ? courseInformation.detail : ''}/>

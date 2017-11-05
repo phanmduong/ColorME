@@ -218,7 +218,6 @@ class InfoAboutPostContainer extends Component {
         let colorIcon = liked ? color.main : color.icon;
         let likedIcon = liked ? 'fontawesome|heart' : 'fontawesome|heart-o';
         let colorCommentIcon = this.state.comment_content == '' ? color.icon : color.main;
-        let commentIcon = this.state.comment_content == '' ? 'fontawesome|comment-o' : 'fontawesome|paper-plane';
         let featureIcon = post.feature_id == 0 ? 'fontawesome|star-o' : 'fontawesome|star';
         let colorFeatureIcon = post.feature_id == 0 ? color.icon : color.star;
         return (
@@ -228,7 +227,7 @@ class InfoAboutPostContainer extends Component {
                     showsVerticalScrollIndicator={false}
                     headerBackgroundColor={color.backGround}
                     stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
-                    parallaxHeaderHeight={220}
+                    parallaxHeaderHeight={210}
                     backgroundSpeed={10}
                     renderBackground={() => (
                         <View style={part.wrapperImageInGetFull}>
@@ -241,47 +240,46 @@ class InfoAboutPostContainer extends Component {
                             <View>
                                 <CardItem style={[part.cardHeader, part.noPaddingTopBottom]}>
                                     <Item style={part.noBorder}>
-                                        <Text style={part.titlePost}>
+                                        <Text style={part.titlePost} numberOfLines={1}>
                                             {post.title}
                                         </Text>
                                     </Item>
                                 </CardItem>
                                 {
                                     post.description == ""
-                                    ?
+                                        ?
                                         <View/>
                                         :
                                         <CardItem style={[part.cardHeader, part.noPaddingBottom]}>
                                             <Item style={part.noBorder}>
-                                                <Text style={part.describeInImage}>
+                                                <Text style={part.describeInImage} numberOfLines={2}
+                                                >
                                                     {post.description}
                                                 </Text>
                                             </Item>
+                                            <Item style={part.noBorder}>
+                                                {
+                                                    params.group_name != ''
+                                                        ?
+                                                        (
+                                                            <TouchableOpacity
+                                                                style={part.buttonGroup}
+                                                                onPress={() => navigate('GroupStack', {group_link: params.group_link})}
+                                                            >
+                                                                <Text style={[part.describeInImage]}>
+                                                                    {params.group_name}
+                                                                </Text>
+
+                                                            </TouchableOpacity>
+                                                        )
+                                                        :
+                                                        (
+                                                            <Text/>
+                                                        )
+                                                }
+                                            </Item>
                                         </CardItem>
                                 }
-                                <CardItem style={[part.cardHeader, part.noPaddingBottom]}>
-                                <Item style={part.noBorder}>
-                                    {
-                                        (params.group_name)
-                                            ?
-                                            (
-                                                <TouchableOpacity
-                                                    style={part.buttonGroup}
-                                                    onPress={() => navigate('GroupStack', {group_link: params.group_link})}
-                                                >
-                                                    <Text style={[part.describeInImage]}>
-                                                        {params.group_name}
-                                                    </Text>
-
-                                                </TouchableOpacity>
-                                            )
-                                            :
-                                            (
-                                                <Text/>
-                                            )
-                                    }
-                                </Item>
-                            </CardItem>
                             </View>
                             <View style={[parallaxStyle.parallaxHeaderPost, {flexDirection: 'row'}]}>
                                 <CardItem style={[part.cardHeader, {marginTop: 10}]}>
@@ -357,8 +355,8 @@ class InfoAboutPostContainer extends Component {
                         <View key="sticky-header" style={parallaxStyle.stickySection}>
                             <View style={part.iconInDrawerNav}>
                                 <Left style={{flexDirection: 'row', marginTop: 20}}>
-                                    <Body>
-                                    <Text style={part.titleSmallDarkGrayBold}>
+                                    <Body style={{padding: 30}}>
+                                    <Text style={part.titleSmallDarkGrayBold} numberOfLines={1}>
                                         {post.title}
                                     </Text>
                                     </Body>
@@ -370,9 +368,6 @@ class InfoAboutPostContainer extends Component {
                         <View key="fixed-header" style={part.iconInDrawerNav}>
                             <Left style={{marginTop: 20, flexDirection: 'row'}}>
                                 <BackButton goBack={goBack}/>
-                                <Body>
-
-                                </Body>
                             </Left>
                         </View>
                     )}
@@ -487,7 +482,8 @@ class InfoAboutPostContainer extends Component {
                                                             <Text
                                                                 style={[part.describeLightGray, part.paddingTLB]}
                                                             >
-                                                                {item.created_at} &middot; {numberOfLikesComment[i]} lượt thích
+                                                                {item.created_at} &middot; {numberOfLikesComment[i]}
+                                                                lượt thích
                                                             </Text>
 
                                                             {item.commenter.username === this.props.user.username ?
@@ -626,7 +622,7 @@ class InfoAboutPostContainer extends Component {
 
                             >
                                 <Icon
-                                    active name={commentIcon}
+                                    active name="fontawesome|paper-plane"
                                     size={size.iconBig}
                                     color={colorCommentIcon}
                                     style={[part.paddingTLB, {paddingLeft: 10}]}

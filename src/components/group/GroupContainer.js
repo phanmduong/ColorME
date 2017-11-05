@@ -97,55 +97,37 @@ class GroupContainer extends Component {
         return (
             <Container style={part.wrapperContainer}>
                 <ParallaxScrollView
-                    backgroundColor={color.main}
+                    backgroundColor={color.backGround}
                     showsVerticalScrollIndicator={false}
-                    headerBackgroundColor={color.main}
+                    headerBackgroundColor={color.backGround}
                     stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
-                    parallaxHeaderHeight={size.PARALLAX_HEADER_HEIGHT}
+                    parallaxHeaderHeight={size.PARALLAX_HEADER_HEIGHT_USER}
                     backgroundSpeed={10}
                     renderBackground={() =>
                         <View style={part.wrapperImageInGetFull}>
                             <View key="background">
-                                <Image
-                                    style={{width: size.wid, height: size.PARALLAX_HEADER_HEIGHT}}
+                            </View>
+                        </View>
+                    }
+                    renderForeground={() => (
+                        <View key="parallax-header" style={[parallaxStyle.parallaxHeader, {flexDirection: 'row'}]}>
+                            <View style={part.wrapperAvatarUser}>
+                                <Thumbnail
+                                    circle large
                                     source={
                                         isLoadingGroupTopics
                                             ?
                                             ''
                                             :
-                                            {uri: this.props.groupAvatar,}
-                                    }/>
-                                <View style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    width: size.wid,
-                                    backgroundColor: 'rgba(0,0,0,.8)',
-                                    height: size.PARALLAX_HEADER_HEIGHT
-                                }}/>
-                            </View>
-                            <View style={part.iconInDrawer}>
-                                <Right style={{left: 10}}>
-
-                                </Right>
-                            </View>
-                        </View>
-                    }
-                    renderForeground={() => (
-                        <View key="parallax-header" style={parallaxStyle.parallaxHeader}>
-                            <Item style={{borderBottomWidth: 0,}}>
-                                <Body>
-                                <Thumbnail style={part.marginBottom}
-                                           circle large
-                                           source={
-                                               isLoadingGroupTopics
-                                                   ?
-                                                   ''
-                                                   :
-                                                   {uri: this.props.groupAvatar}
-                                           }
+                                            {uri: this.props.groupAvatar}
+                                    }
                                 >
                                 </Thumbnail>
-                                <Text style={[part.titleNormalLight, part.paddingLine]}>
+
+                            </View>
+                            <View style={part.wrapperInformationUser}>
+                                <Text
+                                    style={[part.titleNormalDarkGray, part.paddingLine]}>
                                     {
                                         isLoadingGroupTopics
                                             ?
@@ -154,25 +136,26 @@ class GroupContainer extends Component {
                                             this.props.groupName
                                     }
                                 </Text>
-                                <Text style={[part.describeGray, part.paddingLine]}>{
-                                    isLoadingGroupTopics
-                                        ?
-                                        'Đang tải...'
-                                        :
-                                        `${this.props.members.length} thành viên`
-                                }
+                                <Text
+                                    style={[part.describeGray, part.paddingLine]}>
+                                    {
+                                        isLoadingGroupTopics
+                                            ?
+                                            'Đang tải...'
+                                            :
+                                            `${this.props.members.length} thành viên`
+                                    }
                                 </Text>
-                                </Body>
-                            </Item>
+                            </View>
+
                         </View>
                     )}
-
                     renderStickyHeader={() => (
                         <View key="sticky-header" style={parallaxStyle.stickySection}>
                             <View style={part.iconInDrawerNav}>
-                                <Left style={{flexDirection: 'row', marginTop: 20,}}>
-                                <Body>
-                                    <Text style={part.titleNormalLight}>
+                                <Left style={{flexDirection: 'row', marginTop: 20}}>
+                                    <Body>
+                                    <Text style={part.titleSmallDarkGrayBold}>
                                         {this.props.groupName}
                                     </Text>
                                     </Body>
@@ -186,7 +169,6 @@ class GroupContainer extends Component {
                                 <BackButton goBack={goBack}/>
                             </Left>
                         </View>
-
                     )}
                 >
                     <View style={part.wrapperTabBarUser}>
@@ -230,11 +212,11 @@ class GroupContainer extends Component {
                             :
                             this.tab()
                     }
-                    <TouchableOpacity style={[part.iconAddFriendInProfile, part.shadow]}>
-                        <Icon name="ion|ios-person-add"
-                              size={30}
-                              color={color.navTitle}/>
-                    </TouchableOpacity>
+                    {/*<TouchableOpacity style={[part.iconAddFriendInProfile, part.shadow]}>*/}
+                        {/*<Icon name="ion|ios-person-add"*/}
+                              {/*size={30}*/}
+                              {/*color={color.navTitle}/>*/}
+                    {/*</TouchableOpacity>*/}
                 </ParallaxScrollView>
             </Container>
         );

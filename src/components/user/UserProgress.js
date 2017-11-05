@@ -28,7 +28,7 @@ class UserProgress extends Component {
                             progress.length == 0
                                 ?
                                 <Body>
-                                <Text style={[part.padding, part.titleSmallDarkGrayBold]}>
+                                <Text style={[part.padding, part.titleGrayThin]}>
                                     {user.name} chưa tham gia khóa học nào.
                                 </Text>
                                 </Body>

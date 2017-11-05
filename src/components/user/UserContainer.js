@@ -184,11 +184,11 @@ class UserContainer extends Component {
                             :
                             this.tab()
                     }
-                    <TouchableOpacity style={[part.iconAddFriendInProfile, part.shadow]}>
-                        <Icon name="ion|ios-person-add"
-                              size={30}
-                              color={color.navTitle}/>
-                    </TouchableOpacity>
+                    {/*<TouchableOpacity style={[part.iconAddFriendInProfile, part.shadow]}>*/}
+                        {/*<Icon name="ion|ios-person-add"*/}
+                              {/*size={30}*/}
+                              {/*color={color.navTitle}/>*/}
+                    {/*</TouchableOpacity>*/}
                 </ParallaxScrollView>
             </Container>
         );

@@ -29,7 +29,7 @@ class MyAccountProgress extends Component {
                                 ?
                                 (
                                     <Body>
-                                    <Text style={[part.padding, part.titleSmallDarkGrayBold]}>
+                                    <Text style={[part.padding, part.titleGrayThin]}>
                                         Bạn chưa tham gia khóa học nào.
                                     </Text>
                                     </Body>

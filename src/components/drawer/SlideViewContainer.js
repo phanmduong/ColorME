@@ -53,23 +53,6 @@ class SlideViewComponent extends Component {
                     </View>
                 </View>
                 <TouchableOpacity
-                    style={[part.itemTabInDrawer, part.marginTop]}
-                    onPress={
-                        isLoadingCourses
-                            ?
-                            () => {
-                            }
-                            :
-                            () => navigate('CourseInDrawer')}
-                >
-                    <View style={[part.wrapperIcon]}>
-                        <Icon name="fontawesome|graduation-cap"
-                              size={size.iconBig}
-                              color={color.darkGray}/>
-                    </View>
-                    <Text style={part.describeDarkGray}>Đăng ký học</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
                     style={[part.itemTabInDrawer]}
                     onPress={
                         isLoadingCourses

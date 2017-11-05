@@ -28,7 +28,7 @@ class GroupTopics extends Component {
                             topics.length === 0
                                 ?
                                 <Body>
-                                <Text style={[part.padding, part.titleSmallDarkGrayBold]}>
+                                <Text style={[part.padding, part.titleGrayThin]}>
                                     {groupName} chưa tạo chủ đề nào.
                                 </Text>
                                 </Body>

@@ -126,13 +126,11 @@ class MyAccountContainer extends Component {
 
                             </View>
                             <View style={part.wrapperInformationUser}>
-                                <Text style={[part.titleNormalDarkGray, part.paddingLine]}>
-                                    {this.props.user.name}
+                                <Text style={[part.titleNormalDarkGray, part.paddingLine]}> {this.props.user.name}
                                 </Text>
-                                <Text style={[part.describeGray, part.paddingLine]}>
-                                    {this.props.user.university}
+                                <Text style={[part.describeGray, part.paddingLine]}> {this.props.user.university}
                                 </Text>
-                                <Item style={part.noBorder}>
+                                <Item style={[part.noBorder, part.paddingLine]}>
                                     <View style={[part.wrapperRowCenter]}>
                                         <Icon name="materialCommunity|book"
                                               size={size.iconNormal}

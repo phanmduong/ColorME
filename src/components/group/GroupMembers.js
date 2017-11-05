@@ -28,7 +28,7 @@ class GroupMembers extends Component {
                                     members.length === 0
                                         ?
                                         <Body>
-                                            <Text style={[part.padding, part.titleSmallDarkGrayBold]}>
+                                            <Text style={[part.padding, part.titleGrayThin]}>
                                                 {groupName} chưa có thành viên nào.
                                             </Text>
                                         </Body>

@@ -180,7 +180,6 @@ class ListView extends Component {
         const {item, arrayLike, likeCount, colorIcon, likedIcon, user, featureIcon, colorFeatureIcon} = this.props;
         const {navigate} = this.props.navigation;
         let colorCommentIcon = this.state.comment_content == '' ? color.icon : color.main;
-        let commentIcon = this.state.comment_content == '' ? 'fontawesome|comment-o' : 'fontawesome|paper-plane';
         return (
             <View key={item.key} style={part.card}>
                 <CardItem header style={part.cardHeader}>
@@ -513,7 +512,7 @@ class ListView extends Component {
                                                         () => this.commentPost(this.props.item.id, this.props.token, this.state)
                                                 }
                                             >
-                                                <Icon active name={commentIcon}
+                                                <Icon active name='fontawesome|paper-plane'
                                                       size={size.iconBig}
                                                       color={colorCommentIcon}
                                                       style={[part.paddingTLB, {paddingLeft: 10}]}

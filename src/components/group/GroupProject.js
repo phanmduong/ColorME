@@ -28,7 +28,7 @@ class GroupProject extends Component {
                                     products.length === 0
                                         ?
                                         <View style={part.wrapperTextNotLength}>
-                                            <Text style={[part.padding, part.titleSmallDarkGrayBold]}>
+                                            <Text style={[part.padding, part.titleGrayThin]}>
                                                 {groupName} chưa có dự án nào.
                                             </Text>
                                         </View>
@@ -57,10 +57,12 @@ class GroupProject extends Component {
                                                                     }
                                                             )}
                                                         >
-                                                            <FastImage
-                                                                style={[part.imageInGrid, part.shadow]}
-                                                                source={{uri: item.thumb_url}}
-                                                            />
+                                                            <View style={[part.imageInGrid, part.shadow]}>
+                                                                <FastImage
+                                                                    style={[part.imageInGrid, part.shadow]}
+                                                                    source={{uri: item.thumb_url}}
+                                                                />
+                                                            </View>
                                                         </TouchableOpacity>
                                                     </View>
                                                 )

@@ -27,7 +27,7 @@ class MyAccountProject extends Component {
                                     products.length == 0
                                         ?
                                         <View style={part.wrapperTextNotLength}>
-                                            <Text style={[part.padding, part.titleSmallDarkGrayBold]}>
+                                            <Text style={[part.padding, part.titleGrayThin]}>
                                                 Bạn chưa có dự án nào.
                                             </Text>
                                         </View>
