@@ -26,6 +26,11 @@ const parallaxStyle = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'column',
     },
+    parallaxHeaderPost: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+    },
     parallaxHeaderTitle: {
         flex: 1,
         justifyContent: 'flex-end',

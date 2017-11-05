@@ -283,7 +283,7 @@ class InfoAboutPostContainer extends Component {
                                 </Item>
                             </CardItem>
                             </View>
-                            <View style={[parallaxStyle.parallaxHeader, {flexDirection: 'row'}]}>
+                            <View style={[parallaxStyle.parallaxHeaderPost, {flexDirection: 'row'}]}>
                                 <CardItem style={[part.cardHeader, {marginTop: 10}]}>
                                     {
                                         (post.author)
