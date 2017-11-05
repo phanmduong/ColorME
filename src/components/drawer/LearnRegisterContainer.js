@@ -47,6 +47,8 @@ class LearnRegisterContainer extends Component {
         }
     }
 
+
+
     setVisibleModalRegister(visible) {
         this.setState({modalRegister: visible});
     }

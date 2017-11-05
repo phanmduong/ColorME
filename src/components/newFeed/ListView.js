@@ -72,16 +72,18 @@ class ListView extends Component {
             let item = false;
             let i = 0;
             while (i < nextProps.comments.length) {
-                let likers = listComment[i].likers.filter((liker) => {
-                    return liker.name == nextProps.user.name;
-                })
-                if (likers && likers.length == 0) {
-                    item = false;
-                } else {
-                    item = true;
+                if(listComment[i].likers) {
+                    let likers = listComment[i].likers.filter((liker) => {
+                        return liker.name == nextProps.user.name;
+                    })
+                    if (likers && likers.length == 0) {
+                        item = false;
+                    } else {
+                        item = true;
+                    }
+                    likedComment.push(item);
+                    i++;
                 }
-                likedComment.push(item);
-                i++;
             }
             this.setState({
                 listCommentInModal: nextProps.comments,

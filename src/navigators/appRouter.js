@@ -146,6 +146,13 @@ const MyAccountStackNavigator = StackNavigator(
     }, StackNavigatorStyle
 );
 
+const Course = StackNavigator(
+    {
+        CourseList: {screen: CourseContainer},
+        CourseInFormation: {screen: CourseInformation, navigationOptions: {tabBarVisible: false,} },
+        LearnRegister: {screen: LearnRegisterContainer, navigationOptions: {tabBarVisible: false,}},
+    }, StackNavigatorStyle
+);
 const Home = TabNavigator(
     {
         Notification: {
@@ -159,8 +166,8 @@ const Home = TabNavigator(
                 ),
             }
         },
-        CourseInDrawer: {
-            screen: CourseContainer,
+        Course: {
+            screen: Course,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
                     <Icon
@@ -218,13 +225,6 @@ const Home = TabNavigator(
     TabNavigatorBottomStyle
 );
 
-const Course = StackNavigator(
-    {
-        CourseList: {screen: CourseContainer},
-        CourseInFormation: {screen: CourseInformation},
-        LearnRegister: {screen: LearnRegisterContainer},
-    }, StackNavigatorStyle
-);
 const Group = StackNavigator(
     {
         AttendGroup: {screen: AttendGroupContainer},
@@ -234,10 +234,8 @@ const Group = StackNavigator(
 const Drawer = DrawerNavigator(
     {
         Home: {screen: Home},
-        CourseInDrawer: {screen: Course},
         AttendGroup: {screen: Group},
         Rules: {screen: RulesContainer},
-
     },
     {
         drawerWidth: size.wid * 3 / 4,
