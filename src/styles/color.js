@@ -12,3 +12,4 @@ export const titleBlue          = 'rgb(0, 128, 214)';
 export const navTabBar          = '#313131';
 export const green              = 'rgb(1, 175, 30)';
 export const star               = '#ffd800';
+export const transparentBlack   = 'rgba(0,0,0,0.5)';

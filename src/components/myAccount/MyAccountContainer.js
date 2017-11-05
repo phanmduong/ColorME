@@ -93,7 +93,7 @@ class MyAccountContainer extends Component {
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
-                    barStyle="light-content"
+                    barStyle="dark-content"
                 />
                 <ParallaxScrollView
                     backgroundColor={color.main}

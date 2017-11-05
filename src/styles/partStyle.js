@@ -16,7 +16,7 @@ const part = StyleSheet.create({
     navTopNewFeed: {
         height: 40,
         borderBottomColor: color.icon,
-        borderBottomWidth: 0.5,
+        borderBottomWidth: 0,
         backgroundColor: color.backGround,
         alignItems: 'center',
 
@@ -170,7 +170,7 @@ const part = StyleSheet.create({
     wrapperStatusBarNoPadding: {
         width: size.wid,
         height: 20,
-        backgroundColor: color.text,
+        backgroundColor: color.none,
     },
 
     wrapperRowCenter: {
@@ -365,8 +365,9 @@ const part = StyleSheet.create({
         position: 'relative',
     },
     imageInGrid: {
-        width: wid / 3,
-        height: wid / 3 - 1,
+        width: (wid - 24) / 3 -4,
+        height: (wid- 24) / 3 -4,
+        borderRadius: 15,
     },
     imageInGridMid: {
         width: wid / 3 - 2,
@@ -374,8 +375,9 @@ const part = StyleSheet.create({
     },
     imageInFeature: {
         position: 'relative',
-        width: wid,
-        height: hei / 3,
+        width: wid - 16,
+        height: hei / 3 - 16,
+        borderRadius: 15,
     },
 
     titleLargeDarkBold: {
@@ -524,12 +526,14 @@ const part = StyleSheet.create({
         backgroundColor: color.none,
     },
     wrapperTitleFeature: {
-        width: wid,
+        width: wid - 16,
         height: 70,
         padding: 10,
+        paddingLeft: 18,
+        borderRadius: 15,
         position: 'absolute',
         backgroundColor: color.none,
-        bottom: 0,
+        bottom: 8,
     },
     wrapperFeatureIcon: {
         position: 'absolute',
@@ -780,8 +784,10 @@ const part = StyleSheet.create({
         flex: 1,
     },
     wrapperGridImage: {
-        width: (wid) / 3,
-        height: (wid) / 3,
+        marginLeft:6,
+        marginBottom: 6,
+        width: (wid) / 3 - 8,
+        height: (wid) / 3 - 8,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -839,8 +845,8 @@ const part = StyleSheet.create({
         borderRightWidth: 0,
     },
     shadow: {
-        shadowColor: color.text,
-        shadowOffset: {width: 0, height: 2},
+        shadowColor: color.transparentBlack,
+        shadowOffset: {width: 0, height: 1},
         shadowOpacity: 0.2,
     },
     haveBorderBottom: {

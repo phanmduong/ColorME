@@ -11,17 +11,18 @@ import part from '../../styles/partStyle';
 import FastImage from 'react-native-fast-image';
 
 class GridView extends Component {
-    shouldComponentUpdate(nextProps){
-        if (nextProps.post !== this.props.post){
+    shouldComponentUpdate(nextProps) {
+        if (nextProps.post !== this.props.post) {
             return true;
         }
         return false;
     }
+
     render() {
         let item = this.props.post;
         console.log(this.props.post);
         return (
-            <View style={part.wrapperGridImage}>
+            <View style={[part.wrapperGridImage]}>
                 <TouchableOpacity
                     activeOpacity={0.8}
                     onPress={() =>
@@ -42,22 +43,28 @@ class GridView extends Component {
 
                     {
                         (item.url.indexOf('.mp4') === -1 ) ?
-                            <FastImage
-                                resizeMode={'cover'}
-                                style={item.key % 3 == 2 ? part.imageInGridMid : part.imageInGrid}
-                                source={{uri: item.thumb_url}}
-                            />
+                            <View style={[part.imageInGrid, part.shadow]}>
+                                <FastImage
+                                    resizeMode={'cover'}
+                                    style={[part.imageInGrid]}
+                                    source={{uri: item.thumb_url}}
+                                />
+                            </View>
+
                             :
-                            <Video
-                                repeat
-                                rate={1.0}    // 0 is paused, 1 is normal.
-                                volume={1.0}  // 0 is muted, 1 is normal.
-                                muted={true}  // Mutes the audio entirely.
-                                paused={false}
-                                resizeMode={'cover'}
-                                style={[part.imageInGrid]}
-                                source={{uri: item.url}}
-                            />
+                            <View style={[part.imageInGrid, part.shadow]}>
+                                <Video
+                                    repeat
+                                    rate={1.0}    // 0 is paused, 1 is normal.
+                                    volume={1.0}  // 0 is muted, 1 is normal.
+                                    muted={true}  // Mutes the audio entirely.
+                                    paused={false}
+                                    resizeMode={'cover'}
+                                    style={[part.imageInGrid]}
+                                    source={{uri: item.url}}
+                                />
+                            </View>
+
                     }
                 </TouchableOpacity>
             </View>

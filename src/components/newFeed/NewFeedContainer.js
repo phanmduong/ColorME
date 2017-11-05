@@ -50,19 +50,19 @@ class NewFeedContainer extends Component {
         switch (this.state.typeView) {
             case '':
                 return (
-                    'Top of the hour'
+                    'Mới nhất trong ngày'
                 );
             case '1':
                 return (
-                    'Top of the day'
+                    'Đứng đầu hôm nay'
                 );
             case '7':
                 return (
-                    'Top of the week'
+                    'Đứng đầu tuần qua'
                 );
             case '30':
                 return (
-                    'Top of the month'
+                    'Đứng đầu tháng này'
                 );
 
         }
@@ -126,7 +126,8 @@ class NewFeedContainer extends Component {
             }
             let listPost = this.state.listPost;
             listPost.splice(key, 1);
-            this.setState({listPost: listPost});this.props.parentFlatList.refreshFlatList(key)
+            this.setState({listPost: listPost});
+            this.props.parentFlatList.refreshFlatList(key)
 
         } catch (error) {
         }
@@ -242,15 +243,15 @@ class NewFeedContainer extends Component {
                 <View style={part.wrapperStatusBarNoPadding}>
                 </View>
                 <Header
-                    style={[part.navTopNewFeed, part.noPaddingTop]}
-                    iosBarStyle='light-content'
+                    style={[part.navTopNewFeed, part.noPaddingTop, part.noPadding]}
+                    iosBarStyle='dark-content'
                 >
-                    <Left style={[{flexDirection: 'row'}, part.paddingLeft]}>
+                    <Left style={[{flexDirection: 'row'}]}>
                         <TouchableOpacity style={{backgroundColor: 'transparent'}}>
                             <Icon name={iconGird}
                                   color={color.darkGray}
                                   size={size.iconGiant}
-                                  style={part.paddingIcon}
+                                  style={part.paddingLeft}
                                   onPress={
                                       () => {
                                           !this.state.grid
@@ -264,48 +265,48 @@ class NewFeedContainer extends Component {
                             />
                         </TouchableOpacity>
                         {/*<TouchableOpacity style={{backgroundColor: 'transparent'}}>*/}
-                            {/*<Icon name="material|view-module"*/}
-                                  {/*color={this.state.grid ? color.icon : color.navTitle}*/}
-                                  {/*size={size.iconGiant}*/}
-                                  {/*style={part.paddingIcon}*/}
-                                  {/*onPress={() => this.viewGrid()}*/}
-                            {/*/>*/}
+                        {/*<Icon name="material|view-module"*/}
+                        {/*color={this.state.grid ? color.icon : color.navTitle}*/}
+                        {/*size={size.iconGiant}*/}
+                        {/*style={part.paddingIcon}*/}
+                        {/*onPress={() => this.viewGrid()}*/}
+                        {/*/>*/}
                         {/*</TouchableOpacity>*/}
                     </Left>
-                    <Body style={{flexDirection: 'row'}}>
-                        <Picker
-                            itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
-                            itemTextStyle={part.titleSmallDarkGrayBold}
-                            renderHeader={backAction =>
-                                <Header
-                                    iosBarStyle='light-content'
-                                    style={[{backgroundColor: color.main}, part.noBorder]}>
-                                    <Left>
-                                        <TouchableOpacity onPress={backAction}>
-                                            <Icon name="entypo|chevron-thin-left" color={color.navTitle}
-                                                  size={size.iconBig}/>
-                                        </TouchableOpacity>
-                                    </Left>
-                                    <Body style={{flex: 3}}>
-                                    <Text style={part.titleNormalLight}>Chọn kiểu xem</Text>
-                                    </Body>
-                                    <Right/>
-                                </Header>}
-                            mode="dropdown"
-                            textStyle={part.titleNormalDarkGray}
-                            selectedValue={this.state.typeView}
-                            onValueChange={this.onValueChange.bind(this)}
-                        >
-                            <Item label="Mới nhất" value=""/>
-                            <Item label="Hôm nay" value="1"/>
-                            <Item label="Tuần qua" value="7"/>
-                            <Item label="Tháng qua" value="30"/>
-                        </Picker>
-                        <Icon name="entypo|triangle-down"
-                              color={color.darkGray}
-                              size={size.iconBig * 2 / 3}
-                              style={{marginTop: 2, marginLeft: -12}}
-                        />
+                    <Body style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                    <Picker
+                        itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
+                        itemTextStyle={part.titleSmallDarkGrayBold}
+                        renderHeader={backAction =>
+                            <Header
+                                iosBarStyle='light-content'
+                                style={[{backgroundColor: color.main}, part.noBorder]}>
+                                <Left>
+                                    <TouchableOpacity onPress={backAction}>
+                                        <Icon name="entypo|chevron-thin-left" color={color.navTitle}
+                                              size={size.iconBig}/>
+                                    </TouchableOpacity>
+                                </Left>
+                                <Body style={{flex: 3}}>
+                                <Text style={part.titleNormalLight}>Chọn kiểu xem</Text>
+                                </Body>
+                                <Right/>
+                            </Header>}
+                        mode="dropdown"
+                        textStyle={part.titleNormalDarkGray}
+                        selectedValue={this.state.typeView}
+                        onValueChange={this.onValueChange.bind(this)}
+                    >
+                        <Item label="Mới nhất " value=""/>
+                        <Item label="Hôm nay" value="1"/>
+                        <Item label="Tuần qua" value="7"/>
+                        <Item label="Tháng qua" value="30"/>
+                    </Picker>
+                    <Icon name="entypo|triangle-down"
+                          color={color.darkGray}
+                          size={size.iconBig * 2 / 3}
+                          style={{marginTop: 4, marginLeft: -12}}
+                    />
                     </Body>
                     <Right style={part.paddingRight}>
                         <TouchableOpacity onPress={() => navigate('DrawerOpen')}>
@@ -313,7 +314,6 @@ class NewFeedContainer extends Component {
                                 name="materialCommunity|menu"
                                 color={color.darkGray}
                                 size={size.iconGiant}
-                                style={{paddingLeft: 15, paddingRight: 5}}
                             />
                         </TouchableOpacity>
                     </Right>
@@ -365,7 +365,7 @@ class NewFeedContainer extends Component {
                                             return (
                                                 <TouchableOpacity
                                                     activeOpacity={0.8}
-                                                    style={part.featureWrapper}
+                                                    style={[part.featureWrapper, part.marginTop]}
                                                     onPress={() =>
                                                         this.props.navigation.navigate('ThePostInNewFeed',
                                                             item.group
@@ -381,12 +381,15 @@ class NewFeedContainer extends Component {
                                                                 }
                                                         )}
                                                 >
-                                                    <FastImage
-                                                        style={[part.imageInFeature]}
-                                                        source={{uri: item.image_url}}
-                                                    />
+                                                    <View style={[part.imageInFeature, part.shadow]}>
+                                                        <FastImage
+                                                            style={[part.imageInFeature]}
+                                                            source={{uri: item.image_url}}
+                                                        />
+                                                    </View>
+
                                                     <LinearGradient
-                                                        colors={['transparent', 'black']}
+                                                        colors={['transparent', color.transparentBlack]}
                                                         style={part.wrapperTitleFeature}>
                                                         <Text
                                                             numberOfLines={2}
@@ -395,7 +398,7 @@ class NewFeedContainer extends Component {
                                                             {this.textTopShow()}
                                                         </Text>
                                                         <CardItem style={[part.cardButtonFeature, part.noPadding]}>
-                                                            <Left >
+                                                            <Left>
                                                                 <Button
                                                                     transparent style={part.paddingRight}
                                                                 >
@@ -406,20 +409,22 @@ class NewFeedContainer extends Component {
                                                                 </Button>
                                                                 <Button transparent style={part.paddingRight}
                                                                 >
-                                                                    <Icon name="fontawesome|comment" size={size.describe}
+                                                                    <Icon name="fontawesome|comment"
+                                                                          size={size.describe}
                                                                           color={color.navTitle}/>
                                                                     <Text
                                                                         style={[part.describeLight, part.paddingLeft]}>{item.comments_count}</Text>
                                                                 </Button>
                                                                 <Button transparent style={part.paddingRight}>
-                                                                    <Icon name="materialCommunity|eye" size={size.describe + 3}
+                                                                    <Icon name="materialCommunity|eye"
+                                                                          size={size.describe + 3}
                                                                           color={color.navTitle}/>
                                                                     <Text
                                                                         style={[part.describeLight, part.paddingLeft]}>{item.views_count}</Text>
                                                                 </Button>
                                                             </Left>
                                                             <Right>
-                                                                <Button transparent style={{marginRight: 20}}>
+                                                                <Button transparent style={{marginRight: 43}}>
                                                                     <Icon name="fontawesome|star" size={size.iconNormal}
                                                                           color={color.star}/>
                                                                 </Button>

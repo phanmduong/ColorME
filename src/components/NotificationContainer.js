@@ -111,7 +111,6 @@ class NotificationContainer extends Component {
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <View style={part.wrapperStatusBarNoPadding}>
                 </View>
-
                 <Content
                     refreshControl={
                         <RefreshControl
