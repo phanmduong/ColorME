@@ -280,16 +280,17 @@ class NewFeedContainer extends Component {
                                 itemTextStyle={part.titleSmallDarkGrayBold}
                                 renderHeader={backAction =>
                                     <Header
-                                        iosBarStyle='light-content'
-                                        style={[{backgroundColor: color.main}, part.noBorder]}>
+                                        iosBarStyle='dark-content'
+                                        style={[part.noBorder, {backgroundColor: color.backGround}]}
+                                        >
                                         <Left>
                                             <TouchableOpacity onPress={backAction}>
-                                                <Icon name="entypo|chevron-thin-left" color={color.navTitle}
+                                                <Icon name="entypo|chevron-thin-left" color={color.text}
                                                       size={size.iconBig}/>
                                             </TouchableOpacity>
                                         </Left>
                                         <Body style={{flex: 3}}>
-                                        <Text style={part.titleNormalLight}>Chọn kiểu xem</Text>
+                                            <Text style={part.titleNormalDarkGray}>Chọn kiểu xem</Text>
                                         </Body>
                                         <Right/>
                                     </Header>}

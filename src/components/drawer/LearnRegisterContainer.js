@@ -140,9 +140,9 @@ class LearnRegisterContainer extends Component {
                                         source={{uri: item.avatar_url}}/>
                                     <Body style={part.noBorder}>
                                     <Text style={part.titleSmallBlue}>Lớp {item.name}</Text>
-                                    <Text style={part.titleSmallDarkGrayBold}>{item.study_time}</Text>
-                                    <Text style={part.titleSmallDarkGrayBold}>{item.address}</Text>
-                                    <Text style={part.titleSmallDarkGrayBold}>{item.description}</Text>
+                                    <Text style={part.titleSmallDarkGrayThin}>{item.study_time}</Text>
+                                    <Text style={part.titleSmallDarkGrayThin}>{item.address}</Text>
+                                    <Text style={part.titleSmallDarkGrayThin}>{item.description}</Text>
                                     {this.buttonRegister(item, item.status, item.isEnrolled)}
                                     </Body>
                                 </View>

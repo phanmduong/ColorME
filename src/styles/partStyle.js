@@ -81,6 +81,16 @@ const part = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: color.text,
     },
+    wrapperAvatarInDrawer:{
+        justifyContent: 'center',
+        width: wid * 2 / 12,
+        flex: 1,
+    },
+    wrapperTextInDrawer:{
+        justifyContent: 'center',
+        width: wid * 7 / 12,
+        flex: 1,
+    },
     wrapperImageInGetFull: {
         position: 'relative',
         width: wid,
@@ -332,9 +342,9 @@ const part = StyleSheet.create({
         backgroundColor: color.icon,
     },
     avatarUserInDrawer: {
-        width: size.wid / 4,
-        height: size.wid / 4,
-        borderRadius: size.wid / 8,
+        width: size.wid / 5,
+        height: size.wid / 5,
+        borderRadius: size.wid / 10,
         backgroundColor: color.icon,
     },
     avatarUserSmall: {
@@ -422,7 +432,13 @@ const part = StyleSheet.create({
         fontFamily: 'Montserrat',
         fontSize: size.titleSmall,
         color: color.darkGray,
-        fontWeight: '500',
+        fontWeight: '600',
+    },
+    titleSmallDarkGrayThin: {
+        fontFamily: 'Montserrat',
+        fontSize: size.titleSmall,
+        color: color.darkGray,
+        fontWeight: '400',
     },
 
     titleGrayThin: {
@@ -469,7 +485,13 @@ const part = StyleSheet.create({
     },
     titleNormalLight: {
         fontFamily: 'Montserrat',
-        fontSize: size.title,
+        fontSize: 11,
+        color: color.navTitle,
+        fontWeight: '500'
+    },
+    titleBigLight: {
+        fontFamily: 'Montserrat',
+        fontSize: 15,
         color: color.navTitle,
         fontWeight: '500'
     },
@@ -490,7 +512,7 @@ const part = StyleSheet.create({
     titleNormalDarkGray: {
         fontFamily: 'Montserrat',
         fontSize: size.title,
-        color: color.darkGray,
+        color: color.text,
         fontWeight: '500'
     },
     titleMenuModal: {

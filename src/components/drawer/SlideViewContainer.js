@@ -44,27 +44,16 @@ class SlideViewComponent extends Component {
 
                     <View style={part.tabInDrawer}>
                         <Item style={part.noBorder}>
-                            <Left style={{alignItems: 'center'}}>
+                            <View style={part.wrapperAvatarInDrawer}>
                                 <FastImage style={part.avatarUserInDrawer}
                                            source={{uri: this.props.user.avatar_url}}/>
-                            </Left>
-                            <Body style={{alignItems: 'flex-start'}}>
-                            <Text style={part.titleNormalLight}>{this.props.user.name}</Text>
-                            <TouchableOpacity style={{flexDirection: 'row'}}
-                                              onPress={() => this.logout()}
-                            >
-                                <Text style={part.describeGray} onPress={() => this.logout()}>Đăng xuất&nbsp;</Text>
-                                <Icon name="entypo|arrow-with-circle-right"
-                                      size={18}
-                                      color={color.gray}
-                                />
-                            </TouchableOpacity>
-                            </Body>
+                                <Text style={[part.titleBigLight, {marginTop: 10}]}>{this.props.user.name}</Text>
+                            </View>
                         </Item>
                     </View>
                 </View>
                 <TouchableOpacity
-                    style={[part.itemTabInDrawer,part.marginTop]}
+                    style={[part.itemTabInDrawer, part.marginTop]}
                     onPress={
                         isLoadingCourses
                             ?
@@ -107,6 +96,18 @@ class SlideViewComponent extends Component {
                               color={color.darkGray}/>
                     </View>
                     <Text style={part.describeDarkGray}>Điều khoản sử dụng</Text>
+
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[part.itemTabInDrawer]}
+                    onPress={() => this.logout()}
+                >
+                    <View style={part.wrapperIcon}>
+                        <Icon name="entypo|arrow-with-circle-right"
+                              size={size.iconBig}
+                              color={color.darkGray}/>
+                    </View>
+                    <Text style={part.describeDarkGray}>Đăng xuất</Text>
 
                 </TouchableOpacity>
             </Container>

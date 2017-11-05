@@ -56,10 +56,13 @@ class MyAccountProject extends Component {
                                                                     }
                                                             )}
                                                         >
-                                                            <FastImage
-                                                                style={[part.imageInGrid, part.shadow]}
-                                                                source={{uri: item.thumb_url}}
-                                                            />
+                                                            <View style={[part.imageInGrid, part.shadow]}>
+                                                                <FastImage
+                                                                    style={[part.imageInGrid, part.shadow]}
+                                                                    source={{uri: item.thumb_url}}
+                                                                />
+                                                            </View>
+
                                                         </TouchableOpacity>
                                                     </View>
                                                 )

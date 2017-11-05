@@ -5,7 +5,7 @@ import {
 
 import {
     Body, CardItem, Header, Container, Button,
-    Left, Right, Spinner,
+    Left, Right, Spinner, Item
 } from 'native-base';
 import BackButton from '../../commons/BackButton';
 import part from '../../styles/partStyle';
@@ -42,52 +42,43 @@ class CourseInformation extends Component {
                             <Spinner
                                 color={color.gray}/>
                         </View>
+                        // courseInformation.image_url
                         :
                         <ParallaxScrollView
                             backgroundColor={color.backGround}
                             showsVerticalScrollIndicator={false}
                             headerBackgroundColor={color.backGround}
                             stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
-                            parallaxHeaderHeight={size.PARALLAX_HEADER_HEIGHT_COURSE_INFORMATION}
+                            parallaxHeaderHeight={110}
                             backgroundSpeed={10}
-                            renderBackground={() =>
-                                <View style={part.wrapperImageInCourseInformation}>
+                            renderBackground={() => (
+                                <View style={part.wrapperImageInGetFull}>
                                     <View key="background">
-                                        {
-
-                                            <View>
-                                                <Image
-                                                    resizeMode={'cover'}
-                                                    source={{
-                                                        uri: courseInformation.image_url,
-                                                        width: size.wid,
-                                                        height: size.PARALLAX_HEADER_HEIGHT_COURSE_INFORMATION
-                                                    }}/>
-                                            </View>
-                                        }
-                                        <View style={{
-                                            position: 'absolute',
-                                            top: 0,
-                                            width: size.wid,
-                                            backgroundColor: 'rgba(0,0,0,0)',
-                                            height: size.PARALLAX_HEADER_HEIGHT_COURSE_INFORMATION
-                                        }}/>
-                                    </View>
-                                    <View style={part.iconInDrawer}>
-                                        <Right style={{left: 10}}>
-
-                                        </Right>
                                     </View>
                                 </View>
-                            }
+                            )}
+                            renderForeground={() => (
+                                <View key="parallax-header" style={[parallaxStyle.parallaxHeaderTitle]}>
+                                    <View style={{marginBottom: 20}}>
+                                        <CardItem style={[part.cardHeader, part.noPaddingTopBottom]}>
+                                            <Item style={part.noBorder}>
+                                                <Text style={part.titlePost}>
+                                                    {courseInformation.name}
+                                                </Text>
+                                            </Item>
+                                        </CardItem>
+                                    </View>
+
+                                </View>
+                            )}
                             renderStickyHeader={() => (
                                 <View key="sticky-header" style={parallaxStyle.stickySection}>
                                     <View style={part.iconInDrawerNav}>
                                         <Left style={{flexDirection: 'row', marginTop: 20,}}>
-                                            <Body >
-                                                <Text style={part.titleSmallDarkGrayBold}>
-                                                    {courseInformation.name}
-                                                </Text>
+                                            <Body>
+                                            <Text style={part.titleSmallDarkGrayBold}>
+                                                {courseInformation.name}
+                                            </Text>
                                             </Body>
                                         </Left>
                                     </View>
@@ -101,11 +92,20 @@ class CourseInformation extends Component {
                                 </View>
                             )}
                         >
+                            <View style={{marginBottom: 20}}>
+                                <Image
+                                    resizeMode={'cover'}
+                                    source={{
+                                        uri: courseInformation.image_url,
+                                        width: size.wid,
+                                        height: size.PARALLAX_HEADER_HEIGHT_USER
+                                    }}/>
+                            </View>
                             <WebViewAutoHeight source={courseInformation.detail ? courseInformation.detail : ''}/>
                         </ParallaxScrollView>
                 }
                 <Button full style={{backgroundColor: color.main}}
-                    onPress={() => navigate('LearnRegister', {classes: courseInformation.classes})}
+                        onPress={() => navigate('LearnRegister', {classes: courseInformation.classes})}
                 >
                     <Text style={part.titleNormalLight}>Đăng ký ngay</Text>
                 </Button>

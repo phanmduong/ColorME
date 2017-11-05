@@ -11,12 +11,12 @@ export default class RulesContainer extends Component {
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <Header
                     style={part.navTop}
-                    iosBarStyle='light-content'
+                    iosBarStyle='dark-content'
                 >
                     <Left style={{flexDirection: 'row'}}>
                         <BackButtonHeader goBack={goBack}/>
                         <Body>
-                            <Text style={part.titleNormalLightNav}>Điều khoản sử dụng</Text>
+                            <Text style={part.titleSmallDark}>Điều khoản sử dụng</Text>
                         </Body>
                     </Left>
 
