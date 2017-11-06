@@ -27,8 +27,8 @@ class SlideViewComponent extends Component {
         this.props.navigation.navigate('Login');
     }
     handleClick () {
-        Linking.canOpenURL('itms-apps://itunes.apple.com/us/app/id/1294068461?mt=8').then(supported => {
-            supported && Linking.openURL('itms-apps://itunes.apple.com/us/app/id/1294068461?mt=8');
+        Linking.canOpenURL('itms-apps://itunes.apple.com/app/viewContentsUserReviews?id=1294068461').then(supported => {
+            supported && Linking.openURL('itms-apps://itunes.apple.com/app/viewContentsUserReviews?id=1294068461');
         }, (err) => console.log(err));
     }
    alertRatingApp(){

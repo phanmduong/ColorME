@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -751,6 +752,11 @@
 				712D09169B1A4796B991FD8E /* libFastImage.a */,
 				D6A080BE79A94F5CB01368DF /* libRNImagePicker.a */,
 				9BFF3E16712D4EE48A646573 /* libRCTRefreshControl.a */,
+				D841ECC0F54B4FA4A839C547 /* libBVLinearGradient.a */,
+				E2B47AC2C52D418097326501 /* libCodePush.a */,
+				05A5AF89330F45B2A72495E7 /* libRNMobileCenter.a */,
+				E6E384C3B0EF497EA0456A6B /* libRNAnalytics.a */,
+				9BC289CD1D074A2997B5EDE9 /* libRNCrashes.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1998,6 +2004,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 6BZ59393SB;
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
@@ -2032,6 +2039,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6BZ59393SB;
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",

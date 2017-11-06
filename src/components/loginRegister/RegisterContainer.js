@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, TouchableOpacity, View} from 'react-native'
+import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, TouchableOpacity, View, StatusBar} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, Left, CheckBox, Body, Header} from 'native-base';
 import BackButton from '../../commons/BackButton';
@@ -43,7 +43,9 @@ class RegisterContainer extends Component {
         const {goBack} = this.props.navigation;
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
-                <Header iosBarStyle='light-content'/>
+                <StatusBar
+                    barStyle="light-content"
+                />
                 <View style={styles.wrapperColorME}>
                     <Text style={styles.textColor}>Color</Text>
                     <Text style={styles.textME}>ME</Text>

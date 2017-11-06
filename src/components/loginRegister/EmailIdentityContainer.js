@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {KeyboardAvoidingView, Text, TouchableOpacity, View, Alert} from 'react-native'
+import {KeyboardAvoidingView, Text, TouchableOpacity, View, Alert, StatusBar} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, Left, Header, Button} from 'native-base';
 import * as color from '../../styles/color';
@@ -25,7 +25,9 @@ export default class EmailIdentityContainer extends Component {
         const {goBack} = this.props.navigation;
         return (
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
-                <Header iosBarStyle='dark-content'/>
+                <StatusBar
+                    barStyle="light-content"
+                />
 
                 <View style={styles.wrapperColorME}>
                     <Text style={styles.textColor}>Color</Text>

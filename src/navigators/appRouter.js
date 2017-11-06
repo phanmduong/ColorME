@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {
-    DrawerItems, TouchableOpacity,StatusBar,View
+    DrawerItems, TouchableOpacity, StatusBar, View
 } from 'react-native';
-import {TabNavigator, StackNavigator, DrawerNavigator,addNavigationHelpers} from 'react-navigation';
+import {TabNavigator, StackNavigator, DrawerNavigator, addNavigationHelpers} from 'react-navigation';
 import Icon from '../commons/Icon';
 import * as color from '../styles/color';
 import * as size from '../styles/size';
@@ -129,7 +129,7 @@ const NotificationStackNavigator = StackNavigator(
         NotificationStack: {screen: NotificationContainer},
         UserInNotification: {screen: UserContainer},
         ThePostInNotification: {screen: InfoAboutPostContainer, navigationOptions: {tabBarVisible: false}},
-    },  StackNavigatorStyle
+    }, StackNavigatorStyle
 );
 
 const SearchStackNavigator = StackNavigator(
@@ -149,7 +149,7 @@ const MyAccountStackNavigator = StackNavigator(
 const Course = StackNavigator(
     {
         CourseList: {screen: CourseContainer},
-        CourseInFormation: {screen: CourseInformation, navigationOptions: {tabBarVisible: false,} },
+        CourseInFormation: {screen: CourseInformation, navigationOptions: {tabBarVisible: false,}},
         LearnRegister: {screen: LearnRegisterContainer, navigationOptions: {tabBarVisible: false,}},
     }, StackNavigatorStyle
 );
@@ -239,7 +239,7 @@ const Main = StackNavigator(
     }, {headerMode: 'none'}
 );
 
- export const Start = StackNavigator(
+export const Start = StackNavigator(
     {
         Login: {screen: LoginContainer},
         RegisterContainer: {screen: RegisterContainer,},
@@ -248,5 +248,8 @@ const Main = StackNavigator(
         CodeIdentityContainer: {screen: CodeIdentityContainer,},
         RulesContainer: {screen: RulesContainer},
         Main: {screen: Main,}
-    }, StackNavigatorStyle
+    }, {
+        ...StackNavigatorStyle,
+        headerMode: 'none'
+    }
 );
