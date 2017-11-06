@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
-import {AppRegistry, Modal, PanResponder, View, Text} from 'react-native';
+import {AppRegistry, Modal, PanResponder, StyleSheet, Text, View, Dimensions} from 'react-native';
 import App from './src/App';
 import CodePush from 'react-native-code-push';
 import * as color from './src/styles/color';
 import * as Progress from 'react-native-progress'
+import  part from './src/styles/partStyle';
 export default class ColorMe extends Component {
     constructor() {
         super()
@@ -33,7 +34,7 @@ export default class ColorMe extends Component {
                         this.setState({isDownLoading: true, isInstalled: false, modalUpdate: true});
                         break;
                     case CodePush.SyncStatus.INSTALLING_UPDATE :
-                        this.setState({isDownLoading: false, isInstalled: true, modalUpdate : true});
+                        this.setState({isDownLoading: false, isInstalled: true, modalUpdate: true});
                         break;
                     case CodePush.SyncStatus.UPDATE_INSTALLED :
                         this.setState({isDownLoading: true, isInstalled: true, modalUpdate: false});
@@ -52,10 +53,10 @@ export default class ColorMe extends Component {
 
     checkUpdate() {
         if (this.state.isDownLoading && this.state.isInstalled == false) {
-            return "Đang tải...";
+            return "Đang tải..." + parseInt((this.state.downloadUpdate)) + "%";
         }
         if (this.state.isDownLoading == false && this.state.isInstalled) {
-            return "Đang cài đặt...";
+            return "Đang cài đặt..." + parseInt((this.state.downloadUpdate)) + "%" ;
         }
         if (this.state.isDownLoading && this.state.isInstalled) {
             return "Cập nhật thành công "
@@ -79,24 +80,43 @@ export default class ColorMe extends Component {
                     transparent={true}
                     visible={this.state.modalUpdate}
                     position={'center'}
-                    style={{flex : 1,justifyContent: 'center', alignItems: 'center', height: '200', width: '200'}}
-                    {...this.panResponder.panHandlers}
                 >
-                        <Progress.Bar
-                            progress={this.state.downloadUpdate}
-                            color={color.main}
-                            animationType = {"spring"}
-                            width = {150}
-                            height = {6}
-                        />
-                        <Text style = {{fontSize : 20, marginTop: 20 }}>{this.checkUpdate()}</Text>
+                    <View style={styles.wrapperModalComment}
+                          {...this.panResponder.panHandlers}>
+                        <View style={styles.modalComment}>
+                    <Progress.Bar
+                        progress={this.state.downloadUpdate}
+                        color={color.main}
+                        animationType={"spring"}
+                        width= {Dimensions.get('window').width * 0.4 }
+                        height={6}
+
+                    />
+                    <Text style={{fontSize: 20, marginTop: 20}}>{this.checkUpdate()}</Text>
+                        </View>
+                    </View>
                 </Modal>
             </View>
 
         )
     }
 }
-
+let styles = StyleSheet.create({
+    wrapperModalComment : {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    modalComment : {
+        borderRadius: 10,
+        width: Dimensions.get('window').width * 0.5,
+        height: Dimensions.get('window').height * 0.3,
+        backgroundColor: color.backGround,
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+})
 console.disableYellowBox = true;
 let codePushOptions = {checkFrequency: CodePush.CheckFrequency.MANUAL};
 ColorMe = CodePush(codePushOptions)(ColorMe);
