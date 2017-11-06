@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {AppRegistry, Modal, PanResponder, View, Text} from 'react-native';
 import App from './src/App';
-import codePush from 'react-native-code-push';
+import CodePush from 'react-native-code-push';
 import * as color from './src/styles/color';
 import * as Progress from 'react-native-progress'
 export default class ColorMe extends Component {
@@ -23,29 +23,30 @@ export default class ColorMe extends Component {
     }
 
     componentDidMount() {
-        codePush.sync({
+        CodePush.sync({
                 updateDialog: true,
-                installMode: codePush.InstallMode.IMMEDIATE
+                installMode: CodePush.InstallMode.IMMEDIATE
             },
-            function (status) {
+            (status) => {
                 switch (status) {
-                    case codePush.SyncStatus.DOWNLOADING_PACKAGE:
+                    case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
                         this.setState({isDownLoading: true, isInstalled: false, modalUpdate: true});
                         break;
-                    case codePush.SyncStatus.INSTALLING_UPDATE :
-                        this.setState({isDownLoading: false, isInstalled: true});
+                    case CodePush.SyncStatus.INSTALLING_UPDATE :
+                        this.setState({isDownLoading: false, isInstalled: true, modalUpdate : true});
                         break;
-                    case codePush.SyncStatus.UPDATE_INSTALLED :
+                    case CodePush.SyncStatus.UPDATE_INSTALLED :
                         this.setState({isDownLoading: true, isInstalled: true, modalUpdate: false});
                     default :
                         break;
                 }
             },
 
-            // /* ham tinh muc do download */
-            // ({receivedBytes, totalBytes}) => {
-            //     this.setState({downloadUpdate: (receivedBytes / totalBytes) * 100});
-            // }
+
+            /* ham tinh muc do download */
+            ({receivedBytes, totalBytes}) => {
+                this.setState({downloadUpdate: (receivedBytes / totalBytes) * 100});
+            }
         );
     }
 
@@ -77,22 +78,18 @@ export default class ColorMe extends Component {
                     animationType="fade"
                     transparent={true}
                     visible={this.state.modalUpdate}
-                    style={{justifyContent: 'center', alignItems: 'center', height: '300', width: '300'}}
                     position={'center'}
+                    style={{flex : 1,justifyContent: 'center', alignItems: 'center', height: '200', width: '200'}}
+                    {...this.panResponder.panHandlers}
                 >
-                    <View
-                        style={{justifyContent: 'center', alignItems: 'center', height: '300', width: '300'}}
-                        {...this.panResponder.panHandlers}
-                    >
                         <Progress.Bar
                             progress={this.state.downloadUpdate}
                             color={color.main}
                             animationType = {"spring"}
-                            width = {200}
+                            width = {150}
                             height = {6}
                         />
                         <Text style = {{fontSize : 20, marginTop: 20 }}>{this.checkUpdate()}</Text>
-                    </View>
                 </Modal>
             </View>
 
@@ -101,6 +98,6 @@ export default class ColorMe extends Component {
 }
 
 console.disableYellowBox = true;
-let codePushOptions = {checkFrequency: codePush.CheckFrequency.ON_APP_RESUME};
-ColorMe = codePush(codePushOptions)(ColorMe);
+let codePushOptions = {checkFrequency: CodePush.CheckFrequency.MANUAL};
+ColorMe = CodePush(codePushOptions)(ColorMe);
 AppRegistry.registerComponent('colorME', () => ColorMe);

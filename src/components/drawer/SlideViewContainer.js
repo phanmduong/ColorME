@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    View, Text, TouchableOpacity, StatusBar,
+    View, Text, TouchableOpacity, StatusBar,Linking,Alert
 } from 'react-native';
 import {
     Container, Item, CardItem, Button,
@@ -17,7 +17,6 @@ import * as sideNavAction from '../../actions/sideNavAction';
 import * as courseAction from '../../actions/courseAction';
 import FastImage from 'react-native-fast-image';
 
-
 class SlideViewComponent extends Component {
     componentWillMount() {
         this.props.sideNavAction.getSideNav(this.props.user.id);
@@ -27,6 +26,23 @@ class SlideViewComponent extends Component {
         this.props.logoutAction.logout();
         this.props.navigation.navigate('Login');
     }
+    handleClick () {
+        Linking.canOpenURL('itms-apps://itunes.apple.com/us/app/id/1294068461?mt=8').then(supported => {
+            supported && Linking.openURL('itms-apps://itunes.apple.com/us/app/id/1294068461?mt=8');
+        }, (err) => console.log(err));
+    }
+   alertRatingApp(){
+       Alert.alert(
+           'Bạn thấy thế nào với sản phẩm này ?',
+           'Đánh giá và gửi phản hồi lại cho chúng tôi ',
+           [
+               {text: 'Xác nhận', onPress: () => this.handleClick() },
+               {text: 'Nhắc lại sau '},
+           ],
+           {cancelable: false}
+       )
+   }
+
 
     render() {
         const {isLoadingCourses} = this.props;
@@ -88,6 +104,18 @@ class SlideViewComponent extends Component {
                               color={color.darkGray}/>
                     </View>
                     <Text style={part.describeDarkGray}>Đăng xuất</Text>
+
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[part.itemTabInDrawer]}
+                    onPress={() => this.alertRatingApp()}
+                >
+                    <View style={part.wrapperIcon}>
+                        <Icon name="fontawesome|star"
+                              size={size.iconBig}
+                              color={color.darkGray}/>
+                    </View>
+                    <Text style={part.describeDarkGray}>Đánh giá sản phẩm </Text>
 
                 </TouchableOpacity>
             </Container>
