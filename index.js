@@ -88,7 +88,7 @@ export default class ColorMe extends Component {
                         progress={this.state.downloadUpdate}
                         color={color.main}
                         animationType={"spring"}
-                        width= {Dimensions.get('window').width * 0.3 }
+                        width= {Dimensions.get('window').width * 0.4 }
                         height={6}
 
                     />
