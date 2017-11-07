@@ -20,7 +20,6 @@ class GridView extends Component {
 
     render() {
         let item = this.props.post;
-        console.log(this.props.post);
         return (
             <View style={[part.wrapperGridImage]}>
                 <TouchableOpacity

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {
-    DrawerItems, TouchableOpacity, StatusBar, View
+    DrawerItems, TouchableOpacity,StatusBar,View
 } from 'react-native';
-import {TabNavigator, StackNavigator, DrawerNavigator, TabView} from 'react-navigation';
+import {TabNavigator, StackNavigator, DrawerNavigator,addNavigationHelpers} from 'react-navigation';
 import Icon from '../commons/Icon';
 import * as color from '../styles/color';
 import * as size from '../styles/size';
@@ -41,16 +41,12 @@ import PostLiker from '../components/newFeed/PostLiker';
 
 
 export const TabNavigatorBottomStyle = {
-    tabBarComponent: TabView.TabBarBottom,
     initialRouteName: 'NewFeed',
     tabBarPosition: 'bottom',
-    height: 300,
-
     tabBarOptions: {
         activeTintColor: color.darkGray,
         inactiveTintColor: color.icon,
         style: {
-            height: 300,
             backgroundColor: color.navTitle,
         },
         showLabel: false,
@@ -61,6 +57,40 @@ const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
     },
+};
+
+const HomeStackStyle = {
+    navigationOptions: ({navigation}) => ({
+        headerStyle: {
+            backgroundColor: color.main,
+            borderBottomWidth: 0,
+            height: 60,
+        },
+        headerTitleStyle: {
+            fontFamily: 'Segoe UI',
+            color: color.navTitle,
+        },
+        headerRight: (
+            <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+                <Icon
+                    name="materialCommunity|menu"
+                    color={color.darkGray}
+                    size={size.iconGiant}
+                    style={{paddingLeft: 15, paddingRight: 15}}
+                />
+            </TouchableOpacity>
+        ),
+        // headerLeft: (
+        //     <TouchableOpacity onPress={() => navigation.navigate('')}>
+        //         <Icon name="entypo|chat"
+        //               color={color.navTitle}
+        //               size={size.iconGiant}
+        //               style={{paddingLeft: 15, paddingRight: 15}}
+        //
+        //         />
+        //     </TouchableOpacity>
+        // ),
+    }),
 };
 
 const ThePostInNewFeed = StackNavigator(
@@ -99,7 +129,7 @@ const NotificationStackNavigator = StackNavigator(
         NotificationStack: {screen: NotificationContainer},
         UserInNotification: {screen: UserContainer},
         ThePostInNotification: {screen: InfoAboutPostContainer, navigationOptions: {tabBarVisible: false}},
-    }, StackNavigatorStyle
+    },  StackNavigatorStyle
 );
 
 const SearchStackNavigator = StackNavigator(
@@ -119,7 +149,7 @@ const MyAccountStackNavigator = StackNavigator(
 const Course = StackNavigator(
     {
         CourseList: {screen: CourseContainer},
-        CourseInFormation: {screen: CourseInformation, navigationOptions: {tabBarVisible: false,}},
+        CourseInFormation: {screen: CourseInformation, navigationOptions: {tabBarVisible: false,} },
         LearnRegister: {screen: LearnRegisterContainer, navigationOptions: {tabBarVisible: false,}},
     }, StackNavigatorStyle
 );
@@ -209,17 +239,14 @@ const Main = StackNavigator(
     }, {headerMode: 'none'}
 );
 
-export const Start = StackNavigator(
+ export const Start = StackNavigator(
     {
         Login: {screen: LoginContainer},
         RegisterContainer: {screen: RegisterContainer,},
         EmailIdentityContainer: {screen: EmailIdentityContainer,},
-        CodeIdentityContainer: {screen: CodeIdentityContainer,},
         ResetPasswordContainer: {screen: ResetPasswordContainer,},
+        CodeIdentityContainer: {screen: CodeIdentityContainer,},
         RulesContainer: {screen: RulesContainer},
         Main: {screen: Main,}
-    }, {
-        ...StackNavigatorStyle,
-        headerMode: 'none'
-    }
+    }, StackNavigatorStyle
 );

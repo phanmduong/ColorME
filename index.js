@@ -111,7 +111,7 @@ let styles = StyleSheet.create({
     modalUpdate : {
         borderRadius: 10,
         width: Dimensions.get('window').width * 0.5,
-        height: Dimensions.get('window').height * 0.3,
+        height: Dimensions.get('window').height * 0.2,
         backgroundColor: color.backGround,
         justifyContent: 'center',
         alignItems: 'center',
