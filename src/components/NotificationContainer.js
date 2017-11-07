@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    Text, TouchableOpacity, View, FlatList, RefreshControl, Platform, StatusBar
+    Text, TouchableOpacity, View, FlatList, Image, RefreshControl, Platform, StatusBar
 } from 'react-native';
 
 import {
@@ -12,7 +12,6 @@ import * as color from '../styles/color';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux';
 import * as getNotificationAction from '../actions/notificationAction';
-import FastImage from 'react-native-fast-image';
 
 class NotificationContainer extends Component {
     constructor() {
@@ -155,7 +154,7 @@ class NotificationContainer extends Component {
                                         <TouchableOpacity
                                             activeOpacity={0.8}
                                         >
-                                            <FastImage
+                                            <Image
                                                 style={part.avatarUserNormalSquare}
                                                 source={{uri: item.actor.avatar_url}}/>
                                         </TouchableOpacity>

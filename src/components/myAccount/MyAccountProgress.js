@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    FlatList, View
+    FlatList, View, Image
 } from 'react-native';
 import {
     Container, Card, CardItem, Text, Left, Body, Spinner
@@ -8,7 +8,6 @@ import {
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
-import FastImage from 'react-native-fast-image';
 
 class MyAccountProgress extends Component {
     render() {
@@ -45,7 +44,7 @@ class MyAccountProgress extends Component {
                                                 <CardItem
                                                     style={[part.noBorder, part.cardProgress, part.haveBorderBottom]}>
                                                     <Left>
-                                                        <FastImage style={part.avatarUserNormal}
+                                                        <Image style={part.avatarUserNormal}
                                                                    source={{uri: item.icon_url}}/>
                                                         <Body>
                                                         <Text style={part.titleSmallDarkGrayBold}>{item.name}</Text>

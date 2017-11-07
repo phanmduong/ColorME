@@ -7,7 +7,6 @@ import {
     Text, Left, Body, Right, Item,
 } from 'native-base';
 import part from '../../styles/partStyle';
-import FastImage from 'react-native-fast-image';
 
 class searchProduct extends Component {
     constructor() {

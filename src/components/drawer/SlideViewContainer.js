@@ -15,7 +15,6 @@ import {bindActionCreators} from 'redux';
 import * as logoutAction from '../../actions/logoutAction';
 import * as sideNavAction from '../../actions/sideNavAction';
 import * as courseAction from '../../actions/courseAction';
-import FastImage from 'react-native-fast-image';
 
 class SlideViewComponent extends Component {
     componentWillMount() {

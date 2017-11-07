@@ -8,7 +8,6 @@ import {
 } from 'native-base';
 import Video from 'react-native-video';
 import part from '../../styles/partStyle';
-import FastImage from 'react-native-fast-image';
 
 class GridView extends Component {
     shouldComponentUpdate(nextProps) {

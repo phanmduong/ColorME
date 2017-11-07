@@ -10,7 +10,6 @@ import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
-import FastImage from 'react-native-fast-image'
 
 class GroupTopics extends Component {
     render() {
@@ -71,7 +70,7 @@ class GroupTopics extends Component {
                                                 <CardItem cardBody style={part.card}>
                                                     <TouchableOpacity>
                                                         <Body>
-                                                        <FastImage
+                                                        <Image
                                                             resizeMode={'cover'}
                                                             source={{uri: item.avatar_url}}
                                                             style={part.imageTopic}

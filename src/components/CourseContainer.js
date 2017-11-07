@@ -9,7 +9,6 @@ import {
 } from 'native-base';
 import part from '../styles/partStyle';
 import * as color from '../styles/color'
-import FastImage from 'react-native-fast-image';
 import * as courseAction from '../actions/courseAction';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
