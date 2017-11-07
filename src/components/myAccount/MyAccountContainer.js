@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    TouchableOpacity, View
+    TouchableOpacity, View, Platform
 } from 'react-native';
 import {
     Body, Container, Spinner, Content, Header,
@@ -134,7 +134,8 @@ class MyAccountContainer extends Component {
                                               color={color.gray}
                                               style={part.paddingIcon}
                                         />
-                                        <Text style={[part.describeGray, part.paddingRightFar]}>{sideNav.project_count}</Text>
+                                        <Text
+                                            style={[part.describeGray, part.paddingRightFar]}>{sideNav.project_count}</Text>
                                     </View>
                                     <View style={[part.wrapperRowCenter]}>
                                         <Icon name="fontawesome|heart"
@@ -142,7 +143,8 @@ class MyAccountContainer extends Component {
                                               color={color.gray}
                                               style={part.paddingIcon}
                                         />
-                                        <Text style={[part.describeGray, part.paddingRightFar]}>{sideNav.project_likes}</Text>
+                                        <Text
+                                            style={[part.describeGray, part.paddingRightFar]}>{sideNav.project_likes}</Text>
                                     </View>
                                     <View style={[part.wrapperRowCenter]}>
                                         <Icon name="entypo|eye"
@@ -150,7 +152,8 @@ class MyAccountContainer extends Component {
                                               color={color.gray}
                                               style={part.paddingIcon}
                                         />
-                                        <Text style={[part.describeGray, part.paddingRightFar]}>{sideNav.project_views}</Text>
+                                        <Text
+                                            style={[part.describeGray, part.paddingRightFar]}>{sideNav.project_views}</Text>
                                     </View>
                                 </Item>
                             </View>
@@ -160,7 +163,10 @@ class MyAccountContainer extends Component {
                     renderStickyHeader={() => (
                         <View key="sticky-header" style={parallaxStyle.stickySection}>
                             <View style={part.iconInDrawerNav}>
-                                <Left style={{flexDirection: 'row', marginTop: 20}}>
+                                <Left style={Platform.OS === 'ios' ? {
+                                    flexDirection: 'row',
+                                    marginTop: 20
+                                } : {flexDirection: 'row'}}>
                                     <Body>
                                     <Text style={part.titleSmallDarkGrayBold}>
                                         {this.props.user.name}
@@ -178,47 +184,47 @@ class MyAccountContainer extends Component {
                         </View>
                     )}
                 >
-                        <View style={part.wrapperTabBarUser}>
-                            <TouchableOpacity
-                                style={part.wrapperTextInTabBarUser}
-                                onPress={() => this.ViewProgress()}
+                    <View style={part.wrapperTabBarUser}>
+                        <TouchableOpacity
+                            style={part.wrapperTextInTabBarUser}
+                            onPress={() => this.ViewProgress()}
+                        >
+                            <Text
+                                style={this.state.tab == 0 ? part.describeDarkGray : part.describeGray}
                             >
-                                <Text
-                                    style={this.state.tab == 0 ? part.describeDarkGray : part.describeGray}
-                                >
-                                    Tiến độ
-                                </Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={part.wrapperTextInTabBarUser}
-                                onPress={() => this.ViewProject()}
+                                Tiến độ
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={part.wrapperTextInTabBarUser}
+                            onPress={() => this.ViewProject()}
+                        >
+                            <Text
+                                style={this.state.tab == 1 ? part.describeDarkGray : part.describeGray}
                             >
-                                <Text
-                                    style={this.state.tab == 1 ? part.describeDarkGray : part.describeGray}
-                                >
-                                    Dự án
-                                </Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={part.wrapperTextInTabBarUser}
-                                onPress={() => this.ViewInformation()}
+                                Dự án
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={part.wrapperTextInTabBarUser}
+                            onPress={() => this.ViewInformation()}
+                        >
+                            <Text
+                                style={this.state.tab == 2 ? part.describeDarkGray : part.describeGray}
                             >
-                                <Text
-                                    style={this.state.tab == 2 ? part.describeDarkGray : part.describeGray}
-                                >
-                                    Thông tin
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
-                        {
-                            this.state.isLoading
-                                ?
-                                <View style={[part.wrapperIsLoading]}>
-                                    <Spinner color={color.gray}/>
-                                </View>
-                                :
-                                this.tab()
-                        }
+                                Thông tin
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    {
+                        this.state.isLoading
+                            ?
+                            <View style={[part.wrapperIsLoading]}>
+                                <Spinner color={color.gray}/>
+                            </View>
+                            :
+                            this.tab()
+                    }
                 </ParallaxScrollView>
             </Container>
         );

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, RefreshControl, TouchableOpacity, View, AsyncStorage, Alert} from 'react-native';
+import {FlatList, RefreshControl, TouchableOpacity, View, AsyncStorage, Alert, Platform} from 'react-native';
 import {
     Body, Button, Card, CardItem, Container, Content, Header, Input, Item, Left, Picker,
     Right, Spinner, Text, Thumbnail,
@@ -240,8 +240,15 @@ class NewFeedContainer extends Component {
         let iconGird = this.state.grid ? "material|view-module" : "material|view-list";
         return (
             <Container style={part.wrapperContainer}>
-                <View style={part.wrapperStatusBarNoPadding}>
-                </View>
+                {
+                    Platform.OS === 'ios'
+                        ?
+                        <View style={part.wrapperStatusBarNoPadding}>
+                        </View>
+                        :
+                        <View/>
+
+                }
                 <Header
                     style={[part.navTopNewFeed, part.noPaddingTop, part.noPadding]}
                     iosBarStyle='dark-content'
@@ -274,7 +281,7 @@ class NewFeedContainer extends Component {
                             {/*/>*/}
                             {/*</TouchableOpacity>*/}
                         </Left>
-                        <View style={{flexDirection: 'row', justifyContent: 'center', alignItems:'center'}}>
+                        <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                             <Picker
                                 itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
                                 itemTextStyle={part.titleSmallDarkGrayBold}
@@ -282,7 +289,7 @@ class NewFeedContainer extends Component {
                                     <Header
                                         iosBarStyle='dark-content'
                                         style={[part.noBorder, {backgroundColor: color.backGround}]}
-                                        >
+                                    >
                                         <Left>
                                             <TouchableOpacity onPress={backAction}>
                                                 <Icon name="entypo|chevron-thin-left" color={color.text}
@@ -290,7 +297,7 @@ class NewFeedContainer extends Component {
                                             </TouchableOpacity>
                                         </Left>
                                         <Body style={{flex: 3}}>
-                                            <Text style={part.titleNormalDarkGray}>Chọn kiểu xem</Text>
+                                        <Text style={part.titleNormalDarkGray}>Chọn kiểu xem</Text>
                                         </Body>
                                         <Right/>
                                     </Header>}

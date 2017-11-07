@@ -35,7 +35,7 @@ class PostLiker extends Component {
                     <Left style={{flexDirection: 'row'}}>
                         <BackButtonHeader goBack={goBack}/>
                         <Body>
-                            <Text style={part.titleNormalLightNav}>Người thích bài viết</Text>
+                        <Text style={part.titleNormalLightNav}>Người thích bài viết</Text>
                         </Body>
                     </Left>
 

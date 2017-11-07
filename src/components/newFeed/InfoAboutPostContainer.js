@@ -8,7 +8,8 @@ import {
     View,
     Alert,
     Modal,
-    PanResponder
+    PanResponder,
+    Platform
 } from 'react-native';
 import {
     List,
@@ -354,7 +355,10 @@ class InfoAboutPostContainer extends Component {
                     renderStickyHeader={() => (
                         <View key="sticky-header" style={parallaxStyle.stickySection}>
                             <View style={part.iconInDrawerNav}>
-                                <Left style={{flexDirection: 'row', marginTop: 20}}>
+                                <Left style={Platform.OS === 'ios' ? {
+                                    flexDirection: 'row',
+                                    marginTop: 20
+                                } : {flexDirection: 'row'}}>
                                     <Body style={{padding: 30}}>
                                     <Text style={part.titleSmallDarkGrayBold} numberOfLines={1}>
                                         {post.title}
@@ -366,7 +370,8 @@ class InfoAboutPostContainer extends Component {
                     )}
                     renderFixedHeader={() => (
                         <View key="fixed-header" style={part.iconInDrawerNav}>
-                            <Left style={{marginTop: 20, flexDirection: 'row'}}>
+                            <Left style={Platform.OS === 'ios' ? {marginTop: 20} : {marginTop: 10}}>
+
                                 <BackButton goBack={goBack}/>
                             </Left>
                         </View>
@@ -572,6 +577,7 @@ class InfoAboutPostContainer extends Component {
                             <Body>
                             <Item rounded>
                                 <Input
+                                    underlineColorAndroid={color.none}
                                     onSubmit={Keyboard.dismiss}
                                     onSubmitEditing={
                                         this.state.comment_content == ''

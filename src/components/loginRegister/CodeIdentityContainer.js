@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
-import {KeyboardAvoidingView, Text, TouchableOpacity, View, StatusBar} from 'react-native'
+import {KeyboardAvoidingView, Text, TouchableOpacity, View, StatusBar, TextInput} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, Left, Header} from 'native-base';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
-import BackButton from '../../commons/BackButton';
+import BackButtonLight from '../../commons/BackButtonLight';
 
 import * as size from '../../styles/size';
 
@@ -15,6 +15,11 @@ export default class CodeIdentityContainer extends Component {
             code: ''
         }
     }
+
+    sendCode(){
+        this.props.navigation.navigate('ResetPasswordContainer')
+    }
+
     render() {
         const {goBack} = this.props.navigation;
         return (
@@ -35,7 +40,7 @@ export default class CodeIdentityContainer extends Component {
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
-                                       color={color.darkGray}
+                                       underlineColorAndroid={color.none}
                                        returnKeyType={'next'}
                                        autoCorrect={false}
                                        onChangeText={(code) => {
@@ -68,7 +73,7 @@ export default class CodeIdentityContainer extends Component {
                 <Text style={styles.textBottom}/>
                 <View style={part.iconInDrawer}>
                     <Left>
-                        <BackButton goBack={goBack}/>
+                        <BackButtonLight goBack={goBack}/>
                     </Left>
                 </View>
 

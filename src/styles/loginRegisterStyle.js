@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     },
     itemButtonLogin: {
         borderBottomWidth: 0,
+        bottom: Platform.OS === 'ios' ? 0 : 10,
     },
     itemInput: {
         width: size.wid - size.wid * 0.3,
@@ -30,18 +31,37 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     textTitleInput: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Light',
         fontSize: 12,
         backgroundColor: color.none,
         paddingLeft: 25,
-        marginTop: 25,
+        marginTop: (Platform.OS === 'ios') ? 25 : 20,
         color: color.main,
-        fontWeight: (Platform.OS === 'ios') ? '600' : 'normal',
+        fontWeight: '600',
     },
     contentForm: {
         backgroundColor: color.navTitle,
         flex: 1,
-        height: size.hei / 2 - 10,
+        height: size.hei / 2,
+        width: size.wid - size.wid * 0.2,
+        borderRadius: 15,
+        elevation: 10,
+        shadowColor: color.gray,
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowRadius: 10,
+        shadowOpacity: 0.4,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        position: 'absolute',
+        marginLeft: size.wid * 0.2,
+    },
+    contentForm2: {
+        backgroundColor: color.navTitle,
+        flex: 1,
+        height: size.hei / 2 + 20,
         width: size.wid - size.wid * 0.2,
         borderRadius: 15,
         elevation: 10,
@@ -59,15 +79,14 @@ const styles = StyleSheet.create({
     },
 
     textAccept: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Light',
         backgroundColor: color.none,
         fontSize: 12,
         color: color.gray,
         fontWeight: 'bold',
     },
     textBottom: {
-        fontFamily: 'Montserrat',
-
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.describe,
         color: color.darkGray,
         fontWeight: '600',
@@ -78,7 +97,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 20,
         color: '#797979',
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Light',
 
         fontSize: size.describe,
     },
@@ -88,7 +107,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         color: color.navTitle,
         fontSize: 13,
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Light',
 
     },
     buttonRegister: {
@@ -102,7 +121,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(197, 0, 0, 1)',
     },
     textME: {
-        fontFamily: 'Segoe UI',
+        fontFamily: (Platform.OS === 'ios') ? 'Segoe UI' : 'SegoeUI-Blank',
         backgroundColor: 'transparent',
         color: color.navTitle,
         fontSize: 100,
@@ -110,7 +129,7 @@ const styles = StyleSheet.create({
         lineHeight: (Platform.OS === 'ios') ? 100 : 70,
     },
     textColor: {
-        fontFamily: 'Segoe UI',
+        fontFamily: (Platform.OS === 'ios') ? 'Segoe UI' : 'SegoeUI-Blank',
         backgroundColor: 'transparent',
         color: color.navTitle,
         fontSize: 35,

@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions, Platform} from 'react-native';
 import * as color from './color';
 import * as size from './size';
 import {wid, hei} from "./size";
@@ -6,8 +6,9 @@ import {wid, hei} from "./size";
 const part = StyleSheet.create({
     // NAV BAR
     navTop: {
-        paddingTop: 20,
-        height: 60,
+
+        paddingTop: (Platform.OS === 'ios') ? 20 : 0,
+        height: (Platform.OS === 'ios') ? 60 : 40,
         borderBottomWidth: 0,
         backgroundColor: color.backGround,
         alignItems: 'center',
@@ -254,8 +255,9 @@ const part = StyleSheet.create({
         backgroundColor: color.none,
         position: 'absolute',
         left: 0,
-        top: 20,
+        top: Platform.OS === 'ios' ? 20 : 0,
     },
+
     iconInDrawerNav: {
         width: wid,
         flexDirection: 'row',
@@ -282,24 +284,30 @@ const part = StyleSheet.create({
         width: 38,
         height: 38,
         borderRadius: 19,
+        color: color.darkGray,
         backgroundColor: color.gray,
     },
 
     // TEXT INPUT
 
     inputTheme01: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.describe,
-        height: 30,
+        lineHeight: 10,
+        height:  (Platform.OS === 'ios') ? 30 : 40,
     },
     inputTheme02: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         height: 30,
+        padding: 0,
+        margin: 0,
         fontSize: 13,
+        lineHeight: 10,
+        color: color.darkGray,
         fontWeight: '400',
     },
     inputTheme03: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: 14,
         lineHeight: 10,
         fontWeight: '400',
@@ -328,30 +336,30 @@ const part = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 25,
-        backgroundColor: color.icon,
+        backgroundColor: color.backGround,
     },
     avatarUserLikeGrid: {
         width: (wid - 24) / 3 -4,
         height: (wid- 24) / 3 -4,
         borderRadius: ((wid- 24) / 3 - 4) / 2,
-        backgroundColor: color.icon,
+        backgroundColor: color.backGround,
     },
     avatarUserNormalSquare: {
         width: 50,
         height: 50,
-        backgroundColor: color.icon,
+        backgroundColor: color.backGround,
     },
     avatarUserInDrawer: {
         width: size.wid / 5,
         height: size.wid / 5,
         borderRadius: size.wid / 10,
-        backgroundColor: color.icon,
+        backgroundColor: color.backGround,
     },
     avatarUserSmall: {
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: color.icon,
+        backgroundColor: color.backGround,
     },
 
     image: {
@@ -410,113 +418,113 @@ const part = StyleSheet.create({
     },
 
     titleLargeDarkBold: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: 30,
         fontWeight: 'bold',
         color: color.text,
     },
     titleProfile: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: 16,
         color: color.darkGray,
     },
 
     titleSmallDarkBold: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.titleSmall,
         color: color.text,
         fontWeight: '700',
     },
 
     titleSmallDarkGrayBold: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.titleSmall,
         color: color.darkGray,
         fontWeight: '600',
     },
     titleSmallDarkGrayThin: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.titleSmall,
         color: color.darkGray,
         fontWeight: '400',
     },
 
     titleGrayThin: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.titleNormal,
         color: color.gray,
         fontWeight: '400',
     },
     titleGrayRules: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: 12,
         color: color.gray,
         fontWeight: '400',
     },
     titleDarkGrayThin: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.titleNormal,
         color: '#3a3a3a',
         fontWeight: '500',
     },
     titleDarkBold: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.titleNormal,
         color: color.text,
         fontWeight: '700',
     },
     titleDark: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.titleNormal,
         color: color.text,
         fontWeight: '600',
     },
     titleSmallBlue: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.titleSmall,
         color: color.titleBlue,
         fontWeight: '600',
     },
     titleSmallDarkGray: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.titleSmall,
         color: color.darkGray,
         fontWeight: '600',
     },
     titleNormalLight: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: 11,
         color: color.navTitle,
         fontWeight: '500'
     },
     titleBigLight: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: 15,
         color: color.navTitle,
         fontWeight: '500'
     },
     titleNormalLightNav: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.title,
         color: color.navTitle,
         fontWeight: '500',
         marginLeft: -50,
     },
     titleSmallDark: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.titleSmall,
         color: color.darkGray,
         fontWeight: '500',
         marginLeft: -50,
     },
     titleNormalDarkGray: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.title,
         color: color.text,
         fontWeight: '500'
     },
     titleMenuModal: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         paddingTop: 20,
         paddingBottom: 20,
         paddingLeft: 10,
@@ -526,48 +534,48 @@ const part = StyleSheet.create({
         fontWeight: '500'
     },
     describeDark: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.describe,
         color: color.text,
         fontWeight: '400',
     },
     describeDarkGray: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.describe,
         color: color.darkGray,
         fontWeight: '400',
     },
     describeGray: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.describe,
         color: color.gray,
         fontWeight: '400',
     },
     describeLight: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.describe,
         color: color.navTitle,
         fontWeight: '400',
     },
     describeLightGray: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.describe,
         color: color.lightGray,
         fontWeight: '400',
     },
     describeItalicDark: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: size.describe,
         color: color.gray,
         fontWeight: '400',
     },
     describeInImage: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         fontSize: 12,
         color: color.gray,
     },
     textInImage: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         width: wid,
         padding: 10,
         fontSize: 12,
@@ -590,19 +598,19 @@ const part = StyleSheet.create({
         right: 20,
     },
     titleInImage: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         color: color.darkGrayText,
         fontSize: 12,
         fontWeight: 'bold',
     },
     titlePost: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         color: color.darkGrayText,
         fontSize: 20,
         fontWeight: 'bold',
     },
     titleGroup: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         color: color.navTitle,
         padding: 3,
         paddingLeft: 7,
@@ -611,14 +619,14 @@ const part = StyleSheet.create({
         fontSize: 12,
     },
     textButton: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         marginTop: -2,
         fontSize: size.describe,
         color: color.gray,
         fontWeight: '600',
     },
     textTitleFeature: {
-        fontFamily: 'Montserrat',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         color: color.navTitle,
         fontSize: 23,
         fontWeight: '500',

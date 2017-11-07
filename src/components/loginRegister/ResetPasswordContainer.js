@@ -3,7 +3,7 @@ import {View} from 'react-native'
 import {KeyboardAvoidingView, TouchableOpacity, Alert, Text, StatusBar} from 'react-native';
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Item, Input, Header, Button, Left} from 'native-base';
-import BackButton from '../../commons/BackButton';
+import BackButtonLight from '../../commons/BackButtonLight';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
 export default class ResetPasswordContainer extends Component {
@@ -47,7 +47,8 @@ export default class ResetPasswordContainer extends Component {
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
-                                       color={color.darkGray}
+                                       underlineColorAndroid={color.none}
+
                                        returnKeyType={'next'}
                                        secureTextEntry={true}
                                        onChangeText={(password) => {
@@ -60,7 +61,8 @@ export default class ResetPasswordContainer extends Component {
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
-                                       color={color.darkGray}
+                                       underlineColorAndroid={color.none}
+
                                        secureTextEntry={true}
                                        returnKeyType={'go'}
                                        onChangeText={(confirm_password) => {
@@ -91,7 +93,7 @@ export default class ResetPasswordContainer extends Component {
                 <Text style={styles.textBottom}/>
                 <View style={part.iconInDrawer}>
                     <Left>
-                        <BackButton goBack={goBack}/>
+                        <BackButtonLight goBack={goBack}/>
                     </Left>
                 </View>
             </KeyboardAvoidingView>

@@ -19,8 +19,6 @@ export default class RulesContainer extends Component {
                             <Text style={part.titleSmallDark}>Điều khoản sử dụng</Text>
                         </Body>
                     </Left>
-
-
                 </Header>
                 <Content style={part.padding}>
                     <Text style={[part.describeGray, part.paddingLine]}>

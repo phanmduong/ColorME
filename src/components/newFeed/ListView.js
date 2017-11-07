@@ -482,6 +482,8 @@ class ListView extends Component {
                                                 <Input
                                                     placeholder='Viết bình luận'
                                                     autoCorrect={false}
+                                                    underlineColorAndroid={color.none}
+
                                                     returnKeyType={'send'}
                                                     placeholderTextColor={color.icon}
                                                     style={part.inputTheme01}

@@ -20,7 +20,6 @@ class NotificationContainer extends Component {
         this.state = {
             page: 2
         }
-
     }
 
     componentWillMount() {
@@ -106,7 +105,6 @@ class NotificationContainer extends Component {
 
     render() {
         const {notification, isLoading} = this.props;
-        const {navigate} = this.props.navigation;
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <View style={part.wrapperStatusBarNoPadding}>

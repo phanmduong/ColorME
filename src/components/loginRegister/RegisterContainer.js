@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
-import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, TouchableOpacity, View, StatusBar} from 'react-native'
+import {ActivityIndicator, Alert, KeyboardAvoidingView, Text, TouchableOpacity, View, StatusBar, Platform} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, Left, CheckBox, Body, Header} from 'native-base';
-import BackButton from '../../commons/BackButton';
+import BackButtonLight from '../../commons/BackButtonLight';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
 import * as registerAction from '../../actions/registerAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
+
 class RegisterContainer extends Component {
     constructor() {
         super();
@@ -30,7 +31,7 @@ class RegisterContainer extends Component {
         if (this.state.email === '' || this.state.name === '' || this.state.username === '' || this.state.password === '') {
             Alert.alert('Có lỗi xảy ra', 'Bạn chưa nhập đủ thông tin.');
         }
-        else if (!this.state.checkRules){
+        else if (!this.state.checkRules) {
             Alert.alert('Có lỗi xảy ra', 'Bạn chưa đồng ý với điều khoản sử dụng.');
         }
         else {
@@ -51,14 +52,15 @@ class RegisterContainer extends Component {
                     <Text style={styles.textME}>ME</Text>
                 </View>
                 <Container style={styles.midContainerLogin}>
-                    <Container style={[styles.contentForm]}>
+                    <Container style={Platform.OS === 'ios' ? styles.contentForm : styles.contentForm2}>
                         <Text style={[styles.textTitleInput, {marginTop: 15,}]}>EMAIL</Text>
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
                                        keyboardType={'email-address'}
                                        returnKeyType={'next'}
-                                       color={color.darkGray}
+                                       underlineColorAndroid={color.none}
+
                                        autoCorrect={false}
                                        onChangeText={(email) => {
                                            this.setState({email: email});
@@ -66,24 +68,24 @@ class RegisterContainer extends Component {
                                 />
                             </Item>
                         </View>
-                        <Text style={[styles.textTitleInput, {marginTop: 15}]}>NAME</Text>
+                        <Text style={[styles.textTitleInput, {marginTop: 10}]}>NAME</Text>
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
                                        returnKeyType={'next'}
                                        autoCorrect={false}
-                                       color={color.darkGray}
+                                       underlineColorAndroid={color.none}
                                        onChangeText={(name) => {
                                            this.setState({name: name})
                                        }}
                                 />
                             </Item>
                         </View>
-                        <Text style={[styles.textTitleInput, {marginTop: 15}]}>USERNAME</Text>
+                        <Text style={[styles.textTitleInput, {marginTop: 10}]}>USERNAME</Text>
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
-                                       color={color.darkGray}
+                                       underlineColorAndroid={color.none}
                                        returnKeyType={'next'}
                                        autoCorrect={false}
                                        onChangeText={(username) => {
@@ -92,11 +94,11 @@ class RegisterContainer extends Component {
                                 />
                             </Item>
                         </View>
-                        <Text style={[styles.textTitleInput, {marginTop: 15}]}>PASSWORD</Text>
+                        <Text style={[styles.textTitleInput, {marginTop: 10}]}>PASSWORD</Text>
                         <View style={[styles.wrapperRegister, {marginBottom: 10}]}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
-                                       color={color.darkGray}
+                                       underlineColorAndroid={color.none}
                                        returnKeyType={'send'}
                                        secureTextEntry={true}
                                        onChangeText={(password) => {
@@ -121,7 +123,8 @@ class RegisterContainer extends Component {
                                     <TouchableOpacity
                                         onPress={() => navigate('RulesContainer')}
                                     >
-                                        <Text style={[part.titleGrayRules, part.paddingLeft]}>Tôi đồng ý với điều khoản sử dụng</Text>
+                                        <Text style={[part.titleGrayRules, part.paddingLeft]}>Tôi đồng ý với điều khoản
+                                            sử dụng</Text>
                                     </TouchableOpacity>
                                 </Left>
                             </Item>
@@ -165,7 +168,7 @@ class RegisterContainer extends Component {
                 </Container>
                 <View style={part.iconInDrawer}>
                     <Left>
-                        <BackButton goBack={goBack}/>
+                        <BackButtonLight goBack={goBack}/>
                     </Left>
                 </View>
             </KeyboardAvoidingView>

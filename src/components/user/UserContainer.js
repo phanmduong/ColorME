@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    TouchableOpacity, View,
+    TouchableOpacity, View, Platform
 } from 'react-native';
 import {
     Body, Container, Spinner,
@@ -124,8 +124,11 @@ class UserContainer extends Component {
                     renderStickyHeader={() => (
                         <View key="sticky-header" style={parallaxStyle.stickySection}>
                             <View style={part.iconInDrawerNav}>
-                                <Left style={{flexDirection: 'row', marginTop: 20}}>
-                                    <Body>
+                                <Left style={Platform.OS === 'ios' ? {
+                                    flexDirection: 'row',
+                                    marginTop: 20
+                                } : {flexDirection: 'row'}}>
+                                <Body>
                                     <Text style={part.titleSmallDarkGrayBold}>
                                         {this.props.user.name}
                                     </Text>
@@ -136,8 +139,8 @@ class UserContainer extends Component {
                     )}
                     renderFixedHeader={() => (
                         <View key="fixed-header" style={part.iconInDrawerNav}>
-                            <Left style={{flexDirection: 'row', marginTop: 20,}}>
-                                <BackButton goBack={goBack}/>
+                            <Left style={Platform.OS === 'ios' ? {marginTop: 20} : {marginTop: 10}}>
+                            <BackButton goBack={goBack}/>
                             </Left>
                         </View>
                     )}

@@ -4,7 +4,7 @@ import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, Left, Header, Button} from 'native-base';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
-import BackButton from '../../commons/BackButton';
+import BackButtonLight from '../../commons/BackButtonLight';
 export default class EmailIdentityContainer extends Component {
     constructor() {
         super();
@@ -43,9 +43,9 @@ export default class EmailIdentityContainer extends Component {
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
+                                       underlineColorAndroid={color.none}
                                        keyboardType={'email-address'}
                                        returnKeyType={'send'}
-                                       color={color.darkGray}
                                        autoCorrect={false}
                                        onChangeText={(email) => {
                                            this.setState({email});
@@ -76,7 +76,7 @@ export default class EmailIdentityContainer extends Component {
 
                 <View style={part.iconInDrawer}>
                     <Left>
-                        <BackButton goBack={goBack}/>
+                        <BackButtonLight goBack={goBack}/>
                     </Left>
                 </View>
 

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {
     ActivityIndicator, KeyboardAvoidingView,
     Text, TouchableOpacity, View, Alert,
-    StatusBar
+    StatusBar,
 } from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, Left, CheckBox, Header} from 'native-base';
@@ -62,6 +62,7 @@ class LoginContainer extends Component {
             <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
                 <StatusBar
                     barStyle="light-content"
+                    backgroundColor={color.main}
                 />
                 <View style={styles.wrapperColorME}>
                     <Text style={styles.textColor}>color</Text>
@@ -73,7 +74,7 @@ class LoginContainer extends Component {
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
-                                       color={color.darkGray}
+                                       underlineColorAndroid={color.none}
                                        keyboardType={'email-address'}
                                        returnKeyType={'next'}
                                        autoCorrect={false}
@@ -88,7 +89,7 @@ class LoginContainer extends Component {
                         <View style={styles.wrapperRegister}>
                             <Item style={styles.itemInput}>
                                 <Input style={part.inputTheme02}
-                                       color={color.darkGray}
+                                       underlineColorAndroid={color.none}
                                        secureTextEntry={true}
                                        returnKeyType={'go'}
                                        onSubmitEditing={()=>this.signIn()}
