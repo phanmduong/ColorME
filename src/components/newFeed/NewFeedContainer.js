@@ -338,66 +338,67 @@ class NewFeedContainer extends Component {
                         <Header
                             style={[part.navTopNewFeed, part.noPaddingTop, part.noPadding]}
                         >
-                            <Left>
-                                <TouchableOpacity style={{backgroundColor: 'transparent'}}>
-                                    <Icon name={iconGird}
-                                          color={color.darkGray}
-                                          size={size.iconNewFeed}
-                                          style={part.paddingLeft}
-                                          onPress={
-                                              () => {
-                                                  !this.state.grid
-                                                      ?
-                                                      this.viewGrid()
-                                                      :
-                                                      this.viewList()
+                                <Left>
+                                    <TouchableOpacity style={{backgroundColor: 'transparent'}}>
+                                        <Icon name={iconGird}
+                                              color={color.darkGray}
+                                              size={size.iconNewFeed}
+                                              style={part.paddingLeft}
+                                              onPress={
+                                                  () => {
+                                                      !this.state.grid
+                                                          ?
+                                                          this.viewGrid()
+                                                          :
+                                                          this.viewList()
 
+                                                  }
                                               }
-                                          }
-                                    />
-                                </TouchableOpacity>
-                            </Left>
-                            <Body style={{alignItems: 'center'}}>
-                                    <Picker
-                                        itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
-                                        itemTextStyle={part.titleSmallDarkGrayBold}
-                                        renderHeader={backAction =>
-                                            <Header
-                                                iosBarStyle='dark-content'
-                                                style={[part.noBorder, {backgroundColor: color.backGround}]}
-                                            >
-                                                <Left>
-                                                    <TouchableOpacity onPress={backAction}>
-                                                        <Icon name="entypo|chevron-thin-left" color={color.text}
-                                                              size={size.iconBig}/>
-                                                    </TouchableOpacity>
-                                                </Left>
-                                                <Body style={{flex: 3}}>
-                                                <Text style={part.titleNormalDarkGray}>Chọn kiểu xem</Text>
-                                                </Body>
-                                                <Right/>
-                                            </Header>}
-                                        mode="dropdown"
-                                        style={{width:120, alignItems: 'center'}}
-                                        textStyle={part.titleNormalDarkGray}
-                                        selectedValue={this.state.typeView}
-                                        onValueChange={this.onValueChange.bind(this)}
-                                    >
-                                        <Item label="Mới nhất " value=""/>
-                                        <Item label="Hôm nay" value="1"/>
-                                        <Item label="Tuần qua" value="7"/>
-                                        <Item label="Tháng qua" value="30"/>
-                                    </Picker>
-                            </Body>
-                            <Right style={part.paddingRight}>
-                                <TouchableOpacity onPress={() => navigate('DrawerOpen')}>
-                                    <Icon
-                                        name="materialCommunity|menu"
-                                        color={color.darkGray}
-                                        size={size.iconNewFeed}
-                                    />
-                                </TouchableOpacity>
-                            </Right>
+                                        />
+                                    </TouchableOpacity>
+                                </Left>
+                                <Body style={{alignItems: 'center'}}>
+                                <Picker
+                                    itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
+                                    itemTextStyle={part.titleSmallDarkGrayBold}
+                                    renderHeader={backAction =>
+                                        <Header
+                                            iosBarStyle='dark-content'
+                                            style={[part.noBorder, {backgroundColor: color.backGround}]}
+                                        >
+                                            <Left>
+                                                <TouchableOpacity onPress={backAction}>
+                                                    <Icon name="entypo|chevron-thin-left" color={color.text}
+                                                          size={size.iconBig}/>
+                                                </TouchableOpacity>
+                                            </Left>
+                                            <Body style={{flex: 3}}>
+                                            <Text style={part.titleNormalDarkGray}>Chọn kiểu xem</Text>
+                                            </Body>
+                                            <Right/>
+                                        </Header>}
+                                    mode="dropdown"
+                                    style={{width:120, alignItems: 'center', marginLeft: 70}}
+                                    textStyle={part.titleNormalDarkGray}
+                                    headerStyle={part.titleNormalDarkGray}
+                                    selectedValue={this.state.typeView}
+                                    onValueChange={this.onValueChange.bind(this)}
+                                >
+                                    <Item label="Mới nhất " value=""/>
+                                    <Item label="Hôm nay" value="1"/>
+                                    <Item label="Tuần qua" value="7"/>
+                                    <Item label="Tháng qua" value="30"/>
+                                </Picker>
+                                </Body>
+                                <Right style={part.paddingRight}>
+                                    <TouchableOpacity onPress={() => navigate('DrawerOpen')}>
+                                        <Icon
+                                            name="materialCommunity|menu"
+                                            color={color.darkGray}
+                                            size={size.iconNewFeed}
+                                        />
+                                    </TouchableOpacity>
+                                </Right>
                         </Header>
                 }
                 {
