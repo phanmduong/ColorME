@@ -18,7 +18,7 @@ import CodeIdentityContainer from '../components/loginRegister/CodeIdentityConta
 import NewFeedContainer from '../components/newFeed/NewFeedContainer';
 import NotificationContainer from '../components/NotificationContainer';
 import SlideViewComponent from '../components/drawer/SlideViewContainer'
-import CourseContainer from '../components/drawer/CourseContainer'
+import CourseContainer from '../components/CourseContainer'
 import LearnRegisterContainer from '../components/drawer/LearnRegisterContainer'
 import CourseInformation from '../components/drawer/CourseInformationContainer'
 import AttendGroupContainer from '../components/drawer/AttendGroupContainer'
@@ -41,9 +41,15 @@ import PostLiker from '../components/newFeed/PostLiker';
 
 
 export const TabNavigatorBottomStyle = {
+    indicatorStyle: {
+        border: 5,
+        backgroundColor: color.none,
+    },
     initialRouteName: 'NewFeed',
     tabBarPosition: 'bottom',
     tabBarOptions: {
+        indicatorStyle: { backgroundColor: 'transparent'},
+        showIcon: true,
         activeTintColor: color.darkGray,
         inactiveTintColor: color.icon,
         style: {
@@ -57,40 +63,6 @@ const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
     },
-};
-
-const HomeStackStyle = {
-    navigationOptions: ({navigation}) => ({
-        headerStyle: {
-            backgroundColor: color.main,
-            borderBottomWidth: 0,
-            height: 60,
-        },
-        headerTitleStyle: {
-            fontFamily: 'Segoe UI',
-            color: color.navTitle,
-        },
-        headerRight: (
-            <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
-                <Icon
-                    name="materialCommunity|menu"
-                    color={color.darkGray}
-                    size={size.iconGiant}
-                    style={{paddingLeft: 15, paddingRight: 15}}
-                />
-            </TouchableOpacity>
-        ),
-        // headerLeft: (
-        //     <TouchableOpacity onPress={() => navigation.navigate('')}>
-        //         <Icon name="entypo|chat"
-        //               color={color.navTitle}
-        //               size={size.iconGiant}
-        //               style={{paddingLeft: 15, paddingRight: 15}}
-        //
-        //         />
-        //     </TouchableOpacity>
-        // ),
-    }),
 };
 
 const ThePostInNewFeed = StackNavigator(
@@ -182,7 +154,7 @@ const Home = TabNavigator(
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
                     <Icon
-                        name="fontawesome|bandcamp" size={25}
+                        name="fontawesome|bandcamp" size={size.iconGiant}
                         color={tintColor}
                     />
                 ),

@@ -128,10 +128,10 @@ class UserContainer extends Component {
                                     flexDirection: 'row',
                                     marginTop: 20
                                 } : {flexDirection: 'row'}}>
-                                <Body>
-                                    <Text style={part.titleSmallDarkGrayBold}>
-                                        {this.props.user.name}
-                                    </Text>
+                                    <Body>
+                                        <Text style={part.titleSmallDarkGrayBold}>
+                                            {this.props.user.name}
+                                        </Text>
                                     </Body>
                                 </Left>
                             </View>

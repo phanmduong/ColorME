@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {
-    TouchableOpacity, View, FlatList, Text
+    TouchableOpacity, View, FlatList, Text, Image
 } from 'react-native';
 import {
     Container, Spinner
 } from 'native-base';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
-import FastImage from 'react-native-fast-image'
 class UserProject extends Component {
     render() {
         const {products, user, isLoadingUserProducts} = this.props;
@@ -58,7 +57,7 @@ class UserProject extends Component {
                                                             )}
                                                         >
                                                             <View style={[part.imageInGrid, part.shadow]}>
-                                                                <FastImage
+                                                                <Image
                                                                     style={[part.imageInGrid, part.shadow]}
                                                                     source={{uri: item.thumb_url}}
                                                                 />

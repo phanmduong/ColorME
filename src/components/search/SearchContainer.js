@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    TouchableOpacity, View
+    TouchableOpacity, View, Platform, StatusBar
 } from 'react-native';
 import {
     Container, Text, Left, Item, Input, Spinner
@@ -124,8 +124,18 @@ class SearchContainer extends Component {
     render() {
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
-                <View style={part.wrapperStatusBarNoPadding}>
-                </View>
+                <StatusBar
+                    barStyle="dark-content"
+                    backgroundColor={color.backGround}
+                />
+                {
+                    Platform.OS === 'ios'
+                        ?
+                        <View style={part.wrapperStatusBarNoPadding}>
+                        </View>
+                        :
+                        <View/>
+                }
                 <Item style={[part.noBorder, {paddingLeft: 15}]}>
                     <TouchableOpacity>
                         <Text style={[part.titleLargeDarkBold, part.paddingLineFar]}>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    TouchableOpacity, FlatList, View,
+    TouchableOpacity, FlatList, View, Image
 } from 'react-native';
 import {
     Spinner, Container, CardItem,
@@ -40,7 +40,7 @@ class searchProduct extends Component {
                                             activeOpacity={0.8}
                                             onPress={() => this.props.navigation.navigate('UserInSearch', {username: item.author.username})}
                                         >
-                                            <FastImage
+                                            <Image
                                                 style={part.avatarUserNormal}
                                                 source={{uri: item.author.avatar_url}}/>
                                         </TouchableOpacity>
@@ -85,8 +85,9 @@ class searchProduct extends Component {
                                                         product_id: item.id,
                                                     }
                                             )}
+                                            style={part.avatarUserNormal}
                                         >
-                                            <FastImage
+                                            <Image
                                                 style={part.avatarUserNormal}
                                                 source={{uri: item.thumb_url}}/>
                                         </TouchableOpacity>

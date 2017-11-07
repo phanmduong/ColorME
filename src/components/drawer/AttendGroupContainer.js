@@ -1,19 +1,22 @@
 import React, {Component} from 'react';
 import {
-    FlatList, Text, TouchableOpacity, View
+    FlatList, Text, TouchableOpacity, View, StatusBar,
+    Image, Platform
 } from 'react-native';
 
 import {
     Body, CardItem, Header, Container, Item, Content,
     Left, Right, Spinner,
 } from 'native-base';
-import BackButtonHeader from '../../commons/BackButtonHeader';
+import * as color from '../../styles/color';
+import * as size from '../../styles/size';
 import part from '../../styles/partStyle';
-import * as color from '../../styles/color'
+import BackButton from '../../commons/BackButton';
+import ParallaxScrollView from 'react-native-parallax-scroll-view';
+import parallaxStyle from '../../styles/parallaxStyle';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as sideNavAction from '../../actions/sideNavAction';
-import FastImage from 'react-native-fast-image';
 
 class AttendGroupContainer extends Component {
     componentWillMount() {
@@ -25,23 +28,62 @@ class AttendGroupContainer extends Component {
         const {attendGroup, isLoading} = this.props;
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
-                <Header
-                    style={[part.navTop]}
-                    iosBarStyle='dark-content'
+                <StatusBar
+                    barStyle="dark-content"
+                    backgroundColor={color.backGround}
+                />
+                <ParallaxScrollView
+                    backgroundColor={color.backGround}
+                    showsVerticalScrollIndicator={false}
+                    headerBackgroundColor={color.backGround}
+                    stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
+                    parallaxHeaderHeight={80}
+                    backgroundSpeed={10}
+                    renderBackground={() => (
+                        <View style={part.wrapperImageInGetFull}>
+                            <View key="background">
+                            </View>
+                        </View>
+                    )}
+                    renderForeground={() => (
+                        <View key="parallax-header" style={[parallaxStyle.parallaxHeaderTitle]}>
+                            <View>
+                                <CardItem style={[part.cardHeader, part.noPaddingTopBottom]}>
+                                    <Item style={part.noBorder}>
+                                        <Text style={part.titlePost} numberOfLines={1}>
+                                           Nhóm tham gia
+                                        </Text>
+                                    </Item>
+                                </CardItem>
+                            </View>
+                        </View>
 
+                    )}
+                    renderStickyHeader={() => (
+                        <View key="sticky-header" style={parallaxStyle.stickySection}>
+                            <View style={part.iconInDrawerNav}>
+                                <Left style={Platform.OS === 'ios' ? {
+                                    flexDirection: 'row',
+                                    marginTop: 20
+                                } : {flexDirection: 'row'}}>
+                                    <Body style={{padding: 30}}>
+                                    <Text style={part.titleSmallDarkGrayBold} numberOfLines={1}>
+                                        Nhóm tham gia
+                                    </Text>
+                                    </Body>
+                                </Left>
+                            </View>
+                        </View>
+                    )}
+                    renderFixedHeader={() => (
+                        <View key="fixed-header" style={part.iconInDrawerNav}>
+                            <Left style={Platform.OS === 'ios' ? {marginTop: 20} : {marginTop: 10}}>
+                                <BackButton goBack={goBack}/>
+                            </Left>
+                        </View>
+                    )}
                 >
-                    <Left style={{flexDirection: 'row'}}>
-                        <BackButtonHeader goBack={goBack}/>
-                    </Left>
-                </Header>
-                <Content>
-                    <Item style={[part.noBorder, {paddingLeft: 15}]}>
-                        <TouchableOpacity>
-                            <Text style={[part.titleLargeDarkBold, part.paddingLine]}>
-                                Nhóm tham gia
-                            </Text>
-                        </TouchableOpacity>
-                    </Item>
+                <View>
                     {
                         isLoading
                             ?
@@ -60,7 +102,8 @@ class AttendGroupContainer extends Component {
                             attendGroup.length == 0
                                 ?
                                 <Body>
-                                <Text style={[part.padding, part.titleSmallDarkGrayBold]}>Bạn chưa tham gia nhóm nào.</Text>
+                                <Text style={[part.padding, part.titleSmallDarkGrayBold]}>Bạn chưa tham gia nhóm
+                                    nào.</Text>
                                 </Body>
                                 :
                                 <FlatList
@@ -74,7 +117,7 @@ class AttendGroupContainer extends Component {
                                                 onPress={() => navigate('GroupInDrawer', {group_link: `/group/${item.link}`})}
                                             >
                                                 <Left>
-                                                    <FastImage
+                                                    <Image
                                                         style={part.avatarUserNormal}
                                                         source={{uri: item.avatar_url}}/>
                                                     <Body style={part.noBorder}>
@@ -89,7 +132,8 @@ class AttendGroupContainer extends Component {
                                 />
                     }
 
-                </Content>
+                </View>
+                </ParallaxScrollView>
             </Container>
         );
     }

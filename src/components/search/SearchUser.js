@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    TouchableOpacity, FlatList, View
+    TouchableOpacity, FlatList, View, Image
 } from 'react-native';
 import {
     Container, Card, CardItem,
@@ -9,7 +9,6 @@ import {
 import part from '../../styles/partStyle';
 import Icon from '../../commons/Icon';
 import * as color from '../../styles/color';
-import FastImage from 'react-native-fast-image';
 
 class searchUser extends Component {
     constructor(props) {
@@ -44,9 +43,13 @@ class searchUser extends Component {
                                         onPress={() => this.props.navigation.navigate('UserInSearch', {username: item.username})}
                                     >
                                         <Left>
-                                            <FastImage
-                                                style={part.avatarUserNormal}
-                                                source={{uri: item.avatar_url}}/>
+                                            <View style={part.avatarUserNormal}
+                                            >
+                                                <Image
+                                                    style={part.avatarUserNormal}
+                                                    source={{uri: item.avatar_url}}/>
+                                            </View>
+
                                             <Body style={part.noBorder}>
                                             <Text style={part.titleSmallBlue}>{item.name}</Text>
                                             <Text style={part.describeGray} note>{item.university}</Text>

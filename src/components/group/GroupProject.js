@@ -7,7 +7,6 @@ import {
 } from 'native-base';
 import * as color from '../../styles/color';
 import part from '../../styles/partStyle';
-import FastImage from 'react-native-fast-image'
 
 class GroupProject extends Component {
     render() {
@@ -58,7 +57,7 @@ class GroupProject extends Component {
                                                             )}
                                                         >
                                                             <View style={[part.imageInGrid, part.shadow]}>
-                                                                <FastImage
+                                                                <Image
                                                                     style={[part.imageInGrid, part.shadow]}
                                                                     source={{uri: item.thumb_url}}
                                                                 />

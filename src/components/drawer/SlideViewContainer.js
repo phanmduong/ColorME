@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    View, Text, TouchableOpacity, StatusBar,Linking,Alert
+    View, Text, TouchableOpacity, StatusBar,Linking,Alert, Image
 } from 'react-native';
 import {
     Container, Item, CardItem, Button,
@@ -49,8 +49,12 @@ class SlideViewComponent extends Component {
         const {navigate} = this.props.navigation;
         return (
             <Container style={part.wrapperContainer}>
+                <StatusBar
+                    barStyle="dark-content"
+                    backgroundColor={color.backGround}
+                />
                 <View style={part.wrapperImageInDrawer}>
-                    <FastImage
+                    <Image
                         resizeMode={'cover'}
                         style={part.imageInDrawer}
                         source={{uri: this.props.user.avatar_url}}/>
@@ -58,7 +62,7 @@ class SlideViewComponent extends Component {
                     <View style={part.tabInDrawer}>
                         <Item style={part.noBorder}>
                             <View style={part.wrapperAvatarInDrawer}>
-                                <FastImage style={part.avatarUserInDrawer}
+                                <Image style={part.avatarUserInDrawer}
                                            source={{uri: this.props.user.avatar_url}}/>
                                 <Text style={[part.titleBigLight, {marginTop: 10}]}>{this.props.user.name}</Text>
                             </View>

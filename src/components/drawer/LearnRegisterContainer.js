@@ -1,15 +1,33 @@
 import React, {Component} from 'react';
-import {FlatList, Modal, PanResponder, Text, TouchableOpacity, View,ScrollView} from 'react-native';
+import {Platform,StatusBar, Modal, Image, PanResponder, Text, TouchableOpacity, View,ScrollView} from 'react-native';
 
-import {Body, Button, CardItem, Container, Content, Header, Left, Right,} from 'native-base';
+import {
+    List,
+    ListItem,
+    Body,
+    Button,
+    Card,
+    CardItem,
+    Container,
+    Content,
+    Input,
+    Item,
+    Left,
+    Right,
+    Spinner,
+    Thumbnail
+} from 'native-base';
+
 import styles from '../../styles/loginRegisterStyle'
-import BackButtonHeader from '../../commons/BackButtonHeader';
 import part from '../../styles/partStyle';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import BackButton from '../../commons/BackButton';
+import ParallaxScrollView from 'react-native-parallax-scroll-view';
+import parallaxStyle from '../../styles/parallaxStyle';
 import * as courseAction from '../../actions/courseAction';
 import * as size from '../../styles/size';
-import FastImage from 'react-native-fast-image';
+import * as color from '../../styles/color';
 
 class LearnRegisterContainer extends Component {
     constructor() {
@@ -140,18 +158,61 @@ class LearnRegisterContainer extends Component {
         let {status, isEnrolled} = this.state;
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
-                <Header
-                    style={part.navTop}
-                    iosBarStyle='dark-content'
-                >
-                    <Left style={{flexDirection: 'row'}}>
-                        <BackButtonHeader goBack={goBack}/>
-                        <Body>
-                        <Text style={part.titleSmallDark}>Đăng ký lớp học</Text>
-                        </Body>
-                    </Left>
+                <StatusBar
+                    barStyle="dark-content"
+                    backgroundColor={color.backGround}
+                />
+                <ParallaxScrollView
+                    backgroundColor={color.backGround}
+                    showsVerticalScrollIndicator={false}
+                    headerBackgroundColor={color.backGround}
+                    stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
+                    parallaxHeaderHeight={80}
+                    backgroundSpeed={10}
+                    renderBackground={() => (
+                        <View style={part.wrapperImageInGetFull}>
+                            <View key="background">
+                            </View>
+                        </View>
+                    )}
+                    renderForeground={() => (
+                        <View key="parallax-header" style={[parallaxStyle.parallaxHeaderTitle]}>
+                            <View>
+                                <CardItem style={[part.cardHeader, part.noPaddingTopBottom]}>
+                                    <Item style={part.noBorder}>
+                                        <Text style={part.titlePost} numberOfLines={1}>
+                                            Đăng ký lớp học
+                                        </Text>
+                                    </Item>
+                                </CardItem>
+                            </View>
+                        </View>
 
-                </Header>
+                    )}
+                    renderStickyHeader={() => (
+                        <View key="sticky-header" style={parallaxStyle.stickySection}>
+                            <View style={part.iconInDrawerNav}>
+                                <Left style={Platform.OS === 'ios' ? {
+                                    flexDirection: 'row',
+                                    marginTop: 20
+                                } : {flexDirection: 'row'}}>
+                                    <Body style={{padding: 30}}>
+                                    <Text style={part.titleSmallDarkGrayBold} numberOfLines={1}>
+                                        Đăng ký lớp học
+                                    </Text>
+                                    </Body>
+                                </Left>
+                            </View>
+                        </View>
+                    )}
+                    renderFixedHeader={() => (
+                        <View key="fixed-header" style={part.iconInDrawerNav}>
+                            <Left style={Platform.OS === 'ios' ? {marginTop: 20} : {marginTop: 10}}>
+                                <BackButton goBack={goBack}/>
+                            </Left>
+                        </View>
+                    )}
+                >
                 <ScrollView>
                     {this.state.classes.map((item, i) => {
                         return (
@@ -163,7 +224,7 @@ class LearnRegisterContainer extends Component {
                                 style={{flex: 1}}
                             >
                                 <View style={part.cardCmt}>
-                                    <FastImage
+                                    <Image
                                         style={[part.avatarUserNormal, part.marginRightFar]}
                                         source={{uri: item.avatar_url}}/>
                                     <Body style={part.noBorder}>
@@ -193,7 +254,7 @@ class LearnRegisterContainer extends Component {
                                 avatar
                                 style={[part.backgroundNone, part.noMarginLeft, part.padding, part.noBorder, part.noPaddingBottom]}>
                                 <Left>
-                                    <FastImage
+                                    <Image
                                         style={part.avatarUserNormal}
                                         source={{uri: this.state.avatar_url}}/>
                                     <Body style={part.noBorder}>
@@ -236,6 +297,7 @@ class LearnRegisterContainer extends Component {
                         </View>
                     </View>
                 </Modal>
+                </ParallaxScrollView>
             </Container>
         );
     }

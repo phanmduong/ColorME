@@ -1,8 +1,11 @@
 import {Dimensions} from 'react-native';
-
+import {
+    Platform,
+} from 'react-native';
 export const iconNormal         = 15;
 export const iconBig            = 20;
-export const iconGiant          = 25;
+export const iconGiant          = Platform.OS === 'ios' ? 25 : 20;
+export const iconNewFeed        = 25 ;
 export const title              = 14;
 export const titleNormal        = 13;
 export const titleSmall         = 12;

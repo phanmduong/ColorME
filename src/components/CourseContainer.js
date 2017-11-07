@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import {
-    FlatList, Text, TouchableOpacity, View
+    FlatList, Text, TouchableOpacity, View, Platform, Image, StatusBar
 } from 'react-native';
 
 import {
     Body, CardItem, Header, Container, Content,
     Left, Right, Spinner, Item
 } from 'native-base';
-import part from '../../styles/partStyle';
-import * as color from '../../styles/color'
+import part from '../styles/partStyle';
+import * as color from '../styles/color'
 import FastImage from 'react-native-fast-image';
-import * as courseAction from '../../actions/courseAction';
+import * as courseAction from '../actions/courseAction';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
@@ -24,8 +24,18 @@ class CourseContainer extends Component {
         const {isLoading, courses} = this.props;
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
-                <View style={part.wrapperStatusBarNoPadding}>
-                </View>
+                <StatusBar
+                    barStyle="dark-content"
+                    backgroundColor={color.backGround}
+                />
+                {
+                    Platform.OS === 'ios'
+                        ?
+                        <View style={part.wrapperStatusBarNoPadding}>
+                        </View>
+                        :
+                        <View/>
+                }
                 <Content
                     showsVerticalScrollIndicator={false}
                 >
@@ -64,7 +74,7 @@ class CourseContainer extends Component {
                                             onPress={() => navigate('CourseInFormation', {linkId: item.linkId})}
                                         >
                                             <Left>
-                                                <FastImage
+                                                <Image
                                                     style={part.avatarUserNormal}
                                                     source={{uri: item.icon_url}}/>
                                                 <Body style={part.noBorder}>

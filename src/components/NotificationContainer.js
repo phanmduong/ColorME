@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    Text, TouchableOpacity, View, FlatList, RefreshControl
+    Text, TouchableOpacity, View, FlatList, RefreshControl, Platform, StatusBar
 } from 'react-native';
 
 import {
@@ -107,8 +107,19 @@ class NotificationContainer extends Component {
         const {notification, isLoading} = this.props;
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
-                <View style={part.wrapperStatusBarNoPadding}>
-                </View>
+                <StatusBar
+                    barStyle="dark-content"
+                    backgroundColor={color.backGround}
+                />
+                {
+                    Platform.OS === 'ios'
+                        ?
+                        <View style={part.wrapperStatusBarNoPadding}>
+                        </View>
+                        :
+                        <View/>
+                }
+
                 <Content
                     refreshControl={
                         <RefreshControl

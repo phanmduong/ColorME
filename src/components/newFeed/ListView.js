@@ -7,6 +7,7 @@ import {
     ScrollView,
     TouchableOpacity,
     View,
+    Image
 } from 'react-native';
 import {
     Body,
@@ -29,7 +30,6 @@ import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
 import * as color from '../../styles/color';
 import * as size from '../../styles/size';
-import FastImage from 'react-native-fast-image'
 import * as infoAboutPostAction from '../../actions/infoAboutPostAction'
 import * as reportAction from '../../actions/reportAction';
 import * as likePostAction from '../../actions/likePostAction';
@@ -236,7 +236,7 @@ class ListView extends Component {
                         {
                             item.url.indexOf('.mp4') === -1
                                 ?
-                                <FastImage
+                                <Image
                                     resizeMode={'cover'}
                                     source={{
                                         uri: item.image_url,
@@ -413,7 +413,7 @@ class ListView extends Component {
                                                                         }
 
                                                                     >
-                                                                        <FastImage
+                                                                        <Image
                                                                             style={part.avatarUserSmall}
                                                                             source={{uri: item.commenter.avatar_url}}/>
                                                                     </TouchableOpacity>

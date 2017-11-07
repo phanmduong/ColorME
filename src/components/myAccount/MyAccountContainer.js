@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    TouchableOpacity, View, Platform
+    TouchableOpacity, View, Platform, StatusBar
 } from 'react-native';
 import {
     Body, Container, Spinner, Content, Header,
@@ -92,6 +92,10 @@ class MyAccountContainer extends Component {
         const {sideNav} = this.props;
         return (
             <Container style={part.wrapperContainer}>
+                <StatusBar
+                    barStyle="dark-content"
+                    backgroundColor={color.backGround}
+                />
                 <ParallaxScrollView
                     backgroundColor={color.backGround}
                     showsVerticalScrollIndicator={false}
@@ -174,13 +178,6 @@ class MyAccountContainer extends Component {
                                     </Body>
                                 </Left>
                             </View>
-                        </View>
-                    )}
-                    renderFixedHeader={() => (
-                        <View key="fixed-header" style={part.iconInDrawerNav}>
-                            <Left style={{flexDirection: 'row', marginTop: 20,}}>
-                                <BackButton goBack={goBack}/>
-                            </Left>
                         </View>
                     )}
                 >

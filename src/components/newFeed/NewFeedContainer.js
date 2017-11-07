@@ -1,8 +1,18 @@
 import React, {Component} from 'react';
-import {FlatList, RefreshControl, TouchableOpacity, View, AsyncStorage, Alert, Platform} from 'react-native';
 import {
-    Body, Button, Card, CardItem, Container, Content, Header, Input, Item, Left, Picker,
-    Right, Spinner, Text, Thumbnail,
+    FlatList,
+    StatusBar,
+    RefreshControl,
+    Platform,
+    TouchableOpacity,
+    View,
+    AsyncStorage,
+    Alert,
+    Image
+} from 'react-native';
+import {
+    Button, Card, CardItem, Container, Content, Header, Input, Item, Left, Picker,
+    Right, Spinner, Text, Thumbnail,Body
 } from 'native-base';
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
@@ -14,7 +24,6 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import ListView from './ListView';
 import GridView from './GridView';
-import FastImage from 'react-native-fast-image';
 import _ from 'lodash'
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -27,7 +36,7 @@ class NewFeedContainer extends Component {
             like_in_modal: '',
             grid: true,
             page_id: 2,
-            typeView: '1',
+            typeView: '7',
             arrayLike: [],
             likeCount: [],
             listPost: [],
@@ -240,6 +249,10 @@ class NewFeedContainer extends Component {
         let iconGird = this.state.grid ? "material|view-module" : "material|view-list";
         return (
             <Container style={part.wrapperContainer}>
+                <StatusBar
+                    barStyle="dark-content"
+                    backgroundColor={color.backGround}
+                />
                 {
                     Platform.OS === 'ios'
                         ?
@@ -247,111 +260,153 @@ class NewFeedContainer extends Component {
                         </View>
                         :
                         <View/>
-
                 }
-                <Header
-                    style={[part.navTopNewFeed, part.noPaddingTop, part.noPadding]}
-                    iosBarStyle='dark-content'
-                >
-                    <Left style={{flexDirection: 'row'}}>
-                        <Left>
-                            <TouchableOpacity style={{backgroundColor: 'transparent'}}>
-                                <Icon name={iconGird}
-                                      color={color.darkGray}
-                                      size={size.iconGiant}
-                                      style={part.paddingLeft}
-                                      onPress={
-                                          () => {
-                                              !this.state.grid
-                                                  ?
-                                                  this.viewGrid()
-                                                  :
-                                                  this.viewList()
+                {
+                    Platform.OS === 'ios'
+                        ?
+                        <Header
+                            style={[part.navTopNewFeed, part.noPaddingTop, part.noPadding]}
+                        >
+                            <Left style={{flexDirection: 'row'}}>
+                                <Left>
+                                    <TouchableOpacity style={{backgroundColor: 'transparent'}}>
+                                        <Icon name={iconGird}
+                                              color={color.darkGray}
+                                              size={size.iconNewFeed}
+                                              style={part.paddingLeft}
+                                              onPress={
+                                                  () => {
+                                                      !this.state.grid
+                                                          ?
+                                                          this.viewGrid()
+                                                          :
+                                                          this.viewList()
 
-                                          }
-                                      }
-                                />
-                            </TouchableOpacity>
-                            {/*<TouchableOpacity style={{backgroundColor: 'transparent'}}>*/}
-                            {/*<Icon name="material|view-module"*/}
-                            {/*color={this.state.grid ? color.icon : color.navTitle}*/}
-                            {/*size={size.iconGiant}*/}
-                            {/*style={part.paddingIcon}*/}
-                            {/*onPress={() => this.viewGrid()}*/}
-                            {/*/>*/}
-                            {/*</TouchableOpacity>*/}
-                        </Left>
-                        <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                            <Picker
-                                itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
-                                itemTextStyle={part.titleSmallDarkGrayBold}
-                                renderHeader={backAction =>
-                                    <Header
-                                        iosBarStyle='dark-content'
-                                        style={[part.noBorder, {backgroundColor: color.backGround}]}
+                                                  }
+                                              }
+                                        />
+                                    </TouchableOpacity>
+                                </Left>
+                                <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                                    <Picker
+                                        itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
+                                        itemTextStyle={part.titleSmallDarkGrayBold}
+                                        renderHeader={backAction =>
+                                            <Header
+                                                iosBarStyle='dark-content'
+                                                style={[part.noBorder, {backgroundColor: color.backGround}]}
+                                            >
+                                                <Left>
+                                                    <TouchableOpacity onPress={backAction}>
+                                                        <Icon name="entypo|chevron-thin-left" color={color.text}
+                                                              size={size.iconBig}/>
+                                                    </TouchableOpacity>
+                                                </Left>
+                                                <Body style={{flex: 3}}>
+                                                <Text style={part.titleNormalDarkGray}>Chọn kiểu xem</Text>
+                                                </Body>
+                                                <Right/>
+                                            </Header>}
+                                        mode="dropdown"
+                                        textStyle={part.titleNormalDarkGray}
+                                        selectedValue={this.state.typeView}
+                                        onValueChange={this.onValueChange.bind(this)}
                                     >
-                                        <Left>
-                                            <TouchableOpacity onPress={backAction}>
-                                                <Icon name="entypo|chevron-thin-left" color={color.text}
-                                                      size={size.iconBig}/>
-                                            </TouchableOpacity>
-                                        </Left>
-                                        <Body style={{flex: 3}}>
-                                        <Text style={part.titleNormalDarkGray}>Chọn kiểu xem</Text>
-                                        </Body>
-                                        <Right/>
-                                    </Header>}
-                                mode="dropdown"
-                                textStyle={part.titleNormalDarkGray}
-                                selectedValue={this.state.typeView}
-                                onValueChange={this.onValueChange.bind(this)}
-                            >
-                                <Item label="Mới nhất " value=""/>
-                                <Item label="Hôm nay" value="1"/>
-                                <Item label="Tuần qua" value="7"/>
-                                <Item label="Tháng qua" value="30"/>
-                            </Picker>
-                            <Icon name="entypo|triangle-down"
-                                  color={color.darkGray}
-                                  size={size.iconBig * 2 / 3}
-                                  style={{marginLeft: -12, marginTop: 3}}
-                            />
-                        </View>
+                                        <Item label="Mới nhất " value=""/>
+                                        <Item label="Hôm nay" value="1"/>
+                                        <Item label="Tuần qua" value="7"/>
+                                        <Item label="Tháng qua" value="30"/>
+                                    </Picker>
+                                    <Icon name="entypo|triangle-down"
+                                          color={color.darkGray}
+                                          size={size.iconBig * 2 / 3}
+                                          style={{marginLeft: -12, marginTop: 3}}
+                                    />
+                                </View>
+                                <Right style={part.paddingRight}>
+                                    <TouchableOpacity onPress={() => navigate('DrawerOpen')}>
+                                        <Icon
+                                            name="materialCommunity|menu"
+                                            color={color.darkGray}
+                                            size={size.iconNewFeed}
+                                        />
+                                    </TouchableOpacity>
+                                </Right>
+                            </Left>
+                        </Header>
+                        :
+                        <Header
+                            style={[part.navTopNewFeed, part.noPaddingTop, part.noPadding]}
+                        >
+                            <Left>
+                                <TouchableOpacity style={{backgroundColor: 'transparent'}}>
+                                    <Icon name={iconGird}
+                                          color={color.darkGray}
+                                          size={size.iconNewFeed}
+                                          style={part.paddingLeft}
+                                          onPress={
+                                              () => {
+                                                  !this.state.grid
+                                                      ?
+                                                      this.viewGrid()
+                                                      :
+                                                      this.viewList()
 
-                        <Right style={part.paddingRight}>
-                            <TouchableOpacity onPress={() => navigate('DrawerOpen')}>
-                                <Icon
-                                    name="materialCommunity|menu"
-                                    color={color.darkGray}
-                                    size={size.iconGiant}
-                                />
-                            </TouchableOpacity>
-                        </Right>
-                    </Left>
-
-                </Header>
-                {/*VIEW TYPE*/}
-                {/*<View>*/}
-                {/*<Item style={[part.itemTab, {paddingLeft: 0}]}>*/}
-                {/*<Left style={{flexDirection: 'row', alignItems: 'center'}}>*/}
-                {/*<Icon name="entypo|triangle-down"*/}
-                {/*color={color.darkGray}*/}
-                {/*size={size.iconGiant * 2 / 3}*/}
-                {/*style={{marginLeft: -10}}*/}
-                {/*/>*/}
-                {/*</Left>*/}
-                {/*<Right style={part.rightTab}>*/}
-
-                {/*</Right>*/}
-                {/*</Item>*/}
-                {/*</View>*/}
+                                              }
+                                          }
+                                    />
+                                </TouchableOpacity>
+                            </Left>
+                            <Body style={{alignItems: 'center'}}>
+                                    <Picker
+                                        itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
+                                        itemTextStyle={part.titleSmallDarkGrayBold}
+                                        renderHeader={backAction =>
+                                            <Header
+                                                iosBarStyle='dark-content'
+                                                style={[part.noBorder, {backgroundColor: color.backGround}]}
+                                            >
+                                                <Left>
+                                                    <TouchableOpacity onPress={backAction}>
+                                                        <Icon name="entypo|chevron-thin-left" color={color.text}
+                                                              size={size.iconBig}/>
+                                                    </TouchableOpacity>
+                                                </Left>
+                                                <Body style={{flex: 3}}>
+                                                <Text style={part.titleNormalDarkGray}>Chọn kiểu xem</Text>
+                                                </Body>
+                                                <Right/>
+                                            </Header>}
+                                        mode="dropdown"
+                                        style={{width:120, alignItems: 'center'}}
+                                        textStyle={part.titleNormalDarkGray}
+                                        selectedValue={this.state.typeView}
+                                        onValueChange={this.onValueChange.bind(this)}
+                                    >
+                                        <Item label="Mới nhất " value=""/>
+                                        <Item label="Hôm nay" value="1"/>
+                                        <Item label="Tuần qua" value="7"/>
+                                        <Item label="Tháng qua" value="30"/>
+                                    </Picker>
+                            </Body>
+                            <Right style={part.paddingRight}>
+                                <TouchableOpacity onPress={() => navigate('DrawerOpen')}>
+                                    <Icon
+                                        name="materialCommunity|menu"
+                                        color={color.darkGray}
+                                        size={size.iconNewFeed}
+                                    />
+                                </TouchableOpacity>
+                            </Right>
+                        </Header>
+                }
                 {
                     (this.state.grid)
                         ?
                         (
                             this.state.isLoadingList
                                 ? (
-                                    <View style={[part.wrapperContainer, {height: 30, marginBottom: -30}]}>
+                                    <View style={[part.wrapperContainer, {flex: 1, marginBottom: -30}]}>
                                         <Spinner color={color.gray}/>
                                     </View>
                                 ) : (
@@ -394,7 +449,7 @@ class NewFeedContainer extends Component {
                                                         )}
                                                 >
                                                     <View style={[part.imageInFeature, part.shadow]}>
-                                                        <FastImage
+                                                        <Image
                                                             style={[part.imageInFeature]}
                                                             source={{uri: item.image_url}}
                                                         />
@@ -472,7 +527,8 @@ class NewFeedContainer extends Component {
                         (
                             this.state.isLoadingList
                                 ? (
-                                    <View style={[part.wrapperContainer, {height: 30, marginBottom: -30}]}>
+                                    <View
+                                        style={[part.wrapperContainer, Platform.OS === 'ios' ? {height: 30} : {flex: 1}, {marginBottom: -30}]}>
                                         <Spinner color={color.gray}/>
                                     </View>
                                 ) : (

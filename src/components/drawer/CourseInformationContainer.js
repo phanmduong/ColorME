@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    Text, View, Image
+    Text, View, Image, Platform
 } from 'react-native';
 
 import {
@@ -74,7 +74,7 @@ class CourseInformation extends Component {
                             renderStickyHeader={() => (
                                 <View key="sticky-header" style={parallaxStyle.stickySection}>
                                     <View style={part.iconInDrawerNav}>
-                                        <Left style={{flexDirection: 'row', marginTop: 20,}}>
+                                        <Left style={Platform.OS === 'ios' ? {marginTop: 20} : {marginTop: 0}}>
                                             <Body>
                                             <Text style={part.titleSmallDarkGrayBold}>
                                                 {courseInformation.name}
@@ -86,7 +86,7 @@ class CourseInformation extends Component {
                             )}
                             renderFixedHeader={() => (
                                 <View key="fixed-header" style={part.iconInDrawerNav}>
-                                    <Left style={{marginTop: 20}}>
+                                    <Left style={Platform.OS === 'ios' ? {marginTop: 20} : {marginTop: 10}}>
                                         <BackButton goBack={goBack}/>
                                     </Left>
                                 </View>

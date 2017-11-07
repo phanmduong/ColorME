@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    View, TouchableOpacity
+    View, TouchableOpacity, Image
 } from 'react-native';
 import {
     Container, Header, Content, Card, CardItem, Item, Picker,
@@ -43,7 +43,7 @@ class GridView extends Component {
                     {
                         (item.url.indexOf('.mp4') === -1 ) ?
                             <View style={[part.imageInGrid, part.shadow]}>
-                                <FastImage
+                                <Image
                                     resizeMode={'cover'}
                                     style={[part.imageInGrid]}
                                     source={{uri: item.thumb_url}}
@@ -63,7 +63,6 @@ class GridView extends Component {
                                     source={{uri: item.url}}
                                 />
                             </View>
-
                     }
                 </TouchableOpacity>
             </View>
