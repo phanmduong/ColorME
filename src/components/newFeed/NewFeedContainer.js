@@ -339,10 +339,6 @@ class NewFeedContainer extends Component {
                             style={[part.navTopNewFeed, part.noPaddingTop, part.noPadding]}
                         >
                                 <Left>
-                                    <Item label="Mới nhất " value=""/>
-                                    <Item label="Hôm nay" value="1"/>
-                                    <Item label="Tuần qua" value="7"/>
-                                    <Item label="Tháng qua" value="30"/>
                                     <TouchableOpacity style={{backgroundColor: 'transparent'}}>
                                         <Icon name={iconGird}
                                               color={color.darkGray}
@@ -365,11 +361,12 @@ class NewFeedContainer extends Component {
                                 <Picker
                                     itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
                                     itemTextStyle={part.titleSmallDarkGrayBold}
-                                    style={{width:120, alignItems: 'center', marginLeft: 70}}
+                                    style={{width:120, alignItems: 'center', marginLeft: 70, fontSize: 15, fontFamily:'Montserrat-Medium'}}
                                     textStyle={part.titleNormalDarkGray}
                                     headerStyle={part.titleNormalDarkGray}
                                     selectedValue={this.state.typeView}
                                     onValueChange={this.onValueChange.bind(this)}
+                                    mode={'dialog'}
                                 >
                                     <Item label="Mới nhất " value=""/>
                                     <Item label="Hôm nay" value="1"/>
