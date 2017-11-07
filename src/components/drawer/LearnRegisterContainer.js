@@ -1,12 +1,7 @@
 import React, {Component} from 'react';
-import {
-    Text, TouchableOpacity, View, FlatList, Modal, PanResponder
-} from 'react-native';
+import {FlatList, Modal, PanResponder, Text, TouchableOpacity, View,ScrollView} from 'react-native';
 
-import {
-    Body, Button, CardItem, Container, Content, Header,
-    Left, Right,
-} from 'native-base';
+import {Body, Button, CardItem, Container, Content, Header, Left, Right,} from 'native-base';
 import styles from '../../styles/loginRegisterStyle'
 import BackButtonHeader from '../../commons/BackButtonHeader';
 import part from '../../styles/partStyle';
@@ -27,9 +22,10 @@ class LearnRegisterContainer extends Component {
             description: '',
             address: '',
             avatar_url: '',
-            isEnrolled: false,
+            isEnrolled: [],
             classes: [],
-
+            status: [],
+            key: '',
         }
     }
 
@@ -38,8 +34,33 @@ class LearnRegisterContainer extends Component {
             onStartShouldSetPanResponder: (event, gestureState) => true,
             onPanResponderGrant: this._onPanResponderGrant.bind(this),
         })
-        this.setState({classes: this.props.navigation.state.params.classes});
+        let classes = [];
+        let isEnrolled = [];
+        let status = [];
+        let data = this.props.navigation.state.params.classes;
+        let i = 0;
+        while (i < data.length) {
+            let key = {key: i};
+            let arr2 = data[i].status;
+            let arr1 = data[i].isEnrolled;
+            let arr = Object.assign(data[i], key);
+            classes.push(arr);
+            isEnrolled.push(arr1);
+            status.push(arr2);
+            i++;
+        }
+        this.setState({classes: classes, isEnrolled: isEnrolled, status: status});
     }
+
+    // componentWillUpdate(nextState) {
+    //     if (nextState.classes !== this.state.classes || nextState.isEnrolled !== this.state.status || nextState.status !== this.state.status) {
+    //         let i = 0;
+    //         while (i < nextState.classes.length) {
+    //             this.buttonRegister(nextState.classes[i], nextState.status[i], nextState.isEnrolled[i]);
+    //             i++;
+    //         }
+    //     }
+    // }
 
     _onPanResponderGrant(event, gestureState) {
         if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
@@ -57,6 +78,7 @@ class LearnRegisterContainer extends Component {
     openRegisterModal(item) {
         this.setVisibleModalRegister(true);
         this.setState({
+            key: item.key,
             id: item.id,
             name: item.name,
             course: item.course,
@@ -67,8 +89,14 @@ class LearnRegisterContainer extends Component {
         })
     }
 
-    learnRegister(id, token) {
+    learnRegister(id, token, index) {
+        let isEnrolled = this.state.isEnrolled;
+        let status = this.state.status;
         this.props.courseAction.learnRegister(id, token);
+        isEnrolled[index] = !isEnrolled[index];
+        status[index] = 1;
+        this.setState({isEnrolled: isEnrolled, status: status});
+        console.log(isEnrolled, status)
     }
 
     buttonRegister(item, status, isEnrolled) {
@@ -109,6 +137,7 @@ class LearnRegisterContainer extends Component {
     render() {
         const {params} = this.props.navigation.state;
         const {goBack} = this.props.navigation;
+        let {status, isEnrolled} = this.state;
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <Header
@@ -123,10 +152,9 @@ class LearnRegisterContainer extends Component {
                     </Left>
 
                 </Header>
-                <FlatList
-                    showsVerticalScrollIndicator={false}
-                    data={this.state.classes}
-                    renderItem={({item}) =>
+                <ScrollView>
+                    {this.state.classes.map((item, i) => {
+                        return (
                         <CardItem
                             avatar
                             style={[part.backgroundNone, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
@@ -143,13 +171,13 @@ class LearnRegisterContainer extends Component {
                                     <Text style={part.titleSmallDarkGrayThin}>{item.study_time}</Text>
                                     <Text style={part.titleSmallDarkGrayThin}>{item.address}</Text>
                                     <Text style={part.titleSmallDarkGrayThin}>{item.description}</Text>
-                                    {this.buttonRegister(item, item.status, item.isEnrolled)}
+                                    {this.buttonRegister(item, status[i], isEnrolled[i])}
                                     </Body>
                                 </View>
                             </TouchableOpacity>
                         </CardItem>
-                    }
-                />
+                            )})}
+                </ScrollView>
                 <Modal
                     presentationStyle="overFullScreen"
                     animationType="fade"
@@ -179,7 +207,8 @@ class LearnRegisterContainer extends Component {
                                 <Left>
                                     <Body>
                                     <Text style={[part.titleGrayThin, part.paddingLine]}>Bạn đang tiến hành đăng ký lớp
-                                        <Text style={part.titleSmallDarkGray}> {this.state.course} {this.state.name}</Text></Text>
+                                        <Text
+                                            style={part.titleSmallDarkGray}> {this.state.course} {this.state.name}</Text></Text>
                                     <Text style={[part.titleGrayThin, part.paddingLine]}>Thời gian học <Text
                                         style={part.titleSmallDarkGray}>{this.state.study_time}</Text></Text>
                                     <Text style={[part.titleGrayThin, part.paddingLine]}><Text
@@ -198,10 +227,8 @@ class LearnRegisterContainer extends Component {
                                 <TouchableOpacity
                                     rounded
                                     style={styles.buttonRegister}
-                                    onPress={() => this.learnRegister(this.state.id, this.props.token)}
-
+                                    onPress={() => this.learnRegister(this.state.id, this.props.token, this.state.key)}
                                 >
-
                                     <Text style={styles.textButton}>Xác nhận</Text>
                                 </TouchableOpacity>
                             </View>

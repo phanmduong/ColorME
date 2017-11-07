@@ -3,8 +3,8 @@ import {AppRegistry, Modal, PanResponder, StyleSheet, Text, View, Dimensions} fr
 import App from './src/App';
 import CodePush from 'react-native-code-push';
 import * as color from './src/styles/color';
-import * as Progress from 'react-native-progress'
-import  part from './src/styles/partStyle';
+import * as Progress from 'react-native-progress';
+
 export default class ColorMe extends Component {
     constructor() {
         super()
@@ -56,7 +56,7 @@ export default class ColorMe extends Component {
             return "Đang tải..." + parseInt((this.state.downloadUpdate)) + "%";
         }
         if (this.state.isDownLoading == false && this.state.isInstalled) {
-            return "Đang cài đặt..." + parseInt((this.state.downloadUpdate)) + "%" ;
+            return "Đang cài đặt..." ;
         }
         if (this.state.isDownLoading && this.state.isInstalled) {
             return "Cập nhật thành công "
@@ -81,14 +81,14 @@ export default class ColorMe extends Component {
                     visible={this.state.modalUpdate}
                     position={'center'}
                 >
-                    <View style={styles.wrapperModalComment}
+                    <View style={styles.wrapperModalUpdate}
                           {...this.panResponder.panHandlers}>
-                        <View style={styles.modalComment}>
+                        <View style={styles.modalUpdate}>
                     <Progress.Bar
                         progress={this.state.downloadUpdate}
                         color={color.main}
                         animationType={"spring"}
-                        width= {Dimensions.get('window').width * 0.4 }
+                        width= {Dimensions.get('window').width * 0.3 }
                         height={6}
 
                     />
@@ -102,13 +102,13 @@ export default class ColorMe extends Component {
     }
 }
 let styles = StyleSheet.create({
-    wrapperModalComment : {
+    wrapperModalUpdate : {
         flex: 1,
         backgroundColor: 'rgba(0, 0, 0, 0.7)',
         alignItems: 'center',
         justifyContent: 'center',
     },
-    modalComment : {
+    modalUpdate : {
         borderRadius: 10,
         width: Dimensions.get('window').width * 0.5,
         height: Dimensions.get('window').height * 0.3,
@@ -118,6 +118,6 @@ let styles = StyleSheet.create({
     }
 })
 console.disableYellowBox = true;
-let codePushOptions = {checkFrequency: CodePush.CheckFrequency.MANUAL};
+let codePushOptions = {checkFrequency: CodePush.CheckFrequency.IM};
 ColorMe = CodePush(codePushOptions)(ColorMe);
 AppRegistry.registerComponent('colorME', () => ColorMe);
