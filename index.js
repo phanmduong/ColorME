@@ -88,7 +88,7 @@ export default class ColorMe extends Component {
                         progress={this.state.downloadUpdate}
                         color={color.main}
                         animationType={"spring"}
-                        width= {Dimensions.get('window').width * 0.4 }
+                        width= {200}
                         height={6}
 
                     />
@@ -110,8 +110,8 @@ let styles = StyleSheet.create({
     },
     modalUpdate : {
         borderRadius: 10,
-        width: Dimensions.get('window').width * 0.5,
-        height: Dimensions.get('window').height * 0.2,
+        width: 300,
+        height: 300,
         backgroundColor: color.backGround,
         justifyContent: 'center',
         alignItems: 'center',
