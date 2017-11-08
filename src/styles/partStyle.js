@@ -368,6 +368,7 @@ const part = StyleSheet.create({
         flex: 1,
         position: 'relative',
         backgroundColor: color.backGround,
+        borderRadius : 15,
     },
     imageTopic: {
         margin: 3,

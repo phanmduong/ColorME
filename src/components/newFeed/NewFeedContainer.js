@@ -569,13 +569,14 @@ animateOut(index) {
                                             />
                                         }
                                         renderItem={({item}) => {
-                                            let {arrayLike, likeCount} = this.state;
+                                            let {arrayLike, likeCount, animated} = this.state;
                                             let colorIcon = arrayLike[item.key] ? color.main : color.icon;
                                             let likedIcon = arrayLike[item.key] ? 'fontawesome|heart' : 'fontawesome|heart-o';
                                             let featureIcon = item.feature_id == 0 ? 'fontawesome|star-o' : 'fontawesome|star';
                                             let colorFeatureIcon = item.feature_id == 0 ? color.icon : color.star;
                                             return (
                                                 <ListView
+                                                    animated={animated}
                                                     hiddenPost={this.hiddenPost}
                                                     alertHiddenPost={this.alertHiddenPost}
                                                     token={this.props.token}
@@ -586,6 +587,8 @@ animateOut(index) {
                                                     arrayLike={arrayLike}
                                                     likeCount={likeCount}
                                                     item={item}
+                                                    animateIn={this.animateIn}
+                                                    animateOut={this.animateOut}
                                                     colorIcon={colorIcon}
                                                     likedIcon={likedIcon}
                                                     featureIcon={featureIcon}

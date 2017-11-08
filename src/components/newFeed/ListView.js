@@ -7,7 +7,8 @@ import {
     ScrollView,
     TouchableOpacity,
     View,
-    Image
+    Image,
+    Animated
 } from 'react-native';
 import {
     Body,
@@ -63,7 +64,12 @@ class ListView extends Component {
             onPanResponderGrant: this._onPanResponderGrant.bind(this),
         })
     }
-
+   shouldComponentUpdate(nextProps){
+        if(nextProps.item !== this.props.item && nextProps.item){
+            return true;
+        }
+        return false;
+   }
     componentWillReceiveProps(nextProps) {
         let likedComment = this.state.likedComment;
         if (nextProps.isLoadingComment !== this.props.isLoadingComment && this.props.statusPostComment !== nextProps.props) {
@@ -176,7 +182,7 @@ class ListView extends Component {
     }
 
     render() {
-        const {item, arrayLike, likeCount, colorIcon, likedIcon, user, featureIcon, colorFeatureIcon} = this.props;
+        const {item, arrayLike, likeCount, colorIcon, likedIcon, user, featureIcon, colorFeatureIcon,animated} = this.props;
         const {navigate} = this.props.navigation;
         let colorCommentIcon = this.state.comment_content == '' ? color.icon : color.main;
         return (
@@ -218,6 +224,8 @@ class ListView extends Component {
                 <TouchableOpacity
                     activeOpacity={0.8}
                     style={part.card}
+                    onPressIn = {() => this.props.animateIn(item.key)}
+                    onPressOut = {() => this.props.animateOut(item.key)}
                     onPress={() =>
                         navigate('ThePostInNewFeed',
                             item.group
@@ -233,6 +241,11 @@ class ListView extends Component {
                                 }
                         )}>
                     <View>
+                        <Animated.View
+                            style={[part.image, {transform: [{
+                                scale: animated[item.key]
+                            }]}]}
+                            activeOpacity={0.8}>
                         {
                             item.url.indexOf('.mp4') === -1
                                 ?
@@ -256,6 +269,7 @@ class ListView extends Component {
                                     style={[part.video]}
                                 />
                         }
+                        </Animated.View>
                     </View>
                 </TouchableOpacity>
                 {/*LIKE COMMENT VIEWS*/}

@@ -44,66 +44,67 @@ class NotificationContainer extends Component {
         }
     }
 
-    textNotification(type, item) {
-        const {navigate} = this.props.navigation;
-        switch (type) {
-            case 'also_comment':
-                return (
-                    <Text style={part.titleSmallBlue}>
-                        {item.actor.name}
-                        <Text style={part.titleSmallDarkGrayBold}>
-                            &nbsp;đã bình luận về
-                            <Text style={part.titleSmallBlue}> bài viết </Text>
-                            mà bạn đã bình luận
-                        </Text>
-                    </Text>
-                );
-            case 'like':
-                return (
-                    <Text style={part.titleSmallBlue}>
-                        {item.actor.name}
-                        <Text style={part.titleSmallDarkGrayBold}>
-                            &nbsp;đã thích
-                            <Text style={part.titleSmallBlue}> bài viết </Text>
-                            của bạn
-                        </Text>
-                    </Text>
-                );
-            case 'new_comment':
-                return (
-                    <Text style={part.titleSmallBlue}>
-                        {item.actor.name}
-                        <Text style={part.titleSmallDarkGrayBold}>
-                            &nbsp;đã bình luận về
-                            <Text style={part.titleSmallBlue}
-                                  onPress={() => this.props.navigate}
-                            > bài viết </Text>
-                            của bạn
-                        </Text>
-                    </Text>
-                );
-            case 'money_transferred':
-                return (
-                    <Text style={part.titleSmallDarkGrayBold}>
-                        Bạn chuyển tiền cho
-                        <Text style={part.titleSmallBlue}>
-                            &nbsp;{item.actor.name}&nbsp;
-                        </Text>
-                        {
-                            item.transaction.status == 1
-                                ?
-                                'thành công'
-                                :
-                                'thất bại'
-                        }
-                    </Text>
-                );
-        }
-    }
+    // textNotification(type, item) {
+    //     const {navigate} = this.props.navigation;
+    //     switch (type) {
+    //         case 'also_comment':
+    //             return (
+    //                 <Text style={part.titleSmallBlue}>
+    //                     {item.actor.name}
+    //                     <Text style={part.titleSmallDarkGrayBold}>
+    //                         &nbsp;đã bình luận về
+    //                         <Text style={part.titleSmallBlue}> bài viết </Text>
+    //                         mà bạn đã bình luận
+    //                     </Text>
+    //                 </Text>
+    //             );
+    //         case 'like':
+    //             return (
+    //                 <Text style={part.titleSmallBlue}>
+    //                     {item.actor.name}
+    //                     <Text style={part.titleSmallDarkGrayBold}>
+    //                         &nbsp;đã thích
+    //                         <Text style={part.titleSmallBlue}> bài viết </Text>
+    //                         của bạn
+    //                     </Text>
+    //                 </Text>
+    //             );
+    //         case 'new_comment':
+    //             return (
+    //                 <Text style={part.titleSmallBlue}>
+    //                     {item.actor.name}
+    //                     <Text style={part.titleSmallDarkGrayBold}>
+    //                         &nbsp;đã bình luận về
+    //                         <Text style={part.titleSmallBlue}
+    //                               onPress={() => this.props.navigate}
+    //                         > bài viết </Text>
+    //                         của bạn
+    //                     </Text>
+    //                 </Text>
+    //             );
+    //         case 'money_transferred':
+    //             return (
+    //                 <Text style={part.titleSmallDarkGrayBold}>
+    //                     Bạn chuyển tiền cho
+    //                     <Text style={part.titleSmallBlue}>
+    //                         &nbsp;{item.actor.name}&nbsp;
+    //                     </Text>
+    //                     {
+    //                         item.transaction.status == 1
+    //                             ?
+    //                             'thành công'
+    //                             :
+    //                             'thất bại'
+    //                     }
+    //                 </Text>
+    //             );
+    //     }
+    // }
 
 
     render() {
         const {notification, isLoading} = this.props;
+        console.log(this.props.notification)
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <StatusBar
@@ -142,32 +143,35 @@ class NotificationContainer extends Component {
                         data={notification}
                         onEndThreshold={5}
 
-                        renderItem={({item}) =>
-                            <CardItem
-                                avatar
-                                style={[item.seen ? part.backgroundNone : part.backgroundGray, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
-                                <TouchableOpacity
-                                    activeOpacity={0.8}
-                                    style={{flex: 1}}
-                                >
-                                    <Left>
-                                        <TouchableOpacity
-                                            activeOpacity={0.8}
-                                        >
-                                            <Image
-                                                style={part.avatarUserNormalSquare}
-                                                source={{uri: item.actor.avatar_url}}/>
-                                        </TouchableOpacity>
-                                        <Body style={part.noBorder}>
-                                        {this.textNotification(item.type, item)}
-                                        <Text
-                                            style={part.describeItalicDark}>
-                                            {item.created_at}
-                                        </Text>
-                                        </Body>
-                                    </Left>
-                                </TouchableOpacity>
-                            </CardItem>
+                        renderItem={({item}) => {
+                            return (
+                                <CardItem
+                                    avatar
+                                    style={[item.seen ? part.backgroundNone : part.backgroundGray, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
+                                    <TouchableOpacity
+                                        activeOpacity={0.8}
+                                        style={{flex: 1}}
+                                    >
+                                        <Left>
+                                            <TouchableOpacity
+                                                activeOpacity={0.8}
+                                            >
+                                                <Image
+                                                    style={part.avatarUserNormalSquare}
+                                                    source={{uri: item.image_url}}/>
+                                            </TouchableOpacity>
+                                            <Body style={part.noBorder}>
+                                            <Text
+                                                style={part.titleSmallDarkGray}>{item.message.replace(/<[^>]*>/g, '')}</Text>
+                                            <Text
+                                                style={part.describeItalicDark}>
+                                                {item.created_at}
+                                            </Text>
+                                            </Body>
+                                        </Left>
+                                    </TouchableOpacity>
+                                </CardItem>
+                            )}
                         }
                         ListFooterComponent={this.loadingLoadMore()}
                     />

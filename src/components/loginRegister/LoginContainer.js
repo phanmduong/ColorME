@@ -59,7 +59,7 @@ class LoginContainer extends Component {
     render() {
         const {navigate} = this.props.navigation;
         return (
-            <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
+            <KeyboardAvoidingView behavior="padding" style={styles.wrapperContainer}>
                 <StatusBar
                     barStyle="light-content"
                     backgroundColor={color.main}

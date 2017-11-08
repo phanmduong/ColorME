@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: color.backGround,
-        position: 'relative'
+        position: 'relative',
     },
     topContainerLogin: {
         backgroundColor: color.main,
