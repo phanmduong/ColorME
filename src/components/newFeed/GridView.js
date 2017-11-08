@@ -57,7 +57,6 @@ class GridView extends Component {
                                     source={{uri: item.thumb_url}}
                                 />
                             </View>
-
                             :
                             <View style={[part.imageInGrid, part.shadow]}>
                                 <Video

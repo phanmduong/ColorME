@@ -384,7 +384,7 @@ animateOut(index) {
                                 <Picker
                                     itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
                                     itemTextStyle={part.titleSmallDarkGrayBold}
-                                    style={{width:120, alignItems: 'center', marginLeft: 70, fontSize: 15, fontFamily:'Montserrat-Medium'}}
+                                    style={{width:120, alignItems: 'center', marginLeft: 70}}
                                     textStyle={part.titleNormalDarkGray}
                                     headerStyle={part.titleNormalDarkGray}
                                     selectedValue={this.state.typeView}
