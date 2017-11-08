@@ -41,7 +41,7 @@ public class MainApplication extends Application implements ReactApplication {
             new RNCrashesPackage(MainApplication.this, getResources().getString(R.string.mobileCenterCrashes_whenToSendCrashes)),
             new RNAnalyticsPackage(MainApplication.this, getResources().getString(R.string.mobileCenterAnalytics_whenToEnableAnalytics)),
             new RNMobileCenterPackage(MainApplication.this),
-            new CodePush(null, getApplicationContext(), BuildConfig.DEBUG),
+            new CodePush("2ltkMjv10tJVNharhDZthtaYZexo91a6f11c-8611-4707-bff5-9033ff68ea8f", getApplicationContext(), BuildConfig.DEBUG),
             new LinearGradientPackage(),
             new ImagePickerPackage(),
             new FastImageViewPackage(),
