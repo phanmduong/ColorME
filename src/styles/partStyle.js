@@ -306,7 +306,7 @@ const part = StyleSheet.create({
 
     },
     inputTheme03: {
-        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat',
         fontSize: 14,
         lineHeight: 10,
         fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
@@ -418,9 +418,9 @@ const part = StyleSheet.create({
     },
 
     titleLargeDarkBold: {
-        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Bold',
         fontSize: 30,
-        fontWeight: 'bold',
+        fontWeight: (Platform.OS === 'ios') ? 'bold' : undefined,
         color: color.text,
     },
     titleProfile: {
