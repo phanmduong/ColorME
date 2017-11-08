@@ -8,7 +8,8 @@ import {
     View,
     AsyncStorage,
     Alert,
-    Image
+    Image,
+    Animated
 } from 'react-native';
 import {
     Button, Card, CardItem, Container, Content, Header, Input, Item, Left, Picker,
@@ -43,12 +44,15 @@ class NewFeedContainer extends Component {
             isLoadingList: false,
             clicked: '',
             deleteId: null,
+            animated : [],
         };
         this.isFirst = true;
         this.likePost = this.likePost.bind(this);
         this.unlikePost = this.unlikePost.bind(this);
         this.alertHiddenPost = this.alertHiddenPost.bind(this);
         this.hiddenPost = this.hiddenPost.bind(this);
+        this.animateIn = this.animateIn.bind(this);
+        this.animateOut = this.animateOut.bind(this);
     }
 
     componentWillMount() {
@@ -141,7 +145,22 @@ class NewFeedContainer extends Component {
         } catch (error) {
         }
     }
-
+animateIn(index){
+        let animated = this.state.animated;
+        Animated.timing(animated[index], {
+            toValue : 0.95,
+            duration : 500
+        }).start();
+        this.setState({animated: animated});
+}
+animateOut(index) {
+    let animated = this.state.animated;
+    Animated.timing(animated[index], {
+        toValue : 1,
+        duration : 500
+    }).start();
+    this.setState({animated : animated})
+}
 // setup
     componentWillReceiveProps(nextProps) {
         this.isFirst = true;
@@ -151,8 +170,10 @@ class NewFeedContainer extends Component {
             let count = this.state.likeCount;
             let post = nextProps.products;
             let item = false;
+            let animated = this.state.animated;
             let j = this.props.products.length;
             while (j < post.length) {
+                let animate = new Animated.Value(1);
                 let key = {key: j};
                 let arr1 = Object.assign(post[j], key);
                 let likers = post[j].likers.filter((liker) => {
@@ -165,17 +186,19 @@ class NewFeedContainer extends Component {
                 }
                 count.push(post[j].likes_count);
                 arr.push(item);
+                animated.push(animate);
                 listPost.push(arr1);
                 j++;
             }
             if (this.state.grid) {
-                this.setState({listPost: this.groupPosts(nextProps.products)});
+                this.setState({listPost: this.groupPosts(nextProps.products), animated : animated});
             }
             else {
                 this.setState({
                     likeCount: count,
                     arrayLike: arr,
                     listPost: listPost,
+                    animated : animated
                 });
             }
         }
@@ -366,7 +389,7 @@ class NewFeedContainer extends Component {
                                     headerStyle={part.titleNormalDarkGray}
                                     selectedValue={this.state.typeView}
                                     onValueChange={this.onValueChange.bind(this)}
-                                    mode={'dialog'}
+                                    mode={'dropdown'}
                                 >
                                     <Item label="Mới nhất " value=""/>
                                     <Item label="Hôm nay" value="1"/>
@@ -413,11 +436,14 @@ class NewFeedContainer extends Component {
                                         />
                                     }
                                     renderItem={({item}) => {
+                                        let {animated}= this.state;
                                         if (item == this.state.listPost[0]) {
                                             return (
                                                 <TouchableOpacity
-                                                    activeOpacity={0.8}
+                                                    activeOpacity={1}
                                                     style={[part.featureWrapper, part.marginTop]}
+                                                    onPressIn = {() => this.animateIn(0)}
+                                                    onPressOut = {() => this.animateOut(0)}
                                                     onPress={() =>
                                                         this.props.navigation.navigate('ThePostInNewFeed',
                                                             item.group
@@ -434,10 +460,17 @@ class NewFeedContainer extends Component {
                                                         )}
                                                 >
                                                     <View style={[part.imageInFeature, part.shadow]}>
+                                                        <Animated.View
+                                                            style={[part.imageInFeature, {transform: [{
+                                                                scale: this.state.animated[0]
+                                                            }]}]}
+                                                            activeOpacity={0.8}
+                                                        >
                                                         <Image
                                                             style={[part.imageInFeature]}
                                                             source={{uri: item.image_url}}
                                                         />
+                                                        </Animated.View>
                                                     </View>
 
                                                     <LinearGradient
@@ -492,9 +525,12 @@ class NewFeedContainer extends Component {
                                                         item.map((post, index) => {
                                                             return (
                                                                 <GridView
+                                                                    animated={animated}
                                                                     navigation={this.props.navigation}
                                                                     post={post}
                                                                     key={post.key}
+                                                                    animateIn={this.animateIn}
+                                                                    animateOut={this.animateOut}
                                                                 />
                                                             )
                                                         })

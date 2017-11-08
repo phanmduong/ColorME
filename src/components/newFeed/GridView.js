@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    View, TouchableOpacity, Image
+    View, TouchableOpacity, Image, Animated
 } from 'react-native';
 import {
     Container, Header, Content, Card, CardItem, Item, Picker,
@@ -19,10 +19,13 @@ class GridView extends Component {
 
     render() {
         let item = this.props.post;
+        let {animated} = this.props;
         return (
             <View style={[part.wrapperGridImage]}>
                 <TouchableOpacity
-                    activeOpacity={0.8}
+                    activeOpacity={1}
+                    onPressIn = {() => this.props.animateIn(item.key)}
+                    onPressOut = {()=> this.props.animateOut(item.key)}
                     onPress={() =>
                         this.props.navigation.navigate('ThePostInNewFeed',
                             item.group
@@ -38,6 +41,12 @@ class GridView extends Component {
                                 }
                         )}
                 >
+                   <Animated.View
+                       style={[part.imageInGrid, {transform: [{
+                           scale: animated[item.key]
+                       }]}]}
+                       activeOpacity={0.8}
+                       >
 
                     {
                         (item.url.indexOf('.mp4') === -1 ) ?
@@ -63,6 +72,7 @@ class GridView extends Component {
                                 />
                             </View>
                     }
+                   </Animated.View>
                 </TouchableOpacity>
             </View>
         );
