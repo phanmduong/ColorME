@@ -8,7 +8,6 @@ import {
     TouchableOpacity,
     View,
     Image,
-    Animated,
     ActivityIndicator
 } from 'react-native';
 import {
@@ -55,7 +54,7 @@ class ListView extends Component {
             idComment: 0,
             width: 0,
             height: 0,
-            isLoadingPostComment : false
+            isLoadingPostComment : false,
         }
     }
 
@@ -66,12 +65,7 @@ class ListView extends Component {
             onPanResponderGrant: this._onPanResponderGrant.bind(this),
         })
     }
-   shouldComponentUpdate(nextProps){
-        if(nextProps.item !== this.props.item && nextProps.item){
-            return true;
-        }
-        return false;
-   }
+
     componentWillReceiveProps(nextProps) {
         let likedComment = this.state.likedComment;
         if (nextProps.isLoadingComment !== this.props.isLoadingComment && this.props.statusPostComment !== nextProps.props) {
@@ -157,7 +151,7 @@ class ListView extends Component {
     }
 
    async commentPost(product_id, token, value) {
-       setTimeout(() => {this.setState({isLoadingPostComment: true})}, 100);
+        setTimeout(() => {this.setState({isLoadingPostComment: true})}, 100);
      let response = await infoAboutPostApi.postCommentOnePostApi(product_id, token, value)
        let id = await response.data.id;
         let listCommentInModal = this.state.listCommentInModal;
@@ -174,7 +168,7 @@ class ListView extends Component {
             created_at: 'Vừa xong'
         };
         listCommentInModal.push(arr);
-        this.setState({listCommentInModal: listCommentInModal, comment_content: '', isLoadingPostComment: false})
+        this.setState({listCommentInModal: listCommentInModal, comment_content: '', isLoadingPostComment : false})
     }
 
     deleteComment(product_id, token, index) {
@@ -185,7 +179,7 @@ class ListView extends Component {
     }
 
     render() {
-        const {item, arrayLike, likeCount, colorIcon, likedIcon, user, featureIcon, colorFeatureIcon,animated} = this.props;
+        const {item, arrayLike, likeCount, colorIcon, likedIcon, user, featureIcon, colorFeatureIcon} = this.props;
         const {navigate} = this.props.navigation;
         let colorCommentIcon = this.state.comment_content == '' ? color.icon : color.main;
         return (
@@ -227,8 +221,6 @@ class ListView extends Component {
                 <TouchableOpacity
                     activeOpacity={0.8}
                     style={part.card}
-                    onPressIn = {() => this.props.animateIn(item.key)}
-                    onPressOut = {() => this.props.animateOut(item.key)}
                     onPress={() =>
                         navigate('ThePostInNewFeed',
                             item.group
@@ -244,11 +236,6 @@ class ListView extends Component {
                                 }
                         )}>
                     <View>
-                        <Animated.View
-                            style={[part.image, {transform: [{
-                                scale: animated[item.key]
-                            }]}]}
-                            activeOpacity={0.8}>
                         {
                             item.url.indexOf('.mp4') === -1
                                 ?
@@ -272,7 +259,6 @@ class ListView extends Component {
                                     style={[part.video]}
                                 />
                         }
-                        </Animated.View>
                     </View>
                 </TouchableOpacity>
                 {/*LIKE COMMENT VIEWS*/}
@@ -496,11 +482,11 @@ class ListView extends Component {
                                                 source={{uri: user.avatar_url}}/>
                                             <Body>
                                             {this.state.isLoadingPostComment ? (
-                                                <View style={[part.wrapperContainer, {height : 15}]}>
+                                                <View style={[part.wrapperContainer, {height: 15}]}>
                                                     <ActivityIndicator color={color.gray}/>
-                                                </View>) : (
+                                                </View>
+                                            ) : (
                                             <Item rounded>
-
                                                 <Input
                                                     placeholder='Viết bình luận'
                                                     autoCorrect={false}
@@ -515,7 +501,6 @@ class ListView extends Component {
                                                         }
                                                     }
                                                     value={this.state.comment_content}
-
                                                 />
                                                 {/*<TouchableOpacity>*/}
                                                 {/*<Icon active name='fontawesome|camera-retro'*/}
@@ -525,7 +510,7 @@ class ListView extends Component {
                                                 {/*/>*/}
                                                 {/*</TouchableOpacity>*/}
                                             </Item>
-                                            )}
+                                                )}
                                             </Body>
                                             <TouchableOpacity
                                                 onPress={

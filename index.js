@@ -118,6 +118,6 @@ let styles = StyleSheet.create({
     }
 })
 console.disableYellowBox = true;
-let codePushOptions = {checkFrequency: CodePush.CheckFrequency.ON_APP_RESUME};
+let codePushOptions = {checkFrequency: CodePush.CheckFrequency.IM};
 ColorMe = CodePush(codePushOptions)(ColorMe);
 AppRegistry.registerComponent('colorME', () => ColorMe);

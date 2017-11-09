@@ -221,8 +221,8 @@ animateOut(index) {
             likeCount[index]++;
             arrayLike[index] = !arrayLike[index];
         }
-        this.setState({arrayLike: arrayLike});
-        this.setState({likeCount: likeCount});
+        this.setState({arrayLike: arrayLike, likeCount : likeCount});
+
     }
 
     unlikePost(product_id, token, index) {
@@ -233,8 +233,8 @@ animateOut(index) {
             likeCount[index]--;
             arrayLike[index] = !arrayLike[index];
         }
-        this.setState({arrayLike: arrayLike});
-        this.setState({likeCount: likeCount});
+        this.setState({arrayLike: arrayLike, likeCount : likeCount});
+
     }
 
     loadingLoadMore() {
@@ -464,6 +464,7 @@ animateOut(index) {
                                                             style={[part.imageInFeature, {transform: [{
                                                                 scale: this.state.animated[0]
                                                             }]}]}
+                                                            activeOpacity={0.8}
                                                         >
                                                         <Image
                                                             style={[part.imageInFeature]}
