@@ -8,7 +8,8 @@ import {
     TouchableOpacity,
     View,
     Image,
-    Animated
+    Animated,
+    ActivityIndicator
 } from 'react-native';
 import {
     Body,
@@ -54,6 +55,7 @@ class ListView extends Component {
             idComment: 0,
             width: 0,
             height: 0,
+            isLoadingPostComment : false
         }
     }
 
@@ -155,6 +157,7 @@ class ListView extends Component {
     }
 
    async commentPost(product_id, token, value) {
+       setTimeout(() => {this.setState({isLoadingPostComment: true})}, 100);
      let response = await infoAboutPostApi.postCommentOnePostApi(product_id, token, value)
        let id = await response.data.id;
         let listCommentInModal = this.state.listCommentInModal;
@@ -171,7 +174,7 @@ class ListView extends Component {
             created_at: 'Vừa xong'
         };
         listCommentInModal.push(arr);
-        this.setState({listCommentInModal: listCommentInModal, comment_content: ''})
+        this.setState({listCommentInModal: listCommentInModal, comment_content: '', isLoadingPostComment: false})
     }
 
     deleteComment(product_id, token, index) {
@@ -492,7 +495,12 @@ class ListView extends Component {
                                                 style={part.avatarUserSmall}
                                                 source={{uri: user.avatar_url}}/>
                                             <Body>
+                                            {this.state.isLoadingPostComment ? (
+                                                <View style={[part.wrapperContainer, {height : 15}]}>
+                                                    <ActivityIndicator color={color.gray}/>
+                                                </View>) : (
                                             <Item rounded>
+
                                                 <Input
                                                     placeholder='Viết bình luận'
                                                     autoCorrect={false}
@@ -507,6 +515,7 @@ class ListView extends Component {
                                                         }
                                                     }
                                                     value={this.state.comment_content}
+
                                                 />
                                                 {/*<TouchableOpacity>*/}
                                                 {/*<Icon active name='fontawesome|camera-retro'*/}
@@ -516,6 +525,7 @@ class ListView extends Component {
                                                 {/*/>*/}
                                                 {/*</TouchableOpacity>*/}
                                             </Item>
+                                            )}
                                             </Body>
                                             <TouchableOpacity
                                                 onPress={
