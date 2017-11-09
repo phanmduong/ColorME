@@ -233,7 +233,7 @@ class InfoAboutPostContainer extends Component {
                     showsVerticalScrollIndicator={false}
                     headerBackgroundColor={color.backGround}
                     stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
-                    parallaxHeaderHeight={210}
+                    parallaxHeaderHeight={240}
                     backgroundSpeed={10}
                     renderBackground={() => (
                         <View style={part.wrapperImageInGetFull}>
@@ -263,28 +263,30 @@ class InfoAboutPostContainer extends Component {
                                                     {post.description}
                                                 </Text>
                                             </Item>
-                                            <Item style={part.noBorder}>
-                                                {
-                                                    params.group_name != ''
-                                                        ?
-                                                        (
-                                                            <TouchableOpacity
-                                                                style={part.buttonGroup}
-                                                                onPress={() => navigate('GroupStack', {group_link: params.group_link})}
-                                                            >
-                                                                <Text style={[part.describeInImage]}>
-                                                                    {params.group_name}
-                                                                </Text>
-
-                                                            </TouchableOpacity>
-                                                        )
-                                                        :
-                                                        (
-                                                            <Text/>
-                                                        )
-                                                }
-                                            </Item>
                                         </CardItem>
+                                }
+                                {
+                                    params.group_name != ''
+                                        ?
+                                        (
+                                            <CardItem style={[part.cardHeader, part.noPaddingTopBottom]}>
+                                                <Item style={part.noBorder}>
+                                                    <TouchableOpacity
+                                                        style={part.buttonGroup}
+                                                        onPress={() => navigate('GroupStack', {group_link: params.group_link})}
+                                                    >
+                                                        <Text style={[part.describeInImage]}>
+                                                            {params.group_name}
+                                                        </Text>
+
+                                                    </TouchableOpacity>
+                                                </Item>
+                                            </CardItem>
+                                        )
+                                        :
+                                        (
+                                            <Text/>
+                                        )
                                 }
                             </View>
                             <View style={[parallaxStyle.parallaxHeaderPost, {flexDirection: 'row'}]}>
@@ -584,44 +586,44 @@ class InfoAboutPostContainer extends Component {
                                        source={{uri: this.props.user.avatar_url}}/>
                             <Body>
                             {this.state.isLoadingPostComment ? (
-                                <View style={[part.wrapperContainer, {height : 15}]}>
+                                <View style={[part.wrapperContainer, {height: 15}]}>
                                     <ActivityIndicator color={color.gray}/>
                                 </View>) : (
-                            <Item rounded>
-                                <Input
-                                    underlineColorAndroid={color.none}
-                                    onSubmit={Keyboard.dismiss}
-                                    onSubmitEditing={
-                                        this.state.comment_content == ''
-                                            ?
-                                            Keyboard.dismiss
-                                            :
-                                            () => {
-                                                this.commentPost(params.product_id, this.props.token, this.state);
-                                            }
-                                    }
-                                    placeholder='Viết bình luận'
-                                    autoCorrect={false}
-                                    returnKeyType={'send'}
-                                    placeholderTextColor={color.icon}
-                                    style={part.inputTheme01}
-                                    onChangeText={
-                                        (text) => {
-                                            this.setState({comment_content: text})
+                                <Item rounded>
+                                    <Input
+                                        underlineColorAndroid={color.none}
+                                        onSubmit={Keyboard.dismiss}
+                                        onSubmitEditing={
+                                            this.state.comment_content == ''
+                                                ?
+                                                Keyboard.dismiss
+                                                :
+                                                () => {
+                                                    this.commentPost(params.product_id, this.props.token, this.state);
+                                                }
                                         }
-                                    }
-                                    value={this.state.comment_content}
-                                />
+                                        placeholder='Viết bình luận'
+                                        autoCorrect={false}
+                                        returnKeyType={'send'}
+                                        placeholderTextColor={color.icon}
+                                        style={part.inputTheme01}
+                                        onChangeText={
+                                            (text) => {
+                                                this.setState({comment_content: text})
+                                            }
+                                        }
+                                        value={this.state.comment_content}
+                                    />
 
-                                {/*<TouchableOpacity>*/}
-                                {/*<Icon active name='fontawesome|camera-retro'*/}
-                                {/*size={size.iconBig}*/}
-                                {/*color={color.icon}*/}
-                                {/*style={{paddingRight: 15}}*/}
-                                {/*/>*/}
-                                {/*</TouchableOpacity>*/}
+                                    {/*<TouchableOpacity>*/}
+                                    {/*<Icon active name='fontawesome|camera-retro'*/}
+                                    {/*size={size.iconBig}*/}
+                                    {/*color={color.icon}*/}
+                                    {/*style={{paddingRight: 15}}*/}
+                                    {/*/>*/}
+                                    {/*</TouchableOpacity>*/}
 
-                            </Item>)}
+                                </Item>)}
 
 
                             </Body>

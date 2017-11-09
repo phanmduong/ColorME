@@ -42,7 +42,7 @@ class GridView extends Component {
                         )}
                 >
                    <Animated.View
-                       style={[part.imageInGrid, {transform: [{
+                       style={[part.wrapperImageInGrid,  part.shadow, {transform: [{
                            scale: animated[item.key]
                        }]}]}
                        activeOpacity={0.8}
@@ -50,7 +50,7 @@ class GridView extends Component {
 
                     {
                         (item.url.indexOf('.mp4') === -1 ) ?
-                            <View style={[part.imageInGrid, part.shadow]}>
+                            <View style={[part.imageInGrid]}>
                                 <Image
                                     resizeMode={'cover'}
                                     style={[part.imageInGrid]}
@@ -58,7 +58,7 @@ class GridView extends Component {
                                 />
                             </View>
                             :
-                            <View style={[part.imageInGrid, part.shadow]}>
+                            <View style={[part.imageInGrid]}>
                                 <Video
                                     repeat
                                     rate={1.0}    // 0 is paused, 1 is normal.

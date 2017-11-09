@@ -403,13 +403,14 @@ const part = StyleSheet.create({
         position: 'relative',
     },
     imageInGrid: {
-        width: (wid - 24) / 3 -4,
-        height: (wid- 24) / 3 -4,
+        width: (wid - 24) / 3 - 4,
+        height: (wid- 24) / 3 - 4,
         borderRadius: 15,
     },
-    imageInGridMid: {
-        width: wid / 3 - 2,
-        height: wid / 3 - 1,
+    wrapperImageInGrid: {
+        width: (wid - 24) / 3 - 4,
+        height: (wid- 24) / 3 - 4,
+        borderRadius: 15,
     },
     imageInFeature: {
         position: 'relative',
@@ -899,6 +900,7 @@ const part = StyleSheet.create({
         borderRightWidth: 0,
     },
     shadow: {
+        elevation: 1,
         shadowColor: color.transparentBlack,
         shadowOffset: {width: 0, height: 1},
         shadowOpacity: 0.2,
