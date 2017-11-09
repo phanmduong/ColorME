@@ -655,7 +655,12 @@ const part = StyleSheet.create({
         paddingLeft: 20,
 
     },
-
+   feedback : {
+       fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+       fontSize: 15,
+       color: color.gray,
+       fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
+   },
     // PADDING
     padding: {
         padding: 10,
@@ -901,7 +906,7 @@ const part = StyleSheet.create({
         borderRightWidth: 0,
     },
     shadow: {
-        elevation : 2,
+        elevation : 2 ,
         shadowColor: color.transparentBlack,
         shadowOffset: {width: 0.5, height: 1},
         shadowOpacity: 0.2,

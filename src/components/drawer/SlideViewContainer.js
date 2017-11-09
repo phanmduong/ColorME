@@ -121,6 +121,18 @@ class SlideViewComponent extends Component {
                     <Text style={part.describeDarkGray}>Đánh giá sản phẩm </Text>
 
                 </TouchableOpacity>
+                <TouchableOpacity
+                    style={[part.itemTabInDrawer]}
+                    onPress={() => navigate('FeedbackAppContainer')}
+                >
+                    <View style={part.wrapperIcon}>
+                        <Icon name="ion|envelope-o"
+                              size={size.iconBig}
+                              color={color.darkGray}/>
+                    </View>
+                    <Text style={part.describeDarkGray}>Phản hồi về sản phẩm </Text>
+
+                </TouchableOpacity>
             </Container>
         );
     }

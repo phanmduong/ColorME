@@ -38,8 +38,8 @@ import MyAccountContainer from '../components/myAccount/MyAccountContainer';
 import GroupContainer from '../components/group/GroupContainer';
 
 import PostLiker from '../components/newFeed/PostLiker';
-
-
+// FEEDBACK
+import FeedbackAppContainer from '../components/drawer/feedbackContainer'
 export const TabNavigatorBottomStyle = {
     indicatorStyle: {
         border: 5,
@@ -219,6 +219,7 @@ const Main = StackNavigator(
         ResetPasswordContainer: {screen: ResetPasswordContainer,},
         CodeIdentityContainer: {screen: CodeIdentityContainer,},
         RulesContainer: {screen: RulesContainer},
+        FeedbackAppContainer : {screen : FeedbackAppContainer},
         Main: {screen: Main,}
     }, StackNavigatorStyle
 );
