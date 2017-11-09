@@ -8,7 +8,8 @@ import {
     TouchableOpacity,
     View,
     Image,
-    ActivityIndicator
+    ActivityIndicator,
+    Animated
 } from 'react-native';
 import {
     Body,
@@ -221,6 +222,8 @@ class ListView extends Component {
                 <TouchableOpacity
                     activeOpacity={0.8}
                     style={part.card}
+                    onPressIn = {() => {this.props.animateIn(item.key)}}
+                    onPressOut = {() => {this.props.animateOut(item.key)}}
                     onPress={() =>
                         navigate('ThePostInNewFeed',
                             item.group
@@ -236,6 +239,12 @@ class ListView extends Component {
                                 }
                         )}>
                     <View>
+                        <Animated.View
+                            style={[part.image, {transform: [{
+                                scale: this.props.animated[item.key]
+                            }]}]}
+                            activeOpacity={0.8}
+                        >
                         {
                             item.url.indexOf('.mp4') === -1
                                 ?
@@ -259,6 +268,7 @@ class ListView extends Component {
                                     style={[part.video]}
                                 />
                         }
+                        </Animated.View>
                     </View>
                 </TouchableOpacity>
                 {/*LIKE COMMENT VIEWS*/}
