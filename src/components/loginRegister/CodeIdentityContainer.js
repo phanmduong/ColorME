@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {KeyboardAvoidingView, Text, TouchableOpacity, View, StatusBar, TextInput} from 'react-native'
+import {KeyboardAvoidingView, Text, TouchableOpacity, View, StatusBar, Platform} from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, Left, Header} from 'native-base';
 import * as color from '../../styles/color';
@@ -23,7 +23,12 @@ export default class CodeIdentityContainer extends Component {
     render() {
         const {goBack} = this.props.navigation;
         return (
-            <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === 'ios' ? 'position' : undefined}
+                keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : '200'}
+                style={styles.wrapperContainer}
+
+            >
                 <StatusBar
                     barStyle="light-content"
                 />

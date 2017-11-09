@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {
     ActivityIndicator, KeyboardAvoidingView,
-    Text, TouchableOpacity, View, Alert,
+    Text, TouchableOpacity, View, Alert, Platform,
     StatusBar,
 } from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
@@ -59,7 +59,12 @@ class LoginContainer extends Component {
     render() {
         const {navigate} = this.props.navigation;
         return (
-            <KeyboardAvoidingView behavior="padding" style={styles.wrapperContainer}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === 'ios' ? 'position' : undefined}
+                keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : '200'}
+                style={styles.wrapperContainer}
+
+            >
                 <StatusBar
                     barStyle="light-content"
                     backgroundColor={color.main}

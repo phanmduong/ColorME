@@ -43,7 +43,10 @@ class RegisterContainer extends Component {
         const {navigate} = this.props.navigation;
         const {goBack} = this.props.navigation;
         return (
-            <KeyboardAvoidingView behavior="padding" style={styles.wrapperContainer}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === 'ios' ? 'position' : undefined}
+                keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : '200'}
+                style={styles.wrapperContainer}>
                 <StatusBar
                     barStyle="light-content"
                 />

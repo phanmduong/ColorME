@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {View} from 'react-native'
-import {KeyboardAvoidingView, TouchableOpacity, Alert, Text, StatusBar} from 'react-native';
+import {KeyboardAvoidingView, TouchableOpacity, Alert, Text, StatusBar, Platform} from 'react-native';
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Item, Input, Header, Button, Left} from 'native-base';
 import BackButtonLight from '../../commons/BackButtonLight';
@@ -33,7 +33,10 @@ export default class ResetPasswordContainer extends Component {
     render() {
         const {goBack} = this.props.navigation;
         return (
-            <KeyboardAvoidingView behavior="position" style={styles.wrapperContainer}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === 'ios' ? 'position' : undefined}
+                keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : '200'}
+                style={styles.wrapperContainer}>
                 <StatusBar
                     barStyle="light-content"
                 />

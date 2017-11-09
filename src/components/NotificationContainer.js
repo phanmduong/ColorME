@@ -101,8 +101,29 @@ class NotificationContainer extends Component {
     //     }
     // }
 
+    //0: nguoi khac thich bai viet cua minh
+    //1: nguoi khac binh luan bai viet cua minh
+    //2: nguoi khac binh luan ve bai viet ma ban da binh luan
+    //3:
+    //4:
+    //5: nguoi khac tao topic trong group
+
+    routerNotification(type, id){
+        const {navigate} = this.props.navigation;
+        switch(type){
+            case 0:
+                navigate('ThePostInNotification', {product_id: id});
+            case 1:
+                navigate('ThePostInNotification', {product_id: id});
+            case 2:
+                navigate('ThePostInNotification', {product_id: id});
+            case 5:
+                //chua lam group topic, mai lam ahihi.
+        }
+    }
 
     render() {
+        const {navigate} = this.props.navigation;
         const {notification, isLoading} = this.props;
         console.log(this.props.notification)
         return (
@@ -142,7 +163,6 @@ class NotificationContainer extends Component {
                         showsVerticalScrollIndicator={false}
                         data={notification}
                         onEndThreshold={5}
-
                         renderItem={({item}) => {
                             return (
                                 <CardItem
@@ -151,7 +171,11 @@ class NotificationContainer extends Component {
                                     <TouchableOpacity
                                         activeOpacity={0.8}
                                         style={{flex: 1}}
-                                    >
+                                        onPress={
+                                            () => {
+                                                this.routerNotification(item.type, item.id);
+                                            }
+                                        }
                                         <Left>
                                             <TouchableOpacity
                                                 activeOpacity={0.8}
