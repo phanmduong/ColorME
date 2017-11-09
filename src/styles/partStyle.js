@@ -364,11 +364,13 @@ const part = StyleSheet.create({
 
     image: {
         height: size.hei * 0.6,
-        width: wid,
+        width: wid-15,
         flex: 1,
         position: 'relative',
         backgroundColor: color.backGround,
         borderRadius : 15,
+        marginRight : 9,
+        marginLeft : 4
     },
     imageTopic: {
         margin: 3,
@@ -899,8 +901,9 @@ const part = StyleSheet.create({
         borderRightWidth: 0,
     },
     shadow: {
+        elevation : 2,
         shadowColor: color.transparentBlack,
-        shadowOffset: {width: 0, height: 1},
+        shadowOffset: {width: 0.5, height: 1},
         shadowOpacity: 0.2,
     },
     haveBorderBottom: {

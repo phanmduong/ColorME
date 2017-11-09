@@ -9,7 +9,8 @@ import {
     View,
     Image,
     ActivityIndicator,
-    Animated
+    Animated,
+    Platform
 } from 'react-native';
 import {
     Body,
@@ -220,7 +221,7 @@ class ListView extends Component {
                 </CardItem>
                 {/*PHOTO*/}
                 <TouchableOpacity
-                    activeOpacity={0.8}
+                    activeOpacity={1}
                     style={part.card}
                     onPressIn = {() => {this.props.animateIn(item.key)}}
                     onPressOut = {() => {this.props.animateOut(item.key)}}
@@ -240,10 +241,10 @@ class ListView extends Component {
                         )}>
                     <View>
                         <Animated.View
-                            style={[part.image, {transform: [{
+                            style={[part.image, part.shadow,{transform: [{
                                 scale: this.props.animated[item.key]
                             }]}]}
-                            activeOpacity={0.8}
+                            activeOpacity={1}
                         >
                         {
                             item.url.indexOf('.mp4') === -1
@@ -481,8 +482,8 @@ class ListView extends Component {
                                     }
                                 </ScrollView>
                                 <KeyboardAvoidingView
-                                    behavior={'position'}
-                                    keyboardVerticalOffset={200 - size.hei * 0.15}
+                                    behavior={Platform.OS === 'ios' ? 'position' : undefined}
+                                    keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : '200'}
                                     // NEED HEIGHT KEYBOARD
                                 >
                                     <CardItem style={part.cardBottomInModal}>

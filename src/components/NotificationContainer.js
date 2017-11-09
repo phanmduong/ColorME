@@ -1,11 +1,19 @@
 import React, {Component} from 'react';
-import {
-    Text, TouchableOpacity, View, FlatList, Image, RefreshControl, Platform, StatusBar
-} from 'react-native';
+import {FlatList, Image, Platform, RefreshControl, StatusBar, Text, TouchableOpacity, View} from 'react-native';
 
 import {
-    Body, Button, Card, CardItem, Container, Content,
-    Input, Item, Left, Right, Spinner, Thumbnail,
+    Body,
+    Button,
+    Card,
+    CardItem,
+    Container,
+    Content,
+    Input,
+    Item,
+    Left,
+    Right,
+    Spinner,
+    Thumbnail,
 } from 'native-base';
 import part from '../styles/partStyle';
 import * as color from '../styles/color';
@@ -108,9 +116,9 @@ class NotificationContainer extends Component {
     //4:
     //5: nguoi khac tao topic trong group
 
-    routerNotification(type, id){
+    routerNotification(type, id) {
         const {navigate} = this.props.navigation;
-        switch(type){
+        switch (type) {
             case 0:
                 navigate('ThePostInNotification', {product_id: id});
             case 1:
@@ -118,7 +126,7 @@ class NotificationContainer extends Component {
             case 2:
                 navigate('ThePostInNotification', {product_id: id});
             case 5:
-                //chua lam group topic, mai lam ahihi.
+            //chua lam group topic, mai lam ahihi.
         }
     }
 
@@ -175,7 +183,7 @@ class NotificationContainer extends Component {
                                             () => {
                                                 this.routerNotification(item.type, item.id);
                                             }
-                                        }
+                                        }>
                                         <Left>
                                             <TouchableOpacity
                                                 activeOpacity={0.8}
@@ -195,7 +203,8 @@ class NotificationContainer extends Component {
                                         </Left>
                                     </TouchableOpacity>
                                 </CardItem>
-                            )}
+                            )
+                        }
                         }
                         ListFooterComponent={this.loadingLoadMore()}
                     />
