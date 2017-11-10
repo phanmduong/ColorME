@@ -119,5 +119,8 @@ export default {
         attendGroup:[],
         data: {},
         isLoading: false,
+    },
+    feedback : {
+        isLoadingFeedback : false,
     }
 }

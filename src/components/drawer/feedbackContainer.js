@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-import {View, Alert,StatusBar,Platform, Text, Dimensions, KeyboardAvoidingView,StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Alert,StatusBar,Platform, Text, Dimensions, KeyboardAvoidingView,StyleSheet, TouchableOpacity,ActivityIndicator} from 'react-native';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import parallaxStyle from '../../styles/parallaxStyle';
 import * as color from '../../styles/color';
@@ -122,7 +122,29 @@ class FeedBackAppContainer extends Component {
                         style={styles.buttonRegister}
                         onPress={() => this.feedbackApp(this.state)}
                     >
-                        <Text style={styles.textButton}>Xác nhận</Text>
+                        {(this.props.isLoadingFeedback) ? (
+                            <Container style={{
+                                padding: 10,
+                                flex: 1,
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            }}>
+                                <ActivityIndicator
+                                    animated={true}
+                                    color={color.navTitle}
+                                    style={{
+                                        flex: 1,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        height: 40,
+                                    }}
+                                    size='small'
+                                />
+                            </Container>
+                        ) : (
+                            <Text style={styles.textButton}>Xác nhận</Text>
+                        )
+                        }
                     </TouchableOpacity>
                     </View>
                 </ParallaxScrollView>
@@ -140,6 +162,7 @@ function mapStateToProps(state){
     return{
         email : state.login.login.email,
         user : state.login.user,
+        isLoadingFeedback : state.feedback.isLoadingFeedback
     }
 }
 function mapDispatchToProps(dispatch) {

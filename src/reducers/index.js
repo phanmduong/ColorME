@@ -11,7 +11,8 @@ import changeAvatarReducer from './changeAvatarReducer'
 import groupReducer from "./groupReducer";
 import reportReducer from "./reportReducer";
 import sideNavReducer from "./sideNavReducer";
-import myAccountInformationReducer from './myAccountInformationReducer'
+import myAccountInformationReducer from './myAccountInformationReducer';
+import feedbackAppReducer from './feedbackAppReducer';
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
@@ -29,5 +30,6 @@ const rootReducer = combineReducers({
     report                      : reportReducer,
     myAccountInformation        : myAccountInformationReducer,
     sideNav                     : sideNavReducer,
+    feedback                    : feedbackAppReducer
 });
 export default rootReducer;
