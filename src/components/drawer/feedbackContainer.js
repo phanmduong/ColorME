@@ -16,15 +16,19 @@ class FeedBackAppContainer extends Component {
         super()
         this.state = {
             name : '',
-            email : '',
+            email :'',
             message : '',
         }
     }
     feedbackApp(value){
-        if (this.state.email === '' || this.state.name === '' || this.state.username === '' || this.state.password === '') {
+        if (this.state.message === '') {
             Alert.alert('Có lỗi xảy ra', 'Bạn nên nhập  đủ thông tin để chúng tôi có thể chăm sóc cụ thể cho bạn ');
         }
         else {
+            this.setState({
+                name: this.props.user.name,
+                email: this.props.email
+            })
             this.props.feedbackAppAction.feedbackApp(value);
         }
     }
@@ -88,8 +92,7 @@ class FeedBackAppContainer extends Component {
                     )}
                 >
                     <View style={{padding : 10, marginTop : 10}}>
-                        <Text style={[part.feedback, part.paddingLine]}>
-                            Trong quá trình tạo sản phẩm, vẫn còn nhiều thiếu sót. Rất mong được mọi người
+                        <Text style={[part.describeItalicDark, part.paddingLine]}> Trong quá trình tạo sản phẩm, vẫn còn nhiều thiếu sót. Rất mong được mọi người
                             quan tâm và gửi những phản hồi, để chúng tôi có thể hoàn thiện sản phẩm tốt nhất
                             có thể. Các bạn có thể gửi những phản hồi cho chúng tôi theo mẫu dưới đây :
                              </Text>
@@ -99,31 +102,8 @@ class FeedBackAppContainer extends Component {
                         keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : '200'}
                         style = {{flex : 1, justifyContent: 'center', alignItems : 'center'}}
                     >
-                    <Item style={style.input}>
-                        <Input style={part.inputTheme02}
-                               underlineColorAndroid={color.none}
-                               returnKeyType={'next'}
-                               autoCorrect={false}
-                               onChangeText={(name) => {
-                                   this.setState({name})
-                               }}
-                               value={this.state.name}
-                        />
-                    </Item>
-                    <Item style={styles.itemInput}>
-                        <Input style={part.inputTheme02}
-                               underlineColorAndroid={color.none}
-                               keyboardType={'email-address'}
-                               returnKeyType={'next'}
-                               autoCorrect={false}
-                               onChangeText={(email) => {
-                                   this.setState({email})
-                               }}
-                               value={this.state.email}
-                        />
-                    </Item>
-                    <Item style={styles.itemInput}>
-                        <Input style={part.inputTheme02}
+                    <Item style={styles.itemInput} regular>
+                        <Input style={part.inputTheme04}
                                underlineColorAndroid={color.none}
                                keyboardType={'email-address'}
                                returnKeyType={'done'}
@@ -157,7 +137,10 @@ let style = StyleSheet.create({
     }
 })
 function mapStateToProps(state){
-    return{}
+    return{
+        email : state.login.login.email,
+        user : state.login.user,
+    }
 }
 function mapDispatchToProps(dispatch) {
     return {

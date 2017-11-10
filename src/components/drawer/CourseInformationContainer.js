@@ -68,7 +68,6 @@ class CourseInformation extends Component {
                                             </Item>
                                         </CardItem>
                                     </View>
-
                                 </View>
                             )}
                             renderStickyHeader={() => (

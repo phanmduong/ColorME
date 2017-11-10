@@ -312,6 +312,14 @@ const part = StyleSheet.create({
         fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
 
     },
+    inputTheme04: {
+        height: 100,
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat',
+        fontSize: 13,
+        lineHeight: 20,
+        fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
+
+    },
 
 
     //BORDER = NONE
@@ -659,7 +667,7 @@ const part = StyleSheet.create({
     },
    feedback : {
        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
-       fontSize: 15,
+       fontSize: 13,
        color: color.gray,
        fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
    },

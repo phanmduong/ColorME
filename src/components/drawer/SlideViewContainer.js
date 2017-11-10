@@ -33,7 +33,7 @@ class SlideViewComponent extends Component {
    alertRatingApp(){
        Alert.alert(
            'Bạn thấy thế nào với sản phẩm này ?',
-           'Đánh giá và gửi phản hồi lại cho chúng tôi ',
+           'Hãy đánh giá và gửi phản hồi lại cho chúng tôi ',
            [
                {text: 'Xác nhận', onPress: () => this.handleClick() },
                {text: 'Nhắc lại sau '},
@@ -126,7 +126,7 @@ class SlideViewComponent extends Component {
                     onPress={() => navigate('FeedbackAppContainer')}
                 >
                     <View style={part.wrapperIcon}>
-                        <Icon name="ion|envelope-o"
+                        <Icon name="entypo|newsletter"
                               size={size.iconBig}
                               color={color.darkGray}/>
                     </View>

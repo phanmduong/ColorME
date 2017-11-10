@@ -52,63 +52,6 @@ class NotificationContainer extends Component {
         }
     }
 
-    // textNotification(type, item) {
-    //     const {navigate} = this.props.navigation;
-    //     switch (type) {
-    //         case 'also_comment':
-    //             return (
-    //                 <Text style={part.titleSmallBlue}>
-    //                     {item.actor.name}
-    //                     <Text style={part.titleSmallDarkGrayBold}>
-    //                         &nbsp;đã bình luận về
-    //                         <Text style={part.titleSmallBlue}> bài viết </Text>
-    //                         mà bạn đã bình luận
-    //                     </Text>
-    //                 </Text>
-    //             );
-    //         case 'like':
-    //             return (
-    //                 <Text style={part.titleSmallBlue}>
-    //                     {item.actor.name}
-    //                     <Text style={part.titleSmallDarkGrayBold}>
-    //                         &nbsp;đã thích
-    //                         <Text style={part.titleSmallBlue}> bài viết </Text>
-    //                         của bạn
-    //                     </Text>
-    //                 </Text>
-    //             );
-    //         case 'new_comment':
-    //             return (
-    //                 <Text style={part.titleSmallBlue}>
-    //                     {item.actor.name}
-    //                     <Text style={part.titleSmallDarkGrayBold}>
-    //                         &nbsp;đã bình luận về
-    //                         <Text style={part.titleSmallBlue}
-    //                               onPress={() => this.props.navigate}
-    //                         > bài viết </Text>
-    //                         của bạn
-    //                     </Text>
-    //                 </Text>
-    //             );
-    //         case 'money_transferred':
-    //             return (
-    //                 <Text style={part.titleSmallDarkGrayBold}>
-    //                     Bạn chuyển tiền cho
-    //                     <Text style={part.titleSmallBlue}>
-    //                         &nbsp;{item.actor.name}&nbsp;
-    //                     </Text>
-    //                     {
-    //                         item.transaction.status == 1
-    //                             ?
-    //                             'thành công'
-    //                             :
-    //                             'thất bại'
-    //                     }
-    //                 </Text>
-    //             );
-    //     }
-    // }
-
     //0: nguoi khac thich bai viet cua minh
     //1: nguoi khac binh luan bai viet cua minh
     //2: nguoi khac binh luan ve bai viet ma ban da binh luan
