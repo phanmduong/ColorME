@@ -364,13 +364,15 @@ const part = StyleSheet.create({
 
     image: {
         height: size.hei * 0.6,
-        width: wid-15,
+        width: wid - 16,
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
         position: 'relative',
         backgroundColor: color.backGround,
         borderRadius : 15,
-        marginRight : 9,
-        marginLeft : 4
+        marginRight : 8,
+        marginLeft : 8,
     },
     imageTopic: {
         margin: 3,
@@ -578,7 +580,7 @@ const part = StyleSheet.create({
         borderRadius: 15,
         position: 'absolute',
         backgroundColor: color.none,
-        bottom: 8,
+        bottom: 0,
     },
     wrapperFeatureIcon: {
         position: 'absolute',

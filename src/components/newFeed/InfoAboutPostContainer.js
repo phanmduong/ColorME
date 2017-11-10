@@ -465,7 +465,7 @@ class InfoAboutPostContainer extends Component {
                                             let likedIcon = likedComment[i] ? 'fontawesome|heart' : 'fontawesome|heart-o';
                                             return (
                                                 <CardItem key={i} style={[part.cardHeader, {paddingBottom: 0}]}>
-                                                    <View style={item.parent_id === 0 ? part.cardCmt : part.cardRepCmt}>
+                                                    <View style={item.parent_id === 0 ? part.cardCmt : part.cardCmt}>
                                                         <TouchableOpacity
                                                             activeOpacity={0.8}
                                                             style={part.paddingTRB}
@@ -490,8 +490,7 @@ class InfoAboutPostContainer extends Component {
                                                             <Text
                                                                 style={[part.describeLightGray, part.paddingTLB]}
                                                             >
-                                                                {item.created_at} &middot; {numberOfLikesComment[i]}
-                                                                lượt thích
+                                                                {item.created_at} &middot; {numberOfLikesComment[i]} lượt thích
                                                             </Text>
 
                                                             {item.commenter.username === this.props.user.username ?

@@ -181,7 +181,11 @@ class NotificationContainer extends Component {
                                         style={{flex: 1}}
                                         onPress={
                                             () => {
-                                                this.routerNotification(item.type, item.id);
+                                                item.object_id
+                                                    ?
+                                                    this.routerNotification(item.type, item.object_id)
+                                                    :
+                                                    {}
                                             }
                                         }>
                                         <Left>

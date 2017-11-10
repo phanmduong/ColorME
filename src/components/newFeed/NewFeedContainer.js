@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import {
     Button, Card, CardItem, Container, Content, Header, Input, Item, Left, Picker,
-    Right, Spinner, Text, Thumbnail,Body
+    Right, Spinner, Text, Thumbnail, Body
 } from 'native-base';
 import Icon from '../../commons/Icon';
 import part from '../../styles/partStyle';
@@ -44,7 +44,7 @@ class NewFeedContainer extends Component {
             isLoadingList: false,
             clicked: '',
             deleteId: null,
-            animated : [],
+            animated: [],
         };
         this.isFirst = true;
         this.likePost = this.likePost.bind(this);
@@ -145,22 +145,25 @@ class NewFeedContainer extends Component {
         } catch (error) {
         }
     }
-animateIn(index){
+
+    animateIn(index) {
         let animated = this.state.animated;
         Animated.timing(animated[index], {
-            toValue : 0.95,
-            duration : 500
+            toValue: 0.95,
+            duration: 200
         }).start();
         this.setState({animated: animated});
-}
-animateOut(index) {
-    let animated = this.state.animated;
-    Animated.timing(animated[index], {
-        toValue : 1,
-        duration : 500
-    }).start();
-    this.setState({animated : animated})
-}
+    }
+
+    animateOut(index) {
+        let animated = this.state.animated;
+        Animated.timing(animated[index], {
+            toValue: 1,
+            duration: 200
+        }).start();
+        this.setState({animated: animated})
+    }
+
 // setup
     componentWillReceiveProps(nextProps) {
         this.isFirst = true;
@@ -191,14 +194,14 @@ animateOut(index) {
                 j++;
             }
             if (this.state.grid) {
-                this.setState({listPost: this.groupPosts(nextProps.products), animated : animated});
+                this.setState({listPost: this.groupPosts(nextProps.products), animated: animated});
             }
             else {
                 this.setState({
                     likeCount: count,
                     arrayLike: arr,
                     listPost: listPost,
-                    animated : animated
+                    animated: animated
                 });
             }
         }
@@ -221,7 +224,7 @@ animateOut(index) {
             likeCount[index]++;
             arrayLike[index] = !arrayLike[index];
         }
-        this.setState({arrayLike: arrayLike, likeCount : likeCount});
+        this.setState({arrayLike: arrayLike, likeCount: likeCount});
 
     }
 
@@ -233,7 +236,7 @@ animateOut(index) {
             likeCount[index]--;
             arrayLike[index] = !arrayLike[index];
         }
-        this.setState({arrayLike: arrayLike, likeCount : likeCount});
+        this.setState({arrayLike: arrayLike, likeCount: likeCount});
 
     }
 
@@ -361,51 +364,51 @@ animateOut(index) {
                         <Header
                             style={[part.navTopNewFeed, part.noPaddingTop, part.noPadding]}
                         >
-                                <Left>
-                                    <TouchableOpacity style={{backgroundColor: 'transparent'}}>
-                                        <Icon name={iconGird}
-                                              color={color.darkGray}
-                                              size={size.iconNewFeed}
-                                              style={part.paddingLeft}
-                                              onPress={
-                                                  () => {
-                                                      !this.state.grid
-                                                          ?
-                                                          this.viewGrid()
-                                                          :
-                                                          this.viewList()
+                            <Left>
+                                <TouchableOpacity style={{backgroundColor: 'transparent'}}>
+                                    <Icon name={iconGird}
+                                          color={color.darkGray}
+                                          size={size.iconNewFeed}
+                                          style={part.paddingLeft}
+                                          onPress={
+                                              () => {
+                                                  !this.state.grid
+                                                      ?
+                                                      this.viewGrid()
+                                                      :
+                                                      this.viewList()
 
-                                                  }
                                               }
-                                        />
-                                    </TouchableOpacity>
-                                </Left>
-                                <Body style={{alignItems: 'center'}}>
-                                <Picker
-                                    itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
-                                    itemTextStyle={part.titleSmallDarkGrayBold}
-                                    style={{width:120, alignItems: 'center', marginLeft: 70}}
-                                    textStyle={part.titleNormalDarkGray}
-                                    headerStyle={part.titleNormalDarkGray}
-                                    selectedValue={this.state.typeView}
-                                    onValueChange={this.onValueChange.bind(this)}
-                                    mode={'dropdown'}
-                                >
-                                    <Item label="Mới nhất " value=""/>
-                                    <Item label="Hôm nay" value="1"/>
-                                    <Item label="Tuần qua" value="7"/>
-                                    <Item label="Tháng qua" value="30"/>
-                                </Picker>
-                                </Body>
-                                <Right style={part.paddingRight}>
-                                    <TouchableOpacity onPress={() => navigate('DrawerOpen')}>
-                                        <Icon
-                                            name="materialCommunity|menu"
-                                            color={color.darkGray}
-                                            size={size.iconNewFeed}
-                                        />
-                                    </TouchableOpacity>
-                                </Right>
+                                          }
+                                    />
+                                </TouchableOpacity>
+                            </Left>
+                            <Body style={{alignItems: 'center'}}>
+                            <Picker
+                                itemStyle={[part.noBorder, part.noMarginLeft, {paddingLeft: 20}]}
+                                itemTextStyle={part.titleSmallDarkGrayBold}
+                                style={{width: 120, alignItems: 'center', marginLeft: 70}}
+                                textStyle={part.titleNormalDarkGray}
+                                headerStyle={part.titleNormalDarkGray}
+                                selectedValue={this.state.typeView}
+                                onValueChange={this.onValueChange.bind(this)}
+                                mode={'dropdown'}
+                            >
+                                <Item label="Mới nhất " value=""/>
+                                <Item label="Hôm nay" value="1"/>
+                                <Item label="Tuần qua" value="7"/>
+                                <Item label="Tháng qua" value="30"/>
+                            </Picker>
+                            </Body>
+                            <Right style={part.paddingRight}>
+                                <TouchableOpacity onPress={() => navigate('DrawerOpen')}>
+                                    <Icon
+                                        name="materialCommunity|menu"
+                                        color={color.darkGray}
+                                        size={size.iconNewFeed}
+                                    />
+                                </TouchableOpacity>
+                            </Right>
                         </Header>
                 }
                 {
@@ -436,14 +439,14 @@ animateOut(index) {
                                         />
                                     }
                                     renderItem={({item}) => {
-                                        let {animated}= this.state;
+                                        let {animated} = this.state;
                                         if (item == this.state.listPost[0]) {
                                             return (
                                                 <TouchableOpacity
                                                     activeOpacity={1}
                                                     style={[part.featureWrapper, part.marginTop]}
-                                                    onPressIn = {() => this.animateIn(0)}
-                                                    onPressOut = {() => this.animateOut(0)}
+                                                    onPressIn={() => this.animateIn(0)}
+                                                    onPressOut={() => this.animateOut(0)}
                                                     onPress={() =>
                                                         this.props.navigation.navigate('ThePostInNewFeed',
                                                             item.group
@@ -459,63 +462,65 @@ animateOut(index) {
                                                                 }
                                                         )}
                                                 >
-                                                    <View style={[part.imageInFeature, part.shadow]}>
-                                                        <Animated.View
-                                                            style={[part.imageInFeature, {transform: [{
+
+                                                    <Animated.View
+                                                        style={[part.imageInFeature, {
+                                                            transform: [{
                                                                 scale: this.state.animated[0]
-                                                            }]}]}
-                                                            activeOpacity={1}
-                                                        >
+                                                            }]
+                                                        }]}
+                                                        activeOpacity={1}
+                                                    >
                                                         <Image
                                                             style={[part.imageInFeature]}
                                                             source={{uri: item.image_url}}
                                                         />
-                                                        </Animated.View>
-                                                    </View>
+                                                        <LinearGradient
+                                                            colors={['transparent', color.transparentBlack]}
+                                                            style={part.wrapperTitleFeature}>
+                                                            <Text
+                                                                numberOfLines={2}
+                                                                style={part.textTitleFeature}
+                                                            >
+                                                                {this.textTopShow()}
+                                                            </Text>
+                                                            <CardItem style={[part.cardButtonFeature, part.noPadding]}>
+                                                                <Left>
+                                                                    <Button
+                                                                        transparent style={part.paddingRight}
+                                                                    >
+                                                                        <Icon name="fontawesome|heart" size={size.describe}
+                                                                              color={color.navTitle}/>
+                                                                        <Text
+                                                                            style={[part.describeLight, part.paddingLeft]}>{item.likes_count}</Text>
+                                                                    </Button>
+                                                                    <Button transparent style={part.paddingRight}
+                                                                    >
+                                                                        <Icon name="fontawesome|comment"
+                                                                              size={size.describe}
+                                                                              color={color.navTitle}/>
+                                                                        <Text
+                                                                            style={[part.describeLight, part.paddingLeft]}>{item.comments_count}</Text>
+                                                                    </Button>
+                                                                    <Button transparent style={part.paddingRight}>
+                                                                        <Icon name="materialCommunity|eye"
+                                                                              size={size.describe + 3}
+                                                                              color={color.navTitle}/>
+                                                                        <Text
+                                                                            style={[part.describeLight, part.paddingLeft]}>{item.views_count}</Text>
+                                                                    </Button>
+                                                                </Left>
+                                                                <Right>
+                                                                    <Button transparent style={{marginRight: 50}}>
+                                                                        <Icon name="fontawesome|star" size={size.iconNormal}
+                                                                              color={color.star}/>
+                                                                    </Button>
+                                                                </Right>
+                                                            </CardItem>
+                                                        </LinearGradient>
+                                                    </Animated.View>
 
-                                                    <LinearGradient
-                                                        colors={['transparent', color.transparentBlack]}
-                                                        style={part.wrapperTitleFeature}>
-                                                        <Text
-                                                            numberOfLines={2}
-                                                            style={part.textTitleFeature}
-                                                        >
-                                                            {this.textTopShow()}
-                                                        </Text>
-                                                        <CardItem style={[part.cardButtonFeature, part.noPadding]}>
-                                                            <Left>
-                                                                <Button
-                                                                    transparent style={part.paddingRight}
-                                                                >
-                                                                    <Icon name="fontawesome|heart" size={size.describe}
-                                                                          color={color.navTitle}/>
-                                                                    <Text
-                                                                        style={[part.describeLight, part.paddingLeft]}>{item.likes_count}</Text>
-                                                                </Button>
-                                                                <Button transparent style={part.paddingRight}
-                                                                >
-                                                                    <Icon name="fontawesome|comment"
-                                                                          size={size.describe}
-                                                                          color={color.navTitle}/>
-                                                                    <Text
-                                                                        style={[part.describeLight, part.paddingLeft]}>{item.comments_count}</Text>
-                                                                </Button>
-                                                                <Button transparent style={part.paddingRight}>
-                                                                    <Icon name="materialCommunity|eye"
-                                                                          size={size.describe + 3}
-                                                                          color={color.navTitle}/>
-                                                                    <Text
-                                                                        style={[part.describeLight, part.paddingLeft]}>{item.views_count}</Text>
-                                                                </Button>
-                                                            </Left>
-                                                            <Right>
-                                                                <Button transparent style={{marginRight: 43}}>
-                                                                    <Icon name="fontawesome|star" size={size.iconNormal}
-                                                                          color={color.star}/>
-                                                                </Button>
-                                                            </Right>
-                                                        </CardItem>
-                                                    </LinearGradient>
+
                                                 </TouchableOpacity>
                                             )
                                         } else {

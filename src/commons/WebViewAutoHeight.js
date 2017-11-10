@@ -43,6 +43,7 @@ body, html, #height-wrapper {
     right: 0;
 }
 p{
+    font-family: Montserrat;
     font-size: 13px;
     padding-left: 10px;
     padding-right: 10px;

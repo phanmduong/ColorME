@@ -80,7 +80,7 @@ class CourseContainer extends Component {
                                                 <Text style={part.titleSmallBlue}>{item.name}</Text>
                                                 <Text
                                                     style={[part.describeItalicDark, part.paddingLine]}>
-                                                    Buổi học
+                                                    {item.duration} buổi học
                                                 </Text>
                                                 </Body>
                                             </Left>
