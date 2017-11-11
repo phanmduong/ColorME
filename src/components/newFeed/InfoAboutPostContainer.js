@@ -570,7 +570,10 @@ class InfoAboutPostContainer extends Component {
                         </View>
                     </View>
                 </Modal>
-                <KeyboardAvoidingView behavior={'position'}>
+                <KeyboardAvoidingView
+                    behavior={Platform.OS === 'ios' ? 'position' : undefined}
+                    keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : '200'}
+                >
                     <CardItem style={part.cardBottom}>
                         <Left>
                             <Thumbnail small

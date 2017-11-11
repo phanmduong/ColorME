@@ -483,7 +483,7 @@ class ListView extends Component {
                                 </ScrollView>
                                 <KeyboardAvoidingView
                                     behavior={Platform.OS === 'ios' ? 'position' : undefined}
-                                    keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : '200'}
+                                    keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : '300'}
                                     // NEED HEIGHT KEYBOARD
                                 >
                                     <CardItem style={part.cardBottomInModal}>
@@ -502,7 +502,6 @@ class ListView extends Component {
                                                     placeholder='Viết bình luận'
                                                     autoCorrect={false}
                                                     underlineColorAndroid={color.none}
-
                                                     returnKeyType={'send'}
                                                     placeholderTextColor={color.icon}
                                                     style={part.inputTheme01}

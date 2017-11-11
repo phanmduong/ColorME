@@ -18,16 +18,16 @@ import {
     Thumbnail
 } from 'native-base';
 
-import styles from '../../styles/loginRegisterStyle'
-import part from '../../styles/partStyle';
+import styles from '../styles/loginRegisterStyle'
+import part from '../styles/partStyle';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import BackButton from '../../commons/BackButton';
+import BackButton from '../commons/BackButton';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
-import parallaxStyle from '../../styles/parallaxStyle';
-import * as courseAction from '../../actions/courseAction';
-import * as size from '../../styles/size';
-import * as color from '../../styles/color';
+import parallaxStyle from '../styles/parallaxStyle';
+import * as courseAction from '../actions/courseAction';
+import * as size from '../styles/size';
+import * as color from '../styles/color';
 
 class LearnRegisterContainer extends Component {
     constructor() {
@@ -160,7 +160,8 @@ class LearnRegisterContainer extends Component {
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <StatusBar
                     barStyle="dark-content"
-                    backgroundColor={color.backGround}
+                    backgroundColor={color.none}
+
                 />
                 <ParallaxScrollView
                     backgroundColor={color.backGround}

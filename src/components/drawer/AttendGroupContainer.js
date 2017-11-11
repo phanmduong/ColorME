@@ -30,7 +30,7 @@ class AttendGroupContainer extends Component {
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <StatusBar
                     barStyle="dark-content"
-                    backgroundColor={color.backGround}
+                    backgroundColor={color.none}
                 />
                 <ParallaxScrollView
                     backgroundColor={color.backGround}
@@ -106,30 +106,33 @@ class AttendGroupContainer extends Component {
                                     nào.</Text>
                                 </Body>
                                 :
-                                <FlatList
-                                    showsVerticalScrollIndicator={false}
-                                    data={attendGroup}
-                                    renderItem={({item}) =>
-                                        <CardItem style={[part.noBorder, part.cardProgress, part.haveBorderBottom]}>
-                                            <TouchableOpacity
-                                                activeOpacity={0.8}
-                                                style={{flex: 1}}
-                                                onPress={() => navigate('GroupInDrawer', {group_link: `/group/${item.link}`})}
-                                            >
-                                                <Left>
-                                                    <Image
-                                                        style={part.avatarUserNormal}
-                                                        source={{uri: item.avatar_url}}/>
-                                                    <Body style={part.noBorder}>
-                                                    <Text style={part.titleSmallBlue}>{item.name}</Text>
-                                                    <Text style={part.titleSmallDarkGrayBold}>{item.mems_count} thành
-                                                        viên</Text>
-                                                    </Body>
-                                                </Left>
-                                            </TouchableOpacity>
-                                        </CardItem>
-                                    }
-                                />
+                                <View style={{marginTop: 20}}>
+                                    <FlatList
+                                        showsVerticalScrollIndicator={false}
+                                        data={attendGroup}
+                                        renderItem={({item}) =>
+                                            <CardItem avatar style={[part.noBorder, part.cardProgress, part.haveBorderBottom, part.noMargin, {paddingTop: 12, paddingBottom: 12}]}>
+                                                <TouchableOpacity
+                                                    activeOpacity={0.8}
+                                                    style={{flex: 1}}
+                                                    onPress={() => navigate('GroupInDrawer', {group_link: `/group/${item.link}`})}
+                                                >
+                                                    <Left>
+                                                        <Image
+                                                            style={part.avatarUserNormal}
+                                                            source={{uri: item.avatar_url}}/>
+                                                        <Body style={part.noBorder}>
+                                                        <Text style={part.titleSmallBlue}>{item.name}</Text>
+                                                        <Text style={part.titleSmallDarkGrayBold}>{item.mems_count} thành
+                                                            viên</Text>
+                                                        </Body>
+                                                    </Left>
+                                                </TouchableOpacity>
+                                            </CardItem>
+                                        }
+                                    />
+                                </View>
+
                     }
 
                 </View>

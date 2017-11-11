@@ -76,12 +76,12 @@ class NotificationContainer extends Component {
     render() {
         const {navigate} = this.props.navigation;
         const {notification, isLoading} = this.props;
-        console.log(this.props.notification)
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <StatusBar
                     barStyle="dark-content"
-                    backgroundColor={color.backGround}
+                    backgroundColor={color.none}
+
                 />
                 {
                     Platform.OS === 'ios'
@@ -156,7 +156,7 @@ class NotificationContainer extends Component {
                         ListFooterComponent={this.loadingLoadMore()}
                     />
                     {
-                        notification.length % 20 == 0
+                        notification.length != 0 && notification.length % 20 == 0
                             ?
                             <TouchableOpacity style={part.wrapperTextLoadMore}
                                               onPress={() => this.getMoreNotification()}

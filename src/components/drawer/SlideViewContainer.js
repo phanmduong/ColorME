@@ -50,7 +50,7 @@ class SlideViewComponent extends Component {
             <Container style={part.wrapperContainer}>
                 <StatusBar
                     barStyle="dark-content"
-                    backgroundColor={color.backGround}
+                    backgroundColor={color.none}
                 />
                 <View style={part.wrapperImageInDrawer}>
                     <Image

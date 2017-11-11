@@ -289,10 +289,11 @@ const part = StyleSheet.create({
     // TEXT INPUT
 
     inputTheme01: {
-        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Thin',
         fontSize: size.describe,
         lineHeight: 10,
         height:  (Platform.OS === 'ios') ? 30 : 40,
+        fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
     },
     inputTheme02: {
         fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
@@ -769,6 +770,9 @@ const part = StyleSheet.create({
     },
     noMarginLeft: {
         marginLeft: 0,
+    },
+    noMargin: {
+        margin: 0,
     },
     // LIST ITEM
     listItem: {

@@ -19,8 +19,8 @@ import NewFeedContainer from '../components/newFeed/NewFeedContainer';
 import NotificationContainer from '../components/NotificationContainer';
 import SlideViewComponent from '../components/drawer/SlideViewContainer'
 import CourseContainer from '../components/CourseContainer'
-import LearnRegisterContainer from '../components/drawer/LearnRegisterContainer'
-import CourseInformation from '../components/drawer/CourseInformationContainer'
+import LearnRegisterContainer from '../components/LearnRegisterContainer'
+import CourseInformation from '../components/CourseInformationContainer'
 import AttendGroupContainer from '../components/drawer/AttendGroupContainer'
 import InfoAboutPostContainer from '../components/newFeed/InfoAboutPostContainer';
 import AchievementsContainer from '../components/AchievementsContainer';
@@ -39,7 +39,7 @@ import GroupContainer from '../components/group/GroupContainer';
 
 import PostLiker from '../components/newFeed/PostLiker';
 // FEEDBACK
-import FeedbackAppContainer from '../components/drawer/feedbackContainer'
+import FeedbackAppContainer from '../components/drawer/FeedbackContainer'
 export const TabNavigatorBottomStyle = {
     indicatorStyle: {
         border: 5,
@@ -195,8 +195,6 @@ const Group = StackNavigator(
 const Drawer = DrawerNavigator(
     {
         Home: {screen: Home},
-        AttendGroup: {screen: Group},
-        Rules: {screen: RulesContainer},
     },
     {
         drawerWidth: size.wid * 3 / 4,
@@ -219,6 +217,8 @@ const Main = StackNavigator(
         ResetPasswordContainer: {screen: ResetPasswordContainer,},
         CodeIdentityContainer: {screen: CodeIdentityContainer,},
         RulesContainer: {screen: RulesContainer},
+        AttendGroup: {screen: Group},
+        Rules: {screen: RulesContainer},
         FeedbackAppContainer : {screen : FeedbackAppContainer},
         Main: {screen: Main,}
     }, StackNavigatorStyle

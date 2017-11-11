@@ -61,7 +61,7 @@ class GridView extends Component {
                             <View style={[part.imageInGrid, part.shadow]}>
                                 <Video
                                     repeat
-                                    rate={1.0}    // 0 is paused, 1 is normal.
+                                    rate={0}    // 0 is paused, 1 is normal.
                                     volume={1.0}  // 0 is muted, 1 is normal.
                                     muted={true}  // Mutes the audio entirely.
                                     paused={false}

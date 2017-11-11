@@ -38,7 +38,7 @@ class FeedBackAppContainer extends Component {
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <StatusBar
                     barStyle="dark-content"
-                    backgroundColor={color.backGround}
+                    backgroundColor={color.none}
                 />
                 <ParallaxScrollView
                     backgroundColor={color.backGround}

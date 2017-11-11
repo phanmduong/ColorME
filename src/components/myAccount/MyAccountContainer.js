@@ -94,7 +94,7 @@ class MyAccountContainer extends Component {
             <Container style={part.wrapperContainer}>
                 <StatusBar
                     barStyle="dark-content"
-                    backgroundColor={color.backGround}
+                    backgroundColor={color.none}
                 />
                 <ParallaxScrollView
                     backgroundColor={color.backGround}
