@@ -57,7 +57,7 @@ class InfoAboutPostContainer extends Component {
             listComment: [],
             likedComment: [],
             numberOfLikesComment: [],
-            isLoadingPostComment : false,
+            isLoadingPostComment: false,
         }
     }
 
@@ -151,7 +151,9 @@ class InfoAboutPostContainer extends Component {
     }
 
     async commentPost(product_id, token, value) {
-        setTimeout(() => {this.setState({isLoadingPostComment: true})}, 100);
+        setTimeout(() => {
+            this.setState({isLoadingPostComment: true})
+        }, 100);
         const response = await infoAboutPostApi.postCommentOnePostApi(product_id, token, value);
         let listComment = this.state.listComment;
         let id = await response.data.id;
@@ -169,7 +171,7 @@ class InfoAboutPostContainer extends Component {
             created_at: 'Vừa xong'
         };
         listComment.push(arr);
-        this.setState({listComment: listComment, comment_content: '', isLoadingPostComment : false});
+        this.setState({listComment: listComment, comment_content: '', isLoadingPostComment: false});
         this.ref.scrollView.scrollToEnd();
     }
 
@@ -231,7 +233,7 @@ class InfoAboutPostContainer extends Component {
                     showsVerticalScrollIndicator={false}
                     headerBackgroundColor={color.backGround}
                     stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
-                    parallaxHeaderHeight={210}
+                    parallaxHeaderHeight={250}
                     backgroundSpeed={10}
                     renderBackground={() => (
                         <View style={part.wrapperImageInGetFull}>
@@ -264,34 +266,37 @@ class InfoAboutPostContainer extends Component {
                                                 >
                                                     {
                                                         isLoading
-                                                        ?
-                                                        'Đang tải...'
-                                                        :
-                                                        post.description
+                                                            ?
+                                                            'Đang tải...'
+                                                            :
+                                                            post.description
                                                     }
                                                 </Text>
                                             </Item>
-                                            <Item style={part.noBorder}>
-                                                {
-                                                    !isLoading && params.group_name != ''
-                                                        ?
-                                                        (
-                                                            <TouchableOpacity
-                                                                style={part.buttonGroup}
-                                                            >
-                                                                <Text style={[part.describeInImage]}>
-                                                                    {params.group_name}
-                                                                </Text>
 
-                                                            </TouchableOpacity>
-                                                        )
-                                                        :
-                                                        (
-                                                            <Text/>
-                                                        )
-                                                }
-                                            </Item>
                                         </CardItem>
+                                }
+                                {
+                                    !isLoading && params.group_name != ''
+                                        ?
+                                        (
+                                            <CardItem style={[part.cardHeader, part.noPaddingBottom]}>
+                                                <Item style={part.noBorder}>
+                                                    <TouchableOpacity
+                                                        style={part.buttonGroup}
+                                                    >
+                                                        <Text style={[part.describeInImage]}>
+                                                            {params.group_name}
+                                                        </Text>
+
+                                                    </TouchableOpacity>
+                                                </Item>
+                                            </CardItem>
+                                        )
+                                        :
+                                        (
+                                            <Text/>
+                                        )
                                 }
                             </View>
                             <View style={[parallaxStyle.parallaxHeaderPost, {flexDirection: 'row'}]}>
@@ -502,7 +507,8 @@ class InfoAboutPostContainer extends Component {
                                                             <Text
                                                                 style={[part.describeLightGray, part.paddingTLB]}
                                                             >
-                                                                {item.created_at} &middot; {numberOfLikesComment[i]} lượt thích
+                                                                {item.created_at} &middot; {numberOfLikesComment[i]}
+                                                                lượt thích
                                                             </Text>
 
                                                             {item.commenter.username === this.props.user.username ?
@@ -597,40 +603,40 @@ class InfoAboutPostContainer extends Component {
                                     <ActivityIndicator color={color.gray}/>
                                 </View>
                             ) : (
-                            <Item rounded>
-                                <Input
-                                    underlineColorAndroid={color.none}
-                                    onSubmit={Keyboard.dismiss}
-                                    onSubmitEditing={
-                                        this.state.comment_content == ''
-                                            ?
-                                            Keyboard.dismiss
-                                            :
-                                            () => {
-                                                this.commentPost(params.product_id, this.props.token, this.state);
-                                            }
-                                    }
-                                    placeholder='Viết bình luận'
-                                    autoCorrect={false}
-                                    returnKeyType={'send'}
-                                    placeholderTextColor={color.icon}
-                                    style={part.inputTheme01}
-                                    onChangeText={
-                                        (text) => {
-                                            this.setState({comment_content: text})
+                                <Item rounded>
+                                    <Input
+                                        underlineColorAndroid={color.none}
+                                        onSubmit={Keyboard.dismiss}
+                                        onSubmitEditing={
+                                            this.state.comment_content == ''
+                                                ?
+                                                Keyboard.dismiss
+                                                :
+                                                () => {
+                                                    this.commentPost(params.product_id, this.props.token, this.state);
+                                                }
                                         }
-                                    }
-                                    value={this.state.comment_content}
-                                />
-                                {/*<TouchableOpacity>*/}
-                                {/*<Icon active name='fontawesome|camera-retro'*/}
-                                {/*size={size.iconBig}*/}
-                                {/*color={color.icon}*/}
-                                {/*style={{paddingRight: 15}}*/}
-                                {/*/>*/}
-                                {/*</TouchableOpacity>*/}
-                            </Item>
-                                )}
+                                        placeholder='Viết bình luận'
+                                        autoCorrect={false}
+                                        returnKeyType={'send'}
+                                        placeholderTextColor={color.icon}
+                                        style={part.inputTheme01}
+                                        onChangeText={
+                                            (text) => {
+                                                this.setState({comment_content: text})
+                                            }
+                                        }
+                                        value={this.state.comment_content}
+                                    />
+                                    {/*<TouchableOpacity>*/}
+                                    {/*<Icon active name='fontawesome|camera-retro'*/}
+                                    {/*size={size.iconBig}*/}
+                                    {/*color={color.icon}*/}
+                                    {/*style={{paddingRight: 15}}*/}
+                                    {/*/>*/}
+                                    {/*</TouchableOpacity>*/}
+                                </Item>
+                            )}
                             </Body>
                             <TouchableOpacity
                                 onPress={
