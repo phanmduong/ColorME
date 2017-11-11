@@ -245,7 +245,11 @@ class InfoAboutPostContainer extends Component {
                                 <CardItem style={[part.cardHeader, part.noPaddingTopBottom]}>
                                     <Item style={part.noBorder}>
                                         <Text style={part.titlePost} numberOfLines={1}>
-                                            {post.title}
+                                            {isLoading
+                                                ?
+                                                'Đang tải...'
+                                                :
+                                                post.title}
                                         </Text>
                                     </Item>
                                 </CardItem>
@@ -258,17 +262,22 @@ class InfoAboutPostContainer extends Component {
                                             <Item style={part.noBorder}>
                                                 <Text style={part.describeInImage} numberOfLines={2}
                                                 >
-                                                    {post.description}
+                                                    {
+                                                        isLoading
+                                                        ?
+                                                        'Đang tải...'
+                                                        :
+                                                        post.description
+                                                    }
                                                 </Text>
                                             </Item>
                                             <Item style={part.noBorder}>
                                                 {
-                                                    params.group_name != ''
+                                                    !isLoading && params.group_name != ''
                                                         ?
                                                         (
                                                             <TouchableOpacity
                                                                 style={part.buttonGroup}
-                                                                onPress={() => navigate('GroupStack', {group_link: params.group_link})}
                                                             >
                                                                 <Text style={[part.describeInImage]}>
                                                                     {params.group_name}
@@ -288,7 +297,7 @@ class InfoAboutPostContainer extends Component {
                             <View style={[parallaxStyle.parallaxHeaderPost, {flexDirection: 'row'}]}>
                                 <CardItem style={[part.cardHeader, {marginTop: 10}]}>
                                     {
-                                        (post.author)
+                                        (!isLoading && post.author)
                                             ?
                                             (
                                                 <Left>
@@ -364,7 +373,11 @@ class InfoAboutPostContainer extends Component {
                                 } : {flexDirection: 'row'}}>
                                     <Body style={{padding: 30}}>
                                     <Text style={part.titleSmallDarkGrayBold} numberOfLines={1}>
-                                        {post.title}
+                                        {isLoading
+                                            ?
+                                            'Đang tải...'
+                                            :
+                                            post.title}
                                     </Text>
                                     </Body>
                                 </Left>
@@ -374,7 +387,6 @@ class InfoAboutPostContainer extends Component {
                     renderFixedHeader={() => (
                         <View key="fixed-header" style={part.iconInDrawerNav}>
                             <Left style={Platform.OS === 'ios' ? {marginTop: 20} : {marginTop: 10}}>
-
                                 <BackButton goBack={goBack}/>
                             </Left>
                         </View>

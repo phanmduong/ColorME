@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    FlatList, View, TouchableOpacity
+    FlatList, View, TouchableOpacity, Image
 } from 'react-native';
 import {
     Content, Card, CardItem, Text, Thumbnail, Container,

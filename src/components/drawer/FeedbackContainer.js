@@ -22,7 +22,7 @@ class FeedBackAppContainer extends Component {
     }
     feedbackApp(value){
         if (this.state.message === '') {
-            Alert.alert('Có lỗi xảy ra', 'Bạn nên nhập  đủ thông tin để chúng tôi có thể chăm sóc cụ thể cho bạn ');
+            Alert.alert('Có lỗi xảy ra', 'Bạn nên nhập  đủ thông tin để chúng tôi có thể chăm sóc cụ thể cho bạn.');
         }
         else {
             this.setState({
@@ -92,7 +92,7 @@ class FeedBackAppContainer extends Component {
                     )}
                 >
                     <View style={{padding : 10, marginTop : 10}}>
-                        <Text style={[part.describeItalicDark, part.paddingLine]}> Trong quá trình tạo sản phẩm, vẫn còn nhiều thiếu sót. Rất mong được mọi người
+                        <Text style={[part.describeItalicDark, part.paddingLine, part.padding]}> Trong quá trình tạo sản phẩm, vẫn còn nhiều thiếu sót. Rất mong được mọi người
                             quan tâm và gửi những phản hồi, để chúng tôi có thể hoàn thiện sản phẩm tốt nhất
                             có thể. Các bạn có thể gửi những phản hồi cho chúng tôi theo mẫu dưới đây :
                              </Text>
@@ -102,7 +102,7 @@ class FeedBackAppContainer extends Component {
                         keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : '200'}
                         style = {{flex : 1, justifyContent: 'center', alignItems : 'center'}}
                     >
-                    <Item style={styles.itemInput} regular>
+                    <Item style={styles.itemInputFeedBack} regular>
                         <Input style={part.inputTheme04}
                                underlineColorAndroid={color.none}
                                keyboardType={'email-address'}

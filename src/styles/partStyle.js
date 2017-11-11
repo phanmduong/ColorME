@@ -372,12 +372,24 @@ const part = StyleSheet.create({
     },
 
     image: {
+        height: (Platform.OS === 'ios') ? (size.hei * 0.6) : (size.hei * 0.6 - 2) ,
+        width: (Platform.OS === 'ios') ? (wid - 16) : (wid - 18),
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: color.backGround,
+        borderRadius : 15,
+        marginRight : 8,
+        marginLeft : 8,
+    },
+    wrapperImage: {
+        paddingTop: 2,
+        paddingBottom: 2,
         height: size.hei * 0.6,
         width: wid - 16,
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        position: 'relative',
         backgroundColor: color.backGround,
         borderRadius : 15,
         marginRight : 8,
@@ -416,14 +428,18 @@ const part = StyleSheet.create({
         position: 'relative',
     },
     imageInGrid: {
-        width: (wid - 24) / 3 -4,
-        height: (wid- 24) / 3 -4,
+        width: (Platform.OS === 'ios') ? ((wid - 24) / 3 -  4) :  ((wid - 24) / 3 - 6),
+        height: (Platform.OS === 'ios') ? ((wid - 24) / 3 -  4) :  ((wid - 24) / 3 - 6),
         borderRadius: 15,
     },
-    imageInGridMid: {
-        width: wid / 3 - 2,
-        height: wid / 3 - 1,
+    wrapperImageInGrid: {
+        width: (wid - 24) / 3 - 4,
+        height: (wid- 24) / 3 - 4,
+        justifyContent:'center',
+        alignItems: 'center',
+        borderRadius: 15,
     },
+
     imageInFeature: {
         position: 'relative',
         width: wid - 16,
@@ -920,7 +936,7 @@ const part = StyleSheet.create({
         borderRightWidth: 0,
     },
     shadow: {
-        elevation : 2 ,
+        elevation : 1 ,
         shadowColor: color.transparentBlack,
         shadowOffset: {width: 0.5, height: 1},
         shadowOpacity: 0.2,

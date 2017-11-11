@@ -75,6 +75,7 @@ const ThePostInNewFeed = StackNavigator(
 const UserInNewFeed = StackNavigator(
     {
         UserInNewFeed: {screen: UserContainer},
+        GroupInUser: {screen: GroupContainer},
     }, StackNavigatorStyle
 );
 

@@ -30,6 +30,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    itemInputFeedBack: {
+        width: size.wid - 40,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     textTitleInput: {
         fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Light',
         fontSize: 12,

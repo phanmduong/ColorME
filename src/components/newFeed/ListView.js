@@ -241,7 +241,7 @@ class ListView extends Component {
                         )}>
                     <View>
                         <Animated.View
-                            style={[part.image, part.shadow, {transform: [{
+                            style={[part.wrapperImage, part.shadow, {transform: [{
                                 scale: this.props.animated[item.key]
                             }]}]}
                             activeOpacity={1}
@@ -255,7 +255,7 @@ class ListView extends Component {
                                         uri: item.image_url,
                                         headers: {Authorization: 'Đang tải..'},
                                     }}
-                                    style={[part.image, part.shadow,]}
+                                    style={[part.image]}
                                 />
                                 :
                                 <Video
@@ -266,7 +266,7 @@ class ListView extends Component {
                                     paused={false}
                                     resizeMode={'cover'}
                                     source={{uri: item.url}}
-                                    style={[part.image, part.shadow,]}
+                                    style={[part.image]}
                                 />
                         }
                         </Animated.View>

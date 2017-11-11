@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    TouchableOpacity, View,
+    TouchableOpacity, View, Image
 } from 'react-native';
 import {
     Container, Thumbnail, Text, Left, Body, Right, Item, Spinner

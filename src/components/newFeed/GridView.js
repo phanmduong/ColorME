@@ -42,7 +42,7 @@ class GridView extends Component {
                         )}
                 >
                    <Animated.View
-                       style={[part.imageInGrid, {transform: [{
+                       style={[part.wrapperImageInGrid, {transform: [{
                            scale: animated[item.key]
                        }]}]}
                        activeOpacity={0.8}

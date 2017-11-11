@@ -21,7 +21,7 @@ export function feedbackApp(value){
                 dispatch(feedbackSuccess());
                 Alert.alert(
                     'Cảm ơn những ý kiến đóng góp của bạn',
-                     'Chúng tôi sẽ cố gắng sớm khắc phục !'
+                     'Chúng tôi sẽ cố gắng sớm khắc phục trong thời gian sớm nhất!'
                 )
             })
     }

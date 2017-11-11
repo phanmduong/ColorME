@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    FlatList, TouchableOpacity, View, Text
+    FlatList, TouchableOpacity, View, Text, Image
 } from 'react-native';
 import {
     Container, Spinner, Body

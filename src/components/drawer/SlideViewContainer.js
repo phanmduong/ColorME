@@ -97,18 +97,7 @@ class SlideViewComponent extends Component {
                     <Text style={part.describeDarkGray}>Điều khoản sử dụng</Text>
 
                 </TouchableOpacity>
-                <TouchableOpacity
-                    style={[part.itemTabInDrawer]}
-                    onPress={() => this.logout()}
-                >
-                    <View style={part.wrapperIcon}>
-                        <Icon name="entypo|arrow-with-circle-right"
-                              size={size.iconBig}
-                              color={color.darkGray}/>
-                    </View>
-                    <Text style={part.describeDarkGray}>Đăng xuất</Text>
 
-                </TouchableOpacity>
                 <TouchableOpacity
                     style={[part.itemTabInDrawer]}
                     onPress={() => this.alertRatingApp()}
@@ -131,6 +120,19 @@ class SlideViewComponent extends Component {
                               color={color.darkGray}/>
                     </View>
                     <Text style={part.describeDarkGray}>Phản hồi về sản phẩm </Text>
+
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={[part.itemTabInDrawer]}
+                    onPress={() => this.logout()}
+                >
+                    <View style={part.wrapperIcon}>
+                        <Icon name="entypo|arrow-with-circle-right"
+                              size={size.iconBig}
+                              color={color.darkGray}/>
+                    </View>
+                    <Text style={part.describeDarkGray}>Đăng xuất</Text>
 
                 </TouchableOpacity>
             </Container>

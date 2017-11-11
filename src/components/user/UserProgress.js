@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    FlatList, View, Image
+    FlatList, View, Image, TouchableOpacity
 } from 'react-native';
 import {
     Container, Card, CardItem, Text, Left, Body, Spinner
@@ -12,6 +12,7 @@ import Icon from '../../commons/Icon';
 class UserProgress extends Component {
     render() {
         const {user, progress, isLoadingUserProgress} = this.props;
+        const {navigate} = this.props.navigation;
         return (
             <Container
                 style={[part.wrapperContainer, part.paddingLBR]}>
@@ -39,10 +40,15 @@ class UserProgress extends Component {
                                     renderItem={({item}) =>
                                         <View style={[part.noBorder]}>
                                             <CardItem style={[part.noBorder, part.cardProgress, part.haveBorderBottom]}>
-                                                <Left>
-                                                    <Image style={part.avatarUserNormal}
-                                                               source={{uri: item.icon_url}}/>
-                                                    <Body>
+                                                    <Left>
+                                                        <TouchableOpacity
+                                                            onPress={() => navigate('GroupInUser', )}
+                                                        >
+                                                            <Image style={part.avatarUserNormal}
+                                                                   source={{uri: item.icon_url}}/>
+                                                        </TouchableOpacity>
+
+                                                        <Body>
                                                         <Text style={part.titleSmallDarkGrayBold}>{item.name}</Text>
                                                         <Text
                                                             style={part.titleSmallDarkGrayBold}>{item.study_time}
@@ -61,8 +67,8 @@ class UserProgress extends Component {
                                                                 })
                                                             }
                                                         </View>
-                                                    </Body>
-                                                </Left>
+                                                        </Body>
+                                                    </Left>
                                             </CardItem>
                                         </View>
                                     }/>
