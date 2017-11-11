@@ -609,7 +609,7 @@ const part = StyleSheet.create({
     },
     wrapperTitleFeature: {
         width: wid - 16,
-        height: 70,
+        height: 80,
         padding: 10,
         paddingLeft: 18,
         borderRadius: 15,
