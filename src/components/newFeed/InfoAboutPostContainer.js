@@ -284,6 +284,7 @@ class InfoAboutPostContainer extends Component {
                                                 <Item style={part.noBorder}>
                                                     <TouchableOpacity
                                                         style={part.buttonGroup}
+                                                        onPress={() => navigate('GroupStack', {group_link: params.group_link})}
                                                     >
                                                         <Text style={[part.describeInImage]}>
                                                             {params.group_name}
