@@ -477,66 +477,69 @@ class InfoAboutPostContainer extends Component {
                                 </CardItem>
                                 <View>
                                     {
-                                        this.state.listComment.map((item, i) => {
-                                            let {likedComment, numberOfLikesComment} = this.state;
-                                            let iconLikeComment = likedComment[i] ? color.main : color.icon;
-                                            let likedIcon = likedComment[i] ? 'fontawesome|heart' : 'fontawesome|heart-o';
-                                            return (
-                                                <CardItem key={i} style={[part.cardHeader, {paddingBottom: 0}]}>
-                                                    <View style={item.parent_id === 0 ? part.cardCmt : part.cardCmt}>
-                                                        <TouchableOpacity
-                                                            activeOpacity={0.8}
-                                                            style={part.paddingTRB}
-                                                            onPress={() => navigate('UserInNewFeed', {username: item.commenter.username})}
-                                                        >
-                                                            <Image
-                                                                style={part.avatarUserSmall}
-                                                                source={{uri: item.commenter.avatar_url}}/>
-                                                        </TouchableOpacity>
-                                                        <Body>
-                                                        <Text
-                                                            style={[part.titleSmallBlue, part.paddingTLB]}
-                                                        >
-                                                            {item.commenter.name}
-                                                        </Text>
-                                                        <Text
-                                                            style={[part.describeDarkGray, part.paddingLeft]}
-                                                        >
-                                                            {item.content}
-                                                        </Text>
-                                                        <View style={{flexDirection: 'row'}}>
-                                                            <Text
-                                                                style={[part.describeLightGray, part.paddingTLB]}
+                                        !isLoading
+                                            ?
+                                            this.state.listComment.map((item, i) => {
+                                                let {likedComment, numberOfLikesComment} = this.state;
+                                                let iconLikeComment = likedComment[i] ? color.main : color.icon;
+                                                let likedIcon = likedComment[i] ? 'fontawesome|heart' : 'fontawesome|heart-o';
+                                                return (
+                                                    <CardItem key={i} style={[part.cardHeader, {paddingBottom: 0}]}>
+                                                        <View style={item.parent_id === 0 ? part.cardCmt : part.cardCmt}>
+                                                            <TouchableOpacity
+                                                                activeOpacity={0.8}
+                                                                style={part.paddingTRB}
+                                                                onPress={() => navigate('UserInNewFeed', {username: item.commenter.username})}
                                                             >
-                                                                {item.created_at} &middot; {numberOfLikesComment[i]}
-                                                                lượt thích
+                                                                <Image
+                                                                    style={part.avatarUserSmall}
+                                                                    source={{uri: item.commenter.avatar_url}}/>
+                                                            </TouchableOpacity>
+                                                            <Body>
+                                                            <Text
+                                                                style={[part.titleSmallBlue, part.paddingTLB]}
+                                                            >
+                                                                {item.commenter.name}
                                                             </Text>
+                                                            <Text
+                                                                style={[part.describeDarkGray, part.paddingLeft]}
+                                                            >
+                                                                {item.content}
+                                                            </Text>
+                                                            <View style={{flexDirection: 'row'}}>
+                                                                <Text
+                                                                    style={[part.describeLightGray, part.paddingTLB]}
+                                                                >
+                                                                    {item.created_at} &middot; {numberOfLikesComment[i]} lượt thích
+                                                                </Text>
 
-                                                            {item.commenter.username === this.props.user.username ?
-                                                                (
-                                                                    <Text
-                                                                        style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
-                                                                        onPress={() => this.deleteComment(item.id, this.props.token, i)}
-                                                                    >
-                                                                        Xoá
-                                                                    </Text>
-                                                                ) : (<TouchableOpacity/>)
-                                                            }
+                                                                {item.commenter.username === this.props.user.username ?
+                                                                    (
+                                                                        <Text
+                                                                            style={[part.describeLightGray, part.paddingTLB, part.marginLeftFar]}
+                                                                            onPress={() => this.deleteComment(item.id, this.props.token, i)}
+                                                                        >
+                                                                            Xoá
+                                                                        </Text>
+                                                                    ) : (<TouchableOpacity/>)
+                                                                }
+                                                            </View>
+                                                            </Body>
+                                                            <TouchableOpacity transparent onPress={() => {
+                                                                this.likeComment(item.id, this.props.user.id, i)
+                                                            }}>
+                                                                <Icon name={likedIcon}
+                                                                      color={iconLikeComment}
+                                                                      size={size.iconNormal}
+                                                                      style={[part.paddingRight, part.marginTop]}
+                                                                />
+                                                            </TouchableOpacity>
                                                         </View>
-                                                        </Body>
-                                                        <TouchableOpacity transparent onPress={() => {
-                                                            this.likeComment(item.id, this.props.user.id, i)
-                                                        }}>
-                                                            <Icon name={likedIcon}
-                                                                  color={iconLikeComment}
-                                                                  size={size.iconNormal}
-                                                                  style={[part.paddingRight, part.marginTop]}
-                                                            />
-                                                        </TouchableOpacity>
-                                                    </View>
-                                                </CardItem>
-                                            )
-                                        })
+                                                    </CardItem>
+                                                )
+                                            })
+                                            :
+                                            ''
                                     }
                                 </View>
                             </View>

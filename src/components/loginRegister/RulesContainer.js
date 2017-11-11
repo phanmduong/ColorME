@@ -89,7 +89,7 @@ export default class RulesContainer extends Component {
                     )}
                 >
 
-                    <View style={part.padding}>
+                    <View style={{padding: 20}}>
                         <Text style={[part.describeGray, part.paddingLine]}>
                             Hợp đồng cấp phép cho người dùng cuối (EULA) này là hợp đồng pháp lý giữa bạn (Người Dùng Cuối
                             hoặc bạn) và công ty TNHH KEEeducation (Nhà Cấp Phép, hoặc chúng tôi) về viêc̣ sử dụng ứng dụng

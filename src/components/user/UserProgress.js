@@ -12,7 +12,6 @@ import Icon from '../../commons/Icon';
 class UserProgress extends Component {
     render() {
         const {user, progress, isLoadingUserProgress} = this.props;
-        const {navigate} = this.props.navigation;
         return (
             <Container
                 style={[part.wrapperContainer, part.paddingLBR]}>

@@ -74,6 +74,10 @@ const part = StyleSheet.create({
         padding: 0,
         backgroundColor: color.none,
     },
+    wrapperUserInFeature:{
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
     wrapperFullCenter: {
         flex: 1,
         justifyContent: 'center',
@@ -345,18 +349,24 @@ const part = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 25,
-        backgroundColor: color.backGround,
+        backgroundColor: color.none,
+    },
+    avatarUserTiny: {
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        backgroundColor: color.none,
     },
     avatarUserLikeGrid: {
         width: (wid - 24) / 3 -4,
         height: (wid- 24) / 3 -4,
         borderRadius: ((wid- 24) / 3 - 4) / 2,
-        backgroundColor: color.backGround,
+        backgroundColor: color.none,
     },
     avatarUserNormalSquare: {
         width: 50,
         height: 50,
-        backgroundColor: color.backGround,
+        backgroundColor: color.none,
     },
     avatarUserInDrawer: {
         width: size.wid / 5,
@@ -654,6 +664,8 @@ const part = StyleSheet.create({
     buttonGroup: {
         backgroundColor: color.none,
         borderRadius: 5,
+        justifyContent: 'center',
+
     },
     buttonAcceptFull: {
         borderBottomRightRadius: 5,

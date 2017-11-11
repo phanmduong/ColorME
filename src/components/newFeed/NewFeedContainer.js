@@ -478,12 +478,20 @@ class NewFeedContainer extends Component {
                                                         <LinearGradient
                                                             colors={['transparent', color.transparentBlack]}
                                                             style={part.wrapperTitleFeature}>
+                                                            {/*<View*/}
+                                                                {/*style={part.wrapperUserInFeature}*/}
+                                                            {/*>*/}
+                                                                {/*<Image style={[part.avatarUserTiny, part.marginRight]}*/}
+                                                                       {/*source={{uri: this.state.listPost[0].author.avatar_url}}/>*/}
+                                                                {/*<Text style={part.describeLight}>{this.state.listPost[0].author.name}</Text>*/}
+                                                            {/*</View>*/}
                                                             <Text
                                                                 numberOfLines={2}
                                                                 style={part.textTitleFeature}
                                                             >
                                                                 {this.textTopShow()}
                                                             </Text>
+
                                                             <CardItem style={[part.cardButtonFeature, part.noPadding]}>
                                                                 <Left>
                                                                     <Button

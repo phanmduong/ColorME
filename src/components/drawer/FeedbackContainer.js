@@ -92,7 +92,7 @@ class FeedBackAppContainer extends Component {
                     )}
                 >
                     <View style={{padding : 10, marginTop : 10}}>
-                        <Text style={[part.describeItalicDark, part.paddingLine, part.padding]}> Trong quá trình tạo sản phẩm, vẫn còn nhiều thiếu sót. Rất mong được mọi người
+                        <Text style={[part.describeItalicDark, part.paddingLine, part.padding]}>Trong quá trình tạo sản phẩm, vẫn còn nhiều thiếu sót. Rất mong được mọi người
                             quan tâm và gửi những phản hồi, để chúng tôi có thể hoàn thiện sản phẩm tốt nhất
                             có thể. Các bạn có thể gửi những phản hồi cho chúng tôi theo mẫu dưới đây :
                              </Text>
