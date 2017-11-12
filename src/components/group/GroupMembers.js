@@ -40,7 +40,7 @@ class GroupMembers extends Component {
                                                 <CardItem avatar style={[part.noMarginLeft, part.padding, part.haveBorderBottom]}>
                                                     <Left>
                                                         <TouchableOpacity
-                                                            onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.username})}
+                                                            onPress={() => this.props.navigation.navigate('UserInGroup', {username: item.username})}
                                                         >
                                                             <Thumbnail
                                                                 source={{uri: item.avatar_url}}/>
@@ -48,7 +48,7 @@ class GroupMembers extends Component {
 
                                                         <Body style={part.noBorder}>
                                                         <TouchableOpacity
-                                                            onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.username})}
+                                                            onPress={() => this.props.navigation.navigate('UserInGroup', {username: item.username})}
                                                         >
                                                             <Text style={part.titleSmallBlue}>{item.name}</Text>
                                                             <Text style={part.describeGray} note>

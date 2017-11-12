@@ -89,7 +89,7 @@ class AttendGroupContainer extends Component {
                             ?
                             <View
                                 style={{
-                                    marginTop: -100,
+                                    marginTop: 20,
                                     flex: 1,
                                     justifyContent: 'center',
                                     alignItems: 'center',

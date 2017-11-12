@@ -40,6 +40,7 @@ import GroupContainer from '../components/group/GroupContainer';
 import PostLiker from '../components/newFeed/PostLiker';
 // FEEDBACK
 import FeedbackAppContainer from '../components/drawer/FeedbackContainer'
+import TopicContainer from "../components/group/TopicContainer";
 export const TabNavigatorBottomStyle = {
     indicatorStyle: {
         border: 5,
@@ -187,10 +188,19 @@ const Home = TabNavigator(
     TabNavigatorBottomStyle
 );
 
+const GroupUser = StackNavigator(
+    {
+        GroupInDrawer: {screen: GroupContainer},
+        UserInGroup: {screen: UserContainer},
+        Topic: {screen: TopicContainer},
+        ThePostInGroup: {screen: InfoAboutPostContainer, navigationOptions: {tabBarVisible: false}},
+    }, StackNavigatorStyle
+);
+
 const Group = StackNavigator(
     {
         AttendGroup: {screen: AttendGroupContainer},
-        GroupInDrawer: {screen: GroupContainer},
+        GroupInDrawer: {screen: GroupUser},
     }, StackNavigatorStyle
 );
 const Drawer = DrawerNavigator(

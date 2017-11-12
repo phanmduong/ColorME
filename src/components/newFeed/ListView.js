@@ -240,10 +240,14 @@ class ListView extends Component {
                                 }
                         )}>
                     <View>
-                        <Animated.View
-                            style={[part.wrapperImage, part.shadow, {transform: [{
-                                scale: this.props.animated[item.key]
-                            }]}]}
+                        {/*<Animated.View*/}
+                            {/*style={[part.wrapperImage, part.shadow, {transform: [{*/}
+                                {/*scale: this.props.animated[item.key]*/}
+                            {/*}]}]}*/}
+                            {/*activeOpacity={1}*/}
+                        {/*>*/}
+                        <View
+                            style={[part.wrapperImage, part.shadow]}
                             activeOpacity={1}
                         >
                         {
@@ -269,7 +273,7 @@ class ListView extends Component {
                                     style={[part.image]}
                                 />
                         }
-                        </Animated.View>
+                        </View>
                     </View>
                 </TouchableOpacity>
                 {/*LIKE COMMENT VIEWS*/}
@@ -483,7 +487,7 @@ class ListView extends Component {
                                 </ScrollView>
                                 <KeyboardAvoidingView
                                     behavior={Platform.OS === 'ios' ? 'position' : undefined}
-                                    keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : '300'}
+                                    keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : 200}
                                     // NEED HEIGHT KEYBOARD
                                 >
                                     <CardItem style={part.cardBottomInModal}>

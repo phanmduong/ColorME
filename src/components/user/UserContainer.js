@@ -28,12 +28,14 @@ class UserContainer extends Component {
             id: 0,
         }
     }
+
     componentWillMount() {
         const {params} = this.props.navigation.state;
         this.props.userInformationAction.getUserProfile(params.username);
         this.props.userInformationAction.getUserProgress(params.username);
         this.props.userInformationAction.getUserProducts(params.username, 1, this.props.token);
     }
+
     ViewProgress() {
         setTimeout(() => {
             this.setState({isLoading: false})
@@ -86,7 +88,7 @@ class UserContainer extends Component {
 
     render() {
         const {goBack} = this.props.navigation;
-        const {user, isLoadingUserProfile,  dataSideNav, isLoadingUserSideNav} = this.props;
+        const {user, isLoadingUserProfile, dataSideNav, isLoadingUserSideNav} = this.props;
         return (
             <Container style={part.wrapperContainer}>
                 <ParallaxScrollView
@@ -113,9 +115,23 @@ class UserContainer extends Component {
 
                             </View>
                             <View style={part.wrapperInformationUser}>
-                                <Text style={[part.titleNormalDarkGray, part.paddingLine]}> {this.props.user.name}
+                                <Text style={[part.titleNormalDarkGray, part.paddingLine]}>
+                                    {
+                                        isLoadingUserProfile
+                                            ?
+                                            'Đang tải...'
+                                            :
+                                            user.name
+                                    }
                                 </Text>
-                                <Text style={[part.describeGray, part.paddingLine]}> {user.university}
+                                <Text style={[part.describeGray, part.paddingLine]}>
+                                    {
+                                        isLoadingUserProfile
+                                            ?
+                                            'Đang tải...'
+                                            :
+                                            user.university
+                                    }
                                 </Text>
                             </View>
 
@@ -129,9 +145,15 @@ class UserContainer extends Component {
                                     marginTop: 20
                                 } : {flexDirection: 'row'}}>
                                     <Body>
-                                        <Text style={part.titleSmallDarkGrayBold}>
-                                            {this.props.user.name}
-                                        </Text>
+                                    <Text style={part.titleSmallDarkGrayBold}>
+                                        {
+                                            isLoadingUserProfile
+                                                ?
+                                                'Đang tải...'
+                                                :
+                                                user.name
+                                        }
+                                    </Text>
                                     </Body>
                                 </Left>
                             </View>
@@ -140,7 +162,7 @@ class UserContainer extends Component {
                     renderFixedHeader={() => (
                         <View key="fixed-header" style={part.iconInDrawerNav}>
                             <Left style={Platform.OS === 'ios' ? {marginTop: 20} : {marginTop: 10}}>
-                            <BackButton goBack={goBack}/>
+                                <BackButton goBack={goBack}/>
                             </Left>
                         </View>
                     )}
@@ -187,9 +209,9 @@ class UserContainer extends Component {
                             this.tab()
                     }
                     {/*<TouchableOpacity style={[part.iconAddFriendInProfile, part.shadow]}>*/}
-                        {/*<Icon name="ion|ios-person-add"*/}
-                              {/*size={30}*/}
-                              {/*color={color.navTitle}/>*/}
+                    {/*<Icon name="ion|ios-person-add"*/}
+                    {/*size={30}*/}
+                    {/*color={color.navTitle}/>*/}
                     {/*</TouchableOpacity>*/}
                 </ParallaxScrollView>
             </Container>

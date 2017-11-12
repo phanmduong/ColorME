@@ -35,7 +35,7 @@ export default class ResetPasswordContainer extends Component {
         return (
             <KeyboardAvoidingView
                 behavior={Platform.OS === 'ios' ? 'position' : undefined}
-                keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : '200'}
+                keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : 200}
                 style={styles.wrapperContainer}>
                 <StatusBar
                     barStyle="light-content"

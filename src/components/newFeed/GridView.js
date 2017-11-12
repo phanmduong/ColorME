@@ -41,12 +41,16 @@ class GridView extends Component {
                                 }
                         )}
                 >
-                   <Animated.View
-                       style={[part.wrapperImageInGrid, {transform: [{
-                           scale: animated[item.key]
-                       }]}]}
+                   {/*<Animated.View*/}
+                       {/*style={[part.wrapperImageInGrid, {transform: [{*/}
+                           {/*scale: animated[item.key]*/}
+                       {/*}]}]}*/}
+                       {/*activeOpacity={0.8}*/}
+                       {/*>*/}
+                   <View
+                       style={[part.wrapperImageInGrid]}
                        activeOpacity={0.8}
-                       >
+                   >
 
                     {
                         (item.url.indexOf('.mp4') === -1 ) ?
@@ -71,7 +75,7 @@ class GridView extends Component {
                                 />
                             </View>
                     }
-                   </Animated.View>
+                   </View>
                 </TouchableOpacity>
             </View>
         );

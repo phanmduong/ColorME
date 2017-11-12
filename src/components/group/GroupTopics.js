@@ -22,7 +22,7 @@ class GroupTopics extends Component {
                 </View>
                 :
                 (
-                    <Container style={[part.wrapperContainer, part.padding, part.noPaddingTop]}>
+                    <Container style={[part.wrapperContainer, part.noPaddingTop]}>
                         {
                             topics.length === 0
                                 ?
@@ -36,13 +36,13 @@ class GroupTopics extends Component {
                                     showsVerticalScrollIndicator={false}
                                     data={topics}
                                     renderItem={({item}) => {
-                                        let widthDeadlineProgress = (size.wid - 30) * item.submitted_members / item.total_members;
+                                        let widthDeadlineProgress = (size.wid - 20) * item.submitted_members / item.total_members;
                                         return (
-                                            <Card style={part.card}>
+                                            <View style={part.card}>
                                                 <CardItem header style={part.cardHeader}>
                                                     <Left>
                                                         <TouchableOpacity
-                                                            onPress={() => this.props.navigation.navigate('UserInNewFeed', {username: item.creator.username})}
+                                                            onPress={() => this.props.navigation.navigate('UserInGroup', {username: item.creator.username})}
 
                                                         >
                                                             <Thumbnail circle small
@@ -65,31 +65,33 @@ class GroupTopics extends Component {
                                                         </TouchableOpacity>
                                                     </Left>
                                                 </CardItem>
-
                                                 {/*PHOTO*/}
-                                                <CardItem cardBody style={part.card}>
-                                                    <TouchableOpacity>
-                                                        <Body>
+                                                <TouchableOpacity
+                                                    activeOpacity={1}
+                                                    style={part.card}
+                                                    onPress={() => this.props.navigation.navigate('Topic', {id: item.id})}
+                                                >
+                                                    <View
+                                                        style={[part.wrapperImage]}
+                                                    >
                                                         <Image
                                                             resizeMode={'cover'}
-                                                            source={{uri: item.avatar_url}}
-                                                            style={part.imageTopic}
+                                                            source={{uri: item.thumb_url}}
+                                                            style={[part.image]}
                                                         />
-                                                        <View style={part.textInImage}>
-                                                            <Text
-                                                                numberOfLines={2}
-                                                                style={part.titleInImage}
-                                                            >
-                                                                {item.title}
-                                                            </Text>
-                                                        </View>
-                                                        </Body>
-                                                    </TouchableOpacity>
-                                                </CardItem>
 
-
+                                                    </View>
+                                                    <View style={part.textInImage}>
+                                                        <Text
+                                                            numberOfLines={2}
+                                                            style={part.titleInImage}
+                                                        >
+                                                            {item.title}
+                                                        </Text>
+                                                    </View>
+                                                </TouchableOpacity>
                                                 {/*DEADLINE*/}
-                                                <CardItem style={[{height: 20}, part.noPadding]}>
+                                                <CardItem style={[{height: 20, justifyContent:'center'}]}>
                                                     <View style={part.wrapperDeadline}>
                                                         <View
                                                             style={[part.deadlineProgress, {width: widthDeadlineProgress}]}>
@@ -101,12 +103,13 @@ class GroupTopics extends Component {
                                                     <Left>
                                                         <Right>
                                                             <Text style={[part.describeGray, {right: 0}]}>
-                                                                {item.deadline} - {item.submitted_members}/{item.total_members} đã nộp
+                                                                {item.deadline}
+                                                                - {item.submitted_members}/{item.total_members} đã nộp
                                                             </Text>
                                                         </Right>
                                                     </Left>
                                                 </CardItem>
-                                            </Card>
+                                            </View>
                                         )
                                     }}/>
 

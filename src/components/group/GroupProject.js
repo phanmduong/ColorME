@@ -42,7 +42,7 @@ class GroupProject extends Component {
                                                     <View style={[part.wrapperGridImage]}>
                                                         <TouchableOpacity
                                                             onPress={() => this.props.navigation.navigate(
-                                                                'ThePostInNewFeed',
+                                                                'ThePostInGroup',
                                                                 item.group
                                                                     ?
                                                                     {

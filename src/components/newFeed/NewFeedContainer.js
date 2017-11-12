@@ -463,12 +463,16 @@ class NewFeedContainer extends Component {
                                                         )}
                                                 >
 
-                                                    <Animated.View
-                                                        style={[part.imageInFeature, {
-                                                            transform: [{
-                                                                scale: this.state.animated[0]
-                                                            }]
-                                                        }]}
+                                                    {/*<Animated.View*/}
+                                                        {/*style={[part.imageInFeature, {*/}
+                                                            {/*transform: [{*/}
+                                                                {/*scale: this.state.animated[0]*/}
+                                                            {/*}]*/}
+                                                        {/*}]}*/}
+                                                        {/*activeOpacity={1}*/}
+                                                    {/*>*/}
+                                                    <View
+                                                        style={[part.imageInFeature]}
                                                         activeOpacity={1}
                                                     >
                                                         <Image
@@ -526,7 +530,8 @@ class NewFeedContainer extends Component {
                                                                 </Right>
                                                             </CardItem>
                                                         </LinearGradient>
-                                                    </Animated.View>
+                                                    {/*</Animated.View>*/}
+                                                    </View>
 
 
                                                 </TouchableOpacity>

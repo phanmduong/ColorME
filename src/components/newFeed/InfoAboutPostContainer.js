@@ -435,57 +435,103 @@ class InfoAboutPostContainer extends Component {
                                             />
                                     }
                                 </View>
-
-
-                                <WebViewAutoHeight source={post.content ? post.content : ''}/>
-                                <CardItem footer style={part.noPaddingTopBottom}>
-                                    <Left>
-                                        <Button
-                                            transparent style={[part.padding, {paddingLeft: 0}]}
-                                            onPress={() => liked ? this.unlikePost(params.product_id, this.props.token) : this.likePost(params.product_id, this.props.token)}
+                                {
+                                    isLoading
+                                        ?
+                                        <View
+                                            style={{
+                                                margin: 50,
+                                                flex: 1,
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                            }}
                                         >
-                                            <Icon name={likedIcon} size={size.iconBig}
-                                                  color={colorIcon}/>
-                                            <Text
-                                                style={[part.describeGray, part.paddingLeft]}>{likeCount}</Text>
-                                        </Button>
-                                        <Button transparent style={part.padding}
-                                        >
-                                            <Icon name="fontawesome|comment-o" size={size.iconBig}
-                                                  color={color.icon}/>
-                                            <Text
-                                                style={[part.describeGray, part.paddingLeft]}>{this.props.comments.length}</Text>
-                                        </Button>
-                                        <Button transparent style={part.padding}>
-                                            <Icon name="fontawesome|circle-thin" size={size.iconBig}
-                                                  color={color.icon}/>
-                                            <Text
-                                                style={[part.describeGray, part.paddingLeft]}>{post.views_count}</Text>
-                                        </Button>
-                                        <Right>
-                                            <Button transparent>
-                                                <Icon
-                                                    name={featureIcon}
-                                                    size={size.iconBig}
-                                                    color={colorFeatureIcon}
-                                                    style={{marginRight: 3}}
-                                                />
-                                            </Button>
-                                        </Right>
-                                    </Left>
+                                            <Spinner
+                                                color={color.gray}/>
+                                        </View>
+                                        :
+                                        <WebViewAutoHeight source={post.content ? post.content : ''}/>
 
-                                </CardItem>
+                                }
+                                {
+                                    isLoading
+                                        ?
+                                        <View
+                                            style={{
+                                                margin: 50,
+                                                flex: 1,
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                            }}
+                                        >
+                                            <Spinner
+                                                color={color.gray}/>
+                                        </View>
+                                        :
+                                        <CardItem footer style={part.noPaddingTopBottom}>
+                                            <Left>
+                                                <Button
+                                                    transparent style={[part.padding, {paddingLeft: 0}]}
+                                                    onPress={() => liked ? this.unlikePost(params.product_id, this.props.token) : this.likePost(params.product_id, this.props.token)}
+                                                >
+                                                    <Icon name={likedIcon} size={size.iconBig}
+                                                          color={colorIcon}/>
+                                                    <Text
+                                                        style={[part.describeGray, part.paddingLeft]}>{likeCount}</Text>
+                                                </Button>
+                                                <Button transparent style={part.padding}
+                                                >
+                                                    <Icon name="fontawesome|comment-o" size={size.iconBig}
+                                                          color={color.icon}/>
+                                                    <Text
+                                                        style={[part.describeGray, part.paddingLeft]}>{this.props.comments.length}</Text>
+                                                </Button>
+                                                <Button transparent style={part.padding}>
+                                                    <Icon name="fontawesome|circle-thin" size={size.iconBig}
+                                                          color={color.icon}/>
+                                                    <Text
+                                                        style={[part.describeGray, part.paddingLeft]}>{post.views_count}</Text>
+                                                </Button>
+                                                <Right>
+                                                    <Button transparent>
+                                                        <Icon
+                                                            name={featureIcon}
+                                                            size={size.iconBig}
+                                                            color={colorFeatureIcon}
+                                                            style={{marginRight: 3}}
+                                                        />
+                                                    </Button>
+                                                </Right>
+                                            </Left>
+
+                                        </CardItem>
+
+                                }
+
                                 <View>
                                     {
-                                        !isLoading
+                                        isLoading
                                             ?
+                                            <View
+                                                style={{
+                                                    margin: 50,
+                                                    flex: 1,
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center',
+                                                }}
+                                            >
+                                                <Spinner
+                                                    color={color.gray}/>
+                                            </View>
+                                            :
                                             this.state.listComment.map((item, i) => {
                                                 let {likedComment, numberOfLikesComment} = this.state;
                                                 let iconLikeComment = likedComment[i] ? color.main : color.icon;
                                                 let likedIcon = likedComment[i] ? 'fontawesome|heart' : 'fontawesome|heart-o';
                                                 return (
                                                     <CardItem key={i} style={[part.cardHeader, {paddingBottom: 0}]}>
-                                                        <View style={item.parent_id === 0 ? part.cardCmt : part.cardCmt}>
+                                                        <View
+                                                            style={item.parent_id === 0 ? part.cardCmt : part.cardCmt}>
                                                             <TouchableOpacity
                                                                 activeOpacity={0.8}
                                                                 style={part.paddingTRB}
@@ -510,7 +556,8 @@ class InfoAboutPostContainer extends Component {
                                                                 <Text
                                                                     style={[part.describeLightGray, part.paddingTLB]}
                                                                 >
-                                                                    {item.created_at} &middot; {numberOfLikesComment[i]} lượt thích
+                                                                    {item.created_at} &middot; {numberOfLikesComment[i]}
+                                                                    lượt thích
                                                                 </Text>
 
                                                                 {item.commenter.username === this.props.user.username ?
@@ -538,8 +585,6 @@ class InfoAboutPostContainer extends Component {
                                                     </CardItem>
                                                 )
                                             })
-                                            :
-                                            ''
                                     }
                                 </View>
                             </View>
@@ -594,7 +639,7 @@ class InfoAboutPostContainer extends Component {
                 </Modal>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === 'ios' ? 'position' : undefined}
-                    keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : '200'}
+                    keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : 200}
                 >
                     <CardItem style={part.cardBottom}>
                         <Left>
@@ -649,10 +694,9 @@ class InfoAboutPostContainer extends Component {
                                         Keyboard.dismiss
                                         :
                                         (
-                                            Keyboard.dismiss,
-                                                () => {
-                                                    this.commentPost(params.product_id, this.props.token, this.state);
-                                                }
+                                            () => {
+                                                this.commentPost(params.product_id, this.props.token, this.state);
+                                            }
                                         )
 
 

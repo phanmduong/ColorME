@@ -129,7 +129,7 @@ const part = StyleSheet.create({
     },
     wrapperDeadline: {
         marginLeft: 3,
-        width: wid - 30,
+        width: wid - 20,
         height: 10,
         borderRadius: 5,
         backgroundColor: color.lightGray,

@@ -13,6 +13,7 @@ import reportReducer from "./reportReducer";
 import sideNavReducer from "./sideNavReducer";
 import myAccountInformationReducer from './myAccountInformationReducer';
 import feedbackAppReducer from './feedbackAppReducer';
+import topicReducer from './topicReducer';
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
     report                      : reportReducer,
     myAccountInformation        : myAccountInformationReducer,
     sideNav                     : sideNavReducer,
-    feedback                    : feedbackAppReducer
+    feedback                    : feedbackAppReducer,
+    topic                       : topicReducer
 });
 export default rootReducer;

@@ -122,5 +122,11 @@ export default {
     },
     feedback : {
         isLoadingFeedback : false,
+    },
+    topic :{
+        isLoading: false,
+        isLoadingProducts: false,
+        topic: {},
+        products:[]
     }
 }
