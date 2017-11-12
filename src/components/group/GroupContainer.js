@@ -155,7 +155,13 @@ class GroupContainer extends Component {
                                 <Left style={{flexDirection: 'row', marginTop: 20}}>
                                     <Body>
                                     <Text style={part.titleSmallDarkGrayBold}>
-                                        {this.props.groupName}
+                                        {
+                                            isLoadingGroupTopics
+                                                ?
+                                                'Đang tải...'
+                                                :
+                                                this.props.groupName
+                                        }
                                     </Text>
                                     </Body>
                                 </Left>

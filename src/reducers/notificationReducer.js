@@ -14,7 +14,7 @@ export default function getNotificationReducer(state = initialState.getNotificat
             return {
                 ...state,
                 ...{
-                    notification: state.notification.concat(action.notification),
+                    notification: [...state.notification, ...action.notification],
                     isLoading: false,
                 }
             };

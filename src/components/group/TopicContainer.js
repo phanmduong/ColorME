@@ -52,7 +52,7 @@ class TopicContainer extends Component {
     render() {
         const {goBack, navigate} = this.props.navigation;
         const {isLoading, isLoadingProducts, topic, products} = this.props;
-        let widthDeadlineProgress = (size.wid - 20) * topic.submitted_members / topic.total_members;
+        let widthDeadlineProgress = isLoading ? 0 : ((size.wid - 20) * topic.submitted_members / topic.total_members);
         return (
             <Container style={part.wrapperContainer}>
                 <ParallaxScrollView
@@ -74,11 +74,13 @@ class TopicContainer extends Component {
                                 <CardItem style={[part.cardHeader, part.noPaddingTopBottom]}>
                                     <Item style={part.noBorder}>
                                         <Text style={part.titlePost} numberOfLines={1}>
-                                            {isLoading
-                                                ?
-                                                'Đang tải...'
-                                                :
-                                                topic.title}
+                                            {
+                                                isLoading
+                                                    ?
+                                                    'Đang tải...'
+                                                    :
+                                                    topic.title
+                                            }
                                         </Text>
                                     </Item>
                                 </CardItem>
@@ -164,7 +166,6 @@ class TopicContainer extends Component {
                                     <View style={part.wrapperDeadline}>
                                         <View
                                             style={[part.deadlineProgress, {width: widthDeadlineProgress}]}>
-
                                         </View>
                                     </View>
                                 </CardItem>
@@ -172,8 +173,14 @@ class TopicContainer extends Component {
                                     <Left>
                                         <Right>
                                             <Text style={[part.describeGray, {right: 0}]}>
-                                                {topic.deadline}
-                                                - {topic.submitted_members}/{topic.total_members} đã nộp
+                                                {
+                                                    isLoading
+                                                        ?
+                                                        ''
+                                                        :
+                                                        `${topic.deadline} - ${topic.submitted_members}/${topic.total_members} đã nộp`
+                                                }
+
                                             </Text>
                                         </Right>
                                     </Left>
@@ -266,7 +273,6 @@ class TopicContainer extends Component {
                                 onEndThreshold={5}
                                 renderItem={({item}) => {
                                     return (
-
                                         <View style={part.card}>
                                             {
                                                 isLoadingProducts
@@ -303,18 +309,6 @@ class TopicContainer extends Component {
                                                                     {item.created_at}
                                                                 </Text>
                                                                 </Body>
-
-                                                                <TouchableOpacity
-                                                                    transparent
-                                                                    onPress={
-                                                                        () => this.setCommentModalMenu(true)
-                                                                    }
-                                                                >
-                                                                    <Icon name="materialCommunity|dots-horizontal"
-                                                                          color={color.icon}
-                                                                          size={size.iconGiant}
-                                                                    />
-                                                                </TouchableOpacity>
                                                             </Left>
                                                         </CardItem>
                                                         <TouchableOpacity
@@ -343,7 +337,6 @@ class TopicContainer extends Component {
                                                                         resizeMode={'cover'}
                                                                         source={{
                                                                             uri: item.image_url,
-                                                                            headers: {Authorization: 'Đang tải..'},
                                                                         }}
                                                                         style={[part.image]}
                                                                     />
@@ -351,10 +344,7 @@ class TopicContainer extends Component {
                                                             </View>
                                                         </TouchableOpacity>
                                                     </View>
-
                                             }
-
-
                                         </View>
                                     )
                                 }
@@ -362,7 +352,6 @@ class TopicContainer extends Component {
                             />
                     }
                 </ParallaxScrollView>
-
             </Container>
         );
     }

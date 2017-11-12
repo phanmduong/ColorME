@@ -34,9 +34,7 @@ class NotificationContainer extends Component {
     }
 
     getMoreNotification() {
-        let page_up = this.state.page;
-        page_up++;
-        this.setState({page: page_up});
+        this.setState({page: this.state.page + 1});
         this.props.getNotificationAction.getNotification(this.state.page, this.props.token);
     }
 

@@ -55,9 +55,10 @@ class LearnRegisterContainer extends Component {
         let classes = [];
         let isEnrolled = [];
         let status = [];
-        let data = this.props.navigation.state.params.classes;
+        ;
         let i = 0;
-        while (i < data.length) {
+        let data = this.props.navigation.state.params.classes.length;
+        while (i < data) {
             let key = {key: i};
             let arr2 = data[i].status;
             let arr1 = data[i].isEnrolled;
