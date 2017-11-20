@@ -3,6 +3,7 @@ import {AppRegistry, Modal, PanResponder, StyleSheet, Text, View, Dimensions} fr
 import App from './src/App';
 import CodePush from 'react-native-code-push';
 import * as color from './src/styles/color';
+import * as size from './src/styles/size';
 import * as Progress from 'react-native-progress';
 
 export default class ColorMe extends Component {
@@ -86,7 +87,7 @@ export default class ColorMe extends Component {
                         <View style={styles.modalUpdate}>
                     <Progress.Bar
                         progress={this.state.downloadUpdate}
-                        color={color.main}
+                        color={color.text}
                         animationType={"spring"}
                         width= {200}
                         height={6}
@@ -110,8 +111,8 @@ let styles = StyleSheet.create({
     },
     modalUpdate : {
         borderRadius: 10,
-        width: 300,
-        height: 300,
+        width: size.wid * 0.8,
+        height: size.hei / 3,
         backgroundColor: color.backGround,
         justifyContent: 'center',
         alignItems: 'center',

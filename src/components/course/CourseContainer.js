@@ -7,9 +7,9 @@ import {
     Body, CardItem, Header, Container, Content,
     Left, Right, Spinner, Item
 } from 'native-base';
-import part from '../styles/partStyle';
-import * as color from '../styles/color'
-import * as courseAction from '../actions/courseAction';
+import part from '../../styles/partStyle';
+import * as color from '../../styles/color'
+import * as courseAction from '../../actions/courseAction';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
@@ -24,9 +24,8 @@ class CourseContainer extends Component {
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <StatusBar
-                    barStyle="dark-content"
-                    backgroundColor={color.none}
-
+                    backgroundColor={color.bgModal}
+                    barStyle={ Platform.OS === 'ios' ? "dark-content" : "light-content"}
                 />
                 {
                     Platform.OS === 'ios'
@@ -95,7 +94,6 @@ class CourseContainer extends Component {
         );
     }
 }
-
 
 
 function mapStateToProps(state) {

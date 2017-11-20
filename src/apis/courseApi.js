@@ -6,6 +6,11 @@ export function getCourseApi() {
     return axios.get(url);
 }
 
+export function getCourseApi2(token) {
+    let url = env.API_COLORME+ "/paid-courses?token=" + token;
+    return axios.get(url);
+}
+
 export function getCourseInformationApi(linkId, token) {
     let url = env.API_COLORME + "//course/" + linkId + "/?token=" + token;
     return axios.get(url);

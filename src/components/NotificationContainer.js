@@ -34,8 +34,11 @@ class NotificationContainer extends Component {
     }
 
     getMoreNotification() {
-        this.setState({page: this.state.page + 1});
-        this.props.getNotificationAction.getNotification(this.state.page, this.props.token);
+        if(this.props.notification.length % 20 == 0){
+            this.setState({page: this.state.page + 1});
+            this.props.getNotificationAction.getNotification(this.state.page, this.props.token);
+        }
+
     }
 
     loadingLoadMore() {
@@ -50,24 +53,13 @@ class NotificationContainer extends Component {
         }
     }
 
-    //0: nguoi khac thich bai viet cua minh
-    //1: nguoi khac binh luan bai viet cua minh
-    //2: nguoi khac binh luan ve bai viet ma ban da binh luan
-    //3:
-    //4:
-    //5: nguoi khac tao topic trong group
-
     routerNotification(type, id) {
         const {navigate} = this.props.navigation;
         switch (type) {
-            case 0:
-                navigate('ThePostInNotification', {product_id: id});
-            case 1:
-                navigate('ThePostInNotification', {product_id: id});
-            case 2:
+            case 0, 1, 2:
                 navigate('ThePostInNotification', {product_id: id});
             case 5:
-            //chua lam group topic, mai lam ahihi.
+                navigate('TopicInNotification', {id: id});
         }
     }
 
@@ -77,9 +69,8 @@ class NotificationContainer extends Component {
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <StatusBar
-                    barStyle="dark-content"
-                    backgroundColor={color.none}
-
+                    backgroundColor={color.bgModal}
+                    barStyle={ Platform.OS === 'ios' ? "dark-content" : "light-content"}
                 />
                 {
                     Platform.OS === 'ios'
@@ -112,6 +103,9 @@ class NotificationContainer extends Component {
                         showsVerticalScrollIndicator={false}
                         data={notification}
                         onEndThreshold={5}
+                        onEndReached={() => {
+                            this.getMoreNotification()
+                        }}
                         renderItem={({item}) => {
                             return (
                                 <CardItem
@@ -153,18 +147,6 @@ class NotificationContainer extends Component {
                         }
                         ListFooterComponent={this.loadingLoadMore()}
                     />
-                    {
-                        notification.length != 0 && notification.length % 20 == 0
-                            ?
-                            <TouchableOpacity style={part.wrapperTextLoadMore}
-                                              onPress={() => this.getMoreNotification()}
-                            >
-                                <Text style={part.describeDarkGray}>Xem thêm thông báo</Text>
-                            </TouchableOpacity>
-                            :
-                            <View/>
-                    }
-
                 </Content>
             </Container>
         );

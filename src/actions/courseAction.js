@@ -12,7 +12,7 @@ export function beginGetCourse() {
 export function getCourseSuccess(response) {
     return {
         type: types.GET_COURSE_SUCCESS,
-        courses: response.data.courses,
+        courses: response.data,
         isLoading: false,
     }
 }
@@ -68,13 +68,12 @@ export function getCourseInformationError() {
     }
 }
 
-export function getCourse() {
+export function getCourse(token) {
     return (dispatch) => {
         dispatch(beginGetCourse());
-        courseApi.getCourseApi()
+        courseApi.getCourseApi2(token)
             .then(function (response) {
                 dispatch(getCourseSuccess(response));
-
             })
             .catch(function (error) {
                 dispatch(getCourseError(error));

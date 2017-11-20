@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {
-    DrawerItems, TouchableOpacity,StatusBar,View
+    DrawerItems, TouchableOpacity, StatusBar, View
 } from 'react-native';
-import {TabNavigator, StackNavigator, DrawerNavigator,addNavigationHelpers} from 'react-navigation';
+import {TabNavigator, StackNavigator, DrawerNavigator, addNavigationHelpers} from 'react-navigation';
 import Icon from '../commons/Icon';
 import * as color from '../styles/color';
 import * as size from '../styles/size';
@@ -18,12 +18,14 @@ import CodeIdentityContainer from '../components/loginRegister/CodeIdentityConta
 import NewFeedContainer from '../components/newFeed/NewFeedContainer';
 import NotificationContainer from '../components/NotificationContainer';
 import SlideViewComponent from '../components/drawer/SlideViewContainer'
-import CourseContainer from '../components/CourseContainer'
-import LearnRegisterContainer from '../components/LearnRegisterContainer'
-import CourseInformation from '../components/CourseInformationContainer'
-import AttendGroupContainer from '../components/drawer/AttendGroupContainer'
+import CurriculumContainer from '../components/course/CurriculumContainer';
+import CurriculumListContainer from '../components/course/CurriculumListContainer';
+import CurriculumInformationContainer from '../components/course/CurriculumInformationContainer';
+import CourseContainer from '../components/course/CourseContainer';
+import LearnRegisterContainer from '../components/course/LearnRegisterContainer';
+import CourseInformation from '../components/course/CourseInformationContainer';
+import AttendGroupContainer from '../components/drawer/AttendGroupContainer';
 import InfoAboutPostContainer from '../components/newFeed/InfoAboutPostContainer';
-import AchievementsContainer from '../components/AchievementsContainer';
 
 // USER SCREEN
 import UserContainer from '../components/user/UserContainer';
@@ -38,9 +40,11 @@ import MyAccountContainer from '../components/myAccount/MyAccountContainer';
 import GroupContainer from '../components/group/GroupContainer';
 
 import PostLiker from '../components/newFeed/PostLiker';
+
 // FEEDBACK
 import FeedbackAppContainer from '../components/drawer/FeedbackContainer'
 import TopicContainer from "../components/group/TopicContainer";
+
 export const TabNavigatorBottomStyle = {
     indicatorStyle: {
         border: 5,
@@ -49,7 +53,7 @@ export const TabNavigatorBottomStyle = {
     initialRouteName: 'NewFeed',
     tabBarPosition: 'bottom',
     tabBarOptions: {
-        indicatorStyle: { backgroundColor: 'transparent'},
+        indicatorStyle: {backgroundColor: 'transparent'},
         showIcon: true,
         activeTintColor: color.darkGray,
         inactiveTintColor: color.icon,
@@ -102,8 +106,9 @@ const NotificationStackNavigator = StackNavigator(
     {
         NotificationStack: {screen: NotificationContainer},
         UserInNotification: {screen: UserContainer},
+        TopicInNotification: {screen: TopicContainer},
         ThePostInNotification: {screen: InfoAboutPostContainer, navigationOptions: {tabBarVisible: false}},
-    },  StackNavigatorStyle
+    }, StackNavigatorStyle
 );
 
 const SearchStackNavigator = StackNavigator(
@@ -123,8 +128,15 @@ const MyAccountStackNavigator = StackNavigator(
 const Course = StackNavigator(
     {
         CourseList: {screen: CourseContainer},
-        CourseInFormation: {screen: CourseInformation, navigationOptions: {tabBarVisible: false,} },
+        CourseInFormation: {screen: CourseInformation, navigationOptions: {tabBarVisible: false,}},
         LearnRegister: {screen: LearnRegisterContainer, navigationOptions: {tabBarVisible: false,}},
+    }, StackNavigatorStyle
+);
+const Curriculum = StackNavigator(
+    {
+        Curriculum: {screen: CurriculumContainer},
+        CurriculumList: {screen: CurriculumListContainer},
+        CurriculumInformation: {screen: CurriculumInformationContainer},
     }, StackNavigatorStyle
 );
 const Home = TabNavigator(
@@ -203,9 +215,12 @@ const Group = StackNavigator(
         GroupInDrawer: {screen: GroupUser},
     }, StackNavigatorStyle
 );
+
+
 const Drawer = DrawerNavigator(
     {
         Home: {screen: Home},
+        CurriculumInDrawer: {screen: Curriculum},
     },
     {
         drawerWidth: size.wid * 3 / 4,
@@ -220,7 +235,8 @@ const Main = StackNavigator(
     }, {headerMode: 'none'}
 );
 
- export const Start = StackNavigator(
+
+export const Start = StackNavigator(
     {
         Login: {screen: LoginContainer},
         RegisterContainer: {screen: RegisterContainer,},
@@ -230,7 +246,7 @@ const Main = StackNavigator(
         RulesContainer: {screen: RulesContainer},
         AttendGroup: {screen: Group},
         Rules: {screen: RulesContainer},
-        FeedbackAppContainer : {screen : FeedbackAppContainer},
+        FeedbackAppContainer: {screen: FeedbackAppContainer},
         Main: {screen: Main,}
     }, StackNavigatorStyle
 );

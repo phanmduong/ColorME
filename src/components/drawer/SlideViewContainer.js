@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    View, Text, TouchableOpacity, StatusBar,Linking,Alert, Image
+    View, Text, TouchableOpacity, Platform, StatusBar, Linking, Alert, Image
 } from 'react-native';
 import {
     Container, Item, CardItem, Button,
@@ -25,22 +25,24 @@ class SlideViewComponent extends Component {
         this.props.logoutAction.logout();
         this.props.navigation.navigate('Login');
     }
-    handleClick () {
+
+    handleClick() {
         Linking.canOpenURL('itms-apps://itunes.apple.com/app/viewContentsUserReviews?id=1294068461').then(supported => {
             supported && Linking.openURL('itms-apps://itunes.apple.com/app/viewContentsUserReviews?id=1294068461');
         }, (err) => console.log(err));
     }
-   alertRatingApp(){
-       Alert.alert(
-           'Bạn thấy thế nào với sản phẩm này ?',
-           'Hãy đánh giá và gửi phản hồi lại cho chúng tôi ',
-           [
-               {text: 'Xác nhận', onPress: () => this.handleClick() },
-               {text: 'Nhắc lại sau '},
-           ],
-           {cancelable: false}
-       )
-   }
+
+    alertRatingApp() {
+        Alert.alert(
+            'Bạn thấy thế nào với sản phẩm này ?',
+            'Hãy đánh giá và gửi phản hồi lại cho chúng tôi ',
+            [
+                {text: 'Xác nhận', onPress: () => this.handleClick()},
+                {text: 'Nhắc lại sau '},
+            ],
+            {cancelable: false}
+        )
+    }
 
 
     render() {
@@ -48,10 +50,6 @@ class SlideViewComponent extends Component {
         const {navigate} = this.props.navigation;
         return (
             <Container style={part.wrapperContainer}>
-                <StatusBar
-                    barStyle="dark-content"
-                    backgroundColor={color.none}
-                />
                 <View style={part.wrapperImageInDrawer}>
                     <Image
                         resizeMode={'cover'}
@@ -62,7 +60,7 @@ class SlideViewComponent extends Component {
                         <Item style={part.noBorder}>
                             <View style={part.wrapperAvatarInDrawer}>
                                 <Image style={part.avatarUserInDrawer}
-                                           source={{uri: this.props.user.avatar_url}}/>
+                                       source={{uri: this.props.user.avatar_url}}/>
                                 <Text style={[part.titleBigLight, {marginTop: 10}]}>{this.props.user.name}</Text>
                             </View>
                         </Item>
@@ -80,35 +78,36 @@ class SlideViewComponent extends Component {
                 >
                     <View style={part.wrapperIcon}>
                         <Icon name="fontawesome|group"
-                              size={size.iconBig}
+                              size={size.iconInDrawer}
                               color={color.darkGray}/>
                     </View>
                     <Text style={part.describeDarkGray}>Nhóm tham gia</Text>
                 </TouchableOpacity>
+
                 <TouchableOpacity
                     style={[part.itemTabInDrawer]}
-                    onPress={() => navigate('Rules')}
+                    onPress={() => navigate('CurriculumInDrawer', {
+                        className: this.props.courses.name,
+                        lessons: this.props.courses.lessons,
+                    })}
                 >
                     <View style={part.wrapperIcon}>
-                        <Icon name="ion|ios-paper"
-                              size={size.iconBig}
+                        <Icon name="materialCommunity|book-open-page-variant"
+                              size={size.iconInDrawer}
                               color={color.darkGray}/>
                     </View>
-                    <Text style={part.describeDarkGray}>Điều khoản sử dụng</Text>
-
+                    <Text style={part.describeDarkGray}>Giáo trình</Text>
                 </TouchableOpacity>
-
                 <TouchableOpacity
                     style={[part.itemTabInDrawer]}
                     onPress={() => this.alertRatingApp()}
                 >
                     <View style={part.wrapperIcon}>
                         <Icon name="fontawesome|star"
-                              size={size.iconBig}
+                              size={size.iconInDrawer}
                               color={color.darkGray}/>
                     </View>
                     <Text style={part.describeDarkGray}>Đánh giá sản phẩm </Text>
-
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[part.itemTabInDrawer]}
@@ -116,20 +115,30 @@ class SlideViewComponent extends Component {
                 >
                     <View style={part.wrapperIcon}>
                         <Icon name="entypo|newsletter"
-                              size={size.iconBig}
+                              size={size.iconInDrawer}
                               color={color.darkGray}/>
                     </View>
                     <Text style={part.describeDarkGray}>Phản hồi về sản phẩm </Text>
 
                 </TouchableOpacity>
-
+                <TouchableOpacity
+                    style={[part.itemTabInDrawer]}
+                    onPress={() => navigate('Rules')}
+                >
+                    <View style={part.wrapperIcon}>
+                        <Icon name="ion|ios-paper"
+                              size={size.iconInDrawer}
+                              color={color.darkGray}/>
+                    </View>
+                    <Text style={part.describeDarkGray}>Điều khoản sử dụng</Text>
+                </TouchableOpacity>
                 <TouchableOpacity
                     style={[part.itemTabInDrawer]}
                     onPress={() => this.logout()}
                 >
                     <View style={part.wrapperIcon}>
                         <Icon name="entypo|arrow-with-circle-right"
-                              size={size.iconBig}
+                              size={size.iconInDrawer}
                               color={color.darkGray}/>
                     </View>
                     <Text style={part.describeDarkGray}>Đăng xuất</Text>
@@ -142,6 +151,7 @@ class SlideViewComponent extends Component {
 
 function mapStateToProps(state) {
     return {
+        courses: state.getCourse.courses,
         user: state.login.user,
         token: state.login.token,
         sideNav: state.sideNav.data,

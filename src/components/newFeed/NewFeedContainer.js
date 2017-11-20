@@ -276,8 +276,8 @@ class NewFeedContainer extends Component {
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
-                    barStyle="dark-content"
-                    backgroundColor={color.backGround}
+                    backgroundColor={color.bgModal}
+                    barStyle={ Platform.OS === 'ios' ? "dark-content" : "light-content"}
                 />
                 {
                     Platform.OS === 'ios'

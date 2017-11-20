@@ -316,7 +316,7 @@ class ListView extends Component {
                     </Right>
                 </CardItem>
                 <CardItem footer style={[part.cardFooter]}>
-                    <View stle={part.textInImage}>
+                    <View stle={part.wrapperTextInImage}>
                         <Text
                             style={part.titleInImage}
                             onPress={() =>

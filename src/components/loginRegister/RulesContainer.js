@@ -34,8 +34,8 @@ export default class RulesContainer extends Component {
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <StatusBar
-                    barStyle="dark-content"
-                    backgroundColor={color.backGround}
+                    backgroundColor={color.bgModal}
+                    barStyle={ Platform.OS === 'ios' ? "dark-content" : "light-content"}
                 />
                 <ParallaxScrollView
                     backgroundColor={color.backGround}

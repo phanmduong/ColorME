@@ -1,45 +1,32 @@
 import React, {Component} from 'react';
 import {
-    FlatList, Text, TouchableOpacity, View, Image, StatusBar, Platform
+    FlatList, Text, TouchableOpacity, View, Platform, Image, StatusBar
 } from 'react-native';
+
 import {
-    List,
-    ListItem,
-    Body,
-    Button,
-    Card,
-    CardItem,
-    Container,
-    Content,
-    Input,
-    Item,
-    Left,
-    Right,
-    Spinner,
-    Thumbnail
+    Body, CardItem, Header, Container, Content,
+    Left, Right, Spinner, Item
 } from 'native-base';
-import Icon from '../../commons/Icon';
-import * as color from '../../styles/color';
-import * as size from '../../styles/size';
-import part from '../../styles/partStyle';
 import BackButton from '../../commons/BackButton';
-import ParallaxScrollView from 'react-native-parallax-scroll-view';
+import part from '../../styles/partStyle';
+import * as color from '../../styles/color'
 import parallaxStyle from '../../styles/parallaxStyle';
-import * as infoAboutPostAction from '../../actions/infoAboutPostAction'
-import {connect} from 'react-redux'
+import * as size from '../../styles/size';
+import ParallaxScrollView from 'react-native-parallax-scroll-view';
+import * as courseAction from '../../actions/courseAction';
+import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-class PostLiker extends Component {
-    componentWillMount() {
-        const {params} = this.props.navigation.state;
-        this.props.infoAboutPostAction.getPostLiker(params.product_id);
+class CurriculumContainer extends Component {
+    componentDidMount() {
+        this.props.courseAction.getCourse(this.props.token);
     }
 
     render() {
-        const {likers, isLoading} = this.props;
-        const {goBack} = this.props.navigation;
+        const {goBack, navigate} = this.props.navigation;
+        const {isLoading, courses} = this.props;
         return (
-            <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
+            <Container style={part.wrapperContainer}>
                 <StatusBar
                     backgroundColor={color.bgModal}
                     barStyle={ Platform.OS === 'ios' ? "dark-content" : "light-content"}
@@ -49,7 +36,7 @@ class PostLiker extends Component {
                     showsVerticalScrollIndicator={false}
                     headerBackgroundColor={color.backGround}
                     stickyHeaderHeight={size.STICKY_HEADER_HEIGHT}
-                    parallaxHeaderHeight={100}
+                    parallaxHeaderHeight={80}
                     backgroundSpeed={10}
                     renderBackground={() => (
                         <View style={part.wrapperImageInGetFull}>
@@ -62,8 +49,8 @@ class PostLiker extends Component {
                             <View>
                                 <CardItem style={[part.cardHeader, part.noPaddingTopBottom]}>
                                     <Item style={part.noBorder}>
-                                        <Text style={part.titlePost} numberOfLines={1}>
-                                            Những người thích bài viết
+                                        <Text style={[part.titlePost, part.marginBottom]} numberOfLines={1}>
+                                            GIÁO TRÌNH
                                         </Text>
                                     </Item>
                                 </CardItem>
@@ -80,7 +67,7 @@ class PostLiker extends Component {
                                 } : {flexDirection: 'row'}}>
                                     <Body style={{padding: 30}}>
                                     <Text style={part.titleSmallDarkGrayBold} numberOfLines={1}>
-                                        Những người thích bài viết
+                                        GIÁO TRÌNH
                                     </Text>
                                     </Body>
                                 </Left>
@@ -100,6 +87,7 @@ class PostLiker extends Component {
                             ?
                             <View
                                 style={{
+                                    marginTop: 20,
                                     flex: 1,
                                     justifyContent: 'center',
                                     alignItems: 'center',
@@ -111,7 +99,7 @@ class PostLiker extends Component {
                             :
                             <FlatList
                                 showsVerticalScrollIndicator={false}
-                                data={likers}
+                                data={courses}
                                 renderItem={({item}) =>
                                     <CardItem
                                         avatar
@@ -119,21 +107,22 @@ class PostLiker extends Component {
                                         <TouchableOpacity
                                             activeOpacity={0.8}
                                             style={{flex: 1}}
-                                            onPress={() => this.props.navigation.navigate('UserInPostLiker', {username: item.username})}
+                                            onPress={() => navigate('CurriculumList',
+                                                {name: item.name, lessons: item.lessons},
+                                            )
+                                            }
                                         >
                                             <Left>
                                                 <Image
                                                     style={part.avatarUserNormal}
-                                                    source={{uri: item.avatar_url}}/>
+                                                    source={{uri: item.icon_url}}/>
                                                 <Body style={part.noBorder}>
                                                 <Text style={part.titleSmallBlue}>{item.name}</Text>
+                                                <Text
+                                                    style={[part.describeItalicDark, part.paddingLine]}>
+                                                    {item.duration} buổi học
+                                                </Text>
                                                 </Body>
-                                                <TouchableOpacity style={part.iconFollow}>
-                                                    <Icon
-                                                        name="ion|ios-person-add"
-                                                        size={25}
-                                                        color={color.navTitle}/>
-                                                </TouchableOpacity>
                                             </Left>
                                         </TouchableOpacity>
                                     </CardItem>
@@ -148,15 +137,16 @@ class PostLiker extends Component {
 
 function mapStateToProps(state) {
     return {
-        likers: state.infoAboutPost.likers,
-        isLoading: state.infoAboutPost.isLoading,
+        token: state.login.token,
+        courses: state.getCourse.courses,
+        isLoading: state.getCourse.isLoading,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        infoAboutPostAction: bindActionCreators(infoAboutPostAction, dispatch),
+        courseAction: bindActionCreators(courseAction, dispatch),
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostLiker);
+export default connect(mapStateToProps, mapDispatchToProps)(CurriculumContainer)
