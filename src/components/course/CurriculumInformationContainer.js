@@ -110,7 +110,7 @@ class CurriculumInformationContainer extends Component {
                                     color={color.gray}/>
                             </View>
                             :
-                            <WebViewAutoHeight source={data.detail ? data.detail : ''}/>
+                            <WebViewAutoHeight source={data.detail && data.detail != '' ? data.detail : ''}/>
                     }
                 </ParallaxScrollView>
             </Container>

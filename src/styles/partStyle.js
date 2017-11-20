@@ -988,7 +988,7 @@ const part = StyleSheet.create({
         width: 14,
         height: 14,
         borderRadius: 7,
-        bottom: 25,
+        top: 20,
         position: 'absolute',
         backgroundColor: color.titleBlue
     },

@@ -91,14 +91,20 @@ class CurriculumListContainer extends Component {
                                         </View>
                                         <View style={{justifyContent: 'center', flex: 1}}>
                                             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                                <Text style={[part.titleDarkBold, part.marginRight]}>Buổi {item.order}</Text>
-                                                <View style={part.iconViewMore}>
-                                                    <Icon name="ion|md-add"
-                                                          size={12}
-                                                          color={color.navTitle}/>
-                                                </View>
+                                                <Left style={{flexDirection: 'row'}}>
+                                                    <View>
+                                                        <Text style={[part.titleDarkBold, part.marginRight]}>Buổi {item.order}</Text>
+                                                        <Text style={part.describeDarkGray}>{item.name}</Text>
+                                                    </View>
+                                                    <Right style={part.marginRight}>
+                                                        <Icon name="entypo|chevron-thin-right"
+                                                              size={size.iconBig}
+                                                              color={color.gray}
+                                                        />
+                                                    </Right>
+                                                </Left>
+
                                             </View>
-                                            <Text style={part.describeDarkGray}>{item.name}</Text>
                                         </View>
                                     </TouchableOpacity>
                                 </View>
