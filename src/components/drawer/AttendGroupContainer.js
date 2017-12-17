@@ -29,8 +29,8 @@ class AttendGroupContainer extends Component {
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <StatusBar
-                    backgroundColor={color.bgModal}
-                    barStyle={ Platform.OS === 'ios' ? "dark-content" : "light-content"}
+                    barStyle="dark-content"
+                    backgroundColor={color.none}
                 />
                 <ParallaxScrollView
                     backgroundColor={color.backGround}

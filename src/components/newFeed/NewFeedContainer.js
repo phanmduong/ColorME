@@ -276,8 +276,8 @@ class NewFeedContainer extends Component {
         return (
             <Container style={part.wrapperContainer}>
                 <StatusBar
-                    backgroundColor={color.bgModal}
-                    barStyle={ Platform.OS === 'ios' ? "dark-content" : "light-content"}
+                    barStyle="dark-content"
+                    backgroundColor={color.backGround}
                 />
                 {
                     Platform.OS === 'ios'
@@ -295,7 +295,7 @@ class NewFeedContainer extends Component {
                         >
                             <Left style={{flexDirection: 'row'}}>
                                 <Left>
-                                    <TouchableOpacity style={{backgroundColor: 'transparent'}}>
+                                    <TouchableOpacity style={{backgroundColor: 'transparent', marginLeft : 3}}>
                                         <Icon name={iconGird}
                                               color={color.darkGray}
                                               size={size.iconNewFeed}
@@ -349,8 +349,8 @@ class NewFeedContainer extends Component {
                                           style={{marginLeft: -12, marginTop: 3}}
                                     />
                                 </View>
-                                <Right style={part.paddingRight}>
-                                    <TouchableOpacity onPress={() => navigate('DrawerOpen')}>
+                                <Right style={[part.paddingRight, {marginRight: 5}]}>
+                                    <TouchableOpacity  onPress={() => navigate('DrawerOpen')}>
                                         <Icon
                                             name="materialCommunity|menu"
                                             color={color.darkGray}
@@ -365,7 +365,7 @@ class NewFeedContainer extends Component {
                             style={[part.navTopNewFeed, part.noPaddingTop, part.noPadding]}
                         >
                             <Left>
-                                <TouchableOpacity style={{backgroundColor: 'transparent'}}>
+                                <TouchableOpacity style={{backgroundColor: 'transparent', marginLeft : 3}}>
                                     <Icon name={iconGird}
                                           color={color.darkGray}
                                           size={size.iconNewFeed}

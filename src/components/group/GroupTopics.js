@@ -81,7 +81,7 @@ class GroupTopics extends Component {
                                                         />
 
                                                     </View>
-                                                    <View style={part.wrapperTextInImage}>
+                                                    <View style={part.textInImage}>
                                                         <Text
                                                             numberOfLines={2}
                                                             style={part.titleInImage}

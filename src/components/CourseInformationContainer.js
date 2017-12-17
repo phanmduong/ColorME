@@ -7,15 +7,15 @@ import {
     Body, CardItem, Header, Container, Button,
     Left, Right, Spinner, Item
 } from 'native-base';
-import BackButton from '../../commons/BackButton';
-import part from '../../styles/partStyle';
+import BackButton from '../commons/BackButton';
+import part from '../styles/partStyle';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import parallaxStyle from '../../styles/parallaxStyle';
-import * as color from '../../styles/color'
-import * as size from '../../styles/size';
-import * as courseAction from '../../actions/courseAction';
-import WebViewAutoHeight from '../../commons/WebViewAutoHeight';
+import parallaxStyle from '../styles/parallaxStyle';
+import * as color from '../styles/color'
+import * as size from '../styles/size';
+import * as courseAction from '../actions/courseAction';
+import WebViewAutoHeight from '../commons/WebViewAutoHeight';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
 class CourseInformation extends Component {
@@ -100,7 +100,8 @@ class CourseInformation extends Component {
                                         height: 180
                                     }}/>
                             </View>
-w                        </ParallaxScrollView>
+                            <WebViewAutoHeight source={courseInformation.detail ? courseInformation.detail : ''}/>
+                        </ParallaxScrollView>
                 }
 
                 <Button full style={{backgroundColor: color.main}}

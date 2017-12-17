@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StatusBar, Modal, Image, PanResponder, Text, TouchableOpacity, View, ScrollView} from 'react-native';
+import {Platform,StatusBar, Modal, Image, PanResponder, Text, TouchableOpacity, View,ScrollView} from 'react-native';
 
 import {
     List,
@@ -18,16 +18,16 @@ import {
     Thumbnail
 } from 'native-base';
 
-import styles from '../../styles/loginRegisterStyle'
-import part from '../../styles/partStyle';
+import styles from '../styles/loginRegisterStyle'
+import part from '../styles/partStyle';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import BackButton from '../../commons/BackButton';
+import BackButton from '../commons/BackButton';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
-import parallaxStyle from '../../styles/parallaxStyle';
-import * as courseAction from '../../actions/courseAction';
-import * as size from '../../styles/size';
-import * as color from '../../styles/color';
+import parallaxStyle from '../styles/parallaxStyle';
+import * as courseAction from '../actions/courseAction';
+import * as size from '../styles/size';
+import * as color from '../styles/color';
 
 class LearnRegisterContainer extends Component {
     constructor() {
@@ -156,13 +156,13 @@ class LearnRegisterContainer extends Component {
     render() {
         const {params} = this.props.navigation.state;
         const {goBack} = this.props.navigation;
-        const {isLoadingLearnRegister} = this.props;
         let {status, isEnrolled} = this.state;
         return (
             <Container style={[part.wrapperContainer, {paddingBottom: 0}]}>
                 <StatusBar
-                    backgroundColor={color.bgModal}
-                    barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"}
+                    barStyle="dark-content"
+                    backgroundColor={color.none}
+
                 />
                 <ParallaxScrollView
                     backgroundColor={color.backGround}
@@ -215,109 +215,90 @@ class LearnRegisterContainer extends Component {
                         </View>
                     )}
                 >
-                    <ScrollView>
-                        {
-                            isLoadingLearnRegister
-                                ?
-                                <View
-                                    style={{
-                                        marginTop: 20,
-                                        flex: 1,
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                    }}
-                                >
-                                    <Spinner
-                                        color={color.gray}/>
+                <ScrollView>
+                    {this.state.classes.map((item, i) => {
+                        return (
+                        <CardItem
+                            avatar
+                            style={[part.backgroundNone, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
+                            <TouchableOpacity
+                                activeOpacity={0.8}
+                                style={{flex: 1}}
+                            >
+                                <View style={part.cardCmt}>
+                                    <Image
+                                        style={[part.avatarUserNormal, part.marginRightFar]}
+                                        source={{uri: item.avatar_url}}/>
+                                    <Body style={part.noBorder}>
+                                    <Text style={part.titleSmallBlue}>Lớp {item.name}</Text>
+                                    <Text style={part.titleSmallDarkGrayThin}>{item.study_time}</Text>
+                                    <Text style={part.titleSmallDarkGrayThin}>{item.address}</Text>
+                                    <Text style={part.titleSmallDarkGrayThin}>{item.description}</Text>
+                                    {this.buttonRegister(item, status[i], isEnrolled[i])}
+                                    </Body>
                                 </View>
-                                :
-                                this.state.classes.map((item, i) => {
-                                    return (
-                                        <CardItem
-                                            avatar
-                                            style={[part.backgroundNone, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
-                                            <TouchableOpacity
-                                                activeOpacity={0.8}
-                                                style={{flex: 1}}
-                                            >
-                                                <View style={part.cardCmt}>
-                                                    <Image
-                                                        style={[part.avatarUserNormal, part.marginRightFar]}
-                                                        source={{uri: item.avatar_url}}/>
-                                                    <Body style={part.noBorder}>
-                                                    <Text style={part.titleSmallBlue}>Lớp {item.name}</Text>
-                                                    <Text style={part.titleSmallDarkGrayThin}>{item.study_time}</Text>
-                                                    <Text style={part.titleSmallDarkGrayThin}>{item.address}</Text>
-                                                    <Text style={part.titleSmallDarkGrayThin}>{item.description}</Text>
-                                                    {this.buttonRegister(item, status[i], isEnrolled[i])}
-                                                    </Body>
-                                                </View>
-                                            </TouchableOpacity>
-                                        </CardItem>
-                                    )
-                                })
-                        }
-                    </ScrollView>
-                    <Modal
-                        presentationStyle="overFullScreen"
-                        animationType="fade"
-                        transparent={true}
-                        visible={this.state.modalRegister}
+                            </TouchableOpacity>
+                        </CardItem>
+                            )})}
+                </ScrollView>
+                <Modal
+                    presentationStyle="overFullScreen"
+                    animationType="fade"
+                    transparent={true}
+                    visible={this.state.modalRegister}
+                >
+                    <View
+                        style={[part.wrapperModalComment]}
+                        {...this.panResponder.panHandlers}
                     >
-                        <View
-                            style={[part.wrapperModalComment]}
-                            {...this.panResponder.panHandlers}
-                        >
-                            <View style={[part.modalRegister, part.padding]}>
-                                <CardItem
-                                    avatar
-                                    style={[part.backgroundNone, part.noMarginLeft, part.padding, part.noBorder, part.noPaddingBottom]}>
-                                    <Left>
-                                        <Image
-                                            style={part.avatarUserNormal}
-                                            source={{uri: this.state.avatar_url}}/>
-                                        <Body style={part.noBorder}>
-                                        <Text style={part.titleSmallBlue}>Đăng ký học {this.state.course}</Text>
-                                        <Text style={part.titleSmallDarkGray}>Xác nhận đăng ký</Text>
-                                        </Body>
-                                    </Left>
-                                </CardItem>
-                                <CardItem
-                                    style={[part.backgroundNone, part.noMarginLeft, part.noBorder, part.noPadding]}>
-                                    <Left>
-                                        <Body>
-                                        <Text style={[part.titleGrayThin, part.paddingLine]}>Bạn đang tiến hành đăng ký
-                                            lớp
-                                            <Text
-                                                style={part.titleSmallDarkGray}> {this.state.course} {this.state.name}</Text></Text>
-                                        <Text style={[part.titleGrayThin, part.paddingLine]}>Thời gian học <Text
-                                            style={part.titleSmallDarkGray}>{this.state.study_time}</Text></Text>
-                                        <Text style={[part.titleGrayThin, part.paddingLine]}><Text
-                                            style={part.titleSmallDarkGray}>{this.state.description}</Text></Text>
-                                        <Text style={[part.titleGrayThin, part.paddingLine]}>Tại: <Text
-                                            style={part.titleSmallDarkGray}>{this.state.address}</Text></Text>
-                                        <Text style={[part.titleGrayThin, part.paddingLine]}>Hãy xác nhận để colorME
-                                            giúp
-                                            bạn hoàn thành thủ tục nhé</Text>
-                                        </Body>
-                                    </Left>
-                                </CardItem>
-                                <View style={{
-                                    width: size.wid * 0.9 - 20,
-                                    alignItems: 'center',
-                                }}>
-                                    <TouchableOpacity
-                                        rounded
-                                        style={styles.buttonRegister}
-                                        onPress={() => this.learnRegister(this.state.id, this.props.token, this.state.key)}
-                                    >
-                                        <Text style={styles.textButton}>Xác nhận</Text>
-                                    </TouchableOpacity>
-                                </View>
-
+                        <View style={[part.modalRegister, part.padding]}>
+                            <CardItem
+                                avatar
+                                style={[part.backgroundNone, part.noMarginLeft, part.padding, part.noBorder, part.noPaddingBottom]}>
+                                <Left>
+                                    <Image
+                                        style={part.avatarUserNormal}
+                                        source={{uri: this.state.avatar_url}}/>
+                                    <Body style={part.noBorder}>
+                                    <Text style={part.titleSmallBlue}>Đăng ký học {this.state.course}</Text>
+                                    <Text style={part.titleSmallDarkGray}>Xác nhận đăng ký</Text>
+                                    </Body>
+                                </Left>
+                            </CardItem>
+                            <CardItem
+                                style={[part.backgroundNone, part.noMarginLeft, part.noBorder, part.noPadding]}>
+                                <Left>
+                                    <Body>
+                                    <Text style={[part.titleGrayThin, part.paddingLine]}>Bạn đang tiến hành đăng ký lớp
+                                        <Text
+                                            style={part.titleSmallDarkGray}> {this.state.course} {this.state.name}</Text></Text>
+                                    <Text style={[part.titleGrayThin, part.paddingLine]}>Thời gian học <Text
+                                        style={part.titleSmallDarkGray}>{this.state.study_time}</Text></Text>
+                                    <Text style={[part.titleGrayThin, part.paddingLine]}><Text
+                                        style={part.titleSmallDarkGray}>{this.state.description}</Text></Text>
+                                    <Text style={[part.titleGrayThin, part.paddingLine]}>Tại: <Text
+                                        style={part.titleSmallDarkGray}>{this.state.address}</Text></Text>
+                                    <Text style={[part.titleGrayThin, part.paddingLine]}>Hãy xác nhận để colorME giúp
+                                        bạn hoàn thành thủ tục nhé</Text>
+                                    </Body>
+                                </Left>
+                            </CardItem>
+                            <View style={{
+                                width: size.wid * 0.9 - 20,
+                                alignItems: 'center',
+                            }}>
+                                <TouchableOpacity
+                                    rounded
+                                    style={styles.buttonRegister}
+                                    onPress={() => this.learnRegister(this.state.id, this.props.token, this.state.key)}
+                                >
+                                    <Text style={styles.textButton}>Xác nhận</Text>
+                                </TouchableOpacity>
                             </View>
+
                         </View>
-                    </Modal>
+                    </View>
+                </Modal>
                 </ParallaxScrollView>
             </Container>
         );

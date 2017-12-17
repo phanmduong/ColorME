@@ -4,7 +4,6 @@ import {
 } from 'react-native';
 export const iconNormal         = 15;
 export const iconBig            = 20;
-export const iconInDrawer            = 12;
 export const iconGiant          = Platform.OS === 'ios' ? 25 : 20;
 export const iconNewFeed        = 30 ;
 export const title              = 14;

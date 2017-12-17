@@ -128,11 +128,5 @@ export default {
         isLoadingProducts: false,
         topic: {},
         products:[]
-    },
-    curriculum: {
-        isLoadingCurriculum: false,
-        isLoadingResources: false,
-        data:{},
-        resources: [],
     }
 }

@@ -74,7 +74,7 @@ const part = StyleSheet.create({
         padding: 0,
         backgroundColor: color.none,
     },
-    wrapperUserInFeature: {
+    wrapperUserInFeature:{
         flexDirection: 'row',
         alignItems: 'center'
     },
@@ -84,12 +84,12 @@ const part = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: color.text,
     },
-    wrapperAvatarInDrawer: {
+    wrapperAvatarInDrawer:{
         justifyContent: 'center',
         width: wid * 2 / 12,
         flex: 1,
     },
-    wrapperTextInDrawer: {
+    wrapperTextInDrawer:{
         justifyContent: 'center',
         width: wid * 7 / 12,
         flex: 1,
@@ -125,7 +125,7 @@ const part = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: 25,
-        width: 40,
+        width: 50,
     },
     wrapperDeadline: {
         marginLeft: 3,
@@ -259,14 +259,7 @@ const part = StyleSheet.create({
         left: 0,
         top: Platform.OS === 'ios' ? 20 : 0,
     },
-    iconViewMore:{
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: color.green,
-        width: 14,
-        height: 14,
-        borderRadius: 7,
-    },
+
     iconInDrawerNav: {
         width: wid,
         flexDirection: 'row',
@@ -293,6 +286,7 @@ const part = StyleSheet.create({
         width: 38,
         height: 38,
         borderRadius: 19,
+        color: color.darkGray,
         backgroundColor: color.gray,
     },
 
@@ -302,7 +296,7 @@ const part = StyleSheet.create({
         fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Thin',
         fontSize: size.describe,
         lineHeight: 10,
-        height: (Platform.OS === 'ios') ? 30 : 40,
+        height:  (Platform.OS === 'ios') ? 30 : 40,
         fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
     },
     inputTheme02: {
@@ -364,9 +358,9 @@ const part = StyleSheet.create({
         backgroundColor: color.none,
     },
     avatarUserLikeGrid: {
-        width: (wid - 24) / 3 - 4,
-        height: (wid - 24) / 3 - 4,
-        borderRadius: ((wid - 24) / 3 - 4) / 2,
+        width: (wid - 24) / 3 -4,
+        height: (wid- 24) / 3 -4,
+        borderRadius: ((wid- 24) / 3 - 4) / 2,
         backgroundColor: color.none,
     },
     avatarUserNormalSquare: {
@@ -388,15 +382,15 @@ const part = StyleSheet.create({
     },
 
     image: {
-        height: (Platform.OS === 'ios') ? (size.hei * 0.6) : (size.hei * 0.6 - 2),
+        height: (Platform.OS === 'ios') ? (size.hei * 0.6) : (size.hei * 0.6 - 2) ,
         width: (Platform.OS === 'ios') ? (wid - 16) : (wid - 18),
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: color.backGround,
-        borderRadius: 15,
-        marginRight: 8,
-        marginLeft: 8,
+        borderRadius : 15,
+        marginRight : 8,
+        marginLeft : 8,
     },
     wrapperImage: {
         paddingTop: 2,
@@ -407,9 +401,9 @@ const part = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: color.backGround,
-        borderRadius: 15,
-        marginRight: 8,
-        marginLeft: 8,
+        borderRadius : 15,
+        marginRight : 8,
+        marginLeft : 8,
     },
     imageTopic: {
         margin: 3,
@@ -444,14 +438,14 @@ const part = StyleSheet.create({
         position: 'relative',
     },
     imageInGrid: {
-        width: (Platform.OS === 'ios') ? ((wid - 24) / 3 - 4) : ((wid - 24) / 3 - 6),
-        height: (Platform.OS === 'ios') ? ((wid - 24) / 3 - 4) : ((wid - 24) / 3 - 6),
+        width: (Platform.OS === 'ios') ? ((wid - 24) / 3 -  4) :  ((wid - 24) / 3 - 6),
+        height: (Platform.OS === 'ios') ? ((wid - 24) / 3 -  4) :  ((wid - 24) / 3 - 6),
         borderRadius: 15,
     },
     wrapperImageInGrid: {
         width: (wid - 24) / 3 - 4,
-        height: (wid - 24) / 3 - 4,
-        justifyContent: 'center',
+        height: (wid- 24) / 3 - 4,
+        justifyContent:'center',
         alignItems: 'center',
         borderRadius: 15,
     },
@@ -511,8 +505,8 @@ const part = StyleSheet.create({
         fontWeight: (Platform.OS === 'ios') ? '500' : 'normal',
     },
     titleDarkBold: {
-        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Bold',
-        fontSize: size.title,
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontSize: size.titleNormal,
         color: color.text,
         fontWeight: (Platform.OS === 'ios') ? '700' : 'normal',
     },
@@ -606,9 +600,11 @@ const part = StyleSheet.create({
         fontSize: 12,
         color: color.gray,
     },
-    wrapperTextInImage: {
+    textInImage: {
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         width: wid,
         padding: 10,
+        fontSize: 12,
         backgroundColor: color.none,
     },
     wrapperTitleFeature: {
@@ -631,14 +627,13 @@ const part = StyleSheet.create({
         fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         color: color.darkGrayText,
         fontSize: 12,
-        fontWeight: (Platform.OS === 'ios') ? 'bold' : 'normal',
+        fontWeight: 'bold',
     },
     titlePost: {
-        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Bold',
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
         color: color.darkGrayText,
         fontSize: 20,
-        fontWeight: (Platform.OS === 'ios') ? 'bold' : 'normal',
-
+        fontWeight: 'bold',
     },
     titleGroup: {
         fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
@@ -670,6 +665,7 @@ const part = StyleSheet.create({
         backgroundColor: color.none,
         borderRadius: 5,
         justifyContent: 'center',
+
     },
     buttonAcceptFull: {
         borderBottomRightRadius: 5,
@@ -698,22 +694,12 @@ const part = StyleSheet.create({
         paddingLeft: 20,
 
     },
-    buttonRounded: {
-        borderRadius: 50,
-        marginTop: 5,
-        backgroundColor: color.main,
-        paddingTop: 5,
-        paddingBottom: 5,
-        paddingRight: 20,
-        paddingLeft: 20,
-
-    },
-    feedback: {
-        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
-        fontSize: 13,
-        color: color.gray,
-        fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
-    },
+   feedback : {
+       fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+       fontSize: 13,
+       color: color.gray,
+       fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
+   },
     // PADDING
     padding: {
         padding: 10,
@@ -902,7 +888,7 @@ const part = StyleSheet.create({
         flexWrap: 'wrap',
     },
     wrapperGridImage: {
-        marginLeft: 6,
+        marginLeft:6,
         marginBottom: 6,
         width: (wid) / 3 - 8,
         height: (wid) / 3 - 8,
@@ -962,7 +948,7 @@ const part = StyleSheet.create({
         borderRightWidth: 0,
     },
     shadow: {
-        elevation: 1,
+        elevation : 1 ,
         shadowColor: color.transparentBlack,
         shadowOffset: {width: 0.5, height: 1},
         shadowOpacity: 0.2,
@@ -970,27 +956,6 @@ const part = StyleSheet.create({
     haveBorderBottom: {
         borderBottomWidth: 0.5,
         borderColor: color.icon,
-    },
-
-
-    // TIME LINE
-    wrapperTimeLine: {
-        width: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    timeLineStraight: {
-        width: 5,
-        height: 70,
-        backgroundColor: color.icon,
-    },
-    timeLineCircle: {
-        width: 14,
-        height: 14,
-        borderRadius: 7,
-        top: 20,
-        position: 'absolute',
-        backgroundColor: color.titleBlue
     },
 });
 
