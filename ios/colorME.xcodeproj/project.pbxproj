@@ -182,13 +182,6 @@
 			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
 			remoteInfo = RNImagePicker;
 		};
-		17682F7A1F9B5AB600E42D7B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 26FD55603C0F4C08AB1D596E /* RCTRefreshControl.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RCTRefresher;
-		};
 		1784DE301F89CB8900F66C00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
@@ -475,7 +468,6 @@
 		1BACB976F8FA44D09630DB9B /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		24A86C1B06754457B912DD5D /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		24AE776B62E7AFD0B74F3258 /* Pods-colorME.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-colorME.debug.xcconfig"; path = "Pods/Target Support Files/Pods-colorME/Pods-colorME.debug.xcconfig"; sourceTree = "<group>"; };
-		26FD55603C0F4C08AB1D596E /* RCTRefreshControl.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTRefreshControl.xcodeproj; path = "../node_modules/react-native-refresh-control/RCTRefreshControl.xcodeproj"; sourceTree = "<group>"; };
 		28D0AB85ED324193AB3C565E /* CodePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		2A40C61C29F84DB69E60234F /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		2B8F3FDFDC73413E83417D07 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
@@ -756,14 +748,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		17682F771F9B5AB600E42D7B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				17682F7B1F9B5AB600E42D7B /* libRCTRefreshControl.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		1784DE2A1F89CB8600F66C00 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -890,7 +874,6 @@
 				563E01FD369B4263B0D4306F /* RCTVideo.xcodeproj */,
 				E7BB106F35394F4791777554 /* FastImage.xcodeproj */,
 				C00B94DBE4DC435A9E6326C7 /* RNImagePicker.xcodeproj */,
-				26FD55603C0F4C08AB1D596E /* RCTRefreshControl.xcodeproj */,
 				41C0E2AF147542DFABFC3F53 /* BVLinearGradient.xcodeproj */,
 				28D0AB85ED324193AB3C565E /* CodePush.xcodeproj */,
 				C2160523B6214B4BA6D9F6AF /* RNMobileCenter.xcodeproj */,
@@ -1191,10 +1174,6 @@
 					ProjectRef = 3A28A9991DD24F998CFC0B10 /* RCTOneSignal.xcodeproj */;
 				},
 				{
-					ProductGroup = 17682F771F9B5AB600E42D7B /* Products */;
-					ProjectRef = 26FD55603C0F4C08AB1D596E /* RCTRefreshControl.xcodeproj */;
-				},
-				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
 					ProjectRef = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
 				},
@@ -1325,14 +1304,6 @@
 			fileType = archive.ar;
 			path = libRNImagePicker.a;
 			remoteRef = 17682F2B1F9B59A800E42D7B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		17682F7B1F9B5AB600E42D7B /* libRCTRefreshControl.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			name = libRCTRefreshControl.a;
-			path = libRCTRefresher.a;
-			remoteRef = 17682F7A1F9B5AB600E42D7B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		1784DE311F89CB8900F66C00 /* libRCTBlob-tvOS.a */ = {
