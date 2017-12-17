@@ -22,7 +22,7 @@
 {
   NSURL *jsCodeLocation;
   self.oneSignal = [[RCTOneSignal alloc] initWithLaunchOptions:launchOptions
-                                                         appId:@"ceea18e8-322a-4748-b18b-fdf066d9a5ff"];
+                                                         appId:@"a136d5c1-400f-456a-9c64-75c43f206f4d"];
   [RNCrashes registerWithAutomaticProcessing];  // Initialize Mobile Center crashes
 
   [RNAnalytics registerWithInitiallyEnabled:true];  // Initialize Mobile Center analytics
