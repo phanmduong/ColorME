@@ -10,7 +10,10 @@ target 'colorME' do
   pod 'MobileCenter/Analytics', '~> 0.14.1'
   pod 'RNMobileCenterShared', '~> 0.11.2'
 
-  
+
+    pod 'OneSignal', '>= 2.5.2', '< 3.0'
+
+
 
   target 'colorMETests' do
     inherit! :search_paths
@@ -29,5 +32,6 @@ target 'colorME-tvOS' do
     inherit! :search_paths
     # Pods for testing
   end
+
 
 end
