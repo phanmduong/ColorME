@@ -5,7 +5,9 @@ import {compose, applyMiddleware, createStore} from 'redux';
 import rootReducer from './reducers/index';
 import {Start} from './navigators/appRouter';
 import OneSignal from 'react-native-onesignal'
+
 const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
+
 class App extends React.Component {
     componentWillMount() {
         OneSignal.addEventListener('received', this.onReceived);
@@ -19,6 +21,7 @@ class App extends React.Component {
         OneSignal.removeEventListener('opened', this.onOpened);
         OneSignal.removeEventListener('registered', this.onRegistered);
         OneSignal.removeEventListener('ids', this.onIds);
+        OneSignal.deleteTag("devide_type");
     }
 
     onReceived(notification) {
@@ -43,7 +46,7 @@ class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
-              <Start/>
+                <Start/>
             </Provider>
         );
     }
