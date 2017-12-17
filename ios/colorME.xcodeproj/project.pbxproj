@@ -55,6 +55,7 @@
 		5F62C7DC77AD49E99EB29C32 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2B5215D53524141B222D30A /* Ionicons.ttf */; };
 		637D6BA6B6EC4181A6436314 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B47AC2C52D418097326501 /* libCodePush.a */; };
 		68E68BD1D8124ED4A01345E6 /* seguibl.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1848284460DF47058AADA396 /* seguibl.ttf */; };
+		6FB5F13F31824ACA953FB71B /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3083D38FE9F41EBB79C4A59 /* libRCTOneSignal.a */; };
 		74DAA563ACA043C5ABEA1C4F /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C4897B6DC86D4D2F8D6162CD /* SimpleLineIcons.ttf */; };
 		7688D5BB606448BAAB28547D /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6A68D28F5EDD4DE6B751A402 /* Montserrat-Black.ttf */; };
 		79AEA8DE963B4D208980E8B2 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F29971F3B98487989FC6045 /* Montserrat-SemiBoldItalic.ttf */; };
@@ -159,6 +160,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
+		};
+		1726C4951FE65BDD0046F3D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A28A9991DD24F998CFC0B10 /* RCTOneSignal.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3245CDED1BFEE35C00EABF68;
+			remoteInfo = RCTOneSignal;
 		};
 		173039EC1F91B5C60055BC93 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -460,6 +468,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = colorME/main.m; sourceTree = "<group>"; };
 		13D8D1E4142C4555B1E7A32D /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		1726C44C1FE65B260046F3D1 /* colorME.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = colorME.entitlements; path = colorME/colorME.entitlements; sourceTree = "<group>"; };
 		1848284460DF47058AADA396 /* seguibl.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = seguibl.ttf; path = ../assets/fonts/seguibl.ttf; sourceTree = "<group>"; };
 		19C53FA2C3BC4524A7EADD40 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Thin.ttf"; path = "../assets/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
 		19D414F93BB421D272973981 /* Pods-colorME-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-colorME-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-colorME-tvOSTests/Pods-colorME-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -476,6 +485,7 @@
 		2F29971F3B98487989FC6045 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBoldItalic.ttf"; path = "../assets/fonts/Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		337041D557D24EDEAA007DEB /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BoldItalic.ttf"; path = "../assets/fonts/Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
 		37BA1CE79FB74837952EFA17 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
+		3A28A9991DD24F998CFC0B10 /* RCTOneSignal.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTOneSignal.xcodeproj; path = "../node_modules/react-native-onesignal/ios/RCTOneSignal.xcodeproj"; sourceTree = "<group>"; };
 		406518D513C44966939164A7 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		4067E7570E6B4CFE86DA84B1 /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLight.ttf"; path = "../assets/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
 		4109B4D64D2E45118E18CC78 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../assets/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -533,6 +543,7 @@
 		E6E384C3B0EF497EA0456A6B /* libRNAnalytics.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAnalytics.a; sourceTree = "<group>"; };
 		E7BB106F35394F4791777554 /* FastImage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = FastImage.xcodeproj; path = "../node_modules/react-native-fast-image/ios/FastImage.xcodeproj"; sourceTree = "<group>"; };
 		EF46FCBA35BE48EA995453C8 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		F3083D38FE9F41EBB79C4A59 /* libRCTOneSignal.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTOneSignal.a; sourceTree = "<group>"; };
 		FB58996DDDB442898F9D5EDA /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		FBDB27BF80C75B90B59728E0 /* libPods-colorME-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-colorME-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBEC14688A1941CE90F8D033 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
@@ -577,6 +588,7 @@
 				47DCE9897BB179F67F773B15 /* libPods-colorME.a in Frameworks */,
 				C27E9507F20745FD9B64B07F /* libRNAnalytics.a in Frameworks */,
 				FE25D8E74BF34940AE1C78EC /* libRNCrashes.a in Frameworks */,
+				6FB5F13F31824ACA953FB71B /* libRCTOneSignal.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,6 +701,7 @@
 		13B07FAE1A68108700A75B9A /* colorME */ = {
 			isa = PBXGroup;
 			children = (
+				1726C44C1FE65B260046F3D1 /* colorME.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -715,6 +728,14 @@
 				1784DE7C1F89E91900F66C00 /* libthird-party.a */,
 				1784DE7E1F89E91900F66C00 /* libdouble-conversion.a */,
 				1784DE801F89E91900F66C00 /* libdouble-conversion.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1726C4921FE65BDC0046F3D1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1726C4961FE65BDD0046F3D1 /* libRCTOneSignal.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -756,6 +777,7 @@
 				05A5AF89330F45B2A72495E7 /* libRNMobileCenter.a */,
 				E6E384C3B0EF497EA0456A6B /* libRNAnalytics.a */,
 				9BC289CD1D074A2997B5EDE9 /* libRNCrashes.a */,
+				F3083D38FE9F41EBB79C4A59 /* libRCTOneSignal.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -874,6 +896,7 @@
 				C2160523B6214B4BA6D9F6AF /* RNMobileCenter.xcodeproj */,
 				C1CE23EF3F2F4792B3ADEAF6 /* RNAnalytics.xcodeproj */,
 				FE1B2DE4C9FF47A6B30B3AD3 /* RNCrashes.xcodeproj */,
+				3A28A9991DD24F998CFC0B10 /* RCTOneSignal.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1091,6 +1114,14 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 6BZ59393SB;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1154,6 +1185,10 @@
 				{
 					ProductGroup = 00C302D41ABCB9D200DB3ED1 /* Products */;
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
+				},
+				{
+					ProductGroup = 1726C4921FE65BDC0046F3D1 /* Products */;
+					ProjectRef = 3A28A9991DD24F998CFC0B10 /* RCTOneSignal.xcodeproj */;
 				},
 				{
 					ProductGroup = 17682F771F9B5AB600E42D7B /* Products */;
@@ -1269,6 +1304,13 @@
 			fileType = archive.ar;
 			path = libReact.a;
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1726C4961FE65BDD0046F3D1 /* libRCTOneSignal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTOneSignal.a;
+			remoteRef = 1726C4951FE65BDD0046F3D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		173039ED1F91B5C60055BC93 /* libFastImage.a */ = {
@@ -1925,12 +1967,14 @@
 					"$(SRCROOT)/../node_modules/mobile-center/ios/RNMobileCenter",
 					"$(SRCROOT)/../node_modules/mobile-center-analytics/ios/RNAnalytics",
 					"$(SRCROOT)/../node_modules/mobile-center-crashes/ios/RNCrashes",
+					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/RCTOneSignal/**",
 				);
 				INFOPLIST_FILE = colorMETests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1969,12 +2013,14 @@
 					"$(SRCROOT)/../node_modules/mobile-center/ios/RNMobileCenter",
 					"$(SRCROOT)/../node_modules/mobile-center-analytics/ios/RNAnalytics",
 					"$(SRCROOT)/../node_modules/mobile-center-crashes/ios/RNCrashes",
+					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/RCTOneSignal/**",
 				);
 				INFOPLIST_FILE = colorMETests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2000,6 +2046,7 @@
 			baseConfigurationReference = 24AE776B62E7AFD0B74F3258 /* Pods-colorME.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = colorME/colorME.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 6BZ59393SB;
@@ -2016,6 +2063,7 @@
 					"$(SRCROOT)/../node_modules/mobile-center/ios/RNMobileCenter",
 					"$(SRCROOT)/../node_modules/mobile-center-analytics/ios/RNAnalytics",
 					"$(SRCROOT)/../node_modules/mobile-center-crashes/ios/RNCrashes",
+					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/RCTOneSignal/**",
 				);
 				INFOPLIST_FILE = colorME/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2036,6 +2084,7 @@
 			baseConfigurationReference = BCE8AF0FD96137E16C160D3E /* Pods-colorME.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = colorME/colorME.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6BZ59393SB;
 				ENABLE_BITCODE = NO;
@@ -2051,6 +2100,7 @@
 					"$(SRCROOT)/../node_modules/mobile-center/ios/RNMobileCenter",
 					"$(SRCROOT)/../node_modules/mobile-center-analytics/ios/RNAnalytics",
 					"$(SRCROOT)/../node_modules/mobile-center-crashes/ios/RNCrashes",
+					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/RCTOneSignal/**",
 				);
 				INFOPLIST_FILE = colorME/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2091,11 +2141,13 @@
 					"$(SRCROOT)/../node_modules/mobile-center/ios/RNMobileCenter",
 					"$(SRCROOT)/../node_modules/mobile-center-analytics/ios/RNAnalytics",
 					"$(SRCROOT)/../node_modules/mobile-center-crashes/ios/RNCrashes",
+					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/RCTOneSignal/**",
 				);
 				INFOPLIST_FILE = "colorME-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2144,11 +2196,13 @@
 					"$(SRCROOT)/../node_modules/mobile-center/ios/RNMobileCenter",
 					"$(SRCROOT)/../node_modules/mobile-center-analytics/ios/RNAnalytics",
 					"$(SRCROOT)/../node_modules/mobile-center-crashes/ios/RNCrashes",
+					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/RCTOneSignal/**",
 				);
 				INFOPLIST_FILE = "colorME-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2198,6 +2252,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.colorME-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2223,6 +2278,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

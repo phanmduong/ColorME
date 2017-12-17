@@ -1,6 +1,8 @@
 import * as types from '../constants/actionTypes';
 import {AsyncStorage, Alert} from 'react-native'
 import * as loginApi from '../apis/loginApi';
+import OneSignal from "react-native-onesignal";
+
 export function beginLogin() {
     return {
         type: types.BEGIN_LOGIN,
@@ -9,11 +11,13 @@ export function beginLogin() {
         token: undefined,
     }
 }
+
 export function openMainApp() {
     return {
         type: types.LOGIN,
     }
 }
+
 export function loginUser(login) {
     return function (dispatch) {
         dispatch(beginLogin());
@@ -44,7 +48,8 @@ export function updateDataLogin(login) { // ham na update vao bo nho cac gia tri
 
 
 export function loginSuccess(response) {
-    let token = response.data.token
+    let token = response.data.token;
+    OneSignal.sendTags({user_id: response.data.user ? response.data.user.id : 0});
     return {
         type: types.LOGIN_SUCCESS,
         isLoading: false,
