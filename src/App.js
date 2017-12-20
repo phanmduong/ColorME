@@ -12,19 +12,13 @@ const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
 class App extends React.Component {
 
     componentWillMount() {
-        OneSignal.addEventListener('received', this.onReceived);
         OneSignal.addEventListener('opened', this.onOpened);
         OneSignal.sendTag("device_type", "mobile");
     }
 
     componentWillUnmount() {
-        OneSignal.removeEventListener('received', this.onReceived);
         OneSignal.removeEventListener('opened', this.onOpened);
         OneSignal.deleteTag("device_type");
-    }
-
-    onReceived(notification) {
-        console.log("Notification received: ", notification);
     }
 
     onOpened(openResult) {
@@ -33,13 +27,13 @@ class App extends React.Component {
                 this.navigate(openResult.notification.payload.launchURL);
             });
         } else {
-            Linking.addEventListener('url', this.navigate);
+            Linking.addEventListener('url', this.navigate(openResult.notification.payload.launchURL));
         }
     }
     navigate (url) { // E
         const { navigate } = this.props.navigation;
         const route = url.replace(/.*?:\/\//g, '');
-        const routeName = route.split('/')[0];
+        const routeName = route.split('/')[1];
         if (routeName === 'project') {
             navigate('Login');
         };
@@ -54,7 +48,7 @@ class App extends React.Component {
     }
     componentDidMount() {
        OneSignal.configure({
-           onNotificationReceived : this.navigate
+           onNotificationReceived : this.onOpened
        })
     }
 }
