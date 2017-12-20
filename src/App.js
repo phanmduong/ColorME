@@ -1,5 +1,6 @@
 import React from 'react';
 import {Provider} from 'react-redux';
+import {Linking, Platform} from 'react-native';
 import thunk from 'redux-thunk';
 import {compose, applyMiddleware, createStore} from 'redux';
 import rootReducer from './reducers/index';
@@ -13,16 +14,12 @@ class App extends React.Component {
     componentWillMount() {
         OneSignal.addEventListener('received', this.onReceived);
         OneSignal.addEventListener('opened', this.onOpened);
-        OneSignal.addEventListener('registered', this.onRegistered);
-        OneSignal.addEventListener('ids', this.onIds);
         OneSignal.sendTag("device_type", "mobile");
     }
 
     componentWillUnmount() {
         OneSignal.removeEventListener('received', this.onReceived);
         OneSignal.removeEventListener('opened', this.onOpened);
-        OneSignal.removeEventListener('registered', this.onRegistered);
-        OneSignal.removeEventListener('ids', this.onIds);
         OneSignal.deleteTag("device_type");
     }
 
@@ -31,18 +28,21 @@ class App extends React.Component {
     }
 
     onOpened(openResult) {
-        console.log('Message: ', openResult.notification.payload.body);
-        console.log('Data: ', openResult.notification.payload.additionalData);
-        console.log('isActive: ', openResult.notification.isAppInFocus);
-        console.log('openResult: ', openResult);
+        if (Platform.OS === 'android') {
+            Linking.getInitialURL().then(() => {
+                this.navigate(openResult.notification.payload.launchURL);
+            });
+        } else {
+            Linking.addEventListener('url', this.navigate);
+        }
     }
-
-    onRegistered(notifData) {
-        console.log("Device had been registered for push notifications!", notifData);
-    }
-
-    onIds(device) {
-        console.log('Device info: ', device);
+    navigate (url) { // E
+        const { navigate } = this.props.navigation;
+        const route = url.replace(/.*?:\/\//g, '');
+        const routeName = route.split('/')[0];
+        if (routeName === 'project') {
+            navigate('Login');
+        };
     }
 
     render() {
@@ -52,6 +52,12 @@ class App extends React.Component {
             </Provider>
         );
     }
+    componentDidMount() {
+       OneSignal.configure({
+           onNotificationReceived : this.navigate
+       })
+    }
 }
+
 
 export default App;
