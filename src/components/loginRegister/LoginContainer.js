@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {
     ActivityIndicator, KeyboardAvoidingView,
     Text, TouchableOpacity, View, Alert, Platform,
-    StatusBar,
+    StatusBar,Linking
 } from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, Left, CheckBox, Header} from 'native-base';
@@ -12,16 +12,40 @@ import * as loginAction from '../../actions/loginActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import {NavigationActions} from'react-navigation'
+import OneSignal from 'react-native-onesignal';
 class LoginContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
             checkRules: true,
         }
+        this.onOpened = this.onOpened.bind(this);
     }
 
     componentWillMount(){
         this.props.loginAction.getDataLogin(this.props.status);
+        OneSignal.addEventListener('opened', this.onOpened);
+    }
+    componentWillUnmount() {
+        OneSignal.removeEventListener('opened', this.onOpened);
+    }
+    onOpened(openResult) {
+        console.log(openResult.notification.payload.launchURL);
+        if (Platform.OS === 'android') {
+            Linking.getInitialURL().then(() => {
+                this.navigate(openResult.notification.payload.launchURL);
+            });
+        } else {
+            Linking.addEventListener('url', this.navigate(openResult.notification.payload.launchURL));
+        }
+    }
+    navigate (url) { // E
+        const { navigate } = this.props.navigation;
+        const route = url.replace(/.*?:\/\//g, '');
+        const routeName = route.split('/')[1];
+        if (routeName === 'project') {
+            navigate('Rules');
+        };
     }
 
     saveData() {
@@ -178,6 +202,12 @@ class LoginContainer extends Component {
             </KeyboardAvoidingView>
 
         )
+    }
+    componentDidMount() {
+        OneSignal.inFocusDisplaying(2);
+        OneSignal.configure({
+            onNotificationOpened : this.onOpened
+        })
     }
 }
 
