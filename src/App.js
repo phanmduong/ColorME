@@ -22,13 +22,8 @@ class App extends React.Component {
     }
 
     onOpened(openResult) {
-        if (Platform.OS === 'android') {
-            Linking.getInitialURL().then(() => {
-                this.navigate(openResult.notification.payload.launchURL);
-            });
-        } else {
-            Linking.addEventListener('url', this.navigate(openResult.notification.payload.launchURL));
-        }
+        console.log(openResult);
+        this.setState({URL : openResult.notification.payload.launchURL});
     }
     navigate (url) { // E
         const { navigate } = this.props.navigation;
@@ -47,9 +42,14 @@ class App extends React.Component {
         );
     }
     componentDidMount() {
-       OneSignal.configure({
-           onNotificationReceived : this.onOpened
-       })
+        OneSignal.inFocusDisplaying(2);
+        if (Platform.OS === 'android') {
+            Linking.getInitialURL().then((url) => {
+                this.navigate(url);
+            });
+        } else {
+            Linking.addEventListener('url', this.navigate(this.state.URL));
+        }
     }
 }
 
