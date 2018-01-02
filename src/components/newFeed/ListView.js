@@ -67,6 +67,12 @@ class ListView extends Component {
             onPanResponderGrant: this._onPanResponderGrant.bind(this),
         })
     }
+    // shouldComponentUpdate(nextProps){
+    //     if(nextProps.item!== this.props.item){
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     componentWillReceiveProps(nextProps) {
         let likedComment = this.state.likedComment;
@@ -131,25 +137,6 @@ class ListView extends Component {
     openPostLiker(product_id) {
         this.setCommentModalComment(false);
         this.props.navigation.navigate('PostLiker', {product_id: product_id});
-    }
-
-    alertReport() {
-        Alert.alert(
-            'Báo cáo',
-            'Bạn thực sự muốn báo cáo bài viết này?',
-            [
-                {text: 'Xác nhận', onPress: () => this.reportPost(this.props.item.id, this.props.token)},
-                {text: 'Hủy'},
-            ],
-            {cancelable: false}
-        )
-    }
-
-    reportPost(id, token) {
-        this.props.reportAction.reportPost(id, token);
-        this.setState({
-            modalMenu: false,
-        });
     }
 
    async commentPost(product_id, token, value) {
@@ -223,8 +210,6 @@ class ListView extends Component {
                 <TouchableOpacity
                     activeOpacity={1}
                     style={part.card}
-                    onPressIn = {() => {this.props.animateIn(item.key)}}
-                    onPressOut = {() => {this.props.animateOut(item.key)}}
                     onPress={() =>
                         navigate('ThePostInNewFeed',
                             item.group
@@ -606,7 +591,6 @@ function mapStateToProps(state) {
         comments: state.infoAboutPost.comments,
         isLoadingComment: state.infoAboutPost.isLoading,
         idComment: state.infoAboutPost.idComment,
-        statusPostComment: state.infoAboutPost.statusPostComment,
     }
 }
 

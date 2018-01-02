@@ -6,10 +6,11 @@ target 'colorME' do
   # use_frameworks!
 
   # Pods for colorME
-  pod 'MobileCenter/Crashes', '~> 0.14.1'
-  pod 'MobileCenter/Analytics', '~> 0.14.1'
-  pod 'RNMobileCenterShared', '~> 0.11.2'
-
+ pod 'MobileCenter/Push', '~> 0.14.1'
+ pod 'MobileCenter/Crashes', '~> 0.14.1'
+ pod 'MobileCenter/Analytics', '~> 0.14.1'
+ pod 'RNMobileCenterShared', '~> 0.11.2'
+ platform :ios, '8.0'
   
 
   target 'colorMETests' do

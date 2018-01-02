@@ -19,13 +19,10 @@ class GridView extends Component {
 
     render() {
         let item = this.props.post;
-        let {animated} = this.props;
         return (
             <View style={[part.wrapperGridImage]}>
                 <TouchableOpacity
                     activeOpacity={1}
-                    onPressIn = {() => this.props.animateIn(item.key)}
-                    onPressOut = {()=> this.props.animateOut(item.key)}
                     onPress={() =>
                         this.props.navigation.navigate('ThePostInNewFeed',
                             item.group

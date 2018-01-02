@@ -15,7 +15,7 @@
     "native-base": "^2.3.2",
     "prop-types": "^15.6.0",
     "react": "16.0.0-beta.5",
-    "react-native": "0.49.2",
+    "react-native": "0.50.3",
     "react-native-code-push": "^5.1.3-beta",
     "react-native-easy-grid": "^0.1.15",
     "react-native-fast-image": "^1.0.0",
@@ -44,5 +44,23 @@
     "assets": [
       "./assets/fonts/"
     ]
+  },
+  "icons": {
+    "android": [{
+      "resource": "android/app/src/res/mipmap-mdpi/ic_launcher.png",
+      "density": "mdpi"
+    },{
+      "resource": "android/app/src/res/mipmap-hdpi/ic_launcher.png",
+      "density": "hdpi"
+    },{
+      "resource": "android/app/src/res/mipmap-xhdpi/ic_launcher.png",
+      "density": "xhdpi"
+    },{
+      "resource": "android/app/src/res/mipmap-xxhdpi/ic_launcher.png",
+      "density": "xxhdpi"
+    },{
+      "resource": "android/app/src/res/mipmap-xxxhdpi/ic_launcher.png",
+      "density": "xxxhdpi"
+    }]
   }
 }
