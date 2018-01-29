@@ -15,9 +15,6 @@ class App extends React.Component {
        this.onOpened = this.onOpened.bind(this);
        this.onReceived = this.onReceived.bind(this);
    }
-    // componentWillMount() {
-    //     OneSignal.sendTag("device_type", "mobile");
-    // }
     //
     // componentWillUnmount() {
     //     OneSignal.removeEventListener('opened', this.onOpened);
@@ -37,6 +34,7 @@ class App extends React.Component {
     //     };
     // }
     componentWillMount() {
+        OneSignal.sendTag("device_type", "mobile");
         OneSignal.addEventListener('received', this.onReceived);
         OneSignal.addEventListener('opened', this.onOpened);
         OneSignal.addEventListener('registered', this.onRegistered);
@@ -53,14 +51,6 @@ class App extends React.Component {
     onReceived(notification) {
         console.log("Notification received: ", notification);
     }
-
-    onOpened(openResult) {
-        console.log('Message: ', openResult.notification.payload.body);
-        console.log('Data: ', openResult.notification.payload.additionalData);
-        console.log('isActive: ', openResult.notification.isAppInFocus);
-        console.log('openResult: ', openResult);
-    }
-
     onRegistered(notifData) {
         console.log("Device had been registered for push notifications!", notifData);
     }
