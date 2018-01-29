@@ -15,7 +15,7 @@ class App extends React.Component {
         OneSignal.addEventListener('opened', this.onOpened);
         OneSignal.addEventListener('registered', this.onRegistered);
         OneSignal.addEventListener('ids', this.onIds);
-        OneSignal.sendTag("device_type", "mobile");
+        OneSignal.sendTag("device_type", "mobile_social");
     }
 
     componentWillUnmount() {
