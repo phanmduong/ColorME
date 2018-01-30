@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    TouchableOpacity, View, Platform, StatusBar
+    TouchableOpacity, View, Platform, StatusBar,Linking
 } from 'react-native';
 import {
     Container, Text, Left, Item, Input, Spinner
@@ -12,7 +12,7 @@ import SearchProduct from './SearchProduct';
 import * as searchAction from '../../actions/searchAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-
+import OneSignal from 'react-native-onesignal';
 class SearchContainer extends Component {
     constructor() {
         super();
@@ -26,6 +26,31 @@ class SearchContainer extends Component {
         this.getMoreUser = this.getMoreUser.bind(this);
         this.getMoreProduct = this.getMoreProduct.bind(this);
         this.loadingLoadMore = this.loadingLoadMore.bind(this);
+        this.onOpened = this.onOpened.bind(this);
+    }
+    componentWillMount() {
+        OneSignal.addEventListener('opened', this.onOpened);
+    }
+    componentWillUnmount() {
+        OneSignal.removeEventListener('opened', this.onOpened);
+    }
+    onOpened(openResult) {
+        console.log(openResult.notification.payload.launchURL);
+        if (Platform.OS === 'android') {
+            Linking.getInitialURL().then(() => {
+                this.navigate(openResult.notification.payload.launchURL);
+            });
+        } else {
+            Linking.addEventListener('url', this.navigate(openResult.notification.payload.launchURL));
+        }
+    }
+    navigate (url) { // E
+        const { navigate } = this.props.navigation;
+        const route = url.replace(/.*?:\/\//g, '');
+        const routeName = route.split('/')[1].split('?')[1].split('=')[1];
+        if(routeName){
+            this.props.navigation.navigate("Notification");
+        }
     }
 
     ViewUser() {
@@ -209,6 +234,12 @@ class SearchContainer extends Component {
                 }
             </Container>
         );
+    }
+    componentDidMount() {
+        OneSignal.inFocusDisplaying(2);
+        OneSignal.configure({
+            onNotificationOpened : this.onOpened
+        })
     }
 }
 

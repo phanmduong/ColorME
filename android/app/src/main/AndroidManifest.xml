@@ -33,7 +33,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
                 <data android:scheme="http"
-                      android:host="manage.colorme.vn"
+                      android:host="colorme.vn"
                 />
                 <!-- note that the leading "/" is required for pathPrefix-->
             </intent-filter>

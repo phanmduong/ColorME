@@ -6,10 +6,9 @@ import {
     Platform,
     TouchableOpacity,
     View,
-    AsyncStorage,
+    Linking,
     Alert,
     Image,
-    Animated
 } from 'react-native';
 import {
     Button, Card, CardItem, Container, Content, Header, Input, Item, Left, Picker,
@@ -27,7 +26,7 @@ import ListView from './ListView';
 import GridView from './GridView';
 import _ from 'lodash'
 import LinearGradient from 'react-native-linear-gradient';
-
+import OneSignal from 'react-native-onesignal';
 class NewFeedContainer extends Component {
     constructor() {
         super();
@@ -46,10 +45,33 @@ class NewFeedContainer extends Component {
         this.isFirst = true;
         this.likePost = this.likePost.bind(this);
         this.unlikePost = this.unlikePost.bind(this);
+        this.onOpened = this.onOpened.bind(this);
     }
 
     componentWillMount() {
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
+        OneSignal.addEventListener('opened', this.onOpened);
+    }
+    componentWillUnmount() {
+        OneSignal.removeEventListener('opened', this.onOpened);
+    }
+    onOpened(openResult) {
+        console.log(openResult.notification.payload.launchURL);
+        if (Platform.OS === 'android') {
+            Linking.getInitialURL().then(() => {
+                this.navigate(openResult.notification.payload.launchURL);
+            });
+        } else {
+            Linking.addEventListener('url', this.navigate(openResult.notification.payload.launchURL));
+        }
+    }
+    navigate (url) { // E
+        const { navigate } = this.props.navigation;
+        const route = url.replace(/.*?:\/\//g, '');
+        const routeName = route.split('/')[1].split('?')[1].split('=')[1];
+        if(routeName){
+            this.props.navigation.navigate("Notification");
+        }
     }
 
     textTopShow() {
@@ -546,6 +568,12 @@ class NewFeedContainer extends Component {
                 }
             </Container>
         );
+    }
+    componentDidMount() {
+        OneSignal.inFocusDisplaying(2);
+        OneSignal.configure({
+            onNotificationOpened : this.onOpened
+        })
     }
 }
 

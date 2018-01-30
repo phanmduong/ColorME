@@ -15,30 +15,13 @@ class App extends React.Component {
        this.onOpened = this.onOpened.bind(this);
        this.onReceived = this.onReceived.bind(this);
    }
-    //
-    // componentWillUnmount() {
-    //     OneSignal.removeEventListener('opened', this.onOpened);
-    //     OneSignal.deleteTag("device_type");
-    // }
-    //
-    // onOpened(openResult) {
-    //     console.log(openResult.notification.payload.launchURL);
-    //     this.navigate(openResult.notification.payload.launchURL);
-    // }
-    // navigate (url) { // E
-    //     const { navigate } = this.props.navigation;
-    //     const route = url.replace(/.*?:\/\//g, '');
-    //     const routeName = route.split('/')[1];
-    //     if (routeName === 'project') {
-    //         navigate('Main');
-    //     };
-    // }
     componentWillMount() {
         OneSignal.sendTag("device_type", "mobile");
         OneSignal.addEventListener('received', this.onReceived);
         OneSignal.addEventListener('opened', this.onOpened);
         OneSignal.addEventListener('registered', this.onRegistered);
         OneSignal.addEventListener('ids', this.onIds);
+        OneSignal.sendTag("device_type", "mobile_social");
     }
 
     componentWillUnmount() {
@@ -46,6 +29,9 @@ class App extends React.Component {
         OneSignal.removeEventListener('opened', this.onOpened);
         OneSignal.removeEventListener('registered', this.onRegistered);
         OneSignal.removeEventListener('ids', this.onIds);
+    }
+    onOpened(openResult){
+       console.log("openResult", openResult )
     }
 
     onReceived(notification) {
