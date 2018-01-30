@@ -84,20 +84,20 @@ class SlideViewComponent extends Component {
                     <Text style={part.describeDarkGray}>Nhóm tham gia</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity
-                    style={[part.itemTabInDrawer]}
-                    onPress={() => navigate('CurriculumInDrawer', {
-                        className: this.props.courses.name,
-                        lessons: this.props.courses.lessons,
-                    })}
-                >
-                    <View style={part.wrapperIcon}>
-                        <Icon name="materialCommunity|book-open-page-variant"
-                              size={size.iconInDrawer}
-                              color={color.darkGray}/>
-                    </View>
-                    <Text style={part.describeDarkGray}>Giáo trình</Text>
-                </TouchableOpacity>
+                {/*<TouchableOpacity*/}
+                    {/*style={[part.itemTabInDrawer]}*/}
+                    {/*onPress={() => navigate('CurriculumInDrawer', {*/}
+                        {/*className: this.props.courses.name,*/}
+                        {/*lessons: this.props.courses.lessons,*/}
+                    {/*})}*/}
+                {/*>*/}
+                    {/*<View style={part.wrapperIcon}>*/}
+                        {/*<Icon name="materialCommunity|book-open-page-variant"*/}
+                              {/*size={size.iconInDrawer}*/}
+                              {/*color={color.darkGray}/>*/}
+                    {/*</View>*/}
+                    {/*<Text style={part.describeDarkGray}>Giáo trình</Text>*/}
+                {/*</TouchableOpacity>*/}
                 <TouchableOpacity
                     style={[part.itemTabInDrawer]}
                     onPress={() => this.alertRatingApp()}

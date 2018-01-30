@@ -6,6 +6,7 @@ import {
     View,
     FlatList,
     Platform,
+    Linking
 } from 'react-native';
 import {
     List,
@@ -36,17 +37,40 @@ import * as topicAction from '../../actions/topicAction';
 import WebViewAutoHeight from '../../commons/WebViewAutoHeight';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import LinearGradient from 'react-native-linear-gradient';
-
+import OneSignal from 'react-native-onesignal';
 class TopicContainer extends Component {
     constructor() {
         super();
         this.state = {}
+
     }
 
     componentWillMount() {
+        OneSignal.addEventListener('opened', this.onOpened);
         const {params} = this.props.navigation.state;
         this.props.topicAction.getTopic(params.id, this.props.token);
         this.props.topicAction.getProductsInTopic(params.id, 1, this.props.token);
+    }
+    componentWillUnmount() {
+        OneSignal.removeEventListener('opened', this.onOpened);
+    }
+    onOpened(openResult) {
+        console.log(openResult.notification.payload.launchURL);
+        if (Platform.OS === 'android') {
+            Linking.getInitialURL().then(() => {
+                this.navigate(openResult.notification.payload.launchURL);
+            });
+        } else {
+            Linking.addEventListener('url', this.navigate(openResult.notification.payload.launchURL));
+        }
+    }
+    navigate (url) { // E
+        const { navigate } = this.props.navigation;
+        const route = url.replace(/.*?:\/\//g, '');
+        const routeName = route.split('/')[1].split('?')[1].split('=')[1];
+        if(routeName){
+            this.props.navigation.navigate("Notification");
+        }
     }
 
     render() {
@@ -354,6 +378,12 @@ class TopicContainer extends Component {
                 </ParallaxScrollView>
             </Container>
         );
+    }
+    componentDidMount() {
+        OneSignal.inFocusDisplaying(2);
+        OneSignal.configure({
+            onNotificationOpened : this.onOpened
+        })
     }
 }
 

@@ -42,10 +42,10 @@ class LoginContainer extends Component {
     navigate (url) { // E
         const { navigate } = this.props.navigation;
         const route = url.replace(/.*?:\/\//g, '');
-        const routeName = route.split('/')[1];
-        if (routeName === 'project') {
-            navigate('Rules');
-        };
+        const routeName = route.split('/')[1].split('?')[1].split('=')[1];
+        if(routeName){
+            this.props.navigation.navigate("Notification");
+        }
     }
 
     saveData() {

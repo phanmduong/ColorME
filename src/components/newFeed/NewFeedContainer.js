@@ -6,10 +6,9 @@ import {
     Platform,
     TouchableOpacity,
     View,
-    AsyncStorage,
+    Linking,
     Alert,
     Image,
-    Animated
 } from 'react-native';
 import {
     Button, Card, CardItem, Container, Content, Header, Input, Item, Left, Picker,
@@ -27,7 +26,7 @@ import ListView from './ListView';
 import GridView from './GridView';
 import _ from 'lodash'
 import LinearGradient from 'react-native-linear-gradient';
-
+import OneSignal from 'react-native-onesignal';
 class NewFeedContainer extends Component {
     constructor() {
         super();
@@ -42,21 +41,37 @@ class NewFeedContainer extends Component {
             likeCount: [],
             listPost: [],
             isLoadingList: false,
-            clicked: '',
-            deleteId: null,
-            animated: [],
         };
         this.isFirst = true;
         this.likePost = this.likePost.bind(this);
         this.unlikePost = this.unlikePost.bind(this);
-        this.alertHiddenPost = this.alertHiddenPost.bind(this);
-        this.hiddenPost = this.hiddenPost.bind(this);
-        this.animateIn = this.animateIn.bind(this);
-        this.animateOut = this.animateOut.bind(this);
+        this.onOpened = this.onOpened.bind(this);
     }
 
     componentWillMount() {
         this.props.getNewFeedAction.getNewFeed(this.state.typeView, 1);
+        OneSignal.addEventListener('opened', this.onOpened);
+    }
+    componentWillUnmount() {
+        OneSignal.removeEventListener('opened', this.onOpened);
+    }
+    onOpened(openResult) {
+        console.log(openResult.notification.payload.launchURL);
+        if (Platform.OS === 'android') {
+            Linking.getInitialURL().then(() => {
+                this.navigate(openResult.notification.payload.launchURL);
+            });
+        } else {
+            Linking.addEventListener('url', this.navigate(openResult.notification.payload.launchURL));
+        }
+    }
+    navigate (url) { // E
+        const { navigate } = this.props.navigation;
+        const route = url.replace(/.*?:\/\//g, '');
+        const routeName = route.split('/')[1].split('?')[1].split('=')[1];
+        if(routeName){
+            this.props.navigation.navigate("Notification");
+        }
     }
 
     textTopShow() {
@@ -81,10 +96,6 @@ class NewFeedContainer extends Component {
         }
     }
 
-    refreshFlatList = (deleteId) => {
-        this.setState({deleteId: deleteId})
-    };
-
     onValueChange(value: string) {
         setTimeout(() => {
             this.setState({isLoadingList: false})
@@ -97,7 +108,7 @@ class NewFeedContainer extends Component {
     viewList() {
         setTimeout(() => {
             this.setState({isLoadingList: false})
-        }, 100);
+        }, 250);
         this.setState({grid: false, isLoadingList: true, listPost: this.props.products});
     }
 
@@ -111,59 +122,6 @@ class NewFeedContainer extends Component {
         });
     }
 
-    alertHiddenPost(item, key) {
-        Alert.alert(
-            'Báo cáo',
-            'Bạn thực sự muốn ẩn bài viết này?',
-            [
-                {text: 'Xác nhận', onPress: () => this.hiddenPost(item, key)},
-                {text: 'Hủy'},
-            ],
-            {cancelable: false}
-        )
-    }
-
-    async hiddenPost(item, key) {
-        try {
-            let value = await AsyncStorage.getItem('@idPost');
-            if (value == null) {
-                let array = [];
-                array.push(item.id);
-                let arrayString = JSON.stringify(array);
-                await  AsyncStorage.setItem('@idPost', arrayString)
-            } else {
-                let array = JSON.parse(value);
-                array.push(item.id);
-                let arrayString = JSON.stringify(array);
-                await  AsyncStorage.setItem('@idPost', arrayString);
-            }
-            let listPost = this.state.listPost;
-            listPost.splice(key, 1);
-            this.setState({listPost: listPost});
-            this.props.parentFlatList.refreshFlatList(key)
-
-        } catch (error) {
-        }
-    }
-
-    animateIn(index) {
-        let animated = this.state.animated;
-        Animated.timing(animated[index], {
-            toValue: 0.95,
-            duration: 200
-        }).start();
-        this.setState({animated: animated});
-    }
-
-    animateOut(index) {
-        let animated = this.state.animated;
-        Animated.timing(animated[index], {
-            toValue: 1,
-            duration: 200
-        }).start();
-        this.setState({animated: animated})
-    }
-
 // setup
     componentWillReceiveProps(nextProps) {
         this.isFirst = true;
@@ -173,10 +131,8 @@ class NewFeedContainer extends Component {
             let count = this.state.likeCount;
             let post = nextProps.products;
             let item = false;
-            let animated = this.state.animated;
             let j = this.props.products.length;
             while (j < post.length) {
-                let animate = new Animated.Value(1);
                 let key = {key: j};
                 let arr1 = Object.assign(post[j], key);
                 let likers = post[j].likers.filter((liker) => {
@@ -189,19 +145,17 @@ class NewFeedContainer extends Component {
                 }
                 count.push(post[j].likes_count);
                 arr.push(item);
-                animated.push(animate);
                 listPost.push(arr1);
                 j++;
             }
             if (this.state.grid) {
-                this.setState({listPost: this.groupPosts(nextProps.products), animated: animated});
+                this.setState({listPost: this.groupPosts(nextProps.products)});
             }
             else {
                 this.setState({
                     likeCount: count,
                     arrayLike: arr,
                     listPost: listPost,
-                    animated: animated
                 });
             }
         }
@@ -271,7 +225,6 @@ class NewFeedContainer extends Component {
 
     render() {
         const {navigate} = this.props.navigation;
-        console.log(AsyncStorage.getItem('@idPost'));
         let iconGird = this.state.grid ? "material|view-module" : "material|view-list";
         return (
             <Container style={part.wrapperContainer}>
@@ -445,8 +398,6 @@ class NewFeedContainer extends Component {
                                                 <TouchableOpacity
                                                     activeOpacity={1}
                                                     style={[part.featureWrapper, part.marginTop]}
-                                                    onPressIn={() => this.animateIn(0)}
-                                                    onPressOut={() => this.animateOut(0)}
                                                     onPress={() =>
                                                         this.props.navigation.navigate('ThePostInNewFeed',
                                                             item.group
@@ -547,8 +498,6 @@ class NewFeedContainer extends Component {
                                                                     navigation={this.props.navigation}
                                                                     post={post}
                                                                     key={post.key}
-                                                                    animateIn={this.animateIn}
-                                                                    animateOut={this.animateOut}
                                                                 />
                                                             )
                                                         })
@@ -587,16 +536,13 @@ class NewFeedContainer extends Component {
                                             />
                                         }
                                         renderItem={({item}) => {
-                                            let {arrayLike, likeCount, animated} = this.state;
+                                            let {arrayLike, likeCount} = this.state;
                                             let colorIcon = arrayLike[item.key] ? color.main : color.icon;
                                             let likedIcon = arrayLike[item.key] ? 'fontawesome|heart' : 'fontawesome|heart-o';
                                             let featureIcon = item.feature_id == 0 ? 'fontawesome|star-o' : 'fontawesome|star';
                                             let colorFeatureIcon = item.feature_id == 0 ? color.icon : color.star;
                                             return (
                                                 <ListView
-                                                    animated={animated}
-                                                    hiddenPost={this.hiddenPost}
-                                                    alertHiddenPost={this.alertHiddenPost}
                                                     token={this.props.token}
                                                     unlikePost={this.unlikePost}
                                                     likePost={this.likePost}
@@ -605,13 +551,10 @@ class NewFeedContainer extends Component {
                                                     arrayLike={arrayLike}
                                                     likeCount={likeCount}
                                                     item={item}
-                                                    animateIn={this.animateIn}
-                                                    animateOut={this.animateOut}
                                                     colorIcon={colorIcon}
                                                     likedIcon={likedIcon}
                                                     featureIcon={featureIcon}
                                                     colorFeatureIcon={colorFeatureIcon}
-                                                    parentFlatList={this}
                                                 />
                                             )
                                         }}
@@ -625,6 +568,12 @@ class NewFeedContainer extends Component {
                 }
             </Container>
         );
+    }
+    componentDidMount() {
+        OneSignal.inFocusDisplaying(2);
+        OneSignal.configure({
+            onNotificationOpened : this.onOpened
+        })
     }
 }
 

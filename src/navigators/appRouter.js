@@ -220,7 +220,7 @@ const Group = StackNavigator(
 const Drawer = DrawerNavigator(
     {
         Home: {screen: Home},
-        CurriculumInDrawer: {screen: Curriculum},
+        // CurriculumInDrawer: {screen: Curriculum},
     },
     {
         drawerWidth: size.wid * 3 / 4,
