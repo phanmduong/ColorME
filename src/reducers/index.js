@@ -15,6 +15,7 @@ import myAccountInformationReducer from './myAccountInformationReducer';
 import feedbackAppReducer from './feedbackAppReducer';
 import topicReducer from './topicReducer';
 import curriculumReducer from './curriculumReducer';
+import navigationReducer from './navigationReducer';
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
@@ -35,5 +36,6 @@ const rootReducer = combineReducers({
     feedback                    : feedbackAppReducer,
     topic                       : topicReducer,
     curriculum                  : curriculumReducer,
+    nav                         : navigationReducer
 });
 export default rootReducer;

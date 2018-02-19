@@ -55,6 +55,22 @@ export default function getNotificationReducer(state = initialState.getNotificat
                     isLoadingRef: false,
                 }
             };
+        case types.BEGIN_GET_DETAILNOTI :{
+            return {
+                ...state,
+                ...{isLoadingDetailNoti: true}
+            }
+        }
+        case types.GET_DETAILNOTI_SUCCESS:
+            return {
+                ...state,
+                ...{isLoadingDetailNoti: false, detailNoti : action.detailNoti}
+            }
+        case types.GET_DETAILNOTI_ERROR:
+            return {
+                ...state,
+                ...{isLoadingDetailNoti : false, errorDetailNoti: true}
+            }
         default:
             return state
     }

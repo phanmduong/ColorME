@@ -3,10 +3,12 @@ package vn.colorme.keetool.app.colorME;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.microsoft.appcenter.reactnative.appcenter.AppCenterReactNativePackage;
+import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
+import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.microsoft.azure.mobile.react.crashes.RNCrashesPackage;
 import com.microsoft.azure.mobile.react.analytics.RNAnalyticsPackage;
-import com.microsoft.azure.mobile.react.mobilecenter.RNMobileCenterPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.imagepicker.ImagePickerPackage;
@@ -39,10 +41,12 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new AppCenterReactNativePackage(MainApplication.this),
+            new AppCenterReactNativeCrashesPackage(MainApplication.this, getResources().getString(R.string.appcenterCrashes_whenToSendCrashes)),
+            new AppCenterReactNativeAnalyticsPackage(MainApplication.this, getResources().getString(R.string.appcenterAnalytics_whenToEnableAnalytics)),
             new ReactNativeOneSignalPackage(),
             new RNCrashesPackage(MainApplication.this, getResources().getString(R.string.mobileCenterCrashes_whenToSendCrashes)),
             new RNAnalyticsPackage(MainApplication.this, getResources().getString(R.string.mobileCenterAnalytics_whenToEnableAnalytics)),
-            new RNMobileCenterPackage(MainApplication.this),
             new CodePush("2ltkMjv10tJVNharhDZthtaYZexo91a6f11c-8611-4707-bff5-9033ff68ea8f", getApplicationContext(), BuildConfig.DEBUG),
             new LinearGradientPackage(),
             new ImagePickerPackage(),

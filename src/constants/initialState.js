@@ -86,6 +86,9 @@ export default {
         isLoading : false,
         isLoadingRef : false,
         error : false,
+        detailNoti : {},
+        isLoadingDetailNoti : false,
+        errorDetailNoti : false
     },
     getComment:{
         isLoading : false,

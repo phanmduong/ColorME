@@ -24,6 +24,7 @@ export function loginUser(login) {
         loginApi.login(login)
             .then(function (response) {
                 dispatch(loginSuccess(response));
+                dispatch(openMainApp());
             })
             .catch(function (error) {
                 dispatch(loginError(error));

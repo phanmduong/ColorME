@@ -26,7 +26,7 @@ import LearnRegisterContainer from '../components/course/LearnRegisterContainer'
 import CourseInformation from '../components/course/CourseInformationContainer';
 import AttendGroupContainer from '../components/drawer/AttendGroupContainer';
 import InfoAboutPostContainer from '../components/newFeed/InfoAboutPostContainer';
-
+import InfoNotificationContainer from '../components/InfoNotificationContainer';
 // USER SCREEN
 import UserContainer from '../components/user/UserContainer';
 
@@ -94,21 +94,29 @@ const PostLikerInModal = StackNavigator(
 
 const NewFeedStackNavigator = StackNavigator(
     {
-        NewFeedStack: {screen: NewFeedContainer, navigationOptions: {title: 'colorME'},},
+        NewFeedStack: {screen: NewFeedContainer, navigationOptions: {title: 'colorME'}, path : "list-newfeeds"},
         PostLiker: {screen: PostLikerInModal, StackNavigatorStyle},
         UserInNewFeed: {screen: UserInNewFeed, StackNavigatorStyle},
-        ThePostInNewFeed: {screen: ThePostInNewFeed, navigationOptions: {tabBarVisible: false,}},
+        ThePostInNewFeed: {screen: ThePostInNewFeed, navigationOptions: {tabBarVisible: false,},},
     },
     StackNavigatorStyle
 );
 
 const NotificationStackNavigator = StackNavigator(
     {
-        NotificationStack: {screen: NotificationContainer},
+        NotificationStack: {screen: NotificationContainer, path : "list-notifications",},
         UserInNotification: {screen: UserContainer},
         TopicInNotification: {screen: TopicContainer},
-        ThePostInNotification: {screen: InfoAboutPostContainer, navigationOptions: {tabBarVisible: false}},
-    }, StackNavigatorStyle
+        infoNotification  : {screen : InfoNotificationContainer, path : "notification2/:notification_id", navigationOptions : {notification_id: 1} },
+        ThePostInNotification: {screen: InfoAboutPostContainer, navigationOptions: {tabBarVisible: false, product_id: 1}, path: "product/:product_id",},
+
+    }, StackNavigatorStyle, ...{
+        initialRouteName: 'NotificationStack',
+        initialRouteParams: {
+            notification_id: 1,
+            product_id : 1
+        }
+    }
 );
 
 const SearchStackNavigator = StackNavigator(
@@ -142,6 +150,7 @@ const Curriculum = StackNavigator(
 const Home = TabNavigator(
     {
         Notification: {
+            path : "notifications",
             screen: NotificationStackNavigator,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
@@ -153,6 +162,7 @@ const Home = TabNavigator(
             }
         },
         Course: {
+            path : "courses",
             screen: Course,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
@@ -164,6 +174,7 @@ const Home = TabNavigator(
             }
         },
         NewFeed: {
+            path : 'newfeeds',
             screen: NewFeedStackNavigator,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
@@ -175,6 +186,7 @@ const Home = TabNavigator(
             }
         },
         Search: {
+            path : "search",
             screen: SearchStackNavigator,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
@@ -186,6 +198,7 @@ const Home = TabNavigator(
             }
         },
         MyAccount: {
+            path : "my-profile",
             screen: MyAccountStackNavigator,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
@@ -219,8 +232,9 @@ const Group = StackNavigator(
 
 const Drawer = DrawerNavigator(
     {
-        Home: {screen: Home},
+        Home: {screen: Home, path: 'home'},
         // CurriculumInDrawer: {screen: Curriculum},
+
     },
     {
         drawerWidth: size.wid * 3 / 4,
@@ -228,18 +242,18 @@ const Drawer = DrawerNavigator(
         contentComponent: props => <SlideViewComponent {...props} />
     }
 );
-
-const Main = StackNavigator(
-    {
-        Drawer: {screen: Drawer}
-    }, {headerMode: 'none'}
-);
+//
+// const Main = StackNavigator(
+//     {
+//         Drawer: {screen: Drawer}
+//     }, {headerMode: 'none'}
+// );
 
 
 export const Start = StackNavigator(
     {
-        Login: {screen: LoginContainer},
-        RegisterContainer: {screen: RegisterContainer,},
+        Login: {screen: LoginContainer, path : "login"},
+        RegisterContainer: {screen: RegisterContainer, path : "register",},
         EmailIdentityContainer: {screen: EmailIdentityContainer,},
         ResetPasswordContainer: {screen: ResetPasswordContainer,},
         CodeIdentityContainer: {screen: CodeIdentityContainer,},
@@ -247,6 +261,6 @@ export const Start = StackNavigator(
         AttendGroup: {screen: Group},
         Rules: {screen: RulesContainer},
         FeedbackAppContainer: {screen: FeedbackAppContainer},
-        Main: {screen: Main,}
+        Main: {screen: Drawer, path : "main"},
     }, StackNavigatorStyle
 );

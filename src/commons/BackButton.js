@@ -18,6 +18,7 @@ class BackButton extends Component{
                       color={color.text}
                 />
             </TouchableOpacity>
+        
         );
     }
 }

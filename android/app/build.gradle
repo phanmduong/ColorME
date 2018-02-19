@@ -152,10 +152,12 @@ android {
 }
 
 dependencies {
+    compile project(':appcenter')
+    compile project(':appcenter-crashes')
+    compile project(':appcenter-analytics')
     compile project(':react-native-onesignal')
     compile project(':mobile-center-crashes')
     compile project(':mobile-center-analytics')
-    compile project(':mobile-center')
     compile project(':react-native-code-push')
     compile project(':react-native-linear-gradient')
     compile project(':react-native-image-picker')

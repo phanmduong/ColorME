@@ -8,9 +8,9 @@
  */
 
 #import "AppDelegate.h"
-#import <RNCrashes/RNCrashes.h>
-#import <RNAnalytics/RNAnalytics.h>
-#import <RNMobileCenter/RNMobileCenter.h>
+#import <AppCenterReactNativeCrashes/AppCenterReactNativeCrashes.h>
+#import <AppCenterReactNativeAnalytics/AppCenterReactNativeAnalytics.h>
+#import <AppCenterReactNative/AppCenterReactNative.h>
 #import <CodePush/CodePush.h>
 #import <React/RCTLinkingManager.h>
 #import <React/RCTBundleURLProvider.h>
@@ -21,13 +21,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
+
+  [AppCenterReactNativeCrashes registerWithAutomaticProcessing];  // Initialize AppCenter crashes
+
+  [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:true];  // Initialize AppCenter analytics
+
+  [AppCenterReactNative register];  // Initialize AppCenter 
   self.oneSignal = [[RCTOneSignal alloc] initWithLaunchOptions:launchOptions
                                                          appId:@"a136d5c1-400f-456a-9c64-75c43f206f4d"];
-  [RNCrashes registerWithAutomaticProcessing];  // Initialize Mobile Center crashes
-
-  [RNAnalytics registerWithInitiallyEnabled:true];  // Initialize Mobile Center analytics
-
-  [RNMobileCenter register];  // Initialize Mobile Center 
+ 
   
   for (NSString* family in [UIFont familyNames])
   {

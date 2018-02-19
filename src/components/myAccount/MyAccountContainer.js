@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    TouchableOpacity, View, Platform, StatusBar
+    TouchableOpacity, View, Platform, StatusBar, Linking
 } from 'react-native';
 import {
     Body, Container, Spinner, Content, Header,
@@ -20,7 +20,8 @@ import MyAccountProgress from './MyAccountProgress';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
-
+import OneSignal from 'react-native-onesignal';
+import * as notificationApi from '../../apis/notificationApi'
 class MyAccountContainer extends Component {
     constructor() {
         super();
@@ -37,6 +38,7 @@ class MyAccountContainer extends Component {
         this.props.myAccountInformationAction.getUserProgress(user.username);
         this.props.myAccountInformationAction.getUserProducts(user.username, 1, token);
     }
+
 
     ViewProgress() {
         setTimeout(() => {
@@ -225,6 +227,9 @@ class MyAccountContainer extends Component {
                 </ParallaxScrollView>
             </Container>
         );
+    }
+    componentDidMount() {
+        OneSignal.inFocusDisplaying(2);
     }
 }
 

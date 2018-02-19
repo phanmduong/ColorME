@@ -13,39 +13,17 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import {NavigationActions} from'react-navigation'
 import OneSignal from 'react-native-onesignal';
+import * as notificationApi from '../../apis/notificationApi'
 class LoginContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
             checkRules: true,
         }
-        this.onOpened = this.onOpened.bind(this);
     }
 
     componentWillMount(){
         this.props.loginAction.getDataLogin(this.props.status);
-        OneSignal.addEventListener('opened', this.onOpened);
-    }
-    componentWillUnmount() {
-        OneSignal.removeEventListener('opened', this.onOpened);
-    }
-    onOpened(openResult) {
-        console.log(openResult.notification.payload.launchURL);
-        if (Platform.OS === 'android') {
-            Linking.getInitialURL().then(() => {
-                this.navigate(openResult.notification.payload.launchURL);
-            });
-        } else {
-            Linking.addEventListener('url', this.navigate(openResult.notification.payload.launchURL));
-        }
-    }
-    navigate (url) { // E
-        const { navigate } = this.props.navigation;
-        const route = url.replace(/.*?:\/\//g, '');
-        const routeName = route.split('/')[1].split('?')[1].split('=')[1];
-        if(routeName){
-            this.props.navigation.navigate("Notification");
-        }
     }
 
     saveData() {
@@ -68,17 +46,16 @@ class LoginContainer extends Component {
         this.props.loginAction.updateDataLogin(login);
     }
     componentWillReceiveProps(nextProps){
-    if(nextProps.status == 200) {
-        const resetAction = NavigationActions.reset({
-            index: 0,
-            actions: [
-                NavigationActions.navigate({ routeName: 'Main'})
-            ]
-        })
-        this.props.navigation.dispatch(resetAction)
-
-
-    }
+    // if(nextProps.status == 200) {
+    //     const resetAction = NavigationActions.reset({
+    //         index: 0,
+    //         actions: [
+    //             NavigationActions.navigate({ routeName: 'Main'})
+    //         ]
+    //     })
+    //     this.props.navigation.dispatch(resetAction)
+    //
+    // }
     }
     render() {
         const {navigate} = this.props.navigation;
@@ -205,9 +182,6 @@ class LoginContainer extends Component {
     }
     componentDidMount() {
         OneSignal.inFocusDisplaying(2);
-        OneSignal.configure({
-            onNotificationOpened : this.onOpened
-        })
     }
 }
 
@@ -219,7 +193,8 @@ function mapStateToProps(state) {
         error: state.login.error,
         isGetLocalData: state.login.isGetLocalData,
         isAutoLogin: state.login.isAutoLogin,
-        save: state.login.save
+        save: state.login.save,
+        token : state.login.token
     }
 }
 

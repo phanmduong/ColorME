@@ -70,3 +70,23 @@ export function refNotification(page_id, token) {
             })
     }
 }
+export function getDetailNoti(notification_id, token){
+    return (dispatch) => {
+        dispatch({
+            type : types.BEGIN_GET_DETAILNOTI
+        })
+        notificationApi.getInfoNotification(notification_id, token)
+            .then(function(res){
+                console.log(res.data.data.notification);
+                dispatch({
+                    type : types.GET_DETAILNOTI_SUCCESS,
+                    detailNoti : res.data.data.notification
+                })
+            })
+            .catch(function(){
+                dispatch({
+                    type : types.GET_DETAILNOTI_ERROR
+                })
+            })
+    }
+}

@@ -6,3 +6,7 @@ export function getNotificationApi(page_id, token) {
     return axios.get(url);
 
 }
+export function getInfoNotification(notification_id, token){
+            let url = env.API_COLORME + "/notification/" + notification_id + "?token="+token;
+            return axios.get(url);
+        }
