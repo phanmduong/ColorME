@@ -12,7 +12,7 @@ export function beginGetCourse() {
 export function getCourseSuccess(response) {
     return {
         type: types.GET_COURSE_SUCCESS,
-        courses: response.data,
+        courses: response.data.courses,
         isLoading: false,
     }
 }
@@ -56,7 +56,7 @@ export function beginGetCourseInformation() {
 export function getCourseInformationSuccess(response) {
     return {
         type: types.GET_COURSE_INFORMATION_SUCCESS,
-        courseInformation: response.data,
+        courseInformation: response.data.data.course,
         isLoadingCourseInformation: false,
     }
 }

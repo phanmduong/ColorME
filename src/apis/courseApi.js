@@ -7,12 +7,12 @@ export function getCourseApi() {
 }
 
 export function getCourseApi2(token) {
-    let url = env.API_COLORME+ "/paid-courses?token=" + token;
+    let url = env.API_MANAGE_COLORME+ "/course/get-all?token=" + token + "&page=1&search=&limit=10";
     return axios.get(url);
 }
 
 export function getCourseInformationApi(linkId, token) {
-    let url = env.API_COLORME + "//course/" + linkId + "/?token=" + token;
+    let url = env.API_MANAGE_COLORME + "/course/get-detailed/"+ linkId + "/?token=" + token;
     return axios.get(url);
 }
 

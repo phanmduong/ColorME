@@ -70,7 +70,7 @@ class CourseContainer extends Component {
                                         <TouchableOpacity
                                             activeOpacity={0.8}
                                             style={{flex: 1}}
-                                            onPress={() => navigate('CourseInFormation', {linkId: item.linkId})}
+                                            onPress={() => navigate('CourseInFormation', {linkId: item.id})}
                                         >
                                             <Left>
                                                 <Image

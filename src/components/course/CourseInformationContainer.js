@@ -100,7 +100,10 @@ class CourseInformation extends Component {
                                         height: 180
                                     }}/>
                             </View>
-w                        </ParallaxScrollView>
+                            <View>
+                            <WebViewAutoHeight source={courseInformation.detail && courseInformation.detail != '' ? courseInformation.detail : ''}/>
+                                </View>
+                        </ParallaxScrollView>
                 }
 
                 <Button full style={{backgroundColor: color.main}}
