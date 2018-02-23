@@ -15,7 +15,7 @@ import {bindActionCreators} from 'redux';
 
 class CourseContainer extends Component {
     componentWillMount() {
-        this.props.courseAction.getCourse(this.props.token);
+        this.props.courseAction.getCourse();
     }
 
     render() {

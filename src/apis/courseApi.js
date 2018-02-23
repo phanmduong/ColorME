@@ -6,13 +6,13 @@ export function getCourseApi() {
     return axios.get(url);
 }
 
-export function getCourseApi2(token) {
-    let url = env.API_MANAGE_COLORME+ "/course/get-all?token=" + token + "&page=1&search=&limit=10";
+export function getCourseApi2() {
+    let url = env.API_COLORME+ "/v2/course/get-all"
     return axios.get(url);
 }
 
-export function getCourseInformationApi(linkId, token) {
-    let url = env.API_MANAGE_COLORME + "/course/get-detailed/"+ linkId + "/?token=" + token;
+export function getCourseInformationApi(linkId) {
+    let url = env.API_COLORME+ "/v2/course/get-detailed/"+ linkId;
     return axios.get(url);
 }
 

@@ -21,7 +21,7 @@ import ParallaxScrollView from 'react-native-parallax-scroll-view';
 class CourseInformation extends Component {
     componentDidMount() {
         const {params} = this.props.navigation.state;
-        this.props.courseAction.getCourseInformation(params.linkId, this.props.token);
+        this.props.courseAction.getCourseInformation(params.linkId);
     }
 
     render() {

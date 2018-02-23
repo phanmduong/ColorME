@@ -68,10 +68,10 @@ export function getCourseInformationError() {
     }
 }
 
-export function getCourse(token) {
+export function getCourse() {
     return (dispatch) => {
         dispatch(beginGetCourse());
-        courseApi.getCourseApi2(token)
+        courseApi.getCourseApi2()
             .then(function (response) {
                 dispatch(getCourseSuccess(response));
             })
@@ -81,10 +81,10 @@ export function getCourse(token) {
     }
 }
 
-export function getCourseInformation(linkId, token) {
+export function getCourseInformation(linkId) {
     return (dispatch) => {
         dispatch(beginGetCourseInformation());
-        courseApi.getCourseInformationApi(linkId, token)
+        courseApi.getCourseInformationApi(linkId)
             .then(function (response) {
                 dispatch(getCourseInformationSuccess(response));
             })
