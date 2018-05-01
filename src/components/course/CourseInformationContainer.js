@@ -113,7 +113,7 @@ class CourseInformation extends Component {
                                 () => {
                                 }
                                 :
-                                () => navigate('LearnRegister', {classes: courseInformation.classes})
+                                () => navigate('LearnRegister', {classes: courseInformation.classes, avatar_url : courseInformation.icon_url})
                         }
                 >
                     <Text style={part.titleNormalLight}>Đăng ký ngay</Text>

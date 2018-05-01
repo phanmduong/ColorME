@@ -77,6 +77,7 @@ export default {
         message: '',
         courses: [],
         courseInformation: {},
+        statusRegister : 0,
         isLoading : false,
         isLoadingLearnRegister: false,
         isLoadingCourseInformation: false,
