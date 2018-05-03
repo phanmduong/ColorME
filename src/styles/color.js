@@ -14,3 +14,6 @@ export const green              = 'rgb(1, 175, 30)';
 export const star               = '#ffd800';
 export const transparentBlack   = 'rgba(0,0,0,0.5)';
 export const bgModal   = 'rgba(0, 0, 0, 0.7)';
+export const greenColor = '#20C62C';
+export const blueColor = '#1783FF';
+

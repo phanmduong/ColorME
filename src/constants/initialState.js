@@ -137,5 +137,12 @@ export default {
         isLoadingResources: false,
         data:{},
         resources: [],
-    }
+    },
+    base: {
+        isLoading: false,
+        isLoadingRefresh: false,
+        isLoadingMore: false,
+        error: false,
+        bases: [],
+    },
 }

@@ -992,6 +992,38 @@ const part = StyleSheet.create({
         position: 'absolute',
         backgroundColor: color.titleBlue
     },
+    //Base
+    contentCardModuleBase: {
+        backgroundColor: 'white',
+        width: wid - 40,
+        borderRadius: 5,
+
+        marginTop: 20,
+        flexDirection: 'row',
+    },
+    contentCardImageAvatarModuleBase: {
+        paddingRight: 12,
+        paddingLeft: 12,
+        paddingTop: 13,
+        paddingBottom: 13
+
+    },
+    imageAvatarModuleBase: {
+        width: wid/6,
+        height: wid/6,
+    },
+    backgroundColorOfImgInBase: {
+        backgroundColor: '#D3D3D3'
+    },
+    contentCardImageInformation: {
+        flex: 2,
+        position: 'relative',
+        paddingRight: 10,
+        paddingTop : 5,
+    },
+    StyleOfAllBase: {
+        marginTop: wid / 8,
+    }
 });
 
 

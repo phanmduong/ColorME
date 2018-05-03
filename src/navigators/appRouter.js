@@ -44,7 +44,8 @@ import PostLiker from '../components/newFeed/PostLiker';
 // FEEDBACK
 import FeedbackAppContainer from '../components/drawer/FeedbackContainer'
 import TopicContainer from "../components/group/TopicContainer";
-
+//Directstudent
+import DirectForStudentContainer from '../components/drawer/DirectForStudentContainer';
 export const TabNavigatorBottomStyle = {
     indicatorStyle: {
         border: 5,
@@ -261,6 +262,7 @@ export const Start = StackNavigator(
         AttendGroup: {screen: Group},
         Rules: {screen: RulesContainer},
         FeedbackAppContainer: {screen: FeedbackAppContainer},
+        DirectForStudentContainer: {screen: DirectForStudentContainer},
         Main: {screen: Drawer, path : "main"},
     }, StackNavigatorStyle
 );

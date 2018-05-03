@@ -54,6 +54,7 @@ export function beginGetCourseInformation() {
 }
 
 export function getCourseInformationSuccess(response) {
+    console.log(response);
     return {
         type: types.GET_COURSE_INFORMATION_SUCCESS,
         courseInformation: response.data.data.course,

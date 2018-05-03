@@ -134,6 +134,18 @@ class SlideViewComponent extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[part.itemTabInDrawer]}
+                    onPress={() => navigate('DirectForStudentContainer')}
+                >
+                    <View style={part.wrapperIcon}>
+                        <Icon name="entypo|newsletter"
+                              size={size.iconInDrawer}
+                              color={color.darkGray}/>
+                    </View>
+                    <Text style={part.describeDarkGray}>Chỉ đường</Text>
+
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[part.itemTabInDrawer]}
                     onPress={() => this.logout()}
                 >
                     <View style={part.wrapperIcon}>

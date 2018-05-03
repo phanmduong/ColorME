@@ -16,6 +16,7 @@ import feedbackAppReducer from './feedbackAppReducer';
 import topicReducer from './topicReducer';
 import curriculumReducer from './curriculumReducer';
 import navigationReducer from './navigationReducer';
+import baseReducer from './baseReducer';
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
     feedback                    : feedbackAppReducer,
     topic                       : topicReducer,
     curriculum                  : curriculumReducer,
-    nav                         : navigationReducer
+    nav                         : navigationReducer,
+    base                        : baseReducer,
 });
 export default rootReducer;
