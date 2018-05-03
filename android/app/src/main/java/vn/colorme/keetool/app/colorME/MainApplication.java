@@ -46,12 +46,9 @@ public class MainApplication extends Application implements ReactApplication {
             //new AppCenterReactNativeCrashesPackage(MainApplication.this, getResources().getString(R.string.appcenterCrashes_whenToSendCrashes)),
             //new AppCenterReactNativeAnalyticsPackage(MainApplication.this, getResources().getString(R.string.appcenterAnalytics_whenToEnableAnalytics)),
             new ReactNativeOneSignalPackage(),
-<<<<<<< HEAD
             //new RNCrashesPackage(MainApplication.this, getResources().getString(R.string.mobileCenterCrashes_whenToSendCrashes)),
             //new RNAnalyticsPackage(MainApplication.this, getResources().getString(R.string.mobileCenterAnalytics_whenToEnableAnalytics)),
-=======
-            
->>>>>>> 2fcc17b7cd99cd7738164871c304c7441d17cdba
+
             new CodePush("2ltkMjv10tJVNharhDZthtaYZexo91a6f11c-8611-4707-bff5-9033ff68ea8f", getApplicationContext(), BuildConfig.DEBUG),
             new LinearGradientPackage(),
             new ImagePickerPackage(),
