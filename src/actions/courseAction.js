@@ -24,18 +24,20 @@ export function getCourseError() {
     }
 }
 
-export function beginLearnRegister() {
+export function beginLearnRegister(class_id) {
     return {
         type: types.BEGIN_LEARN_REGISTER,
         isLoadingLearnRegister: true,
+        class_id : class_id
     }
 }
 
-export function learnRegisterSuccess(response) {
+export function learnRegisterSuccess(response, class_id) {
     return {
         type: types.LEARN_REGISTER_SUCCESS,
         message: response.data.message,
         isLoadingLearnRegister: false,
+        class_id : class_id
     }
 }
 
@@ -43,6 +45,7 @@ export function learnRegisterError() {
     return {
         type: types.LEARN_REGISTER_ERROR,
         isLoadingLearnRegister: false,
+        class_id : class_id
     }
 }
 
@@ -55,6 +58,7 @@ export function beginGetCourseInformation() {
 
 export function getCourseInformationSuccess(response) {
     console.log(response);
+
     return {
         type: types.GET_COURSE_INFORMATION_SUCCESS,
         courseInformation: response.data.data.course,
@@ -97,20 +101,20 @@ export function getCourseInformation(linkId) {
 
 export function learnRegister(class_id, token) {
     return (dispatch) => {
-        dispatch(beginLearnRegister());
+        dispatch(beginLearnRegister(class_id));
         courseApi.learnRegisterApi(class_id, token)
             .then(function (response) {
-                dispatch(learnRegisterSuccess(response));
-                Alert.alert(
-                    'Đăng ký thành công',
-                    response.data.message,
-                    [
-                        {text: 'Xong'},
-                    ],
-                )
+                dispatch(learnRegisterSuccess(response, class_id));
+                // Alert.alert(
+                //     'Đăng ký thành công',
+                //     response.data.message,
+                //     [
+                //         {text: 'Xong'},
+                //     ],
+                // )
             })
             .catch(function (error) {
-                dispatch(learnRegisterError(error));
+                dispatch(learnRegisterError(error, class_id));
                 Alert.alert(
                     'Đăng ký thất bại',
                     [

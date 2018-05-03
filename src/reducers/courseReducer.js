@@ -29,22 +29,31 @@ export default function getCourseReducer(state = initialState.getCourse, action)
             return {
                 ...state,
                 ...{
+                    class_id : action.class_id,
                     isLoadingLearnRegister: action.isLoadingLearnRegister,
+                    statusRegister : 0
                 }
             };
         case types.LEARN_REGISTER_SUCCESS:
+            // let classes = state.courseInformation.classes;
+            // classes[classes.findIndex(item => item.id == action.id)].status = 1;
+            // classes[classes.findIndex(item => item.id == action.id)].isEnrolled = true
             return {
                 ...state,
                 ...{
+                    class_id : action.class_id,
                     message: action.message,
-                    isLoadingLearnRegister: action.isLoadingLearnRegister,
+                    isLoadingLearnRegister: false,
+                    statusRegister : 200
                 }
             };
         case types.LEARN_REGISTER_ERROR:
             return {
                 ...state,
                 ...{
+                    class_id : action.class_id,
                     isLoadingLearnRegister: action.isLoadingLearnRegister,
+                    statusRegister : 0
                 }
             };
         case types.BEGIN_GET_COURSE_INFORMATION:

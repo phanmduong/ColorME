@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import {Platform, StatusBar, Modal, Image, PanResponder, Text, TouchableOpacity, View, ScrollView} from 'react-native';
+import {Platform, 
+    StatusBar, Modal, Image, PanResponder, Text, TouchableOpacity,ActivityIndicator,
+     View, ScrollView, Alert} from 'react-native';
 
 import {
     List,
@@ -28,10 +30,10 @@ import parallaxStyle from '../../styles/parallaxStyle';
 import * as courseAction from '../../actions/courseAction';
 import * as size from '../../styles/size';
 import * as color from '../../styles/color';
-
+import ListCourse from "./ListCourse";
 class LearnRegisterContainer extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             id: '',
             modalRegister: false,
@@ -39,15 +41,22 @@ class LearnRegisterContainer extends Component {
             study_time: '',
             description: '',
             address: '',
-            avatar_url: '',
+            avatar_url: this.props.navigation.state.params.avatar_url,
             isEnrolled: [],
             classes: [],
             status: [],
             key: '',
+            isLoading : false
         }
+        this.buttonRegister = this.buttonRegister.bind(this)
+    }
+    isLoading(){
+        this.setState({isLoading : true})
+        setTimeout(() => this.setState({isLoading : false}), 500)
     }
 
     componentWillMount() {
+        this.isLoading()
         this.panResponder = PanResponder.create({
             onStartShouldSetPanResponder: (event, gestureState) => true,
             onPanResponderGrant: this._onPanResponderGrant.bind(this),
@@ -57,8 +66,8 @@ class LearnRegisterContainer extends Component {
         let status = [];
         ;
         let i = 0;
-        let data = this.props.navigation.state.params.classes.length;
-        while (i < data) {
+        let data = this.props.navigation.state.params.classes;
+        while (i < data.length) {
             let key = {key: i};
             let arr2 = data[i].status;
             let arr1 = data[i].isEnrolled;
@@ -70,7 +79,24 @@ class LearnRegisterContainer extends Component {
         }
         this.setState({classes: classes, isEnrolled: isEnrolled, status: status});
     }
-
+    componentWillReceiveProps(nextProps){
+      if(nextProps.isLoadingLearnRegister !== this.props.isLoadingLearnRegister && !nextProps.isLoadingLearnRegister){
+          this.setState({modalRegister : false})
+        if(nextProps.statusRegister == 200){
+        let isEnrolled = this.state.isEnrolled;
+        let status = this.state.status;
+        isEnrolled[this.state.classes.findIndex(item => item.id == nextProps.class_id)]=!isEnrolled[this.state.classes.findIndex(item => item.id == nextProps.class_id)]
+        status[this.state.classes.findIndex(item => item.id == nextProps.class_id)] = 1;
+        this.setState({isEnrolled : isEnrolled, status : status})
+        
+        }
+        //   if(nextProps.statusRegister == 200){
+        //       Alert.alert("Thông báo", "Đăng kí thành công")
+        //   }else {
+        //       Alert.alert("Thông báo", "Đăng kí thất bại", nextProps.message)
+        //   }
+      }
+    }
     // componentWillUpdate(nextState) {
     //     if (nextState.classes !== this.state.classes || nextState.isEnrolled !== this.state.status || nextState.status !== this.state.status) {
     //         let i = 0;
@@ -102,7 +128,6 @@ class LearnRegisterContainer extends Component {
             name: item.name,
             course: item.course,
             study_time: item.study_time,
-            avatar_url: item.avatar_url,
             description: item.description,
             address: item.address,
         })
@@ -111,11 +136,10 @@ class LearnRegisterContainer extends Component {
     learnRegister(id, token, index) {
         let isEnrolled = this.state.isEnrolled;
         let status = this.state.status;
-        this.props.courseAction.learnRegister(id, token);
-        isEnrolled[index] = !isEnrolled[index];
-        status[index] = 1;
-        this.setState({isEnrolled: isEnrolled, status: status});
-        console.log(isEnrolled, status)
+        this.props.courseAction.learnRegister(id, token);  
+        // isEnrolled[index] = !isEnrolled[index];
+        // status[index] = 1;
+        // this.setState({isEnrolled: isEnrolled, status: status});
     }
 
     buttonRegister(item, status, isEnrolled) {
@@ -217,7 +241,7 @@ class LearnRegisterContainer extends Component {
                 >
                     <ScrollView>
                         {
-                            isLoadingLearnRegister
+                            this.state.isLoading
                                 ?
                                 <View
                                     style={{
@@ -233,27 +257,13 @@ class LearnRegisterContainer extends Component {
                                 :
                                 this.state.classes.map((item, i) => {
                                     return (
-                                        <CardItem
-                                            avatar
-                                            style={[part.backgroundNone, part.noMarginLeft, part.padding, part.haveBorderBottom]}>
-                                            <TouchableOpacity
-                                                activeOpacity={0.8}
-                                                style={{flex: 1}}
-                                            >
-                                                <View style={part.cardCmt}>
-                                                    <Image
-                                                        style={[part.avatarUserNormal, part.marginRightFar]}
-                                                        source={{uri: item.avatar_url}}/>
-                                                    <Body style={part.noBorder}>
-                                                    <Text style={part.titleSmallBlue}>Lớp {item.name}</Text>
-                                                    <Text style={part.titleSmallDarkGrayThin}>{item.study_time}</Text>
-                                                    <Text style={part.titleSmallDarkGrayThin}>{item.address}</Text>
-                                                    <Text style={part.titleSmallDarkGrayThin}>{item.description}</Text>
-                                                    {this.buttonRegister(item, status[i], isEnrolled[i])}
-                                                    </Body>
-                                                </View>
-                                            </TouchableOpacity>
-                                        </CardItem>
+                                        // 
+                                        <ListCourse item = {item} 
+                                        avatar_url = {this.state.avatar_url}
+                                         buttonRegister = {this.buttonRegister}
+                                         status = {status[i]}
+                                         isEnrolled = {isEnrolled[i]}
+                                         />
                                     )
                                 })
                         }
@@ -311,7 +321,30 @@ class LearnRegisterContainer extends Component {
                                         style={styles.buttonRegister}
                                         onPress={() => this.learnRegister(this.state.id, this.props.token, this.state.key)}
                                     >
+                                     {(this.props.isLoadingLearnRegister) ? (
+                                        <Container style={{
+                                            padding: 10,
+                                            flex: 1,
+                                            justifyContent: 'center',
+                                            alignItems: 'center'
+                                        }}>
+                                            <ActivityIndicator
+                                                animated={true}
+                                                color={color.navTitle}
+                                                style={{
+                                                    flex: 1,
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center',
+                                                    height: 40,
+                                                }}
+                                                size='small'
+                                            />
+                                        </Container>
+                                    ) : (
                                         <Text style={styles.textButton}>Xác nhận</Text>
+                                    )
+                                    }
+                                        
                                     </TouchableOpacity>
                                 </View>
 
@@ -328,6 +361,9 @@ function mapStateToProps(state) {
     return {
         token: state.login.token,
         isLoadingLearnRegister: state.getCourse.isLoadingLearnRegister,
+        statusRegister : state.getCourse.statusRegister,
+        message : state.getCourse.message,
+        class_id : state.getCourse.class_id
     }
 }
 
