@@ -1,4 +1,14 @@
-export const API_DATA       = 'http://colorme.vn:8000';
-export const API_COLORME    = 'http://api.colorme.vn';
-export const API_MANAGE_COLORME = "http://manageapi.colorme.vn/v2"
-export const API_KEETOOL    = 'http://api.graphics.vn/apiv2';
+export const APIS = {
+    API_COLOR_ME : 'http://colorme.vn',
+    COLOR_ME : 'http://api.colorme.vn', 
+    API_URL_UNMANAGE : "http://",
+    COLOR_ME_API : "http://colorme.vn/api/v3/v2",
+    COLOR_ME_API1 : "http://colorme.vn/api/v3",
+    MANAGER_API: 'http://colorme.vn/manageapi/v3',
+    API_URL : "http://manageapi.",
+    SERVER_TEST: 'http://keetool.xyz',
+
+    API_URL : "http://manageapi.colorme.vn",
+    SERVER_TEST: 'http://keetool.xyz',
+    API_DATA : 'http://colorme.vn:8000'
+}

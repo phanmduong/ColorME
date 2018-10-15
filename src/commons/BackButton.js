@@ -1,26 +1,28 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
-    TouchableOpacity
+    TouchableOpacity, View
 } from 'react-native';
-import Icon from './Icon';
-import * as color from '../styles/color';
-import part from '../styles/partStyle';
-import * as size from '../styles/size';
-class BackButton extends Component{
-    render(){
-        return(
-            <TouchableOpacity
-                style={[part.padding, part.wrapperBackButton]}
+import IconDefault from './IconDefault';
+import { SIZES, COLORS } from '../constants';
+
+class BackButton extends Component {
+    render() {
+        const { color } = this.props;
+        return (
+            <TouchableOpacity style={{ position: 'absolute', top: 20, left: -10, paddingHorizontal: 30 }}
+                activeOpacity={SIZES.ACTIVE_OPACITY}
                 onPress={() => this.props.goBack(null)}
             >
-                <Icon name="entypo|chevron-thin-left"
-                      size={size.iconBig}
-                      color={color.text}
+                <IconDefault
+                    name={'Ionicons|ios-arrow-back'}
+                    style={{ paddingLeft: 0 }}
+                    size={SIZES.ICON_SIZE}
+                    color={color ? color : COLORS.GRAY_COLOR}
+
                 />
             </TouchableOpacity>
-        
         );
     }
 }
 
-export default BackButton;
+export { BackButton };

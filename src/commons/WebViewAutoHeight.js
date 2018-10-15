@@ -1,8 +1,6 @@
 import React from 'react';
-import {WebView, View, Text, Dimensions} from "react-native";
+import {WebView, View, Text, Dimensions, Linking} from "react-native";
 import PropTypes from 'prop-types';
-
-
 const BODY_TAG_PATTERN = /\<\/ *body\>/;
 
 var script = `
@@ -31,10 +29,9 @@ window.addEventListener("resize", updateHeight);
 
 const style = `
 <style>
-body, html, #height-wrapper {
-    margin: 0;
-    padding: 0;   
-    font-family: Montserrat;
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url('../../assets/fonts/Roboto-Regular');
 }
 #height-wrapper {
     position: absolute;
@@ -42,13 +39,45 @@ body, html, #height-wrapper {
     left: 0;
     right: 0;
 }
-p{
-    font-family: Montserrat;
-    font-size: 13px;
-    padding-left: 10px;
-    padding-right: 10px;
+a ,p, li, h1, h2, h3, h4, h5, h6, table {
+    padding-left: 20px;
+    padding-right: 20px;
 }
+p{
+    font-family: Roboto-Regular !important;
+    font-size: 16px;
+}
+a{
+    font-family: Roboto-Regular !important;
+    font-size: 16px;
+    color : #003366;
+}
+span{
+    font-family: Roboto-Regular !important;
+}
+h1, h2, h3, h4, h5, h6{
+    font-weight: 400;
+    font-family: Roboto-Regular !important;
+}
+h1, h2 {
+    font-size: 20px;
+}
+h3, h4 {
+    font-size: 18px;
+}
+h5, h6 {
+    font-size: 16px;
+}
+ul li:{
+    font-family: Roboto-Regular !important;
+    font-size: 15px;
+}
+ol li:{
+    font-family: Roboto-Regular !important;
+}
+
 table, th, td{
+    font-family: Roboto-Regular !important;
     margin: 5px;
     padding: 5px;
     border: 1px solid black;
@@ -59,6 +88,10 @@ p.wrapperImg{
     padding-left: 0;
     padding-right: 0;
 }
+.imageDetail:{
+    width: 100%;
+    height: 100%
+}
 table:{
     margin: 10px;
     padding: 10px;
@@ -67,11 +100,11 @@ iframe{
     width: 100%;
     height: 150px;
 }
-img{
-      width: 100%;
+span{
+    font-size: 13px;
 }
 </style>
-<script>
+<script >
 ${script}
 </script>
 `;
@@ -79,7 +112,15 @@ ${script}
 const codeInject = (html) => html.replace(BODY_TAG_PATTERN, style + "</body>");
 
 let {height, width} = Dimensions.get('window');
-
+const injectScript = `
+  (function () {
+    window.onclick = function(e) {
+      e.preventDefault();
+      window.postMessage(e.target.href);
+      e.stopPropagation()
+    }
+  }());
+`;
 class WebViewAutoHeight extends React.Component {
     constructor(props) {
         super(props);
@@ -88,6 +129,13 @@ class WebViewAutoHeight extends React.Component {
         };
         this.handleNavigationChange = this.handleNavigationChange.bind(this);
     }
+    onMessage({ nativeEvent }) {
+        const data = nativeEvent.data;
+    
+        if (data !== undefined && data !== null) {
+          Linking.openURL(data);
+        }
+      }
 
     handleNavigationChange(navState) {
         if (navState.title) {
@@ -98,13 +146,15 @@ class WebViewAutoHeight extends React.Component {
             this.props.onNavigationStateChange(navState);
         }
     }
+    
+
 
     render() {
         const {source, style, ...otherProps} = this.props;
         let sourceData = source.replace(/width: 100%px/g, 'width: 100%');
-        const html = '<!DOCTYPE html><html><body>'
+        const html = '<!DOCTYPE html><html><head><meta charset=UTF-8"/></head><body>'
             +
-            sourceData.replace(/<p><img/g, '<p class="wrapperImg"><img')
+            sourceData.replace(/<p><img/g, '<p class="wrapperImg"><img class="imageDetail"')
             +
             '</body></html>';
 
@@ -126,6 +176,8 @@ class WebViewAutoHeight extends React.Component {
                     style={{...style, ...{height: this.state.realContentHeight, width: width}}}
                     javaScriptEnabled
                     onNavigationStateChange={this.handleNavigationChange}
+                    injectedJavaScript={injectScript}
+                    onMessage={this.onMessage.bind(this)}
                 />
             </View>
         );
@@ -134,7 +186,7 @@ class WebViewAutoHeight extends React.Component {
 };
 
 WebViewAutoHeight.propTypes = {
-    source: PropTypes.object.isRequired,
+    source: PropTypes.string.isRequired,
     injectedJavaScript: PropTypes.string,
     minHeight: PropTypes.number,
     onNavigationStateChange: PropTypes.func,

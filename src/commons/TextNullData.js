@@ -1,28 +1,17 @@
 
 import React, { Component } from 'react';
 import {
-    View, Text, StyleSheet
+    View, Text
 } from 'react-native';
+import { SIZES } from '../constants';
 
 export default class TextNullData extends Component {
     render() {
         return (
-            <View style={[styles.wrapperCenter, { marginTop: 20 }]}>
-                <Text style={styles.textDescriptionDark}>{this.props.text}</Text>
-            </View>
+            <View style={{ marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={{ fontSize: SIZES.TITLE_SIZE}}>{this.props.text}</Text>
+            </View >
         );
     }
 }
-const styles = StyleSheet.create({
-    wrapperCenter:{
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    textDescriptionDark: {
-        color: '#000',
-        fontFamily: 'Helvetica',
-        fontSize: 12,
-
-    },
-})
 

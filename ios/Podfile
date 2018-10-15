@@ -1,31 +1,60 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'colorME' do
+target 'colorMe' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
 
-  # Pods for colorME
+  # Pods for colorMe
   pod 'AppCenter/Crashes', '~> 1.9.0'
-    pod 'AppCenter/Analytics', '~> 1.9.0'
-    pod 'AppCenterReactNativeShared', '~> 1.8.1'
-  platform :ios, '9.0'
+  pod 'AppCenter/Analytics', '~> 1.9.0'
+  pod 'AppCenterReactNativeShared', '~> 1.8.1'
+  rn_path = '../node_modules/react-native'
+  pod 'yoga', path: "#{rn_path}/ReactCommon/yoga/yoga.podspec"
+  pod 'React', path: rn_path, subspecs: [
+    'Core',
+    'RCTActionSheet',
+    'RCTAnimation',
+    'RCTGeolocation',
+    'RCTImage',
+    'RCTLinkingIOS',
+    'RCTNetwork',
+    'RCTSettings',
+    'RCTText',
+    'RCTVibration',
+    'RCTWebSocket'
+  ]
+
+  pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
+
   
 
-  target 'colorMETests' do
+  pod 'react-native-network-info', :path => '../node_modules/react-native-network-info'
+
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+
+  platform :ios, '9.0'
+  target 'colorMeTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
 end
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name == "React"
+      target.remove_from_project
+    end
+  end
+end
 
-target 'colorME-tvOS' do
+target 'colorMe-tvOS' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
 
-  # Pods for colorME-tvOS
+  # Pods for colorMe-tvOS
 
-  target 'colorME-tvOSTests' do
+  target 'colorMe-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

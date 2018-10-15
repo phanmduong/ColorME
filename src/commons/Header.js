@@ -1,24 +1,39 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
-    TouchableOpacity, StyleSheet, View, Text
+    StyleSheet, View, Text, Platform
 } from 'react-native';
-import styles from '../styles/partStyle';
+import { COLORS, SIZES, FONTS } from '../constants';
 import HamburgerButton from './HamburgerButton';
 
-export default class Header extends Component{
-    render(){
-        return(
-            <View style={[styles.wrapperHeader, styles.paddingLeftRight, {zIndex: 10000}]}>
-                <Text style={styles.textHeaderScreen} numberOfLines = {1}>{this.props.title}</Text>
-                <HamburgerButton navigate={this.props.navigate}/>
+export default class Header extends Component {
+    render() {
+        const { title, navigate } = this.props;
+        return (
+            <View style={[styles.wrapperHeader, {marginTop : 10}]}>
+                <Text style={styles.textHeaderScreen} numberOfLines={1} onPress= {() => this.props.onPress ? this.props.onPress() : {}}>{title}</Text>
+                <HamburgerButton navigate={navigate} />
             </View>
         );
     }
 }
 
+const isIOS = Platform.OS === 'ios';
+
 const styles = StyleSheet.create({
-    wrapperCenter:{
+    wrapperHeader: {
+        height: isIOS ? 80 : 60,
+        paddingTop: isIOS ? 20 : 0,
+        flexDirection: 'row',
+        paddingHorizontal: 20,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: COLORS.LIGHT_COLOR,
+        zIndex: 100
+    },
+    textHeaderScreen: {
+        color: COLORS.TITLE_HEADER_COLOR,
+        fontFamily: FONTS.MAIN_FONT_BOLD,
+        fontSize: SIZES.TITLE_HEADER_SIZE,
     },
 })
+

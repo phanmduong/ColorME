@@ -13,17 +13,17 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import Feather from 'react-native-vector-icons/Feather';
 
 const ICON_SET_MAP = {
-    fontawesome: FontAwesome,
-    foundation: Foundation,
-    ion: Ionicons,
-    material: MaterialIcons,
-    zocial: Zocial,
-    simpleline: SimpleLineIcons,
-    materialCommunity: MaterialCommunityIcons,
-    entypo: Entypo,
-    evil: EvilIcons,
-    octi: Octicons,
-    feat: Feather,
+    FontAwesome: FontAwesome,
+    Foundation: Foundation,
+    Ionicons: Ionicons,
+    MaterialIcons: MaterialIcons,
+    Zocial: Zocial,
+    SimpleLineIcons: SimpleLineIcons,
+    MaterialCommunityIcons: MaterialCommunityIcons,
+    Entypo: Entypo,
+    EvilIcons: EvilIcons,
+    Octicons: Octicons,
+    Feather: Feather,
 };
 
 // This is a composition is a drop in replacement for users migrating from the

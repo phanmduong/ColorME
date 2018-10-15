@@ -18,6 +18,5 @@ const styles = StyleSheet.create({
     wrapperCenter:{
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop:100,
     },
 })

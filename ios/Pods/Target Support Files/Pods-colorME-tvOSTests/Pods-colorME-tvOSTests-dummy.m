@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-@interface PodsDummy_Pods_colorME_tvOSTests : NSObject
+@interface PodsDummy_Pods_colorMe_tvOSTests : NSObject
 @end
-@implementation PodsDummy_Pods_colorME_tvOSTests
+@implementation PodsDummy_Pods_colorMe_tvOSTests
 @end
