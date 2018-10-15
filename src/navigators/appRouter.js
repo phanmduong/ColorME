@@ -46,6 +46,7 @@ import FeedbackAppContainer from '../components/drawer/FeedbackContainer'
 import TopicContainer from "../components/group/TopicContainer";
 //Directstudent
 import DirectForStudentContainer from '../components/drawer/DirectForStudentContainer';
+
 export const TabNavigatorBottomStyle = {
     indicatorStyle: {
         border: 5,
@@ -95,7 +96,7 @@ const PostLikerInModal = StackNavigator(
 
 const NewFeedStackNavigator = StackNavigator(
     {
-        NewFeedStack: {screen: NewFeedContainer, navigationOptions: {title: 'colorME'}, path : "list-newfeeds"},
+        NewFeedStack: {screen: NewFeedContainer, navigationOptions: {title: 'colorME'}, path: "list-newfeeds"},
         PostLiker: {screen: PostLikerInModal, StackNavigatorStyle},
         UserInNewFeed: {screen: UserInNewFeed, StackNavigatorStyle},
         ThePostInNewFeed: {screen: ThePostInNewFeed, navigationOptions: {tabBarVisible: false,},},
@@ -105,17 +106,27 @@ const NewFeedStackNavigator = StackNavigator(
 
 const NotificationStackNavigator = StackNavigator(
     {
-        NotificationStack: {screen: NotificationContainer, path : "list-notifications",},
+        NotificationStack: {screen: NotificationContainer, path: "list-notifications",},
         UserInNotification: {screen: UserContainer},
         TopicInNotification: {screen: TopicContainer},
-        infoNotification  : {screen : InfoNotificationContainer, path : "notification2/:notification_id", navigationOptions : {notification_id: 1} },
-        ThePostInNotification: {screen: InfoAboutPostContainer, navigationOptions: {tabBarVisible: false, product_id: 1}, path: "product/:product_id",},
+        infoNotification: {
+            screen: InfoNotificationContainer,
+            path: "notification2/:notification_id",
+            navigationOptions: {notification_id: 1}
+        },
+        ThePostInNotification: {
+            screen: InfoAboutPostContainer,
+            navigationOptions: {tabBarVisible: false, product_id: 1},
+            path: "product/:product_id",
+        },
 
-    }, StackNavigatorStyle, ...{
-        initialRouteName: 'NotificationStack',
-        initialRouteParams: {
-            notification_id: 1,
-            product_id : 1
+    }, {
+        ...StackNavigatorStyle, ...{
+            initialRouteName: 'NotificationStack',
+            initialRouteParams: {
+                notification_id: 1,
+                product_id: 1
+            }
         }
     }
 );
@@ -151,7 +162,7 @@ const Curriculum = StackNavigator(
 const Home = TabNavigator(
     {
         Notification: {
-            path : "notifications",
+            path: "notifications",
             screen: NotificationStackNavigator,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
@@ -163,7 +174,7 @@ const Home = TabNavigator(
             }
         },
         Course: {
-            path : "courses",
+            path: "courses",
             screen: Course,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
@@ -175,7 +186,7 @@ const Home = TabNavigator(
             }
         },
         NewFeed: {
-            path : 'newfeeds',
+            path: 'newfeeds',
             screen: NewFeedStackNavigator,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
@@ -187,7 +198,7 @@ const Home = TabNavigator(
             }
         },
         Search: {
-            path : "search",
+            path: "search",
             screen: SearchStackNavigator,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
@@ -199,7 +210,7 @@ const Home = TabNavigator(
             }
         },
         MyAccount: {
-            path : "my-profile",
+            path: "my-profile",
             screen: MyAccountStackNavigator,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => (
@@ -253,8 +264,8 @@ const Drawer = DrawerNavigator(
 
 export const Start = StackNavigator(
     {
-        Login: {screen: LoginContainer, path : "login"},
-        RegisterContainer: {screen: RegisterContainer, path : "register",},
+        Login: {screen: LoginContainer, path: "login"},
+        RegisterContainer: {screen: RegisterContainer, path: "register",},
         EmailIdentityContainer: {screen: EmailIdentityContainer,},
         ResetPasswordContainer: {screen: ResetPasswordContainer,},
         CodeIdentityContainer: {screen: CodeIdentityContainer,},
@@ -263,6 +274,6 @@ export const Start = StackNavigator(
         Rules: {screen: RulesContainer},
         FeedbackAppContainer: {screen: FeedbackAppContainer},
         DirectForStudentContainer: {screen: DirectForStudentContainer},
-        Main: {screen: Drawer, path : "main"},
+        Main: {screen: Drawer, path: "main"},
     }, StackNavigatorStyle
 );

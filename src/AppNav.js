@@ -17,7 +17,7 @@ class AppNav extends React.Component {
 
     componentWillMount() {
         OneSignal.addEventListener('received', this.onReceived);
-        OneSignal.addEventListener('registered', this.onRegistered);
+        // OneSignal.addEventListener('registered', this.onRegistered);
         OneSignal.addEventListener('ids', this.onIds);
     }
 
@@ -25,7 +25,7 @@ class AppNav extends React.Component {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBack);
         OneSignal.removeEventListener('received', this.onReceived);
         OneSignal.removeEventListener('opened', this.onOpened);
-        OneSignal.removeEventListener('registered', this.onRegistered);
+        // OneSignal.removeEventListener('registered', this.onRegistered);
         OneSignal.removeEventListener('ids', this.onIds);
     }
 

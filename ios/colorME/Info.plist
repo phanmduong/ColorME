@@ -37,16 +37,16 @@
 	<string>2ltkMjv10tJVNharhDZthtaYZexo91a6f11c-8611-4707-bff5-9033ff68ea8f</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		  <string>itms-apps</string>
-          <string>comgooglemaps</string>
-          <string>citymapper</string>
-          <string>uber</string>
-          <string>lyft</string>
-          <string>navigon</string>
-          <string>transit</string>
-          <string>waze</string>
-          <string>yandexnavi</string>
-          <string>moovit</string>
+		<string>itms-apps</string>
+		<string>comgooglemaps</string>
+		<string>citymapper</string>
+		<string>uber</string>
+		<string>lyft</string>
+		<string>navigon</string>
+		<string>transit</string>
+		<string>waze</string>
+		<string>yandexnavi</string>
+		<string>moovit</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -108,6 +108,10 @@
 		<string>seguibl.ttf</string>
 		<string>SegoeUI-Blank.ttf</string>
 		<string>SegoeUI-Bold.ttf</string>
+		<string>AntDesign.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

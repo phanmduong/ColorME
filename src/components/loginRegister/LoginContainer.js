@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {
     ActivityIndicator, KeyboardAvoidingView,
     Text, TouchableOpacity, View, Alert, Platform,
-    StatusBar,Linking
+    StatusBar, Linking
 } from 'react-native'
 import styles from '../../styles/loginRegisterStyle'
 import {Container, Content, Form, Input, Item, Left, CheckBox, Header} from 'native-base';
@@ -11,9 +11,10 @@ import part from '../../styles/partStyle';
 import * as loginAction from '../../actions/loginActions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
-import {NavigationActions} from'react-navigation'
+import {NavigationActions} from 'react-navigation'
 import OneSignal from 'react-native-onesignal';
 import * as notificationApi from '../../apis/notificationApi'
+
 class LoginContainer extends Component {
     constructor(props) {
         super(props);
@@ -22,7 +23,7 @@ class LoginContainer extends Component {
         }
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.props.loginAction.getDataLogin(this.props.status);
     }
 
@@ -31,7 +32,7 @@ class LoginContainer extends Component {
     }
 
     signIn() {
-        if(!this.state.checkRules){
+        if (!this.state.checkRules) {
             Alert.alert('Có lỗi xảy ra', 'Bạn chưa đồng ý với điều khoản sử dụng.');
         } else {
             this.props.loginAction.loginUser(this.props.login);
@@ -45,18 +46,20 @@ class LoginContainer extends Component {
         login[name] = value;
         this.props.loginAction.updateDataLogin(login);
     }
-    componentWillReceiveProps(nextProps){
-    // if(nextProps.status == 200) {
-    //     const resetAction = NavigationActions.reset({
-    //         index: 0,
-    //         actions: [
-    //             NavigationActions.navigate({ routeName: 'Main'})
-    //         ]
-    //     })
-    //     this.props.navigation.dispatch(resetAction)
-    //
-    // }
+
+    componentWillReceiveProps(nextProps) {
+        // if(nextProps.status == 200) {
+        //     const resetAction = NavigationActions.reset({
+        //         index: 0,
+        //         actions: [
+        //             NavigationActions.navigate({ routeName: 'Main'})
+        //         ]
+        //     })
+        //     this.props.navigation.dispatch(resetAction)
+        //
+        // }
     }
+
     render() {
         const {navigate} = this.props.navigation;
         return (
@@ -98,7 +101,7 @@ class LoginContainer extends Component {
                                        underlineColorAndroid={color.none}
                                        secureTextEntry={true}
                                        returnKeyType={'go'}
-                                       onSubmitEditing={()=>this.signIn()}
+                                       onSubmitEditing={() => this.signIn()}
                                        onChangeText={(password) => {
                                            this.updateData('password', password)
                                        }}
@@ -122,7 +125,8 @@ class LoginContainer extends Component {
                                     <TouchableOpacity
                                         onPress={() => navigate('RulesContainer')}
                                     >
-                                        <Text style={[part.titleGrayRules, part.paddingLeft]}>Tôi đồng ý với điều khoản sử dụng</Text>
+                                        <Text style={[part.titleGrayRules, part.paddingLeft]}>Tôi đồng ý với điều khoản
+                                            sử dụng</Text>
                                     </TouchableOpacity>
                                 </Left>
                             </Item>
@@ -137,24 +141,19 @@ class LoginContainer extends Component {
                                     onPress={() => this.signIn()}
                                 >
                                     {(this.props.isLoading) ? (
-                                        <Container style={{
-                                            padding: 10,
-                                            flex: 1,
-                                            justifyContent: 'center',
-                                            alignItems: 'center'
-                                        }}>
-                                            <ActivityIndicator
-                                                animated={true}
-                                                color={color.navTitle}
-                                                style={{
-                                                    flex: 1,
-                                                    justifyContent: 'center',
-                                                    alignItems: 'center',
-                                                    height: 40,
-                                                }}
-                                                size='small'
-                                            />
-                                        </Container>
+
+                                        <ActivityIndicator
+                                            animated={true}
+                                            color={color.navTitle}
+                                            style={{
+                                                flex: 1,
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                height: 40,
+                                            }}
+                                            size='small'
+                                        />
+
                                     ) : (
                                         <Text style={styles.textButton}>Đăng nhập</Text>
                                     )
@@ -180,6 +179,7 @@ class LoginContainer extends Component {
 
         )
     }
+
     componentDidMount() {
         OneSignal.inFocusDisplaying(2);
     }
@@ -194,7 +194,7 @@ function mapStateToProps(state) {
         isGetLocalData: state.login.isGetLocalData,
         isAutoLogin: state.login.isAutoLogin,
         save: state.login.save,
-        token : state.login.token
+        token: state.login.token
     }
 }
 

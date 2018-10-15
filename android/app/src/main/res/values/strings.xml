@@ -5,4 +5,6 @@
     <string moduleConfig="true" name="mobileCenterAnalytics_whenToEnableAnalytics">ALWAYS_SEND</string>
     <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">2ltkMjv10tJVNharhDZthtaYZexo91a6f11c-8611-4707-bff5-9033ff68ea8f</string>
     <string name="app_name">colorME</string>
+    <string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true">ALWAYS_SEND</string>
+    <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true">ALWAYS_SEND</string>
 </resources>

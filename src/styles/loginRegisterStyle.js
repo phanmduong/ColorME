@@ -120,7 +120,8 @@ const styles = StyleSheet.create({
         height: 35,
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 15,
+        paddingHorizontal: 15,
+        paddingVertical: 5,
         marginTop: 0,
         borderRadius: 17,
         backgroundColor: 'rgba(197, 0, 0, 1)',
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
         color: color.navTitle,
         fontSize: 100,
         fontWeight: (Platform.OS === 'ios') ? '900' : 'normal',
-        lineHeight: (Platform.OS === 'ios') ? 100 : 70,
+        lineHeight: 100,
     },
     textColor: {
         fontFamily: (Platform.OS === 'ios') ? 'Segoe UI' : 'SegoeUI-Blank',
