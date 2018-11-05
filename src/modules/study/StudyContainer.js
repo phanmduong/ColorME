@@ -46,7 +46,7 @@ class StudyContainer extends React.Component {
       ]
     };
   }
-  componentDidMount() {
+    componentWillMount() {
     Analytics.trackEvent(STRINGS.ACTION_ROOT_TAB_STUDY, {});
     getProfileStore.getProfile();
   }

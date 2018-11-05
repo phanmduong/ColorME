@@ -40,7 +40,7 @@ export default class SplashContainer extends Component {
         return result;
     }
 
-    componentDidMount() {
+    componentWillMount() {
         const { navigation } = this.props;  
         
         OneSignal.inFocusDisplaying(2);

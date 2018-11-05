@@ -1,68 +1,75 @@
-import React, { Component } from "react";
-import { View, TouchableOpacity, Image, StyleSheet, ActivityIndicator, ScrollView, Text, FlatList } from "react-native";
-import { STRINGS, COLORS, SIZES, FONTS } from '../../../constants';
-import { formatImageLink } from "../../../helper/index";
+import React, {Component} from "react";
+import {View, TouchableOpacity, Image, StyleSheet, ActivityIndicator, ScrollView, Text, FlatList} from "react-native";
+import {STRINGS, COLORS, SIZES, FONTS} from '../../../constants';
+import {formatImageLink} from "../../../helper/index";
 
 class ListAttendence extends Component {
     constructor() {
         super();
-        this.state = {
-        }
+        this.state = {}
     }
+
     renderItem(item) {
-        if (item.status == -1) return (
-            <View style={{ flexDirection: 'row' }}>
+        if (item.status && item.status.status == -1) return (
+            <View style={{flexDirection: 'row'}}>
                 <View style={styles.circleGray}>
                 </View>
             </View>
         )
-        if (item.status == 0) return (
-            <View style={{ flexDirection: 'row' }}>
+        if (item.status && item.status.status == 0) return (
+            <View style={{flexDirection: 'row'}}>
                 <View style={styles.circleRed}>
                 </View>
             </View>
         )
-        if (item.status == 1) return (
-            <View style={{ flexDirection: 'row' }}>
+        if (item.status && item.status.status == 1) return (
+            <View style={{flexDirection: 'row'}}>
                 <View style={styles.circleGreen}>
                 </View>
             </View>
         )
     }
+
     render() {
-        const { item } = this.props;
+        const {item} = this.props;
         return (
             <View>
-                <View style={[styles.paddingLeftRight, { padding: 20, borderBottomWidth: 1, borderBottomColor: 'rgb(242,242,242)' }]}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Image source={{ uri: formatImageLink(item.icon_url) }} style={styles.imageIcon} />
-                        <View style={{ marginLeft: 10 }}>
+                <View style={[styles.paddingLeftRight, {
+                    padding: 20,
+                    borderBottomWidth: 1,
+                    borderBottomColor: 'rgb(242,242,242)'
+                }]}>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Image source={{uri: formatImageLink(item.icon_url)}} style={styles.imageIcon}/>
+                        <View style={{marginLeft: 10}}>
                             <Text style={styles.emailNameModuleEmail}>{item.name.trim()}</Text>
                         </View>
 
 
                     </View>
-                    <View style={{ marginLeft: 40, marginTop: 7 }}>
+                    <View style={{marginLeft: 40, marginTop: 7}}>
                         <FlatList
                             keyExtractor={(item, index) => index + ''}
                             showsHorizontalScrollIndicator={false}
                             horizontal={true}
                             data={item.attendances}
-                            renderItem={({ item }) =>
-                                <View style={{ flexDirection: 'row' }}>
+                            renderItem={({item}) =>
+                                <View style={{flexDirection: 'row'}}>
                                     {this.renderItem(item)}
                                 </View>
                             }
 
                         />
-                        
+
                     </View>
-                    <View style={{marginLeft: 40, marginTop: 10}}><Text style={styles.textName}>{this.props.how_know}</Text></View>
+                    <View style={{marginLeft: 40, marginTop: 10}}><Text
+                        style={styles.textName}>{this.props.how_know}</Text></View>
                 </View>
             </View>
         )
     }
 }
+
 export default ListAttendence
 const wrapperCenter = {
     justifyContent: 'center',

@@ -31,7 +31,7 @@ class FeedbackTeacher extends Component {
     //     }
     //     this.handleFileUpload = this.handleFileUpload.bind(this)
     // }
-    componentDidMount(){
+    componentWillMount(){
         Analytics.trackEvent(`${STRINGS.ACTION_ROOT_DRAWER_FEEDBACK_TEACHER}`, {});
     }
 

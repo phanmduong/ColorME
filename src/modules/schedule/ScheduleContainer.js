@@ -29,7 +29,7 @@ class ScheduleContainer extends React.Component {
         }
     }
 
-  componentDidMount() {
+  componentWillMount() {
     scheduleStore.getListSchedule();
   }
 

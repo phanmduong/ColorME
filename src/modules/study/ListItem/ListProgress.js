@@ -73,20 +73,20 @@ class ListProgress extends Component {
             </View>
             )
             break;
-            case 1:
-            return(<TouchableOpacity activeOpacity = {0.8} style={{ alignItems: 'flex-start' }} onPress = {() => this.props.reserveStudy(this.props.item.class_id)}>
-            <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center', height: 25,borderRadius : 10, backgroundColor: COLORS.GREEN }}>
-                <Text style={{
-                    fontFamily: 'Roboto-Bold',
-                    fontSize: SIZES.SUBTITLE_SIZE,
-                    color: "#FFF",
-                    paddingLeft: 10,
-                    paddingRight: 10
-                }} >{this.renderStatus(1).button}</Text>
-
-            </View>
-        </TouchableOpacity>)
-                break;
+        //     case 1:
+            //     return(<TouchableOpacity activeOpacity = {0.8} style={{ alignItems: 'flex-start' }} onPress = {() => this.props.reserveStudy(this.props.item.class_id)}>
+            //     <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center', height: 25,borderRadius : 10, backgroundColor: COLORS.GREEN }}>
+            //         <Text style={{
+            //             fontFamily: 'Roboto-Bold',
+            //             fontSize: SIZES.SUBTITLE_SIZE,
+            //             color: "#FFF",
+            //             paddingLeft: 10,
+            //             paddingRight: 10
+            //         }} >{this.renderStatus(1).button}</Text>
+            //
+            //     </View>
+            // </TouchableOpacity>)
+            //         break;
             default:
             return null;
 

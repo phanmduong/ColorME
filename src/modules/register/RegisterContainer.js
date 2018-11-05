@@ -26,7 +26,7 @@ export default class RegisterContainer extends Component {
         super(props);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         Analytics.trackEvent(STRINGS.ACTION_REGISTER_LOADED, {});
     }
 

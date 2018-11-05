@@ -34,8 +34,8 @@ class LoginContainer extends Component {
         }
         _this = this;
     }
-    
-    componentDidMount() {
+
+    componentWillMount() {
         loginStore.getData();
         Analytics.trackEvent(STRINGS.ACTION_LOGIN_LOADED, {});
     }

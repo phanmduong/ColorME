@@ -1,51 +1,55 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
-  Image,
-  Text,
-  View,
-  TouchableOpacity,
-  FlatList,
-  RefreshControl,
-  StyleSheet
+    Image,
+    Text,
+    View,
+    TouchableOpacity,
+    FlatList,
+    RefreshControl,
+    StyleSheet
 } from "react-native";
-import { Container } from 'native-base';
+import {Container} from 'native-base';
 import TextNullData from '../../commons/TextNullData';
 import Header from '../../commons/Header';
 import Loading from '../../commons/Loading';
 import ListBase from "./ListBase";
 import baseStore from "./baseStore";
-import { observer } from "mobx-react";
-import { STRINGS, COLORS, SIZES, FONTS } from "../../constants";
+import {observer} from "mobx-react";
+import {STRINGS, COLORS, SIZES, FONTS} from "../../constants";
 import Analytics from 'appcenter-analytics';
 import OneSignal from "react-native-onesignal";
-@observer class BaseContainer extends Component {
+
+@observer
+class BaseContainer extends Component {
     constructor() {
         super();
-        this.state = {
-            
-        }
+        this.state = {}
     }
-    componentDidMount() {
+
+    componentWillMount() {
         baseStore.getListBase();
         Analytics.trackEvent(`${STRINGS.ACTION_GO_DETAIL_PRODUCT}`, {});
     }
+
     loadMore() {
         if (baseStore.isLoadingMore && this.props.current_page >= 1)
-            return (<Loading />)
+            return (<Loading/>)
         else
             return null
     }
+
     refreshList() {
         baseStore.getListBase();
     }
-    renderBase(){
+
+    renderBase() {
         if (baseStore.isLoading && baseStore.bases.length == 0) {
-          return <Loading />;
+            return <Loading/>;
         }
-        if(baseStore.error){
+        if (baseStore.error) {
             return (
-                <View style = {styles.wrapperCenter}>
-                    <Text style ={styles.textDescriptionDark}>{STRINGS.HAVE_ERROR}</Text>
+                <View style={styles.wrapperCenter}>
+                    <Text style={styles.textDescriptionDark}>{STRINGS.HAVE_ERROR}</Text>
                     <TouchableOpacity
                         activeOpacity={1}
                         style={[styles.buttonError]}
@@ -57,7 +61,7 @@ import OneSignal from "react-native-onesignal";
                 </View>
             )
         }
-        if(baseStore.bases.length !== 0){
+        if (baseStore.bases.length !== 0) {
             return (
                 <FlatList
                     keyExtractor={item => item.id + ''}
@@ -74,69 +78,68 @@ import OneSignal from "react-native-onesignal";
                     ListFooterComponent={
                         this.loadMore()
                     }
-                    renderItem={({ item }) =>
-                        <ListBase item={item} navigation={this.props.navigation} />
+                    renderItem={({item}) =>
+                        <ListBase item={item} navigation={this.props.navigation}/>
                     }
                 />
             )
         }
         if (baseStore.base.length == 0 && baseStore.isLoading == false && baseStore.error == false) {
-          return <TextNullData text={STRINGS.NULL_DATA} />;
+            return <TextNullData text={STRINGS.NULL_DATA}/>;
         }
     }
 
 
-
-
     render() {
         console.log(this.props.isRefresh)
-        const { navigate } = this.props.navigation;
+        const {navigate} = this.props.navigation;
         return (
             <Container style={styles.wrapperContainer}>
-                <Header title={STRINGS.DIRECT_HEADER_TITLEL} navigate={navigate} />
+                <Header title={STRINGS.DIRECT_HEADER_TITLEL} navigate={navigate}/>
                 <View style={styles.wrapperContainer}>
-                    <View style={{ flex: 1 }}>
+                    <View style={{flex: 1}}>
                         {this.renderBase()}
                     </View>
                 </View>
             </Container>
         );
     }
-    componentDidMount(){
+
+    componentDidMount() {
         OneSignal.inFocusDisplaying(2);
     }
-} 
+}
 
 const wrapperCenter = {
-  justifyContent: "center",
-  alignItems: "center",
+    justifyContent: "center",
+    alignItems: "center",
 };
 
 
 const styles = StyleSheet.create({
-  wrapperContainer: {
-    flex: 1,
-    backgroundColor: COLORS.LIGHT_COLOR
-  },
-  wrapperCenter: {
-    ...wrapperCenter
-  },
-  textDescriptionDark: {
-    color: "#000",
-    fontFamily: FONTS.MAIN_FONT,
-    fontSize: 12
-  },
-  buttonError: {
-    ...wrapperCenter,
-    padding: 10,
-    borderRadius: 5,
-    height: 40,
-    marginTop: 20,
-    maxWidth: 460,
-    width: SIZES.DEVICE_WIDTH_SIZE * 0.9 - 60,
-    backgroundColor: COLORS.MAIN_COLOR
-  },
-  
+    wrapperContainer: {
+        flex: 1,
+        backgroundColor: COLORS.LIGHT_COLOR
+    },
+    wrapperCenter: {
+        ...wrapperCenter
+    },
+    textDescriptionDark: {
+        color: "#000",
+        fontFamily: FONTS.MAIN_FONT,
+        fontSize: 12
+    },
+    buttonError: {
+        ...wrapperCenter,
+        padding: 10,
+        borderRadius: 5,
+        height: 40,
+        marginTop: 20,
+        maxWidth: 460,
+        width: SIZES.DEVICE_WIDTH_SIZE * 0.9 - 60,
+        backgroundColor: COLORS.MAIN_COLOR
+    },
+
 });
 
 export default BaseContainer;
