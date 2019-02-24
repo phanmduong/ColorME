@@ -20,14 +20,15 @@ export default loginStore = new class LoginStore {
 
     @action
     loginUser(navigation) {
-        let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        // let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         if (this.login.email == '' || this.login.password == '') {
             Alert.alert(STRINGS.HAVE_ERROR, STRINGS.EMPTY_INFOR);
             return;
-        } if (reg.test(this.login.email) == false) {
-            Alert.alert(STRINGS.HAVE_ERROR, STRINGS.WRONG_EMAIL);
-            return;
         }
+        // if (reg.test(this.login.email) == false) {
+        //     Alert.alert(STRINGS.HAVE_ERROR, STRINGS.WRONG_EMAIL);
+        //     return;
+        // }
         this.isLoading = true;
         loginApi(this.login).then(async res => {
             await AsyncStorage.setItem('@UserToken', res.data.token);

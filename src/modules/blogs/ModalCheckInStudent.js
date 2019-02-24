@@ -49,7 +49,7 @@ export default class ModalCheckInStudent extends Component {
 
 
     render() {
-        const urlCode = 'https://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=' + blogStore.attendanceData.register_code + '&qzone=1&margin=0&size=400x400&ecc=L&format=png&download=1'
+        const urlCode = 'http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=' + blogStore.attendanceData.register_code + '&qzone=1&margin=0&size=400x400&ecc=L&format=png&download=1'
         return (
             blogStore.attendanceData.id ?
                 <View style={[{
@@ -105,17 +105,17 @@ export default class ModalCheckInStudent extends Component {
                                 </View>
                             }
                         </View>
-                        <View style={styles.wrapperButton}>
-                            <ButtonCommon
-                                isLoading={blogStore.isLoadingAttendent}
-                                onPress={this.attendance}
-                                label={'ĐIỂM DANH'}
-                                text={{
-                                    fontFamily: 'Roboto-Bold',
-                                    fontSize: SIZES.SUBTITLE_SIZE
-                                }}
-                            />
-                        </View>
+                        {/*<View style={styles.wrapperButton}>*/}
+                            {/*<ButtonCommon*/}
+                                {/*isLoading={blogStore.isLoadingAttendent}*/}
+                                {/*onPress={this.attendance}*/}
+                                {/*label={'ĐIỂM DANH'}*/}
+                                {/*text={{*/}
+                                    {/*fontFamily: 'Roboto-Bold',*/}
+                                    {/*fontSize: SIZES.SUBTITLE_SIZE*/}
+                                {/*}}*/}
+                            {/*/>*/}
+                        {/*</View>*/}
                     </View>
 
                 </View>

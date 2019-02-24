@@ -4,8 +4,9 @@ import DeviceInfo from 'react-native-device-info';
 
 export function loginApi(login) {
     let url = APIS.COLOR_ME + "/login"
+    let email = login.email.charAt(0).toLowerCase() + login.email.substr(1);
     return axios.post(url, {
-        email: login.email.charAt(0).toLowerCase() + login.email.substr(1),
+        email: email.trim(),
         password: login.password,
     })
 };
