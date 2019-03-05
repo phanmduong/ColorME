@@ -27,7 +27,7 @@ class ProductsContainer extends React.Component {
   }
 
   UNSAFE_componentWillMount() {
-    productsStore.getListProductsNew(1);
+    // productsStore.getListProductsNew(1);
     productsStore.getListProducts(1, 1);
     productsStore.getListProducts(7, 1);
     productsStore.getListProducts(30, 1);
@@ -83,32 +83,32 @@ class ProductsContainer extends React.Component {
       </Modal>
       <Header title={STRINGS.PRODUCTS} navigate={navigate}/>
       <Content style={{ backgroundColor: COLORS.BACKGROUND_GRAY }} showsVerticalScrollIndicator={false}>
-        <View style={{ flex: 1 }}>
-          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingTop: 10 }}>
-            <Text style={styles.text}> Mới nhất </Text>
-            <Text></Text>
-            <Text style={styles.text} onPress = {() => { productsStore.products =[] ;navigate("DetailProducts", { filter: 0 })}}> Xem tất cả </Text>
-          </View>
-          {productsStore.productsNew.length === 0 ? <Loading />
-            :
-            <View>
-              <View style={styles.wrapperContent}>
+        {/*<View style={{ flex: 1 }}>*/}
+          {/*<View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingTop: 10 }}>*/}
+            {/*<Text style={styles.text}> Mới nhất </Text>*/}
+            {/*<Text></Text>*/}
+            {/*<Text style={styles.text} onPress = {() => { productsStore.products =[] ;navigate("DetailProducts", { filter: 0 })}}> Xem tất cả </Text>*/}
+          {/*</View>*/}
+          {/*{productsStore.productsNew.length === 0 ? <Loading />*/}
+            {/*:*/}
+            {/*<View>*/}
+              {/*<View style={styles.wrapperContent}>*/}
 
-                <FlatList
-                 keyExtractor = {item => item.id + ""}
-                  style={{ marginTop: 15, flex: 1 }}
-                  showsHorizontalScrollIndicator={false}
-                  horizontal={true}
-                  data={productsStore.productsNew}
-                  renderItem={({ item }) =>
-                    <ListProductsNew item={item} navigate={navigate} filter={0} />
-                  }
+                {/*<FlatList*/}
+                 {/*keyExtractor = {item => item.id + ""}*/}
+                  {/*style={{ marginTop: 15, flex: 1 }}*/}
+                  {/*showsHorizontalScrollIndicator={false}*/}
+                  {/*horizontal={true}*/}
+                  {/*data={productsStore.productsNew}*/}
+                  {/*renderItem={({ item }) =>*/}
+                    {/*<ListProductsNew item={item} navigate={navigate} filter={0} />*/}
+                  {/*}*/}
 
-                />
-              </View>
-            </View>
-          }
-        </View>
+                {/*/>*/}
+              {/*</View>*/}
+            {/*</View>*/}
+          {/*}*/}
+        {/*</View>*/}
         <View>
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
             <Text style={styles.text}> Nổi bật hôm nay </Text>

@@ -14,7 +14,7 @@ export const STRINGS = {
     TRY_AGAIN: 'Thử lại',
     OUT: 'Thoát',
     LOGIN_ERROR: 'Đăng nhập thất bại',
-    MESSAGE_LOGIN_ERROR: 'Vui lòng kiểm tra lại thông tin tài khoản',
+    MESSAGE_LOGIN_ERROR: 'Vui lòng kiểm tra lại kết nối',
     HAVE_ERROR: 'Có lỗi xảy ra',
     EMPTY_NAME: 'Bạn chưa nhập tên',
     EMPTY_USERNAME: 'Bạn chưa nhập tên tài khoản',
