@@ -28,6 +28,7 @@
     "react-native-onesignal": "3.2.7",
     "react-native-parallax-scroll-view": "0.21.3",
     "react-native-percentage-circle": "^1.0.7",
+    "react-native-qrcode": "^0.2.7",
     "react-native-select-multiple": "^1.2.0",
     "react-native-simple-radio-button": "^2.7.2",
     "react-native-spinkit": "^1.1.1",

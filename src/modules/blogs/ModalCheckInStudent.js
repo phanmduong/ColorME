@@ -9,6 +9,7 @@ import IconDefault from '../../commons/IconDefault';
 import getProfileStore from "../profile/profileStore";
 import {ButtonCommon} from '../../commons';
 import {formatImageLink} from "../../helper/index"
+import QRCode from 'react-native-qrcode';
 
 @observer
 export default class ModalCheckInStudent extends Component {
@@ -96,9 +97,11 @@ export default class ModalCheckInStudent extends Component {
                             {
                                 blogStore.attendanceData.register_code &&
                                 <View>
-                                    <Image
-                                        style={styles.imageQRcode}
-                                        source={{uri: urlCode}}/>
+                                    <QRCode
+                                        value={blogStore.attendanceData.register_code}
+                                        size={128}
+                                        bgColor='#000000'
+                                        fgColor='#FFFFFF'/>
                                     <Text style={{textAlign: 'center'}}>
                                         {blogStore.attendanceData.register_code}
                                     </Text>
@@ -106,15 +109,15 @@ export default class ModalCheckInStudent extends Component {
                             }
                         </View>
                         {/*<View style={styles.wrapperButton}>*/}
-                            {/*<ButtonCommon*/}
-                                {/*isLoading={blogStore.isLoadingAttendent}*/}
-                                {/*onPress={this.attendance}*/}
-                                {/*label={'ĐIỂM DANH'}*/}
-                                {/*text={{*/}
-                                    {/*fontFamily: 'Roboto-Bold',*/}
-                                    {/*fontSize: SIZES.SUBTITLE_SIZE*/}
-                                {/*}}*/}
-                            {/*/>*/}
+                        {/*<ButtonCommon*/}
+                        {/*isLoading={blogStore.isLoadingAttendent}*/}
+                        {/*onPress={this.attendance}*/}
+                        {/*label={'ĐIỂM DANH'}*/}
+                        {/*text={{*/}
+                        {/*fontFamily: 'Roboto-Bold',*/}
+                        {/*fontSize: SIZES.SUBTITLE_SIZE*/}
+                        {/*}}*/}
+                        {/*/>*/}
                         {/*</View>*/}
                     </View>
 
